@@ -28,9 +28,11 @@ allowed; In Combat follows combat; In Group follows group membership; Hidden,
 the disabled CVar and unavailable content remain hidden. Flux previously
 overrode those choices. No settings reset or permanent setting change occurs.
 Native timer formatting, pane selection, layouts, scale, colors, icons, menus,
-reset, Details priority and missing-client behavior remain. The explicit combat
-Show path is preserved; its native child OnShow/Refresh remains an acceptance
-boundary rather than being disabled as a workaround.
+reset, Details priority and missing-client behavior remained in the 5 November
+change. The 22 November repair defers addon-driven reveals during the combat
+addon restriction. Native child OnShow and refresh are part of the live
+acceptance check, including populated panes outside combat.
+[Current meter behavior](METER_STANDALONE.md#native-meter-control-ownership--22-november-2026).
 
 ## Source and recovery
 

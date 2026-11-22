@@ -40,10 +40,14 @@ end
 local function Arm(entry)
 	local owner, button = entry.owner, entry.button
 	if not button or InCombatLockdown() or not owner:IsVisible() or not entry.enabled() then
+		if entry.spell then HideProxy(entry) end
 		return
 	end
-	local target
-	if not entry.macrotext then
+	local target, spell
+	if entry.spell then
+		spell = Plain(entry.spell())
+		if not spell or spell <= 0 or spell % 1 ~= 0 then HideProxy(entry); return end
+	elseif not entry.macrotext then
 		target = entry.target and entry.target()
 		if not target then
 			return
@@ -54,14 +58,14 @@ local function Arm(entry)
 	local left, bottom, width, height = owner:GetRect()
 	left, bottom, width, height = Plain(left), Plain(bottom), Plain(width), Plain(height)
 	local originX, originY = Plain(UIParent:GetLeft()), Plain(UIParent:GetBottom())
-	if not (scale and parentScale and left and bottom and width and height and originX and originY) then
-		return
-	end
-	if parentScale <= 0 then
+	if not (scale and parentScale and parentScale > 0 and left and bottom and width and height and originX and originY) then
+		if spell then HideProxy(entry) end
 		return
 	end
 	local k = scale / parentScale
-	if entry.macrotext then
+	if spell then
+		button:SetAttribute("spell", spell)
+	elseif entry.macrotext then
 		button:SetAttribute("macrotext", entry.macrotext)
 	else
 		button:SetAttribute("clickbutton", target)
@@ -140,7 +144,9 @@ end
 local function Build(entry)
 	if InCombatLockdown() then return false end
 	if entry.button then return true end
-	local ok, button = pcall(CreateFrame, "Button", nil, UIParent, "SecureActionButtonTemplate")
+	if entry.spell and not RegisterStateDriver then return false end
+	local template = entry.spell and "SecureActionButtonTemplate,SecureHandlerStateTemplate" or "SecureActionButtonTemplate"
+	local ok, button = pcall(CreateFrame, "Button", nil, UIParent, template)
 	if not ok or not button then
 		return
 	end
@@ -148,7 +154,11 @@ local function Build(entry)
 	button:Hide()
 	button:RegisterForClicks(entry.clicks)
 	button:SetAttribute("useOnKeyDown", false)
-	if entry.macrotext then
+	if entry.spell then
+		button:SetAttribute("type", "spell")
+		button:SetAttribute("_onstate-fluxcombat", [[ if newstate == "locked" then self:Hide() end ]])
+		RegisterStateDriver(button, "fluxcombat", "[combat] locked; ready")
+	elseif entry.macrotext then
 		button:SetAttribute("type", "macro")
 		button:SetAttribute("macrotext", entry.macrotext)
 	else
@@ -165,7 +175,8 @@ local function OwnerScript(owner, scriptName)
 	end
 end
 
---- opts.target(): Blizzard button to Click(). opts.macrotext: secure /slash instead.
+--- opts.target(): Blizzard button to Click(). opts.macrotext: secure /slash.
+--- opts.spell(): Current positive spell ID, or nil when the owner has another action.
 --- opts.enabled(): checked on every hover.
 --- opts.clicks: RegisterForClicks value, default "AnyUp".
 --- opts.onEnter / opts.onLeave: tooltip handlers, default the owner's own scripts.
@@ -173,12 +184,13 @@ function Proxy.Attach(owner, opts)
 	if not owner or not owner.HookScript or not opts or entries[owner] then
 		return
 	end
-	if not opts.target and type(opts.macrotext) ~= "string" then
+	if not opts.target and type(opts.macrotext) ~= "string" and type(opts.spell) ~= "function" then
 		return
 	end
 	local entry = {
 		owner = owner,
 		target = opts.target,
+		spell = opts.spell,
 		macrotext = opts.macrotext,
 		enabled = opts.enabled,
 		clicks = opts.clicks or "AnyUp",
@@ -203,6 +215,12 @@ function Proxy.Attach(owner, opts)
 	else
 		Build(entry)
 	end
+end
+
+function Proxy.Refresh(owner)
+	local entry = entries[owner]
+	local button = entry and entry.spell and entry.button
+	if button and not InCombatLockdown() and (button:IsShown() or MouseOver(owner)) then Arm(entry) end
 end
 
 local events = CreateFrame("Frame")

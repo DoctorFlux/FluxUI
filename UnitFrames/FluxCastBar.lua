@@ -7,6 +7,10 @@ local API = ns.API
 local Border = ns.Border
 local CastThemes = ns.CastBarThemes
 
+local function IsOptionsPartyFrame(frame)
+    return frame and frame._fluxPartyMember and frame._fluxPartyPreview and frame._fluxPreviewLayerParent ~= nil
+end
+
 -- Helper function to get unit's class color (copied from shared file)
 local function GetUnitClassColor(unit)
     if not unit then return { r = 0.6, g = 0.6, b = 0.6 } end
@@ -34,14 +38,24 @@ local function GetCastBarChromeColors(unit, frame)
         if color then return color.r, color.g, color.b, color.r * .4, color.g * .4, color.b * .4 end
     end
     if unit == "target" or unit == "focus" then
+        if frame and frame._fluxIndividualPreview and UF.GetFrameUnitChrome then
+            local color, isPlayer = UF.GetFrameUnitChrome(frame)
+            local dr, dg, db = UF.GetNormalUnitBackdrop(isPlayer, color.r * .4, color.g * .4, color.b * .4)
+            return color.r, color.g, color.b, dr, dg, db
+        end
         if UF.GetUnitChromeColors then return UF.GetUnitChromeColors(unit) end
         local c = GetUnitClassColor(unit)
         return c.r, c.g, c.b, c.r * 0.4, c.g * 0.4, c.b * 0.4
     end
     if frame and frame._fluxPartyMember and frame._fluxPartyClassChrome then
-        if UF.GetUnitChromeColors then return UF.GetUnitChromeColors(unit) end
-        local c = GetUnitClassColor(unit)
-        return c.r, c.g, c.b, c.r * 0.4, c.g * 0.4, c.b * 0.4
+        local c
+        if IsOptionsPartyFrame(frame) then
+            c = RAID_CLASS_COLORS and RAID_CLASS_COLORS[frame._fluxPartyPreviewClass]
+        else
+            if UF.GetUnitChromeColors then return UF.GetUnitChromeColors(unit) end
+            c = GetUnitClassColor(unit)
+        end
+        if c then return c.r, c.g, c.b, c.r * 0.4, c.g * 0.4, c.b * 0.4 end
     end
     if unit == "player" or unit == "pet" or frame and frame._fluxPartyMember then
         if FluxBorder and FluxBorder.GetThemedVertexRGB and FluxBorder.GetThemedBackdropFillRGB then
@@ -2810,16 +2824,29 @@ function CB.CreateCastBar(frame, unit)
     if frame.CastBar then
         return frame.CastBar
     end
+    local previewParty = IsOptionsPartyFrame(frame)
+    local preview = previewParty or (frame._fluxIndividualPreview and frame._fluxPreviewLayerParent ~= nil)
     -- We attach to the unit frame "frame"
     -- We attach to the unit frame "frame"
     -- Main Container Frame (Holds everything)
     local castBar = CreateFrame("Frame", nil, frame)
+    castBar._fluxOptionsSample = preview or nil
     castBar._FluxBorderOwner = frame
     castBar._FluxBorderJunctionRole = "connected"
     castBar._FluxBorderCast = true
     castBar.unitID = unit
-    castBar:SetFrameLevel(frame:GetFrameLevel() + 40) -- Ensure above TextOverlay (+30) 
+    -- Compact focus has the same raised name strip as a party member.
+    local layer = (previewParty or (preview and frame._fluxCompactFocus)) and 110 or 40
+    castBar:SetFrameLevel(frame:GetFrameLevel() + layer)
     castBar:Hide()
+
+    local function LayerPreviewBackdrop(surface)
+        local background = surface.FluxBorderFrame and surface.FluxBorderFrame.BackgroundFrame
+        if not background then return end
+        local parent = frame._fluxPreviewLayerParent
+        background:SetFrameStrata(parent:GetFrameStrata())
+        background:SetFrameLevel(parent:GetFrameLevel() + 1)
+    end
 
     local headerCover = castBar:CreateTexture(nil, "BACKGROUND", nil, -8)
     headerCover:SetTexture("Interface\\Buttons\\WHITE8X8")
@@ -2942,6 +2969,7 @@ function CB.CreateCastBar(frame, unit)
 
     if Border then
         Border:ApplyTo(iconBorder, 2, 2, 2, 2)
+        if preview then LayerPreviewBackdrop(iconBorder) end
         if iconBorder.FluxBorderFrame and unit ~= "pet" then
             iconBorder.FluxBorderFrame._FluxBorderCastInternalSide = "Right"
         end
@@ -2974,6 +3002,7 @@ function CB.CreateCastBar(frame, unit)
 
     if Border then
         Border:ApplyTo(barBorder, 2, 2, 2, 2)
+        if preview then LayerPreviewBackdrop(barBorder) end
         if barBorder.FluxBorderFrame and unit ~= "pet" then
             barBorder.FluxBorderFrame._FluxBorderCastInternalSide = "Left"
         end
@@ -3059,19 +3088,7 @@ function CB.CreateCastBar(frame, unit)
         end
     end
 
-    castBar.RegisterPetCastEvents = RegisterUnitCastEvents
-    castBar.DisablePetCastBar = function(self)
-        self._fluxPetCastDisabled = true
-        self:Hide()
-        self:UnregisterAllEvents()
-        self.casting = nil
-        self.channeling = nil
-        self.fadeOut = nil
-    end
-
-    RegisterUnitCastEvents()
-
-    local deferUnitCastEvents = FluxCastBar_ShouldDeferUnitCastEvents(unit)
+    local deferUnitCastEvents = not preview and FluxCastBar_ShouldDeferUnitCastEvents(unit)
 
     local function handleCastBarUnitEvent(self, event, ...)
         if self._fluxPetCastDisabled then return end
@@ -3247,7 +3264,7 @@ function CB.CreateCastBar(frame, unit)
         end
     end
 
-    castBar:SetScript("OnEvent", function(self, event, ...)
+    local function OnCastEvent(self, event, ...)
         if deferUnitCastEvents then
             local nargs = select("#", ...)
             if nargs > 0 then
@@ -3272,10 +3289,23 @@ function CB.CreateCastBar(frame, unit)
             return
         end
         handleCastBarUnitEvent(self, event, ...)
-    end)
-    
-    castBar:SetScript("OnUpdate", OnUpdate)
-    if CastThemes then CastThemes.Attach(castBar) end
+    end
+
+    if not preview then
+        castBar.RegisterPetCastEvents = RegisterUnitCastEvents
+        castBar.DisablePetCastBar = function(self)
+            self._fluxPetCastDisabled = true
+            self:Hide()
+            self:UnregisterAllEvents()
+            self.casting = nil
+            self.channeling = nil
+            self.fadeOut = nil
+        end
+        RegisterUnitCastEvents()
+        castBar:SetScript("OnEvent", OnCastEvent)
+        castBar:SetScript("OnUpdate", OnUpdate)
+        if CastThemes then CastThemes.Attach(castBar) end
+    end
 
     local function FinishDeferredLayout()
         castBar._fluxLayoutDeferred = nil
@@ -3285,7 +3315,7 @@ function CB.CreateCastBar(frame, unit)
     -- opacity and parent visibility keep the prepared shell/icon connection.
     castBar.UpdateLayout = function()
         if unit ~= "pet" and not frame.atlasBorderFrame then return end
-        if InCombatLockdown and InCombatLockdown() then
+        if not preview and InCombatLockdown and InCombatLockdown() then
             if not castBar._fluxLayoutDeferred and UF and UF.DeferProtected then
                 castBar._fluxLayoutDeferred = true
                 UF.DeferProtected("castbar.layout." .. tostring(castBar), FinishDeferredLayout)
@@ -3458,7 +3488,7 @@ function CB.CreateCastBar(frame, unit)
         if castBar.customTimer and castBar.customFromName then
             ApplyCustomTimerLabel(castBar)
         end
-        if CastThemes then CastThemes.Layout(castBar) end
+        if not preview and CastThemes then CastThemes.Layout(castBar) end
         castBar._fluxPreparedLayout = {anchor = frame.atlasBorderFrame, header = header, width = totalWidth, height = totalHeight,
             barWidth = barWidth, iconSize = iconSize, contentWidth = barWidth - contentLeft - 2, contentHeight = totalHeight + contentTop - contentBottom,
             alignment = alignment, power = power, powerWidth = powerWidth, powerHeight = powerHeight,
@@ -3467,6 +3497,8 @@ function CB.CreateCastBar(frame, unit)
     end
 
     frame.CastBar = castBar
+
+    if preview then return castBar end
     
     -- Hook into frame update events if possible, or just call it initially
     -- Hook into frame update events (UpdatePartition handles resizing)
@@ -3495,6 +3527,60 @@ function CB.CreateCastBar(frame, unit)
     -- Make CastStart available for manual calls (like when switching targets)
     castBar.CastStart = CastStart
 
+    return castBar
+end
+
+function CB.SetOptionsSampleProgress(castBar, progress)
+    local layout = castBar and castBar._fluxOptionsSample and castBar._fluxPreparedLayout
+    if not layout then return end
+    local width = layout.contentWidth
+    if castBar._fluxPreviewProgress == progress and castBar._fluxPreviewSparkWidth == width then return end
+    if castBar._fluxPreviewProgress ~= progress then
+        castBar:SetValue(progress)
+        castBar.Time:SetFormattedText("%.1f", (1 - progress) * 4)
+        castBar._fluxPreviewProgress = progress
+    end
+    castBar.Spark:SetPoint("CENTER", castBar.SparkFrame, "LEFT", progress * width, 0)
+    castBar.Spark:SetShown(progress > 0 and progress < 1)
+    castBar._fluxPreviewSparkWidth = width
+end
+
+function CB.PaintOptionsSample(frame, shown, name)
+    local party = IsOptionsPartyFrame(frame) and ns.PartyFrames
+    if not frame._fluxPreviewLayerParent or not (frame._fluxIndividualPreview or party) then return end
+    local unit, castBar = frame.unit, frame.CastBar
+    if not shown or not FluxUnitFrames_ShouldShowCastBar or not FluxUnitFrames_ShouldShowCastBar(unit) then
+        if castBar then castBar:Hide() end
+        if party then party.SyncCastCover(frame) end
+        return
+    end
+    if not castBar then
+        castBar = CB.CreateCastBar(frame, unit)
+        SetCastBarIcon(castBar, "Interface\\Icons\\Spell_Holy_FlashHeal")
+        castBar.Text:SetWordWrap(false)
+        if castBar.Text.SetMaxLines then castBar.Text:SetMaxLines(1) end
+        castBar.Text:Show()
+    end
+    castBar.UpdateLayout()
+    local layout = castBar._fluxPreparedLayout
+    if not layout then return end
+    CB.SetOptionsSampleProgress(castBar, .65)
+
+    name = name or GenericCastLabel(false)
+    if castBar._fluxPreviewName ~= name then
+        castBar._fluxPreviewName = name
+        castBar.Text:SetText(name)
+    end
+    local showTime = not FluxUnitFrames_ShouldShowCastTime or not not FluxUnitFrames_ShouldShowCastTime(unit)
+    local width = layout.contentWidth
+    if castBar._fluxPreviewWidth ~= width or castBar._fluxPreviewShowTime ~= showTime then
+        local timeSpace = showTime and (math.max(28, castBar.Time:GetStringWidth()) + CASTBAR_TEXT_TIME_GAP) or 0
+        castBar.Text:SetWidth(math.max(1, width - CastBarSpellTextLeftPad(castBar) - CASTBAR_TEXT_RIGHT_PAD - timeSpace))
+        castBar.Time:SetShown(showTime)
+        castBar._fluxPreviewWidth, castBar._fluxPreviewShowTime = width, showTime
+    end
+    castBar:Show()
+    if party then party.SyncCastCover(frame) end
     return castBar
 end
 

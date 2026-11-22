@@ -1,0 +1,124 @@
+{
+  "id": "NAMEPLATE-RESTORE-20261121",
+  "capturedAtUtc": "2026-11-21T19:53:59.991495+00:00",
+  "publishedMain": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+  "preRestoreArchive": "nameplate-restore-before-20261121T195023Z",
+  "preRestoreArchiveSha256": "03a92b5cb6120080e96ff78785877da280cc08b8be3986bf640467a8ee974eef",
+  "restoredPublishedFiles": [
+    "NamePlates/Core.lua",
+    "NamePlates/CastBarSchools.lua",
+    "NamePlates/ComboPoints.lua",
+    "NamePlates/Countdown.lua",
+    "NamePlates/Level.lua",
+    "NamePlates/Threat.lua",
+    "AddonOptions/FluxOptionsNameplates.lua",
+    "tests/nameplate_quest_progress.lua"
+  ],
+  "sharedFilesWithScopedRestoration": [
+    "AddonOptions/FluxOptionsCatalog.lua",
+    "AddonOptions/FluxOptionsRender.lua",
+    "AddonOptions/FluxOptionsShell.lua",
+    "tests/options_navigation.lua",
+    "tests/options_rework.lua",
+    "_FluxUI.toc"
+  ],
+  "installedClientReadback": {
+    "_retail_": {
+      "matchedFiles": 10,
+      "tocSha256": "c3780f031e59d6f67c1151ea5cde2e9d0aef641101c76ac2dfc90943736370fe"
+    },
+    "_forever_": {
+      "matchedFiles": 10,
+      "tocSha256": "c3780f031e59d6f67c1151ea5cde2e9d0aef641101c76ac2dfc90943736370fe"
+    },
+    "_classic_": {
+      "matchedFiles": 10,
+      "tocSha256": "c3780f031e59d6f67c1151ea5cde2e9d0aef641101c76ac2dfc90943736370fe"
+    },
+    "_classic_era_": {
+      "matchedFiles": 10,
+      "tocSha256": "c3780f031e59d6f67c1151ea5cde2e9d0aef641101c76ac2dfc90943736370fe"
+    },
+    "_anniversary_": {
+      "matchedFiles": 10,
+      "tocSha256": "c3780f031e59d6f67c1151ea5cde2e9d0aef641101c76ac2dfc90943736370fe"
+    }
+  },
+  "publishedFileSha256": {
+    "NamePlates/CastBarSchools.lua": "2c5839f551f08e2340d1dfc3e094b48aa267085c78d4eed858f0f14657899a10",
+    "NamePlates/ComboPoints.lua": "3e9fc0846b321884303d750716f2d761630c0638a388d68dccaaf4c635e3b4b6",
+    "NamePlates/Core.lua": "774092d1dc0024f11c95aff773521019a7a4fe2f8dd895a678b8abd89c7349cf",
+    "NamePlates/Countdown.lua": "e6960d8a229312547ea57d13ec83d8124fd7ae1e80e8e421fbd87a340487332d",
+    "NamePlates/Level.lua": "d051df80b887b3ec77d17ff5b1d6aebe15d6c9cf9550016813c346ef9fa5be66",
+    "NamePlates/Threat.lua": "bf6ccf51553210f617cfee5e122a9cfae2e2108a6c6c00a0db00c68e0b8488ab",
+    "NamePlates/_tmp_combosmoke.lua": "34b2be7732c5c21f7674392564c59e41264760d6fba8c45d2c63d770e61a00f8",
+    "AddonOptions/FluxOptionsNameplates.lua": "0bac4f3a5b59693f873f2be5f07dbe74d0c0ece19f95b7c702bbcd769aac67f2",
+    "BlizzardSettings/Nameplates.lua": "6d674cf1729939e23af429d067a19e25fd727a01894a9f379c954feca61aa03b",
+    "Core/API/Threat.lua": "282400e58676c959b3baa3077c6fcd5ce5c1519155d59c71bd70673bcbc041cb"
+  },
+  "hashNormalization": "CRLF to LF",
+  "syntaxChecked": [
+    "NamePlates/CastBarSchools.lua",
+    "NamePlates/ComboPoints.lua",
+    "NamePlates/Core.lua",
+    "NamePlates/Countdown.lua",
+    "NamePlates/Level.lua",
+    "NamePlates/Threat.lua",
+    "NamePlates/_tmp_combosmoke.lua",
+    "AddonOptions/FluxOptionsNameplates.lua",
+    "BlizzardSettings/Nameplates.lua",
+    "Core/API/Threat.lua",
+    "AddonOptions/FluxOptionsCatalog.lua",
+    "AddonOptions/FluxOptionsRender.lua",
+    "AddonOptions/FluxOptionsShell.lua",
+    "tests/options_navigation.lua",
+    "tests/options_rework.lua"
+  ],
+  "focusedDesktopPassed": {
+    "tests/options_navigation.lua": "Options navigation: 7277 checks; actual builders mapped across five client contracts; native rendering pending",
+    "tests/nameplate_quest_progress.lua": "QUEST_PROGRESS checks=1261 failures=0 native_pixels_taint_performance=NOT_RUN",
+    "tests/nameplate_refresh_batch.lua": "QUEST_PROGRESS checks=1491 failures=0 native_pixels_taint_performance=NOT_RUN",
+    "tests/nameplate_castbar_schools.lua": "PASS nameplate cast-bar themes: 56 checks; native taint/pixels pending",
+    "tests/nameplate_countdown_work.lua": "Nameplate countdown work: 1160 checks, 0 failures",
+    "tests/passive_nameplate_optimization.lua": "PASS: 6 actual-module scenarios; 60 checks; no native FPS or CPU measurement",
+    "tests/passive_nameplate_metric_recovery.lua": "PASS: 6 actual-module scenarios; 106 checks; no native FPS or CPU measurement",
+    "tests/passive_threat_rank.lua": "PASS threat rank: 1916 actual-code checks; native secret permissions/FPS not measured",
+    "tests/raid_nameplate_defaults.lua": "raid and nameplate defaults: 15 checks passed",
+    "tests/threat_warning_visibility.lua": "Shared threat warning visibility: 870 checks across five client models; native acceptance pending",
+    "NamePlates/_tmp_combosmoke.lua": "Nameplate combos OK: Era/Anniversary/Forever native templates; target-only top-of-health anchors; zero/gains/spends/transfers; combat/forms/vehicles; secret counts; removal/reuse; native frames untouched; independent of unit-frame options"
+  },
+  "broaderOptionsFixture": {
+    "currentLine": 648,
+    "preRestoreLine": 671,
+    "result": "Both assert on preview.unitDrawing in the independent target unit-frame sample."
+  },
+  "native": "Reload and native rendering, input, combat, taint and performance were not tested.",
+  "savedData": "No settings files or CVars were written by the restoration.",
+  "subsequentVerification": {
+    "capturedAtUtc": "2026-11-21T20:23:39.423200+00:00",
+    "checkpoint": "project-cleanup-before-20261121T201440Z",
+    "runtimeFileSha256": {
+      "_FluxUI.toc": "0b80edce8e6951390f66e3c57471196f7e6c634b75330d56dd52ae5183b4d279",
+      "AddonOptions/FluxOptionsCatalog.lua": "68221d0ab3fc8e7929ae010269595f3a8fbd552486e83130ab951fa586c7dd79",
+      "AddonOptions/FluxOptionsNameplates.lua": "0bac4f3a5b59693f873f2be5f07dbe74d0c0ece19f95b7c702bbcd769aac67f2",
+      "AddonOptions/FluxOptionsRender.lua": "e6eedb6b842bc4138ff415da65335dd9a64980128a6e963b48089a940dd234e8",
+      "AddonOptions/FluxOptionsShell.lua": "50ba075aa098855e5b003fc0c094c880009e7826ab0d6a03dafec966b6c99183",
+      "NamePlates/CastBarSchools.lua": "2c5839f551f08e2340d1dfc3e094b48aa267085c78d4eed858f0f14657899a10",
+      "NamePlates/ComboPoints.lua": "3e9fc0846b321884303d750716f2d761630c0638a388d68dccaaf4c635e3b4b6",
+      "NamePlates/Core.lua": "d09d337cf7520d3c15d3ff99bb445ed83730cc3b7be2ef9fb353305e174da2da",
+      "NamePlates/Countdown.lua": "9fffce07500cc142fca3bbb0f4abb77a08ecbdbd64eebad5dd5559cd7f329cd0",
+      "NamePlates/Level.lua": "e5ff1034d3bf5e5d752f25a51c7a38f612168e16e6c0e3ec3a3bf06a27c983af",
+      "NamePlates/Threat.lua": "d719729d102a84d5e4d1ebd1c2c2ee58c059d7853a9cdd71e88a2cc8b6b93bad"
+    },
+    "hashNormalization": "Raw bytes",
+    "installedFilesMatchingSource": {
+      "_retail_": 11,
+      "_forever_": 11,
+      "_classic_": 11,
+      "_classic_era_": 11,
+      "_anniversary_": 11
+    },
+    "optionsShellChecks": 1318,
+    "nativeClientRun": "Pending following reload."
+  }
+}

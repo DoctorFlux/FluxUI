@@ -93,9 +93,13 @@ local function ApplyLayout()
 	end
 end
 
-local function Stop(message)
+local function Stop(message, rejected)
 	local group = worker and worker.group or "Select"
 	local callbacks = worker and worker.callbacks
+	local pending = worker and worker.pending
+	if pending and callbacks and callbacks.OnUnconfirmed and not rejected then
+		callbacks.OnUnconfirmed(pending.itemID, pending.count)
+	end
 	if worker and worker.items and (not message or not message:find("Finished", 1, true)) then
 		lastRestockTake = nil -- A cancelled/failed session has no next take deadline.
 	end
@@ -201,8 +205,10 @@ local function ProgressPending()
 			return true
 		end
 	end
-	if GetTime and GetTime() - p.started >= MAX_WAIT then
-		Stop("Stopped: the last mailbox action was not confirmed. Check your bags.")
+	if GetTime then
+		local remaining = MAX_WAIT - (GetTime() - p.started)
+		if remaining <= 0 then Stop("Stopped: the last mailbox action was not confirmed. Check your bags.")
+		elseif worker.items then Schedule(remaining, true) end
 	end
 	return false
 end
@@ -236,7 +242,7 @@ Step = function()
 	if not worker then return end
 	if not opened or not MailFrame or not MailFrame:IsShown() then Stop(); return end
 	if Mail.IsEnabled and not Mail.IsEnabled(worker.group) then Stop("Stopped: mail module disabled."); return end
-	if worker.items and InCombatLockdown and InCombatLockdown() then Stop(); return end
+	if worker.items and InCombatLockdown and InCombatLockdown() then return end
 	if worker.items and OpenAllMail and OpenAllMail.timeUntilNextRetrieval ~= nil then Stop(); return end
 	-- Header/item updates can arrive before the client's command completes.
 	-- Like native Open All, wait for its command gate before advancing the job.
@@ -312,7 +318,7 @@ Step = function()
 				if worker.items then
 					local _, itemID = GetInboxItem(row.index, slot)
 					worker.pending.itemID = itemID
-					if worker.callbacks.OnTake(itemID, count) == false then worker.pending = nil; Stop(); return end
+					if worker.callbacks.OnTake(itemID, count, row.index) == false then worker.pending = nil; Stop(); return end
 				end
 				if worker.items then lastRestockTake = worker.pending.started end
 				if action == "money" then TakeInboxMoney(row.index) else TakeInboxItem(row.index, slot) end
@@ -482,7 +488,7 @@ frame:SetScript("OnEvent", function(_, event, interactionType)
 		for index in pairs(selected) do selected[index] = nil end
 		Stop()
 	elseif event == "MAIL_FAILED" then
-		if worker and worker.items then Stop("Stopped: the mailbox rejected the attachment request.") end
+		if worker and worker.items then Stop("Stopped: the mailbox rejected the attachment request.", true) end
 	elseif event == "MAIL_INBOX_UPDATE" then
 		RefreshRows()
 		if worker and worker.items then Schedule(RestockDelay())

@@ -75,7 +75,7 @@ local function Fixture(native, failAt, source,client)
     e.FluxRaid_IsDispelHighlightEnabled=function()return e.dispelHighlight~=false end
     e.FluxRaidHealerExtras={GetClassBuffFilter=function()return {[1243]=true},{Fortitude=true}end}
     e.canaccesstable=function(value)return not value.secret end
-    e.Enum={CustomAuraButtonDispelTypeTextureStyle={PreserveAsset=3}}
+    e.Enum={CustomAuraButtonDispelTypeTextureStyle={Icon=2,PreserveAsset=3}}
     if native then
         -- Mixin definitions stay in Blizzard's secure environment. These public
         -- exports and the registered XML template are the supported capability.
@@ -141,6 +141,7 @@ local function Fixture(native, failAt, source,client)
     function methods:SetWordWrap(value)legal(self);self.wordWrap=value end
     function methods:SetCooldown(start,duration)legal(self);self.start,self.duration=start,duration end
     function methods:SetHideCountdownNumbers(value)legal(self);self.hideCountdown=value end
+    function methods:SetCountdownFormatter(value)legal(self);self.countdownFormatter=value end
     function methods:SetDrawSwipe(value)legal(self);self.drawSwipe=value end
     function methods:SetDrawEdge(value)legal(self);self.drawEdge=value end
     function methods:SetDrawBling(value)legal(self);self.drawBling=value end
@@ -269,6 +270,10 @@ local function Fixture(native, failAt, source,client)
     end}
     -- Execute the actual shared geometry implementation. Text metrics remain a
     -- separate fixture contract so these tests do not pretend to measure fonts.
+    RunScript("Core/API/Aura.lua",e,"_FluxUI",e.addonNS)
+    -- Keep the fixture's source-selection probes on the direct C_UnitAuras
+    -- and UnitAura paths. The shared API supplies real visual helpers here.
+    e.addonNS.Flux.Aura.GetDataByIndex=nil
     RunScript("RaidFrame/FluxRaidVisuals.lua",e,"_FluxUI",e.addonNS)
     e.FluxRaidVisuals.ApplyRaidFrameTunables(e.raidDB)
     e.FluxRaidVisuals.GetAuraDurationFontSize=function()return 7 end
@@ -426,13 +431,27 @@ for _,client in ipairs({"retail","forever"})do
       end
     end
     check(buttons==120,"native fixed creation batches are recorded separately from visible twelve-slot capacity")
-    check(#groups.dispel.groups.dispel.buttons[1].dispelSinks==1,"clipped icon retains only its local dispel edge")
+    for _,key in ipairs({"dispel","dispelPlain"}) do
+        local icon=groups[key].groups.dispel.buttons[1]
+        local sinks=icon.dispelSinks
+        check(#sinks==2 and sinks[1].region==icon._fluxRaidDebuffBorder
+            and sinks[1].options.style==3 and sinks[1].options.showWithoutDispelType,
+            key..": icon border preserves its own art independently of the member highlight")
+        local glyph=sinks[2]
+        check(glyph.options.style==2 and glyph.options.showWhenHarmful and not glyph.options.showWhenHelpful
+            and not glyph.options.showWithoutDispelType and glyph.region.parent==icon.AuraTextLayer
+            and glyph.region.points[1][1]=="TOPRIGHT" and glyph.region.points[1][2]==icon,
+            key..": native classification sets the corner type icon above the cooldown")
+        check(not groups[key].groups.bossBuffs.buttons[1].dispelSinks,
+            key..": helpful effects on the debuff side do not receive type art")
+    end
     local border=groups.dispelBorder
     local slot=border.slots.dispel
     check(border.parent==frame._fluxHighlightLayer and not border.clips and border.allpoints==frame,
         "whole-cell border uses an unclipped native owner on the dedicated highlight layer")
     check(slot.filter=="HARMFUL|RAID" and slot.options.templateNames[1]=="FluxRaidDispelBorderTemplate"
-        and slot.options.candidateFilters.processedAuraType==e.AuraUtil.AuraUpdateChangedType.Dispel and border.policyOptions.displayOnlyDispellableDebuffs,
+        and slot.options.candidateFilters.includeDispelTypes.Magic and slot.options.candidateFilters.includeDispelTypes.Poison
+        and slot.options.candidateFilters.processedAuraType==nil,
         "one fixed public slot selects actual dispellable raid auras through native classification")
     check(not slot.button.Icon and not slot.button.Duration and not slot.button.Cooldown
         and #slot.button.dispelSinks==4,"bare native slot owns only four type-colored border sinks")
@@ -604,10 +623,17 @@ for _,client in ipairs({"era","anniversary","classic"})do
     end
     check(lists.debuffs[1].Icon.texture==1400 and lists.debuffs[2].Icon.texture==1404
         and lists.debuffs[3].Icon.texture==1301 and lists.debuffs[4].Icon.texture==1302,"native debuff ordering puts boss effects before raid dispels and ordinary effects")
+    local poisonIcon, magicIcon = lists.debuffs[3], lists.debuffs[4]
+    check(poisonIcon._fluxDispelTypeIcon.atlas=="RaidFrame-Icon-DebuffPoison"
+        and poisonIcon._fluxDispelTypeIcon.shown and poisonIcon._fluxRaidDebuffBorder.color[2]==.6
+        and magicIcon._fluxDispelTypeIcon.atlas=="RaidFrame-Icon-DebuffMagic" and magicIcon._fluxDispelTypeIcon.shown,
+        "readable raid debuffs get the matching glyph and border color")
     for i=1,6 do data["HARMFUL|RAID"][i]=Aura(300+i,20,{isHarmful=true,isRaid=true,dispelName="Magic"})end
     frame.optionTable.displayOnlyDispellableDebuffs=true;auras.Update(frame)
     check(Shown(lists.debuffs)==6 and lists.debuffs[6].Icon.texture==1306,"strict dispel-only uses all six slots exclusively from the filtered raid list")
     for _,icon in ipairs(lists.debuffs)do check(icon.Icon.texture>=1301 and icon.Icon.texture<=1306,"strict mode excludes every own/boss/nondispellable exception")end
+    check(poisonIcon._fluxDispelTypeIcon.atlas=="RaidFrame-Icon-DebuffMagic"
+        and poisonIcon._fluxRaidDebuffBorder.color[1]==.2,"pooled readable slots replace the previous type icon and border")
     local count=#frames
     for i=1,20 do auras.Refresh(frame)end
     check(#frames==count,"readable refreshes reuse twelve fixed icon frames")

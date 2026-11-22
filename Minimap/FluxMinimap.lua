@@ -254,38 +254,19 @@ FluxMinimap:SetScript("OnEvent", function(self, event, ...)
         local reconcileButtons = #minimapPositionQueue > 0 or self.pendingEmbed or self.pendingRestore
         -- Process queued minimap positioning operations
         if #minimapPositionQueue > 0 then
-            for _, queuedOp in ipairs(minimapPositionQueue) do
-                if queuedOp.type == "embed" then
-                    -- Apply positioning for embed operation
-                    if Minimap and queuedOp.parentFrame then
-                        Minimap:SetParent(queuedOp.parentFrame)
-                        Minimap:ClearAllPoints()
-                        Minimap:SetPoint("TOPRIGHT", queuedOp.parentFrame, "TOPRIGHT", 0, -queuedOp.infoBarHeight + queuedOp.inset)
-                        
-                        -- Position InfoBar
-                        if self.InfoBar then
-                            self.InfoBar:SetParent(queuedOp.parentFrame)
-                            self.InfoBar:ClearAllPoints()
-                            self.InfoBar:SetPoint("BOTTOMRIGHT", Minimap, "TOPRIGHT", 0, -queuedOp.inset)
-                        end
-                    end
-                elseif queuedOp.type == "restore" then
-                    -- Apply positioning for restore operation
-                    if Minimap and embeddedState.originalParent then
-                        Minimap:SetParent(embeddedState.originalParent)
-                        Minimap:ClearAllPoints()
-                        if embeddedState.originalPosition then
-                            Minimap:SetPoint(unpack(embeddedState.originalPosition))
-                        end
-                        
-                        -- Restore InfoBar position
-                        if self.InfoBar and embeddedState.originalInfoBarPosition then
-                            self.InfoBar:SetParent(embeddedState.originalInfoBarParent)
-                            self.InfoBar:ClearAllPoints()
-                            self.InfoBar:SetPoint(unpack(embeddedState.originalInfoBarPosition))
-                        end
-                    end
+            -- Only the last requested position can match the current mode.
+            local queuedOp = minimapPositionQueue[#minimapPositionQueue]
+            if queuedOp.type == "embed" and Minimap and queuedOp.parentFrame then
+                Minimap:SetParent(queuedOp.parentFrame)
+                Minimap:ClearAllPoints()
+                Minimap:SetPoint("TOPRIGHT", queuedOp.parentFrame, "TOPRIGHT", 0, -queuedOp.infoBarHeight + queuedOp.inset)
+                if self.InfoBar then
+                    self.InfoBar:SetParent(queuedOp.parentFrame)
+                    self.InfoBar:ClearAllPoints()
+                    self.InfoBar:SetPoint("BOTTOMRIGHT", Minimap, "TOPRIGHT", 0, -queuedOp.inset)
                 end
+            elseif queuedOp.type == "restore" and Minimap then
+                self:RestoreNormalAnchors()
             end
             table.wipe(minimapPositionQueue)
             if self.RefreshInfoBarZoneFit then
@@ -710,10 +691,8 @@ end
 function FluxMinimap:PositionIndicators()
     -- Combat protection: Skip protected function calls during combat
     if InCombatLockdown() then return end
-    
-    local btnSize = 32
-    local padding = 2
-    local inset = (FluxBorder and FluxBorder.CanUseAtlases and FluxBorder:CanUseAtlases()) and 4 or 2
+
+    local cornerInset = (FluxBorder and FluxBorder.CanUseAtlases and FluxBorder:CanUseAtlases()) and 6 or 4
 
     -- 1. Tracking Icon (Bottom Right - stays in fixed position)
     -- Different names on different versions
@@ -730,7 +709,7 @@ function FluxMinimap:PositionIndicators()
 
     if trackingBtn then
         MinimapSetParent(trackingBtn, Minimap, true)
-        MinimapSetPoint(trackingBtn, "BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", -inset, inset) -- Fixed position
+        MinimapSetPoint(trackingBtn, "BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", -cornerInset, cornerInset)
         MinimapSetFrameLevel(trackingBtn, Minimap:GetFrameLevel() + 50) -- Ensure on top
 
         -- In Classic Era, only show tracking button if tracking is active
@@ -857,14 +836,20 @@ function FluxMinimap:PositionIndicators()
 
     if mailFrame then
         MinimapSetParent(mailFrame, Minimap, true)
-        -- Position to the left of the tracking button
-        if trackingBtn then
-            MinimapSetPoint(mailFrame, "RIGHT", trackingBtn, "LEFT", -2, 0)
+        -- Align the bottoms so taller mail art stays inside the map's border.
+        local publicTracking, trackingShown
+        if trackingBtn then publicTracking, trackingShown = MinimapNativeValue(trackingBtn, "IsShown") end
+        if publicTracking and trackingShown then
+            MinimapSetPoint(mailFrame, "BOTTOMRIGHT", trackingBtn, "BOTTOMLEFT", -2, 0)
         else
-            -- Fallback if no tracking button
-            MinimapSetPoint(mailFrame, "BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", -inset + 4, inset - 4)
+            MinimapSetPoint(mailFrame, "BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", -cornerInset, cornerInset)
         end
-        MinimapSetFrameLevel(mailFrame, Minimap:GetFrameLevel() + 10)
+        local mailLevel = Minimap:GetFrameLevel() + 10
+        if Minimap.FluxBorderFrame then
+            local public, borderLevel = MinimapNativeValue(Minimap.FluxBorderFrame, "GetFrameLevel")
+            if public then mailLevel = math.max(mailLevel, borderLevel + 1) end
+        end
+        MinimapSetFrameLevel(mailFrame, math.min(mailLevel, 65535))
         -- Ensure border is hidden if possible, but keep icon
         if MiniMapMailBorder then MiniMapMailBorder:Hide() end
 
@@ -2038,6 +2023,7 @@ function FluxMinimap:CreateInfoBar()
     
     -- The existing time hit region opens the client's calendar on left-click.
     local clockButton = CreateFrame("Button", nil, infoBar)
+    infoBar.ClockButton = clockButton
     clockButton:SetFrameStrata(infoBar:GetFrameStrata() or "MEDIUM")
     clockButton:SetFrameLevel(math.min((zoneHit.GetFrameLevel and zoneHit:GetFrameLevel() or 0) + 10, 65535))
     clockButton:SetPoint("TOPRIGHT", infoBar, "TOPRIGHT", 0, 0)
@@ -2283,6 +2269,42 @@ local function HookMinimapClusterKeepHidden()
     MinimapCluster:HookScript("OnShow", KeepMinimapClusterHidden)
 end
 
+local function RememberMinimapLayer(layers, frame)
+    if not frame then return end
+    local levelOK, level = MinimapNativeValue(frame, "GetFrameLevel")
+    local strataOK, strata = MinimapNativeValue(frame, "GetFrameStrata")
+    layers[#layers + 1] = { frame = frame, level = levelOK and level or nil, strata = strataOK and strata or nil }
+end
+
+function FluxMinimap:RestoreNormalAnchors()
+    Minimap:SetParent(embeddedState.originalParent or UIParent)
+    Minimap:ClearAllPoints()
+    if embeddedState.originalPosition then Minimap:SetPoint(unpack(embeddedState.originalPosition)) end
+
+    local infoBar = self.InfoBar
+    if infoBar then
+        infoBar:SetParent(embeddedState.originalInfoBarParent or UIParent)
+        infoBar:ClearAllPoints()
+        local inset = (FluxBorder and FluxBorder.CanUseAtlases and FluxBorder:CanUseAtlases()) and 4 or 2
+        infoBar:SetWidth(Minimap:GetWidth() * Minimap:GetEffectiveScale() / infoBar:GetEffectiveScale())
+        infoBar:SetPoint("BOTTOMLEFT", Minimap, "TOPLEFT", 0, -inset)
+        infoBar:SetPoint("BOTTOMRIGHT", Minimap, "TOPRIGHT", 0, -inset)
+    end
+
+    local layers = embeddedState.originalLayers
+    if layers then
+        for _, layer in ipairs(layers) do
+            local frame = layer.frame
+            if layer.strata then
+                local ok, current = MinimapNativeValue(frame, "GetFrameStrata")
+                if not ok or current ~= layer.strata then frame:SetFrameStrata(layer.strata) end
+            end
+            if layer.level then MinimapSetFrameLevel(frame, layer.level) end
+        end
+        embeddedState.originalLayers = nil
+    end
+end
+
 --- Embed the Minimap inside a parent frame (for FluxWindowFrame integration)
 -- @param parentFrame The frame to embed the Minimap into
 function FluxMinimap:EmbedInFrame(parentFrame)
@@ -2295,19 +2317,19 @@ function FluxMinimap:EmbedInFrame(parentFrame)
     end
     
     -- Store original state before embedding (safe to do in combat)
-    if not embeddedState.isEmbedded then
+    if not embeddedState.isEmbedded and not embeddedState.originalLayers then
         embeddedState.originalParent = Minimap:GetParent()
         embeddedState.originalSize = { Minimap:GetSize() }
         -- Store position info (safe to read in combat)
         local point, relativeTo, relativePoint, x, y = Minimap:GetPoint(1)
         embeddedState.originalPosition = { point, relativeTo, relativePoint, x, y }
         
-        -- Store InfoBar original state
-        if self.InfoBar then
-            local ibPoint, ibRelativeTo, ibRelativePoint, ibX, ibY = self.InfoBar:GetPoint(1)
-            embeddedState.originalInfoBarPosition = { ibPoint, ibRelativeTo, ibRelativePoint, ibX, ibY }
-            embeddedState.originalInfoBarParent = self.InfoBar:GetParent()
-        end
+        embeddedState.originalInfoBarParent = self.InfoBar and self.InfoBar:GetParent()
+        local layers = {}
+        RememberMinimapLayer(layers, Minimap)
+        RememberMinimapLayer(layers, Minimap.FluxBorderFrame)
+        RememberMinimapLayer(layers, self.InfoBar)
+        embeddedState.originalLayers = layers
     end
     
     embeddedState.isEmbedded = true
@@ -2402,9 +2424,10 @@ function FluxMinimap:EmbedInFrame(parentFrame)
         end
     end
     
-    -- Ensure the parent's (FluxWindowFrame) border is on top of everything
-    if parentFrame.FluxBorderFrame then
-        parentFrame.FluxBorderFrame:SetFrameLevel(20)  -- Higher than minimap and its border
+    -- Other hosts still use the generic embedded minimap border level.
+    local parentBorder = parentFrame.FluxBorderFrame
+    if parentBorder and not parentBorder._FluxBorderOwnLayer then
+        parentBorder:SetFrameLevel(20)
     end
     
     -- CRITICAL: Hide MinimapCluster when embedding (contains zone text and timer)
@@ -2602,10 +2625,9 @@ function FluxMinimap:RestoreToNormal()
     -- Reset scale to CONFIG scale
     Minimap:SetScale(CONFIG.Scale)
     
-    -- Restore InfoBar size (safe in combat)
+    -- The header width is restored with its anchors once the parent is settled.
     if self.InfoBar then
         self.InfoBar:Show()  -- Safe in combat
-        -- Reset InfoBar to its default width (will be set by EnforcePosition/positioning)
     end
     
     -- PROTECTED OPERATIONS (must be queued during combat):
@@ -2625,29 +2647,9 @@ function FluxMinimap:RestoreToNormal()
         
         -- Return early - sizing is done, positioning will be queued
         return
-    else
-        -- Not in combat, do positioning immediately
-        -- Restore parent
-        Minimap:SetParent(embeddedState.originalParent or UIParent)
-        Minimap:ClearAllPoints()
-        
-        -- Restore position
-        if embeddedState.originalPosition then
-            Minimap:SetPoint(unpack(embeddedState.originalPosition))
-        end
-        
-        -- Restore InfoBar to original position
-        if self.InfoBar then
-            self.InfoBar:SetParent(embeddedState.originalInfoBarParent or UIParent)
-            self.InfoBar:ClearAllPoints()
-            
-            -- Re-anchor InfoBar above the Minimap
-            local inset = (FluxBorder and FluxBorder.CanUseAtlases and FluxBorder:CanUseAtlases()) and 4 or 2
-            self.InfoBar:SetPoint("BOTTOMLEFT", Minimap, "TOPLEFT", 0, -inset)
-            self.InfoBar:SetPoint("BOTTOMRIGHT", Minimap, "TOPRIGHT", 0, -inset)
-        end
     end
-    
+
+    self:RestoreNormalAnchors()
 
     -- Notify FluxMinimapButtons of embedding state change
     if FluxMinimapButtons and FluxMinimapButtons.OnEmbedStateChanged then

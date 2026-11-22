@@ -14,6 +14,13 @@ if arg[1] then
 end
 local function compile(src, env) return assert(load(src, 'control fixture', 't', env)) end
 local v8Math = assert(loadfile(root..'../__Backup/v8/_FluxUI/Bars/SlotMath.lua'))('_FluxUI', { Flux={Bars={}} })
+local function ordinarySlot(col, row, page, swap, promotion)
+    -- Slots 13–19 already have fixed Flux columns, so the first seven native
+    -- columns use the base-page slots when the client selects page 2.
+    -- The archived hover comparison uses the earlier v8 page routing.
+    local referencePage = not archivedState and page == 2 and col <= 7 and 1 or page
+    return v8Math.Resolve(col,row,referencePage,swap,{promoted=promotion,hasSec=true,hasTert=true})
+end
 local function boot(initialSwap, promotion, broken, normalPage)
     normalPage=normalPage or 1
     local locked, secure, kind, swap, casts = false, false, 'normal', initialSwap, {}
@@ -256,8 +263,9 @@ for promotion=0,3 do
     for held=0,2 do
         local t=boot(held,promotion,nil,normalPage)
         for col=1,12 do
-            local want=v8Math.Resolve(col,'main',normalPage,held,{promoted=promotion,hasSec=true,hasTert=true})
-            assert(t.press(col,false)==want and t.press(col,true)==want, 'out-of-combat v8 input mismatch')
+            local want=ordinarySlot(col,'main',normalPage,held,promotion)
+            assert(t.press(col,false)==want and t.press(col,true)==want,
+                ('out-of-combat input mismatch on page %d, column %d, modifier %d'):format(normalPage,col,held))
         end
         t.collectors(); t.lock()
         for _,kind in ipairs({'normal','mindcontrol','normal','chess','normal'}) do
@@ -267,13 +275,13 @@ for promotion=0,3 do
                 assert(t.B.State.GetCurrentPage()==page)
                 for col=1,12 do
                     local want=kind~='normal' and 120+col
-                        or v8Math.Resolve(col,'main',normalPage,swap,{promoted=promotion,hasSec=true,hasTert=true})
+                        or ordinarySlot(col,'main',normalPage,swap,promotion)
                     for _,key in ipairs({false,true}) do
                         assert(t.press(col,key)==want, kind..' wrong main action'); checks=checks+1
                     end
                     for _,row in ipairs({'sec','tert'}) do
                         local mini=kind~='normal' and (row=='sec' and 60+col or 24+col)
-                            or v8Math.Resolve(col,row,normalPage,swap,{promoted=promotion,hasSec=true,hasTert=true})
+                            or ordinarySlot(col,row,normalPage,swap,promotion)
                         assert(t.press(col,false,row)==mini,kind..' wrong mini action'); checks=checks+1
                     end
                     assert(t.B.hosts[col].main.widget:IsShown())

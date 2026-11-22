@@ -159,6 +159,17 @@ function W.CreateHeader(parent)
     sign:SetPoint("LEFT", 12, 0)
     sign:SetText("-")
     row.SetExpanded = function(_, expanded) sign:SetText(expanded and "-" or "+") end
+    function row:SetPartSelected(selected)
+        if selected and not self.partMarker then
+            local marker = self:CreateTexture(nil, "OVERLAY")
+            marker:SetPoint("TOPLEFT", 4, -4)
+            marker:SetPoint("BOTTOMLEFT", 4, 4)
+            marker:SetWidth(2)
+            Solid(marker, 1, 0.77, 0.29, 1)
+            self.partMarker = marker
+        end
+        if self.partMarker then self.partMarker:SetShown(selected) end
+    end
     row:SetHighlightTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight", "ADD")
     row.text = text
     row.SetLabel = function(_, value)
@@ -570,7 +581,7 @@ local function FormatNumber(value, step, isPercent)
     return string.format("%.2f", value)
 end
 
-function W.CreateSlider(parent)
+function W.CreateSlider(parent, commitOnRelease)
     local row = W.CreateRow(parent, W.ROW_H)
     local label = row:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
     label:SetJustifyH("LEFT")
@@ -620,6 +631,7 @@ function W.CreateSlider(parent)
     local disabled = false
     local onChange
     local onCommit
+    local dragging, pendingValue
 
     local function PaintFill()
         local v = slider:GetValue() or minV
@@ -636,17 +648,31 @@ function W.CreateSlider(parent)
         if native then slider:SetAlpha(disabled and 0.4 or 1) end
     end
 
+    if commitOnRelease then
+        slider:HookScript("OnMouseDown", function(_, button)
+            if button == "LeftButton" then dragging = true end
+        end)
+        slider:HookScript("OnHide", function()
+            dragging, pendingValue = nil, nil
+        end)
+    end
+
     slider:SetScript("OnValueChanged", function(_, value)
         PaintFill()
         if row._setting or disabled or not onChange then
             return
         end
+        if commitOnRelease and (dragging or (IsMouseButtonDown and IsMouseButtonDown("LeftButton") and slider:IsMouseOver())) then
+            dragging, pendingValue = true, value
+            return
+        end
         onChange(value)
     end)
     slider:SetScript("OnMouseUp", function()
-        if onCommit and not disabled then
-            onCommit(slider:GetValue())
-        end
+        local value = pendingValue
+        if not commitOnRelease then value = slider:GetValue() end
+        dragging, pendingValue = nil, nil
+        if onCommit and not disabled and type(value) == "number" then onCommit(value) end
     end)
 
     AttachTooltip(row, function() return row._title end, function() return row._desc end)
@@ -678,6 +704,7 @@ function W.CreateSlider(parent)
         PaintFill()
     end
     row.SetValue = function(_, value)
+        if commitOnRelease and dragging and pendingValue ~= nil then return end
         value = tonumber(value) or minV
         if value < minV then value = minV end
         if value > maxV then value = maxV end
@@ -1058,8 +1085,10 @@ function W.CreateScroll(parent)
         return scroll:GetHeight() or 0
     end
     function api:ResetScroll()
-        bar:SetValue(0)
-        scroll:SetVerticalScroll(0)
+        ApplyScroll(0)
+    end
+    function api:ScrollTo(offset)
+        ApplyScroll(offset)
     end
 
     api.scroll = scroll

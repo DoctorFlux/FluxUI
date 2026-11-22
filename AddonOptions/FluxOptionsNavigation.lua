@@ -9,6 +9,23 @@ function N.Route(page, sub)
     if alias then return alias[1], alias[2] end
     return page, sub
 end
+
+local attachedEditors = {
+    unitTarget = "unitTargetOfTarget",
+    unitFocus = "unitFocusTarget",
+    unitPet = "unitPetTarget",
+}
+function N.FramePartRoute(page, sub, part, destination, targetSub)
+    page, sub = N.Route(page, sub)
+    if not destination and part == "attached" and page == "ufUnits" and attachedEditors[sub] then
+        return page, attachedEditors[sub], "layout"
+    end
+    if not targetSub and (not destination or destination == page) then targetSub = sub end
+    local targetPage
+    targetPage, targetSub = N.Route(destination or page, targetSub)
+    if part and targetPage == "ufGeneral" then targetSub = "general" end
+    return targetPage, targetSub, part
+end
 local function Set(list)
     local out = {}; for _, key in ipairs(list or {}) do out[key] = true end; return out
 end
@@ -38,7 +55,9 @@ local function ResolveSource(spec)
         child = child or (group.args and group.args[key])
         group = child; if not group then return end
     end
-    return { root = root, group = Select(group, spec), path = spec.path or {}, title = spec.title, module = spec.module }
+    local view = Select(group, spec)
+    if spec.part and not next(view.args) then return end
+    return { root = root, group = view, path = spec.path or {}, title = spec.title, module = spec.module, part = spec.part }
 end
 function N.Generation(page)
     page = N.Route(page)
@@ -52,7 +71,7 @@ function N.Generation(page)
     local parts = {}; for _, key in ipairs(keys) do parts[#parts + 1] = key .. ":" .. tostring(FluxOptions:GetModuleGen(key)) end
     return table.concat(parts, ";")
 end
-local function BuildView(tab)
+local function BuildView(tab, checkAvailability)
     local view = { type = "group", name = tab.name, args = {}, _fluxSources = {} }
     for _, spec in ipairs(tab.sources or {}) do
         local source = ResolveSource(spec); if source then view._fluxSources[#view._fluxSources + 1] = source end
@@ -60,7 +79,8 @@ local function BuildView(tab)
     if tab.notice then view.args.notice = { type = "description", name = tab.notice, order = 1, width = "full" } end
     if tab.action then
         local action = tab.action
-        view.args.open = { type = "execute", name = action.label, order = 2, width = "full", func = function() FluxOptions:ShowConfig(action.page, action.sub) end }
+        view.args.open = { type = "execute", name = action.label, buttonText = action.buttonText, desc = action.desc, order = 2, width = "full",
+            func = function() FluxOptions:ShowConfig(action.page, action.sub) end }
     end
     for index, action in ipairs(tab.externalActions or {}) do
         local target = action
@@ -75,9 +95,9 @@ local function BuildView(tab)
                 local owner = _G[target.owner]; if owner and owner[target.method] then owner[target.method]() end
             end }
     end
-    if not tab.notice and not tab.action then
+    if checkAvailability or tab.checkAvailability or not tab.notice and not tab.action then
         view.hidden = function()
-            if #view._fluxSources == 0 then return false end
+            if #view._fluxSources == 0 then return not not (checkAvailability or tab.checkAvailability) end
             for _, source in ipairs(view._fluxSources) do if not ns.FluxOptionsRender.SourceHidden(source) then return false end end
             return true
         end
@@ -110,7 +130,7 @@ function N.Resolve(page)
             end
         end
     end
-    for i, tab in ipairs(tabs or {}) do local view = BuildView(tab); view.order = i; group.args[tab.key] = view end
+    for i, tab in ipairs(tabs or {}) do local view = BuildView(tab, entry.checkAvailability); view.order = i; group.args[tab.key] = view end
     if entry.checkAvailability then
         group.hidden = function() return #(ns.FluxOptionsRender.ListSubpages(group) or {}) == 0 end
     end

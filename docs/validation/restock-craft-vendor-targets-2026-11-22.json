@@ -1,0 +1,417 @@
+{
+  "changeId": "RESTOCK-CRAFT-VENDOR-TARGETS-20261122",
+  "date": "2026-11-22",
+  "checkpoint": {
+    "manifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-craft-vendor-targets-before-20261122T104837Z\\checkpoint.json",
+    "fixtureDependencies": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-craft-vendor-targets-before-20261122T104837Z\\fixture-dependencies.json",
+    "files": 321,
+    "settingsMetadataRows": 80,
+    "settingsContentsCopied": false,
+    "branch": "main",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a1ffc8-e3e4-7861-a366-cde5c05e7611\\fluxui-debuff-type-before-20261121T222839Z\\history.bundle",
+    "historyBundleSha256": "90bfc84da44ffd45c6617f5304a431e6ed808eadb90080ffefe4bc5d691b2909",
+    "settingsMetadataSha256": "7ca24682abcbed2f7be569d3fe96de40e4c2d07eb8b89cf859398a68d417c652"
+  },
+  "behavior": {
+    "temporaryTargets": "Accepted Auction Restock craft materials and eligible pending companion materials appear in existing Vendor Restock rows and tooltip. A regular same-item target can share the row.",
+    "merchant": "The normal merchant action buys every eligible material it can fill. Auto Restock follows the existing merchant preference. The merchant matches price, quantity, slot, stock and wallet.",
+    "ownerHandoff": "The merchant buyer starts owner purchases and waits for the verified native receipt before invoking one companion pass. The companion can issue independent approved jobs in one pass and advance another material for the same job after its carried receipt.",
+    "reminder": "A valid FluxLogistics vendor reminder revalidates its displayed stage and starts the same existing merchant Restock action.",
+    "acceptedScope": "The manual pass captures current accepted companion requirements. Shared-item uncertainty, unavailable offers and purchase limits block their corresponding purchases."
+  },
+  "desktop": {
+    "ownerScopes": {
+      "auction_restock_sources": {
+        "code": 0,
+        "summary": [
+          "Auction restock sources: 1624 checks PASS; 20 profiles; native bank/vendor permissions NOT RUN"
+        ]
+      },
+      "vendor_logistics_button": {
+        "code": 0,
+        "summary": [
+          "Vendor Restock button, merged temporary rows and common click path passed"
+        ]
+      },
+      "vendor_open_work": {
+        "code": 0,
+        "summary": [
+          "METRIC live cold_reads=240 repeat_reads=0 frames=1 native_reads=182",
+          "METRIC forever cold_reads=240 repeat_reads=0 frames=1 native_reads=182",
+          "Vendor-open work: 265 checks, 0 failures"
+        ]
+      },
+      "vendor_slot_identity": {
+        "code": 0,
+        "summary": [
+          "METRIC modern_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1",
+          "METRIC modern_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1",
+          "Vendor slot/stock: 837 checks, 0 failures"
+        ]
+      },
+      "vendor_session_lifecycle": {
+        "code": 0,
+        "summary": [
+          "PARITY\tC_Timer-priority/active-reentry-junk=after0.15@0.000|open@0.150|quiet@0.150|junk:old@0.150|after0.15@0.150|restock:old@0.150|open@0.300|quiet@0.300|restock:old@0.300",
+          "PARITY\tnone/immediate=open@0.000|quiet@0.000|junk:old@0.000|restock:old@0.000",
+          "R21_REGRESSION scenarios=137 checks=502 failures=0"
+        ]
+      },
+      "auction_restock_followup_logistics": {
+        "code": 0,
+        "summary": [
+          "Companion auction Followup: 231 checks across thirteen owner profiles."
+        ]
+      },
+      "auction_restock_followup_automation": {
+        "code": 0,
+        "summary": [
+          "Auction follow-up automation: 1260 checks PASS; 20 client/provider/global-option profiles; native actions/glow NOT RUN"
+        ]
+      },
+      "auction_restock_followup_integration": {
+        "code": 0,
+        "summary": [
+          "Auction restock follow-up integration: 290 checks PASS; 10 client/provider profiles; native actions/pixels/input/taint NOT RUN"
+        ]
+      },
+      "auction_restock_vendor_routes": {
+        "code": 0,
+        "summary": [
+          "Auction restock vendor routes: 476 checks PASS; 20 client/addon profiles; native price/stack/vendor/craft permissions NOT RUN"
+        ]
+      },
+      "auction_sales_test": {
+        "code": 0,
+        "summary": [
+          "auction sale chat fixtures passed"
+        ]
+      },
+      "auction_shopping_test": {
+        "code": 0,
+        "summary": [
+          "Queue shopping opens in one window, forwards exact quantities, and limits native purchases to the active plan"
+        ]
+      },
+      "book_test": {
+        "code": 0,
+        "summary": [
+          "book recipe-memory fixtures passed"
+        ]
+      },
+      "clients_test": {
+        "code": 0,
+        "summary": [
+          "client action and availability tests passed"
+        ]
+      },
+      "comparison_test": {
+        "code": 0,
+        "summary": [
+          "recursive route comparison fixtures passed"
+        ]
+      },
+      "execution_test": {
+        "code": 0,
+        "summary": [
+          "native craft lifecycle and recovery tests passed"
+        ]
+      },
+      "logistics_test": {
+        "code": 0,
+        "summary": [
+          "Accepted direct bank and vendor replenishment share live ownership and bundle limits",
+          "Tier restock credits paid receipts against the observed listing SKU",
+          "Auctionator estimates retain fractional precision and authorize only whole copper within the accepted cap"
+        ]
+      },
+      "milestone1_planner_test": {
+        "code": 0,
+        "summary": [
+          "Milestone 1 sourcing, allocation, economics and provider fixtures passed"
+        ]
+      },
+      "planner_test": {
+        "code": 0,
+        "summary": [
+          "FluxCraft planner synthetic fixtures: PASS"
+        ]
+      },
+      "queue_test": {
+        "code": 0,
+        "summary": [
+          "queue tests passed"
+        ]
+      },
+      "recipe_density_test": {
+        "code": 0,
+        "summary": [
+          "Forever compact recipe rows preserve scroll and restore native sizes"
+        ]
+      },
+      "recipe_profit_test": {
+        "code": 0,
+        "summary": [
+          "Forever recipe profit estimates, ranks, pooling and native controls passed"
+        ]
+      },
+      "recipe_selection_test": {
+        "code": 0,
+        "summary": [
+          "Recipe selection coalesces native events without delaying exact queue intent"
+        ]
+      },
+      "resize_test": {
+        "code": 0,
+        "summary": [
+          "Forever native panel and Classic workbench resize fixtures passed"
+        ]
+      },
+      "target_load_test": {
+        "code": 0,
+        "summary": [
+          "runtime TOC load without a Settings page, late native host and disabled-client checks passed"
+        ]
+      },
+      "ui_reagents_test": {
+        "code": 0,
+        "summary": [
+          "Forever native host, overview and escape fixtures passed"
+        ]
+      },
+      "workspace_test": {
+        "code": 0,
+        "summary": [
+          "Classic workbench, graph state and persistent queue fixtures passed",
+          "Forever native shortlist reachability and multi-output economics fixtures passed"
+        ]
+      }
+    },
+    "ownerPolicyBridge": {
+      "checks": 147,
+      "result": {
+        "code": 0,
+        "output": "FluxLogistics restock bridge PASS (147 checks)"
+      }
+    },
+    "installedForeverCompanion": {
+      "lua54SuitesPassed": 17,
+      "lua51": {
+        "code": 0,
+        "tests": {
+          "logistics_test": "pass",
+          "auction_shopping_test": "pass",
+          "workspace_test": "pass",
+          "queue_test": "pass",
+          "resize_test": "pass",
+          "target_load_test": "pass"
+        }
+      }
+    },
+    "pairedVendorOpen": {
+      "metric": "Modeled native read and index refresh work in the ordinary vendor-open fixture",
+      "countOfPairs": 3,
+      "modelsPerPair": 7,
+      "exactOperationVectorsCompared": 21,
+      "results": [
+        {
+          "trial": 1,
+          "order": [
+            "frozen",
+            "candidate"
+          ],
+          "samples": {
+            "frozen": {
+              "code": 0,
+              "summary": [
+                "METRIC era cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC anniversary cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC wrath cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC cata cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC mists cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC live cold_reads=240 repeat_reads=0 frames=1 native_reads=182",
+                "METRIC forever cold_reads=240 repeat_reads=0 frames=1 native_reads=182",
+                "Vendor-open work: 265 checks, 0 failures"
+              ]
+            },
+            "candidate": {
+              "code": 0,
+              "summary": [
+                "METRIC era cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC anniversary cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC wrath cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC cata cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC mists cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC live cold_reads=240 repeat_reads=0 frames=1 native_reads=182",
+                "METRIC forever cold_reads=240 repeat_reads=0 frames=1 native_reads=182",
+                "Vendor-open work: 265 checks, 0 failures"
+              ]
+            }
+          },
+          "identical": true
+        },
+        {
+          "trial": 2,
+          "order": [
+            "candidate",
+            "frozen"
+          ],
+          "samples": {
+            "candidate": {
+              "code": 0,
+              "summary": [
+                "METRIC era cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC anniversary cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC wrath cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC cata cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC mists cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC live cold_reads=240 repeat_reads=0 frames=1 native_reads=182",
+                "METRIC forever cold_reads=240 repeat_reads=0 frames=1 native_reads=182",
+                "Vendor-open work: 265 checks, 0 failures"
+              ]
+            },
+            "frozen": {
+              "code": 0,
+              "summary": [
+                "METRIC era cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC anniversary cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC wrath cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC cata cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC mists cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC live cold_reads=240 repeat_reads=0 frames=1 native_reads=182",
+                "METRIC forever cold_reads=240 repeat_reads=0 frames=1 native_reads=182",
+                "Vendor-open work: 265 checks, 0 failures"
+              ]
+            }
+          },
+          "identical": true
+        },
+        {
+          "trial": 3,
+          "order": [
+            "frozen",
+            "candidate"
+          ],
+          "samples": {
+            "frozen": {
+              "code": 0,
+              "summary": [
+                "METRIC era cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC anniversary cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC wrath cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC cata cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC mists cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC live cold_reads=240 repeat_reads=0 frames=1 native_reads=182",
+                "METRIC forever cold_reads=240 repeat_reads=0 frames=1 native_reads=182",
+                "Vendor-open work: 265 checks, 0 failures"
+              ]
+            },
+            "candidate": {
+              "code": 0,
+              "summary": [
+                "METRIC era cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC anniversary cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC wrath cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC cata cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC mists cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                "METRIC live cold_reads=240 repeat_reads=0 frames=1 native_reads=182",
+                "METRIC forever cold_reads=240 repeat_reads=0 frames=1 native_reads=182",
+                "Vendor-open work: 265 checks, 0 failures"
+              ]
+            }
+          },
+          "identical": true
+        }
+      ]
+    },
+    "installedForeverOwner": {
+      "merchantButton": "pass",
+      "policyBridgeChecks": 147,
+      "standaloneSourceChecks": 1624
+    }
+  },
+  "install": {
+    "clientFolders": [
+      "_retail_",
+      "_forever_",
+      "_classic_",
+      "_classic_era_",
+      "_anniversary_"
+    ],
+    "exactRuntimeFiles": 5,
+    "exactCompanionFixturesAcrossFive": 1,
+    "ownerFixtureReadbacks": {
+      "clientFolders": [
+        "_retail_",
+        "_forever_"
+      ],
+      "fixtures": {
+        "vendor_logistics_button.lua": "c7c7f0f198ae465daaedf612aeeeb164391c0ec5c491193d70ba85ec1e838594",
+        "flux_logistics_restock_policy.lua": "642b0206c422617b43aba1de8d8db8ade68feba39a10a99f01dc04cef0fbc521",
+        "auction_restock_sources.lua": "382e3c3b2624a958c2eb2035b1e651c0e31406d389a26cca85d6ead8de65ff3d"
+      }
+    }
+  },
+  "native": {
+    "client": "Forever 1.60.1.71037",
+    "executable": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+    "pid": 16640,
+    "hwnd": 22677020,
+    "inputSent": false,
+    "foregroundChanged": false,
+    "before": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-craft-vendor-targets-before-20261122T104837Z\\forever-options-craft-vendor-targets-before.png",
+      "timeUtc": "2026-11-22T10:49:52.0067903Z",
+      "sha256": "e15afe76c4667bcaeed3d4310682bff62961fd6d4f24e64b5b928524dc6048a2",
+      "visible": "Auctionator Selling and Tailoring, empty Flowcraft queue."
+    },
+    "after": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-craft-vendor-targets-before-20261122T104837Z\\forever-options-craft-vendor-targets-after-install.png",
+      "timeUtc": "2026-11-22T11:00:19.8951522Z",
+      "sha256": "21884a9e0e6e1142f66ab24de42b41ed73a60000d3fc66eac749917f0b38507f",
+      "visible": "Auction House, no merchant or pending Restock action.",
+      "globalIdleMs": 0
+    },
+    "candidateReload": "pending",
+    "nativeVendorPurchase": "pending"
+  },
+  "sources": {
+    "_FluxUI/Inventory/Restock/Core/FluxRestockList.lua": {
+      "before": "86817568e46f62fcf0f5754afbf5bb61aba8b3bd4d253717a8740949cc5b7398",
+      "after": "bb6de04c0d406f39e2087fdb4ad748af10a0e12febc4c97446004fba23f8376b"
+    },
+    "_FluxUI/Inventory/Restock/Core/FluxRestockPolicy.lua": {
+      "before": "e7f27309f289a9288ce8b4899c22ffc348a29f366bcd8da412c1be6cbaba0c08",
+      "after": "157f1b4b39edc2b42c5604b92ad49d416c7ef2a5998acd67db6db2aa47fb7a64"
+    },
+    "_FluxUI/Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": {
+      "before": "45ba3a3f3538f71508540f5f9ad1bc86a308f6be95a018c4b70ea0d3bb401ae5",
+      "after": "73e75fc6166e79887d6a8d11a22dee46f2a5b421fec7f9f9c81d70d98eea5bc5"
+    },
+    "_FluxUI/Inventory/Restock/Vendor/FluxVendorBuy.lua": {
+      "before": "4622d5d4d8176c6496528cba16c577444d7f783df1e464f5206d0a11d38a097b",
+      "after": "f59d8d9c0d0a83cd71b98fad30a678ad2978feda9e88f5e26ca295e1e473b1a3"
+    },
+    "_FluxUI/tests/auction_restock_sources.lua": {
+      "before": "219fd1791ef20d013c85da7945b41b44628904c60c71b191e68b8c8018d3fc0b",
+      "after": "382e3c3b2624a958c2eb2035b1e651c0e31406d389a26cca85d6ead8de65ff3d"
+    },
+    "_FluxUI/tests/flux_logistics_restock_policy.lua": {
+      "before": "2a8cad4a68187ba8c95b318ecc5876e742deb67b70c59494934877dab9bf10e0",
+      "after": "642b0206c422617b43aba1de8d8db8ade68feba39a10a99f01dc04cef0fbc521"
+    },
+    "_FluxUI/tests/vendor_logistics_button.lua": {
+      "before": "cb1266cb8517e25f3754b738e107613239643a6141e5cf145947e2ee2ea397c9",
+      "after": "c7c7f0f198ae465daaedf612aeeeb164391c0ec5c491193d70ba85ec1e838594"
+    },
+    "FluxLogistics/FluxCraft/Logistics.lua": {
+      "before": "b88d1c0164a392948d970b15b1f2caa3ad5e0180784aa9f3d321be5524a066f0",
+      "after": "98022208149f4f6798c59cf6f4db805911fec005616cd168b9e17fae5c274e82"
+    },
+    "FluxLogistics/Tests/logistics_test.lua": {
+      "before": "b4105cd2b9f258200ee660ca690c4833382313f935b0ced0b3db9b8723b47b35",
+      "after": "ebd61d4b0de6b39881487c49917d763094709ef7fbac94505d0dde31b95f86b2"
+    }
+  }
+}

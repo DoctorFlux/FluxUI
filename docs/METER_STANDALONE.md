@@ -1,5 +1,29 @@
 # Native meter skin and standalone threat pane
 
+## Native meter control ownership — 22 November 2026
+
+The reported Forever 1.60.1.71037 stack enters Blizzard’s **New Window**
+responder from Flux’s cached menu selection. The responder sets up a
+session window and can refresh native rows and timers. The subsequent
+stacks fail on Blizzard’s comparisons of secret icon, source type and
+duration values. The error occurred despite the cached menu provenance
+checks and native responder call boundary.
+[Forever menu responder](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_Menu/Menu.lua#L934).
+[Forever session controls](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSessionWindow.lua#L518).
+
+Flux layout and editor choices retain the requested panes and show
+setup guidance. Blizzard’s actual dropdowns now apply the type and
+session and create additional windows. **Current** is a manual choice,
+and later **Overall** or historical choices survive Flux layout changes.
+Native type choices still feed back into the working layout. This
+supersedes the 14 November automatic configuration path below.
+
+Flux defers its own native reveal and geometry work while the combat
+addon restriction is activating or active. Blizzard’s visibility
+events still control the native meter. The existing deferred work
+resumes on restriction release or combat exit.
+[Client acceptance](CLIENT_VALIDATION.md#damage-meter-taint-and-rounded-border-junctions).
+
 ## Meter control recovery — 14 November 2026
 
 Full validation: 365 scripts and 1053 Lua syntax files PASS; complete current Lua manifest verified.

@@ -66,6 +66,12 @@ Module._castLockSpellId = nil
 
 -- Modifier tracking state for live icon updates (legacy clients)
 local lastBagMountIconModState = ""
+local foreverMountSettling = false
+local foreverMountRefreshGeneration = 0
+local foreverJournalDirty = false
+local foreverTaxiActive = false
+local WISP_ICON = "Interface\\Icons\\Spell_Nature_WispSplode"
+local FOREVER_COMBAT_DISMOUNT = "/dismount [combat,mounted]\n"
 
 -- Icon protection state (prevents external code from changing our icon)
 local _iconManagedByModule = false
@@ -152,6 +158,39 @@ local function HasMountJournalAPI()
     return C_MountJournal ~= nil and C_MountJournal.GetMountIDs ~= nil
 end
 
+local function UsesForeverMounts()
+    return FluxNCMountCollection and FluxNCMountCollection.UsesForeverMounts()
+end
+
+local function IsPlayerDeadOrGhost()
+    local paint = _G.Flux and _G.Flux.EBS and _G.Flux.EBS.Paint
+    return paint and paint.IsPlayerDeadOrGhost and paint.IsPlayerDeadOrGhost()
+end
+
+local function DeferForeverJournalInvalidation()
+    if UsesForeverMounts() and (InCombatLockdown() or IsPlayerDeadOrGhost()) then
+        foreverJournalDirty = true
+        return true
+    end
+    return false
+end
+
+local function IsOnTaxi()
+    return UnitOnTaxi and UnitOnTaxi("player") == true or false
+end
+
+local function IsRidingOwnMount()
+    return IsMounted() and not IsOnTaxi() and not IsPlayerDeadOrGhost()
+end
+
+local function UpdateMountedWisp(btn)
+    local wisp = btn and btn._fluxMountedWisp
+    if wisp then
+        foreverTaxiActive = IsOnTaxi()
+        wisp:SetShown(not Module._isPlaceholder and not foreverTaxiActive and IsMounted() and not IsPlayerDeadOrGhost())
+    end
+end
+
 local function HasCompanionAPI()
     return GetNumCompanions ~= nil
 end
@@ -171,6 +210,7 @@ end
 -- Check if any mount UI is available (mount journal or companion system)
 -- Vanilla and TBC don't have mount UIs - mounts are items in bags
 local function HasMountUI()
+    if FluxNCMountCollection then return FluxNCMountCollection.HasMountUI() end
     -- Explicitly check for Classic Era and TBC - they don't have mount UIs
     if FLUX_API then
         if FLUX_API.isClassicEra or FLUX_API.isTBC then
@@ -413,6 +453,7 @@ local collectedMountCacheTime = 0
 local COLLECTED_MOUNT_CACHE_TTL = 300
 
 function Module.InvalidateCollectedMountCache()
+    if DeferForeverJournalInvalidation() then return end
     collectedMountKnown = nil
     collectedMountCacheTime = 0
     if FluxNCMountCollection and FluxNCMountCollection.InvalidateCollectedMountMap then
@@ -631,6 +672,7 @@ local ridingSkillCacheTime = 0
 local RIDING_SKILL_CACHE_TTL = 60
 
 function Module.InvalidateRidingSkillCache()
+    if DeferForeverJournalInvalidation() then return end
     ridingSkillCache = nil
     ridingSkillCacheTime = 0
 end
@@ -645,6 +687,15 @@ function Module.HasRidingSkill()
         ridingSkillCache = result
         ridingSkillCacheTime = GetTime()
         return result
+    end
+
+    if UsesForeverMounts() then
+        local riding = C_SkillInfo and C_SkillInfo.GetSkillLineInfoByID and C_SkillInfo.GetSkillLineInfoByID(762)
+        if riding and riding.rank > 0 then return finish(true) end
+        local isKnown = C_SpellBook and C_SpellBook.IsSpellKnown or IsPlayerSpell or IsSpellKnown
+        if isKnown and (isKnown(33388) or isKnown(33391)) then return finish(true) end
+        -- A usable journal mount also covers class mounts and racial riding skills.
+        return finish(FluxNCMountCollection.GetFirstUsableForeverMount() ~= nil)
     end
 
     -- Dragonflight+ Retail ONLY has automatic riding at level 10
@@ -1096,6 +1147,11 @@ Module.ClearMountButtonCheckedState = ClearMountButtonCheckedState
 
 -- Helper function to open mount UI with fallbacks for different client types
 local function OpenMountUI()
+    if UsesForeverMounts() and SetCollectionsJournalShown then
+        SetCollectionsJournalShown(true, COLLECTIONS_JOURNAL_TAB_INDEX_MOUNTS or 1)
+        ClearMountButtonCheckedState()
+        return true
+    end
     -- Method 1: Modern client with Mount Journal (Retail 5.0+)
     -- Use FluxOpenMountCollection which LoadAddOns Blizzard_Collections first
     if HasMountJournalAPI() then
@@ -1146,6 +1202,34 @@ local function GetOpenMountUIMacro()
     end
     return [[#showtooltip
 /click FluxMacroProxy_MountOpenUI]]
+end
+
+local function GetAssignedForeverMount(key)
+    local assignment = FluxSmartMountConfig.GetForeverMountAssignment(key)
+    local mount = assignment and FluxNCMountCollection.GetForeverMount(assignment)
+    if mount and mount.isUsable then return mount end
+end
+
+local function GetDefaultForeverMount()
+    return GetAssignedForeverMount("nomod") or FluxNCMountCollection.GetFirstUsableForeverMount()
+end
+
+local function GetForeverMountCast(mountName)
+    -- Combat can start before the mounted event can arm a dismount-only action.
+    return FOREVER_COMBAT_DISMOUNT .. "/cast [nocombat,nomounted] " .. mountName
+end
+
+local function UpdateForeverModifierMacros(widget, enabled)
+    if not widget or not UsesForeverMounts() then return end
+    enabled = enabled and not IsRidingOwnMount()
+    for _, slot in ipairs(FluxSmartMountConfig.ForeverSlots) do
+        if slot.prefix then
+            local mount = enabled and GetAssignedForeverMount(slot.key)
+            local macro = mount and GetForeverMountCast(mount.castName) or nil
+            local attribute = slot.prefix .. "macrotext1"
+            if widget:GetAttribute(attribute) ~= macro then widget:SetAttribute(attribute, macro) end
+        end
+    end
 end
 
 -- ============================================================================
@@ -1223,16 +1307,11 @@ end
 function Module.UpdateLockedState()
     local btn = Module._button
     if not btn or not Module._isLocked or not Module._lockedMount then return end
-    if InCombatLockdown() then return end
+    if foreverMountSettling or InCombatLockdown() then return end
     
-    local mountName = Module._lockedMount.name
     local mountIcon = Module._lockedMount.icon
     
-    -- Update macro to use/cast locked mount directly
-    -- Use /use for item-based mounts (no mount UI), /cast for spell-based mounts
-    local useCommand = HasMountUI() and "/cast" or "/use"
-    local lockedMacro = string.format([[#showtooltip %s
-%s %s]], mountName, useCommand, mountName)
+    local lockedMacro = Module.GetCurrentMacro()
     
     if btn.SetAction then
         btn:SetAction("macrotext", lockedMacro)
@@ -1240,6 +1319,7 @@ function Module.UpdateLockedState()
         btn.Widget:SetAttribute("type", "macro")
         btn.Widget:SetAttribute("macrotext", lockedMacro)
     end
+    UpdateForeverModifierMacros(btn.Widget, false)
     -- Keep cache in sync so Unlock → Update can detect the restore as a change
     if HasMountUI() then
         Module._lastJournalMacro = lockedMacro
@@ -1250,7 +1330,7 @@ function Module.UpdateLockedState()
     -- Update texture (protected path so icon hook cannot drop it)
     if mountIcon then
         if btn.WIcon and SetProtectedIcon then
-            SetProtectedIcon(btn, mountIcon, true)
+            SetProtectedIcon(btn, mountIcon)
         else
             Module._currentTexture = mountIcon
             if btn.WIcon then
@@ -1269,6 +1349,7 @@ function Module.UpdateLockedState()
     if btn.UpdateUsable then
         btn:UpdateUsable()
     end
+    UpdateMountedWisp(btn)
 
     -- Restore right-click (SetAction cleared it)
     if HasMountUI() then
@@ -1322,8 +1403,6 @@ function Module.GetMountForCurrentModifiers(forcedModKey)
     end
     
     local mode = Module.GetMode()
-    local ground, flying, multi = Module.GetMountConfig()
-    
     -- Honor forcedModKey so modifier-tracker icon updates match the secure macro
     local isShift, isCtrl, isAlt = ResolveJournalModFlags(forcedModKey)
     local anyMod = isShift or isCtrl or isAlt
@@ -1359,6 +1438,15 @@ function Module.GetMountForCurrentModifiers(forcedModKey)
         end
         return nil, nil, nil
     end
+
+    if UsesForeverMounts() then
+        local key = forcedModKey or GetCurrentHeldModKey()
+        local mount = (key ~= "nomod" and GetAssignedForeverMount(key)) or GetDefaultForeverMount()
+        if mount then return mount.castName, mount.icon, mount.spellID, mount.id end
+        return nil, nil, nil
+    end
+
+    local ground, flying, multi = Module.GetMountConfig()
     
     -- Smart mount mode - same priority as BuildSmartMountMacro:
     -- [mod:shift] ground, [mod:ctrl] multi, [mod:alt] flight style/fly, [nomod] smart
@@ -1436,6 +1524,10 @@ end
 
 -- Build smart mount macro (uses configured mounts from FluxSmartMountConfig)
 function Module.BuildSmartMountMacro()
+    if UsesForeverMounts() then
+        local mount = GetDefaultForeverMount()
+        return mount and ("#showtooltip\n" .. GetForeverMountCast(mount.castName)) or GetOpenMountUIMacro()
+    end
     local ground, flying, multi = Module.GetMountConfig()
     
     -- If no mounts configured, fall back to random selection
@@ -1560,9 +1652,12 @@ end
 
 -- Get macro for current mode
 function Module.GetCurrentMacro()
+    local forever = UsesForeverMounts()
+    if forever and IsRidingOwnMount() then return "/dismount [mounted]" end
     -- If locked to a specific mount, return simple use/cast macro
     if Module._isLocked and Module._lockedMount and Module._lockedMount.name then
         local mountName = Module._lockedMount.name
+        if forever then return "#showtooltip\n" .. GetForeverMountCast(mountName) end
         -- Use /use for item-based mounts (no mount UI), /cast for spell-based mounts
         local useCommand = HasMountUI() and "/cast" or "/use"
         return string.format([[#showtooltip %s
@@ -1576,7 +1671,8 @@ function Module.GetCurrentMacro()
     
     local mode = Module.GetMode()
     if mode == Module.MODE_VENDOR then
-        return Module.BuildVendorMountMacro()
+        local macro = Module.BuildVendorMountMacro()
+        return forever and (FOREVER_COMBAT_DISMOUNT .. "/stopmacro [combat]\n" .. macro) or macro
     else
         return Module.BuildSmartMountMacro()
     end
@@ -1639,6 +1735,10 @@ function Module.CanDisplayMountButton()
     if Module._isLocked and Module._lockedMount and Module._lockedMount.name then
         return true
     end
+    if UsesForeverMounts() then
+        if IsRidingOwnMount() then return true end
+        if Module.GetMode() == Module.MODE_SMART then return GetDefaultForeverMount() ~= nil end
+    end
     if not HasMountUI() then
         -- Unfiltered: dungeon/instance still has mount items even if zone-unusable.
         if Module.HasAnyMountInBags and Module.HasAnyMountInBags() then
@@ -1672,6 +1772,7 @@ local function SetPlaceholder(btn)
     
     Module._isPlaceholder = true
     btn.IsMountPlaceholder = true
+    Module._lastJournalMacro = nil
     
 
     -- Try to use SetPlaceholder method if it exists (FluxButton pattern)
@@ -1714,6 +1815,11 @@ local function SetPlaceholder(btn)
         btn.Widget:SetAttribute("macrotext2", nil)
         btn.Widget:SetAttribute("type3", nil)
         btn.Widget:SetAttribute("macrotext3", nil)
+        if UsesForeverMounts() then
+            btn.Widget:SetAttribute("*type2", nil)
+            btn.Widget:SetAttribute("*macrotext2", nil)
+            UpdateForeverModifierMacros(btn.Widget, false)
+        end
     end
 
 
@@ -1836,24 +1942,33 @@ function Module.Register(grid)
     end
 end
 
+local function PinJournalMountFace(btn, spellID, mountID)
+    btn._fluxManagedFaceSpellId = spellID
+    btn.SpellId = spellID
+    btn.MacroMode = spellID and "spell" or nil
+    btn.MountSpellId = spellID
+    btn._fluxManagedFaceItemId = nil
+    btn.ItemId = nil
+    btn.MountId = mountID or (spellID and C_MountJournal and C_MountJournal.GetMountFromSpell
+        and C_MountJournal.GetMountFromSpell(spellID))
+end
+
 local function PinMountExtraFace(btn, heldMod)
-    if not btn then
+    if not btn or foreverMountSettling then
         return
     end
     heldMod = heldMod or "nomod"
-    local mountName, _, mountSpellID = Module.GetMountForCurrentModifiers(heldMod)
-    if HasMountUI() and mountSpellID then
-        btn._fluxManagedFaceSpellId = mountSpellID
-        btn.SpellId = mountSpellID
-        btn.MacroMode = "spell"
-        btn.MountSpellId = mountSpellID
-        btn._fluxManagedFaceItemId = nil
-        btn.ItemId = nil
-        if C_MountJournal and C_MountJournal.GetMountFromSpell then
-            btn.MountId = C_MountJournal.GetMountFromSpell(mountSpellID)
+    if HasMountUI() then
+        local pinned = Module._lockedMount or Module._pendingLockMount
+        if pinned then
+            PinJournalMountFace(btn, pinned.spellID, pinned.mountID)
+        elseif not InCombatLockdown() then
+            local _, _, spellID, mountID = Module.GetMountForCurrentModifiers(heldMod)
+            PinJournalMountFace(btn, spellID, mountID)
         end
         return
     end
+    local mountName = Module.GetMountForCurrentModifiers(heldMod)
     local itemId = Module._lastResolvedBagMount and Module._lastResolvedBagMount.itemId
     if not itemId and mountName and Module.GetMountItemId then
         itemId = Module.GetMountItemId(mountName)
@@ -1874,9 +1989,9 @@ local function PinMountExtraFace(btn, heldMod)
     end
 end
 
-local function PaintMountLiveFace(btn)
+local function PaintMountLiveFace(btn, usableOnly)
     local Paint = _G.Flux and _G.Flux.EBS and _G.Flux.EBS.Paint
-    if Paint and Paint.UpdateLiveFace then
+    if Paint and not usableOnly and Paint.UpdateLiveFace then
         Paint.UpdateLiveFace(btn)
     elseif Paint and Paint.UpdateUsable then
         Paint.UpdateUsable(btn)
@@ -1917,6 +2032,13 @@ function Module.CreateButton()
     btn.IgnoreCheckedVisual = true
     if btn.Widget then
         btn.Widget.FluxGridFlyoutOwner = true
+        if UsesForeverMounts() and btn.WIcon then
+            local wisp = btn.Widget:CreateTexture(nil, "ARTWORK", nil, 7)
+            wisp:SetAllPoints(btn.WIcon)
+            wisp:SetTexture(WISP_ICON)
+            wisp:Hide()
+            btn._fluxMountedWisp = wisp
+        end
     end
     ClearMountButtonCheckedState()
     
@@ -1940,16 +2062,7 @@ function Module.CreateButton()
             return
         end
 
-        local heldMod = "nomod"
-        if IsControlKeyDown and IsControlKeyDown() then
-            if IsShiftKeyDown and IsShiftKeyDown() then
-                if IsAltKeyDown and IsAltKeyDown() then heldMod = "ctrl+shift+alt" else heldMod = "ctrl+shift" end
-            elseif IsAltKeyDown and IsAltKeyDown() then heldMod = "ctrl+alt" else heldMod = "ctrl" end
-        elseif IsShiftKeyDown and IsShiftKeyDown() then
-            if IsAltKeyDown and IsAltKeyDown() then heldMod = "shift+alt" else heldMod = "shift" end
-        elseif IsAltKeyDown and IsAltKeyDown() then heldMod = "alt" end
-
-        PinMountExtraFace(self, heldMod)
+        PinMountExtraFace(self, GetCurrentHeldModKey())
         PaintMountLiveFace(self)
     end
     
@@ -2039,6 +2152,7 @@ function Module.CreateButton()
     
     -- Update hotkey text display on button
     Module.UpdateHotkeyText(btn)
+    UpdateMountedWisp(btn)
     
     return btn
 end
@@ -2106,6 +2220,10 @@ function Module.SetupRightClick(btn)
     if HasMountUI() then
         btn.Widget:SetAttribute("type2", "macro")
         btn.Widget:SetAttribute("macrotext2", GetOpenMountUIMacro())
+        if UsesForeverMounts() then
+            btn.Widget:SetAttribute("*type2", "macro")
+            btn.Widget:SetAttribute("*macrotext2", GetOpenMountUIMacro())
+        end
     else
         -- Bag mount clients: do NOT touch type2 - SetupBagMountButton owns right-click (flyout).
         -- Clearing here would overwrite the flyout. Simply return.
@@ -2169,21 +2287,26 @@ function Module.SetupPreClick(btn)
             if Module._isLocked then return end
             
             -- If it's a placeholder, don't try to lock
-            if Module._isPlaceholder then return end
+            if Module._isPlaceholder or foreverMountSettling then return end
+            if HasMountUI() and InCombatLockdown() then return end
+            if UsesForeverMounts() and IsPlayerDeadOrGhost() then return end
             
             -- Capture which mount/spell will be cast based on current modifiers
-            local mountName, mountIcon, mountSpellID = Module.GetMountForCurrentModifiers()
+            local mountName, mountIcon, mountSpellID, mountID = Module.GetMountForCurrentModifiers()
 
             if mountName then
                 Module._pendingLockMount = {
                     name = mountName,
                     icon = mountIcon,
                     spellID = mountSpellID,
+                    mountID = mountID,
                 }
                 SetCastLockSpellId(mountSpellID)
                 -- Freeze icon to the cast target immediately (incl. Switch Flight Style)
                 if HasMountUI() and mountIcon and Module._button and Module._button.WIcon then
-                    SetProtectedIcon(Module._button, mountIcon, true)
+                    SetProtectedIcon(Module._button, mountIcon)
+                    PinJournalMountFace(Module._button, mountSpellID, mountID)
+                    PaintMountLiveFace(Module._button, true)
                 end
                 local pendingName = mountName
                 Timer.After(1.0, function()
@@ -2437,12 +2560,29 @@ local function ShowMountTooltip(widget)
     
     GameTooltip:SetOwner(widget, "ANCHOR_RIGHT")
     GameTooltip:ClearLines()
-    
-    local mode = Module.GetMode()
-    local hasVendor = Module.HasAnyVendorMount()
+    local forever = UsesForeverMounts()
+
+    if forever and not Module._isPlaceholder and IsRidingOwnMount() then
+        GameTooltip:SetText(DISMOUNT or "Dismount", 1, 1, 1)
+        GameTooltip:AddLine("Left-click to dismount", 0.5, 0.8, 1)
+        GameTooltip:AddLine("Right-click to open Mounts", 0.5, 0.8, 1)
+        GameTooltip:Show()
+        return
+    end
     
     if Module._isPlaceholder then
         GameTooltip:SetText("Mount", 1, 1, 1)
+        if forever then
+            local hint = "No collected mount is usable"
+            if not Module.HasRidingSkill() then
+                hint = "Learn Riding to use collected mounts"
+            elseif not Module.HasAnyMount() then
+                hint = "Collect a mount to use this button"
+            end
+            GameTooltip:AddLine(hint, 1, 0.82, 0)
+            GameTooltip:Show()
+            return
+        end
 
         -- Check detailed state
         local hasRiding = Module.HasRidingSkill()
@@ -2501,7 +2641,7 @@ local function ShowMountTooltip(widget)
     end
     
     -- Check if locked to a specific mount
-    if Module._isLocked and Module._lockedMount then
+    if Module._isLocked and Module._lockedMount and (not forever or Module._isCasting) then
         local lockedName = Module._lockedMount.name
         local lockedIcon = Module._lockedMount.icon
         
@@ -2536,6 +2676,40 @@ local function ShowMountTooltip(widget)
     -- For clients without mount journal/companion, show item-based mount tooltip
     if not HasMountUI() then
         ShowItemMountTooltip(widget)
+        return
+    end
+
+    local mode = Module.GetMode()
+    local hasVendor = Module.HasAnyVendorMount()
+    if forever and mode == Module.MODE_SMART then
+        GameTooltip:SetText(MOUNTS or "Mounts", 1, 1, 1)
+        local dead = IsPlayerDeadOrGhost()
+        local taxi = IsOnTaxi()
+        local heldKey = GetCurrentHeldModKey()
+        local activeKey = heldKey ~= "nomod" and GetAssignedForeverMount(heldKey) and heldKey or "nomod"
+        local default = GetDefaultForeverMount()
+        for _, slot in ipairs(FluxSmartMountConfig.ForeverSlots) do
+            local assignment = slot.prefix and FluxSmartMountConfig.GetForeverMountAssignment(slot.key)
+            if not slot.prefix or assignment then
+                local mount = not slot.prefix and default or FluxNCMountCollection.GetForeverMount(assignment)
+                local name = mount and mount.name or "Unavailable"
+                if mount and mount.icon then name = string.format("|T%s:14:14:0:0|t %s", mount.icon, name) end
+                if mount and not mount.isUsable then name = name .. " (Unavailable)" end
+                local r, g, b = 0.8, 0.8, 0.8
+                if mount and slot.key == activeKey and not dead and not taxi then r, g, b = 0.2, 1, 0.2 end
+                GameTooltip:AddDoubleLine(slot.name, name, r, g, b, r, g, b)
+            end
+        end
+        if dead then
+            GameTooltip:AddLine("You must be alive to mount", 1, 0.82, 0)
+        elseif taxi then
+            GameTooltip:AddLine("Unavailable on a flight path", 1, 0.82, 0)
+        end
+        if hasVendor then
+            GameTooltip:AddLine("Middle-click to toggle Smart/Vendor", 0.5, 0.8, 1)
+        end
+        GameTooltip:AddLine("Right-click to open Mounts", 0.5, 0.8, 1)
+        GameTooltip:Show()
         return
     end
     
@@ -2844,6 +3018,11 @@ local function ResolveTextureForMountMode(mode)
         return texture
     end
 
+    if UsesForeverMounts() then
+        local mount = GetDefaultForeverMount()
+        return mount and mount.icon or "Interface\\Icons\\ability_mount_ridinghorse"
+    end
+
     local ground, flying = Module.GetMountConfig()
     local isFlyable = IsFlyableAreaFixed()
     local mountName = (isFlyable and flying) or ground or flying
@@ -2882,7 +3061,7 @@ end
 
 function Module.UpdateTexture()
     local btn = Module._button
-    if not btn or Module._isPlaceholder then return end
+    if not btn or Module._isPlaceholder or foreverMountSettling then return end
     
     -- For legacy clients (Vanilla/TBC): Icon is managed by UpdateBagMountIcon()
     -- Return EARLY before any lock checks to prevent interference
@@ -2920,6 +3099,10 @@ function Module.UpdateTexture()
     end
     
     -- If not locked (or couldn't get locked texture), use normal logic
+    if not texture and not Module._isLocked and UsesForeverMounts() then
+        local _, activeTexture = Module.GetMountForCurrentModifiers()
+        texture = activeTexture
+    end
     if not texture then
         texture = ResolveTextureForMountMode(Module.GetMode())
     end
@@ -2927,7 +3110,7 @@ function Module.UpdateTexture()
     -- Apply via SetProtectedIcon so icon-protection hook does not drop the change
     if texture then
         if btn.WIcon then
-            SetProtectedIcon(btn, texture, true)
+            SetProtectedIcon(btn, texture)
         else
             btn.Texture = texture
             Module._currentTexture = texture
@@ -2952,8 +3135,8 @@ end
 -- ============================================================================
 
 function Module.Update()
-    if not Module._button then return end
-    if InCombatLockdown() then
+    if not Module._button or foreverMountSettling then return end
+    if InCombatLockdown() or (UsesForeverMounts() and IsPlayerDeadOrGhost()) then
         Module._pendingUpdate = true
         return
     end
@@ -2961,7 +3144,7 @@ function Module.Update()
     local btn = Module._button
 
     -- Check riding skill for Extra Button Visibility (Auto mode)
-    local hasRiding = Module.HasRidingSkill()
+    local hasRiding = (UsesForeverMounts() and IsRidingOwnMount()) or Module.HasRidingSkill()
     -- Extra visibility Auto: show only when the player can ride (skill/level). Hide without riding even if mount items exist.
     local smartMount = hasRiding == true
     local bindingForceEBV = FluxExtraButtonVisibility and FluxExtraButtonVisibility.GetBindingForce and FluxExtraButtonVisibility.GetBindingForce() or false
@@ -3041,6 +3224,9 @@ function Module.Update()
                     btn.Widget:SetAttribute("macrotext", macro)
                 end
             end
+            if UsesForeverMounts() then
+                UpdateForeverModifierMacros(btn.Widget, not Module._isLocked and Module.GetMode() == Module.MODE_SMART)
+            end
         end
         
         -- Force texture update (in case SetAction doesn't find the right texture)
@@ -3081,6 +3267,7 @@ function Module.Update()
     end
 
     Module.UpdateMountKeybinding(btn)
+    UpdateMountedWisp(btn)
 end
 
 -- ============================================================================
@@ -3131,6 +3318,14 @@ eventFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
 eventFrame:RegisterEvent("PLAYER_REGEN_DISABLED")
 eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 eventFrame:RegisterEvent("PLAYER_LOGIN")
+if UsesForeverMounts() then
+    eventFrame:RegisterEvent("PLAYER_LEAVING_WORLD")
+    eventFrame:RegisterEvent("PLAYER_CONTROL_LOST")
+    eventFrame:RegisterEvent("PLAYER_CONTROL_GAINED")
+    eventFrame:RegisterEvent("PLAYER_DEAD")
+    eventFrame:RegisterEvent("PLAYER_ALIVE")
+    eventFrame:RegisterEvent("PLAYER_UNGHOST")
+end
 -- SPELLS_CHANGED rides the debounced, signature-gated Core bus; the direct
 -- frame registration stays only as fallback. SKILL_LINES_CHANGED stays direct.
 do
@@ -3431,20 +3626,82 @@ local function runPostLoginMountRefresh(isLoginBootstrap)
     end
 end
 
+local function RefreshForeverMountWhenReady()
+    foreverMountSettling = true
+    foreverMountRefreshGeneration = foreverMountRefreshGeneration + 1
+    local generation = foreverMountRefreshGeneration
+    Module._zoneMountRefreshGen = (Module._zoneMountRefreshGen or 0) + 1
+
+    local function refresh(isFinal)
+        if generation ~= foreverMountRefreshGeneration then return end
+        if IsPlayerDeadOrGhost() then
+            foreverMountSettling = false
+            foreverJournalDirty = true
+            return
+        end
+        if not InCombatLockdown() then foreverJournalDirty = false end
+        Module.InvalidateCollectedMountCache()
+        Module.InvalidateRidingSkillCache()
+        if not isFinal and not InCombatLockdown() and not GetDefaultForeverMount() then
+            Timer.After(0.75, function() refresh(true) end)
+            return
+        end
+
+        foreverMountSettling = false
+        if Module._isLocked and IsRidingOwnMount() then
+            Module._pendingLockMount = nil
+            Module._isCasting = false
+            ClearCastLockSpellId()
+        else
+            ResetMountLoginState()
+        end
+        -- Reapply the secure routes after the journal settles.
+        Module._lastJournalMacro = nil
+        if not InCombatLockdown() then
+            Module._pendingUpdate = nil
+            Module._pendingKeybindUpdate = nil
+        end
+        Module.Update()
+    end
+
+    Timer.After(0.25, refresh)
+end
+
+local function RefreshForeverMountedState(btn)
+    UpdateMountedWisp(btn)
+    if InCombatLockdown() then
+        Module._pendingUpdate = true
+    elseif Module._isLocked and not IsRidingOwnMount() then
+        Module.Unlock()
+    else
+        Module.Update()
+    end
+    Module.RefreshTooltip()
+end
+
 eventFrame:SetScript("OnEvent", function(self, event, arg1, arg2, arg3)
     if event == "PLAYER_REGEN_DISABLED" then
         -- Combat started - lock icon to prevent macro/modifier texture updates during combat
-        if Module._button and Module._button.WIcon then
+        local btn = Module._button
+        if btn and btn.WIcon then
             _iconManagedByModule = true
+            UpdateMountedWisp(btn)
+            if HasMountUI() and btn.Widget and btn.Widget:IsShown() and not Module._isPlaceholder then
+                PaintMountLiveFace(btn, true)
+            end
         end
         
     elseif event == "PLAYER_REGEN_ENABLED" then
         if not Module._registered or not Module._button then
             return
         end
+        if foreverJournalDirty and not foreverMountSettling and not IsPlayerDeadOrGhost() then
+            RefreshForeverMountWhenReady()
+            return
+        end
         local pu = Module._pendingUpdate
         local pk = Module._pendingKeybindUpdate
-        local shouldUnlock = Module._isLocked and not IsMounted()
+        local shouldUnlock = Module._isLocked and (not IsMounted() or (UsesForeverMounts() and IsOnTaxi()))
         local needIconRefresh = _iconManagedByModule == true
 
         if not (pu or pk or shouldUnlock or needIconRefresh) then
@@ -3504,6 +3761,10 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1, arg2, arg3)
             runLight()
         end
         
+    elseif event == "PLAYER_LEAVING_WORLD" then
+        foreverMountSettling = true
+        foreverMountRefreshGeneration = foreverMountRefreshGeneration + 1
+
     elseif event == "PLAYER_ENTERING_WORLD" then
         local isInitialLogin = (arg1 == true or arg2 == true)
         if not isInitialLogin and not Module._fluxSeenPew then
@@ -3511,8 +3772,12 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1, arg2, arg3)
         end
         Module._fluxSeenPew = true
         if isInitialLogin then
+            foreverMountSettling = false
+            foreverMountRefreshGeneration = foreverMountRefreshGeneration + 1
             ResetMountLoginState()
             runPostLoginMountRefresh(true)
+        elseif UsesForeverMounts() then
+            RefreshForeverMountWhenReady()
         else
             -- Dungeon/portal load screen: keep the item; do not unlock or placeholder.
             if not HasMountUI() then
@@ -3534,6 +3799,7 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1, arg2, arg3)
         or event == "NEW_MOUNT_ADDED" or event == "COLLECTIONS_UPDATED" then
         -- Mount collection changed - invalidate cache
         Module.InvalidateCollectedMountCache()
+        if UsesForeverMounts() then Module.InvalidateRidingSkillCache() end
         Module._cachedMounts = nil
         mountBagCache = nil
         mountBagCacheTime = 0
@@ -3645,6 +3911,10 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1, arg2, arg3)
         if btn and btn.UpdateChecked then
             btn:UpdateChecked()
         end
+        if UsesForeverMounts() then
+            RefreshForeverMountedState(btn)
+            return
+        end
 
         -- Check if player dismounted
         if Module._isLocked and not IsMounted() then
@@ -3656,7 +3926,23 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1, arg2, arg3)
             end
         end
 
+    elseif event == "PLAYER_DEAD" or event == "PLAYER_ALIVE" or event == "PLAYER_UNGHOST" then
+        UpdateMountedWisp(Module._button)
+        Module.RefreshTooltip()
+        if not Module._button then return end
+        if IsPlayerDeadOrGhost() or InCombatLockdown() then
+            foreverJournalDirty = true
+        elseif not foreverMountSettling then
+            RefreshForeverMountWhenReady()
+        end
+
+    elseif event == "PLAYER_CONTROL_LOST" or event == "PLAYER_CONTROL_GAINED" then
+        if Module._button and IsOnTaxi() ~= foreverTaxiActive then
+            RefreshForeverMountedState(Module._button)
+        end
+
     elseif event == "ZONE_CHANGED" or event == "ZONE_CHANGED_INDOORS" or event == "ZONE_CHANGED_NEW_AREA" then
+        if foreverMountSettling then return end
         -- Bag mounts: no [flyable] macro — resettle location fingerprint after teleports.
         Module._cachedMounts = nil
         if not HasMountUI() then
@@ -4195,7 +4481,7 @@ end
 Module.SetupIconProtection = SetupIconProtection
 
 -- Set icon with protection (marks that we're setting it)
-SetProtectedIcon = function(btn, icon, skipUsable)
+SetProtectedIcon = function(btn, icon)
     if not btn or not btn.WIcon then return end
     
     _lastSetIcon = icon
@@ -4207,7 +4493,6 @@ SetProtectedIcon = function(btn, icon, skipUsable)
     
     -- Set on all icon elements
     btn.WIcon:SetTexture(icon)
-    btn.WIcon:SetDesaturated(false)
     btn.WIcon:Show()
     
     if btn.Widget and btn.Widget.icon then
@@ -4215,11 +4500,6 @@ SetProtectedIcon = function(btn, icon, skipUsable)
     end
     if btn.Widget and btn.Widget.Icon then
         btn.Widget.Icon:SetTexture(icon)
-    end
-
-    -- Icon-only path skips UpdateUsable (avoids re-resolving mounts on every mod tick)
-    if not skipUsable and btn.UpdateUsable then
-        btn:UpdateUsable()
     end
 end
 
@@ -4240,7 +4520,7 @@ end
 -- Light journal/companion icon update for held modifiers (no FullRefresh / bag scan)
 function Module.UpdateJournalMountIcon(forceModKey)
     local btn = Module._button
-    if not btn or not btn.WIcon then return end
+    if foreverMountSettling or not btn or not btn.WIcon or not btn.Widget or not btn.Widget:IsShown() then return end
     if not HasMountUI() then return end
     if Module._isPlaceholder then return end
     if Module._isLocked then return end
@@ -4248,14 +4528,13 @@ function Module.UpdateJournalMountIcon(forceModKey)
     if Module._isCasting or Module._pendingLockMount then return end
 
     local modKey = forceModKey or GetCurrentHeldModKey()
-    local _, mountIcon = Module.GetMountForCurrentModifiers(modKey)
+    local _, mountIcon, spellID, mountID = Module.GetMountForCurrentModifiers(modKey)
     if not mountIcon then
         mountIcon = "Interface\\Icons\\Ability_Mount_RidingHorse"
     end
-    SetProtectedIcon(btn, mountIcon, true)
-    if btn.WIcon then
-        btn.WIcon:SetVertexColor(1, 1, 1)
-    end
+    SetProtectedIcon(btn, mountIcon)
+    PinJournalMountFace(btn, spellID, mountID)
+    PaintMountLiveFace(btn, true)
 end
 
 -- Update mount button icon based on current modifier state
@@ -4319,7 +4598,7 @@ function Module.UpdateBagMountIcon(forceModKey)
         icon = "Interface\\Icons\\Ability_Mount_Charger"
     end
     
-    SetProtectedIcon(btn, icon, true)
+    SetProtectedIcon(btn, icon)
     ApplyBagMountItemTint(btn, mount and mount.itemId)
 end
 

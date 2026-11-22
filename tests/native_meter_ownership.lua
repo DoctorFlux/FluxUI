@@ -30,7 +30,7 @@ local noop = function() end
 
 local function harness(gamepad, policy, hasVisibilitySetter)
     local e = setmetatable({}, { __index = _G }); e._G = e
-    local s = { available = true, details = false, combat = false, activeTab = "Meter",
+    local s = { available = true, details = false, combat = false, restriction = 0, activeTab = "Meter",
         frames = {}, timers = {}, timerCreates = 0, typeCalls = 0, sessionCalls = 0,
         classCalls = 0, iconCalls = 0, entryWalks = 0, points = 0, hooks = {}, windows = {},
         barHeightCalls = 0, barSpacingCalls = 0, rowRefreshes = 0, messages = {},
@@ -87,9 +87,15 @@ local function harness(gamepad, policy, hasVisibilitySetter)
     e.Flux = { Cap = { IsForeverGamepadUI = function() return gamepad end } }
     e.Enum = { DamageMeterVisibility = { Always = 0, InCombat = 1, Hidden = 2, InGroup = 3 },
         DamageMeterSessionType = { Overall = 0, Current = 1, Expired = 2 },
+        AddOnRestrictionType = { Combat = 0, Encounter = 1 },
+        AddOnRestrictionState = { Inactive = 0, Activating = 1, Active = 2 },
         DamageMeterType = { DamageDone = 0, HealingDone = 2, Dps = 1, Hps = 3 } }
     e.InCombatLockdown = function() return s.combat end
     e.UnitAffectingCombat = function() return s.combat end
+    e.C_RestrictedActions = { GetAddOnRestrictionState = function(restrictionType)
+        assert(restrictionType == e.Enum.AddOnRestrictionType.Combat, "checks the combat data restriction")
+        return s.restriction
+    end }
     e.wipe = function(t) for key in pairs(t) do t[key] = nil end end
     e.SlashCmdList = {}
     e.print = function(...) s.messages[#s.messages + 1] = { ... } end
@@ -304,9 +310,9 @@ local function harness(gamepad, policy, hasVisibilitySetter)
         end
         return true
     end
-    function s.event(event, value)
+    function s.event(event, ...)
         for _, f in ipairs(s.frames) do
-            if f.events[event] and f.scripts.OnEvent then f.scripts.OnEvent(f, event, value) end
+            if f.events[event] and f.scripts.OnEvent then f.scripts.OnEvent(f, event, ...) end
         end
     end
     function s.drain()
@@ -494,7 +500,9 @@ local function visibilityFixture(policy, setter)
     s.activeTab = "Meter"; s.host.shown = false; meter:Show()
     check(not s.dm:IsShown(), label .. " explicit Show respects hidden Flux host")
     s.host.shown = true; meter:Show()
-    check(s.dm:IsShown() == (policy == 0 or policy == 1), label .. " active combat tab can reopen under native policy")
+    check(not s.dm:IsShown(), label .. " addon reveal waits when a hidden root would refresh in combat")
+    event("PLAYER_IN_COMBAT_CHANGED")
+    check(s.dm:IsShown() == (policy == 0 or policy == 1), label .. " native combat event still controls visibility")
     s.combat = false; event("PLAYER_IN_COMBAT_CHANGED")
     check(s.dm:IsShown() == (policy == 0), label .. " native combat exit restores configured policy")
     check(s.windows[1].timerText == "" and not s.windows[1].timerOnUpdate,
@@ -517,6 +525,40 @@ for policy = 0, 3 do
     visibilityFixture(policy, false)
     visibilityFixture(policy, true)
 end
+
+for _, gamepad in ipairs({false, true}) do
+    local e, s = harness(gamepad)
+    local label = gamepad and "gamepad restriction" or "ordinary restriction"
+    local meter = e.FluxBlizzardMeter
+    local types, states = e.Enum.AddOnRestrictionType, e.Enum.AddOnRestrictionState
+    local layout = { topSlots = {{kind = "blizzard", damageMeterType = 0}}, bottomSlots = {} }
+    check(meter:Embed(s.host, layout), label .. " embeds before the restriction")
+    meter:Hide()
+    s.restriction = states.Activating
+    local shows, points, timers = s.rootShows, s.points, s.timerCreates
+    meter:Show()
+    check(not s.dm:IsShown() and s.rootShows == shows and s.points == points and s.timerCreates == timers,
+        label .. " skips addon reveal and relayout even before combat lockdown")
+    s.restriction = states.Active
+    s.event("PLAYER_REGEN_ENABLED")
+    check(not s.dm:IsShown(), label .. " combat exit leaves deferred reveal waiting for the restriction")
+    s.restriction = states.Inactive
+    s.event("ADDON_RESTRICTION_STATE_CHANGED", types.Encounter, states.Inactive)
+    check(not s.dm:IsShown(), label .. " unrelated restriction does not replay the reveal")
+    s.event("ADDON_RESTRICTION_STATE_CHANGED", types.Combat, states.Inactive)
+    check(s.dm:IsShown() and s.rootShows == shows + 1, label .. " inactive combat data restriction replays reveal once")
+    s.event("PLAYER_REGEN_ENABLED")
+    check(s.rootShows == shows + 1, label .. " another combat exit cannot replay the same reveal")
+
+    meter:Hide()
+    s.restriction = states.Active
+    meter:Show()
+    s.activeTab = "Map"; meter:Hide()
+    s.restriction = states.Inactive
+    s.event("ADDON_RESTRICTION_STATE_CHANGED", types.Combat, states.Inactive)
+    check(not s.dm:IsShown() and s.rootShows == shows + 1, label .. " tab hide cancels a deferred reveal")
+end
+
 print(string.format("meter visibility: policyWrites=%d setterCalls=%d nativeEvents=%d timerDispatches=%d repeatedAddonRootShows=%d timerWrites=%d pinnedNative=%s",
     visibilityTotals.writes, visibilityTotals.setters, visibilityTotals.nativeEvents,
     visibilityTotals.timerDispatches, visibilityTotals.redundantShows, visibilityTotals.timerWrites,

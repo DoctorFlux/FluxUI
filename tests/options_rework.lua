@@ -1,6 +1,7 @@
 -- Full production shell/renderer/widgets lifecycle on modeled engine primitives.
 -- Native artwork, secure VM, gamepad, persistence and performance are not emulated.
 local function read(path)
+    if path=="AddonOptions/FluxOptionsFramePreview.lua" and os.getenv("FLUX_OPTIONS_REWORK_FRAME_PREVIEW") then path=os.getenv("FLUX_OPTIONS_REWORK_FRAME_PREVIEW") end
     if path=="AddonOptions/FluxOptionsShell.lua" and os.getenv("FLUX_OPTIONS_REWORK_SHELL") then path=os.getenv("FLUX_OPTIONS_REWORK_SHELL") end
     if path=="AddonOptions/FluxOptionsRender.lua" and os.getenv("FLUX_OPTIONS_REWORK_RENDER") then path=os.getenv("FLUX_OPTIONS_REWORK_RENDER") end
     if path=="AddonOptions/FluxOptionsNavigation.lua" and os.getenv("FLUX_OPTIONS_REWORK_NAVIGATION") then path=os.getenv("FLUX_OPTIONS_REWORK_NAVIGATION") end
@@ -70,6 +71,7 @@ local function fixture(client)
     function methods:Hide() local was=self.shown; self.shown=false; if was then self:Fire("OnHide") end end
     function methods:SetShown(v) if v then self:Show() else self:Hide() end end
     function methods:IsShown() return self.shown end
+    function methods:IsVisible() return self.shown and (not self.parent or self.parent:IsVisible()) end
     function methods:IsMouseOver() return false end
     function methods:RegisterEvent(e) self.events[e]=true end
     function methods:UnregisterEvent(e) self.events[e]=nil end
@@ -119,7 +121,9 @@ local function fixture(client)
         "SetClampedToScreen","SetResizeBounds","SetMinResize","SetMaxResize","SetClipsChildren",
         "EnableMouseWheel","SetAutoFocus","RegisterForDrag","StartMoving","StopMovingOrSizing",
         "StartSizing","ClearFocus","SetMultiLine","SetNormalFontObject","SetHighlightFontObject","SetDisabledFontObject",
-        "SetDrawLayer","SetSnapToPixelGrid","SetTexelSnappingBias"}) do methods[key]=function() end end
+        "SetDrawLayer","SetSnapToPixelGrid","SetTexelSnappingBias","RegisterForClicks",
+        "SetStatusBarTexture","SetStatusBarColor","SetDrawSwipe","SetDrawEdge","SetDrawBling",
+        "SetSwipeTexture","SetSwipeColor","SetMaxLines","SetFont","SetBlendMode"}) do methods[key]=function() end end
     function methods:SetTexCoord(...)self.coords={...}end
     env.CreateFrame=function(kind,name,parent,template)
         local f=object(kind,name,parent,template)
@@ -167,6 +171,8 @@ local function fixture(client)
     env.UIParent=object("Frame"); env.UIParent:SetSize(1360,900)
     env.BackdropTemplateMixin={}
     env.Flux={Client={isForever=client=="forever"}}
+    ns.Flux=env.Flux
+    env.FLUX_API={hasFocusUnit=client~="classic_era"}
     env.C_Texture={GetAtlasInfo=function() return {width=768,height=512,leftTexCoord=0,rightTexCoord=1,topTexCoord=0,bottomTexCoord=1} end}
     env.CreateFromMixins=function(...)
         local result={};for _,mixin in ipairs({...})do for key,value in pairs(mixin)do result[key]=value end end;return result
@@ -201,6 +207,8 @@ local function fixture(client)
     local getters,writes=0,0
     local sourceInfo={}
     local roots={}
+    local unitDB={auraTarget={showBuffs=true,showDebuffs=true,buffSize=35,debuffSize=35}}
+    local raidDB={partyAsRaid=false,displayBuffs=true,displayDebuffs=true}
     run(read("AddonOptions/FluxOptionsCatalog.lua"),env,ns)
     for id,entry in pairs(ns.FluxOptionsCatalog.sources) do
         roots[id]={type="group",name=entry.name,args={
@@ -215,6 +223,18 @@ local function fixture(client)
             feature={type="toggle",name="Deferred repaint",order=7,get=function() return true end},
         }}
     end
+    roots.nameplates.args.style_size = {type="select",name="Nameplate size",values={[1]="Medium"},get=function() return 1 end}
+    roots.nameplates.args.cast_SpellName = {type="toggle",name="Spell name",get=function() return true end}
+    ns.FluxOptionsNameplatePreview = {
+        Create = function(host, onPart)
+            local preview = { host = host, onPart = onPart }
+            function preview:Update(page, tab, selected)
+                self.page, self.tab, self.selected = page, tab, selected
+            end
+            function preview:HoverSetting(key) self.hovered = key end
+            return preview
+        end,
+    }
     roots.actionbars={type="group",name="Action Bars",childGroups="tab",args={
         bar={type="group",name="Bars",order=1,args={enabled={type="toggle",name="Enable bars",get=function() return true end}}},
         extra={type="group",name="Extra buttons",order=2,args={consumableSwapHeader={type="header",name="Consumables",order=1},
@@ -229,19 +249,147 @@ local function fixture(client)
             auraTimersUnderMinute={type="toggle",name="Aura timers below one minute",order=4,get=function()return false end},
             threatBarVisibility={type="select",name="Threat visibility",order=5,values={always="Always",never="Never"},get=function()return "always"end}}},
         unitPlayer={type="group",name="Player",args={playerWidth={type="range",name="Player width",min=100,max=400,step=1,get=function()return 200 end}}},
-        unitTarget={type="group",name="Target",args={targetWidth={type="range",name="Target width",min=100,max=400,step=1,get=function()return 200 end}}},
+        unitTarget={type="group",name="Target",args={
+            targetWidth={type="range",name="Target width",min=100,max=400,step=1,get=function()return 200 end},
+            targetCastBar={type="toggle",name="Cast bar",get=function()return true end},
+            targetShowBuffs={type="toggle",name="Show buffs",get=function()return unitDB.auraTarget.showBuffs end,
+                set=function(info,value)sourceInfo.previewBuffSet=info;unitDB.auraTarget.showBuffs=value end},
+            targetAuraBuffSize={type="range",name="Buff icon size",min=14,max=56,step=1,
+                get=function()return unitDB.auraTarget.buffSize end,set=function(_,value)
+                    sourceInfo.previewBuffWrites=(sourceInfo.previewBuffWrites or 0)+1
+                    unitDB.auraTarget.buffSize=value
+                end},
+            targetShowDebuffs={type="toggle",name="Show debuffs",get=function()return unitDB.auraTarget.showDebuffs end},
+            unitTargetOfTarget={type="group",name="Target of target",inline=true,args={
+                totWidth={type="range",name="Target of target width",min=12,max=160,step=1,get=function()return 100 end},
+            }},
+        }},
         unitFocus={type="group",name="Focus",hidden=function()return env.testFocusHidden end,args={focusWidth={type="range",name="Focus width",min=100,max=400,step=1,get=function()return 200 end}}},
         unitPet={type="group",name="Pet",args={petWidth={type="range",name="Pet width",min=100,max=400,step=1,get=function()return 200 end}}},
         partyRaid={type="group",name="Party / Raid",hidden=function()return env.testPartyHidden end,args={
             partyStyle={type="group",name="Party frames",inline=true,disabled=function()return env.testPartyLocked end,args={
                 enabled={type="toggle",name="Party frame styling",desc="Unique marigold party style",order=1,
-                    get=function(info)sourceInfo.partyGet=info;return true end,set=function(info)sourceInfo.partySet=info end}}},
-            header={type="header",name="Raid layout",order=2},enabled={type="toggle",name="Raid health text",order=3,get=function()return true end}}},
+                    get=function(info)sourceInfo.partyGet=info;return true end,set=function(info)sourceInfo.partySet=info end},
+                partyAsRaid={type="toggle",name="Show party as raid frames",get=function()return raidDB.partyAsRaid end,
+                    set=function(_,value)raidDB.partyAsRaid=value end},
+                healthText={type="select",name="Party health text",values={perc="Percent"},get=function()return "perc" end},
+                preview={type="execute",name="Show party preview"}}},
+            header={type="header",name="Raid layout",order=2},
+            displayBuffs={type="toggle",name="Show raid buffs",get=function()return true end},
+            displayDebuffs={type="toggle",name="Show raid debuffs",get=function()return true end},
+            healthText={type="select",name="Raid health text",order=3,values={perc="Percent"},get=function()return "perc" end}}},
         castBarThemes={type="group",name="Cast bar themes",args={enabled={type="toggle",name="Enable school themes",get=function()return true end}}},
     }}
     local generations={}
     env.FluxOptions={ResolveModuleOptions=function(_,id)return roots[id]end,GetProfilesOptions=function()return roots.profiles end,
         GetModuleGen=function(_,id)return generations[id]or 0 end,GetConfigStatusText=function()return "Account-wide"end}
+    function env.FluxOptions:GetUnitFrameDB() return unitDB end
+    function env.FluxOptions:GetRaidFrameDB() return raidDB end
+    -- Same renderer entry points as the world owners. The paired owner fixtures
+    -- exercise their visual construction; this model exercises the options host.
+    local function previewCell(parent, compact)
+        local cell = env.CreateFrame("Frame",nil,parent)
+        local health = env.CreateFrame("StatusBar",nil,cell)
+        local power = env.CreateFrame("StatusBar",nil,cell)
+        local name = cell:CreateFontString()
+        local buffs, debuffs = env.CreateFrame("Frame",nil,cell), env.CreateFrame("Frame",nil,cell)
+        cell._fluxPreviewAuraRows = {buffs=buffs,debuffs=debuffs}
+        cell._fluxAuraBuff, cell._fluxAuraDebuff = {env.CreateFrame("Frame",nil,buffs)}, {env.CreateFrame("Frame",nil,debuffs)}
+        if compact then
+            cell.healthBar, cell.powerBar, cell.name = health, power, name
+        else
+            cell.Health, cell.Power, cell.nameText = health, power, name
+            cell.PortraitFrame = env.CreateFrame("Frame",nil,cell)
+        end
+        return cell
+    end
+    ns.UnitFrames = {
+        CreateOptionsPreview = function(parent)
+            local frame = env.CreateFrame("Frame",nil,parent)
+            local cell = previewCell(frame,false)
+            local scene = {frame=frame,cell=cell,parts={layout=cell,health=cell.Health,power=cell.Power,name=cell.nameText,
+                portrait=cell.PortraitFrame,buffs=cell._fluxPreviewAuraRows.buffs,debuffs=cell._fluxPreviewAuraRows.debuffs,
+                attached=env.CreateFrame("Frame",nil,frame),cast=env.CreateFrame("StatusBar",nil,cell),
+                absorbs={[2]=env.CreateFrame("StatusBar",nil,cell)}}}
+            function scene:Render(unit,width,height,db,placement,selectedPart,scenario)
+                self.renderCount=(self.renderCount or 0)+1
+                self.unit,self.scenario=unit,scenario or "default"
+                self.frame:SetSize(width,height)
+                self.frame:Show()
+                local auraTarget=db.auraTarget
+                self.parts.buffs:SetShown(unit=="target" and auraTarget.showBuffs)
+                self.parts.debuffs:SetShown(unit=="target" and auraTarget.showDebuffs)
+                self.parts.buffs:SetWidth(auraTarget.buffSize)
+                self.parts.attached:SetShown(unit=="target")
+                return self:SelectPart(selectedPart)
+            end
+            function scene:SelectPart(part)
+                local castShown = part=="cast"
+                if self.parts.cast:IsShown()~=castShown then
+                    local parts = {}
+                    for key, region in pairs(self.parts) do parts[key]=region end
+                    parts.cast:SetShown(castShown)
+                    self.parts = parts
+                end
+                return self.parts
+            end
+            function scene:PlayAnimation(finish)
+                self.playCount=(self.playCount or 0)+1
+                self.finishAnimation=finish
+                return self:SelectPart("cast")
+            end
+            function scene:StopAnimation() self.finishAnimation=nil end
+            function scene:Hide() self:StopAnimation(); self.frame:Hide() end
+            return scene
+        end,
+        PlayOptionsGroupAnimation = function(frame,members,count,compact,finish)
+            frame.played={members,count,compact}
+            if not compact then
+                local member=members[1]
+                member.CastBar=member.CastBar or env.CreateFrame("StatusBar",nil,member)
+                member.CastBar:Show()
+                frame.restoreGroup=function() member.CastBar:Hide(); finish() end
+            end
+            return true
+        end,
+        StopOptionsPreviewAnimation = function(frame)
+            frame.played=nil
+            if frame.restoreGroup then frame.restoreGroup(); frame.restoreGroup=nil end
+        end,
+    }
+    ns.PartyFrames = {
+        CreateOptionsPreview = function(parent)
+            if env.combat then return end
+            local frame = env.CreateFrame("Frame",nil,parent)
+            frame.members, frame.pets, frame.targets = {}, {}, {}
+            for i=1,4 do frame.members[i] = previewCell(frame,false) end
+            function frame:Refresh(width,height)
+                if env.combat then return false end
+                self:SetSize(width,height)
+                self:Show()
+                return true
+            end
+            return frame
+        end,
+    }
+    env.FluxRaidPreview = {
+        CreateOptionsPreview = function(parent)
+            local scene = {frame=env.CreateFrame("Frame",nil,parent),cells={}}
+            function scene:Render(party)
+                local count = party and 5 or 40
+                local width,height = party and 90 or 720,150
+                self.frame:SetSize(width,height)
+                for i=1,count do
+                    if not self.cells[i] then self.cells[i]=previewCell(self.frame,true) end
+                    self.cells[i]:Show()
+                end
+                for i=count+1,#self.cells do self.cells[i]:Hide() end
+                self.frame:Show()
+                return width,height,self.cells,count
+            end
+            return scene
+        end,
+    }
     env.FluxOptions.RegisterModuleOptions=function(_,id,builder)roots[id]=builder()end
     env.FluxOptions.IsLayoutCharacterSpecific=function()return env.layoutCharacter==true end
     env.FluxOptions.SetLayoutCharacterSpecific=function(_,value)env.layoutCharacter=value end
@@ -264,7 +412,7 @@ local function fixture(client)
     end
     function ace:Release(widget)widget.released=true;widget.frame:Hide()end
     env.LibStub=function(name)if name=="AceGUI-3.0"then return ace end end
-    for _,name in ipairs({"FluxOptionsWidgets","FluxOptionsSkin","FluxOptionsRender","FluxOptionsNavigation","FluxOptionsShell"}) do
+    for _,name in ipairs({"FluxOptionsWidgets","FluxOptionsSkin","FluxOptionsRender","FluxOptionsNavigation","FluxOptionsFramePreview","FluxOptionsShell"}) do
         run(read("AddonOptions/"..name..".lua"),env,ns)
     end
     local shell=ns.FluxOptionsShell
@@ -408,13 +556,26 @@ for _,client in ipairs(clients) do
     check(shell.pageId=="bindings" and shell.subKey=="browser" and shell.active.query=="",client..": macro search leaves Keybindings and reveals the complete browser")
     shell.search:SetText("")
     shell:Select("qol","combat")
-    check(shell.pageId=="ufNameplates",client..": old QoL combat link opens Nameplates")
+    check(shell.pageId=="ufNameplates" and shell.subKey=="style",client..": old QoL combat link opens Nameplates Style")
+    local platePreview = shell.nameplatePreview
+    check(platePreview.host:IsShown() and platePreview.page=="ufNameplates" and platePreview.selected=="style",
+        client..": Nameplates owns a dedicated preview")
+    platePreview.onPart("cast")
+    check(shell.subKey=="cast" and platePreview.tab=="cast" and platePreview.selected=="cast",
+        client..": preview clicks open the matching nameplate tab")
+    shell.active.rows[1]:Fire("OnEnter")
+    check(platePreview.hovered=="cast_SpellName",client..": hovering a nameplate option identifies it in the preview")
+    shell.active.rows[1]:Fire("OnLeave")
+    check(platePreview.hovered==nil,client..": leaving a nameplate option clears the preview hover")
     shell:Select("unitframes","castBarThemes")
-    check(shell.pageId=="ufCastBars",client..": old theme link opens Cast Bars")
+    check(shell.pageId=="ufGeneral" and shell.subKey=="castBars" and (not shell.framePreviewHost or not shell.framePreviewHost:IsShown()),
+        client..": old theme link opens General's Cast Bars tab at full width")
+    check(not platePreview.host:IsShown(),client..": leaving Nameplates hides its preview")
     shell:Select("unitframes","partyRaid")
-    check(shell.pageId=="ufRaid",client..": old raid helper opens Raid Frames")
+    check(shell.pageId=="ufPartyRaid" and shell.subKey=="raid",client..": old raid helper opens the Raid tab")
     shell:Select("unitframes","appearance")
-    check(shell.pageId=="ufGeneral"and not shell.tabBar.shown,client..": Appearance and General share one page")
+    check(shell.pageId=="ufGeneral" and shell.subKey=="general" and shell.tabBar.shown,
+        client..": old Appearance link selects General's frame settings")
     local headers={};for _,h in ipairs(shell.navHeaders)do headers[h.groupId]=h end
     check(headers.hud and headers.hud.label:GetText()=="HUD",client..": HUD is a framed sidebar category")
     local hudButtons={}
@@ -440,20 +601,24 @@ for _,client in ipairs(clients) do
     shell.search:SetText("")
     check(headers.unitframes and headers.unitframes.label:GetText()=="UNIT FRAME"and headers.lootItems.label:GetText()=="LOOT & ITEMS",client..": framed Unit Frame and Loot & Items headers")
     local frameButtons,itemButtons={},{}
+    local nameplatesButton
     for _,button in ipairs(shell.navButtons)do
         if button.groupId=="unitframes"then check(button.subKey==nil,client..": merged frame rows open complete entries");frameButtons[button.pageId]=button end
         if button.groupId=="lootItems"then itemButtons[button.subKey]=button end
+        if button.pageId=="ufNameplates" and button.groupId=="combat" then nameplatesButton=button end
     end
-    for _,id in ipairs({"ufGeneral","ufUnits","ufParty","ufRaid","ufCastBars","ufNameplates"})do
+    check(nameplatesButton and not frameButtons.ufNameplates,client..": Nameplates belongs to Combat")
+    for _,id in ipairs({"ufGeneral","ufUnits","ufPartyRaid"})do
         local button=frameButtons[id];check(button and button.shown,client..": sidebar row "..id);button:Fire("OnClick")
         check(shell.pageId==id and shell.title:GetText()==ns.FluxOptionsCatalog.pages[id].name,client..": frame row opens its merged entry")
-        check(shell.tabBar.shown==(id=="ufUnits"),client..": only Individual Frames has inner unit tabs")
+        check(shell.tabBar.shown,client..": consolidated frame categories expose the matching inner tabs")
         local selected=0;for _,candidate in pairs(frameButtons)do if candidate.selected then selected=selected+1;check(candidate==button,client..": only clicked frame row selected")end end
         check(selected==1,client..": one active frame entry")
     end
     for _,unit in ipairs({"unitPlayer","unitTarget","unitFocus","unitPet"})do
         shell:Select("unitframes",unit)
-        check(shell.pageId=="ufUnits"and shell.subKey==unit and shell.tabBar.shown,client..": legacy unit link selects its inner tab")
+        check(shell.pageId=="ufUnits" and shell.subKey==unit and shell.tabBar.shown,
+            client..": legacy unit link selects its Individual Frames tab")
     end
     for _,key in ipairs({"loot","vendor","restock"})do
         local button=itemButtons[key];check(button and button.shown and button.icon.shown,client..": item sidebar row/icon "..key)
@@ -478,7 +643,7 @@ for _,client in ipairs(clients) do
     shell.search:SetText("")
     shell:Select("ufNameplates")
     local navHeight=shell.navScroll:GetHeight();shell.navScroll:SetHeight(120);shell:FilterSidebar()
-    local maxScroll=select(2,shell.navBar:GetMinMaxValues());local selectedTop=-frameButtons.ufNameplates.points[1][5];local offset=shell.navBar:GetValue()
+    local maxScroll=select(2,shell.navBar:GetMinMaxValues());local selectedTop=-nameplatesButton.points[1][5];local offset=shell.navBar:GetValue()
     check(shell.navBar.shown and selectedTop>=offset and selectedTop+24<=offset+120,client..": resized sidebar keeps selected row visible")
     shell.navBar:SetValue(maxScroll);check(shell.navScroll.scroll==maxScroll and shell.systemNav.height==104,client..": scroll reaches lower entries with fixed footer")
     shell.navScroll:SetHeight(navHeight);shell:FilterSidebar()
@@ -496,14 +661,163 @@ for _,client in ipairs(clients) do
     check(shell.pageId=="layout"and shell.active.embeds[1].type=="FluxLayoutPreview",client..": missing page falls back to visible HUD Layout")
     headers.unitframes:Fire("OnClick","LeftButton")
     shell:Hide();flush();shell:Show()
-    check(shell.navCollapsed.unitframes and not frameButtons.ufParty.shown,client..": ordinary close/reopen remembers minimized categories")
+    check(shell.navCollapsed.unitframes and not frameButtons.ufPartyRaid.shown,client..": ordinary close/reopen remembers minimized categories")
     shell.search:SetText("marigold")
-    check(frameButtons.ufParty.shown and frameButtons.ufParty.selected and not frameButtons.ufUnits.shown and frameButtons.ufParty.count:GetText()=="1",client..": search temporarily reveals matching child in minimized group")
+    check(frameButtons.ufPartyRaid.shown and frameButtons.ufPartyRaid.selected and not frameButtons.ufUnits.shown and frameButtons.ufPartyRaid.count:GetText()=="1",client..": search temporarily reveals matching child in minimized group")
     shell.search:SetText("")
-    check(shell.navCollapsed.unitframes and not frameButtons.ufParty.shown and headers.unitframes.indicator:GetText()=="+",client..": clearing search restores minimized category")
+    check(shell.navCollapsed.unitframes and not frameButtons.ufPartyRaid.shown and headers.unitframes.indicator:GetText()=="+",client..": clearing search restores minimized category")
     shell:Select("unitframes","unitTarget")
     check(not shell.navCollapsed.unitframes and frameButtons.ufUnits.shown,client..": explicit old link expands its minimized category")
-    shell:Select("ufParty")
+    local preview = shell.framePreview
+    local function previewSetting(kind, name)
+        for _, row in ipairs(shell.active.rows) do
+            if row.kind == kind and row.searchText:find(name, 1, true) then
+                for _, child in ipairs(row.children) do
+                    if kind == "toggle" and child.template == "UICheckButtonTemplate" or kind == "range" and child.engineKind == "Slider" then
+                        return row, child
+                    end
+                end
+            end
+        end
+    end
+    check(preview and shell.framePreviewHost.shown and shell.scrollHost.points[2][4] < 0,client..": frame pages reserve a separate right preview column")
+    check(preview.parent==shell.framePreviewHost and preview:IsVisible(),client..": sample is owned by the options pane")
+    env.FluxOptions.RefreshOpenPage=function() shell:RefreshOpenPage() end
+    preview:SetSize(220, 350)
+    shell:RefreshFramePreview()
+    local function findHit(drawing, part, region)
+        for _, hit in ipairs(drawing.hits) do
+            if hit.part==part and hit.allPoints==region and hit:IsVisible() then return hit end
+        end
+    end
+    local function clickHit(drawing, part, region)
+        local hit=findHit(drawing,part,region)
+        if hit then hit:Fire("OnClick"); return hit end
+    end
+    local drawing = assert(preview.unitDrawing)
+    local scene = drawing.scene
+    local buffLane, debuffLane = scene.parts.buffs, scene.parts.debuffs
+    check(scene.frame.parent==preview.canvas and scene.unit=="target" and buffLane:IsVisible() and debuffLane:IsVisible()
+        and findHit(drawing,"health",scene.cell.Health) and findHit(drawing,"portrait",scene.cell.PortraitFrame),
+        client..": target view uses the owner scene and its actual portrait and bar regions")
+    check(findHit(drawing,"absorbs",scene.parts.absorbs[2]),
+        client..": the visible prediction region remains clickable when another prediction bar is absent")
+    check(findHit(drawing,"power",scene.cell.Power):GetFrameLevel()>findHit(drawing,"health",scene.cell.Health):GetFrameLevel(),
+        client..": power wins the hit where HUD health extends behind the power row")
+    local idleRenderCount = scene.renderCount
+    check(not scene.parts.cast:IsVisible(),client..": individual preview defaults to an idle HUD frame")
+    for _, button in ipairs(preview.shortcuts) do
+        if button:IsVisible() and button.part=="cast" then button:Fire("OnClick"); break end
+    end
+    check(scene.parts.cast:IsVisible() and findHit(drawing,"cast",scene.parts.cast) and scene.renderCount==idleRenderCount,
+        client..": Cast controls select the real cast surface without rebuilding the scene")
+    local buffRow, buffToggle = previewSetting("toggle", "show buffs")
+    check(buffToggle and not buffRow.shown,client..": component settings start folded")
+    shell.search:SetText("target")
+    local beforeClick = scene.renderCount
+    check(clickHit(drawing,"buffs",buffLane),client..": helpful aura region has a click overlay")
+    check(shell:Query()=="" and shell.active.selectedPart=="buffs" and buffRow.shown and findHit(drawing,"buffs",buffLane).selected
+        and scene.renderCount==beforeClick and not scene.parts.cast:IsVisible(),
+        client..": actual aura hotspot clears search, opens the component editor and shows selection")
+    local _, buffSize = previewSetting("range", "buff icon size")
+    local beforeWidth = buffLane:GetWidth()
+    buffSize:Fire("OnMouseDown","LeftButton")
+    for value=34,14,-1 do buffSize:SetValue(value); flush() end
+    check(not sourceInfo.previewBuffWrites and buffSize:GetValue()==14 and buffLane:GetWidth()==beforeWidth,
+        client..": 21 drag samples update the thumb without painting frames or writing settings")
+    buffSize:Fire("OnMouseUp","LeftButton"); flush()
+    check(sourceInfo.previewBuffWrites==1 and env.FluxOptions:GetUnitFrameDB().auraTarget.buffSize==14
+        and buffLane:GetWidth()<beforeWidth,client..": release applies one setting and redraws the matching sample")
+    buffSize:SetValue(15); flush()
+    check(sourceInfo.previewBuffWrites==2 and env.FluxOptions:GetUnitFrameDB().auraTarget.buffSize==15,
+        client..": a non-pointer slider edit applies normally")
+    buffToggle:Fire("OnClick"); flush()
+    local buffInfo = sourceInfo.previewBuffSet
+    check(buffInfo and buffInfo.options==roots.unitframes and buffInfo[1]=="unitTarget" and buffInfo[2]=="targetShowBuffs",
+        client..": preview-routed toggle invokes the original setter and information path")
+    check(not buffLane:IsVisible() and debuffLane:IsVisible(),client..": the edit hides only the affected sample aura lane")
+    for _, button in ipairs(preview.shortcuts) do
+        if button:IsVisible() and button.part=="buffs" then button:Fire("OnClick"); break end
+    end
+    check(shell.active.selectedPart=="buffs" and buffToggle:IsVisible(),client..": a labeled component remains reachable when its art is disabled")
+    check(clickHit(drawing,"attached",scene.parts.attached),client..": attached region has a click overlay")
+    check(shell.pageId=="ufUnits" and shell.subKey=="unitTargetOfTarget" and shell.active.selectedPart=="layout"
+        and scene.unit=="targettarget" and not scene.parts.attached:IsVisible(),
+        client..": attached preview navigates directly to its Individual Frames editor")
+    shell:Select("ufUnits","unitTarget")
+    local casePicker
+    for _, object in ipairs(objects) do
+        if object.parent==preview.caseMenu and object.menuBuilder then casePicker=object; break end
+    end
+    local cases = {}
+    casePicker.menuBuilder(casePicker, {CreateRadio=function(_,label,selected,choose)
+        cases[label]={selected=selected,choose=choose}
+    end})
+    check(cases["Default"].selected() and cases["Player"] and cases["Friendly NPC"] and cases["Hostile NPC"]
+        and cases["Buffs and debuffs"] and cases["Combat effects"] and preview.play:IsVisible(),
+        client..": compact case menu exposes identity, aura, and combat examples")
+    cases["Hostile NPC"].choose()
+    check(scene.scenario=="hostileNPC" and not scene.playCount,
+        client..": choosing an NPC changes only the sample and stays idle")
+    preview.play:Fire("OnClick")
+    check(scene.playCount==1 and findHit(drawing,"cast",scene.parts.cast),
+        client..": Play starts the scene once and updates newly visible hotspots")
+    scene.finishAnimation(scene:SelectPart("layout"))
+    check(not findHit(drawing,"cast",scene.parts.cast),client..": completed playback restores idle hotspots")
+    shell:Select("ufUnits","unitPlayer")
+    check(scene.scenario=="default",client..": the target NPC choice never transfers to the Player frame")
+    shell:Select("ufUnits","unitTarget")
+    check(scene.scenario=="hostileNPC",client..": returning to a tab restores its preview-only case")
+    shell:Select("ufPartyRaid","party")
+    check(not scene.frame:IsVisible(),client..": group preview hides the independent individual scene")
+    local function visibleSamples(group, members)
+        local count = 0
+        for _, sample in ipairs(members) do if group.frame:IsVisible() and sample:IsVisible() then count=count+1 end end
+        return count
+    end
+    local partyDrawing = preview.partyDrawing
+    check(shell.framePreview==preview and partyDrawing.frame.parent==preview.canvas
+        and visibleSamples(partyDrawing,partyDrawing.frame.members)==4,client..": party embeds the four-row world scene in the reused pane")
+    check(preview.play:IsVisible() and not preview.caseMenu:IsVisible(),
+        client..": group preview keeps the Play action without an individual case selector")
+    preview.play:Fire("OnClick")
+    check(partyDrawing.frame.played[1]==partyDrawing.frame.members and partyDrawing.frame.played[2]==4,
+        client..": group animation receives only the settings-owned sample roster")
+    local groupCast = partyDrawing.frame.members[1].CastBar
+    check(findHit(partyDrawing,"cast",groupCast),client..": the playing Party cast has a component hotspot")
+    partyDrawing.frame.restoreGroup()
+    check(not findHit(partyDrawing,"cast",groupCast),client..": finished Party cast clears the component hotspot")
+    check(clickHit(partyDrawing,"health",partyDrawing.frame.members[1].Health) and shell.pageId=="ufPartyRaid"
+        and shell.subKey=="party" and shell.active.selectedPart=="health",
+        client..": a world-style party bar opens its health settings")
+    shell:Select("ufPartyRaid","party")
+    local _, compactToggle = previewSetting("toggle", "show party as raid frames")
+    compactToggle:Fire("OnClick"); flush()
+    local raidDrawing = preview.raidDrawing
+    local cells = raidDrawing.scene.cells
+    check(not partyDrawing.frame:IsVisible() and visibleSamples(raidDrawing,cells)==5,
+        client..": compact party shows five compact world cells and hides the ordinary party scene")
+    check(not partyDrawing.frame.played,client..": switching group style stops the previous playback")
+    check(clickHit(raidDrawing,"buffs",cells[1]._fluxPreviewAuraRows.buffs) and shell.pageId=="ufPartyRaid"
+        and shell.subKey=="raid" and shell.active.selectedPart=="buffs" and visibleSamples(raidDrawing,cells)==40,
+        client..": compact party aura opens the matching Raid tab and switches the sample roster")
+    check(raidDrawing.frame:GetWidth()*raidDrawing.frame:GetScale()<=preview.canvas:GetWidth(),
+        client..": the native raid layout fits by uniform scaling")
+    shell:Select("chat")
+    check(not preview:IsVisible() and shell.scrollHost.points[2][4]==0,client..": other pages hide the pane and recover the full settings width")
+    shell:Select("ufGeneral","general")
+    local petType, focusType
+    for _, button in ipairs(preview.unitShortcuts) do
+        if button:IsVisible() and button.part=="unitPet" then petType=button end
+        if button:IsVisible() and button.part=="unitFocus" then focusType=button end
+    end
+    check(petType and (focusType~=nil)==env.FLUX_API.hasFocusUnit,client..": General links unit types and respects the Focus capability")
+    petType:Fire("OnClick")
+    check(shell.pageId=="ufUnits" and shell.subKey=="unitPet" and shell.active.selectedPart=="layout",
+        client..": clicking a frame type opens its existing individual settings")
+    shell:Select("ufPartyRaid","party")
+    check(shell.framePreview==preview and visibleSamples(raidDrawing,cells)==5,client..": returning to compact party reuses its pool without stale raid members")
+    env.FluxOptions.RefreshOpenPage=nil
     local partyToggle
     for _,row in ipairs(shell.active.rows)do if row.kind=="toggle"and row.searchText:find("marigold",1,true)then
         for _,child in ipairs(row.children)do if child.template=="UICheckButtonTemplate"then partyToggle=child end end
@@ -514,22 +828,23 @@ for _,client in ipairs(clients) do
     env.testPartyLocked=true;shell.active:Refresh();check(not partyToggle.enabled,client..": original parent disabled gate retained");env.testPartyLocked=false
     env.testPartyHidden=true;env.testFocusHidden=true;shell:FilterSidebar()
     local subs=ns.FluxOptionsRender.ListSubpages(ns.FluxOptionsNavigation.Resolve("ufUnits"));local available={};for _,entry in ipairs(subs)do available[entry.key]=true end
-    check(not frameButtons.ufParty.shown and not frameButtons.ufRaid.shown and frameButtons.ufUnits.shown and not available.unitFocus,client..": merged entries and inner tabs retain source hidden gates")
+    check(not frameButtons.ufPartyRaid.shown and frameButtons.ufUnits.shown and not available.unitFocus,client..": merged entries and inner tabs retain source hidden gates")
     env.testPartyHidden=false;env.testFocusHidden=false
-    shell:Select("ufNameplates");local oldView=shell.active
-    roots.nameplates.args.enabled={type="toggle",name="Updated nameplate setting",get=function()return true end};generations.nameplates=1;shell:RefreshOpenPageNow()
+    shell:Select("ufNameplates","style");local oldView=shell.active
+    roots.nameplates.args.style_testReload={type="toggle",name="Updated nameplate setting",get=function()return true end};generations.nameplates=1;shell:RefreshOpenPageNow()
     check(shell.active~=oldView and oldView.released,client..": direct source page invalidates on original module generation")
     local found=false;for _,row in ipairs(shell.active.rows)do if row.searchText:find("updated nameplate setting",1,true)then found=true end end
     check(found,client..": refreshed source declarations rendered")
     local pages=0
     for id in pairs(ns.FluxOptionsCatalog.pages) do shell:Select(id);check(shell.active and not shell.active.released,client..": reachable page "..id);pages=pages+1 end
-    check(pages==21 and #ns.FluxOptionsCatalog.sourceModules==14,client..": merged categories retain all14 feature sources plus profiles")
+    check(pages==19 and #ns.FluxOptionsCatalog.sourceModules==14,client..": organized categories retain all14 feature sources plus profiles")
     shell:Select("general")
     shell.scrollApi.scroll:SetWidth(650);shell.active:Layout()
     check(shell.active.rows[2].width>600,client..": narrow content uses full-width controls")
     shell.scrollApi.scroll:SetWidth(960);shell.active:Layout()
     shell:Hide();flush()
     check(not env.binding and shell.active==nil and next(shell.cache)==nil,client..": close releases page cache and Escape")
+    check(not preview:IsVisible(),client..": closing the options hides the sample and retires its interactive regions")
     check(layoutWidget.released,client..": closing options releases the restored Layout preview")
     local oldToggle=toggle.checked
     local oldPaints=toggle.paints

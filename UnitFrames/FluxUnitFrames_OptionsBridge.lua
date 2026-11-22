@@ -804,13 +804,14 @@ function FluxUnitFrames_ApplyAuraLayoutFromDB()
         end
         return
     end
+    -- Update the formatter already bound to normal party, compact party, raid
+    -- and preview clocks before refreshing the individual unit-frame panels.
+    if FluxRaidVisuals and FluxRaidVisuals.GetAuraDurationFormatter then
+        FluxRaidVisuals.GetAuraDurationFormatter()
+    end
     local UF = ns.UnitFrames
     if not UF or not UF.ApplyAuraOptionsToFrame then
         return
-    end
-    -- Normal party frames share this policy, including already-bound preview clocks.
-    if FluxRaidVisuals and FluxRaidVisuals.GetAuraDurationFormatter then
-        FluxRaidVisuals.GetAuraDurationFormatter(nil, { _fluxPartyMember = true })
     end
     local function AuraShown(unit, flag)
         local db = FluxOptions and FluxOptions.GetUnitFrameDB and FluxOptions:GetUnitFrameDB()

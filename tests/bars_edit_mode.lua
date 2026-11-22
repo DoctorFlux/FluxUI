@@ -33,4 +33,36 @@ end
 for _, branch in ipairs({ "live", "forever", "classic", "classic_era", "classic_anniversary" }) do exercise(branch) end
 local mutant, n = source:gsub('if FluxEditModeBusy and FluxEditModeBusy%(%) then', 'if false then')
 check(n == 5 and not pcall(exercise, "live", mutant), "negative control rejects native bar changes during Edit Mode")
+
+local function exerciseStockCastSuppression(client, entryPoint, barName)
+    local castHides, flashHides, alpha = 0, 0, 1
+    local button = {
+        SpellCastAnimFrame = { Hide = function() castHides = castHides + 1 end },
+        CooldownFlash = { Hide = function() flashHides = flashHides + 1 end },
+        SetAlpha = function(_, value) alpha = value end,
+    }
+    local env = setmetatable({}, { __index = _G }); env._G = env
+    env[barName] = { actionButtons = { button }, SetAlpha = button.SetAlpha }
+    if barName == "MainActionBar" then env.ActionButton1 = button end
+    local flux = { Bars = { NUM_NATIVE = 1, secureReady = true }, Client = client }
+
+    assert(load(source, "@production-stock-cast-suppression", "t", env))("_FluxUI", { Flux = flux })
+    flux.Bars.Blizzard[entryPoint]()
+
+    local sharesCollector = client.isCamelot or client.isForever
+    check(castHides == (sharesCollector and 0 or 1),
+        barName .. " must leave native cast animation completion to Forever")
+    check(alpha == 0 and flashHides == 1, barName .. " retains existing stock bar suppression")
+end
+
+for _, client in ipairs({
+    { isRetail = true, isPostDF = true, isForever = true },
+    { isRetail = true, isPostDF = true, isCamelot = true },
+    { isRetail = true, isPostDF = true },
+}) do
+    exerciseStockCastSuppression(client, "HideStockButtons", "MainActionBar")
+    exerciseStockCastSuppression(client, "KillLeftoverMouse", "MainActionBar")
+    exerciseStockCastSuppression(client, "KillLeftoverMouse", "MultiBarLeft")
+end
+
 print("Bars Edit Mode: " .. checks .. " checks; five client models; negative control passed")

@@ -1,0 +1,261 @@
+{
+  "id": "NAMEPLATE-DEBUFF-ARTWORK-20261122",
+  "recordedUtc": "2026-11-21T23:16:31.694346+00:00",
+  "checkpoint": {
+    "name": "fluxui-nameplate-debuff-render-before-20261121T230712Z",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "sourceFiles": 3409,
+    "settingsMetadataEntries": 92,
+    "archiveSha256": "030685dd5cffd47ce161153359bef6b07a3a90c7b6c7af1fc16e6d5f3a00c80f",
+    "bundleSha256": "ec2c011f31c9f414a1582cc8d8aadfa26f223b7f55ae0aec3a8eb43caf893554"
+  },
+  "sources": {
+    "repository": "https://github.com/Gethe/wow-ui-source",
+    "clientPins": {
+      "Retail": {
+        "build": "12.1.5.70961",
+        "commit": "ab5cb850a3f65e742959e379c4689353a2f4549f",
+        "itemRetainsAuraInstanceID": true
+      },
+      "Forever": {
+        "build": "1.60.1.71037",
+        "commit": "734f065329cff4992835b01a84f210a297db91b6",
+        "itemRetainsAuraInstanceID": false
+      },
+      "Classic progression": {
+        "build": "5.5.4.70631",
+        "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+        "itemRetainsAuraInstanceID": true
+      },
+      "Classic Era": {
+        "build": "1.15.9.70576",
+        "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+        "itemRetainsAuraInstanceID": true
+      },
+      "Anniversary": {
+        "build": "2.5.6.70577",
+        "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+        "itemRetainsAuraInstanceID": true
+      }
+    },
+    "nativeFiles": [
+      "Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlateAuras.lua",
+      "Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlateAuras.xml",
+      "Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameScriptDocumentation.lua",
+      "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua"
+    ],
+    "foreverContract": "NPC crowd control uses its aura list. Player crowd control uses the dedicated LossOfControlFrame.AuraItemFrame. The nameplate aura item is a Frame. The documented canaccessvalue input is non-nil.",
+    "flareUIComparison": {
+      "Modules/Nameplates.lua": {
+        "sha256": "30c161d53848e3724c0467a48cd4506440b5840624c81963f7b5cfc46ae796f7",
+        "lines": [
+          707,
+          719
+        ],
+        "behavior": "FlareUI creates its own CustomAuraContainerTemplate holders for live nameplates."
+      },
+      "Modules/Auras.lua": {
+        "sha256": "95d335139abd8d743ad429081f405bea9ef421c9ec8f753a8f8e3034e0ccb0e9",
+        "lines": [
+          429,
+          458
+        ],
+        "behavior": "Blizzard AuraButtons select color and artwork through AddDispelTypeTexture with PreserveAsset and Icon styles."
+      }
+    }
+  },
+  "productionSourceSha256": {
+    "NamePlates/Countdown.lua": {
+      "before": "c214cb57867be830102919acb8a1a4efd4ac7207169016582ffee08945acaeaf",
+      "after": "2bf4b94e9786ab6de31247a02ccd3b797409424538f13caa6d7e2c776113762b"
+    },
+    "Core/API/Aura.lua": {
+      "before": "bf86e3c31ffcd715cd6d95f183cf337e63b3ff1e0343a87db33ce722eaf04582",
+      "after": "823c5814bee2683d0b83d7ba3bea41a5695fd8dad966062ee9a79d7d4acbd7e6"
+    }
+  },
+  "fixtureSha256": {
+    "tests/nameplate_appearance.lua": "d8a7b8c3be46a6bb8e137712ae0e032c4ddea88c73f1524ff0ebd88562632ac5"
+  },
+  "matchingInstallHashes": {
+    "_retail_": {
+      "NamePlates/Countdown.lua": true,
+      "Core/API/Aura.lua": true
+    },
+    "_forever_": {
+      "NamePlates/Countdown.lua": true,
+      "Core/API/Aura.lua": true
+    },
+    "_classic_": {
+      "NamePlates/Countdown.lua": true,
+      "Core/API/Aura.lua": true
+    },
+    "_classic_era_": {
+      "NamePlates/Countdown.lua": true,
+      "Core/API/Aura.lua": true
+    },
+    "_anniversary_": {
+      "NamePlates/Countdown.lua": true,
+      "Core/API/Aura.lua": true
+    }
+  },
+  "desktop": {
+    "runs": [
+      {
+        "lua": "5.4",
+        "file": "tests/nameplate_appearance.lua",
+        "result": "PASS nameplate appearance: 209 checks across five client models; native rendering pending"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/nameplate_client_compat.lua",
+        "result": "PASS nameplate client compatibility: 40 desktop checks"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/nameplate_countdown_work.lua",
+        "result": "Nameplate countdown work: 1245 checks, 0 failures"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/nameplate_castbar_schools.lua",
+        "result": "PASS nameplate cast-bar themes: 56 checks; native taint/pixels pending"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/nameplate_quest_progress.lua",
+        "result": "QUEST_PROGRESS checks=1261 failures=0 native_pixels_taint_performance=NOT_RUN"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/nameplate_refresh_batch.lua",
+        "result": "QUEST_PROGRESS checks=1491 failures=0 native_pixels_taint_performance=NOT_RUN"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/passive_nameplate_optimization.lua",
+        "result": "PASS: 6 actual-module scenarios; 60 checks; no native FPS or CPU measurement"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/passive_nameplate_metric_recovery.lua",
+        "result": "PASS: 6 actual-module scenarios; 106 checks; no native FPS or CPU measurement"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/options_navigation.lua",
+        "result": "Options navigation: 7996 checks; actual builders mapped across five client contracts; native rendering pending"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/options_rework.lua",
+        "result": "Options rework: 1343 checks; complete shell/renderer/widgets and menu lifecycle across five client models; native acceptance pending"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/party_debuff_visibility.lua",
+        "result": "Party debuff visibility: 446 checks PASS; five client models, native/legacy render paths and missing-atlas fallback; native pixels/taint pending"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/unit_aura_group_layout_work.lua",
+        "result": "Unit aura group layout: 1709 checks PASS; exact native setters, complete descriptors, unchanged paint/membership cadence, real engine/group lifetime, failure/private/hot-load recovery. Native FPS/taint pending"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/raid_healer_auras.lua",
+        "result": "Raid healer auras: 11487 checks; actual native owner/flow projection, global one-to-six limits, native-relative sizing, strict filters and cooldown sinks; eleven rejected negative controls; client visuals/scheduling pending"
+      },
+      {
+        "lua": "5.1",
+        "file": "tests/nameplate_appearance.lua",
+        "result": "PASS nameplate appearance: 209 checks across five client models; native rendering pending"
+      },
+      {
+        "lua": "5.1",
+        "file": "tests/nameplate_client_compat.lua",
+        "result": "PASS nameplate client compatibility: 40 desktop checks"
+      }
+    ],
+    "syntax": {
+      "files": [
+        "Core/API/Aura.lua",
+        "NamePlates/Countdown.lua",
+        "tests/nameplate_appearance.lua"
+      ],
+      "luaVersions": [
+        "5.4",
+        "5.1"
+      ]
+    },
+    "appearanceReplays": [
+      {
+        "case": "pair-1-before",
+        "exit": 1,
+        "result": "lua: stdin:343: native canaccessvalue requires a non-nil LuaValueReference"
+      },
+      {
+        "case": "pair-1-after",
+        "exit": 0,
+        "result": "PASS nameplate appearance: 209 checks across five client models; native rendering pending"
+      },
+      {
+        "case": "pair-2-after",
+        "exit": 0,
+        "result": "PASS nameplate appearance: 209 checks across five client models; native rendering pending"
+      },
+      {
+        "case": "pair-2-before",
+        "exit": 1,
+        "result": "lua: stdin:343: native canaccessvalue requires a non-nil LuaValueReference"
+      },
+      {
+        "case": "pair-3-before",
+        "exit": 1,
+        "result": "lua: stdin:343: native canaccessvalue requires a non-nil LuaValueReference"
+      },
+      {
+        "case": "pair-3-after",
+        "exit": 0,
+        "result": "PASS nameplate appearance: 209 checks across five client models; native rendering pending"
+      },
+      {
+        "case": "old-runtime-permissive-access",
+        "exit": 1,
+        "result": "lua: stdin:8: Retail decorates an enumerated native crowd-control icon with opaque parent access and no cooldown widget"
+      },
+      {
+        "case": "remove-live-nil-guard",
+        "exit": 1,
+        "result": "lua: stdin:343: native canaccessvalue requires a non-nil LuaValueReference"
+      },
+      {
+        "case": "remove-shared-size-nil-guard",
+        "exit": 1,
+        "result": "lua: stdin:343: native canaccessvalue requires a non-nil LuaValueReference"
+      },
+      {
+        "case": "remove-player-cc-lane",
+        "exit": 1,
+        "result": "lua: stdin:8: Retail decorates the native loss-of-control icon even when cooldown access is denied"
+      }
+    ],
+    "countdownWork": {
+      "pairs": 3,
+      "matchingScenariosPerPair": 25,
+      "scope": "Original countdown-only fixture output counts. Live overlay CPU and FPS not measured."
+    }
+  },
+  "native": {
+    "observedClient": "Forever",
+    "observedExecutable": "F:/World of Warcraft/_forever_/Wow.exe",
+    "observedPid": 35620,
+    "backgroundObservation": "Auction House scene without a visible world debuff. No input or focus change.",
+    "candidateValidation": "In-game debuff and crowd control art, protected geometry, taint and controller smoke checks are pending after reload."
+  },
+  "externalEvidenceSha256": {
+    "debuff-render-tests.json": "34a5ece145247a91ca4df20ce5ae619ecdea57d6c88fe6e20423fe3f900187a9",
+    "artwork-appearance-controls.json": "37bb35ae000f5e6d8236dbf288d3596d521df6bd03a5f210d7fda5835e5c9c3c",
+    "countdown-work-pairs.json": "9ddfe060e8f91d9e7d576b58833776140215aea20fb55bcea8b4cbf4309dd126"
+  }
+}

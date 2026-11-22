@@ -1,0 +1,164 @@
+{
+  "changeId": "UNIT-FRAME-AURAS-20261121",
+  "capturedAtUTC": "2026-11-21T17:19:45.391328+00:00",
+  "requirements": {
+    "UF-AURA-STYLE-03": "The active General countdown setting controls target, focus, both party layouts and raid."
+  },
+  "checkpoint": {
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a1ff01-56a6-7db1-9792-49ad7c5cfc5d\\unit-frame-auras-before-20261121T164910Z",
+    "utc": "2026-11-21T16:49:10.687493+00:00",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "branch": "main",
+    "historySha256": "46ae2f33832df60abe830c0b2bf261d984b3fd7af56e9c56e5b885c52e0a7447",
+    "fileCount": 3382,
+    "settingsCounts": {
+      "_retail_": 4,
+      "_forever_": 6,
+      "_classic_": 4,
+      "_classic_era_": 8,
+      "_anniversary_": 29
+    }
+  },
+  "clients": [
+    {
+      "branch": "live",
+      "name": "Retail",
+      "folder": "_retail_",
+      "toc": 120105,
+      "branchHead": "ab5cb850a3f65e742959e379c4689353a2f4549f",
+      "branchVersion": "12.1.5.70961",
+      "installedVersion": "12.1.5.70961",
+      "installedSource": "ab5cb850a3f65e742959e379c4689353a2f4549f",
+      "blobs": {
+        "cooldown": {
+          "gitBlob": "6d5dde57d7cc36efcdbd7ae96795c64d03d22e7f",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/ab5cb850a3f65e742959e379c4689353a2f4549f/Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameAPICooldownDocumentation.lua"
+        },
+        "format": {
+          "gitBlob": "9fcbaf19e7d0632fc5a2e204563cbe48fe1ff258",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/ab5cb850a3f65e742959e379c4689353a2f4549f/Interface/AddOns/Blizzard_APIDocumentationGenerated/StringUtilDocumentation.lua"
+        }
+      }
+    },
+    {
+      "branch": "forever",
+      "name": "Forever",
+      "folder": "_forever_",
+      "toc": 16001,
+      "branchHead": "734f065329cff4992835b01a84f210a297db91b6",
+      "branchVersion": "1.60.1.71037",
+      "installedVersion": "1.60.1.71037",
+      "installedSource": "734f065329cff4992835b01a84f210a297db91b6",
+      "blobs": {
+        "cooldown": {
+          "gitBlob": "d80cbe2331f526e74bb4d4b79f6c54cdb77526d3",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameAPICooldownDocumentation.lua"
+        },
+        "format": {
+          "gitBlob": "9fcbaf19e7d0632fc5a2e204563cbe48fe1ff258",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/StringUtilDocumentation.lua"
+        }
+      }
+    },
+    {
+      "branch": "classic",
+      "name": "Classic progression",
+      "folder": "_classic_",
+      "toc": 50504,
+      "branchHead": "e171ae99b8e582ce9547bd8fc87054fe2e348f20",
+      "branchVersion": "5.5.4.71060",
+      "installedVersion": "5.5.4.70631",
+      "installedSource": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "blobs": {
+        "cooldown": {
+          "gitBlob": "80640d6090204a445724a697775cc37a9cef819a",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e171ae99b8e582ce9547bd8fc87054fe2e348f20/Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameAPICooldownDocumentation.lua"
+        },
+        "format": {
+          "gitBlob": "5597a7f22bf2ec8fb810d6600d302f33e226b5a8",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e171ae99b8e582ce9547bd8fc87054fe2e348f20/Interface/AddOns/Blizzard_APIDocumentationGenerated/StringUtilDocumentation.lua"
+        }
+      }
+    },
+    {
+      "branch": "classic_era",
+      "name": "Classic Era",
+      "folder": "_classic_era_",
+      "toc": 11509,
+      "branchHead": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "branchVersion": "1.15.9.70576",
+      "installedVersion": "1.15.9.70576",
+      "installedSource": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "blobs": {
+        "cooldown": {
+          "gitBlob": "80640d6090204a445724a697775cc37a9cef819a",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameAPICooldownDocumentation.lua"
+        },
+        "format": {
+          "gitBlob": "5597a7f22bf2ec8fb810d6600d302f33e226b5a8",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/StringUtilDocumentation.lua"
+        }
+      }
+    },
+    {
+      "branch": "classic_anniversary",
+      "name": "Anniversary",
+      "folder": "_anniversary_",
+      "toc": 20506,
+      "branchHead": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "branchVersion": "2.5.6.70577",
+      "installedVersion": "2.5.6.70577",
+      "installedSource": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "blobs": {
+        "cooldown": {
+          "gitBlob": "80640d6090204a445724a697775cc37a9cef819a",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameAPICooldownDocumentation.lua"
+        },
+        "format": {
+          "gitBlob": "5597a7f22bf2ec8fb810d6600d302f33e226b5a8",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/StringUtilDocumentation.lua"
+        }
+      }
+    }
+  ],
+  "classicProgressionMatch": "The installed and branch-head StringUtil and cooldown documentation use identical Git blobs.",
+  "historicalFocusedDesktop": {
+    "tests/unit_aura_timer_policy.lua": "PASS 74 unit aura minute-policy checks; native rendering pending"
+  },
+  "native": "Pending native timer transitions, combat refresh and display validation. The established Forever Witchcraft route is preferred.",
+  "subsequentVerification": {
+    "capturedAtUtc": "2026-11-21T20:23:39.423200+00:00",
+    "checkpoint": "project-cleanup-before-20261121T201440Z",
+    "runtimeFileSha256": {
+      "AddonOptions/FluxOptionsFramePreview.lua": "c06e6be4f61c7d6b6f80f04a0769f4673e2255902636933051204e698e5c2345",
+      "UnitFrames/FluxUnitFrames_Auras.lua": "c13a57c54d70e56fbc66651453bd63ab6f33e339385ad6ad444a1eb982f75b33",
+      "UnitFrames/FluxUnitFrames_AurasEngine.lua": "21ec16d37097dc24ae2108f1d6570770ec6182c76724c5ca98f67f8a54ea5e56",
+      "UnitFrames/FluxUnitFrames_OptionsBridge.lua": "39bfd2398d2439ac5992f079a805b251656e435f1687b32eef26294669662a71",
+      "UnitFrames/FluxUnitFrames_PetAuraTooltip.lua": "b02b38d0ed5040370bf38c8c8248544f6f34a4af0a36f35c72990727d9c86cd2",
+      "RaidFrame/FluxRaidAuras.lua": "1b6b674179f7f6a16876159c5d290f11d6795d1ce4d11f0fdf80c7670f1eb81e",
+      "RaidFrame/FluxRaidFrame.xml": "cf6a0a9e116ef361260918ebab77812a740b497170292d1a9a79ef8f29185581",
+      "RaidFrame/FluxRaidPreview.lua": "67defe6c3238c35180ec28412bf971174e809b222c223d9922905bac26523fa0",
+      "RaidFrame/FluxRaidVisuals.lua": "e23a055dfe8720d7fa57ea89c1ba20529470fe4f1702331981b4b584e75ac65a",
+      "Texture/borders/README.md": "fa4aa25320b94a401b4860e7e005dc39a676112ef4e0d6171729c01feeaaf568"
+    },
+    "hashNormalization": "Raw bytes",
+    "installedFilesMatchingSource": {
+      "_retail_": 10,
+      "_forever_": 10,
+      "_classic_": 10,
+      "_classic_era_": 10,
+      "_anniversary_": 10
+    },
+    "optionsShellChecks": 1318,
+    "nativeClientRun": "Pending following reload.",
+    "focusedDesktopChecks": {
+      "tests/unit_aura_timer_policy.lua": 74,
+      "tests/party_blizzard_dispels.lua": 418,
+      "tests/party_debuff_visibility.lua": 408,
+      "tests/raid_healer_auras.lua": 11471,
+      "tests/raid_healer_visuals.lua": 742,
+      "tests/raid_aura_live_options.lua": 1701,
+      "tests/unit_tooltip_ownership.lua": 725
+    }
+  }
+}

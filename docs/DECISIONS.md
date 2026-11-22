@@ -1,5 +1,427 @@
 # Decisions
 
+22 November. Apply life and taxi restrictions in the shared Extra Button
+usability painter. Keep Forever's confirmed mount data through death and
+release. Life events hide the wisp and refresh the journal when the player
+returns alive. [Mount evidence](CLIENT_VALIDATION.md#forever-mount-collection).
+
+22 November. Give fixed action columns 13–19 sole ownership of their
+main slots. While native page 2 is active, keep base slots 1–7 and use
+20–24 in columns 8–12. Match this rule in the secure handler and Lua
+model so both execute and display the same action without relocating
+anything in Blizzard's action storage.
+[Behavior](11-action-bars.md#pages-modifiers-and-promotion).
+
+22 November. Hold `AREA_POIS_UPDATED` on the original Battlefield Map
+after Flux has hosted it while combat restrictions apply. Retain
+Blizzard's provider counts and restore the frame subscription on release.
+Replay a missed update once for the visible same frame and discard
+held work on hide.
+[Validation](CLIENT_VALIDATION.md#battlefield-map-poi-mouse-actions-in-combat).
+
+22 November. Leave damage meter type, additional window creation and
+session selection to Blizzard’s actual controls. Keep Flux’s requested
+layout and setup feedback. Defer Flux-initiated meter reveals and
+geometry while combat restrictions apply. For rounded border junctions,
+use triangles with an arm index for fallback ownership and retain cap
+fill in the base mesh.
+[Validation](CLIENT_VALIDATION.md#damage-meter-taint-and-rounded-border-junctions).
+
+22 November. Use a default-off FluxUI nameplate preference for harmful
+aura ownership. Apply Blizzard's player filter to the secure debuff and
+crowd-control rows. For stock slots, require a public ownership match,
+retain native order and restore alpha and hover when the slot is released.
+[Behavior](19-nameplates.md#nameplate-debuff-ownership).
+
+22 November. Display the ready craft reminder inside the active
+profession window when it is open. Keep its item icon, count, caption
+and existing player click behavior. Support the visible native page
+with FluxUI alone and the active Flowcraft view with FluxLogistics.
+Return the reminder to its normal HUD placement when the profession
+window closes. Keep the native **Create** action for a prepared batch
+and the Flowcraft **Process** path for its existing queue selection.
+[Validation](CLIENT_VALIDATION.md#craft-reminder-in-the-profession-window).
+
+22 November. Use the existing inventory-settled wake-up for a companion
+craft action that is temporarily disabled during a bag update. Register
+one callback while that action is blocked and clear it when the inventory
+settles. Resolve the next action through the same accepted queue task and
+live carried counts. Use a coalesced native terminal-event recheck while
+readiness is blocked by the cast. A missing native form can be prepared
+again for the exact queued recipe. The actual craft still uses a player
+press.
+[Validation](CLIENT_VALIDATION.md#fluxui-continue-craft-button).
+
+22 November. Aggregate shared material requirements by the current
+source and physical item, including across different output recipes.
+Use the accepted terms of each order and credit its exact share of the
+result. Revalidate the live group before an auction, vendor or bank action.
+Apply a partial bank receipt in accepted order.
+[Validation](CLIENT_VALIDATION.md#shared-queued-craft-materials).
+
+22 November. Publish accepted Auction Restock vendor materials as
+temporary targets in Vendor Restock. Use the merchant's existing buyer
+for the eligible shortage, including when FluxLogistics is loaded.
+The live merchant price, stock and receipt handling govern the buy. A
+manual pass starts with the accepted requirements visible at the press.
+Independent companion jobs can buy in that pass. A later material for
+the same job waits for its previous carried receipt.
+[Validation](CLIENT_VALIDATION.md#craft-materials-in-vendor-restock).
+
+22 November. Use the matching player's native cast identity and timing
+to track the accepted craft. Use confirmed receipts for its progress
+and actual stop or failure events for interruption. Display the cast's
+native duration when the spell, source and cast identity match. A
+terminal event can leave the order waiting for a delayed receipt. A
+prepared **Create** action follows live selection and cancellation
+instead of an elapsed deadline.
+[Validation](CLIENT_VALIDATION.md#flowcraft-cast-lifecycle).
+
+22 November. Use the selected queue row to target **Process**. Show the
+order's remaining output beside its current craft step, and display the
+current step in the native view for that order. Update the displayed
+count from matching progress during an active batch. Record settled
+progress from verified receipts and resume the eligible remainder on an
+explicit press. Treat overlapping result signals as one receipt. An
+unrelated order in Review can wait while a selected craft proceeds.
+An in-flight craft or an uncertain shared output still blocks dispatch.
+At watchdog expiry, honor the expected native cast's reported end time
+and allow two seconds for its receipt. Require the exact spell and the
+cast GUID where available. Keep the timeout for a missing receipt or
+an unrelated cast.
+[Validation](CLIENT_VALIDATION.md#flowcraft-queue-progress-and-process).
+
+22 November. Update Flowcraft's recipe identity and clear the previous
+draft on the selection event. Coalesce repeated events and native echoes
+through the existing refresh queue. Evaluate the current selection on an
+explicit **Queue** press if the deferred refresh has yet to run. Use one
+graph layout for inspection and rendering.
+[Validation](CLIENT_VALIDATION.md#flowcraft-recipe-selection).
+
+22 November. Persist verified progress for an active craft so the same
+order can reconcile its remaining work after reload. An older uncertain
+order with an incomplete craft record can recover verified carried order
+fulfillment on an explicit **Process** or **Resume** action. Keep that
+fulfillment distinct from a native craft receipt. Bind the Restock
+reminder to the displayed order and task and recheck the selection on
+press. Prepare the exact remainder on that press when ready. Blizzard's
+**Create** submits the remainder of an older unproved Forever attempt.
+[Validation](CLIENT_VALIDATION.md#flowcraft-partial-craft-after-reload).
+
+22 November. Publish accepted companion vendor totals to the existing
+Restock reminder, with names and quantities for a one- or two-material
+stage and item details on each icon. Recheck the displayed vendor stage
+before acting. Combine compatible whole-bundle shares for an eligible
+merchant offer. A manual press buys one material type. The automatic
+worker can continue when the carried receipt settles. An uncertain
+same-item order blocks another grouped purchase and its reminder.
+[Validation](CLIENT_VALIDATION.md#grouped-vendor-materials-and-restock-reminder).
+
+22 November. Group active Flowcraft orders only when every member
+matches the existing queue compatibility rules. Show the summed remaining
+output and retain each accepted job and receipt. Keep paused and review
+orders on their own rows. Use the detail menu to switch or cancel an
+exact member. The grouped row's remove control cancels eligible members
+as one queue update. Share a qualified material offer only for the exact
+current group and preserve each member's limits and receipts. A smaller
+listing leaves the remaining demand for a fresh press.
+[Validation](CLIENT_VALIDATION.md#grouped-flowcraft-orders).
+
+22 November. Publish **Open profession** for a ready craft after the
+purchase, collection and withdrawal steps. Require companion external
+inputs in bags for Restock and multi-step orders. Read Shopping mail
+counts from the selected inventory provider's physical observations.
+Show warm Syndicator counts as pending until the first fresh replacement.
+Require qualified inbox evidence for spending and retain native attachment
+checks for collection. Use a single-line
+icon layout with an adaptive shelf and put the same verified next
+craft at the bottom of Flowcraft and in the native profession view.
+[Validation](CLIENT_VALIDATION.md#acquisition-first-restock-and-flowcraft).
+
+22 November. Apply a confirmed sale to the current character's built-in auction
+cache even with the Auction House closed. Use exact IDs when available. Legacy
+clients remove a unique known-name match and settle ambiguous sales from the
+next owner list. Keep saved rows, counts and locations in the same generation.
+[Contract](BUILTIN_AUCTION_PUBLICATION.md#sold-listings-with-the-auction-house-closed).
+
+22 November. A companion that advertises a tracked queued profession switch receives the reminder click through its verified opener. The exact painted action includes the switch mode. Standalone and older owner actions retain the secure profession spell click.
+
+22 November. Keep the exact queue job, task, quantity and direct-action mode together in a companion HUD press. The published mode determines the action caption. If its mode or batch changes before the press, require the refreshed action. Ordinary owner recipes retain their current native handoff.
+
+22 November. Keep Blizzard responsible for the actual **Create** action.
+After native submission, verify exact carried output and retain queue
+ownership while the native batch is running. Use the bounded check to
+settle a matching result when the normal event is missing. Make the
+prepared HUD caption passive and show the compact workbench beside the
+native craft panel.
+Replan an eligible unconfirmed prerequisite only from fresh carried
+inventory. Link the replacement to the previous job and retain the
+previous attempt and settled purchase history.
+[Validation](CLIENT_VALIDATION.md#live-restock-craft-receipts).
+
+22 November. Keep a prepared Blizzard quantity only for the same FluxUI
+job, task and visible recipe page. Restore a stock reset after carried
+inventory settles. Release preparation on the player's quantity edit or
+native **Create** and wait for active recasts to finish. Raise the HUD
+eight frame levels above the relevant visible surface, including nested
+Flowchart cards.
+Let general companion Process choose a ready step in the active job.
+Keep specific Flowchart actions scoped to their selected step. Retain
+early native craft events only for the same exact accepted Create call.
+[Validation](CLIENT_VALIDATION.md#restock-native-quantity-after-stock-refresh).
+
+22 November. Draw the Restock reminder just above the highest visible profession surface. Restore its normal HUD layer when professions close. Keep the reminder position and unchanged-state paint behavior.
+
+22 November. Set the enabled native quantity only on the exact visible
+recipe. Cap it at the current Restock need, the native craftable count
+and any single-craft restriction. Delayed work belongs to the same job,
+task and native page. Coalesce refreshes from the recipe response, list
+update, or inventory settlement while that task is pending. The ordinary
+owner yields when the companion takes over the native craft. Workbench
+and Flowchart prepare the same accepted task. Use the beside-window dock
+when it fits and a **Workbench** return from the native pane otherwise.
+The player starts the batch through **Create**.
+[Validation](CLIENT_VALIDATION.md#bounded-native-restock-craft-batches).
+
+22 November. The Forever Restock reminder opens the exact validated
+recipe and directs the player to Blizzard's **Create** control. Observe
+bag output for ordinary FluxUI work and keep companion task validation in
+its queue. Other clients use their existing craft dispatchers. Place the
+reminder 12 UI units farther right and 10 farther down on both anchors
+and put it above the tradeskill window.
+[Validation](CLIENT_VALIDATION.md#restock-handoff-to-native-create).
+
+22 November. Reuse the three authorized FlareUI aura artwork files with their
+notice. Keep the stock helpful aura selector. Enable motion and disable clicks
+on secure AuraButtons. Use a click-through spell tooltip only on Forever's
+stock icon path because that template lacks a native hover script.
+
+22 November. An accepted modern auction quote requires loaded item-key data and a matching result. A premature empty result gets one read-only retry.
+
+22 November. The earlier HUD revision introduced a separate profession
+action. The current workflow publishes it after material acquisition.
+A fresh craft press retains the exact recipe, output, and ingredient
+checks. On Forever, only the first HUD
+item can carry the optional secure click for the matching player spell.
+Its combat state driver retires the secure hit region. Use one bounded
+mail worker and the saved default-on Auto Collect option for both owners.
+Companion collection requires an approved incoming amount and a buyer
+invoice. Center each private ring on its current icon and stop fading
+fallbacks before a slot is resized or reused.
+[Validation](CLIENT_VALIDATION.md#restock-profession-action-and-mail-auto-collect).
+
+22 November. Use Blizzard's secure `AuraContainer` on Retail and Forever
+for the approved harmful aura row replacement. Keep its scope to Debuff
+and Crowd Control. Lease the stock lane's local alpha after preparing the
+engine row and restore it on release. The Classic clients keep the readable
+overlay. Secure Crowd Control selection follows the category filter.
+
+22 November. Treat accepted craft material IDs as temporary protection ahead of saved junk marks. The effective mark can return when the final consumer releases the item. Queue-triggered refreshes occur only when the protected set changes.
+
+22 November. Require a visible Recipes context before treating a modern
+profession as open, and use the exact saved recipe to recover the base
+skill line when needed. Prefer the matching native Book tab or supported
+bootstrap path. Require a positive engine acknowledgement for a cold
+open. Keep qualified carried-material actions available with the mailbox
+open and block an attempted open or craft while the profession is changing.
+The companion rechecks readiness after opening and keeps the craft on a
+separate press.
+[Validation](CLIENT_VALIDATION.md#restock-craft-reminder-opens-professions).
+
+22 November. FluxLogistics calculates the usable shortage and the vendor bundle comparison. FluxUI validates the minimum, exact live quantity and price through its existing quote and purchase path.
+
+22 November. Draw solid border edges around the native aura button with an
+addon-owned host. Include Blizzard's dedicated player Loss of Control item.
+Use a red border for an identified harmful slot with no readable type and
+reserve corner glyphs for exact type data. Keep the overlay outside the
+native UnitFrame and respect the client's layout permissions.
+
+22 November. Let an explicit Find offer click take over after a completed browse or search. Passive preparation continues to yield. Active foreign purchase dialogs, quotes and transactions retain ownership.
+
+22 November. Resolve native nameplate debuffs by readable instance ID or
+the exact visible slot in Forever's native aura lane. Treat publicly
+untyped harmful auras as border-only and preserve native visuals when the
+type is opaque.
+
+21 November. Drive the Restock reminder from owner offers and accepted
+companion work. Display a shopping offer after an explicit quote. Read
+confirmed companion receipts through the optional GetIncoming callback and
+collect only matching buyer invoices within the outstanding quantity.
+Dispatch collection and crafting through the existing player press. Give an
+actionable owner step priority and revalidate the displayed companion task
+before crafting.
+[Validation](CLIENT_VALIDATION.md#restock-reminder-scope-and-placement).
+
+21 November. Display accepted companion shortages through a read-only overlay of owner grid rows. Keep saved presets independently editable. The owner refreshes the projected snapshot when companion inventory and queue evidence changes.
+
+21 November. Use game artwork for the shared debuff type corner. Bind type
+selection through Blizzard's secure aura buttons where supported. On native
+nameplates, keep the Blizzard icon and place the type artwork on a Flux host
+only when the displayed aura's type is readable.
+
+21 November. Read current price depth through a bounded lease on the existing Auction House search owner. The companion owns mixed sourcing and approved budgets. The existing purchase owner checks exact stack size and cost. Seed legacy membership edits with the Normal selection already shown in the editor.
+
+21 November. Pass the preview dimmer's draw sublevel separately from the
+optional inherited template. Validate both arguments in the desktop widget
+fixture so it catches the failure seen in WoW.
+
+21 November. Share the owner purchase button and follow-up Craft control with optional FluxLogistics. An explicit Shopping List click can prepare a plan quote. Acquisition and craft clicks validate their displayed selection before dispatch. Keep reservations, budget and reconciliation in the accepted companion job.
+
+21 November. Restore the published nameplate overlays and use each client's
+Blizzard nameplate frame. Keep the current settings layout and an independent
+preview. Apply supported settings to their native or FluxUI owner.
+[Nameplates](19-nameplates.md#published-nameplates-with-the-current-fluxui-options).
+
+21 November. Let the Syndicator adapter claim inventory ownership after validating its provider. Use the built-in inventory if no source was established at startup.
+
+21 November. Pass the item observed in the pending auction count separately to planner coverage. The tier's preferred item remains its reference for planning new acquisitions. [Contract](FLUXLOGISTICS_RESTOCK.md#lua-interface-v1).
+
+21 November. Keep accepted procurement rows for reservations. The optional planner Shopping List projection supplies live search quantities, and the owner checks the current net row before opening either shopping path. [Contract](FLUXLOGISTICS_RESTOCK.md#lua-interface-v1).
+
+21 November. Give the compact Focus outline its continuous bottom stroke
+below the portrait join. The inner divider joins that stroke from above.
+Focus uses Party's health/power split with its own saved dimensions and
+external aura placement. [Validation](CLIENT_VALIDATION.md#compact-focus-border-and-party-layout).
+
+21 November. Use one case menu and Play action in the frame settings pane.
+The selected case belongs to the pane session. One four-second playback
+shows the applicable configured effects with local demonstration data.
+Pick the attachment component to preview an absent pet or target.
+[Requirements](OPTIONS_REWORK.md#individual-frame-preview-parity).
+
+21 November. Anchor the compact Focus health text host to the existing
+partition text band. This lets the label follow the visible health region
+as resource visibility and frame height change.
+[Validation](CLIENT_VALIDATION.md#compact-focus-health-text-placement).
+
+21 November. Restore the published nameplate files at `1e992c4` and the
+pre-port options integration. Keep the current Combat page route and the
+existing Flux quest and threat saved settings.
+[Restoration](19-nameplates.md#restoration-of-published-fluxui-nameplates).
+
+21 November. Use the shared Flux unit artwork and layout inside the Individual
+Frames options pane. Keep sample values and hit regions local to the pane.
+Use the normal idle frame as the default view and display the cast in its
+configured header or pet power row when its section is selected.
+[Requirements](OPTIONS_REWORK.md#individual-frame-preview-parity).
+
+21 November. Use the exact accepted quantity and unit and total price limits for queued auction materials. Apply the independent vendor unit-price comparison to standalone Auction Restock. Keep offer eligibility and native quote checks on both paths. [Contract](FLUXLOGISTICS_RESTOCK.md#accepted-auction-prices-for-vendor-goods).
+
+21 November. Commit an unfinished Syndicator mailbox publication to pending work after its scan returns normally. A later complete scan can recover from an aborted invocation while earlier asynchronous work remains accounted for.
+
+21 November. Use the native player taxi flag to distinguish personal mounts
+from flight-path travel. The same check controls the wisp, dismount action
+and tooltip. Refresh when mount display or taxi control changes.
+[Mount evidence](CLIENT_VALIDATION.md#forever-mount-collection).
+
+21 November. Show accepted crafting shortages through the existing vendor and bank Restock buttons. Keep craft targets in the planner and let carried receipts retire them. Honor accepted price and quantity limits and reuse the scoped owner purchase and bank mover. [Contract](FLUXLOGISTICS_RESTOCK.md#queued-craft-materials).
+
+21 November. Put primary and attached unit tabs together under Individual
+Frames. Use Party and Raid tabs in one Party & Raid page, put Cast Bars
+in General and place Nameplates in Combat. Apply a dragged frame slider
+at release through its existing setter. Keep sample artwork shared with
+the world previews, and reuse stable geometry during appearance edits.
+[Requirements](OPTIONS_REWORK.md#three-frame-pages-and-responsive-editing).
+
+Earlier on 21 November. Use the existing FluxUI example painters for both group
+preview locations. The options pane owns its sample pool and uses a
+uniform fit scale. Read EllesmereUI for the Main and Mini Frames split
+and focused party and raid tabs. Use FluxUI's skin and existing settings
+owners and routes. [Requirements](OPTIONS_REWORK.md#group-preview-parity-and-frame-settings).
+
+21 November. Group the Unit Frame settings by the parts shown in the
+right-hand sample. Clicking a sample opens the existing settings section
+for its part, with the original callback and settings scope. Use ordinary
+preview widgets and sample data so a group or target is unnecessary. Compact
+party appearance continues to use the shared Raid Frames controls.
+[Requirements](OPTIONS_REWORK.md#unit-frame-preview-editor).
+
+21 November. Use the existing General setting and active unit-frame scope for
+countdown text on target, focus, both party layouts and raid.
+[Unit-frame requirements](14-unit-frames.md#shared-unit-frame-aura-countdowns).
+
+21 November. Keep the last confirmed Forever journal and riding data across
+combat, then sample again through the existing readiness window. Use a
+visual-only wisp overlay on the existing mount face, and arm the native
+conditional dismount route before combat. The same button owns click, hotkey,
+modifiers and journal access. [Mount evidence](CLIENT_VALIDATION.md#forever-mount-collection).
+
+21 November. Keep the vendor's Auto Restock checkbox independent of managed plan creation. The existing target thresholds, accepted plan coverage, reserved stock and workflow guards remain part of the vendor decision. Track a deferred purchase's automatic or manual origin through junk selling. [Merchant sequencing](20-vendor-restock-junk.md#merchant-lifecycle-and-automation-ordering).
+
+21 November. Keep preset memberships on the owning preset and route accepted logistics work through a versioned owner service. Only opted-in activities above Normal create passive managed orders. Qualify bank and merchant offers in their live owner contexts. [Contract](FLUXLOGISTICS_RESTOCK.md).
+
+21 November. Clear the mount macro cache when the placeholder clears the
+actual secure action. Use Forever's ordinary world-exit and entry events to
+hold the last action during loading and reapply it after journal and riding
+data recover. Preserve a genuinely mounted lock and clear a stale cast or
+dismounted lock on arrival. [Evidence](CLIENT_VALIDATION.md#forever-mount-collection).
+
+21 November. Commit the side grid's border after a real mouseover visibility
+change. When it docks below the minimap, fit the side border to the map's
+bottom stroke and use that stroke through the T. Ordinary layout refreshes
+settle the border with their other anchors. Anchor the embedded grid to the
+middle of the Flux Window content area on the existing map-side edge.
+[Evidence](validation/minimap-hover-dock-r193-2026-11-21.json).
+
+21 November. Use the same standalone minimap restore path for an immediate
+toggle and one deferred by combat. Apply the latest queued placement and retain
+the original parent, anchors and layers until the standalone placement commits.
+Align mail and tracking by their bottom edges. Mail uses the same inset corner
+when tracking is absent or hidden.
+[Evidence](validation/minimap-standalone-restore-2026-11-21.json).
+
+21 November. Keep Flux Window and the side grid's junction paint on their own
+border frames. Use the ordinary HUD stratum for side buttons and resolve clock
+overlap with a local frame level during top mouseover layout.
+[Evidence](validation/hud-panel-layers-r192-2026-11-21.json).
+
+21 November. Keep flyout art in the button's stratum and sample the local border
+canvas levels. When the side grid touches Flux Window, let their content contact
+determine the shared stroke. Existing layout transactions publish both changes.
+[Evidence](validation/hud-layer-dock-r191-2026-11-21.json).
+
+21 November. Let the shared Extra Button painter own the mount's usability
+tint. The journal's location-aware verdict feeds the Forever face, and the
+existing journal eligibility check preserves its selected assignment across
+temporary restrictions. Modifier and cast updates pin the same mount identity
+for the icon and usability. [Client evidence](CLIENT_VALIDATION.md#forever-mount-collection).
+
+21 November. Keep Default visible in Forever's compact mount editor and show
+one row for each saved override in the current scope. Adding a row assigns the
+selected journal mount through FluxUI's existing dropdown, including its
+Forever gamepad fallback. Clearing hides the row. The mount tooltip keeps
+saved but unavailable overrides visible and highlights the usable fallback.
+[Client evidence](CLIENT_VALIDATION.md#forever-mount-collection).
+
+21 November. Put flyout glyphs above the connected HUD seams using a passive
+child or the client's existing arrow container. Keep layer updates on the
+existing out-of-combat open and layout paths.
+[Flyouts and trinkets](12-extra-button-system.md#flyouts-and-trinkets).
+
+21 November. Treat the Forever client as a ground-only journal client. Keep
+mount IDs under `mountConfig.forever` in the existing account and character
+scopes. Read an older usable ground choice as the default until the scope is
+edited. Use the native secure modifier prefixes for exact combinations and the
+existing collection and riding events for refresh. Use the existing Collections
+side-panel controls and the established direct implementation and Witchcraft
+preferences. [Client evidence](CLIENT_VALIDATION.md#forever-mount-collection).
+
+21 November. Capture the recurring cooldown error's collector membership
+and field ownership on demand. Keep native event delivery and the
+cooldown setter in Blizzard's control while collecting the evidence.
+[Client evidence](CLIENT_VALIDATION.md#forever-action-button-cooldown).
+
+20 November. Keep Forever's stock cast animation lifecycle with Blizzard.
+The animation inherits the suppressed bar's alpha. Its native completion
+can refresh the cooldown without a forced hide from FluxUI. Keep the
+shared collector available to native controller buttons.
+[Client evidence](CLIENT_VALIDATION.md#forever-action-button-cooldown).
+
+20 November. Set Type 1's icon-side divider width in its artwork profile.
+The fill-side boundary uses the registered thickness. The existing join
+plan uses the same bounds for the straight stroke and its T-junctions.
+[Cast divider](UNIT_OVERLAY_ATTACHMENTS.md#vertical-cast-divider).
+
 20 November. Treat the vertical cast separator as an internal divider.
 Use the registered stroke track and thickness for its paint bounds and
 carry those bounds into the shared junction and fallback paths.

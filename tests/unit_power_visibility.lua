@@ -48,7 +48,7 @@ UF.UpdateOuterBorder = function() end
 UF.LayoutThreatBar = function() end
 assert(load(slice(shared, "local function ValueIsSecret(value)", "local function PlayerDeadOrGhost(unit)"),
     "@shared:public-geometry", "t", env))()
-assert(load(slice(shared, "function UF.UpdatePower(self, unit)", "function UF.CreatePowerBar(frame)"), "@shared:power", "t", env))()
+assert(load(slice(shared, "function UF.PaintPowerLabels(self, unit", "function UF.CreatePowerBar(frame)"), "@shared:power", "t", env))()
 assert(load(slice(shared, "function UF.UpdateFramePartitionSeparators(self", "function UF.GetFluxStylePartitionHealthHeight"), "@shared:separators", "t", env))()
 assert(load(slice(shared, "function UF.UpdateFramePartition(self)", "-- Event Handling"), "@shared:partition", "t", env))()
 
@@ -175,7 +175,7 @@ local healthEnv = setmetatable({
         fs.point, fs.relative = point, relative
     end,
 }, { __index = _G })
-assert(load(slice(shared, "function UF.UpdateHealth(self, unit)", "function UF.CreateHealthBar(frame)"),
+assert(load(slice(shared, "function UF.PaintHealthLabels(self, unit", "function UF.CreateHealthBar(frame)"),
     "@shared:health", "t", healthEnv))()
 local hp = region()
 hp._fluxTextAnchor = region()

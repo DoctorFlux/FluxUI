@@ -1731,13 +1731,11 @@ function Inv.Start()
 	end
 
 	local syn = Flux.Optional and Flux.Optional.Get("Syndicator")
-	local api = rawget(_G, "Syndicator")
-	if syn and syn.loaded and api and api.CallbackRegistry and Inv.Syndicator.Start then
-		if Store and Store.SetUsesSyndicator then
-			Store.SetUsesSyndicator(true)
-		end
+	if syn and syn.loaded and Inv.Syndicator.Start then
 		Inv.Syndicator.Start()
-	elseif Inv.Builtin.Start then
+	end
+	-- The adapter claims ownership only after validating the provider.
+	if not Inv.source and Inv.Builtin.Start then
 		Inv.Builtin.Start()
 	end
 	if Inv.Tooltip and Inv.Tooltip.Start then

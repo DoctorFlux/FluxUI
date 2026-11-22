@@ -3,7 +3,7 @@
 local _, ns = ...
 local A = FluxAuctionRestock
 A.Followup = A.Followup or {}
-local F, Inv = A.Followup, ns.Flux.Inventory
+local F, Inv, Flux = A.Followup, ns.Flux.Inventory, ns.Flux
 local Number = A.Number
 
 -- Same defining-function contract as auction rows; keep foreign getters live.
@@ -44,20 +44,189 @@ local function Foreign()
         or (ts and ts.IsTradeSkillGuild and ts.IsTradeSkillGuild())
         or (ts and ts.IsNPCCrafting and ts.IsNPCCrafting()) or false
 end
-local function ModernProfessionMatches(task)
-    if not Integer(task.skillLineID) then return false end
+local function Hidden(frame)
+    return frame and frame.IsShown and not frame:IsShown()
+end
+local function ModernProfessionMatches(skillLineID)
+    if not Integer(skillLineID) then return false end
     local ts, prof = C_TradeSkillUI, Inv and Inv.Professions
     if not ts then return false end
-    if ts.IsDataSourceChanging and ts.IsDataSourceChanging() then return false end
+    local frame = _G.ProfessionsFrame or _G.TradeSkillFrame
+    if Hidden(frame) or frame and Hidden(frame.CraftingPage) then return false end
     if ts.IsTradeSkillReady and not ts.IsTradeSkillReady() then return false end
     local info = prof and prof.GetOpenProfessionInfo and prof.GetOpenProfessionInfo()
     if type(info) ~= "table" then return false end
-    return Number(info.professionID) == task.skillLineID or Number(info.parentProfessionID) == task.skillLineID
-        or Number(info.skillLineID) == task.skillLineID
+    return Number(info.professionID) == skillLineID or Number(info.parentProfessionID) == skillLineID
+        or Number(info.skillLineID) == skillLineID
+end
+local function ProfessionIDForRecipe(task)
+    local ts = C_TradeSkillUI
+    local lookup = ts.GetProfessionInfoByRecipeID
+    local info = lookup and Integer(task.recipeID) and lookup(task.recipeID)
+    if type(info) == "table" then
+        if Integer(info.parentProfessionID) then return info.parentProfessionID end
+        if Integer(info.professionID) then return info.professionID end
+    end
+    if Integer(task.skillLineID) then return task.skillLineID end
+end
+
+-- Both reminder owners use the native Recipes entry point for a retained
+-- profession. New sessions and switches still require the engine's acceptance.
+function F.OpenProfession(skillLineID)
+    local ts = C_TradeSkillUI
+    if not Integer(skillLineID) or not ts or not ts.OpenTradeSkill or Foreign()
+        or (InCombatLockdown and InCombatLockdown())
+        or (ts.IsDataSourceChanging and ts.IsDataSourceChanging()) then return false end
+    if not _G.ProfessionsFrame and ProfessionsFrame_LoadUI and not ProfessionsFrame_LoadUI() then return false end
+    local frame = _G.ProfessionsFrame
+    if frame and (Hidden(frame) or Hidden(frame.CraftingPage))
+        and (not ts.IsTradeSkillReady or ts.IsTradeSkillReady()) then
+        local base = ts.GetBaseProfessionInfo and ts.GetBaseProfessionInfo()
+        if type(base) == "table" and Number(base.professionID) == skillLineID then
+            -- Forever can retain the current skill while showing its Book page.
+            -- Its native right tab reveals Recipes without recasting that skill.
+            if not Hidden(frame) and frame.rightProfessionTabs then
+                for _, tab in ipairs(frame.rightProfessionTabs) do
+                    if not Hidden(tab) and Number(tab.skillLine) == skillLineID and type(tab.OnClick) == "function" then
+                        tab:OnClick()
+                        return true
+                    end
+                end
+            end
+            if frame.recipesTabID and OpenProfessionUIToSkillLine then
+                OpenProfessionUIToSkillLine(skillLineID)
+                return true
+            end
+        end
+    end
+    return ts.OpenTradeSkill(skillLineID) == true
 end
 local function LegacyProfessionMatches(task)
     return type(task.skillName) == "string" and task.skillName ~= ""
-        and GetTradeSkillLine and GetTradeSkillLine() == task.skillName
+        and not Hidden(_G.TradeSkillFrame) and GetTradeSkillLine and GetTradeSkillLine() == task.skillName
+end
+
+function F.GetProfessionSpell(skillLineID)
+    local client, ts, book = Flux.Client, C_TradeSkillUI, C_SpellBook
+    local bank = Enum and Enum.SpellBookSpellBank and Enum.SpellBookSpellBank.Player
+    if not (client and (client.isCamelot or client.isForever) and Integer(skillLineID)
+        and ts and ts.CanTradeSkillShowCraftingUI and book and book.GetSpellBookItemInfo
+        and bank ~= nil and GetProfessions and GetProfessionInfo) then return end
+    local frame = _G.ProfessionsFrame
+    if frame and not Hidden(frame) and Hidden(frame.CraftingPage) then
+        local base = ts.GetBaseProfessionInfo and ts.GetBaseProfessionInfo()
+        if type(base) == "table" and Number(base.professionID) == skillLineID then return end
+    end
+    -- Use the same owned profession spellbook slot as the native Forever tab.
+    local function Find(...)
+        for i = 1, select("#", ...) do
+            local index = select(i, ...)
+            if index then
+                local _, _, _, _, _, offset, id = GetProfessionInfo(index)
+                if Number(id) == skillLineID and Number(offset) and offset >= 0 and offset % 1 == 0 then
+                    local info = book.GetSpellBookItemInfo(offset + 1, bank)
+                    local spellID = type(info) == "table" and info.spellID
+                    if Integer(spellID) and ts.CanTradeSkillShowCraftingUI(spellID) == true then return spellID end
+                end
+            end
+        end
+    end
+    return Find(GetProfessions())
+end
+
+function F.GetProfessionToOpen(task)
+    if type(task) ~= "table" or Foreign() or F.CraftIsBusy(task)
+        or (InCombatLockdown and InCombatLockdown()) then return end
+    if task.legacy then
+        if CastSpellByName and type(task.skillName) == "string" and task.skillName ~= "" and not LegacyProfessionMatches(task) then
+            return { name = task.skillName, legacy = true }
+        end
+        return
+    end
+    local ts = C_TradeSkillUI
+    if not ts or (ts.IsDataSourceChanging and ts.IsDataSourceChanging()) then return end
+    local id = ProfessionIDForRecipe(task)
+    if not id or ModernProfessionMatches(id) then return end
+    local spellID = F.GetProfessionSpell(id)
+    if ts.OpenTradeSkill or spellID then return { id = id, name = task.skillName, spellID = spellID } end
+end
+
+function F.OpenProfessionTarget(target)
+    if target.legacy then CastSpellByName(target.name)
+    else return F.OpenProfession(target.id) end
+end
+
+function F.UsesNativeCraftHandoff()
+    local client = Flux.Client
+    return client and (client.isCamelot or client.isForever) or false
+end
+
+local function NativeCraftPage()
+    local frame = _G.ProfessionsFrame
+    local page = frame and frame.CraftingPage
+    if not page or Hidden(frame) or Hidden(page) then return end
+    if page.SchematicForm then return page end
+end
+
+local function NativeRecipe(page)
+    local form = page.SchematicForm
+    local recipe = form.GetRecipeInfo and form:GetRecipeInfo()
+    if type(recipe) == "table" then return recipe end
+end
+
+function F.GetNativeCraftSelection(page)
+    if not page or page ~= NativeCraftPage() then return end
+    local recipe = NativeRecipe(page)
+    local quantity = page.CreateMultipleInputBox
+    return recipe and Number(recipe.recipeID), quantity and quantity.GetValue and Number(quantity:GetValue())
+end
+
+-- Blizzard's Create button reads this field. Create All ignores it.
+function F.SetNativeCraftBatch(page, recipeID, operations)
+    if not page or page ~= NativeCraftPage() or not Integer(operations) or (InCombatLockdown and InCombatLockdown()) then return end
+    local selected = NativeRecipe(page)
+    if not selected or Number(selected.recipeID) ~= recipeID then return end
+    local quantity = page.CreateMultipleInputBox
+    local create = page.CreateButton
+    if selected.canCreateMultiple == false and create and create.IsEnabled and create:IsEnabled()
+        and quantity and quantity.GetValue and Number(quantity:GetValue()) == 1 then return 1 end
+    if not quantity or not quantity.IsEnabled or not quantity:IsEnabled() or not quantity.GetValue
+        or not quantity.SetValue or not page.GetCraftableCount then return end
+    local craftable = Number(page:GetCraftableCount())
+    if not craftable or craftable < 1 then return end
+    local count = math.min(operations, math.floor(craftable), selected.canCreateMultiple == false and 1 or 999)
+    if Number(quantity:GetValue()) ~= count then quantity:SetValue(count) end
+    if Number(quantity:GetValue()) == count then return count end
+end
+
+local function OpenNativeCraftRecipe(task, operations)
+    local page = NativeCraftPage()
+    if not page then return false end
+    local recipeID = task.recipeID
+    local revealed, reason
+    if F.RevealCompanionNativeCraft then revealed, reason = F.RevealCompanionNativeCraft(recipeID, operations) end
+    if reason == "busy" then return false end
+    local selected = NativeRecipe(page)
+    if revealed and Integer(reason) and reason <= operations and selected and Number(selected.recipeID) == recipeID then
+        return true, reason, page
+    end
+    if not (selected and Number(selected.recipeID) == recipeID) and not revealed then
+        local lookup = C_TradeSkillUI.GetRecipeInfo
+        local info = lookup and lookup(recipeID)
+        local highest = type(info) == "table" and Professions and Professions.GetHighestLearnedRecipe
+            and Professions.GetHighestLearnedRecipe(info)
+        if page.SelectRecipe and type(info) == "table" and Number(info.recipeID) == recipeID and info.learned == true
+            and not info.disabled and not info.isRecraft and not info.isDummyRecipe and not info.isGatheringRecipe
+            and not info.isEnchantingRecipe and not info.isSalvageRecipe and info.name == task.recipeName
+            and (not highest or Number(highest.recipeID) == recipeID) then
+            -- Selecting the exact learned recipe can initialize the form even
+            -- when an active search keeps its row out of the native list.
+            page:SelectRecipe(info, true)
+        elseif C_TradeSkillUI.OpenRecipe then C_TradeSkillUI.OpenRecipe(recipeID)
+        else return false end
+    end
+    local count = F.SetNativeCraftBatch(page, recipeID, operations)
+    return true, count, page
 end
 local function BagOperations(task)
     local inv = _G.FluxRestock and _G.FluxRestock.Inv
@@ -92,10 +261,12 @@ function F.CraftIsBusy(task)
         local name = UnitChannelInfo("player")
         if (issecretvalue and issecretvalue(name)) or name ~= nil then return true end
     end
-    -- All three pinned legacy windows display this engine batch counter.
-    -- No equivalent modern repeat counter is assumed across inter-cast gaps.
+    -- Both repeat counters can stay positive between individual player casts.
     if task and task.legacy and GetTradeskillRepeatCount then
         local count = Number(GetTradeskillRepeatCount())
+        if count and count > 0 then return true end
+    elseif task and F.UsesNativeCraftHandoff() and C_TradeSkillUI and C_TradeSkillUI.GetRemainingRecasts then
+        local count = Number(C_TradeSkillUI.GetRemainingRecasts())
         if count and count > 0 then return true end
     end
     return false
@@ -129,7 +300,7 @@ end
 
 local function ModernAllocation(task)
     local ts = C_TradeSkillUI
-    if not Integer(task.recipeID) or not ModernProfessionMatches(task) or not ts.GetRecipeInfo
+    if not Integer(task.recipeID) or not ts.GetRecipeInfo
         or not ts.GetRecipeSchematic or not ts.GetRecipeOutputItemData then return nil end
     local info = ts.GetRecipeInfo(task.recipeID)
     if not info or info.learned ~= true or info.disabled or info.isDummyRecipe or info.isGatheringRecipe
@@ -180,7 +351,7 @@ end
 
 local function Prepare(task)
     if not ValidTask(task) or (InCombatLockdown and InCombatLockdown())
-        or not A.IsReliable() or Foreign() then return "unavailable" end
+        or not A.IsInventoryReliable() or Foreign() then return "unavailable" end
     if F.CraftIsBusy(task) then return "crafting" end
     local count = BagOperations(task)
     if count < 1 then return "unavailable" end
@@ -196,10 +367,25 @@ local function Prepare(task)
         return "ready", count, index
     else
         local ts = C_TradeSkillUI
-        if not ts or not ts.CraftRecipe then return "unavailable" end
-        if not ModernProfessionMatches(task) then
-            if not Integer(task.skillLineID) or not ts.OpenTradeSkill then return "unavailable" end
-            return "opening", count
+        local nativeHandoff = F.UsesNativeCraftHandoff()
+        if not ts or (not nativeHandoff and not ts.CraftRecipe) then return "unavailable" end
+        if ts.IsDataSourceChanging and ts.IsDataSourceChanging() then return "unavailable" end
+        local skillLineID = ProfessionIDForRecipe(task)
+        if not skillLineID then return "unavailable" end
+        if not ModernProfessionMatches(skillLineID) then
+            if not ts.OpenTradeSkill then return "unavailable" end
+            return "opening", count, skillLineID
+        end
+        -- The native handoff selects an already planned recipe. Blizzard's
+        -- form validates the live allocations when the player actually crafts.
+        if nativeHandoff then
+            local page = NativeCraftPage()
+            if page and Integer(task.recipeID) then
+                local selected = NativeRecipe(page)
+                if selected and Number(selected.recipeID) == task.recipeID and selected.canCreateMultiple == false then count = 1 end
+                return "ready", count
+            end
+            return "unavailable"
         end
         local allocation = ModernAllocation(task)
         if not allocation or Foreign() then return "unavailable" end
@@ -207,18 +393,25 @@ local function Prepare(task)
     end
 end
 function F.CanCraft(task)
-    local status = Prepare(task)
-    return status == "opening" or status == "ready"
+    local status, count = Prepare(task)
+    return status == "opening" or status == "ready", count
 end
 function F.CraftClick(task)
     local status, count, recipe = Prepare(task)
     if status == "opening" then
         if task.legacy then CastSpellByName(task.skillName)
-        elseif C_TradeSkillUI.OpenTradeSkill(task.skillLineID) == false then return "unavailable" end
+        elseif not F.OpenProfession(recipe) then return "unavailable" end
         status, count, recipe = Prepare(task)
         if status == "opening" then return "opening" end
     end
     if status ~= "ready" then return status end
+    -- Forever rejects addon-issued CraftRecipe. Prepare the exact recipe for
+    -- the player's press on Blizzard's Create button. Bag evidence credits it.
+    if not task.legacy and F.UsesNativeCraftHandoff() then
+        local opened, preparedCount, page = OpenNativeCraftRecipe(task, count)
+        if opened then return "native_click", preparedCount or count, page, preparedCount end
+        return "unavailable"
+    end
     task.operations = count
     if task.legacy then
         if SelectTradeSkill then SelectTradeSkill(recipe) end

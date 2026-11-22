@@ -32,6 +32,7 @@ Coll.MODE_VENDOR = "VendorMount"
 -- name (lower) → { id, name, spellID, icon, isUsable }
 local collectedByName = nil
 local collectedBySpell = nil
+local foreverByID, firstUsableForeverMount
 -- companion index map (lower name → { id=index, name, spellID, icon, isUsable=true })
 local companionByName = nil
 local companionBySpell = nil
@@ -55,8 +56,16 @@ function Coll.HasCompanionAPI()
     return type(GetNumCompanions) == "function"
 end
 
+function Coll.UsesForeverMounts()
+    local client = (_G.Flux and _G.Flux.Client) or FLUX_API
+    return client and (client.isForever or client.isCamelot) and C_MountJournal
+        and C_MountJournal.GetMountIDs and C_MountJournal.GetMountInfoByID
+        and true or false
+end
+
 --- True when mounts come from journal/companions (not bag items).
 function Coll.HasMountUI()
+    if Coll.UsesForeverMounts() then return true end
     if FLUX_API then
         if FLUX_API.isClassicEra or FLUX_API.isTBC then
             return false
@@ -73,6 +82,7 @@ function Coll.InvalidateCollectedMountMap()
     collectedBySpell = nil
     companionByName = nil
     companionBySpell = nil
+    foreverByID, firstUsableForeverMount = nil, nil
 end
 
 local function EnsureCollectedMountMap()
@@ -81,11 +91,13 @@ local function EnsureCollectedMountMap()
     end
     collectedByName = {}
     collectedBySpell = {}
-    if Coll.HasMountJournalAPI() and C_MountJournal and C_MountJournal.GetMountIDs then
+    local forever = Coll.UsesForeverMounts()
+    if forever then foreverByID = {} end
+    if (forever or Coll.HasMountJournalAPI()) and C_MountJournal and C_MountJournal.GetMountIDs then
         local ids = C_MountJournal.GetMountIDs()
         if type(ids) == "table" then
             for _, mountID in ipairs(ids) do
-                local creatureName, spellID, icon, _, isUsable, _, _, _, _, _, isCollected =
+                local creatureName, spellID, icon, _, isUsable, _, _, _, _, hidden, isCollected =
                     C_MountJournal.GetMountInfoByID(mountID)
                 if isCollected and creatureName then
                     local entry = {
@@ -97,10 +109,34 @@ local function EnsureCollectedMountMap()
                     }
                     collectedByName[creatureName:lower()] = entry
                     if spellID then collectedBySpell[spellID] = entry end
+                    if forever and spellID then
+                        foreverByID[mountID] = entry
+                        entry.castName = C_Spell and C_Spell.GetSpellName and C_Spell.GetSpellName(spellID) or creatureName
+                        collectedByName[entry.castName:lower()] = entry
+                        if hidden then
+                            entry.isUsable = false
+                        elseif not isUsable and C_MountJournal.GetMountUsabilityByID then
+                            entry.isUsable = C_MountJournal.GetMountUsabilityByID(mountID, false) == true
+                        end
+                        if entry.isUsable and not firstUsableForeverMount then
+                            firstUsableForeverMount = entry
+                        end
+                    end
                 end
             end
         end
     end
+end
+
+function Coll.GetForeverMount(idOrName)
+    EnsureCollectedMountMap()
+    if type(idOrName) == "string" then return collectedByName[idOrName:lower()] end
+    if foreverByID and type(idOrName) == "number" then return foreverByID[idOrName] end
+end
+
+function Coll.GetFirstUsableForeverMount()
+    EnsureCollectedMountMap()
+    return firstUsableForeverMount
 end
 
 local function EnsureCompanionMountMap()

@@ -248,7 +248,9 @@ function FluxWindowFrame:GetFrame()
 
     -- Apply FluxBorder first
     if FluxBorder then
-        FluxBorder:ApplyTo(windowFrame)
+        local border = FluxBorder:ApplyTo(windowFrame)
+        border._FluxBorderOwnLayer = true
+        border:SetFrameLevel(windowFrame:GetFrameLevel() + 2)
 
         -- Set class color for both border and backdrop using FluxBorder's SetClassColor method
         local _, classFilename = UnitClass("player")

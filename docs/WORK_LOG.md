@@ -1,5 +1,707 @@
 # Work log
 
+22 November. The prior mount painter stayed bright when the journal returned
+usable for a dead character. The shared usability lane now dims mount faces
+for death, ghost state and taxis. Forever retains the secure action and binding
+through death and release. The 317 focused checks and seven related scripts
+pass. Both changed sources match the Forever installation.
+
+The external `forever-mount-life-before-20261122T142758Z` checkpoint contains
+verified history, prior files and settings metadata for five Forever and four
+Retail files including backups.
+
+| Runtime source | Before SHA-256 | Candidate SHA-256 |
+| --- | --- | --- |
+| `Mount.lua` | `8d6f2f1b416605475732205fa2b14588177a2a52a601a4497630af050ee8cc2c` | `70a4c1360b99464a0ce5027b4b9e5f05bd6c1c235735f5101e5665991b8fc346` |
+| `Paint.lua` | `0ac0196acdbfb09fad27425ed6af6eade67e500c9a7e9d8feefc79ca10059305` | `e8e7931e380b3d7629408aff57b60ebbbc632286076de65b6d7d8abc0c91fee2` |
+
+[Client evidence](CLIENT_VALIDATION.md#forever-mount-collection).
+
+22 November. Reproduced the captured page-2 overlap in the action-strip
+fixture and corrected the shared slot model and secure handler. The new
+regression rejects each baseline implementation independently. The
+external checkpoint verified 298 source files, complete main
+history and 159 settings metadata entries. The supplied Forever settings
+were read in place. All 1,275 Lua files compile and 562 desktop suites
+pass. The other 17 give the same failures with baseline routing.
+Native verification remains pending.
+[Validation](CLIENT_VALIDATION.md#action-strip-page-two-ownership).
+
+22 November. Traced two blocked mouse setters to Area POI acquisition
+on Forever's native Battlefield Map. Held the frame's Area POI event
+during combat restriction and guarded addon-triggered reveal and zone
+work. The external checkpoint verified 55 files, complete main history
+and 40 settings metadata entries. The fixture reproduces the blocked
+route on checkpoint source and passes with the repair. Native checks
+remain pending.
+[Validation](CLIENT_VALIDATION.md#battlefield-map-poi-mouse-actions-in-combat).
+
+22 November. Removed addon-driven Blizzard meter menu selection and
+guarded addon-triggered native reveals during combat restriction. Fixed
+the rounded-cap nil arm comparison in the border scheduler. An external
+checkpoint verified 101 files, complete main history and 40 settings
+metadata entries. The desktop regressions reproduced the failures on
+checkpoint sources and pass on the candidate. Native checks remain
+pending.
+[Validation](CLIENT_VALIDATION.md#damage-meter-taint-and-rounded-border-junctions).
+
+22 November. Added **Only show my debuffs** to Nameplates → Auras.
+The external `nameplate-owner-filter-before-20261122T122821Z` checkpoint
+verified 21 scoped files, complete main history and 40 settings metadata
+entries. The focused desktop replays pass. All four candidate runtime files
+match across the five installations. Native verification remains pending.
+[Validation](CLIENT_VALIDATION.md#nameplate-debuff-ownership).
+
+22 November. Moved the existing craft reminder into the open Flowcraft or
+native profession view. The external checkpoint verifies 314 exact owner
+and companion files, 73 settings metadata entries and complete main
+history. A second checkpoint preserves newer companion changes in both
+Retail and Forever before applying the docking changes. All three runtime
+files match across five installations. The desktop HUD fixture passed
+63,801 checks and integration passed 310. All 17 installed Lua 5.4 and
+six targeted Lua 5.1 companion suites passed. The post-install background
+guard found WoW in the foreground and left the client untouched.
+[Validation](CLIENT_VALIDATION.md#craft-reminder-in-the-profession-window).
+
+22 November. Restored the FluxUI craft action after a partial native
+batch. The checkpoint contains 308 exact Retail and Forever sources,
+complete main history, and 80 settings metadata entries. A saved partial
+receipt confirmed one craft and left nine pending with all materials
+carried. The FluxUI owner now refreshes a companion craft once the bag
+inventory settles even when there is no standalone auction follow-up.
+FluxLogistics rechecks after the native stop and offers to prepare the
+same accepted batch again if its form is gone. All 17 installed Lua 5.4
+and six targeted Lua 5.1 companion suites passed. Live background
+observation showed both craft controls for the eight-craft remainder.
+[Validation](CLIENT_VALIDATION.md#fluxui-continue-craft-button).
+
+22 November. Added shared material aggregation across eligible accepted
+crafts for shopping, merchants and the bank. The external
+`fluxlogistics-shared-materials-before-20261122T110533Z` checkpoint
+verifies 329 exact files, complete main history and 80 settings
+metadata entries. The frozen auction source fails the new 50-unit
+distinct-recipe assertion. The owner bank icon fixture passes 2,100
+checks and the policy bridge passes 153. All 17 installed Lua 5.4 and
+six targeted Lua 5.1 companion suites pass. Four runtime files match
+across five installs.
+[Validation](CLIENT_VALIDATION.md#shared-queued-craft-materials).
+
+22 November. Routed Auction Restock's accepted vendor materials through
+the ordinary Vendor Restock buyer. The external
+`fluxui-craft-vendor-targets-before-20261122T104837Z` checkpoint verifies
+321 exact files, complete main history and 80 settings metadata entries.
+The owner source suite passes 1,624 checks across 20 profiles. The
+installed companion passes 17 Lua 5.4 and six targeted Lua 5.1 suites.
+Five runtime sources match across five installs. The final read-only
+Forever capture showed the Auction House and no merchant or pending
+Restock action.
+[Validation](CLIENT_VALIDATION.md#craft-materials-in-vendor-restock).
+
+22 November. Replaced Flowcraft's elapsed craft deadline and prepared
+action expiry with native cast and receipt tracking. The external
+`fluxlogistics-cast-lifecycle-before-20261122T103651Z` checkpoint verifies
+121 exact files, complete main history and 80 settings metadata entries.
+Three runtime files and two fixtures match across five installations.
+The installed Forever source passes 17 Lua 5.4 and 11 Lua 5.1 suites, the
+owner bridge and cross-owner click integration. Read-only Forever
+observations left foreground unchanged. The last capture showed an
+empty Flowcraft queue.
+[Validation](CLIENT_VALIDATION.md#flowcraft-cast-lifecycle).
+
+22 November. Updated Flowcraft queue rows, visible craft progress and
+the selected order's **Process** action after a stop. The external
+`fluxlogistics-queue-rework-before-20261122T100910Z` checkpoint verifies
+127 files across the companion sources, fixtures, and owner context.
+It also verifies complete main history and 80 settings metadata entries.
+The desktop Restock integration checks the stale four-pack HUD prompt
+and the two-pack profession action after a verified stop. Five runtime
+files and three fixtures match across five installed copies. The
+installed Forever fixtures passed in 17 Lua 5.4 and 11 Lua 5.1 runs.
+An authorized background reload and actual Process press started the
+selected three-pack batch. The first candidate's watchdog entered
+timeout while the native cast had 5.9 seconds remaining. A later
+create message coincided with the displayed two-pack remainder. The
+external `fluxlogistics-long-native-cast-before-20261122T102611Z`
+checkpoint preserves the first candidate's exact sources and full
+history before the watchdog repair. Installed the exact-cast extension
+across all five copies, then reran all 17 Forever Lua 5.4 suites, 11
+targeted Lua 5.1 suites and the owner integration against the patched
+companion.
+[Validation](CLIENT_VALIDATION.md#flowcraft-queue-progress-and-process).
+
+22 November. Traced Forever recipe selection through a synchronous
+Flowcraft plan, inventory observation, price lookup, queue refresh and
+graph traversal. Coalesced selection refreshes and removed the duplicate
+graph layout pass. The 12-selection desktop burst ran one plan, down
+from 12. Seventeen Lua 5.4 and eight Lua 5.1 fixtures passed against the
+installed Forever source. The external
+`fluxlogistics-recipe-selection-before-20261122T095944Z` checkpoint verifies
+105 files, complete main history and 80 settings metadata entries. Two
+runtime files and two fixtures match across five installed copies.
+[Validation](CLIENT_VALIDATION.md#flowcraft-recipe-selection).
+
+22 November. Examined the reported Forever four-pack order in a data-only
+read of the saved queue and selected built-in inventory. The queue had
+20 completed bolts and four uncertain packs after reload. The same save
+contained a matching carried snapshot with two packs and ten bolts. The
+interrupted pack attempt had only its pre-action output count and batch
+saved. The carried counts corroborate the report. The external
+`fluxui-partial-craft-recovery-before-20261122T094436Z` checkpoint verifies
+74 exact files, complete main history and 68 settings metadata entries.
+Installed the durable progress and selected recovery changes. The owner
+bridge passes 231 checks and the HUD passes 63,577. All 16 installed
+companion Lua 5.4 suites and seven Lua 5.1 suites pass. The eight runtime
+files match across five installs. Native validation of the recovery
+remains pending.
+[Validation](CLIENT_VALIDATION.md#flowcraft-partial-craft-after-reload).
+
+22 November. Added the companion vendor stage to the Restock reminder
+and checked stale selection, live readiness and named item captions.
+The desktop vendor fixture combines two five-unit orders in one call
+and assigns the two carried receipts separately. The owner bridge
+passes 226 checks, the HUD passes 63,540, and all 16 companion suites
+pass. The four changed runtime files match across five installs.
+The external `fluxui-grouped-vendor-before-20261122T093421Z` checkpoint
+verifies 72 files, complete main history and 63 settings metadata rows.
+[Validation](CLIENT_VALIDATION.md#grouped-vendor-materials-and-restock-reminder).
+
+22 November. Reproduced two compatible Green Silk Pack orders occupying
+two rows. The Flowcraft candidate shows one **2× Green Silk Pack** row
+and keeps both accepted jobs. Verified one approved purchase can cover 40 Silk Cloth or six Heavy
+Leather and that a smaller listing leaves the outstanding amount.
+All 16 installed companion suites, 90 owner row checks and the related
+auction and bridge fixtures pass.
+The external `fluxlogistics-grouped-queue-before-20261122T091853Z`
+checkpoint verifies 16 files. The acquisition follow-up checkpoint
+verifies 26 files in the canonical and Forever copies. Its supplement
+preserves the owner fixtures. Both checkpoints verify complete main
+history and metadata for 63 settings files. The five changed runtime
+files match across five installs. Native reload and purchases remain
+pending.
+[Validation](CLIENT_VALIDATION.md#grouped-flowcraft-orders).
+
+22 November. Prepared acquisition-first profession actions, observed
+physical mailbox counts and the compact shared Flowcraft workspace.
+The external `fluxui-carried-flowcraft-before-20261122T085855Z`
+checkpoint preserves 54 exact files, complete main history and metadata
+for 81 settings files. The owner desktop checks include 206 companion
+bridge, 63,535 HUD and 77 mailbox observation assertions. The mailbox
+suite loads the installed Syndicator publisher source. All 16 companion
+scripts pass against installed source. Eleven runtime files match across
+five installs. A background Forever capture before companion installation
+showed the Professions Book beside the merchant. Native reload and
+interaction remain pending.
+[Validation](CLIENT_VALIDATION.md#acquisition-first-restock-and-flowcraft).
+
+22 November. Reproduced stale built-in counts after a buyer-found notice. The
+archived auction tracker fails 54 checks and the candidate passes 6,264. The
+five installed copies compile and match. The dated sold-auction checkpoint
+verifies exact sources, main history and 44 on-disk settings metadata entries.
+[Evidence](BUILTIN_AUCTION_PUBLICATION.md#sold-listings-with-the-auction-house-closed).
+
+22 November. Added the tracked companion profession action and stale-mode regression. The focused fixture passes 198 checks across 13 profiles. The fluxui-queued-switch-release-20261122 checkpoint retains the baseline, main history and saved settings.
+
+22 November. Updated the companion Restock craft caption and exact action token for the FluxLogistics Process rewrite. The owner fixture passed 186 checks across 12 profiles. The fluxui-direct-craft-release-20261122 checkpoint preserves the installed baseline, main history and on-disk settings.
+
+22 November. On Forever 1.60.1.71037, the 02:10:19 Copenhagen capture
+showed native quantity 25 after Flowcraft **Process**. A targeted
+background click on Blizzard **Create** at 02:10:44 started casting and
+set the queue to **In progress**. The 02:11:37 capture showed six create
+messages and quantity 19. At 02:14:36, Flowcraft showed **Check result**
+without matching output. The native quantities support an inference of
+12 bolts produced. The player independently shared a **Check result**
+screenshot. Both routed clicks kept the foreground and global cursor
+unchanged. Automatic approval rejected the later chat probe and hover
+under the repository's desktop control rule, and input stopped. The
+external `fluxui-restock-native-validation-before-20261122T010747Z`
+checkpoint preserves 30 exact files and 76 settings metadata records.
+The installed pair tracks exact carried receipts through the native
+repeat and credits only the verified portion of a stopped batch.
+**Replan from bags** recovers the outstanding work without discarding
+history. Desktop runs pass 43 owner suites and 16 companion suites
+including the catalog. A manual reload was requested for the patched
+native check.
+[Validation](CLIENT_VALIDATION.md#live-restock-craft-receipts).
+
+22 November. The repeat report showed Restock guidance for 25 crafts
+and a Blizzard quantity of one. The owner fix distinguishes a stock
+reset from an explicit player edit or native craft. The owner fixtures
+pass 3,279 craft checks, 173 companion bridge checks, 63,431 HUD checks
+and 1,020 render checks. The external
+`fluxui-native-create-repeat-before-20261122T005449Z` checkpoint
+preserves 28 exact sources, complete main history and 63 settings
+metadata entries. The separately observed 01:52:54 Copenhagen save
+held all 25 bolts and five bags pending with zero completed crafts and
+no new attempt record.
+The installed companion fix preserves early native events for the matching
+Create call and finds a craftable branch in the same selected job. All
+15 companion suites and the adapter catalog pass. Five focused companion
+suites also pass on Lua 5.1.
+[Validation](CLIENT_VALIDATION.md#restock-native-quantity-after-stock-refresh).
+
+22 November. Verified the Restock reminder against native and companion desktop fixtures, including the Classic workbench and overflow. The fluxui-craft-button-layer-20261122 checkpoint records current settings, the exact baseline and main history.
+
+22 November. The Forever Restock handoff carries the allowed batch
+to Blizzard's quantity field and shows the expected **Create** amount.
+The staged FluxLogistics candidate prepares 25 bolts, then prepares five
+bags for the same accepted job after the carried result. The owner
+fixtures pass 3,239 craft checks, 166 companion bridge checks, 63,351 HUD
+checks and 1,020 render checks. All 15 companion scripts and the catalog
+check pass. The external `fluxui-native-create-before-20261122T001708Z`
+checkpoint preserves 26 exact sources, complete main history and 63
+settings metadata entries.
+[Validation](CLIENT_VALIDATION.md#bounded-native-restock-craft-batches).
+
+22 November. The player again reported no craft from the HUD. FluxLogistics
+retains native Forever 71037 evidence of blocked addon-issued CraftRecipe.
+The new owner route prepares the validated recipe for Blizzard's Create
+button and observes bag output. The 3,143-check driver and 153-check
+owner integration pass. The external
+`fluxui-craft-hud-before-20261122T000238Z` checkpoint preserves 17 exact
+sources, complete main history and 63 settings metadata entries. Its
+addendum verifies eight newer companion sources against the Forever
+installation.
+[Validation](CLIENT_VALIDATION.md#restock-handoff-to-native-create).
+
+22 November. Replaced the flat nameplate aura strokes with the reference
+bevel, added clipped icon artwork and restored hover on secure buttons and
+Forever's stock rows. The archived baseline checked 3,416 sources, full
+history and 92 saved-settings metadata entries. No world aura was visible
+in read-only native observation.
+[Source and tests](validation/nameplate-aura-style-hover-2026-11-22.json).
+
+22 November. Replayed cold item keys and missed first results for accepted auction quotes. The checkpoint fluxui-auction-handoff-20261122 preserves the prior owner files and settings.
+
+22 November. The player reported that the earlier Restock profession click
+still failed in game. Verified the running Forever window by executable
+and window handle without input. The current change gives profession
+opening its own HUD action and continues tracking both owners' mail around
+it. The same default-on mailbox preference now controls both collectors.
+The previous source and recovery facts are in the external
+`fluxui-craft-mailbox-before-20261121T233114Z` checkpoint. Desktop results
+are 3,083 craft and proxy checks, 148 dual-owner checks, 63,336 HUD checks,
+1,020 render checks over 15 trials, 4,500 mail checks, and 940 cadence checks.
+Live interaction, permissions, and visual placement are pending.
+[Exact sources and tests](validation/restock-profession-mail-2026-11-22.json).
+
+22 November. The screenshot confirmed the native world border fallback on
+three harmful icons. After the user approved secure rows, FluxUI prepared
+the engine-owned dispel border and badge bindings for Retail and Forever.
+The dated checkpoint preserved 3,412 source files, full history, and 92
+settings metadata entries before editing. The new runtime requires a native
+typed-debuff scene for acceptance.
+[Exact source and tests](validation/secure-nameplate-auras-2026-11-22.json).
+
+22 November. Wired accepted craft material protection into the classifier, manual junk actions and the merchant final checks. The checkpoint fluxui-craft-junk-20261122 records exact prior sources, verified main history and current settings.
+
+22 November. Reproduced the Restock craft opener failure with a hidden
+profession window and a visible Book page. The owner now opens the required
+Recipes page. FluxLogistics can open a closed Forever profession through
+the same helper and refresh readiness. Forty-one owner and 15 companion
+desktop fixtures passed, including the 3,040-check owner driver. All four
+runtime files match across the installed client trees. The external
+`fluxui-craft-opener-before-20261121T231349Z` checkpoint preserves 14 exact
+sources, verified main history and 63 settings metadata entries.
+[Validation](CLIENT_VALIDATION.md#restock-craft-reminder-opens-professions).
+
+22 November. Added minimum purchase quantity to the accepted auction bridge. The focused fixture covers 50 checks and the main suite covers 12,620 checks across 44 profiles. The recovery checkpoint fluxui-vendor-choice-20261122 records prior auction files, main history and current settings.
+
+22 November. Fixed the debuff and CC decoration after a second live report.
+The native-shaped regression exposed missing input handling in the live
+lookup and shared icon sizing. The overlay now paints independently of the
+timer and can follow Blizzard's player Loss of Control icon. Source and
+settings metadata were checked before editing and a background observation
+found no visible world aura for native confirmation.
+[Source and tests](validation/nameplate-debuff-artwork-2026-11-22.json).
+
+22 November. Fixed the queued Find offer handoff. The previous owner reproducibly rejected explicit clicks after another search. The corrected owner suite passed 12,620 checks across 44 profiles, including both native query generations, and related Restock fixtures passed. The exact pre-change auction sources, main history and current settings were checkpointed in fluxui-find-offer-20261122.
+
+22 November. Fixed the world nameplate debuff overlay after a live report
+of missing type art. The old path failed the isolated tests for Forever's
+first visible assignment and Retail's public instance lookup. The new
+fixture passed 190 appearance checks on both Lua versions, and the updated
+file matches all five installations. The external
+`fluxui-live-nameplate-debuff-before-20261121T225308Z` checkpoint verifies
+3,408 source files, complete main history and 92 settings metadata entries.
+[Exact sources and tests](validation/live-nameplate-debuff-2026-11-22.json).
+
+22 November. Moved both Restock reminder anchors down 16 UI units and wired
+accepted FluxLogistics deliveries and ready queue crafts into the existing
+control. Confirmed that a shifted inbox row cannot issue another take before
+the carried receipt. Forty-five FluxUI and 16 companion fixtures passed,
+including 3,960 mailbox checks, and all eight runtime files match in the five
+install trees. The external
+`fluxui-restock-reminder-before-20261121T225401Z` checkpoint records 19 exact
+source copies, verified main history and 63 settings metadata entries.
+[Exact sources and test results](validation/restock-reminder-2026-11-22.json).
+
+21 November. Installed the temporary auction target bridge and thirty-fourth FluxLogistics development release. The 82 focused tests cover queued and ordinary targets sharing a SKU, exact native button selection, stale rows and disappearance on carried receipt. The external fluxui-logistics-rows-install-20261121 checkpoint preserves the previous runtime sources and two verified settings snapshots.
+
+21 November. Added the shared top-right debuff type icon and colored borders
+to nameplates, target/focus, pet aura tooltip, both party layouts, raid, and
+their previews. The external `fluxui-debuff-type-before-20261121T222839Z`
+checkpoint verifies 3,406 source files, main history and 92 saved-settings
+metadata entries. Twenty-two focused runs passed, and all nine affected
+runtime files match in each install. Three paired group and countdown
+replays retained the measured lookup and update counts.
+[Exact sources and test results](validation/debuff-type-corners-2026-11-21.json).
+
+21 November. Installed the auction-depth and preset fixes. The normal owner auction suite passed 12,553 checks across 42 profiles. Focused suites passed 38 depth checks, 20 stack checks and 33 restock membership checks. Previous files and two on-disk settings snapshots are in the external fluxui-logistics-depth-install-20261121 checkpoint.
+
+21 November. The 23:20 Nameplates error came from passing draw sublevel 1 as
+an inherited texture template. The corrected call passes it as the draw sublevel.
+Three paired replays reproduce the error on the archived source and pass all
+139 appearance checks on the fix. The Lua 5.1 and 5.4 compatibility checks
+also pass, and all five installed copies match.
+[Exact source and test record](validation/nameplate-preview-texture-2026-11-21.json).
+
+21 November. Restored the published live FluxUI nameplate overlays and
+retained the seven-tab options page with an isolated preview. Removed 44
+files from the previous renderer. The external
+`fluxui-published-nameplate-restore-before-20261121T220542Z` checkpoint
+verifies 3,445 sources, complete main history and 92 saved-settings metadata
+entries. The 134 appearance checks and 40 compatibility checks passed on Lua
+5.1 and 5.4. Fifteen checked files match on each install, and the retired
+runtime and artwork are absent from all five. Native verification is pending.
+[Exact sources and test results](validation/published-nameplate-options-2026-11-21.json).
+
+21 November. Installed the owner controls paired with FluxLogistics 0.2.31-dev. The Auction Restock fixture passed 12,553 checks across 42 client and provider profiles and the follow-up fixture passed 92 checks across four profiles. The external fluxui-logistics-auction-install-20261121 checkpoint holds exact file identities, previous owner files and verified copies of two available settings files. All five installs have matching source hashes.
+
+21 November. Replaced the owned nameplate artwork with FluxUI's compact
+bar, cast, level, target and badge styling. Live and preview layouts use
+the same art and settings. Timed auras default to legible text at the
+bottom of each icon, and the dual lanes fit the referenced three buffs and
+eight debuffs. The external `fluxui-nameplate-rewrite-before-20261121T213038Z`
+checkpoint verifies 3,443 sources, complete main history and 84 saved-settings
+metadata entries. The appearance suite passed 746 checks on Lua 5.1 and
+5.4. All 26 checked installed files match across the five clients.
+[Exact source and test record](validation/fluxui-nameplate-rewrite-2026-11-21.json).
+
+21 November. The real inventory startup, store, mailbox and adapter reproduced ten failures across two incomplete Syndicator startup scenarios. The candidate passed all fifty checks, including the installed Syndicator 292 Ready ordering. The 3,782 bank visibility checks and the 68 mailbox observation checks passed. Exact source identities and the harness are in the external fluxui-inventory-bootstrap-20261121 checkpoint.
+
+21 November. Compared the user's Flux world plate and FlareUI Auras pane, then
+verified the reference in the Forever window with a background read-only
+capture. The external `fluxui-nameplate-parity-before-20261121T205236Z`
+checkpoint verified 3,442 source files, main history and 85 saved-settings
+metadata entries. Restored secure aura styling, zoom, and native layer
+handoff, and corrected the Flux quest and threat badge row.
+The Auras panel now uses the reference section ordering and paired controls.
+Fifteen focused scripts passed, including 657 appearance checks in each Lua
+version. All 11 changed runtime files match in each of the five installs.
+[Test evidence](validation/flare-nameplate-parity-2026-11-21.json).
+
+21 November. Reproduced 14 covered at the Auction House and 10 in the owner restock target after the preferred tier item changed. The owner fixture fails against the original implementation and passes 136 checks with the listing identity. The paired desktop purchase scenario reports 10 covered and 10 uncovered on both paths. Source hashes are in the external fluxui-tier-pending-observation-20261121 checkpoint. [Contract](FLUXLOGISTICS_RESTOCK.md#lua-interface-v1).
+
+21 November. Reproduced an owner menu showing 28 units after the companion's live search quantity fell to 6 and then 0. The staged owner fixture fails against the original implementation and passes 129 checks with the projection. The paired companion fixture also passed. Backups and hashes are in the external fluxui-net-shopping-projection-20261121 checkpoint. [Contract](FLUXLOGISTICS_RESTOCK.md#lua-interface-v1).
+
+21 November. Integrated the FlareUI 7.0 renderer, artwork, settings and
+preview with FluxUI's nameplate overlays. The external checkpoint
+`fluxui-flare-nameplates-before-20261121T202835Z` verifies the pre-change
+workspace, main history and 85 saved-settings metadata entries.
+Fifteen focused desktop scripts passed, including 466 appearance checks
+across five client models. The appearance and compatibility scripts also
+passed under Lua 5.1. The mirror matches all 59 checked files in each install.
+The broader suite's two port-related assertions passed on rerun and its
+13 other failures reproduced with the port removed from the replay.
+[Source and validation record](validation/flareui-nameplates-2026-11-21.json).
+
+21 November. Investigated the lower Focus border at the portrait join from
+the supplied Forever screenshot. The external checkpoint
+`focus-border-before-20261121T202242Z` verified 127 current sources, 26
+settings metadata entries and the history at `1e992c4`. The compact Focus
+health and power layout now uses the Party split, including prediction bounds.
+[Validation](CLIENT_VALIDATION.md#compact-focus-border-and-party-layout).
+
+21 November. Added player and NPC cases, sample auras and combat playback
+to the frame preview pane. The external
+`individual-preview-effects-before-20261121T195953Z` checkpoint verified 84
+current subsystem files and 26 settings metadata entries against the
+working files. Its history is the verified full checkpoint from the
+preceding individual layout change. The focused five-client tests pass and
+all 45 installed file comparisons match. Forever displayed the Player cast
+and changing bars during playback.
+[Validation](CLIENT_VALIDATION.md#unit-frame-preview-cases-and-playback).
+
+21 November. Fixed compact Focus health percentages clipping against the
+power bar. The live and preview labels now use the same split-aware health
+band. Added focused anchor coverage to the existing Party and Focus fixtures.
+[Validation](CLIENT_VALIDATION.md#compact-focus-health-text-placement).
+
+21 November. Restored the published FluxUI nameplate files, original nameplate
+controls and FluxUI aura artwork. Kept the shared countdown and current frame
+previews. The external `project-cleanup-before-20261121T201440Z` checkpoint
+verified the source, main history and on-disk settings metadata. Desktop
+validation passes Lua syntax for 1,262 files and 560 of 568 scripts, including
+the focused nameplate, options, aura and preview checks. The eight failures
+reproduce against the checkpoint. Native rendering and reload acceptance
+remain pending.
+[Restoration evidence](validation/nameplate-restore-2026-11-21.json).
+
+21 November. Reworked the individual sample after comparing the user's Forever
+options and HUD screenshots. Verified source, history and settings metadata in
+the external individual-preview-before-20261121T194304Z checkpoint. The
+five-client cast layout fixture passes 2,215 checks, including static sample
+selection and unchanged layout reuse. The focused shell, navigation, dynamic
+range, party, raid and Focus aura fixtures also pass. The active Forever
+session confirmed Player with the cast sample and Target idle after the
+user's reload. Further native comparisons remain pending.
+[Implementation and validation](CLIENT_VALIDATION.md#individual-frame-preview-parity).
+
+21 November. Reproduced the rejected Empty Vial purchase for a queued Fire Oil craft. The accepted one-vial, 5-copper auction offer now reaches the normal eligibility and price checks when the vendor charges 20 copper for five. The new case fails against the baseline. Desktop checks passed for auction restock (12,451 across 40 profiles), vendor prices (1,170 across 20), and market behavior (2,288 across 20). Source and document copies and their SHA-256 hashes are preserved in the external `fluxui-logistics-vendor-cap` checkpoint. [Contract](FLUXLOGISTICS_RESTOCK.md#accepted-auction-prices-for-vendor-goods).
+
+21 November. Reproduced a failed Syndicator scan when a native inbox header was temporarily unavailable. Added desktop checks for same-session recovery after the header returns and for existing delayed publication. The scoped source and settings are preserved in the external `fluxui-inbox-recovery-release-20261121` checkpoint.
+
+21 November. The Forever mount button now checks `UnitOnTaxi("player")`
+before displaying the wisp and choosing the dismount face. Control changes
+refresh the button only when the taxi state changes. The 283 focused checks
+and three related scripts pass. The archived source shows a wisp with both
+the mounted and taxi flags true. The candidate matches the Forever install.
+
+The external `forever-mount-taxi-before-20261121T190551Z` checkpoint contains
+verified history, source and metadata for six Forever and four Retail settings
+files including backups. `Mount.lua` changed from SHA-256
+`87823cc84aa17ee1b0f2cbe13de6ecf58aa51cb2100f2dcdffb2a6c5e38562e5` to
+`8d6f2f1b416605475732205fa2b14588177a2a52a601a4497630af050ee8cc2c`.
+[Mount evidence](CLIENT_VALIDATION.md#forever-mount-collection).
+
+21 November. Craft Shopping can prepare a single exact auction offer before the player presses Buy Needed. Preparation reuses the owner search with the accepted item, quantity and caps. It preserves a foreign or ordinary Restock session. A player press remains the authority for one modern commodity purchase or one complete legacy listing. After the receipt, verified inbox and carried counts determine the next amount.
+
+21 November. Connected accepted crafting materials to the existing bank and vendor Restock buttons and extended desktop coverage for partial carried receipts, live merchant packs and scoped bank withdrawals. Kept the prior source and settings in the external `fluxui-craft-restock-20261121` checkpoint. [Contract and validation](FLUXLOGISTICS_RESTOCK.md#queued-craft-materials).
+
+21 November. Consolidated the frame settings into three pages and moved
+Nameplates to Combat. A modeled 21-step pointer drag makes one settings
+write and sample update on release. The same compact sample structure
+uses fewer geometry writes during 20 warm appearance edits across 40
+members. Navigation (8,322), shell (1,228), party (1,460) and compact
+renderer (628) checks pass. Verified the external source and settings
+metadata checkpoint before editing. After the user's Forever reload,
+the consolidated sidebar, Individual Frames tabs and four Party sample
+rows were visible. All ten runtime sources matched across the five
+automatically mirrored installations. Native edit, timing and
+other-client checks remain pending. The integrated run passed all 1,261
+syntax checks and 558 smoke scripts. Eight smoke failures reproduce at
+the checkpoint, and the other two pass in current replays after the
+Nameplates fixture expectations were reconciled. The fresh 1,265-file
+syntax sweep and eight focused scripts pass.
+[Requirements and checkpoint](OPTIONS_REWORK.md#three-frame-pages-and-responsive-editing).
+[Client checks](CLIENT_VALIDATION.md#frame-options-edit-responsiveness).
+
+Earlier on 21 November. Replaced the independently drawn group samples with the
+shared world preview painters. Organized Main, Mini, Party and Raid
+settings around the EllesmereUI reference and connected preview parts
+to the matching tabs. The external checkpoint
+`frame-preview-parity-before-20261121T182716Z` verified 3,386 source files
+and 85 settings metadata entries. Focused checks pass for source navigation
+(7,177), the settings shell (1,393), player-style party (1,310) and the compact
+renderer (623). The parity-only run passed 1,260 syntax checks and 559
+smoke scripts. Eight smoke failures reproduced at that checkpoint.
+[Requirements](OPTIONS_REWORK.md#group-preview-parity-and-frame-settings).
+[Client checks](CLIENT_VALIDATION.md#group-preview-parity).
+
+21 November. Reorganized the four frame settings pages through the source
+option paths and added a reusable right-hand sample with component clicks
+and shortcut buttons. It uses the active unit or raid settings and the current
+party layout. World previews keep their own controls. The external
+`unit-frame-options-before-20261121T175557Z` checkpoint verified 3,384 source
+files and 85 settings metadata entries. Five focused scripts passed. The full
+desktop suite passed 559 smoke scripts and all 1,259 Lua syntax checks. Seven
+smoke failures reproduced at the pre-edit checkpoint. Native acceptance
+remains pending. [Requirements and checkpoint](OPTIONS_REWORK.md#unit-frame-preview-editor).
+[Desktop checks](CLIENT_VALIDATION.md#unit-frame-settings-preview).
+
+21 November. Applied the existing General countdown switch to target, focus,
+both party layouts and raid. The external checkpoint verified 3,382 source
+files and 51 settings metadata entries before editing. The focused countdown
+policy replay passed 74 desktop checks. Native acceptance remains pending.
+[Sources and checks](CLIENT_VALIDATION.md#shared-unit-frame-aura-countdowns).
+
+21 November. Forever's mount button retains journal and riding data when
+combat sends temporary usability changes. The shared readiness window refreshes
+them after combat. A mounted wisp overlays the existing icon and disappears on
+dismount. The normal secure action and each exact override already carry the
+combat dismount branch. The active mounted action also supports normal dismount.
+All 275 focused checks and eight related scripts pass. Two negative controls
+reproduce the missing wisp and dropped combat selection separately.
+
+The external `forever-mount-dismount-before-20261121T163056Z` checkpoint has
+verified history, prior source and settings metadata for six Forever and four
+Retail files including backups. `Mount.lua` went from SHA-256
+`1c617b355e93ffd1000b30b9cdc1e57b5106966cbd7f2eceaea738cb46b1ccfa` to
+`87823cc84aa17ee1b0f2cbe13de6ecf58aa51cb2100f2dcdffb2a6c5e38562e5`.
+[Client evidence](CLIENT_VALIDATION.md#forever-mount-collection).
+
+21 November. The Auction House Restock menu can open the accepted material's purchase controls through an optional FluxLogistics callback. The live offer reports its physical quantity and total copper for confirmation. Source fixtures cover the callback, the native search fallback, and quote expiry. Native control reachability remains pending. [Contract](FLUXLOGISTICS_RESTOCK.md).
+
+21 November. Accepted FluxLogistics requirements can now search for their exact SKU and buy from the open Auction House through the existing native transaction owner. The queued route uses the accepted price and count limits, requires a physical press for a ready result, and shares the selected inventory backend. The owner fixture covered a delayed quote invalidated by plan changes, one-item buys from modern grouped listings, and indivisible legacy stacks. Native input and purchase verification remain pending. [Contract](FLUXLOGISTICS_RESTOCK.md).
+
+21 November. Reproduced the Auto Restock failure with FluxLogistics registered in Normal. Corrected the purchase gate and preserved automatic ownership across junk sales. Verified the external `vendor-auto-restock-before-20261121T161016Z` source checkpoint, complete history at `1e992c449d59b2f1f472efc40e7ca10ea6c494cf`, and 21 settings file metadata entries before editing. All 20 targeted scripts pass. [Merchant sequencing](20-vendor-restock-junk.md#merchant-lifecycle-and-automation-ordering).
+
+21 November. A merchant visit now builds the existing index when FluxLogistics is registered, even with vendor automation disabled. The owner publishes coalesced merchant updates after the buy terms are available and when the live quote expires at close. The standalone idle path retains its original checks. Desktop verification passed 500 vendor-learning assertions, 660 slot identity assertions and 177 finite-stock assertions. [Contract](FLUXLOGISTICS_RESTOCK.md).
+
+21 November. Eligible tier refill plans now use the strict bank withdrawal predicate, including when an item has no separate exact-item target. The FluxLogistics bridge also exposes typed vendor buy estimates with observed bundle terms and source provenance. Live stock and execution remain in the existing owner offer path. The 91-check bridge fixture and seven related owner scripts passed. The cross-addon fixture covers a tier plan split between bank and Auction House, a strict tier mismatch, and partial withdrawal recovery after an owner exception. Native verification is pending. [Contract](FLUXLOGISTICS_RESTOCK.md).
+
+21 November. Added the FluxLogistics v1 restock contract, owner mode and trigger controls, shared demand projection, and scoped bank and vendor dispatch. Verified original touched sources, all-ref history and 10 saved-variable metadata entries in an external recovery checkpoint. [Contract](FLUXLOGISTICS_RESTOCK.md).
+
+21 November. A placeholder could leave the journal macro cache populated
+after clearing the secure click. The same mount then skipped the write on
+recovery. Forever now holds its action across ordinary loading screens,
+refreshes journal and riding data, and rearms all click routes and the hotkey.
+The previous runtime fails the same-macro check. A cache-only control still
+loses the action during a cold world entry. The candidate passes 239 focused
+checks and nine related scripts. The Forever installation matches its source.
+
+The external `forever-mount-world-entry-before-20261121T142152Z` checkpoint
+contains verified history, prior sources and metadata for six Forever and four
+Retail settings files including backups. `Mount.lua` went from SHA-256
+`74ccb81896add8e5c6d8e780bce4a3f952b44b544ee90ba7fb5e3881aa92a74a` to
+`1c617b355e93ffd1000b30b9cdc1e57b5106966cbd7f2eceaea738cb46b1ccfa`.
+[Client evidence](CLIENT_VALIDATION.md#forever-mount-collection).
+
+21 November. R193 fixes three modeled problems with the side grid reveal.
+The hover path left the joined border queued after the buttons were visible.
+Docking could move the minimap rim. At the smallest tested grid scale, the
+side grid's edge profile also left a gap in the horizontal line by the T.
+The new path commits from the existing hover callback, keeps the rim in
+place and uses its source stroke through the junction. Stationary hover
+performs no solve in the desktop fixture.
+The embedded grid previously started at the window's top edge. It now divides
+spare height evenly above and below the entire grid after count or size changes.
+The archived grid's center was 18.875 UI units above the window center in the
+default desktop case.
+[Evidence](validation/minimap-hover-dock-r193-2026-11-21.json).
+
+21 November. With side buttons disabled, the previous queued minimap restore
+left the embedded header width and a single anchor. In the desktop fixture,
+the clock edge landed at x=1976 instead of x=1896. Both restore paths now fit
+the header to the map and restore frame layers before the indicator layout.
+Rapid combat toggles retain the initial standalone snapshot.
+The screenshot also shows the lower-right indicators. With a short tracking
+button and taller mail indicator, the old centered anchor let mail extend
+past the map edge. Both controls now use the same inset bottom edge and mail
+draws above the local border.
+[Evidence](validation/minimap-standalone-restore-2026-11-21.json).
+
+21 November. R192 removes the side grid's HIGH promotion and keeps both sides
+of the Flux Window joint on their source border frames. The Flux Window border
+uses its window level plus two and retains that order during minimap embed.
+The top mouseover grid raises its MEDIUM level over overlapping minimap hit
+regions. The archived code fails the side stratum, joined paint and embed
+checks. The window integration fixture also loads the existing group-indicator
+helpers it invokes on combat exit. Native appearance remains pending.
+[Evidence](validation/hud-panel-layers-r192-2026-11-21.json).
+
+21 November. R191 corrects the global HIGH promotion introduced for flyout
+glyphs. The art stays one level above the active local border in the button's
+stratum and follows seam retirement and embedded layout changes. At a side
+scale of 0.085 and a UI scale of 1, the archived dock strokes were 2.085 units
+apart in Type 1 and 3.17 in Type 2. The window and side-grid outlines now meet
+at their content dock point. The two archived sources fail their respective
+regressions. Native appearance remains pending.
+[Evidence](validation/hud-layer-dock-r191-2026-11-21.json).
+
+21 November. The mount icon refresh had overwritten the shared usability tint.
+The shared painter now reads the selected Forever mount's location-aware journal
+verdict. Modifier changes and the existing combat and journal refresh paths
+paint the same mount as the icon. The 176-check regression and ten related
+scripts pass. Replaying the prior button alone reproduces a bright indoor icon.
+Replaying the prior painter alone reproduces a dim usable journal mount.
+Twenty-five steady modifier callbacks issued zero additional usability reads.
+The verified external `forever-mount-usability-before-20261121T131329Z`
+checkpoint contains prior source, history and settings metadata for six Forever
+and four Retail files including backups.
+
+| Runtime source | Before SHA-256 | Candidate SHA-256 |
+| --- | --- | --- |
+| `Mount.lua` | `ffb63f99353d16c7545e414cfaf88e012d8b1e5267d486c7d01e862b93170141` | `74ccb81896add8e5c6d8e780bce4a3f952b44b544ee90ba7fb5e3881aa92a74a` |
+| `Paint.lua` | `7bcb33ab9c499162532205aa513da2682dea4d3412269ac74b4243f569d6ad79` | `0ac0196acdbfb09fad27425ed6af6eade67e500c9a7e9d8feefc79ca10059305` |
+
+Both candidate hashes match the Forever install. [Client evidence](CLIENT_VALIDATION.md#forever-mount-collection).
+
+21 November. The Forever mount editor now shows Default and assigned modifiers
+in a 176-unit-wide list. The desktop model measures 90 units tall in a default-only
+setup and 232 with all eight bindings. The Add modifier menu is hidden when all
+combinations are assigned. The button tooltip follows the active combination
+and explains unavailable overrides. All 148 focused checks and five related
+scripts pass. The same regression rejects the previous always-visible rows.
+The external `compact-forever-mount-before-20261121T130509Z` checkpoint contains
+a verified history bundle, the prior files and settings metadata for six Forever
+and four Retail files including backups.
+
+| Runtime source | Before SHA-256 | Candidate SHA-256 |
+| --- | --- | --- |
+| `Mount.lua` | `576bcd722443d73df0dedb684ed72139de0b232f40f0d13c666299988164ff1c` | `ffb63f99353d16c7545e414cfaf88e012d8b1e5267d486c7d01e862b93170141` |
+| `FluxSmartMountConfig.lua` | `78e9318d57717f6d1986f07668f9471370e922e0819eab9edb90302a81686b7b` | `d1e534b96d0f34abf5b37b66c2b0b54b8a25cd68cb4b05940f41caa75e8ffc0d` |
+
+Both candidate hashes match the Forever install. [Client evidence](CLIENT_VALIDATION.md#forever-mount-collection).
+
+21 November. Flyout arrows use their own paint layer above connected HUD
+seams. The archived action-strip code fails the raised-seam replay. The new
+code passes the strip, extra-button and Trinket cases. The suite also checks
+parking, inherited visibility and zero settled or combat layer writes. All
+18 focused scripts pass and the runtime files match across five installs.
+Live pixels, controller input and taint remain pending.
+[Evidence](validation/flyout-arrow-layer-2026-11-21.json).
+
+21 November. Forever's 1.x version check had routed collected mounts through
+the bag code. The journal now supplies the default and each exact modifier
+assignment, and riding checks use the learned rank, spell or usable mount.
+The external `forever-mount-before-20261121T124816Z` checkpoint preserved the
+three prior source files and a verified complete-history bundle at
+`1e992c449d59b2f1f472efc40e7ca10ea6c494cf`. Its metadata records four Retail
+and six Forever settings files including backups. No private settings were copied.
+
+| Runtime source | Before SHA-256 | Candidate SHA-256 |
+| --- | --- | --- |
+| `Mount.lua` | `3baccb916f2ef49330508d3715a8777cd1a3792613747ebabd2c14be44f61f46` | `576bcd722443d73df0dedb684ed72139de0b232f40f0d13c666299988164ff1c` |
+| `MountCollection.lua` | `f4e945c4499f3d134775273acd78a61d55ab8ab79c0a302f02426ede4a61cac2` | `32ab2e7945344e936d0df612f93c98e8ae9e229bbe0586f3ab6e959471931ffa` |
+| `FluxSmartMountConfig.lua` | `c9c599746034074657e1cfaeda24ddcf87959cd924be91c2000a8156651cf6a4` | `78e9318d57717f6d1986f07668f9471370e922e0819eab9edb90302a81686b7b` |
+
+All three candidate hashes match the Forever mirror. The 106-check regression
+fails on the checkpoint's Forever journal gate and passes on the candidate.
+Six focused desktop scripts pass. The full desktop run compiled all 1,255 Lua
+files and reported 556 passing scripts. Eight failures reproduced with the old
+mount files, and the ninth passed with both mount revisions after concurrent
+bars changes. [Client evidence](CLIENT_VALIDATION.md#forever-mount-collection).
+
+21 November. The player reported the action cooldown error again on
+Forever and also on Retail. The follow-up adds the opt-in collector
+inspection to `/fluxinput cooldown`. The existing external source and
+all-ref checkpoint matches the prior bytes of both edited files. Seven
+Retail and eight Forever on-disk settings entries were verified.
+`Other/FluxInputDebug.lua` changed from SHA-256
+`6047dc6f42a18bab1c6062dcbc483a0073b2022ede0c87d1e796a1ce039ce3fa`
+to `4b1d39dd6895fa8d61b4e5195fde6feacd7459146852ab3a770615a0d1abed86`.
+The focused input and tooltip diagnostics pass and the old source lacks
+the new capture. The tested command adds no recurring work. Both live
+client reproductions and attribution remain pending.
+[Client evidence](CLIENT_VALIDATION.md#forever-action-button-cooldown).
+
+20 November. `FOREVER-ACTION-COOLDOWN-20261120` matched the 22:46:28 stack
+to Forever 1.60.1.70959. The player reported it while casting or fighting.
+FluxUI's stock FX suppression could invoke a
+second entry to the same cooldown setter through the animation's
+`OnHide` handler. The patch removes that forced hide on Forever.
+The pinned desktop replay went from one forced cooldown attempt to zero,
+while Blizzard's event still applied the cooldown once in each run.
+The 10 focused scripts pass. All five installations have the same source
+hash. Live reproduction and first-writer attribution are pending.
+
+The external `action-cooldown-before-20261120T215214Z` checkpoint preserves
+3,381 files and an all-ref bundle at main
+`1e992c449d59b2f1f472efc40e7ca10ea6c494cf`. Read-only metadata covers
+57 settings files, including eight on Forever. `Bars/Blizzard.lua` SHA-256
+changed from
+`45bee6e7d545c8c19a27bac17edf3fa4a46aaa5c327f777e16f323239b6da0ff`
+to `8ae9c4e7ca9e0cc0b6c1879ae6590b64877c98ef5f3bfee9e14e6ed142426746`.
+[Client evidence](CLIENT_VALIDATION.md#forever-action-button-cooldown).
+
+20 November. R190 widens the Type 1 cast divider from two to three UI
+units by extending its paint toward the icon. The existing fill edge
+stays in place. The prior renderer fails the icon-side coverage check,
+and the new renderer passes the 21,902-check source-art replay.
+Native appearance remains pending.
+[Evidence](validation/cast-divider-weight-r190-2026-11-20.json).
+
 20 November. R189 trims the cast icon divider to the style's registered
 stroke width. The close crop shows a dark rail on the fill side, which the
 first, wider trim still covered in the replay. The final trim passes the

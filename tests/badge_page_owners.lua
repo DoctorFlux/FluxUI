@@ -81,8 +81,9 @@ local function fixture()
 end
 
 local cases = {
-    { slot = 13, page = 2, dynamic = 1, static = 13, staticRow = "main" },
-    { slot = 19, page = 2, dynamic = 7, static = 19, staticRow = "main" },
+    { slot = 13, page = 2, static = 13, staticRow = "main", excluded = 1 },
+    { slot = 19, page = 2, static = 19, staticRow = "main", excluded = 7 },
+    { slot = 20, page = 2, dynamic = 8 },
     { slot = 37, page = 4, dynamic = 1, static = 13, staticRow = "tert" },
     { slot = 43, page = 4, dynamic = 7, static = 19, staticRow = "tert" },
     { slot = 49, page = 5, dynamic = 1, static = 13, staticRow = "sec" },
@@ -94,7 +95,8 @@ for _, case in ipairs(cases) do
     local f = fixture()
     local list = { { key = "peer", spellId = 1000 + case.slot } }
     f.badges.SetSlotBadges(case.slot, list)
-    local owners = case.static and 2 or 1
+    local firstOwner = case.dynamic or case.static
+    local owners = case.dynamic and case.static and 2 or 1
     local initial = f.created
     local initialOwnerCount = #f.lookups
     f.badges.PrepareSecureAuraForSlot(case.slot)
@@ -108,14 +110,18 @@ for _, case in ipairs(cases) do
     f.combat = true
     f.remap(case.page, 0)
     f.bars.ForEachHost(f.badges.NotifyDisplay)
-    local dynamicHost = f.bars.hosts[case.dynamic].main
-    check(dynamicHost.slot == case.slot and f.shown(dynamicHost)
-        and f.shown(dynamicHost).Widget.icon == 1000 + case.slot,
-        "slot" .. case.slot .. ": first combat page entry paints the prewarmed dynamic owner")
+    local firstHost = f.bars.hosts[firstOwner].main
+    check(firstHost.slot == case.slot and f.shown(firstHost)
+        and f.shown(firstHost).Widget.icon == 1000 + case.slot,
+        "slot" .. case.slot .. ": first combat page entry paints the prewarmed owner")
     check(initial == owners * 3 * 3, "slot" .. case.slot .. ": exactly three faces per row of every potential column")
-    check(initialOwnerCount == owners and f.lookups[1] == case.dynamic
-        and (not case.static or f.lookups[2] == case.static), "potential owners are unique and deterministic")
-    if case.static then
+    check(initialOwnerCount == owners and f.lookups[1] == firstOwner
+        and (owners == 1 or f.lookups[2] == case.static), "potential owners are unique and deterministic")
+    if case.excluded then
+        local baseHost = f.bars.hosts[case.excluded].main
+        check(baseHost.slot == case.excluded and not f.shown(baseHost), "page 2 keeps the base face separate from the fixed badge")
+    end
+    if owners == 2 then
         local staticHost = f.bars.hosts[case.static][case.staticRow]
         check(staticHost.slot == case.slot and f.shown(staticHost)
             and f.shown(staticHost).Widget.icon == 1000 + case.slot,
@@ -127,8 +133,8 @@ for _, case in ipairs(cases) do
     f.badges.PrepareSecureAuraForSlot(case.slot)
     check(f.prepared == initial, "combat aura request preserves the prepared set")
     f.badges.SyncShownFaces()
-    check(#f.effects == owners and f.effects[1] == case.dynamic
-        and (not case.static or f.effects[2] == case.static), "shown-face effects refresh every owner column")
+    check(#f.effects == owners and f.effects[1] == firstOwner
+        and (owners == 1 or f.effects[2] == case.static), "shown-face effects refresh every owner column")
     check(#f.deferred <= 1, "shown-face settling keeps one existing deferred pass")
 
     f.remap(1, 0)
@@ -137,8 +143,8 @@ for _, case in ipairs(cases) do
         "combat return to ordinary page preserves prepared widgets")
     f.combat = false
     f.badges.ClearSlot(case.slot)
-    check(not f.shown(dynamicHost), "clearing badges retires the dynamic display")
-    if case.static then check(not f.shown(f.bars.hosts[case.static][case.staticRow]), "clearing retires the static display") end
+    check(not f.shown(firstHost), "clearing badges retires the first display")
+    if owners == 2 then check(not f.shown(f.bars.hosts[case.static][case.staticRow]), "clearing retires the static display") end
     check(f.created == initial, "clearing a shared slot creates no replacement badges")
 end
 print(("Badge page ownership: %d checks PASS; shared slot <=2 columns/6 stacks/18 faces; no new polling"):format(checks))
@@ -254,7 +260,8 @@ if not arg or not arg[1] or arg[1] == "" then
             writesAfter = writesAfter + total(b.refresh(true))
             check(a.signature() == b.signature(), "stable badge layout and draw levels agree")
         end
-        check(#b.faces > 100 and writesAfter == 0 and writesBefore > 0, "warm crossings skip all matching protected placement writes")
+        check(#b.faces == 8 * 3 * 3 and writesAfter == 0 and writesBefore > 0,
+            "warm crossings skip all matching protected placement writes across eight owned columns")
         local firstA, firstB = a.faces[1], b.faces[1]
         firstA._fluxBadgeHost.width, firstB._fluxBadgeHost.width = 37, 37
         a.refresh(baseline ~= nil)

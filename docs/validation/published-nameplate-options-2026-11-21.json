@@ -1,0 +1,342 @@
+{
+  "id": "PUBLISHED-NAMEPLATE-OPTIONS-20261121",
+  "recordedUtc": "2026-11-21T22:16:12.606950+00:00",
+  "checkpoint": {
+    "name": "fluxui-published-nameplate-restore-before-20261121T220542Z",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "sourceFiles": 3445,
+    "settingsMetadataEntries": 92,
+    "archiveSha256": "fb66bf1cc59b20a64317b1e4a39f5a235e41bd4adc4d8a4b7954f9ca0ddb9556",
+    "bundleSha256": "90bfc84da44ffd45c6617f5304a431e6ed808eadb90080ffefe4bc5d691b2909"
+  },
+  "references": {
+    "publishedFluxUI": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "clientSourcePins": {
+      "Retail": {
+        "build": "12.1.5.70961",
+        "commit": "ab5cb850a3f65e742959e379c4689353a2f4549f",
+        "source": "Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlates.lua"
+      },
+      "Forever": {
+        "build": "1.60.1.71037",
+        "commit": "734f065329cff4992835b01a84f210a297db91b6",
+        "source": "Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlates.lua"
+      },
+      "Classic progression": {
+        "build": "5.5.4.70631",
+        "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+        "source": "Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlates.lua"
+      },
+      "Classic Era": {
+        "build": "1.15.9.70576",
+        "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+        "source": "Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlates.lua"
+      },
+      "Anniversary": {
+        "build": "2.5.6.70577",
+        "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+        "source": "Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlates.lua"
+      }
+    }
+  },
+  "exactPublishedRuntime": [
+    "NamePlates/Core.lua",
+    "NamePlates/ComboPoints.lua",
+    "NamePlates/Threat.lua",
+    "NamePlates/Level.lua",
+    "NamePlates/CastBarSchools.lua"
+  ],
+  "productionSourceSha256": {
+    "_FluxUI.toc": {
+      "before": "be3596f4b267b119a8838d25775f0a49a11b0909469894bc5da20b7871a89fb2",
+      "after": "c594790e0cf0c200478640d7a8057840d8c2f1e03958ea723c0cf3ce67af0059"
+    },
+    "NamePlates/Core.lua": {
+      "before": "4e85fb813eea9571862e29ade8451ea62dd4e0804d46e3c42be7cdde83085472",
+      "after": "774092d1dc0024f11c95aff773521019a7a4fe2f8dd895a678b8abd89c7349cf"
+    },
+    "NamePlates/ComboPoints.lua": {
+      "before": "0628d79217a576413481f0496e5f33912062768e20784e9430e94a57841af3b1",
+      "after": "3e9fc0846b321884303d750716f2d761630c0638a388d68dccaaf4c635e3b4b6"
+    },
+    "NamePlates/Threat.lua": {
+      "before": "e6df6cdd60dfff207c6f1e7c9b195777cfbdda2f8b3af1e0322d99c5102cd6b8",
+      "after": "bf6ccf51553210f617cfee5e122a9cfae2e2108a6c6c00a0db00c68e0b8488ab"
+    },
+    "NamePlates/Level.lua": {
+      "before": "06294d4df36494476aeed393de10ce7fa33bb61150c931391371c196f8601b24",
+      "after": "d051df80b887b3ec77d17ff5b1d6aebe15d6c9cf9550016813c346ef9fa5be66"
+    },
+    "NamePlates/CastBarSchools.lua": {
+      "before": "dff5b696955e472ec23798e9cf41ec385612a92fda7526a074900ba37442c3b7",
+      "after": "2c5839f551f08e2340d1dfc3e094b48aa267085c78d4eed858f0f14657899a10"
+    },
+    "NamePlates/Countdown.lua": {
+      "before": "97a9ba074ed46b84dbe7122dd5dcf05c7e884f0c4756f7d203881dd3983312b5",
+      "after": "10ab6f9e8584b1e70f42afc25218c4e2024c12566ed216d20f63d3ce9fff2f2c"
+    },
+    "BlizzardSettings/Nameplates.lua": {
+      "before": "6d674cf1729939e23af429d067a19e25fd727a01894a9f379c954feca61aa03b",
+      "after": "a694f850d6274e2d1a8f4f2c525eede2960ee194f5e8c621b39eb5122bf5be59"
+    },
+    "AddonOptions/FluxOptions.lua": {
+      "before": "638e115a813df1c90f6ab90838d1b00d621cce3c00514eaa531599e75e9dd7ac",
+      "after": "0e00ce1e300f94b70dd50218fb85995c55a9937b28aaf08c849750cb645a3537"
+    },
+    "AddonOptions/FluxOptionsNameplates.lua": {
+      "before": "57981c8eb553aa0b28052c36b01cb9b4822d3a67ca0899fb3dfaf5ed21dcd56f",
+      "after": "c2200046a0105f348bb68fd1c9132fb4ad3676fd4ca024f239278d25fbb48833"
+    },
+    "AddonOptions/FluxOptionsRender.lua": {
+      "before": "35b6e64631042d69276d42381f1ed4a388307b20d6eb10106ec70a76e974750a",
+      "after": "36a5d6b3797200fa0e588b142c4d298d3efb4db563d008d60ce36d5988311c45"
+    },
+    "AddonOptions/FluxOptionsShell.lua": {
+      "before": "849a60cebc3fea47bad0550488b1e784c8b4146ba4a82053f0f124faba85b393",
+      "after": "4eb179bbf9143d0c461e56a8aa76b009845b5c64353da7520661f861dcaa5656"
+    },
+    "AddonOptions/FluxOptionsNameplatePreview.lua": {
+      "before": "8f8e774a239a288310cdf55ed8a8a483d3edf6f20ef07347327fa070908d21e1",
+      "after": "63d939941b721ade12540d0443c5d5b0ffcc6d4c7b389388dad7a4323f7e8010"
+    },
+    "Texture/QuestSlay.blp": {
+      "before": "1a5ab061ac2649cf1953e1ebb82ed9cf957b15937fdf77711861c69038b6db08",
+      "after": "1a5ab061ac2649cf1953e1ebb82ed9cf957b15937fdf77711861c69038b6db08"
+    },
+    "Texture/QuestLoot.blp": {
+      "before": "237974b610c9d3304084b783b35d9021138a7f40d3961c621d1e04accd527e5b",
+      "after": "237974b610c9d3304084b783b35d9021138a7f40d3961c621d1e04accd527e5b"
+    }
+  },
+  "testSourceSha256": {
+    "Bars/_tmp_barsmoke.lua": "f50cee2aa55caa174c64d43f595fb9555e2fa99f0ba0415ef94ed11d05cbfa98",
+    "NamePlates/_tmp_combosmoke.lua": "34b2be7732c5c21f7674392564c59e41264760d6fba8c45d2c63d770e61a00f8",
+    "tests/nameplate_appearance.lua": "bfb8aac8ee197e5a028877ac1989491829bbcf578e04a5ed0f1d30ed9131e104",
+    "tests/nameplate_castbar_schools.lua": "786234c7b4325a06ddfdf5f4385b9294ce81bf53f1c86db530474f53ac1c2f53",
+    "tests/nameplate_client_compat.lua": "19aa339cf70f003544e4d91d1fc8fe92481c2d6804547aeecba2d21ac712ac7d",
+    "tests/nameplate_countdown_work.lua": "14653f7b8db0c1c1744f1b18b61bbad4f76a17538758b96e6c9c3c45453b56ab",
+    "tests/nameplate_quest_progress.lua": "17a187415596ec29e29ad0575eba4758e50fe6f942a96198b69d83becd494c41",
+    "tests/nameplate_refresh_batch.lua": "ff4b60485493f5ac202b3ccee9e3638a690380be0ef60568d8e9267485cf103f",
+    "tests/options_navigation.lua": "e6fd9fa03eb7060976586a20dbe74641fc36a4f0c530c6b75cab2c9224399675",
+    "tests/options_rework.lua": "1dc26ce3d49c2a5155c5c9a7be1e27095cfcbefb548f85513ec4cd1a0694169a",
+    "tests/passive_nameplate_metric_recovery.lua": "0220e4440bfb62936a784be965df5d3ec7ee0f7acffd80cc76ee1ec761cb854d",
+    "tests/passive_nameplate_optimization.lua": "a3e72b21357a14509d1a88465479d45cba6475929cf82928c832150677804999",
+    "tests/passive_threat_rank.lua": "02bee63239bcbaf12956485eeb1c7110df1942d4238f0f4faaf4134dc5ba4f20",
+    "tests/raid_nameplate_defaults.lua": "23949fd0547a981fbfbff5437762e4e15d5433618cdb79df7e4b17b389c1b057",
+    "tests/threat_warning_visibility.lua": "c539ab5bbcbdb04f88d200bb5b33fef46186a451ba4c73c06798fc74cff5c069"
+  },
+  "installedVerification": {
+    "_retail_": {
+      "matches": 15,
+      "mismatches": [],
+      "remainingRemovedPaths": []
+    },
+    "_forever_": {
+      "matches": 15,
+      "mismatches": [],
+      "remainingRemovedPaths": []
+    },
+    "_classic_": {
+      "matches": 15,
+      "mismatches": [],
+      "remainingRemovedPaths": []
+    },
+    "_classic_era_": {
+      "matches": 15,
+      "mismatches": [],
+      "remainingRemovedPaths": []
+    },
+    "_anniversary_": {
+      "matches": 15,
+      "mismatches": [],
+      "remainingRemovedPaths": []
+    }
+  },
+  "testRuns": [
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/nameplate_appearance.lua",
+      "summary": "PASS nameplate appearance: 134 checks across five client models; native rendering pending"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/nameplate_client_compat.lua",
+      "summary": "PASS nameplate client compatibility: 40 desktop checks"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/nameplate_quest_progress.lua",
+      "summary": "QUEST_PROGRESS checks=1261 failures=0 native_pixels_taint_performance=NOT_RUN"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/nameplate_refresh_batch.lua",
+      "summary": "QUEST_PROGRESS checks=1491 failures=0 native_pixels_taint_performance=NOT_RUN"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/nameplate_castbar_schools.lua",
+      "summary": "PASS nameplate cast-bar themes: 56 checks; native taint/pixels pending"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/nameplate_countdown_work.lua",
+      "summary": "Nameplate countdown work: 1245 checks, 0 failures"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/options_navigation.lua",
+      "summary": "Options navigation: 7996 checks; actual builders mapped across five client contracts; native rendering pending"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/options_rework.lua",
+      "summary": "Options rework: 1343 checks; complete shell/renderer/widgets and menu lifecycle across five client models; native acceptance pending"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/passive_nameplate_optimization.lua",
+      "summary": "PASS: 6 actual-module scenarios; 60 checks; no native FPS or CPU measurement"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/passive_nameplate_metric_recovery.lua",
+      "summary": "PASS: 6 actual-module scenarios; 106 checks; no native FPS or CPU measurement"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/passive_threat_rank.lua",
+      "summary": "PASS threat rank: 1916 actual-code checks; native secret permissions/FPS not measured"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/raid_nameplate_defaults.lua",
+      "summary": "raid and nameplate defaults: 20 checks passed"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/threat_warning_visibility.lua",
+      "summary": "Shared threat warning visibility: 870 checks across five client models; native acceptance pending"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "NamePlates/_tmp_combosmoke.lua",
+      "summary": "Nameplate combos OK: Era/Anniversary/Forever native templates; target-only top-of-health anchors; zero/gains/spends/transfers; combat/forms/vehicles; secret counts; removal/reuse; native frames untouched; independent of unit-frame options"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "Bars/_tmp_barsmoke.lua",
+      "summary": "          VFX continues or appears/clears with the visible face"
+    },
+    {
+      "lua": "Lua 5.1",
+      "file": "tests/nameplate_appearance.lua",
+      "summary": "PASS nameplate appearance: 134 checks across five client models; native rendering pending"
+    },
+    {
+      "lua": "Lua 5.1",
+      "file": "tests/nameplate_client_compat.lua",
+      "summary": "PASS nameplate client compatibility: 40 desktop checks"
+    }
+  ],
+  "syntaxChecks": 24,
+  "pairedDesktopReplay": {
+    "scope": "Twenty mock native plates per client. Identical fixture starts the addon and advances 144 modeled frames. Counts only.",
+    "pairs": 3,
+    "beforeStableCounts": {
+      "Retail": {
+        "loginWidgetCreations": 2202,
+        "claimedPlates": 20,
+        "cvarWrites": 0,
+        "hitboxWrites": 0,
+        "healthQueries": 80,
+        "auraQueries": 0
+      },
+      "Forever": {
+        "loginWidgetCreations": 2202,
+        "claimedPlates": 20,
+        "cvarWrites": 0,
+        "hitboxWrites": 0,
+        "healthQueries": 80,
+        "auraQueries": 0
+      },
+      "Mists": {
+        "loginWidgetCreations": 4442,
+        "claimedPlates": 20,
+        "cvarWrites": 0,
+        "hitboxWrites": 0,
+        "healthQueries": 80,
+        "auraQueries": 20
+      },
+      "Era": {
+        "loginWidgetCreations": 4442,
+        "claimedPlates": 20,
+        "cvarWrites": 0,
+        "hitboxWrites": 0,
+        "healthQueries": 80,
+        "auraQueries": 20
+      },
+      "Anniversary": {
+        "loginWidgetCreations": 4442,
+        "claimedPlates": 20,
+        "cvarWrites": 0,
+        "hitboxWrites": 0,
+        "healthQueries": 80,
+        "auraQueries": 20
+      }
+    },
+    "afterStableCounts": {
+      "Retail": {
+        "loginWidgetCreations": 0,
+        "claimedPlates": 0,
+        "cvarWrites": 0,
+        "hitboxWrites": 0,
+        "healthQueries": 0,
+        "auraQueries": 0
+      },
+      "Forever": {
+        "loginWidgetCreations": 0,
+        "claimedPlates": 0,
+        "cvarWrites": 0,
+        "hitboxWrites": 0,
+        "healthQueries": 0,
+        "auraQueries": 0
+      },
+      "Mists": {
+        "loginWidgetCreations": 0,
+        "claimedPlates": 0,
+        "cvarWrites": 0,
+        "hitboxWrites": 0,
+        "healthQueries": 0,
+        "auraQueries": 0
+      },
+      "Era": {
+        "loginWidgetCreations": 0,
+        "claimedPlates": 0,
+        "cvarWrites": 0,
+        "hitboxWrites": 0,
+        "healthQueries": 0,
+        "auraQueries": 0
+      },
+      "Anniversary": {
+        "loginWidgetCreations": 0,
+        "claimedPlates": 0,
+        "cvarWrites": 0,
+        "hitboxWrites": 0,
+        "healthQueries": 0,
+        "auraQueries": 0
+      }
+    },
+    "rawFile": "restored-nameplate-pairs.json",
+    "rawSha256": "82a7091ac70fa85001430d933ff72f2a33855f1dd34115c51f06a31a85c2306c",
+    "fixtureSha256": "2d8421d15c80ed270897b71e8a328c12fed23d0060dc03627ad24868741b65d5"
+  },
+  "removedFromAddon": {
+    "files": 44,
+    "backupIncludesOriginalLicenseNotices": true
+  },
+  "native": {
+    "status": "Pending current loaded candidate view, combat permissions, controller and pixel comparison",
+    "observed": "Forever executable/window confirmed without input or focus change. No post-change live rendering sampled."
+  }
+}

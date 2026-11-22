@@ -1,5 +1,20 @@
 # Vendor, junk, tier targets, and bank restock
 
+22 November. Eligible vendor and bank requirements can combine the
+shared material demand from different Flowcraft crafts. Merchant bundles
+and bank stock use the live limits on each accepted request. A verified
+receipt is credited across the orders in their accepted amounts. The
+merchant group can include an auction requirement with an approved
+merchant fallback.
+[Validation](CLIENT_VALIDATION.md#shared-queued-craft-materials).
+
+22 November. Accepted Auction Restock craft ingredients are temporary
+Vendor Restock targets. The existing merchant buyer checks and fills
+the eligible material shortages with or without FluxLogistics loaded.
+[Validation](CLIENT_VALIDATION.md#craft-materials-in-vendor-restock).
+
+22 November. Pending, paused and unresolved FluxLogistics craft steps temporarily protect their exact ingredients from Junk, including precrafted intermediates still needed in the queue. Junk actions and final merchant checks agree. Existing marks remain saved and become effective again after release. [Validation](CLIENT_VALIDATION.md#craft-queue-junk-protection).
+
 <!-- LHO-VENDOR-FIELDS-ONCE-20261119 -->
 19 November. The shared item name, link, quality and icon reader reuses a complete tuple when the two item metadata APIs are aliases. Distinct providers and incomplete records continue through their existing lookups. The direct Forever comparison matched all 42 sampled items. [Evidence](validation/vendor-fields-once-2026-11-19.json).
 
@@ -447,6 +462,13 @@ FluxUI extends merchant and bank windows with repairs, junk classification/selli
 `MigrateLegacyStores` now preserves `VendorAuto`, bank snapshots and existing Restock settings. Migration V1 imports validated preferences only when current Restock is absent, and records rollback/archive data in `_FluxUI_CharSavedVars._restockMigrationV1`. It does not replay pending vendor transactions or reinterpret cached bank topology. Old `FluxRestockDB` found in memory is archived inside that declared character root. See the [migration tests/report](43-startup-optimization.md).
 
 ## Merchant lifecycle and automation ordering
+
+21 November. **Auto Restock** buys eligible shortages when enabled, including
+with FluxLogistics registered in Normal or with managed orders disabled.
+Enabled repair runs once at the start of the visit, and automatic buying waits
+for active junk selling to settle. Turning Auto Restock off during the sale
+cancels the deferred automatic purchase. Existing Shift suppression, refill
+thresholds, accepted coverage and conflicting-action guards apply.
 
 [`Vendor/FluxVendorBuy.lua`](../Inventory/Restock/Vendor/FluxVendorBuy.lua) handles `MERCHANT_SHOW`, `MERCHANT_UPDATE`, `MERCHANT_CLOSED`, bag-delayed pulses and merchant busy errors. On open it marks merchant/automation activity, initializes settings, decides whether an item index is needed, and schedules layout. Holding **Shift while opening** suppresses that open's automatic batch. Manual buttons remain separate entry points.
 

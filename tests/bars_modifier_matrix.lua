@@ -143,7 +143,9 @@ local function fixture(column, layout, shape)
     state.HeaderFor(column, "main"):SetFrameRef("keyer-" .. column, keyer)
     if state.SyncMainKeyer then state.SyncMainKeyer(hosts.main.widget, keyer) end
     local function slots(page)
-        return { main = column <= 12 and (page - 1) * 12 + column or column,
+        local main = column
+        if column <= 12 and (page ~= 2 or column >= 8) then main = (page - 1) * 12 + column end
+        return { main = main,
             sec = column <= 12 and 60 + column or 36 + column, tert = 24 + column }
     end
     local function programKind(slot, page)

@@ -8,6 +8,7 @@ local API = ns.API or {}
 local FLUX_API = FLUX_API or {}
 local Border = ns.Border
 local AuraOwn = UF.AuraOwn
+local Aura = ns.Flux and ns.Flux.Aura
 
 -- Local IsSecretValue function for safety checks
 local function IsSecretValue(value)
@@ -449,7 +450,15 @@ local function ApplyAuraFitToBorderedContainer(container, visibleCount)
         local btn = container.buttons[i]
         if btn and btn._fluxAuraBaseW and btn._fluxAuraBaseH then
             local s = GetAuraButtonFitScale(container, btn, fit)
-            btn:SetSize(btn._fluxAuraBaseW * s, btn._fluxAuraBaseH * s)
+            local width, height = btn._fluxAuraBaseW * s, btn._fluxAuraBaseH * s
+            btn:SetSize(width, height)
+            if btn.DispelTypeIcon then
+                local iconSize = math.min(width, height)
+                if btn._fluxDispelIconSize ~= iconSize then
+                    Aura.LayoutDispelTypeIcon(btn.DispelTypeIcon, btn, iconSize)
+                    btn._fluxDispelIconSize = iconSize
+                end
+            end
         end
     end
 end
@@ -489,7 +498,6 @@ end
 
 -- Returns validated dispel name for border coloring, or nil if non-dispellable/secret
 local function GetSafeDispelNameForColor(dispelName)
-    if not dispelName then return nil end
     if IsSecretValue and IsSecretValue(dispelName) then return nil end
     if canaccessvalue and not canaccessvalue(dispelName) then return nil end
     local normalized = NormalizeDispelName(dispelName)
@@ -701,10 +709,15 @@ end
 
 local function ApplyDebuffDispelVisuals(button, unit, data, container)
     if not button or container.containerType ~= "Debuff" then return end
-    if button._dispelStickyKey ~= data.auraInstanceID then
-        button._dispelStickyKey = data.auraInstanceID
+    local auraID = data.auraInstanceID
+    if IsSecretValue(auraID) or type(auraID) ~= "number" then auraID = nil end
+    if not auraID or button._dispelStickyKey ~= auraID then
+        button._dispelStickyKey = auraID
         button._lastDispelBorderRGBA = nil
         button._lastOverlayRGBA = nil
+    end
+    if button.DispelTypeIcon then
+        Aura.SetDispelTypeIcon(button.DispelTypeIcon, data.dispelName)
     end
     local curve = GetFluxDispelColorCurve()
     local r, g, b, a = ResolveAuraDispelColor(unit, data, curve)
@@ -770,7 +783,9 @@ local auraCache = {}
 
 -- Aura button creation and management
 local function CreateAuraButton(parent, index)
-    local button = CreateFrame("Button", parent:GetName() .. "AuraButton" .. index, parent, "BackdropTemplate")
+    local preview = parent._fluxIndividualPreview
+    local name = not preview and parent:GetName() .. "AuraButton" .. index or nil
+    local button = CreateFrame("Button", name, parent, "BackdropTemplate")
     button:SetSize(DEFAULT_AURA_SIZE, DEFAULT_AURA_SIZE)
     button:SetFrameLevel(parent:GetFrameLevel() + 1) -- Ensure button is clickable
 
@@ -780,7 +795,7 @@ local function CreateAuraButton(parent, index)
     button.Icon:SetTexCoord(0.07, 0.93, 0.07, 0.93)
 
     -- Cooldown frame (for duration)
-    button.Cooldown = CreateFrame("Cooldown", "$parentCooldown", button, "CooldownFrameTemplate")
+    button.Cooldown = CreateFrame("Cooldown", not preview and "$parentCooldown" or nil, button, "CooldownFrameTemplate")
     button.Cooldown._fluxAuraContainer = parent
     button.Cooldown:SetAllPoints()
     button.Cooldown:SetDrawEdge(false)
@@ -791,6 +806,11 @@ local function CreateAuraButton(parent, index)
     local countFrame = CreateFrame("Frame", nil, button)
     countFrame:SetAllPoints(button)
     countFrame:SetFrameLevel(button:GetFrameLevel() + 2) -- Above cooldown but button still clickable
+    if parent.containerType == "Debuff" and Aura and Aura.CreateDispelTypeIcon then
+        local iconSize = parent.size or DEFAULT_AURA_SIZE
+        button.DispelTypeIcon = Aura.CreateDispelTypeIcon(button, countFrame, iconSize)
+        button._fluxDispelIconSize = iconSize
+    end
 
     button.Count = countFrame:CreateFontString(nil, "OVERLAY", "NumberFontNormal")
     button.Count:SetPoint("BOTTOMRIGHT", countFrame, "BOTTOMRIGHT", -1, 0)
@@ -807,14 +827,6 @@ local function CreateAuraButton(parent, index)
     button.Overlay:SetAllPoints()
     button.Overlay:SetTexCoord(0.296875, 0.5703125, 0, 0.515625)
 
-    -- Stealable texture
-    button.Stealable = button:CreateTexture(nil, "OVERLAY")
-    button.Stealable:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame-Stealable")
-    button.Stealable:SetPoint("TOPLEFT", -3, 3)
-    button.Stealable:SetPoint("BOTTOMRIGHT", 3, -3)
-    button.Stealable:SetBlendMode("ADD")
-    button.Stealable:SetAlpha(0) -- Initialize as hidden to prevent first-target glow
-
     -- Border frame
     button.Border = CreateFrame("Frame", nil, button, "BackdropTemplate")
     button.Border:SetAllPoints()
@@ -824,6 +836,23 @@ local function CreateAuraButton(parent, index)
         insets = {left = 0, right = 0, top = 0, bottom = 0}
     })
     button.Border:SetBackdropBorderColor(0, 0, 0, 1)
+
+    if preview then
+        button.Cooldown:Hide()
+        button.Duration = countFrame:CreateFontString(nil, "OVERLAY", "NumberFontNormal")
+        button.Duration:SetPoint("CENTER")
+        button.Duration:SetFont("Fonts\\FRIZQT__.TTF", countFont, "OUTLINE")
+        button:EnableMouse(false)
+        return button
+    end
+
+    -- Stealable texture
+    button.Stealable = button:CreateTexture(nil, "OVERLAY")
+    button.Stealable:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame-Stealable")
+    button.Stealable:SetPoint("TOPLEFT", -3, 3)
+    button.Stealable:SetPoint("BOTTOMRIGHT", 3, -3)
+    button.Stealable:SetBlendMode("ADD")
+    button.Stealable:SetAlpha(0) -- Initialize as hidden to prevent first-target glow
 
     -- Tooltip - Use the same priority system as Blizzard for maximum compatibility
     button:SetScript("OnEnter", function(self)
@@ -1407,6 +1436,7 @@ local function ShouldAurasAnchorAboveUnit(frame)
     if frame.unit == "focus" or frame.auraFrameAboveUnit == true then
         return true
     end
+    if frame._fluxIndividualPreview then return false end
     if frame.unit ~= "target" then
         return false
     end
@@ -1657,7 +1687,7 @@ function UF.UpdateAuraPosition(frame)
         PositionAurasInBorderedContainer(frame.DebuffContainer)
     end
 
-    if UF.UpdateAuras then
+    if not frame._fluxIndividualPreview and UF.UpdateAuras then
         UF.UpdateAuras(frame)
     end
 end
@@ -1836,14 +1866,17 @@ end
 local function CreateBorderedAuraContainer(frame, containerType, maxAuras, aurasPerRow, size, spacing, extra)
     extra = extra or {}
     -- Create main container
-    local containerName = frame:GetName() .. containerType .. "Container"
+    local preview = frame._fluxIndividualPreview
+    local containerName = not preview and frame:GetName() .. containerType .. "Container" or nil
     local container = CreateFrame("Frame", containerName, frame)
+    container._fluxIndividualPreview = preview
 
     local containerWidth, containerHeight = ComputeAuraContainerWidthHeight(frame, size, nil)
 
     container:SetSize(containerWidth, containerHeight)
     container._fluxAuraPanelWidth = containerWidth
-    container:SetFrameStrata("MEDIUM")
+    container:SetFrameStrata(preview and frame:GetFrameStrata() or "MEDIUM")
+    if preview then container:SetFrameLevel(frame:GetFrameLevel() + 40) end
 
     -- Container properties
     container.buttons = {}
@@ -1863,12 +1896,12 @@ local function CreateBorderedAuraContainer(frame, containerType, maxAuras, auras
     container._fluxAuraTimersUnderMinute = extra.timersUnderMinute == true
 
     -- Create border frame (battlefield style) - exactly like old version
-    local borderFrame = CreateFrame("Frame", containerName .. "Border", container)
+    local borderFrame = CreateFrame("Frame", containerName and containerName .. "Border", container)
     borderFrame._FluxBorderAuraPanel = true
     borderFrame:SetSize(containerWidth, containerHeight)
     borderFrame:SetPoint("CENTER", container, "CENTER", 0, 0)
-    borderFrame:SetFrameStrata("BACKGROUND")
-    borderFrame:SetFrameLevel(0)
+    borderFrame:SetFrameStrata(preview and container:GetFrameStrata() or "BACKGROUND")
+    borderFrame:SetFrameLevel(preview and container:GetFrameLevel() or 0)
     borderFrame:EnableMouse(false) -- Don't intercept mouse events from aura buttons
 
     -- Add battlefield-style border textures - exactly like old version
@@ -1988,7 +2021,7 @@ local function CreateBorderedAuraContainer(frame, containerType, maxAuras, auras
     end
 
     -- Create buttons (Classic / Lua path). Midnight uses Blizzard AuraContainer.
-    if UF.UseEngineAuras and UF.UseEngineAuras() and UF.AttachEngineAuras then
+    if not preview and UF.UseEngineAuras and UF.UseEngineAuras() and UF.AttachEngineAuras then
         if not UF.AttachEngineAuras(container, frame) then
             for i = 1, maxAuras do
                 local button = CreateAuraButton(container, i)
@@ -2084,6 +2117,109 @@ PositionAurasInBorderedContainer = function(container)
             currentX = currentX + buttonSize + spacingX
         end
     end
+end
+
+local PREVIEW_AURAS = {
+    Buff = {
+        { "Spell_Holy_PowerWordFortitude", 120 },
+        { "Spell_Nature_Rejuvenation", 8, nil, 2 },
+        { "Spell_Holy_BlessingOfProtection", 2.8 },
+    },
+    Debuff = {
+        { "Spell_Shadow_ShadowWordPain", 12, "Magic" },
+        { "Ability_Rogue_Rupture", 3.4, "Bleed", 2 },
+        { "Spell_Nature_CorrosiveBreath", 62, "Poison" },
+    },
+}
+
+function UF.PaintOptionsAuraCountdown(icon, duration, elapsed, underMinute, stacks)
+    local quarter = math.floor(elapsed * 4)
+    local tick = quarter / 4
+    if icon._fluxPreviewAuraTick == quarter and elapsed > 0 then return end
+    icon._fluxPreviewAuraTick = quarter
+    local remaining = math.max(0, duration - tick)
+    local label = icon.Duration or icon.Cooldown._fluxDurationFS
+    local text = ""
+    if remaining >= 60 then
+        if not underMinute then text = string.format("%.0fm", remaining / 60) end
+    elseif remaining >= 10 then
+        text = string.format("%.0f", remaining)
+    elseif remaining > 0 then
+        text = string.format("%.1f", remaining)
+    end
+    label:SetText(text)
+    label:SetShown(text ~= "")
+    icon.Count:SetText(stacks and tostring(stacks + math.floor(tick / 1.25)) or "")
+    icon:SetAlpha(math.min(1, remaining * 2))
+end
+
+function UF.PaintIndividualPreviewAuraValues(frame, elapsed)
+    for kind, samples in pairs(PREVIEW_AURAS) do
+        local panel = frame[kind .. "Container"]
+        if panel and panel:IsShown() then
+            for i = 1, panel._fluxPreviewAuraCount or 0 do
+                local aura = samples[i]
+                UF.PaintOptionsAuraCountdown(panel.buttons[i], aura[2], elapsed, panel._fluxAuraTimersUnderMinute, aura[4])
+            end
+        end
+    end
+end
+
+local function PaintPreviewAuraPanel(frame, kind, enabled, config, showExamples)
+    local field = kind .. "Container"
+    local panel = frame[field]
+    if not enabled then
+        if panel then panel:Hide() end
+        return
+    end
+
+    local samples = PREVIEW_AURAS[kind]
+    if not panel then
+        panel = CreateBorderedAuraContainer(frame, kind, #samples, config.perRow, config.size, config.spacing, {
+            growUpward = ShouldAurasAnchorAboveUnit(frame),
+        })
+        frame[field] = panel
+    end
+    panel._fluxAuraBaseSize = config.size
+    panel._fluxAuraBaseSpacing = config.spacing
+    panel._fluxAuraMinPx = config.minAuraPx
+    panel._fluxLockOwnDebuffSize = config.lockOwnDebuffSize
+    panel._fluxOwnDebuffMinScale = config.ownDebuffMinScale
+    if frame._fluxFocusAuraPanelScale and panel:GetScale() ~= frame._fluxFocusAuraPanelScale then
+        panel:SetScale(frame._fluxFocusAuraPanelScale)
+    end
+    RefreshBorderedAuraContainerDimensions(panel)
+
+    local count = showExamples and math.min(config.max, #samples) or 0
+    local underMinute = config.timersUnderMinute == true
+    panel._fluxPreviewAuraCount = count
+    panel._fluxAuraTimersUnderMinute = underMinute
+    for i, button in ipairs(panel.buttons) do
+        if i <= count then
+            local aura = samples[i]
+            button.Icon:SetTexture("Interface\\Icons\\" .. aura[1])
+            UF.PaintOptionsAuraCountdown(button, aura[2], 0, underMinute, aura[4])
+            local own = kind == "Debuff" and i == 1
+            button._fluxIsPlayerDebuff = own or nil
+            button._fluxAuraBaseW, button._fluxAuraBaseH = GetAuraButtonBaseDimensions(panel, own)
+            if kind == "Debuff" then
+                ApplyDebuffDispelVisuals(button, nil, { dispelName = aura[3] }, panel)
+            else
+                button.Overlay:Hide()
+            end
+        end
+        button:SetShown(i <= count)
+    end
+    if count > 0 then ApplyAuraFitToBorderedContainer(panel, count) end
+    panel:Show()
+end
+
+function UF.PaintIndividualPreviewAuras(frame, settings, showExamples)
+    if not frame._fluxIndividualPreview or (frame.unit ~= "target" and frame.unit ~= "focus") then return end
+    local buffs, debuffs = FluxUnitFrames_GetAuraConfigTables(frame.unit)
+    PaintPreviewAuraPanel(frame, "Buff", not settings or settings.showBuffs ~= false, buffs, showExamples)
+    PaintPreviewAuraPanel(frame, "Debuff", not settings or settings.showDebuffs ~= false, debuffs, showExamples)
+    UF.UpdateAuraPosition(frame)
 end
 
 --- Rebuild aura panels when icon caps increase; otherwise UF.EnableAuras updates sizes/spacing on existing containers.

@@ -43,14 +43,20 @@ function A.VendorOfferAllowed(id, offer)
         and (not offer.commodity or BelowVendor(offer.unitPrice, 1, price, numerator, denominator))
 end
 
-function A.FilterVendorOffers(id, offers, commodity)
+function A.FilterVendorOffers(id, offers, commodity, useAcceptedLimits)
     if not A.HasUnlimitedVendor(id) then return offers end
-    local price, filtered = A.VendorPrice(id), {}
-    if not price or price <= 0 then return filtered end
-    local numerator, denominator = A.VendorTerms(id)
+    local filtered, price, numerator, denominator = {}
+    if not useAcceptedLimits then
+        price = A.VendorPrice(id)
+        if not price or price <= 0 then return filtered end
+        numerator, denominator = A.VendorTerms(id)
+    end
     for _, offer in ipairs(offers or {}) do
-        if UsableOffer(id, offer, commodity) and (commodity and BelowVendor(offer.unitPrice, 1, price, numerator, denominator)
-            or not commodity and BelowVendor(offer.total, offer.quantity, price, numerator, denominator)) then filtered[#filtered + 1] = offer end
+        if UsableOffer(id, offer, commodity) and (useAcceptedLimits
+            or commodity and BelowVendor(offer.unitPrice, 1, price, numerator, denominator)
+            or not commodity and BelowVendor(offer.total, offer.quantity, price, numerator, denominator)) then
+            filtered[#filtered + 1] = offer
+        end
     end
     return filtered
 end

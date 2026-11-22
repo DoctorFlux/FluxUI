@@ -32,6 +32,7 @@ local hoverTicker
 local boot
 local SIDE_SCALE_BASIS = 0.85
 local SIDE_SCALE_VERSION = 2
+local GRID_FRAME_LEVEL = 25
 local defaults = {
     count = 15,
     sideEnabled = false, sideScale = 100,
@@ -364,11 +365,12 @@ function M:CreateContainer()
     if InCombat() then return nil end
     containerFrame = CreateFrame("Frame", "FluxMinimapButtonsContainer", UIParent)
     containerFrame:SetFrameStrata("MEDIUM")
-    containerFrame:SetFrameLevel(25)
+    containerFrame:SetFrameLevel(GRID_FRAME_LEVEL)
     containerFrame:SetSize(1, 1)
     containerFrame:Hide()
     visibilityFrame = CreateFrame("Frame", "FluxMinimapButtonsVisibility", containerFrame, "SecureHandlerStateTemplate")
     visibilityFrame:SetAllPoints(containerFrame)
+    visibilityFrame:SetFrameStrata("MEDIUM")
     return containerFrame
 end
 
@@ -488,6 +490,48 @@ function M:GetEmbeddedWidthReserve(width, inset)
     return math.min(width * 0.4, CONFIG.ButtonSize * CONFIG.Scale)
 end
 
+local function OverlappingMinimapLevel(frame, level, left, bottom, right, top, uiScale)
+    if not frame then return level end
+    local visible, strata = frame:IsVisible(), frame:GetFrameStrata()
+    if (issecretvalue and (issecretvalue(visible) or issecretvalue(strata)))
+        or not visible or strata ~= "MEDIUM" then return level end
+    local x, y, w, h = frame:GetRect()
+    local scale, frameLevel = frame:GetEffectiveScale(), frame:GetFrameLevel()
+    if issecretvalue and (issecretvalue(x) or issecretvalue(y) or issecretvalue(w) or issecretvalue(h)
+        or issecretvalue(scale) or issecretvalue(frameLevel)) then return level end
+    if not x or not y or not w or not h or w <= 0 or h <= 0 then return level end
+    scale = scale / uiScale
+    if x * scale < right and (x + w) * scale > left and y * scale < top and (y + h) * scale > bottom then
+        return math.max(level, frameLevel)
+    end
+    return level
+end
+
+local function SideGridLevel(width, height, top)
+    -- Only the top mouseover layout shares space with the normal minimap.
+    if M:GetSetting("sideStart") ~= "top" or M:GetSetting("sideVisibility") ~= "mouseover" then
+        return GRID_FRAME_LEVEL
+    end
+    local right = UIUnits(UIParent, "GetRight") or UIParent:GetWidth()
+    local left, bottom = right - width, top - height
+    local uiScale = UIParent:GetEffectiveScale()
+    local info = FluxMinimap and FluxMinimap.InfoBar
+    local tracking = MinimapCluster and MinimapCluster.Tracking or MiniMapTracking or MiniMapTrackingButton
+    local level = OverlappingMinimapLevel(MinimapCluster, GRID_FRAME_LEVEL, left, bottom, right, top, uiScale)
+    level = OverlappingMinimapLevel(Minimap, level, left, bottom, right, top, uiScale)
+    level = OverlappingMinimapLevel(tracking, level, left, bottom, right, top, uiScale)
+    if info then
+        level = OverlappingMinimapLevel(info.FluxBorderFrame or info, level, left, bottom, right, top, uiScale)
+        level = OverlappingMinimapLevel(info.ZoneHit, level, left, bottom, right, top, uiScale)
+        level = OverlappingMinimapLevel(info.ClockButton, level, left, bottom, right, top, uiScale)
+    end
+    return math.min(65530, level)
+end
+
+local function SetLayerLevel(frame, level)
+    if frame:GetFrameLevel() ~= level then frame:SetFrameLevel(level) end
+end
+
 function M:LayoutSlots()
     if InCombat() then self:RequestRefresh(); return end
     if not containerFrame or not layoutMode then return end
@@ -498,13 +542,6 @@ function M:LayoutSlots()
     local pad = CONFIG.ContainerPadding
     local ebs = Engine()
     local flyout = ebs and ebs.Flyout
-    -- The clock hit region is above the map's ordinary MEDIUM chrome. Side
-    -- buttons must win both drawing and mouse hits, including template widgets
-    -- with their own explicit strata. Embedded buttons retain their HUD layer.
-    local strata = layoutMode == "side" and "HIGH" or "MEDIUM"
-    containerFrame:SetFrameStrata(strata)
-    visibilityFrame:SetFrameStrata(strata)
-    visibilityFrame:SetFrameLevel(containerFrame:GetFrameLevel() + 1)
     local columns, rows, size, top, sideHeight, scale
     if layoutMode == "embedded" then
         local width = embeddedHost:GetWidth()
@@ -517,7 +554,7 @@ function M:LayoutSlots()
         containerFrame:SetParent(embeddedHost)
         containerFrame:SetScale(1)
         containerFrame:ClearAllPoints()
-        containerFrame:SetPoint("TOPRIGHT", embeddedHost, "TOPLEFT", availableWidth, 0)
+        containerFrame:SetPoint("RIGHT", embeddedHost, "LEFT", availableWidth, 0)
     else
         columns, rows, size, top, sideHeight, scale = SideGeometry(count)
         containerFrame:SetParent(UIParent)
@@ -526,15 +563,20 @@ function M:LayoutSlots()
         local screenTop = UIUnits(UIParent, "GetTop") or UIParent:GetHeight()
         containerFrame:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", 0, (top - screenTop) / scale)
     end
-    containerFrame:SetSize(columns * size + pad * 2, rows * size + pad * 2)
+    local width, height = columns * size + pad * 2, rows * size + pad * 2
+    containerFrame:SetSize(width, height)
+    local level = layoutMode == "side" and SideGridLevel(width * scale, height * scale, top) or GRID_FRAME_LEVEL
+    SetLayerLevel(containerFrame, level)
+    SetLayerLevel(visibilityFrame, level + 1)
+    self:UpdateSideBorder()
     for i, btn in ipairs(buttonWidgets) do
         local widget, slot = btn.Widget, btn.SlotFrame
         local position = positions[i]
         if position and size > 0 then
-            slot:SetFrameStrata(strata)
-            slot:SetFrameLevel(visibilityFrame:GetFrameLevel() + 1)
-            widget:SetFrameStrata(strata)
-            widget:SetFrameLevel(slot:GetFrameLevel() + 1)
+            if slot:GetFrameStrata() ~= "MEDIUM" then slot:SetFrameStrata("MEDIUM") end
+            if widget:GetFrameStrata() ~= "MEDIUM" then widget:SetFrameStrata("MEDIUM") end
+            SetLayerLevel(slot, level + 2)
+            SetLayerLevel(widget, level + 3)
             local col, row
             if layoutMode == "embedded" then
                 col, row = (position - 1) % columns, math.floor((position - 1) / columns)
@@ -576,24 +618,25 @@ function M:UpdateSideBorder()
     end
     if not sideBorderHost then
         sideBorderHost = CreateFrame("Frame", "FluxMinimapButtonsSideBorder", visibilityFrame)
-        sideBorderHost._FluxBorderHUD = true -- High-layer HUD chrome may meet the map/window.
         sideBorderHost:SetAllPoints(visibilityFrame)
         sideBorderHost:EnableMouse(false)
-        sideBorderHost:SetFrameStrata("HIGH")
-        sideBorderHost:SetFrameLevel(visibilityFrame:GetFrameLevel())
+        sideBorderHost:SetFrameStrata("MEDIUM")
         local border = FluxBorder:ApplyTo(sideBorderHost)
+        border._FluxBorderOwnLayer = true
         border:EnableMouse(false)
-        border:SetFrameStrata("HIGH")
-        -- Above button art, below the existing flyout arrows (widget + 6).
-        border:SetFrameLevel(visibilityFrame:GetFrameLevel() + 4)
+        border:SetFrameStrata("MEDIUM")
         if border.BackgroundFrame then
             -- FluxBorder's usual BACKGROUND tier would fall behind the map.
             local background = border.BackgroundFrame
             background:EnableMouse(false)
-            background:SetFrameStrata("HIGH")
-            background:SetFrameLevel(visibilityFrame:GetFrameLevel())
+            background:SetFrameStrata("MEDIUM")
         end
     end
+    local border, level = sideBorderHost.FluxBorderFrame, visibilityFrame:GetFrameLevel()
+    SetLayerLevel(sideBorderHost, level)
+    if border.BackgroundFrame then SetLayerLevel(border.BackgroundFrame, level) end
+    -- Place the stroke directly over the button faces in this panel.
+    SetLayerLevel(border, level + 3)
     FluxBorder:SetClassColor(sideBorderHost, 1, true)
     sideBorderHost:Show()
 end
@@ -622,7 +665,7 @@ local function PointerInside(frame, x, y)
         and x >= left and x <= right and y >= bottom and y <= top
 end
 
-local function UpdateMouseover()
+local function UpdateMouseover(deferBorderCommit)
     -- The outer layout root is the hover gate. The inner gate belongs to the
     -- secure combat driver, which must never undo the hover decision each tick.
     -- No transparent clickable buttons: hidden roots also close their flyouts.
@@ -647,10 +690,19 @@ local function UpdateMouseover()
             end
         end
     end
-    if containerFrame:IsShown() ~= shown then containerFrame:SetShown(shown) end
+    if containerFrame:IsShown() == shown then return end
+    containerFrame:SetShown(shown)
+
+    -- Commit after the parent visibility changes so the first visible frame
+    -- uses the settled seam. Layout refreshes commit with their other anchors.
+    local junctions = FluxBorder and FluxBorder.Junctions
+    if sideBorderHost and junctions then
+        junctions:Invalidate(nil, containerFrame, "side button mouseover")
+        if deferBorderCommit ~= true then junctions:CommitLayout() end
+    end
 end
 
-local function ApplyVisibility()
+local function ApplyVisibility(deferBorderCommit)
     local restricted = _G.Flux and Flux.Restricted
     local wantDriver = not IsEmbedded() and layoutMode == "side"
         and M:GetSetting("hideInCombat") and M:CanHideInCombat()
@@ -661,7 +713,7 @@ local function ApplyVisibility()
     end
     if not driverInstalled then visibilityFrame:Show() end
     if UsesMouseover() then
-        UpdateMouseover()
+        UpdateMouseover(deferBorderCommit)
         local timer = _G.Flux and Flux.Timer or C_Timer
         if not hoverTicker and timer and timer.NewTicker then
             hoverTicker = timer.NewTicker(0.1, UpdateMouseover)
@@ -731,8 +783,7 @@ function M:RefreshLayout()
     self:CreateContainer()
     self:CreateButtons()
     self:LayoutSlots()
-    self:UpdateSideBorder()
-    ApplyVisibility()
+    ApplyVisibility(true)
 end
 
 function M:RequestRefresh()

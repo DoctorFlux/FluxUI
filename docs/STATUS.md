@@ -1,5 +1,392 @@
 # Development status
 
+22 November. The Forever mount button dims while dead, released as a ghost
+or on a taxi. It retains the selected action and restores normal usability
+after resurrection. The 317 focused checks and seven related scripts pass.
+Both sources match the Forever install. Native verification is pending.
+[Mount evidence](CLIENT_VALIDATION.md#forever-mount-collection).
+
+22 November. FluxUI gives native page 2 and the seven fixed action
+buttons distinct slots. Columns 1–7 keep their base actions, with native
+page-2 slots 20–24 still assigned to columns 8–12. The shared routing
+repair passes five client models and both routing files match across all
+five installations. Native verification is pending.
+[Validation](CLIENT_VALIDATION.md#action-strip-page-two-ownership).
+
+22 November. The native Battlefield Map holds Area POI updates during
+combat restrictions after Flux has hosted it. Existing pins stay visible.
+A burst of missed updates produces one catch-up after combat for the
+visible map. This covers the reported Forever mouse-propagation and
+button-passthrough blocks. Fresh native validation is pending.
+[Validation](CLIENT_VALIDATION.md#battlefield-map-poi-mouse-actions-in-combat).
+
+22 November. Addressed the reported native meter taint path and the
+rounded border junction crash. Flux requests pane types and guides
+setup through Blizzard’s dropdowns. Addon-driven reveals wait for
+combat restrictions to clear. Rounded cap fill stays in the border
+mesh while straight arms determine fallback ownership. The three
+changed runtime files match across five installs. Fresh native combat,
+controller and border checks are pending.
+[Validation](CLIENT_VALIDATION.md#damage-meter-taint-and-rounded-border-junctions).
+
+22 November. Combat → Nameplates → Auras has **Only show my debuffs**.
+It defaults to off. When enabled, ordinary debuffs and crowd-control
+effects are limited to your character, pet or vehicle where ownership
+can be verified. Native client checks remain pending.
+[Validation](CLIENT_VALIDATION.md#nameplate-debuff-ownership).
+
+22 November. The FluxUI craft reminder docks inside the open profession
+window and keeps its item icon, amount and caption. Flowcraft reserves a
+slot near its craft controls. Standalone FluxUI uses the native window.
+Closing the profession returns the reminder to the HUD.
+Three runtime files match across five installations. Candidate native
+placement and input remain pending.
+[Validation](CLIENT_VALIDATION.md#craft-reminder-in-the-profession-window).
+
+22 November. FluxUI refreshes its companion craft control after the
+bag inventory settles, including when a queued craft is the only
+follow-up. FluxLogistics also rechecks readiness when the native cast
+stops and can prepare the same craft again if its native form is gone.
+Three runtime files match across five installations. Both controls
+were seen on the live eight-craft remainder. A candidate reload and
+click remain pending.
+[Validation](CLIENT_VALIDATION.md#fluxui-continue-craft-button).
+
+22 November. FluxLogistics combines eligible shared material demand
+across queued crafts in Shopping, Vendor Restock and Bank Restock.
+Each order keeps its own accepted requirements and receipts. Four
+runtime files match across five installations. Native acquisition
+verification remains pending.
+[Validation](CLIENT_VALIDATION.md#shared-queued-craft-materials).
+
+22 November. Auction Restock's accepted crafting materials feed
+the ordinary Vendor Restock targets. The merchant buyer fills eligible
+shortages through the same action with or without FluxLogistics.
+Five runtime files match across five installations. Native merchant
+verification remains pending.
+[Validation](CLIENT_VALIDATION.md#craft-materials-in-vendor-restock).
+
+22 November. Flowcraft follows the selected craft's native cast and
+receipt lifecycle. The queue displays the matching client's cast
+duration and each confirmed result updates the remainder. It waits for
+the receipt when the native cast ends first. A prepared craft stays
+available until a matching state change or cancellation. Three runtime
+files match across five installs. Native reload and an eligible craft
+remain pending.
+[Validation](CLIENT_VALIDATION.md#flowcraft-cast-lifecycle).
+
+22 November. Flowcraft shows each order's remaining output and current
+step separately. Clicking a queue row keeps the order selected for
+**Process**. The matching native craft view shows the same step. A stopped
+batch resumes from its verified remainder when eligible. The Restock
+integration fixture refreshes a stale four-pack prompt to two, then
+submits the exact remainder. Five runtime files match across five
+installs. The first Forever reload and Process press started the
+selected three-pack craft. A 30-second watchdog timed out during its
+still-active native cast. The late receipt reduced the displayed count
+to two. The installed watchdog now follows the matching cast's end time
+plus two seconds. Forever reloaded the repair and showed **Count 2**
+for the finished packs. A fresh long-cast verification remains pending.
+[Validation](CLIENT_VALIDATION.md#flowcraft-queue-progress-and-process).
+
+22 November. Flowcraft updates the selected recipe immediately and
+coalesces rapid recipe changes into one plan for the final selection.
+An immediate **Queue** press evaluates the selected recipe. A paired
+40-task desktop burst reduced 12 planner runs to one. The two runtime
+files match across five installed copies. Native timing is pending.
+[Validation](CLIENT_VALIDATION.md#flowcraft-recipe-selection).
+
+22 November. Flowcraft retains verified partial craft progress across
+reload. The older interrupted four-pack order can account for two
+verified carried packs through the selected recovery action and continue
+with the two remaining. The same press can prepare the eligible remainder
+for Blizzard's **Create**. The FluxUI Restock reminder checks that the
+displayed recovery still belongs to the current order before dispatch.
+All 16 companion suites pass and the eight runtime files match across
+five installs. Native reload and recovery checks remain pending.
+[Validation](CLIENT_VALIDATION.md#flowcraft-partial-craft-after-reload).
+
+22 November. The Restock HUD shows named vendor materials and amounts.
+Compatible accepted orders can share a merchant purchase. A press
+rechecks the current vendor stage. All 16 companion suites pass and the
+four changed runtime files match across five installs. Native checks
+remain pending.
+[Validation](CLIENT_VALIDATION.md#grouped-vendor-materials-and-restock-reminder).
+
+22 November. Flowcraft groups compatible active orders and shows their
+combined outstanding output, such as **2× Green Silk Pack**. Shopping
+and Restock can buy eligible shared materials together. All 16 installed
+companion suites pass and the five changed runtime files match across
+five installs. Native checks remain pending.
+[Validation](CLIENT_VALIDATION.md#grouped-flowcraft-orders).
+
+22 November. Restock and FluxLogistics put profession opening after
+material acquisition. Shopping displays observed physical mail from
+the selected inventory provider and can show a warm Syndicator count as
+pending while fresh mail data arrives. Flowcraft uses compact icon rows
+and a shared next-craft action in the workbench and native profession
+window. The eleven changed runtime files match across five installs.
+The focused owner checks and 16 companion suites pass. Native reload,
+provider delivery, interaction and layout remain pending.
+[Validation](CLIENT_VALIDATION.md#acquisition-first-restock-and-flowcraft).
+
+22 November. Fixed stale posted counts in built-in inventory after a sale.
+Retail, Forever and Classic progression use the sale auction ID. Era and
+Anniversary also reconcile name-only notices and sold owner rows. All five
+installed copies match and desktop checks pass. Native sale delivery is pending.
+[Validation](CLIENT_VALIDATION.md#built-in-sold-auction-counts).
+
+22 November. The companion Restock reminder delegates a tracked Forever profession switch to FluxLogistics so the accepted job and recipe follow the player into the new profession. A separate Craft click starts the batch. [Validation](CLIENT_VALIDATION.md#tracked-fluxlogistics-profession-switch).
+
+22 November. The FluxLogistics Restock reminder shows Craft when the exact queued batch qualifies for direct Process. Recipes that need the native profession form continue to show Open recipe. Live execution of the new direct route is pending. [Validation](CLIENT_VALIDATION.md#direct-fluxlogistics-craft-action).
+
+22 November. A background Forever check prepared 25 bolts and Blizzard
+started the craft. Six actual create messages appeared, then Flowcraft
+reported **Check result** without crediting the output. The installed fix
+uses verified carried receipts and a guarded check while the native batch
+continues. **Replan from bags** recovers remaining work while retaining
+the old order's history. The HUD shows a passive prepared caption and
+Flowcraft uses a compact craft dock. Desktop checks pass. The candidate
+awaits live verification.
+[Validation](CLIENT_VALIDATION.md#live-restock-craft-receipts).
+
+22 November. Forever's FluxUI Restock reminder maintains the verified
+**Create** quantity when Blizzard resets the selected recipe's stock
+controls. An edit from the player or a native craft releases that
+quantity. The reminder moves another 12 UI units right and 10 down
+and clears nested Flowchart cards. FluxLogistics now handles early craft
+events from the matching native call and selects a ready step in the
+active job from general Process. Desktop checks pass. Native checks
+remain pending.
+[Validation](CLIENT_VALIDATION.md#restock-native-quantity-after-stock-refresh).
+
+22 November. The Restock reminder stays above the Blizzard profession pane and FluxLogistics workbench. It keeps its rightward and downward offset. FluxLogistics 0.2.42 prepares the exact queued batch for native Create. Native input and stacking remain pending. [Validation](CLIENT_VALIDATION.md#restock-reminder-profession-layer).
+
+22 November. Forever's FluxUI Restock reminder prepares Blizzard's
+**Create** quantity for the exact remaining batch. The paired
+FluxLogistics desktop candidate follows the same accepted job from
+25 bolts to five bags after the carried receipt. Workbench and
+Flowchart share its craft action. Native execution, permissions and
+docked layout remain pending.
+[Validation](CLIENT_VALIDATION.md#bounded-native-restock-craft-batches).
+
+22 November. The Forever Restock craft icon prepares the planned recipe
+for Blizzard's **Create** control. The same handoff covers ordinary FluxUI
+work and the FluxLogistics queue. The desktop craft driver and both-owner
+checks pass. Native recipe selection, placement and output confirmation
+remain pending.
+[Validation](CLIENT_VALIDATION.md#restock-handoff-to-native-create).
+
+22 November. Nameplate aura art and the preview use the reference square bevel
+and mask. Secure harmful icons use Blizzard tooltip hover. Forever's stock
+buffs and fallback debuffs have click-through spell hover. Native appearance
+and input checks remain pending.
+[Validation](CLIENT_VALIDATION.md#nameplate-aura-art-and-hover).
+
+22 November. Accepted modern Auction House searches wait for item-key data and retry one unwitnessed empty result. The owner suite passes 12,708 checks across 46 profiles. [Validation](CLIENT_VALIDATION.md#modern-auction-item-key-handoff).
+
+22 November. The earlier HUD revision introduced a separate profession
+action while mail settled. The current acquisition-first workflow waits
+for carried materials. Both mailbox owners use Auto Collect. The earlier
+desktop checks covered the 28-unit placement and centered item glows.
+[Validation](CLIENT_VALIDATION.md#restock-profession-action-and-mail-auto-collect).
+
+22 November. Retail and Forever can use Blizzard's secure aura engine for
+the typed borders and badges on harmful nameplate rows. The five-client
+desktop checks pass. In-game assignment and rendering remain pending.
+[Validation](CLIENT_VALIDATION.md#secure-nameplate-debuff-and-cc-rows).
+
+22 November. FluxUI protects materials needed by unfinished FluxLogistics crafts from Junk and the merchant sell or destroy queue. The owner uses the existing Restock bridge. Desktop fixtures pass. Native confirmation is pending. [Validation](CLIENT_VALIDATION.md#craft-queue-junk-protection).
+
+22 November. The Restock craft reminder now opens the required Recipes
+page for ordinary FluxUI work and an accepted FluxLogistics queue in
+Forever. A separate companion press starts the craft after the profession
+is ready. Twenty owner desktop profiles pass. Native interaction and
+permissions remain pending.
+[Validation](CLIENT_VALIDATION.md#restock-craft-reminder-opens-professions).
+
+22 November. FluxUI Shopping can quote a material below its known vendor bundle cost. Searches honor the minimum useful quantity forwarded by FluxLogistics. Desktop tests pass for legacy and modern auction searches. [Validation](CLIENT_VALIDATION.md#vendor-bundle-auction-choice).
+
+22 November. Fixed the live artwork path for native nameplate debuffs, NPC
+crowd control and player Loss of Control. The border follows the aura when
+the timer is unavailable. The corner uses the exact readable type.
+[Validation](CLIENT_VALIDATION.md#world-nameplate-debuff-and-cc-artwork).
+
+22 November. An explicit Find offer click can resume a queued auction search after browsing. Shopping can show exact listings when an accepted offer is unavailable. The legacy and modern owner fixtures pass. The player confirmed that Find offer showed Buy and a price in Forever. [Validation](CLIENT_VALIDATION.md#find-offer-after-browsing).
+
+22 November. Fixed the live nameplate type lookup on Forever's first aura
+assignment and on readable instance data. The five-client appearance suite
+now covers both cases. [Validation](CLIENT_VALIDATION.md#live-nameplate-debuff-lookup).
+
+22 November. The existing Restock reminder sits 16 UI units lower. It shows
+actionable Restock offers, explicitly quoted FluxLogistics shopping offers,
+approved incoming items, and ready craft work from either owner. Sixty-one
+desktop fixtures passed. Native layout, collection and crafting remain pending.
+[Validation](CLIENT_VALIDATION.md#restock-reminder-scope-and-placement).
+
+21 November. The Auction House Restock tab now includes temporary materials from accepted FluxLogistics orders. The original purchase button works with the selected temporary row. Incoming units stay visible until the carried receipt. Eighty-two focused desktop checks passed and all five installed sources match.
+
+21 November. Added upper-right debuff type icons and matching borders to
+nameplates, target, focus, the pet aura tooltip, party and raid. The preview
+and five-client desktop checks pass. Native rendering and taint verification
+remain pending. [Validation](CLIENT_VALIDATION.md#debuff-type-corners-and-borders).
+
+21 November. FluxLogistics can compare auction costs for materials and intermediates using the existing Auction House search owner. The original Restock purchase button revalidates the approved quantities and stack limits. Editing a legacy restock preset keeps its Normal target. Desktop tests passed. Live scan and purchase validation remain pending.
+
+21 November. Fixed Nameplates preview creation after WoW reported a missing
+texture template. The preview regression passes on all five desktop client
+models and the installed files match. [Validation](CLIENT_VALIDATION.md#nameplate-preview-texture-creation).
+
+21 November. FluxLogistics shopping can prepare an accepted quote in the open FluxUI Auction House Restock tab. The existing Restock button buys the verified quote. The existing follow-up button can process ready companion work after an auction purchase. Desktop coverage passed and all five installed owner copies match. Native verification of both controls remains pending.
+
+21 November. Live nameplates use the published FluxUI overlays on
+Blizzard's frames. Combat → Nameplates keeps its seven tabs and an
+independent preview. The previous renderer and its bundled media were removed.
+[Validation](CLIENT_VALIDATION.md#published-nameplates-with-the-current-settings).
+
+21 November. Inventory starts the built-in provider when a loaded Syndicator lacks its inventory API or callback registration. Ready Syndicator still owns bags, bank, and mailbox snapshots. Fifty desktop startup checks passed. Native handoff remains pending.
+
+21 November. Tier Restock retains the listing item for a pending Auction House count. The owner and planner count paid receipts once when a still-eligible listing differs from the tier's preferred item. Paired desktop checks passed. Native receipt validation is pending. [Contract](FLUXLOGISTICS_RESTOCK.md#lua-interface-v1).
+
+21 November. The Auction House Restock plans menu and the detached FluxLogistics Shopping List use the same net search quantities. Items already covered by carried stock or pending deliveries leave the owner menu. The paired desktop fixtures passed. Native submenu validation is pending. [Contract](FLUXLOGISTICS_RESTOCK.md#lua-interface-v1).
+
+21 November. Compact Focus now uses the same health and power split as
+player-style Party. The portrait-divider correction keeps the outer lower
+edge continuous with the two aura lanes above the header.
+[Validation](CLIENT_VALIDATION.md#compact-focus-border-and-party-layout).
+
+21 November. Compact Focus health text now follows the visible green bar in
+the HUD and preview. Power text uses its own bar. The five-client anchor
+checks passed. [Validation](CLIENT_VALIDATION.md#compact-focus-health-text-placement).
+
+21 November. A case selector and Play action now use the HUD-style frame
+samples. Target frames can show players and friendly or hostile NPCs. The
+demo can show configured auras, casts, power, heals and absorbs. Party and
+Raid use their existing sample rosters. Playback uses one temporary pane
+driver with a four-second limit. Forever showed the case selector and Player
+mid-playback. [Validation](CLIENT_VALIDATION.md#unit-frame-preview-cases-and-playback).
+
+Earlier on 21 November. Restored the published FluxUI nameplate module and options from
+`1e992c4` at the user's request. The existing mirror propagated the restored
+nameplates to all five installs. Native checks after reload are pending.
+[Restoration evidence](validation/nameplate-restore-2026-11-21.json).
+
+21 November. Individual Frames now shares FluxUI's HUD frame artwork and
+layout for all supported primary and attached frames. The pane shows the
+configured portrait, borders, header, bars, and aura arrangement. The Cast bar
+section displays a static sample in its actual header or Pet power row.
+The focused desktop checks pass. Forever confirmed visible Player and
+Target layouts in the first revision.
+[Requirements and checks](OPTIONS_REWORK.md#individual-frame-preview-parity).
+
+21 November. Craft Shopping honors the queued auction terms when the vendor sells the material in a larger bundle. Desktop fixtures verify the 5-copper single-vial purchase and the rejection of a higher quote. Native purchase confirmation remains pending. [Contract](FLUXLOGISTICS_RESTOCK.md#accepted-auction-prices-for-vendor-goods).
+
+21 November. A failed Syndicator inbox scan no longer holds shopping in the unverified state after the next complete observation. Desktop coverage uses the installed publisher and retains the overlapping-scan checks.
+
+
+21 November. Forever's mount wisp follows personal mounts and stays hidden on
+flight-path taxis. The 283-check mount fixture and three related scripts pass.
+The changed file matches the Forever install. Native taxi boarding and landing
+checks are pending. [Mount evidence](CLIENT_VALIDATION.md#forever-mount-collection).
+
+21 November. Craft Shopping can prepare a single exact auction offer before the player presses Buy Needed. Preparation reuses the owner search with the accepted item, quantity and caps. It preserves a foreign or ordinary Restock session. A player press remains the authority for one modern commodity purchase or one complete legacy listing. After the receipt, verified inbox and carried counts determine the next amount.
+
+21 November. The vendor and bank Restock buttons list current shortages from accepted FluxLogistics crafts. Desktop tests cover temporary targets, merchant pack changes and matching bank stock. Native receipts remain pending. [Contract](FLUXLOGISTICS_RESTOCK.md#queued-craft-materials).
+
+21 November. Unit Frame now has General, Individual Frames and Party &
+Raid. Cast Bars is a General tab, and Nameplates is in Combat. Frame
+sliders apply on pointer release, and the embedded group samples reuse
+stable layout during appearance edits. Forever startup and the player-style
+party sample were observed after reload. Native edit and timing checks remain pending.
+[Requirements and checks](OPTIONS_REWORK.md#three-frame-pages-and-responsive-editing).
+
+Earlier on 21 November. Main and Mini Frames had their own settings pages.
+Party and Raid settings used focused tabs. The right-hand group samples
+use FluxUI's world preview painters and open their component settings
+on click. Native appearance and input checks remain pending.
+[Requirements and acceptance](OPTIONS_REWORK.md#group-preview-parity-and-frame-settings).
+
+21 November. General, Individual Frames, Party Frames and Raid Frames now
+group controls by frame component. The right-hand sample follows the chosen
+unit or roster and opens the corresponding editor when clicked. Buffs and
+debuffs use sample data and refresh after changes. The shell and source
+navigation checks pass across five client models. Native acceptance remains
+pending. [Requirements](OPTIONS_REWORK.md#unit-frame-preview-editor).
+
+21 November. The General countdown setting covers target, focus, both party
+layouts and raid. Native countdown transitions remain pending.
+[Client validation](CLIENT_VALIDATION.md#shared-unit-frame-aura-countdowns).
+
+21 November. Forever preserves the confirmed mount selection in combat and
+shows the wisp while mounted. An already armed native dismount route works in
+the desktop combat model. The 275 focused checks and eight related scripts
+pass. Native clicks and pixels remain pending.
+[Mount evidence](CLIENT_VALIDATION.md#forever-mount-collection).
+
+21 November. Vendor Auto Restock works with FluxLogistics registered in Normal and with managed orders disabled. Enabled repairs and junk selling still run before automatic purchases. The 680-check merchant fixture and 19 related scripts passed. Native confirmation is pending after reload. [Merchant sequencing](20-vendor-restock-junk.md#merchant-lifecycle-and-automation-ordering).
+
+21 November. The FluxLogistics v1 restock bridge shares effective targets, accepted coverage and mode membership across owner views. Desktop restock fixtures cover demand and scoped moves. Native checks are pending. [Contract](FLUXLOGISTICS_RESTOCK.md).
+
+21 November. Forever now preserves and restores its mount action across
+ordinary loading screens. The 239-check desktop replay and nine related
+scripts pass. The installed Forever source matches. Native teleport and
+instance-entry verification remain pending.
+[Mount evidence](CLIENT_VALIDATION.md#forever-mount-collection).
+
+21 November. R193 joins the side-button border to neighboring panels in the
+same mouseover visibility change. The minimap keeps its lower rim and supplies
+the continuous stroke through the junction. The embedded button grid now
+centers vertically beside the map. Native appearance remains pending.
+[Evidence](validation/minimap-hover-dock-r193-2026-11-21.json).
+
+21 November. Mail and tracking now align inside the minimap's lower-right
+rim. Restoring the standalone map resets its header width, both anchors and
+normal layers, including after a queued combat toggle with side buttons off.
+Native appearance and input remain pending.
+[Evidence](validation/minimap-standalone-restore-2026-11-21.json).
+
+21 November. R192 keeps the side grid in MEDIUM and draws the Flux Window and
+side-grid seams on their respective border frames. Native appearance remains
+pending. [Desktop evidence](validation/hud-panel-layers-r192-2026-11-21.json).
+
+21 November. R191 lowers flyout glyphs into their host's stratum and aligns the
+side-grid border with Flux Window at the dock point. Native appearance remains
+pending. [Desktop evidence](validation/hud-layer-dock-r191-2026-11-21.json).
+
+21 November. Forever's mount icon uses the standard Extra Button usability
+tint for the actual modifier or sticky mount. Combat and location restrictions
+dim it and readiness restores its brightness. The 176 focused checks pass
+and both source files match the Forever install. Native visuals are pending.
+[Mount evidence](CLIENT_VALIDATION.md#forever-mount-collection).
+
+21 November. Forever's mount panel sizes itself to Default and the saved
+modifier rows. Add modifier lists the unused combinations. The mount tooltip
+highlights the actual override or default as the held keys change. The 148
+focused checks pass and both updated sources match the Forever install.
+[Mount setup](12-extra-button-system.md#forever-mount-button).
+
+21 November. Shared flyout layering draws the action strip, extra-button and
+Trinket arrows above connected borders. Native appearance remains pending.
+[Desktop evidence](validation/flyout-arrow-layer-2026-11-21.json).
+
+21 November. Forever's mount button uses collected mounts and trained riding.
+The Mounts tab has a default slot and seven optional combinations of Ctrl,
+Shift and Alt. The three runtime files match the Forever install. Desktop
+regressions pass. Native casts, panel and controller checks are pending.
+[Mount setup](12-extra-button-system.md#forever-mount-button).
+
+21 November. The native action-button cooldown error recurred on Forever.
+The player also reported the symptom on Retail. `/fluxinput cooldown`
+is ready to capture each client's collector state and field ownership.
+The first taint writer is still unknown.
+[Client evidence](CLIENT_VALIDATION.md#forever-action-button-cooldown).
+
+20 November. Forever's stock bar suppression leaves the hidden cast animation
+to Blizzard. This avoids an addon-triggered restricted cooldown call. The
+10 focused desktop scripts pass and the installed source matches. Live
+confirmation of the reported cooldown error is pending.
+[Client evidence](CLIENT_VALIDATION.md#forever-action-button-cooldown).
+
 20 November. The flight timer follows confirmed boarding and landing, learns
 directional routes automatically, and resumes from the character's saved
 flight after reload or logout. Initial estimates are marked, and unknown
@@ -41,7 +428,7 @@ The addon-wide endpoint is a tested main snapshot that preserves user data, corr
 
 | Track | Current status | Next acceptance check |
 | --- | --- | --- |
-| HUD lag and borders | R189 is the acceptance build after the cast divider correction. Live acceptance remains pending. | Start on Forever with held-action crossings and rapid drops, then verify party and raid transitions, border seams and combat. [HUD finish line](HUD_PERFORMANCE_ROADMAP.md#finish-line) |
+| HUD lag and borders | R192 is the acceptance build with panel-local Flux Window and side-grid layers. Live acceptance remains pending. | Start on Forever with held-action crossings and rapid drops, then verify party and raid transitions, border seams and combat. [HUD finish line](HUD_PERFORMANCE_ROADMAP.md#finish-line) |
 | Inventory and casting performance | The 82-script closeout and all 90 recorded source hashes establish the baseline. Live acceptance is waiting for a usable setup confirmed by the player. | Run one check from the fixed list when a supported live setup is available. [Inventory finish point](INVENTORY_PERFORMANCE_ROADMAP.md#finish-point) |
 | Addon release | Acceptance gates defined. Final release readiness remains pending. | Record the selected snapshot and complete the applicable release gates. [Release gates](RELEASE_ROADMAP.md#release-gates) |
 

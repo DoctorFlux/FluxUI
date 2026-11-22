@@ -1,5 +1,6 @@
 -- Real merchant factory + bank module; geometry/lifecycle model, not native pixels.
 local root = arg[1] or "."
+local staged = arg[2] or root .. "/Inventory/Restock/Bank/FluxBankRestockButton.lua"
 local checks = 0
 local function check(ok, message) assert(ok, message); checks = checks + 1 end
 local function read(path)
@@ -86,6 +87,21 @@ for _, family in ipairs({ "retail", "forever", "era", "anniversary", "classic" }
     env.FluxRestock = {Inv={Bank={RegisterBankOpen=function(_,fn) callbacks.open=fn end,
         RegisterBankClose=function(_,fn) callbacks.close=fn end}}}
     env.FluxBankRestock = {IsAutoEnabled=function() return true end, GetCachedCanRunNow=function() return true end}
+    local queued, legacyEnabled, acquireCalls, ordinaryCalls = {}, true, 0, 0
+    env.GetCursorInfo = function() end
+    env.FluxBankRestock.CanRunNow = function() return legacyEnabled end
+    env.FluxBankRestock.RunManual = function() ordinaryCalls = ordinaryCalls + 1; return true end
+    env.Flux.RestockPolicy = {
+        Text = {materialQuantity = "%s × %d", bankReceiptPending = "%s  •  %d waiting for bags"},
+        CreateActions = function() end,
+        Subscribe = function(_, callback) callbacks.queue = callback end,
+        GetAcquisitionRequirements = function(surface) assert(surface == "bank"); return queued end,
+        AcquireRequirement = function(surface, row)
+            assert(surface == "bank" and row == queued[1])
+            acquireCalls = acquireCalls + 1
+            return true
+        end,
+    }
     env.BankFrame = object(env.UIParent)
     env.BankFrame:SetFrameStrata("MEDIUM")
     env.BankFrame.BankItemSearchBox = object(env.BankFrame)
@@ -103,7 +119,7 @@ for _, family in ipairs({ "retail", "forever", "era", "anniversary", "classic" }
         env.MerchantRepairAllButton.Icon = icon
     end
     assert(load(read("Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua"),"merchant","t",env))("_FluxUI",{})
-    local button = assert(load(read("Inventory/Restock/Bank/FluxBankRestockButton.lua"),"bank","t",env))()
+    local button = assert(loadfile(staged,"t",env))()
     local bankButton
     for _,frame in ipairs(frames) do if frame.Icon then bankButton=frame end end
     check(bankButton ~= nil, family.." creates restock button")
@@ -138,6 +154,37 @@ for _, family in ipairs({ "retail", "forever", "era", "anniversary", "classic" }
     check(#timers==2,"open reuses bounded attach retries")
     for _,fn in ipairs(timers) do fn() end
     check(bankButton:IsShown(),"restock visible with/without bag addon")
+    env.FluxBankRestock.GetCachedCanRunNow = function() return legacyEnabled end
+    legacyEnabled = false
+    callbacks.queue()
+    check(not bankButton:IsEnabled(), "the existing button stays disabled with no available work")
+    queued = {{itemID = 100, quantity = 3, jobId = 1}}
+    callbacks.queue()
+    check(bankButton:IsEnabled(), "a queued material enables the normal button without a preset")
+    bankButton.scripts.OnClick()
+    check(acquireCalls == 1 and ordinaryCalls == 0, "normal bank click delegates its exact queued material once")
+    local lines = {}
+    env.GameTooltip = {AddLine = function(_, line) lines[#lines + 1] = line end}
+    local merchantUI = env.FluxVendorAutoMerchantUI
+    merchantUI.PrepareRestockTooltip = function() end
+    merchantUI.FinishRestockTooltip = function() end
+    bankButton.scripts.OnEnter(bankButton)
+    check(lines[2] == "100 × 3", "normal bank tooltip displays exact queued quantity")
+    queued = {{itemID = 100, quantity = 7, jobId = 1, groupKey = "two-orders"},
+        {itemID = 100, quantity = 2, jobId = 2, pending = true}, {itemID = 101, quantity = 3, jobId = 3}}
+    lines = {}
+    bankButton.scripts.OnEnter(bankButton)
+    check(lines[2] == "100 × 9  •  2 waiting for bags" and lines[3] == "101 × 3",
+        "the tooltip shows one material total with pending units called out")
+    bankButton.scripts.OnClick()
+    check(acquireCalls == 2, "the grouped row still dispatches once through the existing button")
+    queued = {}
+    callbacks.queue()
+    check(not bankButton:IsEnabled(), "the queue entry disappears after supply confirmation")
+    legacyEnabled = true
+    callbacks.queue()
+    bankButton.scripts.OnClick()
+    check(acquireCalls == 2 and ordinaryCalls == 1, "ordinary preset controls retain their existing click path")
     if alternate then
         check(bankButton.parent==view and bankButton.w*bankButton:GetScale()==36
             and bankButton.h*bankButton:GetScale()==36,"Baganator full-size button inside view")

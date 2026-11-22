@@ -1,0 +1,134 @@
+{
+  "changeId": "FLUXLOGISTICS-RECIPE-SELECTION-20261122",
+  "date": "2026-11-22",
+  "checkpoint": {
+    "manifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-recipe-selection-before-20261122T095944Z\\checkpoint.json",
+    "files": 105,
+    "settingsMetadataRows": 80,
+    "settingsContentsCopied": false,
+    "branch": "main",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a1ffc8-e3e4-7861-a366-cde5c05e7611\\fluxui-debuff-type-before-20261121T222839Z\\history.bundle",
+    "historyBundleSha256": "90bfc84da44ffd45c6617f5304a431e6ed808eadb90080ffefe4bc5d691b2909",
+    "settingsMetadataSha256": "b631129b948c18b34f5ec10ff04c26fb28c13693744bda8b09eda1d60fc4e9cb"
+  },
+  "behavior": {
+    "selection": "Update the selected identity immediately and clear the previous draft.",
+    "scheduling": "Coalesce rapid native selections and a Flowcraft card's native selection echo before planning the latest recipe.",
+    "exactQueue": "An immediate Queue press evaluates the currently selected recipe and validates it before accepting a job.",
+    "graph": "Use one layout for card rendering and inspection."
+  },
+  "desktop": {
+    "installedForever": {
+      "lua54SuitesPassed": 17,
+      "lua51SuitesPassed": 8
+    },
+    "scaleControl": {
+      "learnedRecipes": 1636,
+      "finalRecipes": 1536,
+      "viewportRows": 22,
+      "graphCards": 121,
+      "craftTasks": 40
+    },
+    "benchmark": {
+      "stage": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-recipe-selection-20261122",
+      "script": "recipe_selection_benchmark.lua",
+      "rawResults": "recipe-selection-benchmark-results.txt",
+      "interpreter": "Lua 5.4.6",
+      "selectionEvents": 12,
+      "graphNodes": 121,
+      "tasksPerSelection": 40,
+      "procedure": "Alternating between two synthetic recipes through the actual selection callback, with actual planner and graph code and a stub market provider. Verify the final selected recipe and all 40 tasks. In the burst, drain after the last selection. In the isolated scenario, drain after each selection.",
+      "units": "Desktop CPU milliseconds and operation counts. A zero reading was below the timer resolution.",
+      "burst": {
+        "checkpoint": {
+          "plannerRuns": 12,
+          "logisticsPreviews": 12,
+          "stockSnapshots": 12,
+          "quotes": 12,
+          "graphLayouts": 25,
+          "queueRenders": 12,
+          "inputCallbackCpuMsReported": 365,
+          "totalCpuMs": 365
+        },
+        "staged": {
+          "plannerRuns": 1,
+          "logisticsPreviews": 1,
+          "stockSnapshots": 1,
+          "quotes": 1,
+          "graphLayouts": 2,
+          "queueRenders": 1,
+          "inputCallbackCpuMsReported": 0,
+          "totalCpuMs": 30
+        }
+      },
+      "isolated": {
+        "checkpoint": {
+          "plannerRuns": 12,
+          "logisticsPreviews": 12,
+          "stockSnapshots": 12,
+          "quotes": 12,
+          "graphLayouts": 25,
+          "queueRenders": 12,
+          "inputCallbackCpuMsReported": 354,
+          "totalCpuMs": 354
+        },
+        "staged": {
+          "plannerRuns": 12,
+          "logisticsPreviews": 12,
+          "stockSnapshots": 12,
+          "quotes": 12,
+          "graphLayouts": 13,
+          "queueRenders": 12,
+          "inputCallbackCpuMsReported": 0,
+          "totalCpuMs": 356
+        }
+      },
+      "scriptSha256": "1ad57af8d9023f83fcc9573bc3e4631e3c4c53d9f54a00cc159c7e66dc11d70f",
+      "rawResultsSha256": "680d5c0134ce6d8c8832f226e75b0385cb52eb73b89382a9513cdf45f88afc79"
+    }
+  },
+  "installed": {
+    "addon": "FluxLogistics",
+    "clients": [
+      "_retail_",
+      "_forever_",
+      "_classic_",
+      "_classic_era_",
+      "_anniversary_"
+    ],
+    "filesPerClient": 4,
+    "runtimeFilesPerClient": 2
+  },
+  "native": {
+    "client": "Forever 1.60.1.71037",
+    "executable": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+    "processID": 16640,
+    "windowHandle": 22677020,
+    "observation": "Host window verified. The background-only capture helper exited before acquiring an image because the window currently owned foreground.",
+    "inputSent": false,
+    "foregroundChanged": false,
+    "reload": "pending",
+    "selectionLatency": "pending",
+    "fps": "pending",
+    "taint": "pending"
+  },
+  "sources": {
+    "FluxCraft/UI.lua": {
+      "before": "4036f51851fa420dabd08aa60e5c43a0f1d6edaccec9496b1a2b1ad7432214e9",
+      "after": "9bc503eac50131c3c7ed27493a1ffda0ec563a865df98ce3197586a69430b434"
+    },
+    "FluxCraft/Graph.lua": {
+      "before": "364b8ee34a3b8638e0d2e6040d20c99d61292bb9389e0007a88dbd2a31a3d233",
+      "after": "f192359c60fb40b2b53ee2534aea52930c6cf83f2b6ccd7bb704ae1a2ec28a30"
+    },
+    "Tests/recipe_selection_test.lua": {
+      "before": null,
+      "after": "a04b8f7a96f047319f56b99d6ab8c6cb26498464dc77d53d2e4a361f279bdd24"
+    },
+    "Tests/ui_reagents_test.lua": {
+      "before": "acf47d2b9ad5acf966e898c4d2840ac527189748351585e49b690b2ac67eb704",
+      "after": "4517a6835f26582bee7938326c59a2c960a18eefa808e25896762dba8f128491"
+    }
+  }
+}

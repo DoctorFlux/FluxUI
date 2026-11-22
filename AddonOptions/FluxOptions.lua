@@ -1035,10 +1035,9 @@ function FluxOptions:SetRaidFrameCharacterSpecific(useChar)
 end
 
 function FluxOptions:RefreshRaidFrameScopedModules()
-    if FluxRaid_ApplyOptionsFromDB then
-        FluxRaid_ApplyOptionsFromDB()
-    end
-    if FluxRaidPreview and FluxRaidPreview.RefreshFromOptions then
+    -- The initialized layout owner refreshes the world preview as part of its apply.
+    local previewRefreshed = FluxRaid_ApplyOptionsFromDB and FluxRaid_ApplyOptionsFromDB()
+    if not previewRefreshed and FluxRaidPreview and FluxRaidPreview.RefreshFromOptions then
         FluxRaidPreview.RefreshFromOptions()
     end
 end
@@ -1809,6 +1808,13 @@ initFrame:SetScript("OnEvent", function(self, event, loadedAddon)
         elseif msg == "raidpreview" then
             if _G.FluxRaidPreview and _G.FluxRaidPreview.Toggle then
                 _G.FluxRaidPreview.Toggle()
+            end
+        elseif msg == "plates" then
+            local nameplates = ns.Flux and ns.Flux.NamePlates
+            if nameplates then
+                local tracked = 0
+                for _ in pairs(nameplates.activeUnits) do tracked = tracked + 1 end
+                print(("FluxUI tracks %d Blizzard nameplates."):format(tracked))
             end
         else
             FluxOptions:ToggleConfig()

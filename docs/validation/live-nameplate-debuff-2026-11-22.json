@@ -1,0 +1,241 @@
+{
+  "id": "LIVE-NAMEPLATE-DEBUFF-20261122",
+  "recordedUtc": "2026-11-21T23:03:25.514821+00:00",
+  "checkpoint": {
+    "name": "fluxui-live-nameplate-debuff-before-20261121T225308Z",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "sourceFiles": 3408,
+    "settingsMetadataEntries": 92,
+    "archiveSha256": "9aebf903517373895f6db21d664a42858e5188585e96f74dab597ef6a7a28bf3",
+    "bundleSha256": "90bfc84da44ffd45c6617f5304a431e6ed808eadb90080ffefe4bc5d691b2909"
+  },
+  "references": {
+    "repository": "https://github.com/Gethe/wow-ui-source",
+    "clientPins": {
+      "Retail": {
+        "build": "12.1.5.70961",
+        "commit": "ab5cb850a3f65e742959e379c4689353a2f4549f",
+        "retainsAuraInstanceID": true
+      },
+      "Forever": {
+        "build": "1.60.1.71037",
+        "commit": "734f065329cff4992835b01a84f210a297db91b6",
+        "retainsAuraInstanceID": false
+      },
+      "Classic progression": {
+        "build": "5.5.4.70631",
+        "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+        "retainsAuraInstanceID": true
+      },
+      "Classic Era": {
+        "build": "1.15.9.70576",
+        "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+        "retainsAuraInstanceID": true
+      },
+      "Anniversary": {
+        "build": "2.5.6.70577",
+        "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+        "retainsAuraInstanceID": true
+      }
+    },
+    "blizzardFiles": [
+      "Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlateAuras.lua",
+      "Interface/AddOns/Blizzard_SharedXMLBase/TableUtil.lua",
+      "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua"
+    ],
+    "foreverSourceContract": "SetAura retains spellID. RefreshList assigns layoutIndex from the native priority table after applying its player or pet source gate and caps displayed rows."
+  },
+  "productionSourceSha256": {
+    "NamePlates/Countdown.lua": {
+      "before": "f03b1c98b10734d07eef40cd3a4c2a7ec95de825efa82b7cd2099ce2dc4f9d9d",
+      "after": "c214cb57867be830102919acb8a1a4efd4ac7207169016582ffee08945acaeaf"
+    }
+  },
+  "fixtureSha256": {
+    "tests/nameplate_appearance.lua": "dc45b23a410494502192960ca77b4ea46c6df9875a3a71c67023263d2ebeb934"
+  },
+  "matchingInstallHashes": {
+    "_retail_": true,
+    "_forever_": true,
+    "_classic_": true,
+    "_classic_era_": true,
+    "_anniversary_": true
+  },
+  "desktop": {
+    "passedRuns": [
+      {
+        "lua": "Lua 5.4",
+        "file": "tests/nameplate_appearance.lua",
+        "result": "PASS nameplate appearance: 190 checks across five client models; native rendering pending"
+      },
+      {
+        "lua": "Lua 5.4",
+        "file": "tests/nameplate_client_compat.lua",
+        "result": "PASS nameplate client compatibility: 40 desktop checks"
+      },
+      {
+        "lua": "Lua 5.4",
+        "file": "tests/nameplate_countdown_work.lua",
+        "result": "Nameplate countdown work: 1245 checks, 0 failures"
+      },
+      {
+        "lua": "Lua 5.4",
+        "file": "tests/nameplate_castbar_schools.lua",
+        "result": "PASS nameplate cast-bar themes: 56 checks; native taint/pixels pending"
+      },
+      {
+        "lua": "Lua 5.4",
+        "file": "tests/nameplate_refresh_batch.lua",
+        "result": "QUEST_PROGRESS checks=1491 failures=0 native_pixels_taint_performance=NOT_RUN"
+      },
+      {
+        "lua": "Lua 5.4",
+        "file": "tests/nameplate_quest_progress.lua",
+        "result": "QUEST_PROGRESS checks=1261 failures=0 native_pixels_taint_performance=NOT_RUN"
+      },
+      {
+        "lua": "Lua 5.4",
+        "file": "tests/passive_nameplate_optimization.lua",
+        "result": "PASS: 6 actual-module scenarios; 60 checks; no native FPS or CPU measurement"
+      },
+      {
+        "lua": "Lua 5.4",
+        "file": "tests/passive_nameplate_metric_recovery.lua",
+        "result": "PASS: 6 actual-module scenarios; 106 checks; no native FPS or CPU measurement"
+      },
+      {
+        "lua": "Lua 5.4",
+        "file": "tests/options_navigation.lua",
+        "result": "Options navigation: 7996 checks; actual builders mapped across five client contracts; native rendering pending"
+      },
+      {
+        "lua": "Lua 5.4",
+        "file": "tests/options_rework.lua",
+        "result": "Options rework: 1343 checks; complete shell/renderer/widgets and menu lifecycle across five client models; native acceptance pending"
+      },
+      {
+        "lua": "Lua 5.4",
+        "file": "tests/unit_aura_group_layout_work.lua",
+        "result": "Unit aura group layout: 1709 checks PASS; exact native setters, complete descriptors, unchanged paint/membership cadence, real engine/group lifetime, failure/private/hot-load recovery. Native FPS/taint pending"
+      },
+      {
+        "lua": "Lua 5.4",
+        "file": "tests/party_debuff_visibility.lua",
+        "result": "Party debuff visibility: 446 checks PASS; five client models, native/legacy render paths and missing-atlas fallback; native pixels/taint pending"
+      },
+      {
+        "lua": "Lua 5.4",
+        "file": "tests/raid_healer_auras.lua",
+        "result": "Raid healer auras: 11487 checks; actual native owner/flow projection, global one-to-six limits, native-relative sizing, strict filters and cooldown sinks; eleven rejected negative controls; client visuals/scheduling pending"
+      },
+      {
+        "lua": "Lua 5.1",
+        "file": "tests/nameplate_appearance.lua",
+        "result": "PASS nameplate appearance: 190 checks across five client models; native rendering pending"
+      },
+      {
+        "lua": "Lua 5.1",
+        "file": "tests/nameplate_client_compat.lua",
+        "result": "PASS nameplate client compatibility: 40 desktop checks"
+      }
+    ],
+    "syntaxPasses": 2,
+    "appearanceBeforeAfter": {
+      "pairs": 3,
+      "beforeFailed": 3,
+      "afterPassed": 3,
+      "firstOldFailure": "lua: stdin:8: Retail keeps the native plate unchanged while the first public lookup is unavailable"
+    },
+    "foreverFirstAssignment": {
+      "beforeFailed": true,
+      "afterChecks": 46,
+      "firstOldFailure": "lua: stdin:8: Forever matches the exact visible rows and stops at the native display limit even when spell IDs repeat"
+    },
+    "countdownWork": {
+      "pairs": 3,
+      "matchingScenariosPerPair": 25,
+      "scope": "Existing countdown widget work counts in the untyped fixture. Native timing and typed-overlay costs were not measured."
+    }
+  },
+  "native": {
+    "openClient": "Forever",
+    "observedExecutable": "F:/World of Warcraft/_forever_/Wow.exe",
+    "observedPid": 35620,
+    "observedWindow": "World of Warcraft",
+    "changedFocusOrSentInput": false,
+    "candidateVisualAndCombatValidation": "Pending reload and native verification."
+  },
+  "externalEvidenceSha256": {
+    "live-nameplate-tests.json": "c8ae52f960df21648c41ed0e892c05abd33b5fded1733a75b4cf17ee9e8127ad",
+    "live-nameplate-appearance-pairs.json": "c74c20339063a9a3a807913d53fa7e27c2f17dd85ff8455a4ec15cbae73249c4",
+    "forever-first-native-assignment.json": "1591543110996ed706e0cd65f2fbb28861f311ea90727c4d746c0ac26cacc81f",
+    "live-nameplate-countdown-pairs.json": "b16035056ebd67c1b9dbc9b41b0eb7d629c7d283776c306f11757275d256898a"
+  },
+  "ownershipOption": {
+    "capturedAtUtc": "2026-11-22T12:33:57.512839+00:00",
+    "checkpoint": "nameplate-owner-filter-before-20261122T122821Z",
+    "baselineCommit": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "hashNormalization": "Raw bytes",
+    "sourceSha256": {
+      "NamePlates/Countdown.lua": {
+        "before": "26bccb5b5f661c4f5987e5e3142119b83aba560523b90a465bc1f61d1285c6a1",
+        "after": "0f9dfff7718343789359c7e42a6fa8e2d56b7f1ff6df8deb7dc1e4056f437a44"
+      },
+      "NamePlates/SecureAuras.lua": {
+        "before": "bbdc158aae397b6120922b609abe46445adcd8e22bdf034cb63f5ad8ab4a2f82",
+        "after": "fe73f782e08ed95533619e06ac3cfacf34989363a2e35e0ec9b251b20bc1754a"
+      },
+      "AddonOptions/FluxOptionsNameplates.lua": {
+        "before": "c2200046a0105f348bb68fd1c9132fb4ad3676fd4ca024f239278d25fbb48833",
+        "after": "de4b066cd81de38eb33df7b1e7232508b06ca7bfbbdc03b2434d8c2e72ca1e9d"
+      },
+      "AddonOptions/FluxOptionsNameplatePreview.lua": {
+        "before": "b6f873ed7ff5936ea027508bb60251828dfaccb1f214f2e723a1eb86aa20a640",
+        "after": "57ecc706a71740ee252accce933b487d4deaac10249516ca92179504c54d13a0"
+      },
+      "tests/nameplate_countdown_work.lua": {
+        "before": "14653f7b8db0c1c1744f1b18b61bbad4f76a17538758b96e6c9c3c45453b56ab",
+        "after": "ca29302a6076f2818077727f67cd5f195955bb3264b08eeb3b4ea6b52dd34aa1"
+      },
+      "tests/nameplate_secure_auras.lua": {
+        "before": "c27a4ddc2287188eca6ef36a8af1a1be6a016dfbf229cfdbe9e0366181b1d0f3",
+        "after": "693475d87b8a5beb50e9d50e811d0bd0454310c41d62eb2cdb4be67ad7023524"
+      },
+      "tests/nameplate_appearance.lua": {
+        "before": "6a6fe4d89896b9b9800b488b3a92802d98d9df5deb08a61a7d1ecb4785c41820",
+        "after": "1bd789e01fc0fb1fe9803796cdc0238476a14ad3a0d2f55bf44c7c5f7ac1386e"
+      }
+    },
+    "desktopChecks": {
+      "tests/nameplate_countdown_work.lua": 1290,
+      "tests/nameplate_secure_auras.lua": 101,
+      "tests/nameplate_appearance.lua": 297,
+      "tests/options_navigation.lua": 8011,
+      "tests/options_rework.lua": 1343
+    },
+    "baselineOwnershipAssertionsFailed": 20,
+    "matchedDesktopObservations": {
+      "pairs": 5,
+      "scenariosPerPair": 25,
+      "scope": "With the ownership option disabled, matched font and region reads, frame-level reads, label writes, anchors and frame count in all pairs. Native timing and resource cost were not measured."
+    },
+    "installedFilesMatchingSource": {
+      "_retail_": 4,
+      "_forever_": 4,
+      "_classic_": 4,
+      "_classic_era_": 4,
+      "_anniversary_": 4
+    },
+    "nativeClientRun": "Pending.",
+    "fullDesktopSuite": {
+      "luaSyntaxFilesPassed": 1274,
+      "scriptsPassedOnFullRun": 558,
+      "preexistingFailuresReproduced": 17,
+      "timedOutInFullRunAndPassedOnRerun": [
+        "tests/border_junction_shadows.lua",
+        "tests/border_strip_poses.lua",
+        "tests/independent_border_regions.lua"
+      ]
+    }
+  }
+}

@@ -8,7 +8,7 @@ local J = { stats = { passes=0, solves=0, candidates=0, unchanged=0 }, limits = 
     segments=4096, candidates=24000, bucketEntries=32768, operations=2048, fragmentsPerPiece=32, fragments=8192, junctionTriangles=8192,
 } }
 Border.Junctions = J
-J.version="cast-divider-r189"
+J.version="side-hover-dock-r193"
 local floor, min, max, abs = math.floor, math.min, math.max, math.abs
 local PATH = "Interface\\AddOns\\_FluxUI\\Texture\\borders\\"
 local EPS, CELL = 1, 64 -- physical screen coordinates; weld only overlapping border bands
@@ -96,17 +96,30 @@ local function JoinAllowed(a,b)
     local au,bu=a.group.unitOwner,b.group.unitOwner
     return not au or not bu or au==bu
 end
-local function Above(a,b)
+local Above
+do
+local function RimPriority(segment,minimapBorder)
+    if segment.axis~="H" then return 0 end
+    if segment.side=="Top" and segment.group.actionStrip then return 1000000000 end
+    if segment.side=="Bottom" and minimapBorder and segment.group.parent==minimapBorder then
+        return 1000000000
+    end
+    return 0
+end
+function Above(a,b)
     local af,bf=a.group.fixedBounds and true or false,b.group.fixedBounds and true or false
     if af~=bf then return af end
     local au,bu=a.group.unitOwner~=nil,b.group.unitOwner~=nil
     if au~=bu then return not au end -- persistent HUD strokes outlive watched-unit visibility
-    local ap=(a.group.priority or 0)+(a.axis=="H" and a.side=="Top" and a.group.actionStrip and 1000000000 or 0)
-    local bp=(b.group.priority or 0)+(b.axis=="H" and b.side=="Top" and b.group.actionStrip and 1000000000 or 0)
+    local minimap=_G.Minimap
+    local minimapBorder=minimap and minimap.FluxBorderFrame
+    local ap=(a.group.priority or 0)+RimPriority(a,minimapBorder)
+    local bp=(b.group.priority or 0)+RimPriority(b,minimapBorder)
     if ap~=bp then return ap>bp end
     local aid,bid=a.group.paintID or a.group.id,b.group.paintID or b.group.id
     if aid~=bid then return aid<bid end
     return (a.paintID or 0)<(b.paintID or 0)
+end
 end
 local function FixedPanel(frame)
     local window=_G.FluxWindowFrame
@@ -740,6 +753,7 @@ function J:ReleaseAll()
     rollbackActive=nil
     for _,pool in pairs(sprites) do pool.freeIndex=1 end
     active={};committedSegments=setmetatable({}, {__mode="k"});colorListeners=setmetatable({}, {__mode="k"});visibilityListeners=setmetatable({}, {__mode="k"});availabilityCache=setmetatable({}, {__mode="k"});painting=false
+    self._RetireArrowCanvasLevels()
     for _,canvas in pairs(junctionCanvases) do canvas._requiredRank=nil;canvas._requiredLevel=0 end
 end
 
@@ -2015,11 +2029,12 @@ local function ReadLayout(filter,retained)
                         local thickness=Border.GetBorderThickness and Border:GetBorderThickness() or 100
                         dividerHalfWidth=thickness/100
                     end
-                    -- This is an internal divider. Keep its authored ridge
-                    -- without painting the outside bevel over either face.
-                    local inset=dividerHalfWidth*s.scale
+                    -- Preserve the authored shoulder on the icon side while
+                    -- keeping the outside bevel off the fill.
+                    local iconWidth=(currentTracks.CastDividerIconWidth or dividerHalfWidth)*s.scale
+                    local fillWidth=dividerHalfWidth*s.scale
                     local rect=item.paintRect or r
-                    item.paintRect={max(rect[1],s.p-inset),rect[2],min(rect[3],s.p+inset),rect[4]}
+                    item.paintRect={max(rect[1],s.p-iconWidth),rect[2],min(rect[3],s.p+fillWidth),rect[4]}
                 end
                 if s.b>s.a then segments[#segments+1]=s end
             end
@@ -2292,10 +2307,10 @@ end
 do
 local lastPanelInputs,previousPanelInputs
 local zeroPanelOffset={0,0,0,0}
-local function SamePanelInput(old,frame,state,scale,index,priority,fixed,strip,envelope,left,right,top,bottom)
+local function SamePanelInput(old,frame,state,scale,index,priority,fixed,strip,envelope,left,right,top,bottom,dockY,sideTop)
     if not old or old.frame~=frame or old.state~=state or old.scale~=scale
         or old.index~=index or old.priority~=priority or old.fixed~=fixed
-        or old.strip~=strip or old.envelope~=envelope then return false end
+        or old.strip~=strip or old.envelope~=envelope or old.dockY~=dockY or old.sideTop~=sideTop then return false end
     local value=old.value
     return value[1]==left and value[2]==right and value[3]==top and value[4]==bottom
 end
@@ -2307,6 +2322,7 @@ local function SamePanelLayout(prior,panels)
     return true
 end
 local function PlanPanelAlignment(panels)
+    local minimap=_G.Minimap
     local nodeLists={}
     for i,p in ipairs(panels) do
         local nodes={}
@@ -2352,8 +2368,14 @@ local function PlanPanelAlignment(panels)
             (a.strip and b.envelope or b.strip and a.envelope) then
             Join(an[3],bn[3],3)
         end
+        -- The side grid can meet the window below it and the minimap above
+        -- it. Use content contact even when the artwork insets differ.
+        local aboveWindow=b.sideTop and a.dockY and abs(a.dockY-b.dockY)<=EPS
+        local belowMap=a.sideTop and b.frame==minimap and b.dockY and abs(a.sideTop-b.dockY)<=EPS
         local stacked
-        if horizontal and abs(av[3]-bv[4])<=limit then Join(an[3],bn[4]);stacked=true
+        if horizontal and (aboveWindow or belowMap or abs(av[3]-bv[4])<=limit) then
+            if belowMap then bn[4].fixed=true end -- The minimap rim stays put when hover adds its neighbor.
+            Join(an[3],bn[4]);stacked=true
         elseif horizontal and abs(av[4]-bv[3])<=limit then Join(an[4],bn[3]);stacked=true end
         if stacked then
             for edge=1,2 do if abs(av[edge]-bv[edge])<=limit then Join(an[edge],bn[edge]) end end
@@ -2377,9 +2399,11 @@ function J:AlignNearbyPanels()
     local noncombat=_G.FluxNonCombatAPI and _G.FluxNonCombatAPI.DefaultGrid
     local strip=_G.FluxActionStrip or _G.FluxMainActionBar
     local envelope=_G.FluxUnifiedBorderFrame
+    local side=_G.FluxMinimapButtonsSideBorder
+    local minimap=_G.Minimap
     local roots={window,strip,_G.FluxTrinketMenuFrame,
         combat and combat.Frame,noncombat and noncombat.Frame,info,envelope,
-        _G.FluxMinimapButtonsSideBorder,_G.Minimap,_G.FluxMinimapInfoBar,
+        side,minimap,_G.FluxMinimapInfoBar,
         _G.FluxStanceBar,_G.FluxPetBar}
     local seen={}
     local prior,alternate=lastPanelInputs,previousPanelInputs
@@ -2416,14 +2440,16 @@ function J:AlignNearbyPanels()
                     local g=groups[bf]
                     local priority=g and g.paintPriority or hudTier*65536+level
                     local fixed,isStrip,isEnvelope=FixedPanel(frame),frame==strip,frame==envelope
+                    local sideTop=frame==side and (y+h)*scale or nil
+                    local dockY=frame==window and (y+h)*scale or (frame==side or frame==minimap) and y*scale or nil
                     count=count+1
                     local current=prior and prior[count]
                     local sample=current
-                    if not SamePanelInput(sample,frame,state,scale,index,priority,fixed,isStrip,isEnvelope,left,right,top,bottom) then
+                    if not SamePanelInput(sample,frame,state,scale,index,priority,fixed,isStrip,isEnvelope,left,right,top,bottom,dockY,sideTop) then
                         sample=alternate and alternate[count]
-                        if not SamePanelInput(sample,frame,state,scale,index,priority,fixed,isStrip,isEnvelope,left,right,top,bottom) then
+                        if not SamePanelInput(sample,frame,state,scale,index,priority,fixed,isStrip,isEnvelope,left,right,top,bottom,dockY,sideTop) then
                             sample={frame=frame,state=state,scale=scale,value={left,right,top,bottom},
-                                index=index,priority=priority,fixed=fixed,strip=isStrip,envelope=isEnvelope}
+                                index=index,priority=priority,fixed=fixed,strip=isStrip,envelope=isEnvelope,dockY=dockY,sideTop=sideTop}
                         end
                     end
                     if not panels and sample~=current then
@@ -2480,10 +2506,79 @@ function J:AlignNearbyPanels()
     return changed
 end
 end
+do
+local arrowLayerPanels=setmetatable({}, {__mode="k"})
+local function HigherLayer(frame,strata,level)
+    if not frame then return level end
+    local actualStrata,actualLevel=frame:GetFrameStrata(),frame:GetFrameLevel()
+    if not (issecretvalue and issecretvalue(actualStrata)) and actualStrata==strata and PublicNumber(actualLevel) then
+        return max(level,actualLevel)
+    end
+    return level
+end
+local function ArrowPanelLevel(panel,strata,level)
+    local border=panel and panel.FluxBorderFrame
+    if not border then return level end
+    local visible=panel:IsVisible()
+    if (issecretvalue and issecretvalue(visible)) or not visible then return level end
+    arrowLayerPanels[border]=true
+    level=HigherLayer(border,strata,level)
+    local canvas=junctionCanvases[border]
+    return HigherLayer(canvas and canvas._requiredRank and canvas,strata,level)
+end
+function J:GetArrowBorderLevel(widget,strata,level)
+    local strip=_G.FluxActionStrip or _G.FluxMainActionBar
+    local combat=_G.FluxCombatManager and _G.FluxCombatManager.Grid
+    local noncombat=_G.FluxNonCombatAPI and _G.FluxNonCombatAPI.DefaultGrid
+    local bottomHUD
+    local owner=widget
+    for _=1,12 do
+        if (issecretvalue and issecretvalue(owner)) or not owner or owner==UIParent then break end
+        level=ArrowPanelLevel(owner,strata,level)
+        if owner==strip then
+            arrowLayerPanels[strip]=true
+            local canvas=stripCanvases[strip]
+            if canvas and canvas._requiredLevel>0 then level=HigherLayer(canvas,strata,level) end
+            bottomHUD=true
+        elseif owner==_G.FluxMinimapButtonsVisibility then
+            level=ArrowPanelLevel(_G.FluxMinimapButtonsSideBorder,strata,level)
+        elseif owner==_G.FluxTrinketMenuFrame or (combat and owner==combat.Frame) or (noncombat and owner==noncombat.Frame) then
+            bottomHUD=true
+        end
+        owner=owner:GetParent()
+    end
+    if bottomHUD then level=ArrowPanelLevel(_G.FluxUnifiedBorderFrame,strata,level) end
+    return level
+end
+function J._ArrowCanvasChanged(owner)
+    if arrowLayerPanels[owner] then J._arrowLayerDirty=true end
+end
+function J._RetireArrowCanvasLevels(levels)
+    for owner in pairs(arrowLayerPanels) do
+        local junction,strip=junctionCanvases[owner],stripCanvases[owner]
+        if junction and junction._requiredRank and (not levels or not levels.junctions[owner]) then
+            junction._requiredRank=nil;junction._requiredLevel=0;J._arrowLayerDirty=true
+        end
+        if strip and strip._requiredLevel>0 and (not levels or not levels.strips[owner]) then
+            strip._requiredLevel=0;J._arrowLayerDirty=true
+        end
+    end
+end
+function J._PublishArrowLayers()
+    if not J._arrowLayerDirty then return end
+    J._arrowLayerDirty=nil
+    local flyout=_G.Flux and _G.Flux.Flyout
+    local arrows=flyout and flyout.Arrow
+    if arrows and arrows.RefreshArtLayers then arrows.RefreshArtLayers() end
+end
+end
 local function SetRenderLayer(canvas,strata,level)
     local actualStrata,actualLevel=canvas:GetFrameStrata(),canvas:GetFrameLevel()
-    if issecretvalue and issecretvalue(actualStrata) or actualStrata~=strata then canvas:SetFrameStrata(strata) end
-    if not PublicNumber(actualLevel) or actualLevel~=level then canvas:SetFrameLevel(level) end
+    local strataChanged=(issecretvalue and issecretvalue(actualStrata)) or actualStrata~=strata
+    local levelChanged=not PublicNumber(actualLevel) or actualLevel~=level
+    if strataChanged then canvas:SetFrameStrata(strata) end
+    if levelChanged then canvas:SetFrameLevel(level) end
+    if strataChanged or levelChanged then J._ArrowCanvasChanged(canvas:GetParent()) end
 end
 local function ApplyRegionalLayer(canvas,info,isStrip)
     local strata=info.strata
@@ -2500,6 +2595,7 @@ local function StripCanvas(strip,level)
         if canvas.EnableMouse then canvas:EnableMouse(false) end
         canvas:SetAllPoints(strip)
         stripCanvases[strip]=canvas
+        J._ArrowCanvasChanged(strip)
     end
     local prepared=renderLayers and renderLayers.strips[strip]
     if prepared then
@@ -2511,10 +2607,9 @@ local function StripCanvas(strip,level)
     local info=renderLayers and renderLayers.native[strip]
     local strata=info and info.strata or strip:GetFrameStrata()
     if STRATA[strata] then strata="MEDIUM" end
-    if canvas:GetFrameStrata()~=strata then canvas:SetFrameStrata(strata) end
     canvas._requiredLevel=max(canvas._requiredLevel or 0,level or (info and info.level or strip:GetFrameLevel())+20)
     level=min(65535,canvas._requiredLevel)
-    if canvas:GetFrameLevel()~=level then canvas:SetFrameLevel(level) end
+    SetRenderLayer(canvas,strata,level)
     return canvas
 end
 local function CapCanvas(parent)
@@ -2540,13 +2635,16 @@ local function PreparedJunctionLayer(parent,members)
     if not summary then
         summary={rank=-1,levels={}}
         for group in pairs(members) do
-            local info=renderLayers.native[group.parent]
-            if not info or type(info.strata)~="string" then
-                renderLayers.members[members]=false
-                return
+            local source=group.parent
+            if not source._FluxBorderOwnLayer then
+                local info=renderLayers.native[source]
+                if not info or type(info.strata)~="string" then
+                    renderLayers.members[members]=false
+                    return
+                end
+                if info.rank>summary.rank then summary.rank,summary.strata=info.rank,info.strata end
+                summary.levels[info.strata]=max(summary.levels[info.strata] or info.level,info.level)
             end
-            if info.rank>summary.rank then summary.rank,summary.strata=info.rank,info.strata end
-            summary.levels[info.strata]=max(summary.levels[info.strata] or info.level,info.level)
         end
         renderLayers.members[members]=summary
     end
@@ -2562,12 +2660,14 @@ local function JunctionLayer(parent,members)
     local rank=STRATA[strata] or (strata=="HIGH" and 3) or 4
     local level=parent:GetFrameLevel()
     for g in pairs(members) do
-        local other=g.parent:GetFrameStrata()
-        local value=STRATA[other] or (other=="HIGH" and 3) or 4
-        if value>rank then strata,rank=other,value;level=0 end
+        if not g.parent._FluxBorderOwnLayer then
+            local other=g.parent:GetFrameStrata()
+            local value=STRATA[other] or (other=="HIGH" and 3) or 4
+            if value>rank then strata,rank=other,value;level=0 end
+        end
     end
     for g in pairs(members) do
-        if g.parent:GetFrameStrata()==strata then
+        if not g.parent._FluxBorderOwnLayer and g.parent:GetFrameStrata()==strata then
             local value=g.parent:GetFrameLevel()
             if PublicNumber(value) then level=max(level,value) end
         end
@@ -2575,11 +2675,15 @@ local function JunctionLayer(parent,members)
     return strata,rank,level
 end
 local function JunctionCanvas(parent,members)
+    -- The partitioned fields can share geometry while each panel's paint
+    -- stays with its own border. Input layers on one panel never lift peers.
+    if parent._FluxBorderOwnLayer then return parent end
     local canvas=junctionCanvases[parent]
     if not canvas then
         canvas=CreateFrame("Frame",nil,parent);canvas:SetAllPoints(parent)
         if canvas.EnableMouse then canvas:EnableMouse(false) end
         junctionCanvases[parent]=canvas
+        J._ArrowCanvasChanged(parent)
     end
     local prepared=renderLayers and renderLayers.junctions[parent]
     if prepared then
@@ -2946,11 +3050,38 @@ function J:_PublishBranchCompileCache()
     end
     branchCompileAlternate=alternate;branchCompilePrevious=previous;branchCompileNext=nil
 end
+
+local function CompactFocusBottomRim(op)
+    if op.bits ~= 7 or op.hs.side ~= "Bottom" or not op.segments then return end
+    local stem = op.vs
+    if stem.group.unitOwner ~= "focus" then return end
+    local parent = stem.group.parent
+    local owner = StaticUnitOwner(parent)
+    if not owner or owner.unit ~= "focus" or not owner._fluxCompactFocus then return end
+    local portrait = owner.PortraitFrame and owner.PortraitFrame.FluxBorderFrame
+    if not portrait or not ((parent == portrait and stem.side == "Right")
+        or (parent == owner.FluxBorderFrame and stem.side == "Left")) then return end
+    local outer = owner.outerBorderFrame and owner.outerBorderFrame.FluxBorderFrame
+    local bottom = outer and outer.Bottom
+    if not bottom then return end
+    for group in pairs(op.members) do
+        if group.unitOwner ~= "focus" then return end
+    end
+    for segment in pairs(op.segments) do
+        local r = segment.rect
+        if segment.texture == bottom and abs(segment.rawP - op.y) < 1 / 64
+            and r[1] <= op.rect[1] and r[3] >= op.rect[3] then
+            return segment
+        end
+    end
+end
+
 local function PrepareBranchFields(self,op,best,fingerprint)
     if op.branchError then return nil,op.branchError end
     local r=op.rect
     local triangles=AuraTopTriangles(op,best) or self:Triangles(op.bits,(op.x-r[1])/(r[3]-r[1]),(r[4]-op.y)/(r[4]-r[2]))
     local prepared={triangles=triangles,slices={},sources={},cacheable=true}
+    prepared.focusBottomRim=CompactFocusBottomRim(op)
     if (op.bits==7 or op.bits==11) and op.hs.group and op.hs.group.castSection then
         local divider=op.vs.group and op.vs.group.parent
         if divider and divider._FluxBorderCastInternalSide==op.vs.side then
@@ -3017,6 +3148,9 @@ local function PrepareBranchFields(self,op,best,fingerprint)
         if inputs then inputs[#inputs+1]=cap.item.texture;Values(cap.item.rect) end
         if not SourceInput(cap.segment) then return nil,"unavailable rounded-cap source" end
     end
+    if prepared.focusBottomRim and not SourceInput(prepared.focusBottomRim) then
+        return nil,"unavailable focus rim source"
+    end
     if inputs and prepared.castRimDepth then inputs[#inputs+1]=prepared.castRimDepth end
     prepared.inputs=inputs
     return prepared
@@ -3032,6 +3166,7 @@ function J:BranchTriangles(op,best,prepared)
     local rectFields={}
     local crestBand
     local paintingCrest=false
+    local focusRim=prepared.focusBottomRim
     if op.auraTopCrest then
         local low,high
         if op.hs.group and op.hs.group.actionStrip then
@@ -3040,6 +3175,9 @@ function J:BranchTriangles(op,best,prepared)
             low,high=op.y-min(best[1].scale,best[2].scale),r[4]
         end
         crestBand={r[1],max(r[2],low),r[3],min(r[4],high)}
+    elseif focusRim then
+        local bounds=focusRim.rect
+        crestBand={r[1],max(r[2],bounds[2]),r[3],min(r[4],bounds[4],op.y+focusRim.scale)}
     end
     local function Point(v)
         return {v[1],v[2],r[1]+v[1]*(r[3]-r[1]),r[4]-v[2]*(r[4]-r[2])}
@@ -3123,6 +3261,16 @@ function J:BranchTriangles(op,best,prepared)
                 if not ok then return nil,reason end
             end
         end
+        paintingCrest=false
+    elseif focusRim then
+        -- Continue the outer bevel beneath the portrait divider. The stem
+        -- keeps its own source above this band, including its normal miter.
+        local height=r[4]-r[2]
+        local top,bottom=(r[4]-crestBand[4])/height,(r[4]-crestBand[2])/height
+        paintingCrest=true
+        local poly={Point({0,top}),Point({0,bottom}),Point({1,bottom}),Point({1,top})}
+        local ok,reason=Emit(1,focusRim,poly,{}, {a=r[1],b=r[3]})
+        if not ok then return nil,reason end
         paintingCrest=false
     end
     do
@@ -3401,7 +3549,7 @@ local function DrawDescriptor(op,cached)
                 if issecretvalue and issecretvalue(sourceParent) then return end
                 local retained=StaticUnitOwner(sourceParent)
                 local layer
-                if op.renderStrip and not retained then
+                if op.renderStrip and not retained and not sourceParent._FluxBorderOwnLayer then
                     stripLayer=stripLayer or DrawLayer(StripCanvas(op.renderStrip,op.renderLevel))
                     layer=stripLayer
                 else
@@ -3525,7 +3673,7 @@ local function DrawFields(op,indices)
             local sourceParent=JunctionSourceParent(source)
             -- Retained branches keep their unit's native fade. The strip
             -- crossbar stays on the strip when that unit clears.
-            if op.renderStrip and not StaticUnitOwner(sourceParent) then
+            if op.renderStrip and not sourceParent._FluxBorderOwnLayer and not StaticUnitOwner(sourceParent) then
                 if not stripContext then
                     local layer=prepared and prepared.contexts[source]
                     local parent=layer and renderLayers.applied[layer.parent] and layer.parent
@@ -3730,10 +3878,14 @@ function J:_PrepareUnitBranchFallbacks(operations,plans,blocked,byOwner)
         if unit then
             local sources,ambiguous={},false
             for _,triangle in ipairs(op.triangles or {}) do
-                local axis=triangle.arm<=2 and 1 or 2
-                local source=triangle.texture
-                if sources[axis] and sources[axis]~=source then ambiguous=true;break end
-                sources[axis]=source
+                -- Rounded-cap underlays have no arm and stay in the base mesh.
+                local arm=triangle.arm
+                if arm then
+                    local axis=arm<=2 and 1 or 2
+                    local source=triangle.texture
+                    if sources[axis] and sources[axis]~=source then ambiguous=true;break end
+                    sources[axis]=source
+                end
             end
             if not ambiguous and sources[1] and sources[2] and sources[1]~=sources[2] then
                 local choices,generated={},{0,0}
@@ -4376,6 +4528,7 @@ local function BeginRenderGeneration()
     committedSegments=setmetatable({}, {__mode="k"});colorListeners=setmetatable({}, {__mode="k"})
     visibilityListeners=setmetatable({}, {__mode="k"});availabilityCache=setmetatable({}, {__mode="k"})
     for _,pool in pairs(sprites) do pool.freeIndex=1 end
+    J._RetireArrowCanvasLevels()
     for _,canvas in pairs(junctionCanvases) do canvas._requiredRank=nil;canvas._requiredLevel=0 end
     for _,canvas in pairs(stripCanvases) do canvas._requiredLevel=0 end
     painting=true
@@ -4526,7 +4679,7 @@ function J:_PreparePlan(segments,operations,cost,signature,meshOperations)
         for g in pairs(op.members) do
             if g.actionStrip then strip=g.stripRoot end
             hasUnit=hasUnit or g.unitOwner~=nil
-            if not regional then
+            if not regional and not g.parent._FluxBorderOwnLayer then
                 local value=g.parent:GetFrameLevel()
                 if PublicNumber(value) then level=max(level,value+1) end
             end
@@ -4538,12 +4691,14 @@ function J:_PreparePlan(segments,operations,cost,signature,meshOperations)
                 stripLevels=stripLevels or {}
                 for g in pairs(op.members) do
                     local parent=g.parent
-                    local value=stripLevels[parent]
-                    if value==nil then
-                        value=parent:GetFrameLevel()
-                        if PublicNumber(value) then stripLevels[parent]=value else value=nil end
+                    if not parent._FluxBorderOwnLayer then
+                        local value=stripLevels[parent]
+                        if value==nil then
+                            value=parent:GetFrameLevel()
+                            if PublicNumber(value) then stripLevels[parent]=value else value=nil end
+                        end
+                        if value then level=max(level,value+1) end
                     end
-                    if value then level=max(level,value+1) end
                 end
             end
             op.renderStrip,op.renderLevel=strip,level
@@ -5283,12 +5438,15 @@ function Spatial.Levels(operations,levelSamples)
     for _,op in ipairs(operations) do
         local top,topLevel
         for g in pairs(op.members) do
-            local info=Info(g.parent)
-            if not info then return end
-            if not top or info.rank>top.rank then
-                top,topLevel=info,info.level
-            elseif info.rank==top.rank then
-                topLevel=max(topLevel,info.level)
+            local parent=g.parent
+            if not parent._FluxBorderOwnLayer then
+                local info=Info(parent)
+                if not info then return end
+                if not top or info.rank>top.rank then
+                    top,topLevel=info,info.level
+                elseif info.rank==top.rank then
+                    topLevel=max(topLevel,info.level)
+                end
             end
         end
         if top then
@@ -5296,13 +5454,15 @@ function Spatial.Levels(operations,levelSamples)
             -- the operation's highest level never need their own copy.
             for g in pairs(op.members) do
                 local parent=g.parent
-                local entry=required[parent]
-                if not entry then
-                    required[parent]={strata=top.strata,rank=top.rank,level=topLevel}
-                elseif top.rank>entry.rank then
-                    entry.strata,entry.rank,entry.level=top.strata,top.rank,topLevel
-                elseif top.rank==entry.rank then
-                    entry.level=max(entry.level,topLevel)
+                if not parent._FluxBorderOwnLayer then
+                    local entry=required[parent]
+                    if not entry then
+                        required[parent]={strata=top.strata,rank=top.rank,level=topLevel}
+                    elseif top.rank>entry.rank then
+                        entry.strata,entry.rank,entry.level=top.strata,top.rank,topLevel
+                    elseif top.rank==entry.rank then
+                        entry.level=max(entry.level,topLevel)
+                    end
                 end
             end
         end
@@ -5317,6 +5477,7 @@ function Spatial.Levels(operations,levelSamples)
     return {junctions=required,strips=strips,native=native}
 end
 function Spatial.ApplyLevels(levels)
+    J._RetireArrowCanvasLevels(levels)
     for parent,info in pairs(levels.junctions) do
         local canvas=junctionCanvases[parent]
         if canvas and not renderLayers.applied[canvas] then ApplyRegionalLayer(canvas,info,false) end
@@ -6036,6 +6197,7 @@ function J:Flush(stripPose)
     if registrationDirty then Spatial.PruneLayoutPoses(registrationParents) end
     if not artChanged and SameLayout(signature,previous) then self.stats.unchanged=self.stats.unchanged+1;EndCost(cost,"same-signature");return end
     if Spatial.Try(segments,signature,globalChange or observerRefresh.all or artChanged,cost,stripPose,registrations or registrationDirty,admitted) then
+        self._PublishArrowLayers()
         MarkCost(cost,"commit");EndCost(cost,"local-build");return
     end
     if regionalFilter then
@@ -6053,7 +6215,7 @@ function J:Flush(stripPose)
     local operations,reason=self:Solve(segments)
     MarkCost(cost,"solve")
     self.stats.fallback=reason
-    if not operations then self:ReleaseAll();previous=signature;MarkCost(cost,"commit");EndCost(cost,"fallback");return end
+    if not operations then self:ReleaseAll();self._PublishArrowLayers();previous=signature;MarkCost(cost,"commit");EndCost(cost,"fallback");return end
     if cost then cost.planLast=cost.last;cost.planPhases={} end
     local plans,blocked,total,planAborted=self:_PreparePlan(segments,operations,cost,signature)
     if planAborted then return end
@@ -6107,6 +6269,7 @@ function J:Flush(stripPose)
     if PublishDrawCache then PublishDrawCache() end
     for _,segment in ipairs(segments) do committedSegments[segment.texture]=segment end
     self.stats.operations=#active;self.stats.fragments=total;previous=signature
+    self._PublishArrowLayers()
     MarkCost(cost,"commit");EndCost(cost,"build")
 end
 

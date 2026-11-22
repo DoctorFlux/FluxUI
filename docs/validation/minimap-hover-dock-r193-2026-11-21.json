@@ -1,0 +1,641 @@
+{
+  "changeId": "MINIMAP-HOVER-DOCK-R193-20261121",
+  "revision": "side-hover-dock-r193",
+  "capturedAtUTC": "2026-11-21T14:32:36.6493780Z",
+  "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+  "checkpoint": {
+    "createdUTC": "2026-11-21T14:14:49.8153700Z",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "branch": "main",
+    "history": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flyout-layer-before-2026-11-21-135457/main.bundle",
+    "historySha256": "ae2f3ff2ed1c3928d6d580c48dc080e969af477a1f0afaf7fb1f6092d32d4570",
+    "settingsCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    },
+    "files": {
+      "Minimap/FluxMinimapButtons.lua": "1d21a8123c47c10fa55139415a85b28aac2d5147e56504eac2387be465c3c823",
+      "Core/BorderJunctions.lua": "185c2e76e436ba2a9e71cfa77f4c651db0d43da6aaf331f5e0cb1d9ebe99a2bb",
+      "FluxBorder.lua": "d2db655e76c1d1116ed52434e8b7448110c969a055edf253793998301cc0450a",
+      "tests/border_strip_envelope.lua": "fee34bc3a51aea37834e9c2e6c5e0f683d55e5a76e3db636653377422a7d34e5",
+      "tests/minimap_side_border.lua": "ddbeb5d2a51ed8b19f945ba6425341603d0d5267f40387dfa990a523b66ce6ee",
+      "tests/minimap_extra_layout.lua": "1f9225a39347a5f8278e752702a9e43b45476ec8abdd6fc1d313ae3557869aef",
+      "docs/reference/verification.json": "38dcea7ae1c7eef4626ba3a90d35bb32a607b8477931c978ee984ebcd84ff79b"
+    }
+  },
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "185c2e76e436ba2a9e71cfa77f4c651db0d43da6aaf331f5e0cb1d9ebe99a2bb",
+      "afterRaw": "49c64f3fc920346de680f4f88e4ae9098909f6916b10d2a885965c4f51dbb6d1"
+    },
+    "Minimap/FluxMinimapButtons.lua": {
+      "beforeRaw": "1d21a8123c47c10fa55139415a85b28aac2d5147e56504eac2387be465c3c823",
+      "afterRaw": "e7e310b17d99b2bb1e142c411acb231256c55f3bd5d06876005d13a30cb6f396"
+    }
+  },
+  "previousAcceptance": "docs/validation/hud-panel-layers-r192-2026-11-21.json",
+  "paths": {
+    "Core/BorderJunctions.lua": "49c64f3fc920346de680f4f88e4ae9098909f6916b10d2a885965c4f51dbb6d1",
+    "Minimap/FluxMinimapButtons.lua": "e7e310b17d99b2bb1e142c411acb231256c55f3bd5d06876005d13a30cb6f396",
+    "Minimap/FluxMinimap.lua": "9df48160ab3cb83e729c61e494b406c8b5dbb604db6fc74a8e71c6f5cc6a40a3",
+    "FluxBorder.lua": "d2db655e76c1d1116ed52434e8b7448110c969a055edf253793998301cc0450a",
+    "Battlezonemap/FluxWindowFrame.lua": "251f0f879cf883b568cefb5c2afcc6048dbfe5010b78d0a13808ee6f98329543",
+    "Battlezonemap/_tmp_questiepinsmoke.lua": "9b9114a267745eb7b1dd751c9bf46586a436ab7e7b3c853f7263b4b5197a016c",
+    "tests/border_aura_crest.lua": "2b6dc7d6f7ee1d69ddb5d855df90d918760a7a8782e3bb1b08281c285bfbd57a",
+    "tests/border_aura_sampling.lua": "d2e579a5068e7947bad88026cf5b1900433027d35ec4358e8416691c836863f2",
+    "tests/border_authored_unit_layout.lua": "446505d0ad32eee73859dd7faf96bc04a3f0e8815689e5389db9f3de5db385b7",
+    "tests/border_branch_compile_cache.lua": "19f6c71b4570b25091c2250cdd9b5168a48c816600438776ff68f2454200ffc5",
+    "tests/border_branch_coverage.lua": "6050d7fc004de5944cedd2b8485ee26f76db1fac431fd003fdf8fde13395c9f5",
+    "tests/border_canvas_layers.lua": "8f6e81231672355e389bdf33b56ed102154fe86d073068ac6f1c5ddd24d6259a",
+    "tests/border_cap_junctions.lua": "7f472a860c104cc73c37b1494a7e707e401b1331c5d8bd8cb8c2bcdc9dd3bbb5",
+    "tests/border_clip_work.lua": "51ee866995ebfed50281d7359a8396e4c3052a617a8f8dcb0a1afb8317c6a18b",
+    "tests/border_combat_transitions.lua": "5ac38655a546f782d1c6eda1616c1f9382c56753abbc00a527078408b88a0018",
+    "tests/border_cost_reasons.lua": "46472d5a739a0435d3136dbb9e7b6eeb87926094df5acb7d5c7a132bbb6b933d",
+    "tests/border_draw_reuse.lua": "8579232effd731d619fb0c5a2d0a4411ce6ef6f1bcabea913ca70952393421d3",
+    "tests/border_dropdown.lua": "777525c6c2306bf618b62e6f13ea988cf296b63c58ac8a2f0a407771dc78e8ff",
+    "tests/border_dynamic_layout.lua": "614e061c5bbf9343a98fde57c1d6b54b011f53b599c824b36328cf5dac4cdf6b",
+    "tests/border_fallback_array_guards.lua": "47838160198ac6dce03c642e72db2f1c9b690fdce0b7fc08d3bcb0bfe2f75c7b",
+    "tests/border_fallback_compile_cache.lua": "1612f103b7ac893bb1d6eb0edb1bedf8412f84e4e7380cabc9fb228e126a2366",
+    "tests/border_fallback_opacity.lua": "841954b3207c7e43dc58208a2951f88a7db72e3778cb10de1b0cd8ea27e01e79",
+    "tests/border_fallback_plan_cache.lua": "b5d669c7f9dec6c4ab7c350f1b59fcb1a1cc26ed9e80cd6e27da1e82ed31d87a",
+    "tests/border_geometry_phase.lua": "ab6cd3d80522374412b6aea321436482182b574a3800ff8a9d5ac6a145f4d172",
+    "tests/border_hidden_anchors.lua": "7492cd77ec2be14be711ef82d9155346f5dcaef27349d6456ea38488f419935f",
+    "tests/border_idle_trace.lua": "aa41f663927dcd85969e2184cdd2e0a050bed974e960918b446693263dde6bf9",
+    "tests/border_incremental_commit.lua": "967e7cdfdd633371f0014f30fe91c560d379721da2e2a18a8d0ed098060ff70a",
+    "tests/border_junction_shadows.lua": "0aceeca71c3cd31b9b72b097943e0ed1877d3dc81e2da28476c6bca6f0b13055",
+    "tests/border_junctions.lua": "00dec0a18f47acad06f08ab8509cdcd44280a3adfbaafd49b22bbb6f3afba368",
+    "tests/border_locality.lua": "29f10e45527865c03939101afb7694097fc8876564e54ebb986ad87964ccf530",
+    "tests/border_lua_upvalues.lua": "8fab8d288b2e8b70c2261a84412e2e80273c89225fc6ffd78994310b99bc1fab",
+    "tests/border_native_alpha.lua": "806fb8feb0fa1d0af49c8721dae0f40515400870dac0b099739d718a3646b5ae",
+    "tests/border_native_unit_rgb.lua": "3a3d8f49a5c19729b140c0679d0835bfbf7d6e514bc750eafa35e36b8c16bc3f",
+    "tests/border_nearby_panels.lua": "572c6620f37f4d8470f5334fe26f68062668c9a41fb040ae7dd4ab9107de6bdf",
+    "tests/border_observer_refresh.lua": "1dd99dae6aa13e848dc0dc0d97a51e20058a034028feb6054f657837655b4088",
+    "tests/border_optional_unit_parts.lua": "c5790e52549d32ca9bd45386be31b310d73fad37a027df5debab8407f6d967db",
+    "tests/border_owner_phase.lua": "9a2d47851aea4732ace58614918ce533d15648d9d4ea557ff1a05714d2bfb5e6",
+    "tests/border_owner_visibility.lua": "92b4da65a30feedbb3f0a6c8a7e27196e380f1f82db56c466b190efaf6635cee",
+    "tests/border_paint_order.lua": "da662e8788fe96389ad45f6942538c00657aef2bf9d897b75d304d66a177be48",
+    "tests/border_paint_ownership.lua": "ee0c2c2b6928135bd684ccc2a2c465bb76ac2d5cbeec1d65a2c2f49012f1ec16",
+    "tests/border_party_container.lua": "1cb6a8fd6e7075496305c28c65522c22619509074ce5efdbfd29523039c6ebed",
+    "tests/border_party_isolation.lua": "1dfc6bf75f3e101dbdd68a1b33689595e6371cc5d28b4a3ebdd27421f424c71a",
+    "tests/border_prepared_icons.lua": "083f89897880cb0484d30f131cd0e102b31a596a9fb9961e677d04edd0bb84c4",
+    "tests/border_private_paint.lua": "1f504140590d442cb554b37c4c70b16d842bbfa9211ff0a0b4a786ed698675d0",
+    "tests/border_reflow_cost.lua": "94bca1c50e0e98b2c684cce9c137708993a4ee68dcc8ca258ca59277f65051ae",
+    "tests/border_region_routing.lua": "804980c586875965771366a9f52a698c960ceb1598740353a24bb4e160975a30",
+    "tests/border_regional_draw_work.lua": "7b0fd4802ea8c5efeb7facc17e828a17e0c5892cbc7f465836a8c1264984dc55",
+    "tests/border_regional_plan_work.lua": "702b6053fd5d77dd0788c42c50c1afc375d0eb82284ee7145d3ecb13374d7018",
+    "tests/border_registration_pairs.lua": "8c225833c4ea7834d2f21ca1344c5fbce0fb00e42c202010d79227266f46b682",
+    "tests/border_render_basis.lua": "195f8e6082f67a7fcb24b1b33f0bef5763490ab1ce88568e72f09841d6f874ef",
+    "tests/border_render_pool_work.lua": "51ca0472729a08e735f512758b29834b52e19f8f6b85575ff6b02d30521e4ef4",
+    "tests/border_resource_hold.lua": "1c78b0e52b73282124ef04ce03b32bf4cd45c570d407a852018392789fc71df9",
+    "tests/border_retained_units.lua": "4ee5cb409ce0af84a5f5f62e2d5a7995966f46155914a9e1a65892f2fa788dd1",
+    "tests/border_shadow_material.lua": "5662d2f2db09419c2e8a5fd16d5ce567eabcb26273297134fd6171f30d582ea5",
+    "tests/border_solve_pair_identity.lua": "da1a155db8191fac0c4da469fd05c0422c9937632f6164d7090c6318f78d36fe",
+    "tests/border_solver_allocation_work.lua": "6cd0e1a68002cd6f0353a888a89fce4f427eb8f846020b06c38413a7a186a26f",
+    "tests/border_source_phase.lua": "a51dadf072a23c03dc76b2107db111bad3e016959ff8cafa26bc2381f0cce7d4",
+    "tests/border_static_geometry.lua": "dd72a1a01d874b43df7803165c20730f010ae88c003601d4f51c16c4b35c633f",
+    "tests/border_static_pieces.lua": "7e22df614e45f72854732fce9e8ee4185d253e1caac01017d472957e78b49f20",
+    "tests/border_strip_envelope.lua": "7afe935b4405c2e7dcd2c1e2df35a0b77e84563fe7b714de04f10a4ae8dd8af9",
+    "tests/border_strip_poses.lua": "75fc5b51f287fd912f67fc4d82532f9dd1d56a7e7a2c66ffffd421716457899d",
+    "tests/border_types.lua": "14facbdc23c9bc6e5f708c70c20648b0808725203f4865aa494c75fe2e350c66",
+    "tests/border_unit_contours.lua": "ba120fe76b41bbcbf61bcbc0ef1b43c3528136583965508d129dae7687761d04",
+    "tests/border_unit_paint_idempotence.lua": "31b2816b35035c6a6c115b2a3f6d3fe4b8751fe3a2d41552f244a15f8bae982a",
+    "tests/border_wake_ownership.lua": "74e96fdac2c8f67c2eaebea1f05c7a43530ab0bb0c2785255714fc94fed7c0d7",
+    "tests/border_window_bounds.lua": "0e752e6709b3646a834dd3f2c6af94312143d9fffcbf13c5ca097434ba2b008b",
+    "tests/independent_border_regions.lua": "b58d81db0005234f1bd5d017cc581a27f1ba21c233323a436345a2741e7d9609",
+    "tests/minimap_combat_idempotence.lua": "eee3f061dfe9c6f1e618fc270a62ff5c447a23aef6da9fd2ad717c3322dafd02",
+    "tests/minimap_dynamic_buttons.lua": "a9735032792875092d28562bd91ca8671a3deb7e8a421bb2f23a470029d92cb4",
+    "tests/minimap_extra_layout.lua": "1f9225a39347a5f8278e752702a9e43b45476ec8abdd6fc1d313ae3557869aef",
+    "tests/minimap_extra_visibility.lua": "318ad2a80990c937e337bd2b7fddaecc2672c484fdfc858a6805a323ffc97536",
+    "tests/minimap_flyout_visibility.lua": "6fbf933e993c68547ace539f95e846ca83ab43ba8622948392d909a2178bb643",
+    "tests/minimap_indicator_work.lua": "b4d512d182869fe45bff604cfedef78ef489a55ca6071a5398498d29eba0e8ef",
+    "tests/minimap_mail_lifecycle.lua": "1dbb6382a4337407b912a269c931003cb3e73e724a25a485c17a92ca29dd7862",
+    "tests/minimap_side_auras.lua": "3c13720f2fdc2cf5a1d8ad1c255c319ac1fc815b5ddceb264f544007f04dec7f",
+    "tests/minimap_side_border.lua": "ddbeb5d2a51ed8b19f945ba6425341603d0d5267f40387dfa990a523b66ce6ee",
+    "tests/minimap_side_inset.lua": "b383b69058c0632992ab7e95a3a10e0d38306786ff14d94d1567af5f8672bd2c",
+    "tests/minimap_side_packing.lua": "29befd5a1716193fe31f1ff5389c5f68c9fdc634eb26031ea05932e5ad251bcb",
+    "tests/minimap_tracking.lua": "fd726bba50a34a582b660bda7971611801e21bba4952fefef77fcc92ec560843",
+    "tests/minimap_window_layout.lua": "f4875698c45cd6b96f9ee08cb962f157237e3efb9dddd8bc7ef6fd4fa296a762",
+    "tests/rapid_strip_drops.lua": "739094b5880a61b2bf3728b81f630ef924d4a843461695b17358eb8332b4a298",
+    "tests/window_runtime_spec.lua": "56ada17374e9edac7fb840a740fae91106723bb248fa59699dd7b54d398bedae"
+  },
+  "installed": [
+    {
+      "client": "_retail_",
+      "files": {
+        "Core/BorderJunctions.lua": "49c64f3fc920346de680f4f88e4ae9098909f6916b10d2a885965c4f51dbb6d1",
+        "Minimap/FluxMinimapButtons.lua": "e7e310b17d99b2bb1e142c411acb231256c55f3bd5d06876005d13a30cb6f396"
+      }
+    },
+    {
+      "client": "_forever_",
+      "files": {
+        "Core/BorderJunctions.lua": "49c64f3fc920346de680f4f88e4ae9098909f6916b10d2a885965c4f51dbb6d1",
+        "Minimap/FluxMinimapButtons.lua": "e7e310b17d99b2bb1e142c411acb231256c55f3bd5d06876005d13a30cb6f396"
+      }
+    },
+    {
+      "client": "_classic_",
+      "files": {
+        "Core/BorderJunctions.lua": "49c64f3fc920346de680f4f88e4ae9098909f6916b10d2a885965c4f51dbb6d1",
+        "Minimap/FluxMinimapButtons.lua": "e7e310b17d99b2bb1e142c411acb231256c55f3bd5d06876005d13a30cb6f396"
+      }
+    },
+    {
+      "client": "_classic_era_",
+      "files": {
+        "Core/BorderJunctions.lua": "49c64f3fc920346de680f4f88e4ae9098909f6916b10d2a885965c4f51dbb6d1",
+        "Minimap/FluxMinimapButtons.lua": "e7e310b17d99b2bb1e142c411acb231256c55f3bd5d06876005d13a30cb6f396"
+      }
+    },
+    {
+      "client": "_anniversary_",
+      "files": {
+        "Core/BorderJunctions.lua": "49c64f3fc920346de680f4f88e4ae9098909f6916b10d2a885965c4f51dbb6d1",
+        "Minimap/FluxMinimapButtons.lua": "e7e310b17d99b2bb1e142c411acb231256c55f3bd5d06876005d13a30cb6f396"
+      }
+    }
+  ],
+  "archivedAssertions": {
+    "hover": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/border_strip_envelope.lua:109: mouseover reveal commits the side seam before the queued border pass",
+    "moving-rim": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/border_strip_envelope.lua:109: revealing the side grid holds the minimap bottom in place",
+    "crest": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/border_strip_envelope.lua:109: the first revealed frame has a continuous crest at the minimap T",
+    "embedded-center": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/minimap_window_layout.lua:4: embedded grid is vertically centered in the window: 189.875 / 171.0"
+  },
+  "dockingOnlySHA256": "7648cdbe80a1c4a2e651e7f50fc19a373e1e9669349473151db1c7f190b9088c",
+  "desktop": {
+    "passed": 77,
+    "failed": 0,
+    "results": [
+      {
+        "path": "Battlezonemap/_tmp_questiepinsmoke.lua",
+        "exitCode": 0,
+        "output": "RestedXP standard HBD pins OK: Forever (ownership, styling, tooltip, owner reset, zone, World Map priority, combat, both toggles)\r\nRestedXP standard HBD pins OK: Classic (ownership, styling, tooltip, owner reset, zone, World Map priority, combat, both toggles)\r\nRestedXP standard HBD pins OK: Classic (ownership, styling, tooltip, owner reset, zone, World Map priority, combat, both toggles)\r\nQuestie/RestedXP battlefield pins smoke OK (all MapCanvas clients, native coexistence, settings/icons, handoff, filters, tooltips, late loading, combat recovery and Map Pins off)",
+        "wallSeconds": 0.0376567
+      },
+      {
+        "path": "tests/border_aura_crest.lua",
+        "exitCode": 0,
+        "output": "Aura crest: 1216 checks PASS; exact native rectangles; both styles/four scales/registration orders; continuous crest; one source per sample; bounded stem; static reuse; native pixels pending",
+        "wallSeconds": 0.1683688
+      },
+      {
+        "path": "tests/border_aura_sampling.lua",
+        "exitCode": 0,
+        "output": "Aura UV sampling: 880 checks PASS; real canonical UVs/native rectangles; paths and negative client IDs; both styles/scales; nonsingular endpoint fields; static reuse; native GPU acceptance pending",
+        "wallSeconds": 0.1487578
+      },
+      {
+        "path": "tests/border_authored_unit_layout.lua",
+        "exitCode": 0,
+        "output": "Authored unit layout: 1218 checks PASS; both border types/seven units/three scales;16visibility/availability transitions zero root-rect reads/rebuilds/resources;real point/size changes;private/foreign guards. Native pending.",
+        "wallSeconds": 0.3323748
+      },
+      {
+        "path": "tests/border_branch_compile_cache.lua",
+        "exitCode": 0,
+        "output": "BRANCH_COMPILE_WORK|1|56|54|2|56|0\r\nBRANCH_COMPILE_WORK|2|56|54|2|56|0\r\nBorder branch compile cache: 698 checks PASS; exact prepared geometry/source inputs; fresh paint/material; remote ownership/private/masks; UV/gutter/caps/aura/subpixels; committed-only bounded generations; actual connected mesh and rollback parity. Native FPS/pixels/taint pending",
+        "wallSeconds": 0.8784898
+      },
+      {
+        "path": "tests/border_branch_coverage.lua",
+        "exitCode": 0,
+        "output": "Branch coverage: 504 checks PASS; short/long shared owners; T/X; both axes/styles/scales; no missing or doubled source fields; static recolor; native pixels pending",
+        "wallSeconds": 0.2584905
+      },
+      {
+        "path": "tests/border_canvas_layers.lua",
+        "exitCode": 0,
+        "output": "Border canvas layers: 785 checks PASS; shared source with multiple peer strata/levels/orders; retained source visibility; no later canvas demotion; both styles/scales; native pixels pending",
+        "wallSeconds": 0.1499778
+      },
+      {
+        "path": "tests/border_cap_junctions.lua",
+        "exitCode": 0,
+        "output": "Cap-safe junctions: 18804 checks PASS; real compact outline/divider rendering; both styles and fractional scales; preserved outer shapes; no stacked cap/mesh area; native pixels pending",
+        "wallSeconds": 0.7651251
+      },
+      {
+        "path": "tests/border_clip_work.lua",
+        "exitCode": 0,
+        "output": "Border clip work: 441 checks PASS; distantCapCalls=0 distantCapBuilds=0 geometry=2111483736",
+        "wallSeconds": 0.0504826
+      },
+      {
+        "path": "tests/border_combat_transitions.lua",
+        "exitCode": 0,
+        "output": "Border combat transitions: 20 checks PASS; actual clean10exits0reads/solves/full requests/resources; pending native geometry/material/UV/style retained once; unchanged dirty preflight; coalesced wakes; no native FPS/taint claim",
+        "wallSeconds": 0.0521428
+      },
+      {
+        "path": "tests/border_cost_reasons.lua",
+        "exitCode": 0,
+        "output": "Border cost reasons: 342 checks PASS; actual watched preflight reasons/counts, unchanged rows, native getter parity, private retirement/recovery and bounded output; native timings unmeasured",
+        "wallSeconds": 0.0970755
+      },
+      {
+        "path": "tests/border_draw_reuse.lua",
+        "exitCode": 0,
+        "output": "DRAW_REUSE_WORK style=1 fields=1354 warmCalls=726 warmHits=726 warmReuses=56 moveCalls=1128 moveReuses=54 moveMisses=2 claimed=1188 mesh=334513276 beforeMesh=215315591\r\nDRAW_REUSE_WORK style=2 fields=1354 warmCalls=726 warmHits=726 warmReuses=56 moveCalls=1128 moveReuses=54 moveMisses=2 claimed=1188 mesh=822842411 beforeMesh=997882298\r\nborder draw reuse: 17596 checks passed",
+        "wallSeconds": 1.2631411
+      },
+      {
+        "path": "tests/border_dropdown.lua",
+        "exitCode": 0,
+        "output": "Border dropdown: 6 checks PASS; native font/render/controller acceptance pending",
+        "wallSeconds": 0.044778
+      },
+      {
+        "path": "tests/border_dynamic_layout.lua",
+        "exitCode": 0,
+        "output": "Dynamic border layouts: 404 checks PASS; both styles; six HUD families; preexisting/all-point/named anchors; new/hidden pieces; actual action-strip completion; no-op work; combat deferral; cycle/private guards. Native pixels/input/FPS pending",
+        "wallSeconds": 0.4560269
+      },
+      {
+        "path": "tests/border_fallback_array_guards.lua",
+        "exitCode": 0,
+        "output": "FALLBACK_ARRAY_WORK style=1 junctions=24 calls=0 validations=0 warmFingerprints=0\r\nFALLBACK_ARRAY_WORK style=1 junctions=56 calls=0 validations=0 warmFingerprints=0\r\nFALLBACK_ARRAY_WORK style=2 junctions=24 calls=0 validations=0 warmFingerprints=0\r\nFALLBACK_ARRAY_WORK style=2 junctions=56 calls=0 validations=0 warmFingerprints=0\r\nBorder fallback array guards: 42508 checks PASS; public-only immutable snapshots; plan-only positive/negative pairs; direct mutations; private/current recovery; exact legacy fingerprints",
+        "wallSeconds": 1.0517002
+      },
+      {
+        "path": "tests/border_fallback_compile_cache.lua",
+        "exitCode": 0,
+        "output": "FALLBACK_COMPILE_WORK|1|cold=768/576|warm=0/0|move=32/24|hits=184|misses=8\r\nFALLBACK_COMPILE_WORK|2|cold=768/576|warm=0/0|move=32/24|hits=184|misses=8\r\nBorder fallback compile cache: 1212 checks PASS; numeric parity/current paint/blockers; source validity; merge isolation; committed-only bounded generations; native FPS/pixels/taint pending",
+        "wallSeconds": 0.3811135
+      },
+      {
+        "path": "tests/border_fallback_opacity.lua",
+        "exitCode": 0,
+        "output": "FALLBACK_OPACITY_WORK style=1 aliases=192 alphaWrites=0 revivals=0 parents=112 owners=14 gates=16 totalAlphaWrites=0 mesh=419162723\r\nFALLBACK_LIVE_WORK style=1 updates=8 parents=274\r\nFALLBACK_OPACITY_WORK style=2 aliases=192 alphaWrites=0 revivals=0 parents=112 owners=14 gates=16 totalAlphaWrites=0 mesh=361236605\r\nFALLBACK_LIVE_WORK style=2 updates=8 parents=274\r\nborder fallback opacity: 5035 checks passed",
+        "wallSeconds": 0.332554
+      },
+      {
+        "path": "tests/border_fallback_plan_cache.lua",
+        "exitCode": 0,
+        "output": "LOCAL_PLAN style=1 nodes=24 case=cold fields=626 baselineFallbacks=192 candidateFallbacks=192 baseGuards=192 candidateGuards=192 merges=1752/1752 sourceReads=26/26 subtracts=97/97 hits=0 misses=24\r\nLOCAL_PLAN style=1 nodes=24 case=warm fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=97/97 hits=24 misses=0\r\nLOCAL_PLAN style=1 nodes=24 case=one-split fields=626 baselineFallbacks=192 candidateFallbacks=8 baseGuards=192 candidateGuards=8 merges=96/73 sourceReads=26/26 subtracts=97/97 hits=23 misses=1\r\nLOCAL_PLAN style=1 nodes=24 case=warm-move fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=97/97 hits=24 misses=0\r\nLOCAL_PLAN style=1 nodes=24 case=second-layout fields=626 baselineFallbacks=192 candidateFallbacks=112 baseGuards=192 candidateGuards=112 merges=1032/1022 sourceReads=26/26 subtracts=97/97 hits=10 misses=14\r\nLOCAL_PLAN style=1 nodes=24 case=return-first-layout fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=97/97 hits=24 misses=0\r\nLOCAL_PLAN style=1 nodes=24 case=live-color fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=97/97 hits=24 misses=0\r\nLOCAL_PLAN style=1 nodes=24 case=material fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=27/27 subtracts=97/97 hits=24 misses=0\r\nLOCAL_PLAN style=1 nodes=24 case=priority fields=626 baselineFallbacks=192 candidateFallbacks=192 baseGuards=192 candidateGuards=192 merges=1752/1752 sourceReads=26/26 subtracts=97/97 hits=0 misses=24\r\nLOCAL_PLAN style=1 nodes=24 case=uv fields=626 baselineFallbacks=192 candidateFallbacks=192 baseGuards=192 candidateGuards=192 merges=1752/1752 sourceReads=27/27 subtracts=97/97 hits=0 misses=24\r\nLOCAL_PLAN style=1 nodes=24 case=masked fields=0 baselineFallbacks=0 candidateFallbacks=0 baseGuards=0 candidateGuards=0 merges=0/0 sourceReads=2/3 subtracts=2/3 hits=0 misses=0\r\nLOCAL_PLAN style=1 nodes=24 case=unmask fields=626 baselineFallbacks=192 candidateFallbacks=192 baseGuards=192 candidateGuards=192 merges=1752/1752 sourceReads=26/26 subtracts=97/97 hits=0 misses=24\r\nLOCAL_PLAN style=1 nodes=24 case=private-uv fields=0 baselineFallbacks=0 candidateFallbacks=0 baseGuards=0 candidateGuards=0 merges=0/0 sourceReads=2/3 subtracts=2/3 hits=0 misses=0\r\nLOCAL_PLAN style=1 nodes=24 case=public-recovery fields=626 baselineFallbacks=192 candidateFallbacks=192 baseGuards=192 candidateGuards=192 merges=1752/1752 sourceReads=26/26 subtracts=97/97 hits=0 misses=24\r\nLOCAL_PLAN style=1 nodes=24 case=private-alpha fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=97/97 hits=24 misses=0\r\nLOCAL_PLAN style=1 nodes=24 case=public-alpha fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=97/97 hits=24 misses=0\r\nLOCAL_PLAN style=1 nodes=24 case=release-recovery fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=97/97 hits=24 misses=0\r\nLOCAL_PLAN style=1 nodes=56 case=cold fields=1493 baselineFallbacks=448 candidateFallbacks=448 baseGuards=448 candidateGuards=448 merges=4088/4088 sourceReads=72/72 subtracts=302/302 hits=0 misses=56\r\nLOCAL_PLAN style=1 nodes=56 case=warm fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=302/302 hits=56 misses=0\r\nLOCAL_PLAN style=1 nodes=56 case=one-split fields=1493 baselineFallbacks=448 candidateFallbacks=8 baseGuards=448 candidateGuards=8 merges=128/73 sourceReads=72/72 subtracts=302/302 hits=55 misses=1\r\nLOCAL_PLAN style=1 nodes=56 case=warm-move fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=302/302 hits=56 misses=0\r\nLOCAL_PLAN style=1 nodes=56 case=second-layout fields=1493 baselineFallbacks=448 candidateFallbacks=112 baseGuards=448 candidateGuards=112 merges=1064/1022 sourceReads=72/72 subtracts=302/302 hits=42 misses=14\r\nLOCAL_PLAN style=1 nodes=56 case=return-first-layout fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=302/302 hits=56 misses=0\r\nLOCAL_PLAN style=1 nodes=56 case=live-color fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=302/302 hits=56 misses=0\r\nLOCAL_PLAN style=1 nodes=56 case=material fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=73/73 subtracts=302/302 hits=56 misses=0\r\nLOCAL_PLAN style=1 nodes=56 case=priority fields=1493 baselineFallbacks=448 candidateFallbacks=448 baseGuards=448 candidateGuards=448 merges=4088/4088 sourceReads=72/72 subtracts=302/302 hits=0 misses=56\r\nLOCAL_PLAN style=1 nodes=56 case=uv fields=1493 baselineFallbacks=448 candidateFallbacks=56 baseGuards=448 candidateGuards=56 merges=560/511 sourceReads=73/73 subtracts=302/302 hits=49 misses=7\r\nLOCAL_PLAN style=1 nodes=56 case=masked fields=0 baselineFallbacks=0 candidateFallbacks=0 baseGuards=0 candidateGuards=0 merges=0/0 sourceReads=28/28 subtracts=58/58 hits=0 misses=0\r\nLOCAL_PLAN style=1 nodes=56 case=unmask fields=1493 baselineFallbacks=448 candidateFallbacks=448 baseGuards=448 candidateGuards=448 merges=4088/4088 sourceReads=72/72 subtracts=302/302 hits=0 misses=56\r\nLOCAL_PLAN style=1 nodes=56 case=private-uv fields=0 baselineFallbacks=0 candidateFallbacks=0 baseGuards=0 candidateGuards=0 merges=0/0 sourceReads=28/28 subtracts=58/58 hits=0 misses=0\r\nLOCAL_PLAN style=1 nodes=56 case=public-recovery fields=1493 baselineFallbacks=448 candidateFallbacks=448 baseGuards=448 candidateGuards=448 merges=4088/4088 sourceReads=72/72 subtracts=302/302 hits=0 misses=56\r\nLOCAL_PLAN style=1 nodes=56 case=private-alpha fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=302/302 hits=56 misses=0\r\nLOCAL_PLAN style=1 nodes=56 case=public-alpha fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=302/302 hits=56 misses=0\r\nLOCAL_PLAN style=1 nodes=56 case=release-recovery fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=302/302 hits=56 misses=0\r\nLOCAL_PLAN style=2 nodes=24 case=cold fields=626 baselineFallbacks=192 candidateFallbacks=192 baseGuards=192 candidateGuards=192 merges=1752/1752 sourceReads=26/26 subtracts=97/97 hits=0 misses=24\r\nLOCAL_PLAN style=2 nodes=24 case=warm fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=97/97 hits=24 misses=0\r\nLOCAL_PLAN style=2 nodes=24 case=one-split fields=626 baselineFallbacks=192 candidateFallbacks=8 baseGuards=192 candidateGuards=8 merges=96/73 sourceReads=26/26 subtracts=97/97 hits=23 misses=1\r\nLOCAL_PLAN style=2 nodes=24 case=warm-move fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=97/97 hits=24 misses=0\r\nLOCAL_PLAN style=2 nodes=24 case=second-layout fields=626 baselineFallbacks=192 candidateFallbacks=112 baseGuards=192 candidateGuards=112 merges=1032/1022 sourceReads=26/26 subtracts=97/97 hits=10 misses=14\r\nLOCAL_PLAN style=2 nodes=24 case=return-first-layout fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=97/97 hits=24 misses=0\r\nLOCAL_PLAN style=2 nodes=24 case=live-color fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=97/97 hits=24 misses=0\r\nLOCAL_PLAN style=2 nodes=24 case=material fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=27/27 subtracts=97/97 hits=24 misses=0\r\nLOCAL_PLAN style=2 nodes=24 case=priority fields=626 baselineFallbacks=192 candidateFallbacks=192 baseGuards=192 candidateGuards=192 merges=1752/1752 sourceReads=26/26 subtracts=97/97 hits=0 misses=24\r\nLOCAL_PLAN style=2 nodes=24 case=uv fields=626 baselineFallbacks=192 candidateFallbacks=192 baseGuards=192 candidateGuards=192 merges=1752/1752 sourceReads=27/27 subtracts=97/97 hits=0 misses=24\r\nLOCAL_PLAN style=2 nodes=24 case=masked fields=0 baselineFallbacks=0 candidateFallbacks=0 baseGuards=0 candidateGuards=0 merges=0/0 sourceReads=3/3 subtracts=2/2 hits=0 misses=0\r\nLOCAL_PLAN style=2 nodes=24 case=unmask fields=626 baselineFallbacks=192 candidateFallbacks=192 baseGuards=192 candidateGuards=192 merges=1752/1752 sourceReads=26/26 subtracts=97/97 hits=0 misses=24\r\nLOCAL_PLAN style=2 nodes=24 case=private-uv fields=0 baselineFallbacks=0 candidateFallbacks=0 baseGuards=0 candidateGuards=0 merges=0/0 sourceReads=3/3 subtracts=2/2 hits=0 misses=0\r\nLOCAL_PLAN style=2 nodes=24 case=public-recovery fields=626 baselineFallbacks=192 candidateFallbacks=192 baseGuards=192 candidateGuards=192 merges=1752/1752 sourceReads=26/26 subtracts=97/97 hits=0 misses=24\r\nLOCAL_PLAN style=2 nodes=24 case=private-alpha fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=97/97 hits=24 misses=0\r\nLOCAL_PLAN style=2 nodes=24 case=public-alpha fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=97/97 hits=24 misses=0\r\nLOCAL_PLAN style=2 nodes=24 case=release-recovery fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=97/97 hits=24 misses=0\r\nLOCAL_PLAN style=2 nodes=56 case=cold fields=1493 baselineFallbacks=448 candidateFallbacks=448 baseGuards=448 candidateGuards=448 merges=4088/4088 sourceReads=72/72 subtracts=302/302 hits=0 misses=56\r\nLOCAL_PLAN style=2 nodes=56 case=warm fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=302/302 hits=56 misses=0\r\nLOCAL_PLAN style=2 nodes=56 case=one-split fields=1493 baselineFallbacks=448 candidateFallbacks=8 baseGuards=448 candidateGuards=8 merges=128/73 sourceReads=72/72 subtracts=302/302 hits=55 misses=1\r\nLOCAL_PLAN style=2 nodes=56 case=warm-move fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=302/302 hits=56 misses=0\r\nLOCAL_PLAN style=2 nodes=56 case=second-layout fields=1493 baselineFallbacks=448 candidateFallbacks=112 baseGuards=448 candidateGuards=112 merges=1064/1022 sourceReads=72/72 subtracts=302/302 hits=42 misses=14\r\nLOCAL_PLAN style=2 nodes=56 case=return-first-layout fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=302/302 hits=56 misses=0\r\nLOCAL_PLAN style=2 nodes=56 case=live-color fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=302/302 hits=56 misses=0\r\nLOCAL_PLAN style=2 nodes=56 case=material fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=73/73 subtracts=302/302 hits=56 misses=0\r\nLOCAL_PLAN style=2 nodes=56 case=priority fields=1493 baselineFallbacks=448 candidateFallbacks=448 baseGuards=448 candidateGuards=448 merges=4088/4088 sourceReads=72/72 subtracts=302/302 hits=0 misses=56\r\nLOCAL_PLAN style=2 nodes=56 case=uv fields=1493 baselineFallbacks=448 candidateFallbacks=56 baseGuards=448 candidateGuards=56 merges=560/511 sourceReads=73/73 subtracts=302/302 hits=49 misses=7\r\nLOCAL_PLAN style=2 nodes=56 case=masked fields=0 baselineFallbacks=0 candidateFallbacks=0 baseGuards=0 candidateGuards=0 merges=0/0 sourceReads=30/29 subtracts=62/61 hits=0 misses=0\r\nLOCAL_PLAN style=2 nodes=56 case=unmask fields=1493 baselineFallbacks=448 candidateFallbacks=448 baseGuards=448 candidateGuards=448 merges=4088/4088 sourceReads=72/72 subtracts=302/302 hits=0 misses=56\r\nLOCAL_PLAN style=2 nodes=56 case=private-uv fields=0 baselineFallbacks=0 candidateFallbacks=0 baseGuards=0 candidateGuards=0 merges=0/0 sourceReads=30/29 subtracts=62/61 hits=0 misses=0\r\nLOCAL_PLAN style=2 nodes=56 case=public-recovery fields=1493 baselineFallbacks=448 candidateFallbacks=448 baseGuards=448 candidateGuards=448 merges=4088/4088 sourceReads=72/72 subtracts=302/302 hits=0 misses=56\r\nLOCAL_PLAN style=2 nodes=56 case=private-alpha fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=302/302 hits=56 misses=0\r\nLOCAL_PLAN style=2 nodes=56 case=public-alpha fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=302/302 hits=56 misses=0\r\nLOCAL_PLAN style=2 nodes=56 case=release-recovery fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=302/302 hits=56 misses=0\r\nBorder fallback plan cache: 5729 checks PASS; current native geometry/source validation; immutable public plan metadata; current paint/priority/opaque alpha; release/rollback/budgets; native latency pending",
+        "wallSeconds": 7.1351669
+      },
+      {
+        "path": "tests/border_geometry_phase.lua",
+        "exitCode": 0,
+        "output": "PARENT_LAYOUT_READS runs=5 strata=1 scale=1 level=1\r\nPHASE_WORK|1|6414|485|160|640|4480\r\nPHASE_WORK|2|6414|485|160|640|4480\r\nBorder geometry phase: 54 checks PASS; exact native/hidden/private/missing/depth/budget/cycle contracts; alignment/exception/future-phase freshness; actual mesh parity and shared-anchor API work. Native FPS/pixels/taint pending",
+        "wallSeconds": 1.437262
+      },
+      {
+        "path": "tests/border_hidden_anchors.lua",
+        "exitCode": 0,
+        "output": "Hidden unit anchors: 6154 checks PASS; delayed native root/corner/edge rectangles AND origins; exact public anchor geometry; intrinsic sizes; both styles/five units/three scales; first/repeated visibility0reads/solves/resources; actual moves; private/cycle/budget guards; native acceptance pending",
+        "wallSeconds": 0.4014621
+      },
+      {
+        "path": "tests/border_idle_trace.lua",
+        "exitCode": 0,
+        "output": "Border idle trace: 11 checks PASS; finite same-interval producer/read evidence; registration/removal/settings/event causes; bounded records; no stale quiet-capture reasons or persistent timer",
+        "wallSeconds": 0.0308913
+      },
+      {
+        "path": "tests/border_incremental_commit.lua",
+        "exitCode": 0,
+        "output": "INCREMENTAL_WORK style=1 fields=913 beforeFields=912 writes=97 unrelated=0 allocations=1 mesh=387381709 beforeMesh=1734568480\r\nINCREMENTAL_WORK style=2 fields=913 beforeFields=912 writes=84 unrelated=0 allocations=1 mesh=673959543 beforeMesh=1972831681\r\nborder incremental commit: 1923 checks passed",
+        "wallSeconds": 0.5502496
+      },
+      {
+        "path": "tests/border_junction_shadows.lua",
+        "exitCode": 0,
+        "output": "border junction shadows: 486929 checks PASS; 56 scenes, 240576 source-footprint samples; actual factory/Core/TGA; native testing deferred",
+        "wallSeconds": 13.5893895
+      },
+      {
+        "path": "tests/border_junctions.lua",
+        "exitCode": 0,
+        "output": "Border junctions: 4841 checks PASS; bounded interval/bucket solver, mask-free disjoint fragments, live tint/alpha, two styles, shared panels and overlay/combat lifecycle. Native GPU/FPS/taint pending.",
+        "wallSeconds": 0.7720942
+      },
+      {
+        "path": "tests/border_locality.lua",
+        "exitCode": 0,
+        "output": "Regional render style=1 scale=0.75 retained=34 updated=4 rectReads=2/26\r\nRegional render style=1 scale=1.00 retained=46 updated=4 rectReads=2/26\r\nRegional render style=1 scale=1.25 retained=60 updated=4 rectReads=2/26\r\nRegional render style=2 scale=0.75 retained=34 updated=4 rectReads=2/26\r\nRegional render style=2 scale=1.00 retained=46 updated=4 rectReads=2/26\r\nRegional render style=2 scale=1.25 retained=60 updated=4 rectReads=2/26\r\nActual-source regional border checks: 236741 passed; native GPU/FPS/combat acceptance pending.",
+        "wallSeconds": 7.0031394
+      },
+      {
+        "path": "tests/border_lua_upvalues.lua",
+        "exitCode": 0,
+        "output": "Border Lua upvalues: 167 functions PASS; maximum=52, conservative desktop limit60 including_ENV; native reload still required",
+        "wallSeconds": 0.0271395
+      },
+      {
+        "path": "tests/border_native_alpha.lua",
+        "exitCode": 0,
+        "output": "Native unit alpha: 640 checks PASS; initial private alpha; public recolor/opaque alpha; zero topology work/resources; native SetAlpha sink only; public RGB; combat paint; actual native taint/performance pending",
+        "wallSeconds": 0.1092846
+      },
+      {
+        "path": "tests/border_native_unit_rgb.lua",
+        "exitCode": 0,
+        "output": "Native unit RGB: 600 checks PASS; cold/warm, combat, fallbacks, real reflow, native-only opaque channels; no native taint/FPS claim",
+        "wallSeconds": 0.1073483
+      },
+      {
+        "path": "tests/border_nearby_panels.lua",
+        "exitCode": 0,
+        "output": "Nearby panel borders: 1704 checks PASS; both styles; fractional mixed scales; module/frame exports; grids/Info/strip/menu/window/envelope T contacts; transitive floors; detach/hide/reattach; static work; combat deferral; untouched content/input geometry. Native pixels/FPS pending",
+        "wallSeconds": 2.4852404
+      },
+      {
+        "path": "tests/border_observer_refresh.lua",
+        "exitCode": 0,
+        "output": "OBSERVER_WORK|1|parents=360->4|sources=360->360\r\nOBSERVER_WORK|2|parents=360->4|sources=360->360\r\nBorder observer refresh: 86 checks PASS; complete mesh parity, localized observer API work, native source privacy/missing freshness, anchor replacement/parent/scale/cycle/budget guards. Native FPS/pixels/taint pending",
+        "wallSeconds": 1.6069198
+      },
+      {
+        "path": "tests/border_optional_unit_parts.lua",
+        "exitCode": 0,
+        "output": "UNIT_FALLBACK checks=272 samples=177498 baselineMissing=3108 candidateMissing=0 worstMissingAlpha=1\r\nCACHE_GUARDS style1 PASS; warm/current/moved/static/profile/unknown/cap guard\r\nCACHE_GUARDS style2 PASS; warm/current/moved/static/profile/unknown/cap guard\r\nUnit fallback cache/profile guards: 334 checks PASS; actual source producer/factory/Core, no native acceptance claim\r\nFOREIGN_PROFILE style1 samples138 doubled86 overdraw67 regions14 inactive10 unchanged\r\nFOREIGN_PROFILE style2 samples60 doubled54 overdraw54 regions20 inactive10 unchanged\r\nOptional unit parts: 357 checks PASS; actual factory/Core/TGA, four Ts+X, exact hidden RGBA, active mesh parity, partial/own parallel backups, eligibility, current generation, budgets; native validation pending",
+        "wallSeconds": 16.615903
+      },
+      {
+        "path": "tests/border_owner_phase.lua",
+        "exitCode": 0,
+        "output": "Render owner phase: 246 checks PASS; complete-public negatives only; private/missing/cycle/budget recovery; live hierarchy freshness; query guards; actual commit/release cleanup; both styles",
+        "wallSeconds": 0.0541347
+      },
+      {
+        "path": "tests/border_owner_visibility.lua",
+        "exitCode": 0,
+        "output": "Border owner visibility: 2641 checks PASS; own source/host hide and public alpha-zero; whole/partial overlap; both styles/scales; one source per interval; zero solves/reads/allocations including combat; native pixels/taint pending",
+        "wallSeconds": 0.2573255
+      },
+      {
+        "path": "tests/border_paint_order.lua",
+        "exitCode": 0,
+        "output": "Border paint order: 128 checks PASS; sibling aura/background frames; both registration orders/styles; retained stratum/visibility/scale; static reuse; native pixels pending",
+        "wallSeconds": 0.0999606
+      },
+      {
+        "path": "tests/border_paint_ownership.lua",
+        "exitCode": 0,
+        "output": "PARTY_PAINT_WORK style=1 scopedParentReads=548 legacyParentReads=31844\r\nPARTY_PAINT_WORK style=2 scopedParentReads=548 legacyParentReads=31844\r\nBorder paint ownership: 16 checks PASS; actual scoped/legacy parity; detached shells; reparent; combat presentation only; native acceptance pending.",
+        "wallSeconds": 0.4363269
+      },
+      {
+        "path": "tests/border_party_container.lua",
+        "exitCode": 0,
+        "output": "CONTAINER|style=1|cold=false|candidate=false|reads=1|aligns=1|solves=0|wakes=1|alphaReads=2|alphaAligns=2|alphaWakes=2\r\nCONTAINER|style=1|cold=false|candidate=true|reads=0|aligns=0|solves=0|wakes=0|alphaReads=0|alphaAligns=0|alphaWakes=0\r\nCONTAINER|style=1|cold=true|candidate=false|reads=1|aligns=1|solves=0|wakes=1|alphaReads=2|alphaAligns=2|alphaWakes=2\r\nCONTAINER|style=1|cold=true|candidate=true|reads=0|aligns=0|solves=0|wakes=0|alphaReads=0|alphaAligns=0|alphaWakes=0\r\nCONTAINER|style=2|cold=false|candidate=false|reads=1|aligns=1|solves=0|wakes=1|alphaReads=2|alphaAligns=2|alphaWakes=2\r\nCONTAINER|style=2|cold=false|candidate=true|reads=0|aligns=0|solves=0|wakes=0|alphaReads=0|alphaAligns=0|alphaWakes=0\r\nCONTAINER|style=2|cold=true|candidate=false|reads=1|aligns=1|solves=0|wakes=1|alphaReads=2|alphaAligns=2|alphaWakes=2\r\nCONTAINER|style=2|cold=true|candidate=true|reads=0|aligns=0|solves=0|wakes=0|alphaReads=0|alphaAligns=0|alphaWakes=0\r\nParty container borders: 164 checks; 2026-11-21T14:31:07Z; actual Core/Border/init prefix; no native latency claim",
+        "wallSeconds": 0.9789695
+      },
+      {
+        "path": "tests/border_party_isolation.lua",
+        "exitCode": 0,
+        "output": "Party border isolation: 72 checks PASS; member/preview identity; neutral HUD bridge; detached logical hosts; internal joins; both styles/scales; static reuse; native group pixels pending",
+        "wallSeconds": 0.1386941
+      },
+      {
+        "path": "tests/border_prepared_icons.lua",
+        "exitCode": 0,
+        "output": "NAME_STRIP_GEOMETRY unit=player alignment=BOTTOM side=LEFT style=1 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=player alignment=BOTTOM side=RIGHT style=1 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=player alignment=TOP side=LEFT style=1 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=player alignment=TOP side=RIGHT style=1 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=player alignment=BOTTOM side=LEFT style=2 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=player alignment=BOTTOM side=RIGHT style=2 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=player alignment=TOP side=LEFT style=2 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=player alignment=TOP side=RIGHT style=2 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=target alignment=BOTTOM side=LEFT style=1 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=target alignment=BOTTOM side=RIGHT style=1 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=target alignment=TOP side=LEFT style=1 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=target alignment=TOP side=RIGHT style=1 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=target alignment=BOTTOM side=LEFT style=2 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=target alignment=BOTTOM side=RIGHT style=2 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=target alignment=TOP side=LEFT style=2 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=target alignment=TOP side=RIGHT style=2 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=focus alignment=BOTTOM side=LEFT style=1 modern=false writes=0 ms=0.000\r\nNAME_STRIP_GEOMETRY unit=focus alignment=BOTTOM side=RIGHT style=1 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=focus alignment=TOP side=LEFT style=1 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=focus alignment=TOP side=RIGHT style=1 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=focus alignment=BOTTOM side=LEFT style=2 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=focus alignment=BOTTOM side=RIGHT style=2 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=focus alignment=TOP side=LEFT style=2 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=focus alignment=TOP side=RIGHT style=2 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=party1 alignment=BOTTOM side=LEFT style=1 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=party1 alignment=BOTTOM side=RIGHT style=1 modern=false writes=0 ms=0.000\r\nNAME_STRIP_GEOMETRY unit=party1 alignment=TOP side=LEFT style=1 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=party1 alignment=TOP side=RIGHT style=1 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=party1 alignment=BOTTOM side=LEFT style=2 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=party1 alignment=BOTTOM side=RIGHT style=2 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=party1 alignment=TOP side=LEFT style=2 modern=false writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=party1 alignment=TOP side=RIGHT style=2 modern=false writes=0 ms=0.000\r\nNAME_STRIP_GEOMETRY unit=player alignment=BOTTOM side=LEFT style=1 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=player alignment=BOTTOM side=RIGHT style=1 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=player alignment=TOP side=LEFT style=1 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=player alignment=TOP side=RIGHT style=1 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=player alignment=BOTTOM side=LEFT style=2 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=player alignment=BOTTOM side=RIGHT style=2 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=player alignment=TOP side=LEFT style=2 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=player alignment=TOP side=RIGHT style=2 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=target alignment=BOTTOM side=LEFT style=1 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=target alignment=BOTTOM side=RIGHT style=1 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=target alignment=TOP side=LEFT style=1 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=target alignment=TOP side=RIGHT style=1 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=target alignment=BOTTOM side=LEFT style=2 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=target alignment=BOTTOM side=RIGHT style=2 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=target alignment=TOP side=LEFT style=2 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=target alignment=TOP side=RIGHT style=2 modern=true writes=0 ms=0.000\r\nNAME_STRIP_GEOMETRY unit=focus alignment=BOTTOM side=LEFT style=1 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=focus alignment=BOTTOM side=RIGHT style=1 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=focus alignment=TOP side=LEFT style=1 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=focus alignment=TOP side=RIGHT style=1 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=focus alignment=BOTTOM side=LEFT style=2 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=focus alignment=BOTTOM side=RIGHT style=2 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=focus alignment=TOP side=LEFT style=2 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=focus alignment=TOP side=RIGHT style=2 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=party1 alignment=BOTTOM side=LEFT style=1 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=party1 alignment=BOTTOM side=RIGHT style=1 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=party1 alignment=TOP side=LEFT style=1 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=party1 alignment=TOP side=RIGHT style=1 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=party1 alignment=BOTTOM side=LEFT style=2 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=party1 alignment=BOTTOM side=RIGHT style=2 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=party1 alignment=TOP side=LEFT style=2 modern=true writes=0 ms=1.000\r\nNAME_STRIP_GEOMETRY unit=party1 alignment=TOP side=RIGHT style=2 modern=true writes=0 ms=2.000\r\nPrepared class borders: 4032 checks PASS; actual outer-border refresh; player, target, focus and party; both styles/alignments/mirrors/scales; native point repair and pending combat work; native FPS/taint pending",
+        "wallSeconds": 3.1530438
+      },
+      {
+        "path": "tests/border_private_paint.lua",
+        "exitCode": 0,
+        "output": "Private border paint: 2428 checks PASS; alpha/RGBA retirement once; repeated focus-style sinks0reads/solves/full requests; original opaque source preserved; no opaque value copied; combat deferral; native taint/FPS pending",
+        "wallSeconds": 0.1512883
+      },
+      {
+        "path": "tests/border_reflow_cost.lua",
+        "exitCode": 0,
+        "output": "Border reflow cost: 148 checks PASS; existing finite-watch epochs; legacy aggregate/nested mesh algebra; retained peak; zero default clocks; opaque/faulty midpoint and draw recovery; native timings pending",
+        "wallSeconds": 0.0699871
+      },
+      {
+        "path": "tests/border_region_routing.lua",
+        "exitCode": 0,
+        "output": "REGION_ROUTE after query=272 rect=144 owners=4 outputFields=144\r\nBorder region routing: source and operation binning, boundary/cast scope and foreign texture references PASS",
+        "wallSeconds": 0.0905838
+      },
+      {
+        "path": "tests/border_regional_draw_work.lua",
+        "exitCode": 0,
+        "output": "REGIONAL_DRAW style=1 scale=0.75 reused=28 setters=1680 participantStrata=104 participantLevel=104\r\nREGIONAL_DRAW style=1 scale=1.00 reused=16 setters=1803 participantStrata=104 participantLevel=104\r\nREGIONAL_DRAW style=1 scale=1.25 reused=16 setters=1575 participantStrata=104 participantLevel=104\r\nREGIONAL_DRAW style=2 scale=0.75 reused=28 setters=2598 participantStrata=104 participantLevel=104\r\nREGIONAL_DRAW style=2 scale=1.00 reused=16 setters=2793 participantStrata=104 participantLevel=104\r\nREGIONAL_DRAW style=2 scale=1.25 reused=16 setters=2655 participantStrata=104 participantLevel=104\r\nRegional sprite reuse: 162766 checks PASS;canonical art/retained indexes/native paint/context epochs/global budgets;native GPU/CPU/taint pending",
+        "wallSeconds": 8.9584647
+      },
+      {
+        "path": "tests/border_regional_plan_work.lua",
+        "exitCode": 0,
+        "output": "REGIONAL_PLAN style=1 scale=0.75 compiled/misses/ms=4/1/3.000,5/1/4.000,4/0/3.000,5/0/3.000,4/0/4.000,5/0/2.000\r\nREGIONAL_PLAN style=1 scale=1.00 compiled/misses/ms=3/1/3.000,3/1/3.000,3/0/4.000,3/0/2.000,3/0/3.000,3/0/4.000\r\nREGIONAL_PLAN style=1 scale=1.25 compiled/misses/ms=3/1/3.000,3/1/3.000,3/0/2.000,3/0/33.000,3/0/3.000,3/0/5.000\r\nREGIONAL_PLAN style=2 scale=0.75 compiled/misses/ms=4/1/6.000,5/1/6.000,4/0/3.000,5/0/5.000,4/0/3.000,5/0/6.000\r\nREGIONAL_PLAN style=2 scale=1.00 compiled/misses/ms=3/1/5.000,3/1/5.000,3/0/2.000,3/0/3.000,3/0/4.000,3/0/3.000\r\nREGIONAL_PLAN style=2 scale=1.25 compiled/misses/ms=3/1/2.000,3/1/4.000,3/0/2.000,3/0/3.000,3/0/5.000,3/0/3.000\r\nREGIONAL_PLAN_TOTAL compiled=126 misses=12 ms=157.000 checks=200365; desktop source/art parity only, native latency/taint pending\r\nREGIONAL_OWNER_WORK items=64 ownerWrites=654 sourceCalls=22",
+        "wallSeconds": 8.0490495
+      },
+      {
+        "path": "tests/border_registration_pairs.lua",
+        "exitCode": 0,
+        "output": "Register pair controls: 229 checks PASS; exact observer order/availability; private/partial/overdepth; clone budgets; outside-phase live opaque paint; next-phase recovery; errors/rollback",
+        "wallSeconds": 0.3767796
+      },
+      {
+        "path": "tests/border_render_basis.lua",
+        "exitCode": 0,
+        "output": "RENDER_BASIS_WORK style=1 fields=254 left=1 bottom=1 rect=1 scale=2 mesh=797656323\r\nFIELD_PAINT_WORK style=1 calls=1000 nativeColors=1 colorTuples=1\r\nRENDER_BASIS_WORK style=2 fields=254 left=1 bottom=1 rect=1 scale=2 mesh=894356635\r\nFIELD_PAINT_WORK style=2 calls=1000 nativeColors=1 colorTuples=1\r\nborder render basis: 44 checks passed",
+        "wallSeconds": 0.2529535
+      },
+      {
+        "path": "tests/border_render_pool_work.lua",
+        "exitCode": 0,
+        "output": "RENDER_POOL_WORK triangles=64 coldLevel=1 coldStrata=1 coldVisits=64 coldTextures=64 warmLevel=0 warmStrata=0 warmVisits=64 warmTextures=0 mesh=1323232045 parents=1/1\r\nRENDER_POOL_WORK triangles=128 coldLevel=1 coldStrata=1 coldVisits=128 coldTextures=128 warmLevel=0 warmStrata=0 warmVisits=128 warmTextures=0 mesh=1872260962 parents=1/1\r\nRENDER_POOL_WORK triangles=256 coldLevel=1 coldStrata=1 coldVisits=256 coldTextures=256 warmLevel=0 warmStrata=0 warmVisits=256 warmTextures=0 mesh=739844497 parents=1/1\r\nRENDER_STRIP_WORK fields=96 parents=2 stripReads=1 mesh=1687145760\r\nborder render pool work: 1136 checks passed",
+        "wallSeconds": 0.0949603
+      },
+      {
+        "path": "tests/border_resource_hold.lua",
+        "exitCode": 0,
+        "output": "Resource border hold: 230 checks PASS; real power producer and solver; clear-return target/focus/party/pet/ToT; zero reads/solves; actual no-resource state preserved; native counters pending",
+        "wallSeconds": 0.1073245
+      },
+      {
+        "path": "tests/border_retained_units.lua",
+        "exitCode": 0,
+        "output": "Retained unit borders: 15894 checks PASS; initial hidden prebuild; target/focus/party/pet/ToT show/hide/fade; zero reads/solves/allocations; combat native inheritance; immediate material; real layout invalidation; native pixels pending",
+        "wallSeconds": 0.3246943
+      },
+      {
+        "path": "tests/border_shadow_material.lua",
+        "exitCode": 0,
+        "output": "Shadow material support: 111147 PASS; exact TGA alpha/half-texel margins; natural/tint parity; trusted handles; live support-change/recovery rebuilds; static tint/RGB; private/recolor/cropped UV recovery; offline only",
+        "wallSeconds": 0.2319592
+      },
+      {
+        "path": "tests/border_solve_pair_identity.lua",
+        "exitCode": 0,
+        "output": "CONTROL|numeric|REJECTED\r\nCONTROL|membership|REJECTED\r\nCONTROL|caps|REJECTED\r\nCONTROL|budget|REJECTED\r\nCONTROL|persistent-miss|REJECTED\r\nBorder pair identity: 184 checks PASS; exact complete operations/source mutations; per-pass ownership/caps/budgets; stale-miss controls; native performance/pixels/taint pending",
+        "wallSeconds": 4.7481249
+      },
+      {
+        "path": "tests/border_solver_allocation_work.lua",
+        "exitCode": 0,
+        "output": "CONTROL|numeric|REJECTED\r\nCONTROL|membership|REJECTED\r\nCONTROL|caps|REJECTED\r\nCONTROL|budget|REJECTED\r\nCONTROL|persistent-miss|REJECTED\r\nMETACALLBACK|legacy=14|current=14|elision-control=4\r\nCONTROL|plane-concat-elision|REJECTED\r\nCONTROL|first-match|REJECTED\r\nCONTROL|persistent-point-index|REJECTED\r\nBorder solver allocation: 313 checks PASS; complete frozen R57Solve/current helpers,8native/permission/field pairs,14/14metadata calls,8controls; no CPU/native claim",
+        "wallSeconds": 8.0776564
+      },
+      {
+        "path": "tests/border_source_phase.lua",
+        "exitCode": 0,
+        "output": "SOURCE_PHASE_WORK style=1 sources=25 coldCalls=25 changedCalls=25 mesh=1929517577 changedMesh=1543180358 fields=409\r\nSOURCE_PHASE_WORK style=2 sources=25 coldCalls=25 changedCalls=25 mesh=1391507343 changedMesh=791779424 fields=409\r\nBorder source phase: 940 checks PASS; current native source validation; pure-plan reuse; fresh material and opaque alpha; failure/budget cleanup; exact reflow meshes. Native latency pending",
+        "wallSeconds": 0.2759238
+      },
+      {
+        "path": "tests/border_static_geometry.lua",
+        "exitCode": 0,
+        "output": "Static border geometry: 22 checks PASS; native float precision;100 no-op layout rounds with500 unrelated pieces; real pixel moves and immediate paint; no native FPS claim",
+        "wallSeconds": 0.4163701
+      },
+      {
+        "path": "tests/border_static_pieces.lua",
+        "exitCode": 0,
+        "output": "Static unit pieces: 63660 checks PASS; R34 own Hide/Show and opacity-zero trace; hidden prebuild; logical/global ownership; zero probes/solves/resources; combat paint; real moves rebuild; native acceptance pending",
+        "wallSeconds": 0.7359495
+      },
+      {
+        "path": "tests/border_strip_envelope.lua",
+        "exitCode": 0,
+        "output": "Strip/envelope border: 7757 checks PASS; 144 strip scenes; 30 side/window dock scenes; 1080 one-source crest samples; static warm checks; native pixels/FPS/taint pending",
+        "wallSeconds": 5.7919803
+      },
+      {
+        "path": "tests/border_strip_poses.lua",
+        "exitCode": 0,
+        "output": "STRIP_POSE style=1 solve=6/2 plan=6/2 preparedHits=4\r\nSTRIP_DRAW_INPUTS style=1 fields=204 inputs=90\r\nSTRIP_DRAW_INPUTS style=1 fields=236 inputs=75\r\nSTRIP_REGISTRATION style=1 warmCompiles=0+0 affectedCompiles=1\r\nSTRIP_POSE style=2 solve=6/2 plan=6/2 preparedHits=4\r\nSTRIP_DRAW_INPUTS style=2 fields=286 inputs=80\r\nSTRIP_DRAW_INPUTS style=2 fields=221 inputs=75\r\nSTRIP_REGISTRATION style=2 warmCompiles=0+0 affectedCompiles=1\r\nSTRIP_PLAN_COVERAGE|candidate|1|5|4|4\r\nSTRIP_PLAN_COVERAGE|candidate|2|5|4|4\r\nSTRIP_RECENT_LAYOUTS|candidate|1|4|4|8|1684|0.111000\r\nSTRIP_RECENT_LAYOUTS|candidate|2|4|4|8|2082|0.109000\r\nStrip pose replay: warm cache, active tint, changed materials, neighbor geometry, changing footprints and lockdown pass.",
+        "wallSeconds": 19.9618683
+      },
+      {
+        "path": "tests/border_types.lua",
+        "exitCode": 0,
+        "output": "Border types: 634 checks PASS; atlas/legacy/partial families; native pixels/controller pending",
+        "wallSeconds": 0.110736
+      },
+      {
+        "path": "tests/border_unit_contours.lua",
+        "exitCode": 0,
+        "output": "Unit contour borders: 930 checks PASS; both styles/scales; rounded source caps; filled aura turns; top-middle T; target/focus/party/pet/ToT hide/fade/show; static recolor; native combat/pixels pending",
+        "wallSeconds": 0.8813116
+      },
+      {
+        "path": "tests/border_unit_paint_idempotence.lua",
+        "exitCode": 0,
+        "output": "DIRECT_ALPHA_WORK\t1\tfalse\t0\t0\r\nDIRECT_ALPHA_WORK\t1\ttrue\t0\t0\r\nDIRECT_ALPHA_WORK\t2\tfalse\t0\t0\r\nDIRECT_ALPHA_WORK\t2\ttrue\t0\t0\r\nUnitPaint public idempotence: 526 checks PASS; native source suppression; changed RGB/alpha; source visibility; private scalar native sinks/recovery; private RGB retirement; rebuilt fields; both styles. Native taint/FPS pending.",
+        "wallSeconds": 0.0391386
+      },
+      {
+        "path": "tests/border_wake_ownership.lua",
+        "exitCode": 0,
+        "output": "Border wake ownership: 328 checks PASS; 40 lifecycle/render scenarios; useful early-return/error recovery, same deadlines, stale callbacks, native privacy/reentry, combat and fallbacks; no native/CPU claim",
+        "wallSeconds": 0.3410953
+      },
+      {
+        "path": "tests/border_window_bounds.lua",
+        "exitCode": 0,
+        "output": "Flux Window bounds: 972 checks PASS; fixed decorative/content geometry; HIGH side/map/header moves and embed-like visibility; window paint owner; detach/reconnect; static reuse; both styles/scales/module exports; conflicting fixed references; native pixels pending",
+        "wallSeconds": 0.5403519
+      },
+      {
+        "path": "tests/independent_border_regions.lua",
+        "exitCode": 0,
+        "output": "SCOPE style=1 scale=0.75 kind=hover regions=64/64 segments=40/40 meshes=23/23\r\nSCOPE style=1 scale=0.75 kind=group regions=4/4 segments=10/10 meshes=4/4\r\nSCOPE style=1 scale=1.00 kind=hover regions=108/108 segments=40/40 meshes=23/23\r\nSCOPE style=1 scale=1.00 kind=group regions=4/4 segments=10/10 meshes=4/4\r\nSCOPE style=1 scale=1.25 kind=hover regions=144/144 segments=40/40 meshes=23/23\r\nSCOPE style=1 scale=1.25 kind=group regions=4/4 segments=10/10 meshes=4/4\r\nSCOPE style=2 scale=0.75 kind=hover regions=64/64 segments=40/40 meshes=23/23\r\nSCOPE style=2 scale=0.75 kind=group regions=4/4 segments=10/10 meshes=4/4\r\nSCOPE style=2 scale=1.00 kind=hover regions=108/108 segments=40/40 meshes=23/23\r\nSCOPE style=2 scale=1.00 kind=group regions=4/4 segments=10/10 meshes=4/4\r\nSCOPE style=2 scale=1.25 kind=hover regions=144/144 segments=40/40 meshes=23/23\r\nSCOPE style=2 scale=1.25 kind=group regions=4/4 segments=10/10 meshes=4/4\r\nIndependent border regions retain HUD and party paint, sampled output and live color/visibility.",
+        "wallSeconds": 19.4618032
+      },
+      {
+        "path": "tests/minimap_combat_idempotence.lua",
+        "exitCode": 0,
+        "output": "MINIMAP_NATIVE_STATE_WORK|1|classic|100warmPasses|guardedWrites=0|movableMouseCalls=300|indicatorCalls=100\r\nMINIMAP_NATIVE_STATE_WORK|1|retail|100warmPasses|guardedWrites=0|movableMouseCalls=300|indicatorCalls=100\r\nMINIMAP_NATIVE_STATE_WORK|1|alias|100warmPasses|guardedWrites=0|movableMouseCalls=300|indicatorCalls=100\r\nMINIMAP_NATIVE_STATE_WORK|2|classic|100warmPasses|guardedWrites=0|movableMouseCalls=300|indicatorCalls=100\r\nMINIMAP_NATIVE_STATE_WORK|2|retail|100warmPasses|guardedWrites=0|movableMouseCalls=300|indicatorCalls=100\r\nMINIMAP_NATIVE_STATE_WORK|2|alias|100warmPasses|guardedWrites=0|movableMouseCalls=300|indicatorCalls=100\r\nMinimap combat idempotence: 166 checks PASS; fresh native geometry/parent/scale/visibility, private/missing/error recovery, late frames, style/side offsets and original combat/embed/indicator policy. Native FPS/pixels/taint pending",
+        "wallSeconds": 0.0376578
+      },
+      {
+        "path": "tests/minimap_dynamic_buttons.lua",
+        "exitCode": 0,
+        "output": "Minimap dynamic buttons: 10480 checks; 5 client models; 30 layout/scale cases; 6 harmful controls PASS",
+        "wallSeconds": 0.4857867
+      },
+      {
+        "path": "tests/minimap_extra_layout.lua",
+        "exitCode": 0,
+        "output": "minimap extra layout: 50035 checks PASS (runtime geometry, saved actions, reuse, deferred combat writes and state-driver model; native acceptance pending)",
+        "wallSeconds": 0.2308266
+      },
+      {
+        "path": "tests/minimap_extra_visibility.lua",
+        "exitCode": 0,
+        "output": "Minimap extra visibility: 875 checks; 5 client models; 15 scale cases; 4 harmful controls PASS",
+        "wallSeconds": 0.0983249
+      },
+      {
+        "path": "tests/minimap_flyout_visibility.lua",
+        "exitCode": 0,
+        "output": "PASS minimap flyout visibility: 366 checks; 4 client models; 9 harmful controls",
+        "wallSeconds": 0.0323647
+      },
+      {
+        "path": "tests/minimap_indicator_work.lua",
+        "exitCode": 0,
+        "output": "MINIMAP_GROUP_WORK|cluster|20rosterOrSize|tracking=0|landing=0|mail=0|anchors=3|layouts=1|queues=1\r\nMINIMAP_INDICATOR_WORK|cluster|100unchanged|geometryWrites=0|nativeUpdates=500\r\nMINIMAP_GROUP_WORK|global|20rosterOrSize|tracking=0|landing=0|mail=0|anchors=3|layouts=1|queues=1\r\nMINIMAP_INDICATOR_WORK|global|100unchanged|geometryWrites=0|nativeUpdates=500\r\nMINIMAP_GROUP_WORK|minimap|20rosterOrSize|tracking=0|landing=0|mail=0|anchors=3|layouts=1|queues=1\r\nMINIMAP_INDICATOR_WORK|minimap|100unchanged|geometryWrites=0|nativeUpdates=500\r\nMINIMAP_GROUP_WORK|missing|20rosterOrSize|tracking=0|landing=0|mail=0|anchors=3|layouts=1|queues=1\r\nMINIMAP_INDICATOR_WORK|missing|100unchanged|geometryWrites=0|nativeUpdates=500\r\nMinimap indicator work: 228 checks PASS; actual controller, fresh state and native updates retained; native timing pending",
+        "wallSeconds": 0.024789
+      },
+      {
+        "path": "tests/minimap_mail_lifecycle.lua",
+        "exitCode": 0,
+        "output": "CURVE provider=false shape=cluster layout n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=10 deliveries=0 listeners=1\r\nCURVE provider=false shape=cluster unchanged n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=11 deliveries=10 listeners=1\r\nCURVE provider=false shape=cluster toggle n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=21 deliveries=10 listeners=1\r\nCURVE provider=false shape=cluster layout n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=100 deliveries=0 listeners=1\r\nCURVE provider=false shape=cluster unchanged n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=101 deliveries=100 listeners=1\r\nCURVE provider=false shape=cluster toggle n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=201 deliveries=100 listeners=1\r\nCURVE provider=false shape=cluster layout n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=500 deliveries=0 listeners=1\r\nCURVE provider=false shape=cluster unchanged n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=501 deliveries=500 listeners=1\r\nCURVE provider=false shape=cluster toggle n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=1001 deliveries=500 listeners=1\r\nCURVE provider=false shape=global layout n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=10 deliveries=0 listeners=1\r\nCURVE provider=false shape=global unchanged n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=11 deliveries=10 listeners=1\r\nCURVE provider=false shape=global toggle n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=21 deliveries=10 listeners=1\r\nCURVE provider=false shape=global layout n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=100 deliveries=0 listeners=1\r\nCURVE provider=false shape=global unchanged n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=101 deliveries=100 listeners=1\r\nCURVE provider=false shape=global toggle n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=201 deliveries=100 listeners=1\r\nCURVE provider=false shape=global layout n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=500 deliveries=0 listeners=1\r\nCURVE provider=false shape=global unchanged n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=501 deliveries=500 listeners=1\r\nCURVE provider=false shape=global toggle n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=1001 deliveries=500 listeners=1\r\nCURVE provider=false shape=minimap layout n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=10 deliveries=0 listeners=1\r\nCURVE provider=false shape=minimap unchanged n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=11 deliveries=10 listeners=1\r\nCURVE provider=false shape=minimap toggle n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=21 deliveries=10 listeners=1\r\nCURVE provider=false shape=minimap layout n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=100 deliveries=0 listeners=1\r\nCURVE provider=false shape=minimap unchanged n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=101 deliveries=100 listeners=1\r\nCURVE provider=false shape=minimap toggle n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=201 deliveries=100 listeners=1\r\nCURVE provider=false shape=minimap layout n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=500 deliveries=0 listeners=1\r\nCURVE provider=false shape=minimap unchanged n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=501 deliveries=500 listeners=1\r\nCURVE provider=false shape=minimap toggle n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=1001 deliveries=500 listeners=1\r\nCURVE provider=false shape=missing layout n=10 completed=10 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=10 deliveries=0 listeners=1\r\nCURVE provider=false shape=missing unchanged n=10 completed=10 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=11 deliveries=10 listeners=1\r\nCURVE provider=false shape=missing toggle n=10 completed=10 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=21 deliveries=10 listeners=1\r\nCURVE provider=false shape=missing layout n=100 completed=100 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=100 deliveries=0 listeners=1\r\nCURVE provider=false shape=missing unchanged n=100 completed=100 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=101 deliveries=100 listeners=1\r\nCURVE provider=false shape=missing toggle n=100 completed=100 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=201 deliveries=100 listeners=1\r\nCURVE provider=false shape=missing layout n=500 completed=500 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=500 deliveries=0 listeners=1\r\nCURVE provider=false shape=missing unchanged n=500 completed=500 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=501 deliveries=500 listeners=1\r\nCURVE provider=false shape=missing toggle n=500 completed=500 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=1001 deliveries=500 listeners=1\r\nCURVE provider=true shape=cluster layout n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=10 deliveries=0 listeners=1\r\nCURVE provider=true shape=cluster unchanged n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=11 deliveries=10 listeners=1\r\nCURVE provider=true shape=cluster toggle n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=21 deliveries=10 listeners=1\r\nCURVE provider=true shape=cluster layout n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=100 deliveries=0 listeners=1\r\nCURVE provider=true shape=cluster unchanged n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=101 deliveries=100 listeners=1\r\nCURVE provider=true shape=cluster toggle n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=201 deliveries=100 listeners=1\r\nCURVE provider=true shape=cluster layout n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=500 deliveries=0 listeners=1\r\nCURVE provider=true shape=cluster unchanged n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=501 deliveries=500 listeners=1\r\nCURVE provider=true shape=cluster toggle n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=1001 deliveries=500 listeners=1\r\nCURVE provider=true shape=global layout n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=10 deliveries=0 listeners=1\r\nCURVE provider=true shape=global unchanged n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=11 deliveries=10 listeners=1\r\nCURVE provider=true shape=global toggle n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=21 deliveries=10 listeners=1\r\nCURVE provider=true shape=global layout n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=100 deliveries=0 listeners=1\r\nCURVE provider=true shape=global unchanged n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=101 deliveries=100 listeners=1\r\nCURVE provider=true shape=global toggle n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=201 deliveries=100 listeners=1\r\nCURVE provider=true shape=global layout n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=500 deliveries=0 listeners=1\r\nCURVE provider=true shape=global unchanged n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=501 deliveries=500 listeners=1\r\nCURVE provider=true shape=global toggle n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=1001 deliveries=500 listeners=1\r\nCURVE provider=true shape=minimap layout n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=10 deliveries=0 listeners=1\r\nCURVE provider=true shape=minimap unchanged n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=11 deliveries=10 listeners=1\r\nCURVE provider=true shape=minimap toggle n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=21 deliveries=10 listeners=1\r\nCURVE provider=true shape=minimap layout n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=100 deliveries=0 listeners=1\r\nCURVE provider=true shape=minimap unchanged n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=101 deliveries=100 listeners=1\r\nCURVE provider=true shape=minimap toggle n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=201 deliveries=100 listeners=1\r\nCURVE provider=true shape=minimap layout n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=500 deliveries=0 listeners=1\r\nCURVE provider=true shape=minimap unchanged n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=501 deliveries=500 listeners=1\r\nCURVE provider=true shape=minimap toggle n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=1001 deliveries=500 listeners=1\r\nCURVE provider=true shape=missing layout n=10 completed=10 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=10 deliveries=0 listeners=1\r\nCURVE provider=true shape=missing unchanged n=10 completed=10 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=11 deliveries=10 listeners=1\r\nCURVE provider=true shape=missing toggle n=10 completed=10 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=21 deliveries=10 listeners=1\r\nCURVE provider=true shape=missing layout n=100 completed=100 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=100 deliveries=0 listeners=1\r\nCURVE provider=true shape=missing unchanged n=100 completed=100 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=101 deliveries=100 listeners=1\r\nCURVE provider=true shape=missing toggle n=100 completed=100 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=201 deliveries=100 listeners=1\r\nCURVE provider=true shape=missing layout n=500 completed=500 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=500 deliveries=0 listeners=1\r\nCURVE provider=true shape=missing unchanged n=500 completed=500 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=501 deliveries=500 listeners=1\r\nCURVE provider=true shape=missing toggle n=500 completed=500 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=1001 deliveries=500 listeners=1\r\nminimap mail lifecycle: 728 checks, 0 failures; desktop production-function replay only",
+        "wallSeconds": 0.1125001
+      },
+      {
+        "path": "tests/minimap_side_auras.lua",
+        "exitCode": 0,
+        "output": "Minimap side aura positioning: 2543 checks; 5 client models; 15 scale cases; 4 harmful controls PASS",
+        "wallSeconds": 0.111084
+      },
+      {
+        "path": "tests/minimap_side_border.lua",
+        "exitCode": 0,
+        "output": "Minimap side border: 2985 checks;actual FluxBorder/arrow layers;5 client models;30 art/scale cases;7 harmful controls PASS",
+        "wallSeconds": 0.1730401
+      },
+      {
+        "path": "tests/minimap_side_inset.lua",
+        "exitCode": 0,
+        "output": "Minimap side cells: 14121 checks PASS; counts1..120; side scales10/100/200; UI scales.75/1/1.25; zero added visual gaps; unchanged embed/actions; combat deferral; native pixels/controller pending",
+        "wallSeconds": 0.0878398
+      },
+      {
+        "path": "tests/minimap_side_packing.lua",
+        "exitCode": 0,
+        "output": "Minimap side packing: 32026 checks PASS; two columns shrink to half-native before third; zero neighbor gaps; count/order/window preservation; tiny-height screen fallback; scales and density boundaries; reuse/combat guards; native pixels pending",
+        "wallSeconds": 0.6461335
+      },
+      {
+        "path": "tests/minimap_tracking.lua",
+        "exitCode": 0,
+        "output": "Minimap tracking PASS: 438 checks; native pixels/input/controller/taint/FPS NOT RUN",
+        "wallSeconds": 0.0224535
+      },
+      {
+        "path": "tests/minimap_window_layout.lua",
+        "exitCode": 0,
+        "output": "Minimap window integration: 185 checks; real map/window/tracker/Questie paths and four harmful controls passed",
+        "wallSeconds": 0.0619603
+      },
+      {
+        "path": "tests/rapid_strip_drops.lua",
+        "exitCode": 0,
+        "output": "RAPID_STRIP actions=12 mappingWrites=108/108 fullStock=0/0 fullPaint=0/0\r\nRAPID_BORDER style=1 changes=8 solve=8/2 plan=8/2 prepared=6\r\nRAPID_BORDER style=2 changes=8 solve=8/2 plan=8/2 prepared=6\r\nRapid strip replay passes slots, shared mappings, grid transition, lockdown, prepared side joins and bounded reuse.",
+        "wallSeconds": 3.5403359
+      },
+      {
+        "path": "tests/window_runtime_spec.lua",
+        "exitCode": 0,
+        "output": "Mirror repositions after 3 lifecycle events: show=1, event=1\r\nMeter retry extra FontStrings=0; tab-switch detached objects=0\r\nWindow/runtime checks: 36, failures: 0",
+        "wallSeconds": 0.0263305
+      }
+    ],
+    "syntaxPassed": 1256,
+    "upvalueMax": 52,
+    "scope": "First visible frame, lower minimap and Flux Window contact, a continuous stroke at the T, immediate detached outlines, two border types, mixed scales, stationary or repeated hover, and vertical centering during embedded reflows."
+  },
+  "nativeResult": "Pending",
+  "nativeScope": "Native appearance, input, timing and combat taint remain pending."
+}

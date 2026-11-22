@@ -390,12 +390,11 @@ local function AttachMergedFrameOptions(options)
 
     general.auraTimersUnderMinute = {
         type = "toggle", name = "Show aura timers only below 1 minute", order = 9, width = "full",
-        desc = "Applies to normal party frames, target and focus. Hide countdown text at 60 seconds or more; icons, stacks and swipes remain. Raid and compact party use the separate Party / Raid setting.",
+        desc = "Hide countdown text at 60 seconds or more on Flux target, focus, party and raid frames. Icons, stacks and cooldown swipes stay visible.",
         get = function() return GetDB().auraTimersUnderMinute == true end,
         set = function(_, value)
             GetDB().auraTimersUnderMinute = value and true or false
             AfterAuraOptionsChange()
-            if FluxPartyFrames and FluxPartyFrames.ApplyOptions then FluxPartyFrames.ApplyOptions() end
         end,
     }
 

@@ -6,10 +6,12 @@
 local addonName, ns = ...
 ns.UnitFrames = ns.UnitFrames or {}
 local UF = ns.UnitFrames
+local Aura = ns.Flux and ns.Flux.Aura
 
 local AURA_BORDER_INSET_X = 8
 local AURA_BORDER_INSET_Y_TOP = 10
 local AURA_BORDER_INSET_Y_BOTTOM = 10
+local dispelTypeIcons = setmetatable({}, { __mode = "k" })
 
 local loaded
 local loadFailed
@@ -213,6 +215,13 @@ local function InitializeEngineButton(button, container, width, height)
 			showWhenHelpful = false,
 		})
 	end
+	if container.containerType == "Debuff" and Aura and Aura.CreateDispelTypeIcon then
+		local iconSize = math.min(width, height)
+		local typeIcon = Aura.CreateDispelTypeIcon(button, textHost, iconSize)
+		if typeIcon and Aura.BindDispelTypeIcon(button, typeIcon) then
+			dispelTypeIcons[button] = { texture = typeIcon, size = iconSize }
+		end
+	end
 	local stealFilter = StealableFilter()
 	if preserve and stealFilter ~= nil and stealable then
 		pcall(button.AddDispelTypeTexture, button, stealable, {
@@ -359,6 +368,13 @@ local function ResizeGroupButtons(engine, key, width, height)
 		local got, frame = pcall(engine.GetAuraGroupFrame, engine, key, i)
 		if got and not (issecretvalue and issecretvalue(frame)) and frame and frame.SetSize then
 			pcall(frame.SetSize, frame, width, height)
+			local icon = Aura and dispelTypeIcons[frame]
+			if icon and PublicLayoutNumber(width) and PublicLayoutNumber(height) then
+				local iconSize = math.min(width, height)
+				if icon.size ~= iconSize and pcall(Aura.LayoutDispelTypeIcon, icon.texture, frame, iconSize) then
+					icon.size = iconSize
+				end
+			end
 		end
 	end
 end

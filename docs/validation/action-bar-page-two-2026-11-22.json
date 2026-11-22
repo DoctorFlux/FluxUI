@@ -1,0 +1,222 @@
+{
+  "change": "ACTION-STRIP-PAGE2-20261122",
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\22\\01a20399-36f3-75b1-aa5f-427a75d90744\\action-bar-page-two-before-20261122T141442Z\\checkpoint.json",
+    "main": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "verifiedSourceFiles": 298,
+    "archiveSha256": "eae89351e404bbf7314accff2e026a173c5b5da38ceac53fd442b8f8e3f0fd33",
+    "historyBundleSha256": "ae2f3ff2ed1c3928d6d580c48dc080e969af477a1f0afaf7fb1f6092d32d4570",
+    "settingsMetadataEntries": 159,
+    "settingsHandling": "File names, scopes, sizes, and modified dates only. No settings content or account/character identifiers."
+  },
+  "baselineSha256": {
+    "Bars/SlotMath.lua": "b202149ea5bb73adc23124c7bf6b60221e729d42dc381b9f28176404e4042cb8",
+    "Bars/State.lua": "5ce862a8cf472734e387fc9743074d1a6812e9285572fc169f4cbac5e1f6c15d",
+    "Binding/Core/Placement.lua": "280c3bcd9be3aeeb923c8289abef73eb374e8dea680c19492186e7e780e78292",
+    "tests/main_row_recovery.lua": "78705e3c264143ad09155b2436d8059e6af09e8602cb28a804c7dbc967bc603a",
+    "tests/bars_modifier_matrix.lua": "6b7c082bd84f8d450777c622521833066dfe75fa3b32cb94659421fe95f4f69c",
+    "tests/bars_modifier_visuals.lua": "7cc1cceae943ac1f118c817476ff0c3fc14da1a2a82ee23e6f915195c59c1209",
+    "tests/badge_page_owners.lua": "4ece20cd10c166ab8ca8bbb0e4a4d92a12ae024462658251e1bd8006b7e03dc6",
+    "Bars/_tmp_forevercontrolsmoke.lua": "9673dd7fae7ae221aa1a2e4f4a2b36984e70c114606eb3de7ffb642b74e18387"
+  },
+  "candidateSha256": {
+    "Bars/SlotMath.lua": "ff57b1254fa2daf1b393768e5d35c4dd0eb807309b1630c486da69f6919b3a6a",
+    "Bars/State.lua": "68ae1b6902f8787311ba6b24b7a9f605f5578ff6ee6f177011f7f61c8f9b5935",
+    "Binding/Core/Placement.lua": "c5328d4e1ac7a7e47f6b20328061241fc324751bf9227c46e8073ff37e4c43f5",
+    "tests/main_row_recovery.lua": "449189bebf14bdc494fb057c6322b228369bc13487432b21832dc34ec4e51672",
+    "tests/bars_modifier_matrix.lua": "fb9294dd3664d2a6f8a67679e7d6b6ed8aebb34de8c561e2f6c07ab0ffecae27",
+    "tests/bars_modifier_visuals.lua": "da57581ec0faa4519cfdbfc9bfd3e1def6d7eac5895bb69090fc3a20190502f2",
+    "tests/badge_page_owners.lua": "7ba9bc0aea2ce4bf68813832d92bcd37a86a4be6727e628c5a544413a155dcf1",
+    "Bars/_tmp_forevercontrolsmoke.lua": "e1721186df1c95f6e8e6e5b04d6cba70dd89fcdcddabe6a21e4f912544841e2a"
+  },
+  "installedRoutingSha256": {
+    "_retail_": {
+      "Bars/SlotMath.lua": "ff57b1254fa2daf1b393768e5d35c4dd0eb807309b1630c486da69f6919b3a6a",
+      "Bars/State.lua": "68ae1b6902f8787311ba6b24b7a9f605f5578ff6ee6f177011f7f61c8f9b5935"
+    },
+    "_forever_": {
+      "Bars/SlotMath.lua": "ff57b1254fa2daf1b393768e5d35c4dd0eb807309b1630c486da69f6919b3a6a",
+      "Bars/State.lua": "68ae1b6902f8787311ba6b24b7a9f605f5578ff6ee6f177011f7f61c8f9b5935"
+    },
+    "_classic_": {
+      "Bars/SlotMath.lua": "ff57b1254fa2daf1b393768e5d35c4dd0eb807309b1630c486da69f6919b3a6a",
+      "Bars/State.lua": "68ae1b6902f8787311ba6b24b7a9f605f5578ff6ee6f177011f7f61c8f9b5935"
+    },
+    "_classic_era_": {
+      "Bars/SlotMath.lua": "ff57b1254fa2daf1b393768e5d35c4dd0eb807309b1630c486da69f6919b3a6a",
+      "Bars/State.lua": "68ae1b6902f8787311ba6b24b7a9f605f5578ff6ee6f177011f7f61c8f9b5935"
+    },
+    "_anniversary_": {
+      "Bars/SlotMath.lua": "ff57b1254fa2daf1b393768e5d35c4dd0eb807309b1630c486da69f6919b3a6a",
+      "Bars/State.lua": "68ae1b6902f8787311ba6b24b7a9f605f5578ff6ee6f177011f7f61c8f9b5935"
+    }
+  },
+  "installationHandling": "Candidate routing files appeared on all five installations during the task and were verified by hash. Workspace edits were made on main. The other installations were inspected read-only.",
+  "observed": {
+    "previousLiveReport": "Forever native page 2 with neutral modifiers. Main column 6 and fixed column 18 both used action slot 18.",
+    "settingsInspection": "Current and backup Flux settings show no saved native page override or fixed routing. The active native binding cache has no explicit action-page commands. The supplied settings do not capture the affected page selection.",
+    "selectionTrigger": "The original reason native page 2 was selected is unknown."
+  },
+  "mapping": {
+    "page": 2,
+    "beforeRestingSlots": [
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "afterRestingSlots": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      20,
+      21,
+      22,
+      23,
+      24,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "storageSlotSetsEqualAcrossPages": true,
+    "settingsWrites": false,
+    "placementOrBindingWrites": false
+  },
+  "source": {
+    "currentPinnedCalculators": {
+      "Retail": {
+        "version": "12.1.5.70961",
+        "commit": "ab5cb850a3f65e742959e379c4689353a2f4549f",
+        "blob": "0b7ba234696b5f1c551e7d84375900e50c824cbb",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/ab5cb850a3f65e742959e379c4689353a2f4549f/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua#L670"
+      },
+      "Forever": {
+        "version": "1.60.1.71037",
+        "commit": "734f065329cff4992835b01a84f210a297db91b6",
+        "blob": "66f203e31a819f383ea3c6920be8d4f6556848eb",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua#L667"
+      },
+      "Classic progression": {
+        "version": "5.5.4.71060",
+        "commit": "e171ae99b8e582ce9547bd8fc87054fe2e348f20",
+        "blob": "e35a52fa79f9cbc38452b6b529d8734ded0938ea",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/e171ae99b8e582ce9547bd8fc87054fe2e348f20/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua#L662"
+      },
+      "Classic Era": {
+        "version": "1.15.9.70576",
+        "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+        "blob": "31ea34c7dc3995bac10adcd2ce57b02f06db13e2",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua#L664"
+      },
+      "Anniversary": {
+        "version": "2.5.6.70577",
+        "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+        "blob": "ba180de8cf11512e45d0f184d8e060efdf3471f4",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua#L664"
+      }
+    },
+    "comparison": "CalculateAction and SecureButton_GetModifiedAttribute bodies match after newline normalization on all five current pins.",
+    "installedClassicProgressionVersion": "5.5.4.70631",
+    "installedClassicProgressionPriorPin": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "localSnapshotVersions": {
+      "live": "12.1.0.69283",
+      "forever": "1.60.1.70425",
+      "classic": "5.5.4.69155",
+      "classic_era": "1.15.9.68808",
+      "classic_anniversary": "2.5.6.68775"
+    },
+    "localForeverFixtureSha256": "b6e91f1d54f269a8bd66312b368e6fd7706028d366eee0167161ace9004cae23"
+  },
+  "desktop": {
+    "versions": [
+      "Lua 5.1.5 with test-only harness shims",
+      "Lua 5.4.6"
+    ],
+    "focused": {
+      "mainRow": 9648,
+      "modifierMatrix": 363885,
+      "modifierVisuals": 21924,
+      "badgeOwners": 494,
+      "ForeverControl": 25920,
+      "nativeClickModel": 864,
+      "respecActionSafety": 477
+    },
+    "comparison": {
+      "repeatedSlotsOnNeutralPage2": {
+        "baseline": 7,
+        "candidate": 0
+      },
+      "badgePreparedFacesForSlots13Through20EachModel": {
+        "baseline": 135,
+        "candidate": 72
+      },
+      "badgeFullPlacementSettersEachModel": {
+        "baseline": 14040,
+        "candidate": 7488
+      },
+      "badgeSteadyIncrementalSettersEachModel": {
+        "baseline": 0,
+        "candidate": 0
+      }
+    },
+    "negativeControls": "Baseline SlotMath alone and baseline State alone each reproduce the route failure. Both together are also rejected by the mouse, visual and badge regressions.",
+    "distinctStorageCheck": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\22\\01a20399-36f3-75b1-aa5f-427a75d90744\\action-bar-page-two-before-20261122T141442Z\\page-two-slot-count.lua",
+    "fullValidation": {
+      "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\22\\01a20399-36f3-75b1-aa5f-427a75d90744\\action-bar-page-two-before-20261122T141442Z\\candidate-validation.json",
+      "syntaxFiles": 1275,
+      "syntaxFailures": [],
+      "passingSuites": 562,
+      "failingSuites": 17,
+      "sameFailureWithBaselineRouting": [
+        "Bars/_tmp_barsmoke.lua",
+        "Core/_tmp_minimaplayoutsmoke.lua",
+        "Inventory/Restock/Junk/_tmp_junksmoke.lua",
+        "tests/alpha_reader_safety.lua",
+        "tests/auction_restock_craft_settle.lua",
+        "tests/border_fallback_array_guards.lua",
+        "tests/border_fallback_compile_cache.lua",
+        "tests/border_fallback_opacity.lua",
+        "tests/border_fallback_plan_cache.lua",
+        "tests/bulk_capacity_work.lua",
+        "tests/deferred_inventory_handoff.lua",
+        "tests/ebs_item_applied_bundle.lua",
+        "tests/flux_logistics_restock_membership_ui.lua",
+        "tests/late_inventory.lua",
+        "tests/passive_unit_styles.lua",
+        "tests/raid_owned_settings.lua",
+        "tests/regional_border_cuts.lua"
+      ],
+      "differentResultWithBaselineRouting": [],
+      "failureComparison": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\22\\01a20399-36f3-75b1-aa5f-427a75d90744\\action-bar-page-two-before-20261122T141442Z\\failure-comparison.json"
+    }
+  },
+  "native": {
+    "preferredForeverRoute": "Witchcraft",
+    "connectedToolAvailable": false,
+    "status": "Pending fresh in-game reload and input, controller and taint verification.",
+    "performance": "Native time and FPS unmeasured."
+  }
+}

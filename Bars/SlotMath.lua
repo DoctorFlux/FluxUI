@@ -40,6 +40,15 @@ local function RowId(row)
 	return 1
 end
 
+local function MainSlot(column, page)
+	-- Fixed columns already expose slots 13–19. Keep the first seven base
+	-- actions alongside page two's remaining five slots (20–24).
+	if column > 12 or page == 0 or (page == 2 and column <= 7) then
+		return column
+	end
+	return (page - 1) * 12 + column
+end
+
 --- column 1-19, row "main"|"sec"|"tert" or 1|2|3, page 1-18, swap 0|1|2
 -- opts.promoted: 0 none, 1 sec, 2 tert, 3 both
 -- opts.hasSec / opts.hasTert: booleans (default false)
@@ -57,14 +66,13 @@ function M.Resolve(column, row, page, swap, opts)
 	local static = column > 12 and 1 or 0
 	local rowId = RowId(row)
 
-	local mainRest, sec, tert
+	local mainRest = MainSlot(column, page)
+	local sec, tert
 	if static == 1 then
 		local off = column - 12
-		mainRest = 12 + off
 		sec = 48 + off
 		tert = 36 + off
 	else
-		mainRest = (page - 1) * 12 + column
 		sec = 60 + column
 		tert = 24 + column
 	end
@@ -142,15 +150,7 @@ function M.Resolve(column, row, page, swap, opts)
 end
 
 function M.MainSlot(column, page)
-	page = tonumber(page) or 0
-	column = tonumber(column) or 1
-	if column > 12 then
-		return 12 + (column - 12)
-	end
-	if page == 0 then
-		return column
-	end
-	return (page - 1) * 12 + column
+	return MainSlot(tonumber(column) or 1, tonumber(page) or 0)
 end
 
 function M.SecondarySlot(column)

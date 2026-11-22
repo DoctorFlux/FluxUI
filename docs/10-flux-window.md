@@ -70,6 +70,10 @@ flowchart LR
 
 [FluxBattlefieldMap.lua](../Battlezonemap/FluxBattlefieldMap.lua) manages initialization, show/hide, parent, scaling, refresh and cleanup. Public methods include `Initialize`, `SetScaling`, `UpdateLayout`, `IsActive`, `GetMapFrame` and `SetWorldMapFeaturesEnabled`. It uses available Blizzard map UI. Addon, entering-world/zone and combat events handle late construction and changing context.
 
+The hosted Battlefield Map retains its current Area POI pins during combat
+restrictions. Missed Area POI events coalesce into one update on release.
+[Native POI lifecycle](MAP_PROVIDER_LIFECYCLE.md#native-area-poi-event--22-november-2026).
+
 | Layer | Responsibility |
 |---|---|
 | [Providers](../Battlezonemap/FluxBattlefieldMapProviders.lua) | Attach available world-map providers for quests, waypoints, POIs, vignettes, flight points, gossip, dig sites and dungeon entrances; track additions and required pin frame levels. |
@@ -91,6 +95,11 @@ The editor applies built-ins, changes pane contents/column counts/fractions, sav
 [FluxDetails.lua](../Battlezonemap/FluxDetails.lua) creates enough instances, embeds them, suppresses instance chrome and refreshes after profile/instance changes. [WoWSkin tint](../Battlezonemap/FluxDetailsWoWSkinTint.lua) reapplies class tint. [Forever adaptation](../Battlezonemap/FluxDetailsForever.lua) handles its backend differences. [FluxThreat.lua](../Battlezonemap/FluxThreat.lua) supplies the Flux threat plugin using roster, target and threat-list updates; this is distinct from unit-frame/nameplate threat overlays.
 
 [FluxBlizzardMeter.lua](../Battlezonemap/FluxBlizzardMeter.lua) discovers native session APIs and embeds supported session windows, accepting current secondary-window and older variants. Forever gamepad mode anchors it to the Flux window **without reparenting**, because reparenting taints native gamepad dropdown interaction. Both backend reset APIs require being out of combat.
+
+Flux layouts request pane types. Use Blizzard’s title dropdown to apply a
+requested type, its settings menu to add a required window, and its combat
+session dropdown to select **Current**, **Overall** or a past fight.
+[Native control ownership](METER_STANDALONE.md#native-meter-control-ownership--22-november-2026).
 
 Native meter visibility remains owned by Blizzard Edit Mode: Always, InCombat,
 InGroup and Hidden settings are honored inside the Flux host/tab boundary.

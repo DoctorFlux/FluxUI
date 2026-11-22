@@ -913,6 +913,10 @@ local function finishRestockWork()
 end
 
 local function beginBagMergePhase(after)
+    if state.opts and state.opts.validate then
+        if after == "split" then beginSplitPhase() else finishRestockWork() end
+        return
+    end
     state.mergeItemIDs = {}
     state.mergeBanned = {}
     state.mergeRetryOnce = {}
@@ -1015,6 +1019,10 @@ local function finishBankMergeStage()
 end
 
 beginBankMergePhase = function(stage)
+    if state.opts and state.opts.validate then
+        finishRestockWork()
+        return
+    end
     stage = stage or "cleanup"
     if stage == "prep" and state.bankPrepDone then
         setPhase(PHASE_IDLE)
@@ -1153,6 +1161,12 @@ local function fireWithdrawBurst()
                 pending = pending + 1
             else
                 local had = ctx.GetSlotQuantity(mv.fromBag, mv.fromSlot)
+                local validate = state.opts and state.opts.validate
+                if validate and (slotItemID(mv.fromBag, mv.fromSlot) ~= mv.itemID
+                    or had ~= tonumber(mv.qty) or not validate(mv, had)) then
+                    finishSession("offer_changed")
+                    return issued
+                end
                 if had > 0 then NoteFollowupCommand() end
                 if had > 0 and ctx.UseWhole(mv.fromBag, mv.fromSlot) then
                     issued = issued + 1
@@ -1288,6 +1302,12 @@ local function fireOneSplit()
         if isSplitMove(mv) and not mv.done and not mv.inFlight then
             local qty = math.floor(tonumber(mv.qty) or 0)
             local before = ctx.GetSlotQuantity(mv.fromBag, mv.fromSlot)
+            local validate = state.opts and state.opts.validate
+            if validate and (slotItemID(mv.fromBag, mv.fromSlot) ~= mv.itemID
+                or before < qty or not validate(mv, qty)) then
+                finishSession("offer_changed")
+                return false, false
+            end
             if before <= 0 then
                 completeSplit(mv, false, "source_gone")
             elseif (mv.attempts or 0) >= MAX_MOVE_ATTEMPTS then
@@ -1454,6 +1474,7 @@ local function tickSplitStep()
     end
 
     local issued, blocked = fireOneSplit()
+    if not state.active then return end
     state.nextStepAt = now() + stepInterval()
     if issued then
         setPhase(PHASE_SPLIT_WAIT)
@@ -1505,6 +1526,7 @@ local function tickIdle()
 
     if hasPendingWithdrawMoves() then
         local issued = fireWithdrawBurst()
+        if not state.active then return end
         if issued > 0 then
             setPhase(PHASE_WITHDRAW_WAIT)
             return
@@ -1539,6 +1561,10 @@ local function tickWithdrawWait()
         return
     end
     if (now() - (state.phaseStarted or 0)) >= ACK_TIMEOUT then
+        if state.opts and state.opts.validate then
+            finishSession("withdraw_uncertain")
+            return
+        end
         for _, w in ipairs(state.withdraw or {}) do
             if not w.acked then
                 w.acked = true
@@ -1636,7 +1662,7 @@ function Exec.Start(session, opts)
     -- Consolidate bank fragments BEFORE moving anything, then replan. Splitting
     -- out of a single 19 beats splitting out of a 9 and a 10, and it keeps last
     -- session's remainders from multiplying.
-    beginBankMergePhase("prep")
+    if not opts.validate then beginBankMergePhase("prep") end
 
     frame:Show()
     return true

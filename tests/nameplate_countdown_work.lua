@@ -43,6 +43,17 @@ local function boot(branch)
     local s = { frames = {}, plates = {}, now = 200, fontReads = 0, regionReads = 0,
         levelReads = 0, labelWrites = 0, alphaWrites = 0, anchors = 0, errors = 0 }
     local env = setmetatable({}, { __index = _G }); env._G = env
+    s.appearance = setmetatable({}, { __index = { auraCountdown = "bottom" } })
+    s.ownedAuras, s.ownershipReads, s.itemWrites = {}, 0, 0
+    env.FluxUI_DB = { nameplateAppearance = s.appearance }
+    env.C_UnitAuras = {
+        IsAuraFilteredOutByInstanceID = function(unit, id, filter)
+            assert(unit == "nameplate1" and filter == "HARMFUL|PLAYER|INCLUDE_NAME_PLATE_ONLY")
+            s.ownershipReads = s.ownershipReads + 1
+            if s.ownedAuras[id] == "restricted" then error("aura access unavailable") end
+            return s.ownedAuras[id] ~= true
+        end,
+    }
     local client = { isRetail = branch == "live" or branch == "forever", isForever = branch == "forever",
         isCamelot = branch == "forever", isEra = branch == "era", majorVersion = branch == "live" and 12 or 1,
         isAnyClassic = branch ~= "live" and branch ~= "forever" }
@@ -78,7 +89,10 @@ local function boot(branch)
             function t:SetJustifyH(v) self.justifyH = v end
             function t:SetJustifyV(v) self.justifyV = v end
             function t:SetTextColor(r, g, b, a) self.r, self.g, self.b, self.a = r, g, b, a end
-            function t:SetText(v) self.value = v; s.labelWrites = s.labelWrites + 1 end
+            function t:SetText(v)
+                if self.rejectText then error("label unavailable") end
+                self.value = v; s.labelWrites = s.labelWrites + 1
+            end
             return t
         end
         s.frames[#s.frames + 1] = f
@@ -99,12 +113,17 @@ local function boot(branch)
         if self.driver.hooks.OnUpdate then self.driver.hooks.OnUpdate(self.driver, elapsed) end
     end
     function s:aura(legacy)
-        local d = { shown = true, accessible = true, text = "8", start = 199, duration = 5, level = 14 }
+        local d = { shown = true, accessible = true, text = "8", start = 199, duration = 5, level = 14,
+            alpha = 1, motion = true }
         local function digits()
-            local data = { alpha = 1 }
+            local data = { r = 1, g = 1, b = 1, alpha = 1 }
             local fs = native({ GetText = function() return d.text end,
+                CanBeAccessedInContext = function() return not d.protectedDigits end,
+                GetTextColor = function() return data.r, data.g, data.b, data.alpha end,
                 SetTextColor = function(_, r, g, b, a)
-                    assert(r == 1 and g == 1 and b == 1); data.alpha = a; s.alphaWrites = s.alphaWrites + 1
+                    if d.rejectAlpha or d.protectedDigits then error("digits unavailable") end
+                    data.r, data.g, data.b, data.alpha = r, g, b, a
+                    s.alphaWrites = s.alphaWrites + 1
                 end, GetObjectType = function() return "FontString" end })
             return fs, data
         end
@@ -120,9 +139,21 @@ local function boot(branch)
             GetRegions = function() s.regionReads = s.regionReads + 1; return texture, d.digits end }
         if not legacy then fields.GetCountdownFontString = function() s.fontReads = s.fontReads + 1; return d.digits end end
         d.cooldown = native(fields)
-        d.frame = native({ Cooldown = d.cooldown, IsShown = function() return d.shown end,
+        local item = { Cooldown = d.cooldown, IsShown = function() return d.shown end,
             CanBeAccessedInContext = function() return d.accessible end,
-            GetFrameLevel = function() s.levelReads = s.levelReads + 1; return 11 end })
+            GetFrameLevel = function() s.levelReads = s.levelReads + 1; return 11 end,
+            GetAlpha = function() return d.alpha end,
+            SetAlpha = function(_, alpha) d.alpha = alpha; s.itemWrites = s.itemWrites + 1 end,
+            IsMouseMotionEnabled = function() return d.motion end,
+            SetMouseMotionEnabled = function(_, motion) d.motion = motion; s.itemWrites = s.itemWrites + 1 end,
+        }
+        d.frame = setmetatable({}, {
+            __index = function(_, key)
+                if key == "auraInstanceID" then return d.id end
+                return item[key]
+            end,
+            __newindex = function() error("wrote native frame field") end,
+        })
         return d
     end
     function s:plate(unit, auras)
@@ -147,6 +178,52 @@ local function boot(branch)
     return s
 end
 for _, branch in ipairs({ "era", "anniversary", "progression", "live", "forever" }) do
+    if not mutation then
+        local f = boot(branch)
+        local mine, other, otherCC, myCC, helpful, denied, unconfirmed = f:aura(), f:aura(), f:aura(), f:aura(),
+            f:aura(), f:aura(), f:aura()
+        mine.id, other.id, otherCC.id, myCC.id, helpful.id, denied.id = 101, 102, 103, 104, 105, 106
+        unconfirmed.id = secret()
+        f.ownedAuras[101], f.ownedAuras[104], f.ownedAuras[106] = true, true, "restricted"
+        other.alpha = 0.65
+        f:plate("nameplate1", { DebuffListFrame = f:list({ mine, other, denied, unconfirmed }),
+            CrowdControlListFrame = f:list({ otherCC }), LossOfControlFrame = { AuraItemFrame = myCC.frame },
+            BuffListFrame = f:list({ helpful }) })
+        f:event("NAME_PLATE_UNIT_ADDED", "nameplate1")
+        check(f.ownershipReads == 0 and other.alpha == 0.65 and otherCC.alpha == 1,
+            branch .. " default leaves stock slots and costs alone")
+        f.appearance.onlyMyDebuffs = true
+        f.np.RefreshAll()
+        check(mine.alpha == 1 and myCC.alpha == 1 and helpful.alpha == 1 and f.ownershipReads == 5,
+            branch .. " keeps own debuff and CC, skips the helpful row and secret ID")
+        check(other.alpha == 0 and otherCC.alpha == 0 and denied.alpha == 0 and unconfirmed.alpha == 0
+            and not other.motion and not otherCC.motion and not f:host(other).shown,
+            branch .. " mutes other and unconfirmed stock icons, tooltip motion and countdowns")
+        local reads, writes = f.ownershipReads, f.itemWrites
+        f:tick(0.1)
+        check(f.ownershipReads == reads and f.itemWrites == writes,
+            branch .. " stable filtered icons cause no more ownership queries or writes")
+        other.motion = true
+        f:tick(0.1)
+        check(not other.motion and other.alpha == 0, branch .. " re-enabled pooled hover stays muted")
+        other.id = 101
+        f:tick(0.1)
+        check(other.motion and other.alpha == 0.65 and f:host(other).shown,
+            branch .. " replacing a pooled debuff with an owned one restores exact alpha and hover")
+        other.id = 102
+        f:tick(0.1)
+        check(other.alpha == 0 and not other.motion, branch .. " pooled slot can be filtered again")
+        f.appearance.onlyMyDebuffs = false
+        f.np.RefreshAll()
+        check(other.alpha == 0.65 and other.motion and otherCC.alpha == 1 and otherCC.motion
+            and denied.alpha == 1 and unconfirmed.alpha == 1,
+            branch .. " disabling restores every concealed stock item")
+        f.appearance.onlyMyDebuffs = true
+        f.np.RefreshAll()
+        f:event("NAME_PLATE_UNIT_REMOVED", "nameplate1")
+        check(other.alpha == 0.65 and other.motion and otherCC.alpha == 1 and otherCC.motion,
+            branch .. " plate release restores pooled alpha and motion")
+    end
     local s = boot(branch)
     local a, b, c = s:aura(), s:aura(true), s:aura()
     c.text = secret()
@@ -200,6 +277,80 @@ for _, branch in ipairs({ "era", "anniversary", "progression", "live", "forever"
             s.labelWrites - cycleLabels, s.anchors - cycleAnchors, #s.frames))
     s:plate("preview", { auraItemFramePool = s:pool({ s:aura() }) })
     s:event("NAME_PLATE_UNIT_ADDED", "preview"); check(#s.frames == 5, branch .. " preview has no host")
+    if source == "NamePlates/Countdown.lua" and not mutation then
+        check(ah.text.size == 12, branch .. " the published native countdown size is the default")
+        s.appearance.countdownSize = 17
+        s.np.RefreshUnit("nameplate1")
+        check(ah.text.size == 17 and bh.text.size == 17 and #s.frames == 5,
+            branch .. " resizing updates reused Flux labels without creating frames")
+        s.appearance.countdownSize = 400
+        s.np.RefreshUnit("nameplate1")
+        check(ah.text.size == 24, branch .. " oversized saved countdown font is bounded")
+        s.appearance.countdownSize = nil
+        s.np.RefreshUnit("nameplate1")
+        check(ah.text.size == 12, branch .. " resetting the font size restores 12 pixels")
+        s.appearance.auraCountdown = "bottom"
+        s.np.RefreshUnit("nameplate1")
+        check(ah.shown and ah.point == "CENTER" and ah.relativePoint == "BOTTOM" and ah.y == 7,
+            branch .. " the bottom setting moves the Flux text inside the native aura icon")
+        s.appearance.auraCountdown = "below"
+        s.np.RefreshUnit("nameplate1")
+        check(ah.shown and ah.point == "TOP" and ah.relativePoint == "BOTTOM" and ah.y == -1,
+            branch .. " the below setting moves countdowns outside the icon")
+        s.appearance.auraCountdown = "middle"
+        s.np.RefreshUnit("nameplate1")
+        check(ah.shown and ah.point == "CENTER" and ah.relativePoint == "CENTER" and ah.y == 0,
+            branch .. " the center setting returns to the Flux default anchor")
+        s.appearance.auraCountdown = "none"
+        s.np.RefreshUnit("nameplate1")
+        check(not ah.shown and not ch.shown and a.digitData.alpha == 0,
+            branch .. " Off hides both Flux text and available native countdown digits")
+        a.rejectAlpha = true
+        s:event("NAME_PLATE_UNIT_REMOVED", "nameplate1")
+        check(a.digitData.alpha == 0 and b.digitData.alpha == 1,
+            branch .. " removal restores native digits that accept the change")
+        a.rejectAlpha = false
+        s:event("PLAYER_REGEN_ENABLED")
+        check(a.digitData.alpha == 1, branch .. " regen retries restoration if native digits refused it during removal")
+        s.appearance.auraCountdown = nil
+        s:event("NAME_PLATE_UNIT_ADDED", "nameplate1")
+        ch.text.rejectText = true
+        s:tick(0.1)
+        check(not ch.shown and c.digitData.alpha == 1,
+            branch .. " a rejected opaque label leaves the native countdown visible")
+        ch.text.rejectText = false
+        s:tick(0.1)
+        check(ch.shown and c.digitData.alpha == 0,
+            branch .. " the original cadence recovers a countdown after its label accepts the write")
+
+        local off = boot(branch)
+        off.appearance.auraCountdown = "none"
+        local colored = off:aura()
+        colored.digitData.r, colored.digitData.g, colored.digitData.b, colored.digitData.alpha = 0.25, 0.5, 0.75, 0.6
+        local protected = off:aura()
+        protected.protectedDigits = true
+        off:plate("nameplate1", { auraItemFramePool = off:pool({ colored, protected }) })
+        off:event("NAME_PLATE_UNIT_ADDED", "nameplate1")
+        check(colored.digitData.alpha == 0 and colored.digitData.r == 0.25 and colored.digitData.g == 0.5
+            and colored.digitData.b == 0.75 and protected.digitData.alpha == 1 and #off.frames == 2,
+            branch .. " Off retains native RGB, respects unreadable digits and skips overlay allocation")
+        off:plate("nameplate2", { auraItemFramePool = off:pool({ colored }) })
+        local previousWrites = off.alphaWrites
+        off:event("NAME_PLATE_UNIT_ADDED", "nameplate2")
+        check(colored.digitData.alpha == 0 and off.alphaWrites == previousWrites + 2,
+            branch .. " pooled aura releases its old mute and leases its current owner")
+        off:event("NAME_PLATE_UNIT_REMOVED", "nameplate1")
+        check(colored.digitData.alpha == 0, branch .. " old unit removal leaves the new unit's mute intact")
+        local previousDigits = colored.digitData
+        colored.replaceDigits()
+        off.np.RefreshUnit("nameplate2")
+        check(previousDigits.alpha == 0.6 and previousDigits.r == 0.25 and colored.digitData.alpha == 0,
+            branch .. " replacing the digits restores the previous region's precise color and alpha")
+        colored.digitData.r, colored.digitData.alpha = 0.4, 0.7
+        off:event("NAME_PLATE_UNIT_REMOVED", "nameplate2")
+        check(colored.digitData.r == 0.4 and colored.digitData.alpha == 0.7,
+            branch .. " releasing the mute preserves later native formatting")
+    end
     -- Independent steady scenario: warm all native/Flux widgets before stopping GC.
     for _, mode in ipairs({ "modern", "legacy" }) do
     local m = boot(branch); local items = {}; for i = 1, 100 do items[i] = m:aura(mode == "legacy") end

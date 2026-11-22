@@ -49,6 +49,10 @@ for _, client in ipairs({ "Retail", "Forever", "MoP", "Era", "Anniversary" }) do
         -- Extend only the existing desktop widget surface for actual HUD source.
         local m = getmetatable(env.UIParent).__index
         function m:GetSize() return self:GetWidth(), self:GetHeight() end
+        function m:GetParent() return self.parent end
+        function m:IsVisible() return self:IsShown() and (not self.parent or self.parent:IsVisible()) end
+        function m:GetFrameStrata() return self.strata or (self.parent and self.parent:GetFrameStrata()) or "MEDIUM" end
+        function m:SetFrameStrata(value) self.strata = value end
         function m:SetNormalTexture(value) self.normal = value end
         function m:SetPushedTexture(value) self.pushed = value end
         function m:SetHighlightTexture(value) self.highlight = value end
@@ -106,6 +110,26 @@ for _, client in ipairs({ "Retail", "Forever", "MoP", "Era", "Anniversary" }) do
         check(F.GetState() and F.GetState().kind == "craft" and F.frame:IsShown() and F.frame.itemCount == 1
             and F.icons[1].itemID == 100 and F.icons[1].count.text == "2" and not next(effects) and stops == 2,
             "actual owner completion advances to the output icon and stops the prior item art while its craft owner is unavailable")
+        local reminder, badge, caption = F.frame, F.icons[1], F.frame.label:GetText()
+        local profession = env.CreateFrame("Frame", nil, env.UIParent)
+        local create = env.CreateFrame("Button", nil, profession)
+        if client == "Era" or client == "Anniversary" then
+            env.TradeSkillFrame, env.TradeSkillCreateButton = profession, create
+        else
+            profession.CraftingPage = env.CreateFrame("Frame", nil, profession)
+            create:SetParent(profession.CraftingPage)
+            profession.CraftingPage.CreateButton = create
+            env.ProfessionsFrame = profession
+        end
+        F.RefreshProfessionLayer()
+        check(reminder:GetParent() == profession and reminder.point[2] == create and reminder:IsVisible()
+            and reminder.label:GetText() == caption and badge.count.text == "2" and not badge:IsEnabled()
+            and F.GetProfessionWindowAction().kind == "craft",
+            "the actual standalone follow-up carries the same output and instructions into its native profession shell")
+        profession:Hide()
+        check(F.frame == reminder and F.icons[1] == badge and reminder:GetParent() == env.UIParent
+            and reminder.point[2] == env.FluxExtraAbilityHost and reminder:IsVisible(),
+            "closing the native window restores the same standalone reminder on the HUD")
         check(not st.calls.quote and not st.calls.buyStack and not st.calls.buyItem and not F.CraftClick,
             "opening, querying, painting and vendor follow-up never invent an auction or craft gesture")
         st.merchantOpen = false; st.emit("MERCHANT_CLOSED")

@@ -1,0 +1,712 @@
+{
+  "changeId": "FLYOUT-ARROW-LAYER-20261121",
+  "capturedAtUTC": "2026-11-21T13:01:57.1090221Z",
+  "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+  "checkpoint": {
+    "createdUTC": "2026-11-21T12:54:58.8777066Z",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "branch": "main",
+    "history": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flyout-layer-before-2026-11-21-135457/main.bundle",
+    "historySha256": "ae2f3ff2ed1c3928d6d580c48dc080e969af477a1f0afaf7fb1f6092d32d4570",
+    "settingsCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 32
+    },
+    "files": {
+      "Bars/Flyout.lua": "6bd436bf6a6a2556ff0b0e5664fa8b9fcfc7c98e88998d2f27bae2050a9b0df1",
+      "ExtraButtonSystem/Engine/Widget.lua": "5458e613ae80fa7e750db36432cfb929f52fe3cf1aba642b870e77b046cd99a0",
+      "ExtraButtonSystem/FlyoutEngine/Arrow.lua": "1ccb07ad412e39d0e54a66be7d259b2ba5d58ab74b7ff1242984a9130471c3f1",
+      "Core/BorderJunctions.lua": "36332f7c364e183451aa137d9689a0ef2fdb476f211d8fca155907d46ecd3236",
+      "tests/minimap_flyout_visibility.lua": "d3ddbc460dee3c1869689af0dc794a1b6e45072d2c1b17b8b512517fb29d4544",
+      "Bars/_tmp_barsmoke.lua": "8ada146a7276be00e32c52457486c6b5de49d3f0e4a66e9f1462289835ba2fe7",
+      "docs/reference/verification.json": "1c79ae800a918c66e916d7abb068df1ef7a152f6989dd5122947f49013b159a8"
+    }
+  },
+  "sources": {
+    "ExtraButtonSystem/FlyoutEngine/Arrow.lua": {
+      "beforeRaw": "1ccb07ad412e39d0e54a66be7d259b2ba5d58ab74b7ff1242984a9130471c3f1",
+      "afterRaw": "106ea533792e2c09c171f601fa056ea2eb4c7f681db3fe1b1b0f7c4a86d1e550"
+    },
+    "Bars/Flyout.lua": {
+      "beforeRaw": "6bd436bf6a6a2556ff0b0e5664fa8b9fcfc7c98e88998d2f27bae2050a9b0df1",
+      "afterRaw": "ec356dd044dda3722cd7c2b6536ac73d9b733441806a71e0d1da66ddaa6edb14"
+    },
+    "ExtraButtonSystem/Engine/Widget.lua": {
+      "beforeRaw": "5458e613ae80fa7e750db36432cfb929f52fe3cf1aba642b870e77b046cd99a0",
+      "afterRaw": "0e6450f7f684821895df353b07f4167bb740bdaef2982df4466326c665f72536"
+    }
+  },
+  "paths": {
+    "Bars/Flyout.lua": "ec356dd044dda3722cd7c2b6536ac73d9b733441806a71e0d1da66ddaa6edb14",
+    "ExtraButtonSystem/Engine/Widget.lua": "0e6450f7f684821895df353b07f4167bb740bdaef2982df4466326c665f72536",
+    "ExtraButtonSystem/FlyoutEngine/Arrow.lua": "106ea533792e2c09c171f601fa056ea2eb4c7f681db3fe1b1b0f7c4a86d1e550",
+    "Core/BorderJunctions.lua": "36332f7c364e183451aa137d9689a0ef2fdb476f211d8fca155907d46ecd3236",
+    "Layout/UnifiedBorder.lua": "e586669264ccf4b722e8c1f24fef1780ee4adb31061ada33c44ab50ded4d4145",
+    "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua": "bf53644626a7b6e00629d719908518e02dda2c4c06a8b3d933305ea9a1ebb69c",
+    "Bars/_tmp_barsmoke.lua": "f50cee2aa55caa174c64d43f595fb9555e2fa99f0ba0415ef94ed11d05cbfa98",
+    "tests/bars_startup_retry.lua": "a3d139689633ea22d8337a52b02ee61d0d8b18981b8b03439695897c5d54c4b1",
+    "tests/minimap_flyout_visibility.lua": "d3ddbc460dee3c1869689af0dc794a1b6e45072d2c1b17b8b512517fb29d4544",
+    "tests/minimap_side_border.lua": "5986fbdaa79a9a10ef1a8592a0d93d0b2f2aec64d55b71ef057e8a1b2e402f1f",
+    "tests/minimap_extra_visibility.lua": "318ad2a80990c937e337bd2b7fddaecc2672c484fdfc858a6805a323ffc97536",
+    "tests/minimap_extra_layout.lua": "1f9225a39347a5f8278e752702a9e43b45476ec8abdd6fc1d313ae3557869aef",
+    "tests/trinket_squeeze_geometry_work.lua": "511a8be1e0c78b4975be1a96750f72bf1b4292dd3f82149f463d82bce6833a90",
+    "tests/trinket_bag_scan_work.lua": "8a2d11da5381df5ca2742226538bb970d924edab54ab2fc51a11c713e5e7263e",
+    "tests/squeeze_notification_work.lua": "3447172cfbdaa52eb841fd7d6fe79b3a2746d76a85346c0093bd5f617003b4ca",
+    "tests/border_strip_envelope.lua": "02275f7397c2faf3c94bab522d7835200cb9d627160ad0e978617f618e861e67",
+    "tests/border_strip_poses.lua": "75fc5b51f287fd912f67fc4d82532f9dd1d56a7e7a2c66ffffd421716457899d",
+    "tests/border_types.lua": "14facbdc23c9bc6e5f708c70c20648b0808725203f4865aa494c75fe2e350c66",
+    "tests/passive_ebs_visibility.lua": "54c0aab17f4aad708235d009f344cd4065e3a7cfe781d251de043822cc3c5451",
+    "tests/native_timer_ownership.lua": "867548ed615d7ddac089fa121eafa0185a3aca5dad61700e01bc2cd44bfff7fd",
+    "tests/utility_secure_input.lua": "cce172b9d7b4881f1e2820275133b34106e291595de6185e884fe84d37ebf6ed",
+    "tests/bars_native_click_route.lua": "4d7f80eb02e3e48f795aeb1ccb68a4e97ccccdea78455216e8020476ebe82068",
+    "tests/bars_edit_mode.lua": "ec345972758cbe2e194a5eb5e65cc11efb9512396162be121412e1369b6061a8",
+    "tests/teleport_cast_work.lua": "7842024ac5441f7f3298f77d8dc32c6820b45c074946ff30147a0248f5c02e8e"
+  },
+  "clientSourceContracts": [
+    {
+      "client": "live",
+      "sourceVersion": "12.1.0.69283",
+      "files": {
+        "Interface/AddOns/Blizzard_Flyout/Flyout.xml": "afe56d0c2fc0a7db68c62650d97c3301dae3db721a8b4b9bdbbfe98d57789617",
+        "Interface/AddOns/Blizzard_Flyout/Flyout.lua": "dbdf5c269d6055ebe2e37d30b1e6c726ddfec5fbfbd8b9317abd482e1fc057a8",
+        "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua": "5c7cd99e888be694295517b4e14d0f9497b772a58ebd90114945d857928b659d"
+      }
+    },
+    {
+      "client": "forever",
+      "sourceVersion": "1.60.1.70425",
+      "files": {
+        "Interface/AddOns/Blizzard_Flyout/Flyout.xml": "afe56d0c2fc0a7db68c62650d97c3301dae3db721a8b4b9bdbbfe98d57789617",
+        "Interface/AddOns/Blizzard_Flyout/Flyout.lua": "41b3a8db45b068851bd777c9e280c2350c47e39503d2cac6cbc5060ac4a1b6cd",
+        "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua": "3718e5f81b99525819264d2f50e473080541d655978f88ca85582acc4073fd82"
+      }
+    },
+    {
+      "client": "classic",
+      "sourceVersion": "5.5.4.69155",
+      "files": {
+        "Interface/AddOns/Blizzard_Flyout/Flyout.xml": "afe56d0c2fc0a7db68c62650d97c3301dae3db721a8b4b9bdbbfe98d57789617",
+        "Interface/AddOns/Blizzard_Flyout/Flyout.lua": "dbdf5c269d6055ebe2e37d30b1e6c726ddfec5fbfbd8b9317abd482e1fc057a8",
+        "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua": "9cf580688388b332d87e8126703892a1e1e4c0ea04173abb36bbebced26555b8"
+      }
+    },
+    {
+      "client": "classic_era",
+      "sourceVersion": "1.15.9.68808",
+      "files": {
+        "Interface/AddOns/Blizzard_Flyout/Flyout.xml": "afe56d0c2fc0a7db68c62650d97c3301dae3db721a8b4b9bdbbfe98d57789617",
+        "Interface/AddOns/Blizzard_Flyout/Flyout.lua": "dbdf5c269d6055ebe2e37d30b1e6c726ddfec5fbfbd8b9317abd482e1fc057a8",
+        "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua": "9cf580688388b332d87e8126703892a1e1e4c0ea04173abb36bbebced26555b8"
+      }
+    },
+    {
+      "client": "classic_anniversary",
+      "sourceVersion": "2.5.6.68775",
+      "files": {
+        "Interface/AddOns/Blizzard_Flyout/Flyout.xml": "16daa86d0b6d16d2aa029092f06bbe13cac41fa5f0dc4dd81df172d696c4fa67",
+        "Interface/AddOns/Blizzard_Flyout/Flyout.lua": "3a4323ecb64ae3e1d516dc6f9542cab9f9136ffbe7dd46e6e99c7a90b5a351e1",
+        "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua": "9cf580688388b332d87e8126703892a1e1e4c0ea04173abb36bbebced26555b8"
+      }
+    }
+  ],
+  "installed": [
+    {
+      "client": "_retail_",
+      "files": {
+        "Bars/Flyout.lua": "ec356dd044dda3722cd7c2b6536ac73d9b733441806a71e0d1da66ddaa6edb14",
+        "ExtraButtonSystem/Engine/Widget.lua": "0e6450f7f684821895df353b07f4167bb740bdaef2982df4466326c665f72536",
+        "ExtraButtonSystem/FlyoutEngine/Arrow.lua": "106ea533792e2c09c171f601fa056ea2eb4c7f681db3fe1b1b0f7c4a86d1e550"
+      }
+    },
+    {
+      "client": "_forever_",
+      "files": {
+        "Bars/Flyout.lua": "ec356dd044dda3722cd7c2b6536ac73d9b733441806a71e0d1da66ddaa6edb14",
+        "ExtraButtonSystem/Engine/Widget.lua": "0e6450f7f684821895df353b07f4167bb740bdaef2982df4466326c665f72536",
+        "ExtraButtonSystem/FlyoutEngine/Arrow.lua": "106ea533792e2c09c171f601fa056ea2eb4c7f681db3fe1b1b0f7c4a86d1e550"
+      }
+    },
+    {
+      "client": "_classic_",
+      "files": {
+        "Bars/Flyout.lua": "ec356dd044dda3722cd7c2b6536ac73d9b733441806a71e0d1da66ddaa6edb14",
+        "ExtraButtonSystem/Engine/Widget.lua": "0e6450f7f684821895df353b07f4167bb740bdaef2982df4466326c665f72536",
+        "ExtraButtonSystem/FlyoutEngine/Arrow.lua": "106ea533792e2c09c171f601fa056ea2eb4c7f681db3fe1b1b0f7c4a86d1e550"
+      }
+    },
+    {
+      "client": "_classic_era_",
+      "files": {
+        "Bars/Flyout.lua": "ec356dd044dda3722cd7c2b6536ac73d9b733441806a71e0d1da66ddaa6edb14",
+        "ExtraButtonSystem/Engine/Widget.lua": "0e6450f7f684821895df353b07f4167bb740bdaef2982df4466326c665f72536",
+        "ExtraButtonSystem/FlyoutEngine/Arrow.lua": "106ea533792e2c09c171f601fa056ea2eb4c7f681db3fe1b1b0f7c4a86d1e550"
+      }
+    },
+    {
+      "client": "_anniversary_",
+      "files": {
+        "Bars/Flyout.lua": "ec356dd044dda3722cd7c2b6536ac73d9b733441806a71e0d1da66ddaa6edb14",
+        "ExtraButtonSystem/Engine/Widget.lua": "0e6450f7f684821895df353b07f4167bb740bdaef2982df4466326c665f72536",
+        "ExtraButtonSystem/FlyoutEngine/Arrow.lua": "106ea533792e2c09c171f601fa056ea2eb4c7f681db3fe1b1b0f7c4a86d1e550"
+      }
+    }
+  ],
+  "archivedAssertion": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/bars_startup_retry.lua:4: native strip glyph draws over the connected crest on a passive child of its button",
+  "desktop": {
+    "passed": 18,
+    "failed": 0,
+    "results": [
+      {
+        "path": "Bars/_tmp_barsmoke.lua",
+        "exit": 0,
+        "wallSeconds": 2.390355,
+        "output": "ROSTER_MACROS order=bars-first case=join callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=bars-first case=convert callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=bars-first case=unchanged callbacks=1 snapshots=1 evalRequests=1 parses=0\nROSTER_MACROS order=bars-first case=return-to-party callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=bars-first case=leave callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=extra-first case=join callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=extra-first case=convert callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=extra-first case=unchanged callbacks=1 snapshots=1 evalRequests=1 parses=0\nROSTER_MACROS order=extra-first case=return-to-party callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=extra-first case=leave callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=extra-only case=join callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=extra-only case=convert callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=extra-only case=unchanged callbacks=1 snapshots=1 evalRequests=1 parses=0\nROSTER_MACROS order=extra-only case=return-to-party callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=extra-only case=leave callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=bars-only case=join callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=bars-only case=convert callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=bars-only case=unchanged callbacks=1 snapshots=1 evalRequests=1 parses=0\nROSTER_MACROS order=bars-only case=return-to-party callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=bars-only case=leave callbacks=1 snapshots=1 evalRequests=1 parses=2\nbars refresh: 17599 checks passed; 19 production mutations rejected\nbars contract regression: 469 production checks across five clients; 13 mutations rejected\nBlizzard script ownership: 26 checks passed; 6 native-owner mutations rejected\nCombat grid depletion transitions: 672 checks, 0 failures\nbars smoke OK\n  slot math: rest/shift/ctrl/cat/bear/vehicle/static/promote/xor\n  lockdown: Layout guards, no combat unpack\n  clicks: ButtonForge wrap verbatim; no post-body; PreClick gated on button/down\n  leftover: stock ActionButtons off ActionBarButtonEventsFrame (mixins stay stock),\n            then EnableMouse false on MainActionBar/pager/ActionButton\n  drag: PreClick cursor + L+R without Shift; click fires on mouse up\n  checked: Paint owns SetChecked; gold hilight not mouseover atlas\n  flash: auto-attack/auto-shot/wand red blink on strip + Extra; Classic QuickslotRed, Forever atlas\n  paint: Midnight duration object + Classic GetActionCooldown\n  hotkey: MouseButton3-5 / scroll / space glyphs + S-/C- overlay\n  charges: UnpackCharges table+tuple, dual chargeCooldown\n  vfx: Transfer fill on swap; exclusive appear/clear; finish burst; no stuck fill\n  chrome: checked/pushed follow paging with fill/interrupt\n  glow: Transfer overlay on swap; skipBirth; ungated Set; Era OOC SAO capture; SyncColumn; ClearCache keeps _glowing\n  combat badges: alpha vis (no Hide taint); exclusive VFX/gold on the live Extra face\n  combat button: one FluxButton; Context hops; Binding Apply OOC only; vis after Identity\n  hovercast: TOC Keybind; strip hosts; UF peek only; no [@mouseover] on hover-only tail\n  range: one Flux.Range ticker for strip+Extra+badges; macros range the cast\n         spell against its own @unit; frame-shared memo; bounded mouseover bursts\n  mouseover cast: click-time unit only (no static unit=mouseover); factory tails\n         factory mouseover tails idle-stripped; Blizzard range-check gated; hovercast driver on UF hover\n  ebs assistant: GetNextCastSpell(false); rotation overlay; KeyBind override\n  assist morph: strip+EBS poll next-cast whenever the button exists\n  pet/stance: Extra Button surfaces; event-split paint; TOC-loaded\n  ingame: /reload; drag from book without Shift; pickup; click on release;\n          key on press; AOE cancel clears checked; SHIFT mini keeps proc loop;\n          macro condition drop glow when the face leaves; skipBirth on return;\n          VFX continues or appears/clears with the visible face"
+      },
+      {
+        "path": "tests/bars_startup_retry.lua",
+        "exit": 0,
+        "wallSeconds": 0.0385514,
+        "output": "assistant rate samples: 600; 85 paints per consumer (600 frames; use --baseline for HEAD comparison)\nbars startup retry: 743 checks passed"
+      },
+      {
+        "path": "tests/minimap_flyout_visibility.lua",
+        "exit": 0,
+        "wallSeconds": 0.0340755,
+        "output": "PASS minimap flyout visibility: 366 checks; 4 client models; 9 harmful controls"
+      },
+      {
+        "path": "tests/minimap_side_border.lua",
+        "exit": 0,
+        "wallSeconds": 0.1881634,
+        "output": "Minimap side border: 2829 checks;actual FluxBorder/arrow layers;5 client models;30 art/scale cases;7 harmful controls PASS"
+      },
+      {
+        "path": "tests/minimap_extra_visibility.lua",
+        "exit": 0,
+        "wallSeconds": 0.1228837,
+        "output": "Minimap extra visibility: 875 checks; 5 client models; 15 scale cases; 4 harmful controls PASS"
+      },
+      {
+        "path": "tests/minimap_extra_layout.lua",
+        "exit": 0,
+        "wallSeconds": 0.2710691,
+        "output": "minimap extra layout: 50035 checks PASS (runtime geometry, saved actions, reuse, deferred combat writes and state-driver model; native acceptance pending)"
+      },
+      {
+        "path": "tests/trinket_squeeze_geometry_work.lua",
+        "exit": 0,
+        "wallSeconds": 0.1803757,
+        "output": "TRINKET_SQUEEZE_WORK|10notifications|20sourceCalls|geometry=0|nativeReads=380|clipWrites=40|styleCalls=40|arrowLayers=20\nTrinket squeeze geometry: 628 checks PASS; original calls/cadence/recovery retained; native timing pending"
+      },
+      {
+        "path": "tests/trinket_bag_scan_work.lua",
+        "exit": 0,
+        "wallSeconds": 0.1507069,
+        "output": "trinket bag scan: 222 semantic checks; 0 failures; modeled endpoints\nprivate location-wrapper records: 0 across 3 scans; budget=0; pass=true; not heap bytes"
+      },
+      {
+        "path": "tests/squeeze_notification_work.lua",
+        "exit": 0,
+        "wallSeconds": 0.0355168,
+        "output": "SQUEEZE_NOTIFICATION_WORK|legacy|21passes|transientProtectedCallbackIdentities=5\nSQUEEZE_NOTIFICATION_WORK|modern|21passes|transientProtectedCallbackIdentities=4\nSqueeze notification work: 2100 checks PASS; full current dependency order/arguments/recovery retained; no native timing claim"
+      },
+      {
+        "path": "tests/border_strip_envelope.lua",
+        "exit": 0,
+        "wallSeconds": 5.2637352,
+        "output": "Strip/envelope border: 5798 checks PASS; 144 actual factory/Strip/Unified/Core scenes; 1080 one-source crest samples; unchanged roots/static warm checks; native pixels/FPS/taint pending"
+      },
+      {
+        "path": "tests/border_strip_poses.lua",
+        "exit": 0,
+        "wallSeconds": 41.8998168,
+        "output": "STRIP_POSE style=1 solve=6/2 plan=6/2 preparedHits=4\nSTRIP_DRAW_INPUTS style=1 fields=204 inputs=90\nSTRIP_DRAW_INPUTS style=1 fields=236 inputs=75\nSTRIP_REGISTRATION style=1 warmCompiles=0+0 affectedCompiles=1\nSTRIP_POSE style=2 solve=6/2 plan=6/2 preparedHits=4\nSTRIP_DRAW_INPUTS style=2 fields=286 inputs=80\nSTRIP_DRAW_INPUTS style=2 fields=221 inputs=75\nSTRIP_REGISTRATION style=2 warmCompiles=0+0 affectedCompiles=1\nSTRIP_PLAN_COVERAGE|candidate|1|5|4|4\nSTRIP_PLAN_COVERAGE|candidate|2|5|4|4\nSTRIP_RECENT_LAYOUTS|candidate|1|4|4|8|1684|0.214000\nSTRIP_RECENT_LAYOUTS|candidate|2|4|4|8|2082|0.216000\nStrip pose replay: warm cache, active tint, changed materials, neighbor geometry, changing footprints and lockdown pass."
+      },
+      {
+        "path": "tests/border_types.lua",
+        "exit": 0,
+        "wallSeconds": 0.1416385,
+        "output": "Border types: 634 checks PASS; atlas/legacy/partial families; native pixels/controller pending"
+      },
+      {
+        "path": "tests/passive_ebs_visibility.lua",
+        "exit": 0,
+        "wallSeconds": 0.3688667,
+        "output": "{\"checks\":340,\"metrics\":{\"anniversary\":{\"bagQueries\":4000,\"equipQueries\":8000,\"hiddenCheckedCallbacks\":0,\"hiddenIconRequests\":0,\"hiddenMountQueries\":0,\"spellCountQueries\":2000,\"usableQueries\":4000,\"visibleIconRequests\":1000},\"era\":{\"bagQueries\":4000,\"equipQueries\":8000,\"hiddenCheckedCallbacks\":0,\"hiddenIconRequests\":0,\"hiddenMountQueries\":0,\"spellCountQueries\":2000,\"usableQueries\":4000,\"visibleIconRequests\":1000},\"forever\":{\"bagQueries\":4000,\"equipQueries\":8000,\"hiddenCheckedCallbacks\":0,\"hiddenIconRequests\":0,\"hiddenMountQueries\":0,\"spellCountQueries\":2000,\"usableQueries\":4000,\"visibleIconRequests\":1000},\"mists\":{\"bagQueries\":4000,\"equipQueries\":8000,\"hiddenCheckedCallbacks\":0,\"hiddenIconRequests\":0,\"hiddenMountQueries\":0,\"spellCountQueries\":2000,\"usableQueries\":4000,\"visibleIconRequests\":1000},\"retail\":{\"bagQueries\":4000,\"equipQueries\":8000,\"hiddenCheckedCallbacks\":0,\"hiddenIconRequests\":0,\"hiddenMountQueries\":0,\"spellCountQueries\":2000,\"usableQueries\":4000,\"visibleIconRequests\":1000}},\"mode\":\"candidate\",\"visibleTraceHash\":723962797,\"visibleTraceSamples\":95}"
+      },
+      {
+        "path": "tests/native_timer_ownership.lua",
+        "exit": 0,
+        "wallSeconds": 0.0944298,
+        "output": "Native timer ownership: 54 checks; After/NewTimer cancel/replace, exact cadence, resize/embed/hover/current-list/hide reuse"
+      },
+      {
+        "path": "tests/utility_secure_input.lua",
+        "exit": 0,
+        "wallSeconds": 0.557435,
+        "output": "Utility secure input: 41396 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS"
+      },
+      {
+        "path": "tests/bars_native_click_route.lua",
+        "exit": 0,
+        "wallSeconds": 0.1995535,
+        "output": "Native bar click route: 864 checks PASS; full native OnClick/handlers from ../__AddonsForRef/wow-ui-source-forever/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua; C frame/hardware arbitration and actual casts remain unverified"
+      },
+      {
+        "path": "tests/bars_edit_mode.lua",
+        "exit": 0,
+        "wallSeconds": 0.0459011,
+        "output": "Bars Edit Mode: 61 checks; five client models; negative control passed"
+      },
+      {
+        "path": "tests/teleport_cast_work.lua",
+        "exit": 0,
+        "wallSeconds": 0.040729,
+        "output": "modern scans=0 popup_rebuilds=0\nlegacy scans=4 popup_rebuilds=0\nintegrated scans=0 popup_rebuilds=0\nteleport cast: 527 checks, 0 failures"
+      }
+    ],
+    "syntaxPassed": 1256,
+    "upvalues": {
+      "dateUTC": "2026-11-21T13:01:57.354161+00:00",
+      "scope": "Compiler prototype upvalue limit only; includes _ENV on Lua5.4; no native/API/FPS claim",
+      "files": 3,
+      "functions": 71,
+      "maximum": 11,
+      "failures": [],
+      "prototypes": [
+        {
+          "path": "Bars/Flyout.lua",
+          "start": 0,
+          "end": 0,
+          "upvalues": 1
+        },
+        {
+          "path": "Bars/Flyout.lua",
+          "start": 12,
+          "end": 22,
+          "upvalues": 0
+        },
+        {
+          "path": "Bars/Flyout.lua",
+          "start": 24,
+          "end": 32,
+          "upvalues": 0
+        },
+        {
+          "path": "Bars/Flyout.lua",
+          "start": 34,
+          "end": 36,
+          "upvalues": 1
+        },
+        {
+          "path": "Bars/Flyout.lua",
+          "start": 38,
+          "end": 42,
+          "upvalues": 1
+        },
+        {
+          "path": "Bars/Flyout.lua",
+          "start": 45,
+          "end": 55,
+          "upvalues": 2
+        },
+        {
+          "path": "Bars/Flyout.lua",
+          "start": 57,
+          "end": 66,
+          "upvalues": 1
+        },
+        {
+          "path": "Bars/Flyout.lua",
+          "start": 61,
+          "end": 64,
+          "upvalues": 2
+        },
+        {
+          "path": "Bars/Flyout.lua",
+          "start": 68,
+          "end": 79,
+          "upvalues": 2
+        },
+        {
+          "path": "Bars/Flyout.lua",
+          "start": 81,
+          "end": 88,
+          "upvalues": 2
+        },
+        {
+          "path": "Bars/Flyout.lua",
+          "start": 90,
+          "end": 127,
+          "upvalues": 7
+        },
+        {
+          "path": "Bars/Flyout.lua",
+          "start": 101,
+          "end": 103,
+          "upvalues": 2
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 0,
+          "end": 0,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 12,
+          "end": 16,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 18,
+          "end": 27,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 31,
+          "end": 37,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 39,
+          "end": 51,
+          "upvalues": 0
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 53,
+          "end": 69,
+          "upvalues": 0
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 71,
+          "end": 109,
+          "upvalues": 2
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 81,
+          "end": 108,
+          "upvalues": 3
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 111,
+          "end": 137,
+          "upvalues": 2
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 139,
+          "end": 179,
+          "upvalues": 2
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 181,
+          "end": 235,
+          "upvalues": 2
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 211,
+          "end": 228,
+          "upvalues": 3
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 231,
+          "end": 234,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 238,
+          "end": 263,
+          "upvalues": 2
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 243,
+          "end": 250,
+          "upvalues": 2
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 251,
+          "end": 262,
+          "upvalues": 3
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 265,
+          "end": 346,
+          "upvalues": 4
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 268,
+          "end": 273,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 276,
+          "end": 280,
+          "upvalues": 2
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 281,
+          "end": 285,
+          "upvalues": 2
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 286,
+          "end": 292,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 293,
+          "end": 318,
+          "upvalues": 2
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 319,
+          "end": 345,
+          "upvalues": 5
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 350,
+          "end": 387,
+          "upvalues": 3
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 375,
+          "end": 379,
+          "upvalues": 2
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 392,
+          "end": 438,
+          "upvalues": 3
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 403,
+          "end": 411,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 412,
+          "end": 431,
+          "upvalues": 4
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 441,
+          "end": 541,
+          "upvalues": 11
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 543,
+          "end": 691,
+          "upvalues": 6
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 571,
+          "end": 579,
+          "upvalues": 5
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 601,
+          "end": 609,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 619,
+          "end": 652,
+          "upvalues": 3
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 653,
+          "end": 657,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/Engine/Widget.lua",
+          "start": 660,
+          "end": 668,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 0,
+          "end": 0,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 24,
+          "end": 34,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 36,
+          "end": 41,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 43,
+          "end": 56,
+          "upvalues": 3
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 58,
+          "end": 63,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 65,
+          "end": 70,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 72,
+          "end": 119,
+          "upvalues": 7
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 121,
+          "end": 133,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 135,
+          "end": 139,
+          "upvalues": 2
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 141,
+          "end": 148,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 150,
+          "end": 152,
+          "upvalues": 0
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 154,
+          "end": 185,
+          "upvalues": 9
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 187,
+          "end": 199,
+          "upvalues": 0
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 201,
+          "end": 208,
+          "upvalues": 4
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 210,
+          "end": 224,
+          "upvalues": 2
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 226,
+          "end": 236,
+          "upvalues": 4
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 238,
+          "end": 282,
+          "upvalues": 9
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 284,
+          "end": 296,
+          "upvalues": 3
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 298,
+          "end": 302,
+          "upvalues": 2
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 304,
+          "end": 324,
+          "upvalues": 3
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 311,
+          "end": 313,
+          "upvalues": 2
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 326,
+          "end": 339,
+          "upvalues": 3
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 333,
+          "end": 335,
+          "upvalues": 2
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 341,
+          "end": 347,
+          "upvalues": 3
+        }
+      ]
+    },
+    "scope": "Draw order against a raised MEDIUM seam and a HIGH side border, passive art parenting, visibility, stability, in-combat write guards and unchanged popup ownership. The action-bar smoke fixture now extracts PlayReticle up to the following function after its prior terminator moved earlier in the source."
+  },
+  "nativeResult": "Pending",
+  "nativeScope": "Native pixels, controller input, frame timing and taint remain pending."
+}

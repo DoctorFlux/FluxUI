@@ -9,6 +9,177 @@ Flux.API.Aura = Aura
 
 local Cap = Flux.Cap
 
+local dispelTypes = {
+	magic = "Magic",
+	curse = "Curse",
+	disease = "Disease",
+	poison = "Poison",
+	bleed = "Bleed",
+	enrage = "Enrage",
+}
+local dispelIcons = {
+	Magic = "RaidFrame-Icon-DebuffMagic",
+	Curse = "RaidFrame-Icon-DebuffCurse",
+	Disease = "RaidFrame-Icon-DebuffDisease",
+	Poison = "RaidFrame-Icon-DebuffPoison",
+	Bleed = "RaidFrame-Icon-DebuffBleed",
+}
+local dispelIconFiles = {
+	Magic = "Interface\\Icons\\Spell_Holy_DispelMagic",
+	Curse = "Interface\\Icons\\Spell_Shadow_CurseOfTounges",
+	Disease = "Interface\\Icons\\Spell_Nature_NullifyDisease",
+	Poison = "Interface\\Icons\\Spell_Nature_NullifyPoison",
+	Bleed = "Interface\\Icons\\Ability_Druid_Rake",
+	Enrage = "Interface\\Icons\\Ability_Druid_ChallangingRoar",
+}
+local availableDispelAtlases = {}
+local paintedDispelIcons = setmetatable({}, { __mode = "k" })
+local fallbackDispelColors = {
+	Magic = { .2, .6, 1 },
+	Curse = { .6, 0, 1 },
+	Disease = { .65, .42, 0 },
+	Poison = { 0, .6, 0 },
+	Bleed = { .85, .16, .2 },
+	Enrage = { .95, .3, .22 },
+}
+
+local function CanRead(value)
+	if value == nil then return false end
+	if issecretvalue and issecretvalue(value) then return false end
+	return not canaccessvalue or canaccessvalue(value)
+end
+
+function Aura.NormalizeDispelType(value)
+	if CanRead(value) and type(value) == "string" then return dispelTypes[value:lower()] end
+end
+
+function Aura.GetDispelTypeColor(value)
+	local kind = Aura.NormalizeDispelType(value)
+	if not kind then return end
+	local color = DebuffTypeColor and DebuffTypeColor[kind]
+	if color and type(color.r) == "number" and type(color.g) == "number" and type(color.b) == "number" then
+		return color.r, color.g, color.b
+	end
+	local fallback = fallbackDispelColors[kind]
+	return fallback[1], fallback[2], fallback[3]
+end
+
+function Aura.LayoutDispelTypeIcon(texture, anchor, iconSize)
+	local size = CanRead(iconSize) and type(iconSize) == "number" and iconSize >= 1 and iconSize or 18
+	local side = math.max(size >= 18 and 8 or 5, math.floor(size * .38 + .5))
+	texture:ClearAllPoints()
+	texture:SetPoint("TOPRIGHT", anchor, "TOPRIGHT", 1, 1)
+	texture:SetSize(side, side)
+end
+
+function Aura.CreateDispelTypeIcon(anchor, parent, iconSize)
+	local texture = (parent or anchor):CreateTexture(nil, "OVERLAY", nil, 3)
+	Aura.LayoutDispelTypeIcon(texture, anchor, iconSize)
+	texture:Hide()
+	return texture
+end
+
+function Aura.CreateDispelTypeBorder(anchor, parent)
+	local texture = (parent or anchor):CreateTexture(nil, "OVERLAY", nil, 2)
+	texture:SetTexture("Interface\\Buttons\\UI-Debuff-Overlays")
+	texture:SetTexCoord(.296875, .5703125, 0, .515625)
+	texture:SetAllPoints(anchor)
+	texture:Hide()
+	return texture
+end
+
+local NAMEPLATE_MEDIA = [[Interface\AddOns\_FluxUI\Texture\NameplateAuras\]]
+local NAMEPLATE_COLORS = {
+	Buff = { .80, .60, .34 },
+	None = { .95, .32, .28 },
+	Magic = { .38, .65, 1 },
+	Curse = { .76, .42, 1 },
+	Disease = { .92, .70, .30 },
+	Poison = { .45, .85, .38 },
+}
+
+function Aura.GetNameplateAuraColor(kind)
+	local color = NAMEPLATE_COLORS[kind] or NAMEPLATE_COLORS.None
+	return color[1], color[2], color[3]
+end
+
+function Aura.CreateNameplateAuraBorder(anchor)
+	local border = anchor:CreateTexture(nil, "OVERLAY", nil, 1)
+	border:SetTexture(NAMEPLATE_MEDIA .. "IconBorder.tga")
+	border:SetAllPoints(anchor)
+	return border
+end
+
+function Aura.CreateNameplateAuraArt(anchor)
+	local image = anchor:CreateTexture(nil, "ARTWORK")
+	image:SetTexCoord(.08, .92, .08, .92)
+	local background = anchor:CreateTexture(nil, "BACKGROUND")
+	background:SetColorTexture(0, 0, 0, 1)
+	background:SetAllPoints(image)
+	if anchor.CreateMaskTexture and image.AddMaskTexture then
+		local mask = anchor:CreateMaskTexture()
+		mask:SetTexture(NAMEPLATE_MEDIA .. "IconMask.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+		mask:SetAllPoints(anchor)
+		image:AddMaskTexture(mask)
+		background:AddMaskTexture(mask)
+	end
+	return image, background
+end
+
+function Aura.LayoutNameplateAuraArt(image, anchor, size)
+	local inset = size * 6 / 128
+	image:ClearAllPoints()
+	image:SetPoint("TOPLEFT", anchor, "TOPLEFT", inset, -inset)
+	image:SetPoint("BOTTOMRIGHT", anchor, "BOTTOMRIGHT", -inset, inset)
+end
+
+function Aura.StyleNameplateAuraCooldown(cooldown)
+	cooldown:SetReverse(true)
+	cooldown:SetHideCountdownNumbers(true)
+	cooldown:SetDrawBling(false)
+	if cooldown.SetUseCircularEdge then cooldown:SetUseCircularEdge(false) end
+	cooldown:SetDrawSwipe(true)
+	cooldown:SetSwipeTexture(NAMEPLATE_MEDIA .. "IconMask.tga")
+	cooldown:SetSwipeColor(0, 0, 0, .7)
+	cooldown:SetDrawEdge(true)
+	cooldown:SetEdgeTexture(NAMEPLATE_MEDIA .. "Edge.tga", 1, 1, 1, 1)
+	if cooldown.SetEdgeScale then cooldown:SetEdgeScale(1.6) end
+end
+
+function Aura.SetDispelTypeIcon(texture, value)
+	local kind = Aura.NormalizeDispelType(value)
+	if not kind then
+		texture:Hide()
+		return false
+	end
+	local atlas = dispelIcons[kind]
+	if atlas and texture.SetAtlas and availableDispelAtlases[atlas] == nil then
+		local lookup = (C_Texture and C_Texture.GetAtlasInfo) or GetAtlasInfo
+		availableDispelAtlases[atlas] = not lookup or not not lookup(atlas)
+	end
+	local useAtlas = atlas and texture.SetAtlas and availableDispelAtlases[atlas]
+	local art = useAtlas and atlas or dispelIconFiles[kind]
+	if paintedDispelIcons[texture] ~= art then
+		if useAtlas then texture:SetAtlas(art, false) else texture:SetTexture(art) end
+		paintedDispelIcons[texture] = art
+	end
+	texture:Show()
+	return true
+end
+
+-- The button owns aura classification and visibility for secure bindings.
+function Aura.BindDispelTypeIcon(button, texture)
+	local styles = Enum and Enum.CustomAuraButtonDispelTypeTextureStyle
+	if not (styles and styles.Icon ~= nil and button.AddDispelTypeTexture) then return false end
+	local ok, accepted = pcall(button.AddDispelTypeTexture, button, texture, {
+		style = styles.Icon,
+		showWhenHarmful = true,
+		showWhenHelpful = false,
+		showWithoutDispelType = false,
+	})
+	return ok and accepted ~= false
+end
+
 local function SecretsAccessible()
 	local S = Flux.Secrets
 	if S and S.CanAccessSecrets and not S.CanAccessSecrets() then

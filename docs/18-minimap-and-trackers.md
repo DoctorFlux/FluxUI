@@ -65,9 +65,9 @@ Protected reposition/reparent work queues through combat exit. Edit Mode compati
 
 The screen-side grid has a shared FluxBorder inside its secure visibility owner,
 so border/backdrop follow mouseover and combat hiding, empty filtering and scale.
-Side widgets/chrome draw in HIGH above the minimap clock/cluster; embedded mode
-restores MEDIUM and hides the side border. Native clock/minimap handlers and
-geometry are preserved. [Layering and native acceptance](MINIMAP_EXTRA_LAYOUT.md#screen-side-border-and-minimap-clock-layering).
+Side widgets and chrome draw in MEDIUM. The top mouseover grid clears minimap
+controls that overlap its buttons. Embedded mode hides the side border.
+[Layering and native acceptance](MINIMAP_EXTRA_LAYOUT.md#screen-side-border-and-minimap-clock-layering).
 
 Optional empty-slot hiding compacts only screen-side assignments and reveals one
 drop target while carrying an action. Dynamic button count uses the configured

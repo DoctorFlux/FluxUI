@@ -9,6 +9,8 @@ if arg[1]then
  assert(replaced==1)
 end
 local fixture=assert(load(src..'\nreturn fixture','@cast-border-fixture','t',_G))()
+local partyCastCover=assert(read('UnitFrames/FluxUnitFrames_Party.lua'):match(
+ 'function Party.SyncCastCover%(frame%).-\nend\n'))
 local checks=0
 local function check(v,m)checks=checks+1;assert(v,m)end
 local function near(a,b)return math.abs(a-b)<1e-8 end
@@ -131,5 +133,180 @@ for _,client in ipairs{'live','forever','classic','classic_era','classic_anniver
    check(bar.BorderFrame.borderColor[1]==1 and bar.BorderFrame.borderColor[2]==0,'uninterruptible red remains above the configured accent')
   end
  end end
+ local s,e,ns=fixture(client)
+ local showCast,showTime=true,true
+ e.FluxUnitFrames_ShouldShowCastBar=function(unit)return showCast and unit~='targettarget'end
+ e.FluxUnitFrames_ShouldShowCastTime=function()return showTime end
+ e.InCombatLockdown=function()return true end
+ e.UnitIsPlayer=function()error('options cast must use sample identity')end
+ ns.UnitFrames.DeferProtected=function()error('options cast must not queue protected layout')end
+ ns.UnitFrames.SyncBigDebuffsFrameLevelForUnitFrame=function()error('options cast must not touch live indicator levels')end
+ ns.UnitFrames.GetFrameUnitChrome=function()return {r=.7,g=.3,b=.1},true end
+ ns.UnitFrames.GetNormalUnitBackdrop=function(_,r,g,b)return r,g,b end
+ ns.UnitFrames.GetMiniUnitChromeColor=function()return {r=.7,g=.3,b=.1}end
+ e.FluxBorder={GetThemedVertexRGB=function()return .7,.3,.1 end,GetThemedBackdropFillRGB=function()return .28,.12,.04 end}
+ local pane=e.CreateFrame('Frame')
+ for _,unit in ipairs{'player','target','focus','pet','targettarget'}do
+  local frame=e.CreateFrame('Frame',nil,pane)
+  frame.unit=unit
+  frame._fluxIndividualPreview=true
+  frame._fluxPreviewLayerParent=pane
+  frame._fluxCompactFocus=unit=='focus'
+  frame.UpdatePartition=function() error('options cast must not call partition directly') end
+  frame.outerBorderPadding=unit=='pet'and 0 or 36
+  frame.outerBorderAlignment=unit=='target'and 'TOP'or 'BOTTOM'
+  frame.atlasBorderFrame=e.CreateFrame('Frame',nil,frame)
+  frame.outerBorderFrame=e.CreateFrame('Frame',nil,frame)
+  frame.outerBorderFrame:SetSize(300,124)
+  frame.Power=e.CreateFrame('StatusBar',nil,frame)
+  frame.Power:SetSize(90,18)
+  local paint=ns.CastBar.PaintOptionsSample
+  check(paint(frame,false)==nil and not frame.CastBar,'idle options preview leaves native header available')
+  local bar=paint(frame,true,'Healing Wave')
+  if unit=='targettarget'then
+   check(bar==nil and frame.CastBar==nil,'unsupported mini preview has no cast resources')
+  else
+   check(bar and bar:IsShown() and bar:GetValue()==.65,'selected options cast uses static sample progress during combat')
+   check(bar.Text.text=='Healing Wave'and bar.Time.text=='1.4'and bar.Time:IsShown(),'native text fields display static sample and time')
+   check(not next(bar.events) and not bar.scripts.OnUpdate and not bar.scripts.OnEvent and not bar.CastStart
+    and not bar.RegisterPetCastEvents and not frame._fluxCastBarPartitionHooked,'sample has no runtime casts, events, callbacks or live partition hooks')
+   if unit=='pet'then
+    check(bar.allPoints==frame.Power and not bar.IconFrame:IsShown(),'options pet cast overlays the actual Power frame with no icon')
+   else
+    local point=bar.IconFrame.points[#bar.IconFrame.points]
+    check(point[1]==(unit=='target'and 'BOTTOMLEFT'or 'TOPLEFT')and point[2]==frame.outerBorderFrame,
+     'options cast uses the original header anchor in both native alignments')
+   end
+   if unit=='focus'then check(bar:GetFrameLevel()==frame:GetFrameLevel()+110,'compact Focus cast covers the raised name strip')end
+   local positions,sizes,frames,textures=s.work.positions,s.work.sizes,#s.frames,#s.textures
+   check(paint(frame,true,'Healing Wave')==bar and s.work.positions==positions and s.work.sizes==sizes
+    and #s.frames==frames and #s.textures==textures,'unchanged options cast reuses resources and prepared geometry')
+   local animate=ns.CastBar.SetOptionsSampleProgress
+   animate(bar,0)
+   check(bar:GetValue()==0 and bar.Time.text=='4.0'and not bar.Spark:IsShown(),'animation starts with an empty native fill and full remaining time')
+   animate(bar,.25)
+   local spark=bar.Spark.points[#bar.Spark.points]
+   check(bar:GetValue()==.25 and bar.Time.text=='3.0'and bar.Spark:IsShown()
+    and near(spark[4],.25*bar._fluxPreparedLayout.contentWidth),'animation steps only the native status fill, remaining time and spark')
+   check(s.work.sizes==sizes and #s.frames==frames and #s.textures==textures,'cast animation creates no resources and never runs layout')
+   animate(bar,1)
+   check(bar:GetValue()==1 and bar.Time.text=='0.0'and not bar.Spark:IsShown(),'animation arrives at a filled cast and zero remaining time')
+   paint(frame,true,'Healing Wave')
+   check(bar:GetValue()==.65 and bar.Time.text=='1.4'and bar.Spark:IsShown(),'idle repaint restores the stationary casting example')
+   showTime=false;paint(frame,true);check(not bar.Time:IsShown(),'options sample follows the cast time switch');showTime=true
+   showCast=false;check(paint(frame,true)==nil and not bar:IsShown(),'cast visibility switch restores the idle frame');showCast=true
+   check(paint(frame,true)==bar and paint(frame,false)==nil and not bar:IsShown(),'selection changes reuse the sample and restore the idle frame')
+  end
+ end
+
+ assert(load(read('UnitFrames/FluxUnitFrames_PreviewAnimation.lua'),'@option-animation-fixture','t',e))('_FluxUI',ns)
+ local start,stop=ns.UnitFrames.PlayOptionsPreviewAnimation,ns.UnitFrames.StopOptionsPreviewAnimation
+ local progress,seconds,steps,finishes
+ steps,finishes=0,0
+ local function step(p,t) progress,seconds=p,t;steps=steps+1 end
+ local function finish() finishes=finishes+1 end
+ pane:Hide()
+ start(pane,step,finish)
+ check(not pane._fluxPreviewAnimationDriver and steps==0,'a hidden pane never allocates or starts an animation')
+ pane:Show()
+ start(pane,step,finish)
+ local driver=pane._fluxPreviewAnimationDriver
+ check(driver:IsShown() and driver.scripts.OnUpdate and steps==1 and progress==0 and seconds==0,'explicit play primes one visible driver')
+ driver.scripts.OnUpdate(driver,.01)
+ check(steps==1,'animation throttles updates below the paint interval')
+ for _=1,241 do
+  if driver.scripts.OnUpdate then driver.scripts.OnUpdate(driver,1/60) end
+ end
+ check(progress==1 and seconds==4 and finishes==1 and steps<=62,'one bounded animation ends after four seconds within the paint budget')
+ check(not driver.scripts.OnUpdate and not driver:IsShown()and not driver.run,'completion removes every animation callback and parks the driver')
+ start(pane,step,finish)
+ check(pane._fluxPreviewAnimationDriver==driver and driver.scripts.OnUpdate,'replay retains the same driver')
+ stop(pane)
+ check(not driver.scripts.OnUpdate and not driver:IsShown()and finishes==1,'explicit stop clears the driver without invoking completion')
+ start(pane,step,finish)
+ pane:Hide()
+ driver.scripts.OnHide(driver) -- The desktop widget mock does not propagate ancestor visibility events.
+ check(not driver.scripts.OnUpdate and not driver.run and finishes==1,'an ancestor hiding clears an active preview animation')
+
+ local function sampleMember(compact,state,owned)
+  local frame=e.CreateFrame('Frame',nil,pane)
+  local health=e.CreateFrame('StatusBar',nil,frame)
+  local power=e.CreateFrame('StatusBar',nil,frame)
+  health:SetMinMaxValues(0,100)
+  health:SetValue(85)
+  power:SetMinMaxValues(0,100)
+  power:SetValue(75)
+  local aura=e.CreateFrame('Frame',nil,frame)
+  frame._fluxAuraBuff={aura}
+  if compact then
+   frame._fluxOptionsPreview=owned
+   frame._fluxPreviewState=state
+   frame.healthBar,frame.powerBar=health,power
+  else
+   frame.unit='party1'
+   frame._fluxPartyMember=true
+   frame._fluxPartyPreview=true
+   frame._fluxPreviewLayerParent=owned and pane or nil
+   frame._fluxPartyClassChrome=true
+   frame._fluxPartyPreviewClass='MAGE'
+   frame._fluxPartyStatusText=state==7 and 'Offline'or nil
+   frame.Health,frame.Power=health,power
+   frame.outerBorderPadding=36
+   frame.outerBorderAlignment='BOTTOM'
+   frame.atlasBorderFrame=e.CreateFrame('Frame',nil,frame)
+   frame.outerBorderFrame=e.CreateFrame('Frame',nil,frame)
+   frame.outerBorderFrame:SetSize(300,124)
+   frame.nameText=frame:CreateFontString()
+   frame.nameText:SetAlpha(.8)
+   frame.levelText=frame:CreateFontString()
+   frame.levelText:SetAlpha(.6)
+  end
+  return frame,health,power,aura
+ end
+ ns.PartyFrames=assert(load('local Party, Secret = ...\n'..partyCastCover..'\nreturn Party',
+  '@party-cast-cover-fixture','t',e))({},function(value)return value==s.secret end)
+ e.RAID_CLASS_COLORS={MAGE={r=.5,g=.75,b=1}}
+ e.FluxRaidVisuals={SetHealthStatus=function(frame,_,_,_,percent)frame.displayedHealth=percent end}
+ pane:Show()
+ for _,compact in ipairs{true,false}do
+  local inactive,inactiveHealth=sampleMember(compact,7,true)
+  local world,worldHealth=sampleMember(compact,1,false)
+  local first,health,power,aura=sampleMember(compact,1,true)
+  local second=sampleMember(compact,2,true)
+  local third=sampleMember(compact,3,true)
+  local fourth,fourthHealth=sampleMember(compact,4,true)
+  local members={inactive,world,first,second,third,fourth}
+  local play=ns.UnitFrames.PlayOptionsGroupAnimation
+  check(play(pane,members,#members,compact,finish),'group play starts on an embedded group with available samples')
+  driver.scripts.OnUpdate(driver,1.8)
+  check(near(health:GetValue(),53)and near(power:GetValue(),47)and near(aura:GetAlpha(),.35)
+   and (not compact or near(first.displayedHealth,53)),'group animation updates health, visible power and synthetic aura opacity')
+  check(inactiveHealth:GetValue()==85 and worldHealth:GetValue()==85 and fourthHealth:GetValue()==85,
+   'group animation skips inactive states and non-option members and caps each run at three cells')
+  if not compact then
+   local bar=first.CastBar
+   check(bar and bar:IsVisible()and near(bar:GetValue(),.45)and not next(bar.events)and not bar.scripts.OnUpdate,
+    'the in-pane Party cast advances at the header with no runtime event or update registrations')
+   check(bar:GetFrameLevel()==first:GetFrameLevel()+110 and first.nameText:GetAlpha()==0 and first.levelText:GetAlpha()==0
+    and near(bar.HeaderCover.color[1],.2),'Party cast reuses raised header layering and the sample class palette')
+  end
+  local oldFinishes=finishes
+  stop(pane)
+  check(health:GetValue()==85 and power:GetValue()==75 and aura:GetAlpha()==1 and finishes==oldFinishes,
+   'stopping group effects restores their exact static samples without a completion callback')
+  if not compact then
+   check(not first.CastBar:IsShown()and first.nameText:GetAlpha()==.8 and first.levelText:GetAlpha()==.6,
+    'stopping the embedded cast restores the exact name and level alpha')
+   showCast=false
+   play(pane,members,#members,compact,finish)
+   check(not first.CastBar:IsShown(),'the group sample honors the Party cast visibility switch')
+   stop(pane)
+   showCast=true
+  end
+  play(pane,members,#members,compact,finish)
+  driver.scripts.OnUpdate(driver,4)
+  check(health:GetValue()==85 and aura:GetAlpha()==1 and finishes==oldFinishes+1,
+   'group effects restore baseline after natural completion')
+ end
 end
-print('Cast border layout: '..checks..' checks PASS; five client API shapes; canonical icon/body touch; cached unchanged rows; real reflow; combat defer; restricted width; pet icon ownership; party class/global chrome; custom labels. Native pixels/taint/FPS pending')
+print('Cast border layout: '..checks..' checks PASS; five client API shapes; canonical icon/body touch; cached unchanged rows; real reflow; combat defer; restricted width; pet icon ownership; party class/global chrome; custom labels; isolated options samples and bounded preview animation. Native pixels/taint/FPS pending')

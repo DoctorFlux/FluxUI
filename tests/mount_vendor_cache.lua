@@ -18,6 +18,7 @@ local macroBody=part(mount,"function Module.HasBrutosaur()","-- Get macro for cu
 local hasVendor=part(mount,"function Module.HasAnyVendorMount()","-- Get the best vendor mount")
 local bestVendor=part(mount,"function Module.GetBestVendorMount()","-- MOUNT CONFIGURATION")
 local middle=part(mount,"function Module.SetupMiddleClick(btn)","-- Set up PreClick hook")
+local mountedWisp=part(mount,"local function UpdateMountedWisp(btn)","local function HasCompanionAPI()")
 local update=part(mount,"function Module.Update()","-- EVENT HANDLING")
 if selected~="timers" then
 for _,locale in ipairs(selected=="locale" and {"deDE"}or{"enUS","deDE","frFR","zhTW"})do
@@ -44,13 +45,14 @@ for _,locale in ipairs(selected=="locale" and {"deDE"}or{"enUS","deDE","frFR","z
         check(queries==1000,"positive and negative vendor lookups add zero journal queries")
         local noop=function()end;local writes=0
         e.InCombatLockdown=function()return false end;e.HasMountUI=function()return true end
+        e.UsesForeverMounts=function()return false end
         e.GetCurrentHeldModKey=function()return"nomod"end;e.ClearMountButtonCheckedState=noop
         e.GetOpenMountUIMacro=function()return"OPEN_COLLECTIONS"end
         e.Module={_button={Widget={Show=noop,SetAttribute=function()writes=writes+1 end}},_lastJournalMacro="/cast Configured",
             HasRidingSkill=function()return true end,UpdateButtonScope=noop,CanDisplayMountButton=function()return true end,
             GetCurrentMacro=function()return"/cast Configured"end,UpdateTexture=noop,SetupRightClick=noop,UpdateHotkeyText=noop,
             UpdateJournalMountIcon=noop,RefreshTooltip=noop,UpdateMountKeybinding=noop}
-        assert(load(hasVendor..bestVendor..middle..update..macroBody,"@Mount-actual-vendor-callers","t",e))()
+        assert(load(mountedWisp..hasVendor..bestVendor..middle..update..macroBody,"@Mount-actual-vendor-callers","t",e))()
         for i=1,100 do e.Module.Update()end
         check(queries==1000 and writes==200,"100 actual mount updates reuse cache and preserve middle-click writes")
         local entry=e.Module.GetBestVendorMount()
@@ -106,15 +108,16 @@ for _,model in ipairs({{"era",1,true,false},{"anniversary",2,false,true},{"live"
         local e=env();local queue,updates,invalidations={},0,0
         e.C_Timer.After=function(delay,fn)queue[#queue+1]={delay=delay,fn=fn}end
         e.InCombatLockdown=function()return combat end
-        e.FLUX_API={majorVersion=model[2],isClassicEra=model[3],isTBC=model[4],hasC_MountJournal=true}
-        e.C_MountJournal={GetMountIDs=function()return{}end}
+        e.FLUX_API={majorVersion=model[2],isClassicEra=model[3],isTBC=model[4],hasC_MountJournal=true,isForever=model[1]=="forever"}
+        e.C_MountJournal={GetMountIDs=function()return{}end,GetMountInfoByID=function()end}
+        assert(load(collection,"@MountCollection.lua","t",e))()
         e.Module={_registered=true,InvalidateRidingSkillCache=function()end,
             InvalidateCollectedMountCache=function()invalidations=invalidations+1 end,
             Update=function()check(not combat,"no delayed mount paint in combat");updates=updates+1 end}
         e.InvalidateAllMountItemCaches=function()end
         local changed=assert(load(alias..gate..handler.."\nreturn OnSpellBookChanged","@Mount-skill-timer","t",e))()
         for i=1,1000 do changed()end
-        local bag=model[2]<=2;local short,long=0,0
+        local bag=model[3] or model[4];local short,long=0,0
         for _,t in ipairs(queue)do if t.delay==.3 then short=short+1 elseif t.delay==.5 then long=long+1 end end
         print(("METRIC mount_timer client=%s combat=%s requests=1000 bagCallbacks=%d halfSecondCallbacks=%d"):format(model[1],tostring(combat),short,long))
         check(short==(bag and 1 or 0) and long==(combat and 0 or 1),"burst owns one callback per existing mount deadline")

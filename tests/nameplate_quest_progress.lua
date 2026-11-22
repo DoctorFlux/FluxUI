@@ -154,7 +154,10 @@ local function scenario(branch)
     local f = assert(io.open(os.getenv("FLUX_QUEST_CORE") or "NamePlates/Core.lua")); local core = f:read("*a"); f:close()
     local first = assert(core:find("-- Small quest progress tags:", 1, true))
     local last = assert(core:find("-- Forever world plates:", first, true))
-    local code = "local _, ns = ...; local Flux = ns.Flux; local NP = Flux.NamePlates; local activeUnits = NP.activeUnits\n" .. core:sub(first, last - 1)
+    local partsFirst = core:find("function NP.GetOwnedParts(unit)", 1, true)
+    local parts = partsFirst and core:sub(partsFirst, assert(core:find("local function PlateUnitToken", partsFirst, true)) - 1) or ""
+    local code = "local _, ns = ...; local Flux = ns.Flux; local NP = Flux.NamePlates; local activeUnits = NP.activeUnits\n"
+        .. parts .. core:sub(first, last - 1)
     assert(load(code, "@Core-quest-block", "t", env))("_FluxUI", ns)
     local module = modules.quest
     module.Added("nameplate1")
@@ -393,6 +396,55 @@ local function scenario(branch)
     db.questOverlayEnabled = true; module.RefreshAll(); module.Refresh("nameplate1")
     check(registrations == 1 and handlers.QUEST_LOG_UPDATE ~= nil, "reenable registers native events without duplicate Questie callback")
     check(questie.db.profile.nameplateEnabled == false, "reenabling Flux disables Questie marker again")
+    if module.Reanchor then
+        local plate = plates.nameplate1
+        local frame, bar, badgeAnchor = widget(plate), widget(plate), widget(plate)
+        local afterCast, overflow = {}, {}
+        local width = 200
+        badgeAnchor.GetWidth = function() return secret end
+        NP.Appearance = {
+            GetParts = function(unit)
+                if unit == "nameplate1" then return plate, frame, bar, badgeAnchor, width end
+            end,
+            QuestChanged = function(unit)
+                afterCast[#afterCast + 1] = NP.HasQuestProgress(unit)
+            end,
+            QuestSpaceChanged = function(_, outside) overflow[#overflow + 1] = outside end,
+        }
+        local updates = calls.updates
+        module.Reanchor("nameplate1")
+        check(calls.updates == updates, branch .. " style switch reuses verified quest progress")
+        check(NP.HasQuestProgress("nameplate1"), branch .. " existing quest badge remains visible on a custom plate")
+        local anchored = {}
+        for _, host in ipairs(visible()) do
+            if host.parent == badgeAnchor then anchored[#anchored + 1] = host end
+        end
+        check(#anchored == 2 and anchored[1].point[2] == badgeAnchor and anchored[2].point[2] == badgeAnchor
+            and math.min(anchored[1].point[4], anchored[2].point[4]) == 0,
+            branch .. " both badges inherit the styled lane and use its public width")
+        width = 75
+        module.Reanchor("nameplate1")
+        check(overflow[#overflow] == true and math.min(anchored[1].point[4], anchored[2].point[4]) < 0,
+            branch .. " narrow plate reserves the side clearance for overflowing badges")
+        local priorThreatWidth = threatWidth
+        threatWidth = 0
+        module.Reanchor("nameplate1")
+        check(overflow[#overflow] == false and math.min(anchored[1].point[4], anchored[2].point[4]) == 0,
+            branch .. " hiding threat lets the full styled lane hold quest badges")
+        threatWidth = priorThreatWidth
+        bar = nil
+        module.Reanchor("nameplate1")
+        check(not NP.HasQuestProgress("nameplate1") and afterCast[1] == false,
+            branch .. " claimed name-only plate clears Flux badges without falling back to native")
+        NP.Appearance.GetParts = function() end
+        module.Reanchor("nameplate1")
+        check(NP.HasQuestProgress("nameplate1") and afterCast[2] == true,
+            branch .. " a released plate restores native badge visibility")
+        for _, host in ipairs(visible()) do
+            if host.parent == plate then check(host.point[2] == plate.container, branch .. " released badges use native geometry") end
+        end
+        NP.Appearance = nil
+    end
     -- All unsupported/secret/malformed objectives clear rather than retain old counts.
     for _, value in ipairs({ secret, -1, math.huge, 0/0, 1.5 }) do
         objects[101][1].numFulfilled = value; objects[101][2].numRequired = 0

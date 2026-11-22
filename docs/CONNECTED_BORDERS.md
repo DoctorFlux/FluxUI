@@ -1,5 +1,11 @@
 # Connected Flux Borders
 
+22 November. Rounded aura-stem cap fill stays in the base junction mesh.
+The unit fallback uses indexed branch triangles to choose its straight
+horizontal and vertical sources. A cap-fill triangle has no arm index,
+and including it in the source scan caused the scheduled nil comparison.
+[Client acceptance](CLIENT_VALIDATION.md#damage-meter-taint-and-rounded-border-junctions).
+
 <!-- FALLBACK-INPUT-WORK-R63-20261117 -->
 17 November R63 is REJECTED/REMOVED. Both the combined descriptor/input and
 scalar-only trials failed their declared CPU gates despite functional passes.

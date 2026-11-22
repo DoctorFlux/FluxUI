@@ -19,6 +19,7 @@ local NAV_ROW_H, NAV_HEADER_H = 24, 18
 local SYSTEM_ROW_H, SYSTEM_STEP = 22, 26
 local TITLE_H = 76
 local FOOTER_H = 40
+local FRAME_EDITOR_PAGES = { ufGeneral = true, ufUnits = true, ufPartyRaid = true, ufNameplates = true }
 
 local function PageEntry(pageId)
     return Catalog and Catalog.pages and Catalog.pages[pageId]
@@ -145,6 +146,8 @@ function Shell:OnHidden()
         return
     end
     self._hideGuard = true
+    if self.framePreviewHost then self.framePreviewHost:Hide() end
+    if self.nameplatePreviewHost then self.nameplatePreviewHost:Hide() end
     self:ReleaseCache()
     CleanupHosts()
     self._hideGuard = false
@@ -372,22 +375,97 @@ function Shell:SearchChanged()
     end
 end
 
-function Shell:LayoutTabs(subs)
+function Shell:LayoutContent(hasTabs, skipPreview)
+    local top = hasTabs and self.tabBar or self.desc
+    local nameplates = self.pageId == "ufNameplates"
+    local host
+    if not skipPreview and nameplates and ns.FluxOptionsNameplatePreview then
+        if not self.nameplatePreviewHost then
+            self.nameplatePreviewHost = CreateFrame("Frame", nil, self.content)
+            self.nameplatePreview = ns.FluxOptionsNameplatePreview.Create(self.nameplatePreviewHost, function(tab, part)
+                if self:Query() ~= "" then self.search:SetText("") end
+                if self.subKey ~= tab then self:Select("ufNameplates", tab) end
+                if part and self.active and self.active.FocusPart then
+                    local offset = self.active:FocusPart(part)
+                    if offset then self.scrollApi:ScrollTo(offset) end
+                end
+            end)
+        end
+        host = self.nameplatePreviewHost
+    elseif not skipPreview and not nameplates and FRAME_EDITOR_PAGES[self.pageId] and self.subKey ~= "castBars" and ns.FluxOptionsFramePreview then
+        if not self.framePreviewHost then
+            self.framePreviewHost = Skin.CreateInset(self.content)
+            self.framePreview = ns.FluxOptionsFramePreview.Create(self.framePreviewHost, function(part, pageId)
+                self:EditFramePart(part, pageId)
+            end, function(unit, part)
+                self:EditFramePart(part, "ufUnits", unit)
+            end)
+        end
+        host = self.framePreviewHost
+    end
+    if self.framePreviewHost and host ~= self.framePreviewHost then self.framePreviewHost:Hide() end
+    if self.nameplatePreviewHost and host ~= self.nameplatePreviewHost then self.nameplatePreviewHost:Hide() end
+
+    local reserved = 0
+    if host then
+        local contentWidth = self.frame:GetWidth() - SIDEBAR_W - 44
+        local width = nameplates and math.min(280, math.max(220, math.floor(contentWidth * 0.40)))
+            or math.max(220, math.min(360, math.floor(contentWidth * 0.37)))
+        host:ClearAllPoints()
+        host:SetPoint("TOPRIGHT", top, "BOTTOMRIGHT", hasTabs and 0 or 4, -8)
+        host:SetPoint("BOTTOMRIGHT", self.content, "BOTTOMRIGHT", 0, 0)
+        host:SetWidth(width)
+        host:Show()
+        reserved = width + 10
+    end
+    self.scrollHost:ClearAllPoints()
+    self.scrollHost:SetPoint("TOPLEFT", top, "BOTTOMLEFT", 0, -8)
+    self.scrollHost:SetPoint("BOTTOMRIGHT", self.content, "BOTTOMRIGHT", -reserved, 0)
+end
+
+function Shell:RefreshFramePreview()
+    if not self.active then return end
+    if self.nameplatePreviewHost and self.nameplatePreviewHost:IsShown() then
+        self.nameplatePreview:Update(self.pageId, self.subKey, self.subKey)
+    elseif self.framePreviewHost and self.framePreviewHost:IsShown() then
+        self.framePreview:Update(self.pageId, self.subKey, self.active.selectedPart)
+    end
+end
+
+function Shell:SelectFramePreviewPart()
+    if self.active and self.framePreviewHost and self.framePreviewHost:IsShown() then
+        self.framePreview:SelectPart(self.active.selectedPart)
+    end
+end
+
+function Shell:EditFramePart(part, pageId, subKey)
+    if not self:IsShown() then return end
+    if self:Query() ~= "" then self.search:SetText("") end
+    if Navigation and Navigation.FramePartRoute then
+        pageId, subKey, part = Navigation.FramePartRoute(self.pageId, self.subKey, part, pageId, subKey)
+    end
+    if pageId and (pageId ~= self.pageId or (subKey and subKey ~= self.subKey)) then
+        self:Select(pageId, subKey)
+    end
+    if not self.active then return end
+    local offset = part and self.active:FocusPart(part)
+    if offset then self.scrollApi:ScrollTo(offset) end
+    self:SelectFramePreviewPart()
+end
+
+function Shell:LayoutTabs(subs, skipPreview)
     local entry = PageEntry(self.pageId)
     if entry and entry.sidebarSubpages then subs = nil end
     for i = 1, #self.tabButtons do
         self.tabButtons[i]:Hide()
     end
-    if not subs or #subs == 0 then
+    local hasTabs = subs and #subs > 0
+    self:LayoutContent(hasTabs, skipPreview)
+    if not hasTabs then
         self.tabBar:Hide()
         self.tabBar:SetHeight(0.01)
         if self.tabRule then
             self.tabRule:Hide()
-        end
-        if self.scrollHost and self.content then
-            self.scrollHost:ClearAllPoints()
-            self.scrollHost:SetPoint("TOPLEFT", self.desc, "BOTTOMLEFT", 0, -8)
-            self.scrollHost:SetPoint("BOTTOMRIGHT", self.content, "BOTTOMRIGHT", 0, 0)
         end
         return
     end
@@ -395,11 +473,6 @@ function Shell:LayoutTabs(subs)
     self.tabBar:SetHeight(36)
     if self.tabRule then
         self.tabRule:Show()
-    end
-    if self.scrollHost and self.content then
-        self.scrollHost:ClearAllPoints()
-        self.scrollHost:SetPoint("TOPLEFT", self.tabBar, "BOTTOMLEFT", 0, -8)
-        self.scrollHost:SetPoint("BOTTOMRIGHT", self.content, "BOTTOMRIGHT", 0, 0)
     end
     local x = 0
     local gap = 6
@@ -410,7 +483,7 @@ function Shell:LayoutTabs(subs)
             btn = Skin.CreateTab("FluxUIOptionsTab" .. i, self.tabChild)
             btn:SetID(i)
             btn:SetScript("OnClick", function(selfBtn)
-                Shell:Select(Shell.pageId, selfBtn.subKey, true)
+                Shell:Select(Shell.pageId, selfBtn.subKey, not FRAME_EDITOR_PAGES[Shell.pageId])
             end)
             btn:HookScript("OnEnter", function(selfBtn)
                 ShowCategoryTip(selfBtn, selfBtn.label:GetText(), selfBtn.tip)
@@ -427,7 +500,7 @@ function Shell:LayoutTabs(subs)
         Skin.SetTabText(btn, sub.label or sub.name)
         btn:Show()
         local textWidth = btn.label:GetStringWidth() or 40
-        local w = math.max(88, textWidth + 36)
+        local w = self.pageId == "ufNameplates" and math.max(68, textWidth + 22) or math.max(88, textWidth + 36)
         w = Skin.SizeTab(btn, w)
         btn:ClearAllPoints()
         btn:SetPoint("BOTTOMLEFT", self.tabChild, "BOTTOMLEFT", x, 0)
@@ -457,7 +530,7 @@ function Shell:ShowPage(pageId, subKey)
     if not group then
         self.title:SetText(entry and entry.name or "FluxUI")
         self.desc:SetText("This page is not available yet.")
-        self:LayoutTabs(nil)
+        self:LayoutTabs(nil, true)
         if self.active then
             self.active:Release()
             self.active = nil
@@ -515,7 +588,7 @@ function Shell:ShowPage(pageId, subKey)
         end
     end
     self.title:SetText(title)
-    self.desc:SetText(entry and entry.description or "")
+    self.desc:SetText((entry and entry.description) or "")
     if self.breadcrumb then self.breadcrumb:SetText(breadcrumb) end
     self:LayoutTabs(subs)
     self:PaintSelection()
@@ -547,6 +620,13 @@ function Shell:ShowPage(pageId, subKey)
         self.sectionFolds[foldKey] = self.sectionFolds[foldKey] or {}
         page = Render.Build(self.scrollApi.child, group, renderGroup, path, {
             pageId = pageId,
+            deferFrameSliders = FRAME_EDITOR_PAGES[pageId],
+            onOptionHover = pageId == "ufNameplates" and function(key)
+                local preview = self.nameplatePreview
+                if preview and preview.HoverSetting and self.nameplatePreviewHost:IsShown() then
+                    preview:HoverSetting(key)
+                end
+            end,
             advancedOpen = self.advancedOpen and self.advancedOpen[cacheKey],
             query = self:ContentQuery(),
             collapsed = self.sectionFolds[foldKey],
@@ -560,6 +640,11 @@ function Shell:ShowPage(pageId, subKey)
         page.onLayout = function(h)
             if Shell.scrollApi and Shell.active == page then
                 Shell.scrollApi:SetContentHeight(h)
+            end
+        end
+        if FRAME_EDITOR_PAGES[pageId] then
+            page.onPartSelected = function()
+                if self.active == page then self:SelectFramePreviewPart() end
             end
         end
         self.cache[cacheKey] = page
@@ -578,6 +663,7 @@ function Shell:ShowPage(pageId, subKey)
         self.scrollApi:ResetScroll()
         self._resetScroll = false
     end
+    self:RefreshFramePreview()
 end
 
 function Shell:Select(pageId, subKey, keepScroll, keepCollapsed)
@@ -620,6 +706,7 @@ function Shell:RefreshOpenPageNow()
         self.active.query = self:ContentQuery()
         self.active:Layout()
     end
+    self:RefreshFramePreview()
     self:ApplyAccent()
 end
 
@@ -651,6 +738,7 @@ function Shell:Relayout()
     if self.active then
         self.active:Layout()
     end
+    self:RefreshFramePreview()
 end
 
 function Shell:BuildSidebar()

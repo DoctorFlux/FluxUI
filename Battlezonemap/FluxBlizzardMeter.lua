@@ -24,6 +24,7 @@ local InstallNativeVisibility
 local pendingStartup = false
 local pendingNativeEnable = false
 local pendingCleanup = false
+local pendingRootShow = false
 local startupTimer = nil
 local startupGeneration = 0
 local StartStartupEmbed
@@ -36,6 +37,18 @@ local missingNativeTypes = {}
 local lastConfigurationNotice = ""
 local setupNotices = {}
 local setupNoticeCount = 0
+
+local combatRestriction = Enum and Enum.AddOnRestrictionType and Enum.AddOnRestrictionType.Combat
+local inactiveRestriction = Enum and Enum.AddOnRestrictionState and Enum.AddOnRestrictionState.Inactive
+local getRestrictionState = C_RestrictedActions and C_RestrictedActions.GetAddOnRestrictionState
+
+local function IsNativeMeterRestricted()
+    if InCombatLockdown() or (UnitAffectingCombat and UnitAffectingCombat("player")) then return true end
+    if getRestrictionState and combatRestriction ~= nil and inactiveRestriction ~= nil then
+        return getRestrictionState(combatRestriction) ~= inactiveRestriction
+    end
+    return false
+end
 
 local function VisibilityHost()
     local window = FluxWindowFrame
@@ -72,8 +85,13 @@ local function ShowEmbeddedRoot(dmFrame)
     local show = (embeddedNativePaneCount ~= 0 or setupNoticeCount > 0) and IsEmbeddedHostVisible()
     -- Edit Mode owns visibility. Writing it here taints later native combat timers.
     if show and dmFrame.ShouldBeShown then show = dmFrame:ShouldBeShown() end
+    pendingRootShow = false
     if show then
-        if not dmFrame:IsShown() then dmFrame:Show() end
+        if not dmFrame:IsShown() then
+            -- Showing the root runs each visible pane's native OnShow/Refresh.
+            if IsNativeMeterRestricted() then pendingRootShow = true
+            else dmFrame:Show() end
+        end
     else
         dmFrame:Hide()
     end
@@ -157,13 +175,13 @@ end
 local function RequestGeometryRepair()
     if geometryApplying or pendingCleanup or not isEmbedded or not embeddedParentFrame or not FluxBlizzardMeter:IsAvailable() then return end
     geometryPending = true
-    if InCombatLockdown() or geometryWakePending then return end
+    if IsNativeMeterRestricted() or geometryWakePending then return end
     geometryWakePending = true
     local generation = geometryGeneration
     local function Run()
         if generation ~= geometryGeneration then return end
         geometryTimer, geometryWakePending = nil, false
-        if InCombatLockdown() then return end
+        if IsNativeMeterRestricted() then return end
         geometryPending = false
         RepairEmbeddedGeometry()
     end
@@ -236,7 +254,7 @@ local function EnsureNativeEnabled()
         local _, _, _, _, locked, secure, readOnly = api.GetCVarInfo("damageMeterEnabled")
         if locked or secure or readOnly then return end
     end
-    if InCombatLockdown() then pendingNativeEnable = true; return end
+    if IsNativeMeterRestricted() then pendingNativeEnable = true; return end
     pendingNativeEnable = false
     -- Match Blizzard's public settings checkbox. Its native CVAR_UPDATE refreshes
     -- cached visibility; never call that pipeline ourselves.
@@ -521,7 +539,7 @@ end
 
 --- Keep the scaled native canvas exactly over the outer Flux window.
 local function ApplyRootScaleAndSize(parentFrame)
-    if not parentFrame or InCombatLockdown() then return end
+    if not parentFrame or IsNativeMeterRestricted() then return end
     local dmFrame = GetDamageMeterFrame()
     if not dmFrame then return end
 
@@ -564,7 +582,7 @@ local function ApplyRootScaleAndSize(parentFrame)
 end
 
 RepairEmbeddedGeometry = function()
-    if not isEmbedded or not embeddedParentFrame or InCombatLockdown() or not FluxBlizzardMeter:IsAvailable() then return end
+    if not isEmbedded or not embeddedParentFrame or IsNativeMeterRestricted() or not FluxBlizzardMeter:IsAvailable() then return end
     if nativeLayoutPending and currentLayoutConfig then
         nativeLayoutPending = false
         LayoutMeterGrid(embeddedParentFrame, currentLayoutConfig)
@@ -597,9 +615,8 @@ local function ShowSetupNotice(index, root, window, slot, left, right, top, bott
         notice = CreateFrame("Button", nil, root)
         notice:EnableMouse(true) -- Block clicks/tooltips on the mismatched rows below.
         notice:SetScript("OnClick", function(self)
-            local ok, reason = FluxBlizzardMeter:SelectNativeType(self.menuRow, self.menuColumn, self.requestedType)
-            if ok then ok, reason = FluxBlizzardMeter:ApplyCurrentSegments() end
-            if not ok and reason then print("|cff00ffff[FluxUI]|r " .. reason) end
+            local _, reason = FluxBlizzardMeter:OpenNativeMenu(self.menuRow, self.menuColumn, self.menuKind)
+            if reason then print("|cff00ffff[FluxUI]|r " .. reason) end
         end)
         local background = notice:CreateTexture(nil, "BACKGROUND")
         background:SetAllPoints()
@@ -614,7 +631,6 @@ local function ShowSetupNotice(index, root, window, slot, left, right, top, bott
     end
     notice:SetFrameLevel((window or root):GetFrameLevel() + 20)
     notice.menuRow, notice.menuColumn, notice.menuKind = row, column, window and "type" or "settings"
-    notice.requestedType = slot.damageMeterType
     notice:ClearAllPoints()
     -- Leave the actual native title/type dropdown and settings menu accessible.
     notice:SetPoint("TOPLEFT", root, "TOPLEFT", left, -(top + (window and PANE_HEADER_HEIGHT / METER_SCALE or 0)))
@@ -685,10 +701,8 @@ local function InstallNativeLayoutHooks(root)
 end
 
 -- Native dropdown generation stores menu/selection caches on Blizzard's controls.
--- Calling OpenMenu/GenerateMenu from Flux can therefore persist addon provenance
--- even though Pick later invokes an original responder through a secure boundary.
--- Opening menus remains on the original controls. Explicit Flux choices below
--- can select an existing native entry without regenerating or editing its cache.
+-- Native controls must also own selection: Pick can synchronously refresh
+-- secret meter rows and write addon provenance into native session state.
 function FluxBlizzardMeter:OpenNativeMenu(row, column, kind)
     if InCombatLockdown() then return false, "Meter settings are available outside combat." end
     if not isEmbedded or pendingCleanup or not self:IsAvailable() then return false, "Open the Meter tab first." end
@@ -782,28 +796,6 @@ local function FindNativeType(button, meterType)
     end)
 end
 
-local function PickNativeDescription(description, buttonName)
-    local pick = NativeProxyMethod(description, "Pick")
-    if not pick or not NativeField(description, "data") or not NativeField(description, "responder")
-        or not MenuInputContext or not NativeField(MenuInputContext, "MouseButton") then
-        return false, "Blizzard's meter menu is not ready. Reload outside combat, then choose the layout again."
-    end
-    for _, key in ipairs({ "isEnabled", "canSelect", "defaultResponse" }) do
-        if not NativeField(description, key) then return false, "Use this Blizzard meter's original dropdown, then choose the layout again." end
-    end
-    for _, key in ipairs({ "CanSelect", "IsEnabled", "GetDefaultResponse", "GetData", "HasResponder" }) do
-        if not NativeProxyMethod(description, key) then return false, "Use this Blizzard meter's original dropdown, then choose the layout again." end
-    end
-    -- The public native Pick supports custom controls. It fetches the original
-    -- responder/data itself through SecureCallResponder; Flux supplies no type or
-    -- session data and never calls private setters. Do not use DropdownButton:Pick,
-    -- which also writes native selection state. Native combat/taint testing remains
-    -- separate from these observable field-provenance guards.
-    local selected = pick(description, MenuInputContext.MouseButton, buttonName or "LeftButton")
-    if selected ~= true then return false, "Blizzard has disabled this meter option." end
-    return true
-end
-
 function FluxBlizzardMeter:GetNativeTypeChoices(row, column)
     if InCombatLockdown() or not self:IsAvailable() then return {} end
     local window = NativeWindowForSlot(row, column) or NativeMenuWindow()
@@ -824,7 +816,7 @@ function FluxBlizzardMeter:GetNativeTypeChoices(row, column)
     return groups
 end
 
-function FluxBlizzardMeter:SelectNativeType(row, column, meterType, buttonName)
+function FluxBlizzardMeter:SelectNativeType(row, column, meterType)
     if InCombatLockdown() then return false, "Meter settings are available outside combat." end
     if not isEmbedded or pendingCleanup or not self:IsAvailable() then return false, "Open the Meter tab first." end
     local slots = currentLayoutConfig and (row == "top" and currentLayoutConfig.topSlots or row == "bottom" and currentLayoutConfig.bottomSlots)
@@ -832,47 +824,29 @@ function FluxBlizzardMeter:SelectNativeType(row, column, meterType, buttonName)
     if not slot or slot.kind == "plugin" then return false, "Select a Blizzard meter window first." end
     if not PlainNumber(meterType) then return false, "Invalid Blizzard meter type." end
     local window = NativeWindowForSlot(row, column)
-    local donor = window or NativeMenuWindow()
-    if not FindNativeType(donor and donor.DamageMeterTypeDropdown, meterType) then
-        return false, "Blizzard's type menu is not ready or does not offer this type. Reload outside combat, then choose the layout again."
+    if not window then return self:OpenNativeMenu(row, column, "settings") end
+    local actual = window.GetDamageMeterType and window:GetDamageMeterType()
+    if PlainNumber(actual) and actual == meterType then return true end
+    if not FindNativeType(window.DamageMeterTypeDropdown, meterType) then
+        return false, "Check Blizzard's title dropdown for the requested meter type."
     end
-    local actual = window and window.GetDamageMeterType and window:GetDamageMeterType()
-    if PlainNumber(actual) and actual == meterType and slot.damageMeterType == meterType then return true end
-    if not window then
-        local create = VisitNativeMenu(NativeMenuDescription(donor and donor.SettingsDropdown), function(choice)
-            return NativeField(_G, "DAMAGE_METER_SHOW_NEW_WINDOW") and DAMAGE_METER_SHOW_NEW_WINDOW
-                and NativeMenuText(choice) == DAMAGE_METER_SHOW_NEW_WINDOW
-        end)
-        local ok, reason = PickNativeDescription(create, buttonName)
-        if not ok then return false, reason end
-        self:RefreshEmbeddedLayout()
-        window = NativeWindowForSlot(row, column)
-        if not window then return false, "Blizzard did not create another meter window." end
-    end
-    local ok, reason = PickNativeDescription(FindNativeType(window.DamageMeterTypeDropdown, meterType), buttonName)
-    if ok then self:RefreshEmbeddedLayout() end
-    return ok, reason
+    return self:OpenNativeMenu(row, column, "type")
 end
 
--- Only explicit preset/custom/structure/tab choices reach this method. Preserve
--- all desired slots before a native response can update the runtime/editor copy.
+-- Explicit choices set Flux's requested layout. Verify the native panes and
+-- direct the player to Blizzard's controls when configuration is still needed.
 function FluxBlizzardMeter:ApplyRequestedTypes()
     if InCombatLockdown() then return false, "Meter layout choices are available outside combat." end
     if not isEmbedded or pendingCleanup or not self:IsAvailable() or not currentLayoutConfig then return false, "Open the Meter tab first." end
-    local choices = {}
     for _, row in ipairs({ "top", "bottom" }) do
         local slots = row == "top" and currentLayoutConfig.topSlots or currentLayoutConfig.bottomSlots
         for column, slot in ipairs(slots or {}) do
             if slot.kind ~= "plugin" then
-                choices[#choices + 1] = { row = row, column = column, meterType = SlotToDamageMeterType(slot) }
+                local ok, reason = self:SelectNativeType(row, column, SlotToDamageMeterType(slot))
+                if not ok then return false, reason end
             end
         end
     end
-    for _, choice in ipairs(choices) do
-        local ok, reason = self:SelectNativeType(choice.row, choice.column, choice.meterType)
-        if not ok then return false, reason end
-    end
-    self:RefreshEmbeddedLayout()
     return self:ApplyCurrentSegments()
 end
 
@@ -893,16 +867,7 @@ function FluxBlizzardMeter:ApplyCurrentSegments()
         local sessionID = window.GetSessionID and window:GetSessionID()
         if not (PlainNumber(selected) and selected == current and window.GetSessionID
             and not (issecretvalue and issecretvalue(sessionID)) and sessionID == nil) then
-            local choice = VisitNativeMenu(NativeMenuDescription(window.SessionDropdown), function(description)
-                local data = NativeMenuData(description)
-                if (issecretvalue and issecretvalue(data)) or type(data) ~= "table" then return false end
-                if not NativeField(data, "type") or not NativeField(data, "sessionID") then return false end
-                local kind, id = data.type, data.sessionID
-                return NativeRadio(description) and PlainNumber(kind) and kind == current
-                    and not (issecretvalue and issecretvalue(id)) and id == nil
-            end)
-            local ok, reason = PickNativeDescription(choice)
-            if not ok then return false, reason end
+            return false, "Choose Current in Blizzard's combat session dropdown."
         end
     end
     return true
@@ -964,7 +929,7 @@ end
 --- Configure chrome/type for an embedded session window (position applied separately).
 local function ConfigureSessionWindowChrome(sessionWindow)
     if not sessionWindow then return end
-    if InCombatLockdown() then return end
+    if IsNativeMeterRestricted() then return end
 
     local dmFrame = GetDamageMeterFrame()
     if not dmFrame then return end
@@ -989,13 +954,14 @@ local function ConfigureSessionWindowChrome(sessionWindow)
 
     ApplyEmbeddedWindowSkin(sessionWindow)
     ApplyEmbeddedWindowSkin(sourceWindow)
-    sessionWindow:Show()
+    if not sessionWindow:IsShown() then sessionWindow:Show() end
 end
 
 --- Apply layout grid to session windows inside parentFrame.
 LayoutMeterGrid = function(parentFrame, layoutConfig)
     if not parentFrame or not layoutConfig or not isEmbedded then return end
-    if InCombatLockdown() or not FluxBlizzardMeter:IsAvailable() then return end
+    if not FluxBlizzardMeter:IsAvailable() then return end
+    if IsNativeMeterRestricted() then RequestGeometryRepair(); return end
 
     local dmFrame = GetDamageMeterFrame()
     if not dmFrame then return end
@@ -1278,7 +1244,7 @@ function FluxBlizzardMeter:Embed(parentFrame, layoutConfig)
         return false
     end
     explicitlyHidden = false
-    if InCombatLockdown() then
+    if IsNativeMeterRestricted() then
         -- Keep only the latest requested structure; never poll until combat ends.
         pendingEmbed = { parent = parentFrame, layout = layoutConfig }
         return false
@@ -1303,7 +1269,7 @@ function FluxBlizzardMeter:Embed(parentFrame, layoutConfig)
     currentLayoutConfig = resolvedLayout
 
     local function DoEmbed()
-        if InCombatLockdown() then
+        if IsNativeMeterRestricted() then
             pendingEmbed = { parent = parentFrame, layout = layoutConfig }
             return
         end
@@ -1361,7 +1327,7 @@ function FluxBlizzardMeter:Embed(parentFrame, layoutConfig)
     end
 
     DoEmbed()
-    if pendingUserLayoutApply and isEmbedded and not InCombatLockdown() then
+    if pendingUserLayoutApply and isEmbedded and not IsNativeMeterRestricted() then
         pendingUserLayoutApply = false
         local ok, reason = self:ApplyRequestedTypes()
         if not ok and reason then print("|cff00ffff[FluxUI]|r " .. reason) end
@@ -1500,6 +1466,7 @@ end
 --- Hide the embedded damage meter.
 function FluxBlizzardMeter:Hide()
     pendingUserLayoutApply = false
+    pendingRootShow = false
     -- Tab onHide runs before GetActiveTab changes; native callbacks must honor it.
     explicitlyHidden = true
     CancelGeometryRepair()
@@ -1544,7 +1511,7 @@ function FluxBlizzardMeter:Show()
     -- Ensure embedded state is set
     isEmbedded = true
     
-    if not InCombatLockdown() then
+    if not IsNativeMeterRestricted() then
         if currentLayoutConfig then
             LayoutMeterGrid(embeddedParentFrame, currentLayoutConfig)
         else
@@ -1562,6 +1529,7 @@ end
 --- Clean up and reset the damage meter to normal state
 function FluxBlizzardMeter:Cleanup()
     pendingUserLayoutApply = false
+    pendingRootShow = false
     CancelGeometryRepair()
     HideSetupNotices()
     for _, notice in pairs(setupNotices) do
@@ -1572,7 +1540,7 @@ function FluxBlizzardMeter:Cleanup()
     pendingEmbed = nil
     pendingNativeEnable = false
     CancelStartupEmbed()
-    if InCombatLockdown() then
+    if IsNativeMeterRestricted() then
         pendingCleanup = true
         self:Hide()
         if FluxThreatMeter then FluxThreatMeter:Cleanup() end
@@ -1646,16 +1614,22 @@ end
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("PLAYER_REGEN_DISABLED") -- Entering combat
 frame:RegisterEvent("PLAYER_REGEN_ENABLED")  -- Leaving combat
-if FluxBlizzardMeter:IsSupportedClient() then frame:RegisterEvent("EDIT_MODE_LAYOUTS_UPDATED") end
+if FluxBlizzardMeter:IsSupportedClient() then
+    frame:RegisterEvent("EDIT_MODE_LAYOUTS_UPDATED")
+    if getRestrictionState and combatRestriction ~= nil and inactiveRestriction ~= nil then
+        frame:RegisterEvent("ADDON_RESTRICTION_STATE_CHANGED")
+    end
+end
 
-frame:SetScript("OnEvent", function(self, event, addonName)
+frame:SetScript("OnEvent", function(self, event, restrictionType, restrictionState)
     if event == "EDIT_MODE_LAYOUTS_UPDATED" then
         RequestGeometryRepair()
     elseif event == "PLAYER_REGEN_DISABLED" then
         -- Entering combat - don't allow embedding changes
         -- This prevents taint issues
-    elseif event == "PLAYER_REGEN_ENABLED" then
-        if InCombatLockdown() then return end
+    elseif event == "PLAYER_REGEN_ENABLED" or (event == "ADDON_RESTRICTION_STATE_CHANGED"
+        and restrictionType == combatRestriction and restrictionState == inactiveRestriction) then
+        if IsNativeMeterRestricted() then return end
         if pendingCleanup then FluxBlizzardMeter:Cleanup() end
         if pendingNativeEnable then
             pendingNativeEnable = false
@@ -1665,6 +1639,10 @@ frame:SetScript("OnEvent", function(self, event, addonName)
         local embed = pendingEmbed
         pendingEmbed = nil
         if embed then FluxBlizzardMeter:Embed(embed.parent, embed.layout) end
+        if pendingRootShow then
+            local dmFrame = GetDamageMeterFrame()
+            if dmFrame then ShowEmbeddedRoot(dmFrame) end
+        end
         if pendingStartup and StartStartupEmbed then StartStartupEmbed() end
         if geometryPending then RequestGeometryRepair() end
         if FluxMeterSkin and FluxMeterSkin.RefreshHeaderControls then FluxMeterSkin:RefreshHeaderControls() end
@@ -1682,7 +1660,7 @@ local function TryStartupEmbed(attempt, generation)
     startupTimer = nil
     if not FluxWindowFrame or not FluxWindowFrame.GetActiveTab
         or FluxWindowFrame:GetActiveTab() ~= "Meter" then return end
-    if InCombatLockdown() then
+    if IsNativeMeterRestricted() then
         pendingStartup = true
         return
     end

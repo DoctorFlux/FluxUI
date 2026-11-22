@@ -1,5 +1,24 @@
 # Battlefield map provider lifecycle — 6 November 2026
 
+## Native Area POI event — 22 November 2026
+
+The Forever report enters native `AreaPOIDataProvider:OnEvent` through
+the original Battlefield Map. `AREA_POIS_UPDATED` rebuilds ordinary and
+event POI pins. Acquisition sets mouse propagation and right-click
+passthrough, both protected operations. The stack locates the blocked
+path. The earlier write that introduced taint remains unverified.
+[Forever POI provider](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_SharedMapDataProviders/AreaPOIDataProvider.lua#L35).
+[Forever pin acquisition](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.lua#L326).
+
+Flux holds that single frame registration during combat restrictions on
+the native Battlefield Map it has hosted. It retains the existing pins
+and Blizzard's provider counts. A missed event triggers one native
+dispatch after release if the same frame remains visible and subscribed.
+Hiding the map drops held work and Blizzard's next show owns fresh
+registration. The active Flux map's deferred reveal and zone work also
+wait for restrictions to clear.
+[Client acceptance](CLIENT_VALIDATION.md#battlefield-map-poi-mouse-actions-in-combat).
+
 Two concrete defects were reproduced: discarded Flux provider clones retained
 callbacks/input handlers, and opening Flux's Map tab tainted shared native pin
 methods. The candidate fixes ownership and removes the native method rewrite.

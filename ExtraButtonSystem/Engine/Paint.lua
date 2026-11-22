@@ -2322,6 +2322,13 @@ local function MountEnvBlocked()
 	return false
 end
 
+function Paint.IsPlayerDeadOrGhost()
+	local dead = UnitIsDeadOrGhost and AsBool(UnitIsDeadOrGhost("player"))
+	if dead ~= nil then return dead end
+	return (UnitIsDead and AsBool(UnitIsDead("player")) == true)
+		or (UnitIsGhost and AsBool(UnitIsGhost("player")) == true) or false
+end
+
 local function ApplyIconColor(btn, r, g, b)
 	if btn.WIcon then
 		local widget = btn.Widget
@@ -2413,11 +2420,11 @@ function Paint.UpdateUsable(btn)
 		ApplyUsableVisual(btn, 1, 1, 1, false)
 		return
 	end
-	-- IsUsableItem can report an owned conjured item as usable while dead.
-	-- The existing PLAYER_DEAD/ALIVE/UNGHOST watcher repaints this state.
-	if (btn.IsManaGemButton or btn.IsHealthstoneButton)
-		and ((UnitIsDeadOrGhost and UnitIsDeadOrGhost("player"))
-			or (UnitIsDead and UnitIsDead("player"))) then
+	local isMount = btn.IsMountButton or btn.IsUnifiedMountButton or btn.ActionType == "mount"
+		or btn.MountSpellId or btn.MountId
+	-- Life and control events already refresh the shared usability lane.
+	if ((isMount or btn.IsManaGemButton or btn.IsHealthstoneButton) and Paint.IsPlayerDeadOrGhost())
+		or (isMount and UnitOnTaxi and AsBool(UnitOnTaxi("player")) == true) then
 		btn._lastUsable = false
 		ApplyUsableVisual(btn, COLOR_UNUSABLE[1], COLOR_UNUSABLE[2], COLOR_UNUSABLE[3], false)
 		return
@@ -2464,7 +2471,21 @@ function Paint.UpdateUsable(btn)
 	end
 	local usable, noMana
 	local t = btn.ActionType
-	if t == "outfit" or btn._fluxUtilityOutfitID ~= nil then
+	local client = Flux.Client
+	-- Forever keeps the mount selected indoors. Check its current location for the face.
+	local getJournalUsability = btn.IsUnifiedMountButton and btn.MountId and btn.MountId ~= RANDOM_MOUNT_ID
+		and client and (client.isForever or client.isCamelot) and C_MountJournal and C_MountJournal.GetMountUsabilityByID
+	local journalUsable
+	if getJournalUsability then
+		if InCombatLockdown and InCombatLockdown() then
+			journalUsable = false
+		else
+			journalUsable = AsBool(getJournalUsability(btn.MountId, true))
+		end
+	end
+	if journalUsable ~= nil then
+		usable, noMana = journalUsable, false
+	elseif t == "outfit" or btn._fluxUtilityOutfitID ~= nil then
 		local info = btn._fluxUtilityOutfitInfo or btn.OutfitInfo
 		usable = info ~= nil and not info.isDisabled
 		noMana = false
@@ -2558,8 +2579,7 @@ function Paint.UpdateUsable(btn)
 
 	-- NC mount hosts stay macrotext; apply the same indoor/combat / journal
 	-- gate Extra uses for ActionType mount.
-	if usable ~= false and (btn.IsMountButton or btn.IsUnifiedMountButton
-		or btn.MountSpellId or btn.MountId) then
+	if journalUsable == nil and usable ~= false and isMount and t ~= "mount" then
 		if MountEnvBlocked() then
 			usable = false
 			noMana = false
@@ -2591,7 +2611,7 @@ function Paint.UpdateUsable(btn)
 	else
 		sid = btn.SpellId
 	end
-	local charge = ChargeReadyState(btn, sid)
+	local charge = not getJournalUsability and ChargeReadyState(btn, sid) or nil
 	-- Item-use spell charges are not the gem's bag charges; 0 of that spell
 	-- would keep a bound mana gem darkened even with uses left.
 	if charge == "empty" and not btn.IsManaGemButton then

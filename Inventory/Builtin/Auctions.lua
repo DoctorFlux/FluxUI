@@ -1,4 +1,4 @@
--- Inventory/Builtin/Auctions.lua — owned listings while the AH is open.
+-- Inventory/Builtin/Auctions.lua — owned listings and sale notifications.
 local addonName, ns = ...
 local Flux = ns.Flux
 local Inv = Flux.Inventory
@@ -14,6 +14,8 @@ local houseOpen = false
 local queryAttempted = false
 local scanFrame, scan, scanAt, firstQueued, lastList
 local cancelledScans = 0
+local soldAuctionIDs
+local legacySalePending = false
 
 local function Request()
 	Auctions.Refresh()
@@ -33,7 +35,7 @@ local function NumericID(value)
 	return nil
 end
 
-local function PrepareRecord(job)
+local function PrepareRecord(job, savedIndex)
 	local i = #job.list
 	local rec = job.list[i]
 	local old = lastList and lastList[i]
@@ -43,9 +45,12 @@ local function PrepareRecord(job)
 		job.changed = true
 	end
 	local id, n, link = rec.itemID, rec.itemCount, rec.itemLink or rec.link
-	if id > 0 then
+	if savedIndex then
+		id, n = tonumber(id), tonumber(n or rec.count) or 1
+	end
+	if id and id > 0 then
 		local snap = Inv.snapshots.auctions
-		local row = snap and snap.byIndex and snap.byIndex[i]
+		local row = snap and snap.byIndex and snap.byIndex[savedIndex or i]
 		if not row or row.itemID ~= id or row.count ~= n or row.link ~= link then
 			row = { itemID = id, count = n, link = link }
 		end
@@ -54,7 +59,7 @@ local function PrepareRecord(job)
 	end
 end
 
-local function ApplyList(job)
+local function ApplyList(job, char)
 	local list = job.list
 	if not job.changed and #list == #lastList then return false end
 	lastList = list
@@ -65,13 +70,93 @@ local function ApplyList(job)
 		snap.generation = (snap.generation or 0) + 1
 	end
 	if not Store.UsesSyndicator() then
-		local char = Store.EnsureCurrentCharacter()
+		char = char or Store.EnsureCurrentCharacter()
 		if char then
 			char.auctions = list
 			Store.MarkPending(nil, "all")
 		end
 	end
 	return true
+end
+
+local function RemoveListing(char, list, index)
+	if Store.UsesSyndicator() or char.auctions ~= list then return end
+	local job = { list = {}, byIndex = {}, counts = {}, changed = true }
+	local slots = {}
+	for i in pairs(list) do
+		if type(i) == "number" and i ~= index then slots[#slots + 1] = i end
+	end
+	table.sort(slots)
+	for _, i in ipairs(slots) do
+		job.list[#job.list + 1] = list[i]
+		PrepareRecord(job, i)
+	end
+	ApplyList(job, char)
+	Inv.Notify({ auctions = true })
+end
+
+local function OnAuctionSold(auctionID)
+	if Store.UsesSyndicator() then return end
+	if issecretvalue and issecretvalue(auctionID) then return end
+	auctionID = tonumber(auctionID)
+	if not auctionID or auctionID <= 0 or auctionID % 1 ~= 0 then return end
+
+	-- An older native list can still be queued when the notification arrives.
+	-- Only a subsequent owned-list update can replace this sale observation.
+	soldAuctionIDs = soldAuctionIDs or {}
+	if soldAuctionIDs[auctionID] then return end
+	soldAuctionIDs[auctionID] = true
+	if scan then Request() end
+
+	local char = Store.GetCurrentCharacter()
+	local list = char and char.auctions
+	if not list then return end
+	for i, row in pairs(list) do
+		if type(i) == "number" and tonumber(row.auctionID) == auctionID then
+			RemoveListing(char, list, i)
+			return
+		end
+	end
+end
+
+local function LegacySalePattern()
+	local format = ERR_AUCTION_SOLD_S
+	if type(format) ~= "string" then return end
+	local first, last = format:find("%s", 1, true)
+	if not first then first, last = format:find("%1$s", 1, true) end
+	if not first then return end
+	local function Escape(text)
+		return (text:gsub("([%^%$%(%)%%%.%[%]%*%+%-%?])", "%%%1"))
+	end
+	return "^" .. Escape(format:sub(1, first - 1)) .. "(.+)" .. Escape(format:sub(last + 1)) .. "$"
+end
+
+local function OnLegacyAuctionSold(itemName)
+	if Store.UsesSyndicator() or (issecretvalue and issecretvalue(itemName))
+		or type(itemName) ~= "string" or itemName == "" then return end
+	if houseOpen then
+		Request()
+		return
+	end
+	-- The legacy notice names an item. The owner list decides ambiguous matches
+	-- and supplies the first fresh snapshot when the Auction House opens again.
+	legacySalePending = true
+	itemName = itemName:match("|h%[(.-)%]|h") or itemName
+	local char = Store.GetCurrentCharacter()
+	local list = char and char.auctions
+	if not list then return end
+	local match
+	for i, row in pairs(list) do
+		if type(i) == "number" then
+			local name = row.itemName
+			if not name and Flux.Item and Flux.Item.GetInfo then
+				name = Flux.Item.GetInfo(row.itemLink or row.link or row.itemID)
+			end
+			if not name or (name == itemName and match) then return end
+			if name == itemName then match = i end
+		end
+	end
+	if match then RemoveListing(char, list, match) end
 end
 
 local function IsAuctioneer(kind)
@@ -82,6 +167,7 @@ end
 local function ReadLegacy(index, list, job)
 	local info = { GetAuctionItemInfo("owner", index) }
 	if scan ~= job or Store.UsesSyndicator() then return end
+	if info[16] == 1 then return end -- sold, pending delivery
 	-- name, texture, count, quality, ..., itemID at 17 on modern Classic
 	local count = tonumber(info[3]) or 1
 	local quality = info[4]
@@ -92,6 +178,7 @@ local function ReadLegacy(index, list, job)
 	if itemID then
 		list[#list + 1] = {
 			itemID = itemID,
+			itemName = info[1],
 			itemCount = count,
 			iconTexture = info[2],
 			itemLink = link,
@@ -103,6 +190,7 @@ end
 local function ReadModern(index, list)
 	local info = C_AuctionHouse.GetOwnedAuctionInfo(index)
 	if info and (not Enum or not Enum.AuctionStatus or info.status == Enum.AuctionStatus.Active) then
+		if soldAuctionIDs and soldAuctionIDs[tonumber(info.auctionID)] then return end
 		local key = info.itemKey
 		local itemID = key and NumericID(key.itemID)
 		if itemID then
@@ -201,7 +289,7 @@ function Auctions.Refresh()
 	if Store.UsesSyndicator() then
 		return
 	end
-	if not houseOpen then
+	if not houseOpen or legacySalePending then
 		return
 	end
 	local now = Now()
@@ -242,9 +330,33 @@ function Auctions.Start()
 	end)
 	Flux.Events.Register("AUCTION_HOUSE_CLOSED", Close)
 	Flux.Events.Register("AUCTION_OWNED_LIST_UPDATE", function()
+		if houseOpen then legacySalePending = false end
 		Request()
 	end)
 	Flux.Events.Register("OWNED_AUCTIONS_UPDATED", function()
+		if houseOpen then soldAuctionIDs = nil end
 		Request()
 	end)
+	local notifications = Enum and Enum.AuctionHouseNotification
+	local sold = notifications and notifications.AuctionSold
+	if sold ~= nil then
+		Flux.Events.Register("AUCTION_HOUSE_SHOW_FORMATTED_NOTIFICATION", function(_, notification, text, auctionID)
+			if (issecretvalue and issecretvalue(notification)) or notification ~= sold then return end
+			if Cap.hasLegacyAuctionHouse then
+				OnLegacyAuctionSold(text)
+			else
+				OnAuctionSold(auctionID)
+			end
+		end)
+	end
+	if Cap.hasLegacyAuctionHouse then
+		local pattern = LegacySalePattern()
+		if pattern then
+			Flux.Events.Register("CHAT_MSG_SYSTEM", function(_, message)
+				if Store.UsesSyndicator() or (issecretvalue and issecretvalue(message)) or type(message) ~= "string" then return end
+				local itemName = message:match(pattern)
+				if itemName then OnLegacyAuctionSold(itemName) end
+			end)
+		end
+	end
 end

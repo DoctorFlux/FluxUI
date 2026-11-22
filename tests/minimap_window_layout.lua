@@ -44,11 +44,13 @@ local CONFIG = {Size = 190, Scale = 1}
 local Flux = _G.Flux
 local addonTable = {}
 local FluxMinimap_TryRebuildMicroMenuPos3 = function() end
-]] .. slice(source, "local function KeepMinimapClusterHidden()", "--- Restore the Minimap to its normal position")
+]] .. slice(source, "local function MinimapNativeValue(", "function FluxMinimap:CleanupBlizzardFrames()")
+   .. slice(source, "local function KeepMinimapClusterHidden()", "--- Restore the Minimap to its normal position")
         .. slice(source, "function FluxMinimap:RestoreToNormal()", "--- Check if the Minimap is currently embedded")
         .. slice(source, "function FluxMinimap:IsEmbedded()", "--- Width of the top-right minimap")
         .. slice(source, "function FluxMinimap:HideEmbedded()", "--- Notify FluxInfoFrame")
         .. slice(source, "function FluxMinimap:UpdateQuestTrackerPosition()", "-- Forever: PLAYER_LOGIN does not fire")
+        .. (source:match('(local groupIndicatorsScheduled.-)FluxMinimap:SetScript%("OnEvent"') or '')
         .. slice(source, 'FluxMinimap:SetScript("OnEvent", function(self, event, ...)', "function FluxMinimap:Initialize()")
         .. "\nreturn embeddedState"
     e.unpack = table.unpack or unpack
@@ -70,6 +72,14 @@ local FluxMinimap_TryRebuildMicroMenuPos3 = function() end
     return t
 end
 
+local function checkEmbeddedCenter(t)
+    local grid = t.env.FluxMinimapButtonsContainer
+    local gx, gy, gw, gh = grid:rect()
+    local _, wy, _, wh = t.window:rect()
+    near(gy + gh / 2, wy + wh / 2, "embedded grid is vertically centered in the window")
+    near(gx + gw, t.map:rect(), "embedded grid keeps the existing map-side edge")
+end
+
 local function mapScenario(source)
     local t = boot(source):embed()
     local e, m = t.env, t.m
@@ -79,6 +89,7 @@ local function mapScenario(source)
     check(point == "TOPRIGHT" and parent == t.window and relative == "TOPRIGHT" and x == 0 and y == -22,
         "real map retains right alignment and info-bar gap")
     check(#t:visible() == 15, "actual embed creates shared buttons")
+    checkEmbeddedCenter(t)
     e._FluxUI_CharSavedVars.minimapExtraLayout = {embeddedMapScale = 40, embeddedColumns = 8}
     check(m:EmbedInFrame(t.window), "same-parent embed refresh succeeds")
     near(t.map:GetWidth(), 270, "retired saved map percentage cannot affect automatic size")
@@ -102,11 +113,13 @@ local function mapScenario(source)
     check(not t.map:IsShown() and #t:visible() == 0, "window resize keeps inactive map/buttons hidden")
     m:ShowEmbedded()
     check(t.map:IsShown() and #t:visible() == 16, "returning to Map tab restores same strip")
+    checkEmbeddedCenter(t)
     for _, dimensions in ipairs({{300, 420}, {120, 200}, {900, 270}}) do
         e.FluxWindowFrame:SetSize(dimensions[1], dimensions[2])
         check(t.map:GetWidth() > 0 and t.map:GetWidth() < dimensions[1]-10,
             "automatic map leaves a usable button strip in narrow/tall/wide windows")
         check(#t:visible() == 16, "all buttons remain visible with automatic map fitting")
+        checkEmbeddedCenter(t)
     end
     local applied, identity = t.map:GetWidth(), t.widgets[1].Widget
     t.combat = true
@@ -115,9 +128,37 @@ local function mapScenario(source)
     check(#t:visible() == 16, "combat count reflow remains deferred")
     t.combat = false; t:flush()
     check(#t:visible() == 30 and t.widgets[1].Widget == identity, "regen applies automatic layout without replacing actions")
+    checkEmbeddedCenter(t)
     return t
 end
 mapScenario()
+
+do
+    local t = boot()
+    local e = t.env
+    local api = e.FluxWindowFrame
+    e.UnitClass = function() return "Mage", "MAGE" end
+    e.RAID_CLASS_COLORS = {MAGE = {r = 0.25, g = 0.78, b = 0.92}}
+    e.FluxBorder = {SetClassColor = noop, ApplyTo = function(_, panel)
+        local border = e.CreateFrame("Frame", nil, panel)
+        border:SetAllPoints(panel)
+        border:SetFrameLevel(panel:GetFrameLevel() + 10)
+        panel.FluxBorderFrame = border
+        return border
+    end}
+    local factory = [[
+local windowFrame
+local WINDOW_WIDTH, WINDOW_HEIGHT = 540, 292
+local function ApplyWindowFrameScreenAnchor() windowFrame:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", 0, 0) end
+]] .. slice(windowSource, "function FluxWindowFrame:GetFrame()", "--- Show the window frame")
+    assert(load(factory, "@actual Flux Window border layer", "t", e))()
+    local window = api:GetFrame()
+    local border = window.FluxBorderFrame
+    check(border._FluxBorderOwnLayer and border:GetFrameStrata() == "MEDIUM"
+        and border:GetFrameLevel() == window:GetFrameLevel() + 2, "Flux Window border fits directly above its own content")
+    check(t.m:EmbedInFrame(window) and border:GetFrameLevel() == window:GetFrameLevel() + 2,
+        "embedding cannot raise the Flux Window border to the generic host level")
+end
 
 -- The existing native minimap code permits visual sizing during combat and
 -- queues parent/anchor changes. Permit only its documented visual calls on
@@ -179,6 +220,58 @@ local function queuedScenario(source)
         "combat embed then restore retains optional side strip")
 end
 queuedScenario()
+
+local function standaloneScenario(source, mode, legacy)
+    local t = boot(source)
+    local e, m, map = t.env, t.m, t.map
+    local info = m.InfoBar
+    e.FLUX_API.isLegacyClient = legacy
+    local width = legacy and 175 or 190
+    map:SetSize(width, 190); map:SetFrameStrata("LOW"); map:SetFrameLevel(5)
+    map.FluxBorderFrame = e.CreateFrame("Frame", nil, map)
+    map.FluxBorderFrame:SetFrameLevel(15)
+    info:SetWidth(width); info:SetFrameStrata("LOW"); info:SetFrameLevel(8)
+    info:ClearAllPoints()
+    info:SetPoint("BOTTOMLEFT", map, "TOPLEFT", 0, -2)
+    info:SetPoint("BOTTOMRIGHT", map, "TOPRIGHT", 0, -2)
+    local clock = e.CreateFrame("Button", nil, info)
+    clock:SetSize(60, 24); clock:SetPoint("TOPRIGHT", info, "TOPRIGHT", 0, 0)
+    local originalClockRight = clock:GetRight()
+    check(#t:visible() == 0 and t.api:GetMinimapOffset() == 0, "standalone starts without a side-grid reservation")
+    t:embed()
+    check(info:GetWidth() > width and #t:visible() == 15, "embed sizes the header and opens the shared button strip")
+    if mode ~= "immediate" then
+        allowNativeCombatVisuals(t)
+        -- Embedded border levels are visual changes on its decorative frame.
+        local border = map.FluxBorderFrame
+        local original = border.SetFrameLevel
+        function border:SetFrameLevel(level)
+            local previous = t.secure
+            t.secure = true; original(self, level); t.secure = previous
+        end
+        t.combat = true
+    end
+    m:RestoreToNormal()
+    if mode == "queued-burst" then
+        check(m:EmbedInFrame(t.window), "second embed during combat retains the standalone snapshot")
+        m:RestoreToNormal()
+    end
+    if mode ~= "immediate" then regen(t) end
+    check(not m:IsEmbedded() and map:GetParent() == e.UIParent and #t:visible() == 0,
+        "standalone restore clears the embedded extras with side buttons off")
+    near(clock:GetRight(), originalClockRight, "standalone clock/button edge fits the restored minimap")
+    check(info:GetNumPoints() == 2 and select(2, info:GetPoint(2)) == map,
+        "standalone zone header restores both map anchors")
+    check(map:GetFrameStrata() == "LOW" and map:GetFrameLevel() == 5 and map.FluxBorderFrame:GetFrameLevel() == 15
+        and info:GetFrameStrata() == "LOW" and info:GetFrameLevel() == 8,
+        "standalone minimap, border and button header restore their previous layers")
+    check(t.api:GetMinimapOffset() == 0 and t.api:GetTrackerOffset() == 0,
+        "standalone restore leaves no phantom side reservation")
+end
+for _, mode in ipairs({"queued", "immediate", "queued-burst"}) do
+    standaloneScenario(mapSource, mode, false)
+    standaloneScenario(mapSource, mode, true)
+end
 
 local function trackerScenario(uiScale, viewportScale)
     local t = boot()

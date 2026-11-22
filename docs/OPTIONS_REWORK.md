@@ -3,6 +3,125 @@
 Change ID: OPTIONS-REWORK-20261109. Baseline main `26f886e3ea5371b196ab235d2dace0c156002285`.
 User chose **Implement directly** on 9 November; no preliminary mock-up.
 
+## Individual frame preview parity
+
+The 21 November follow-up adds a preview case menu and a single Play action.
+Use the case menu to try a player or a friendly or hostile NPC on a target
+frame, or show sample buffs and debuffs or combat effects. Player and pet
+keep their own identities. Part buttons still open the relevant setting.
+Play runs a short demonstration using the configured visuals. Party and
+Raid run the demonstration on a small set of their existing sample members.
+The samples and their selections belong to the options window session.
+
+21 November 2026. The user's Forever screenshots showed a small sample with a
+spell icon and detached cast bar beside FluxUI's in-world player and target.
+The options sample now uses the shared Flux unit frame visuals, with distinct
+layouts for Player, Target, Focus, Pet, Target of Target, Focus Target and
+Pet Target. The selected client's existing capability gates determine which
+tabs are available.
+
+| Requirement | Implementation and observable acceptance |
+| --- | --- |
+| REQ-OPT-54 | Render the selected individual frame with the same chrome, portrait location, name strip, health and power partitions and attached layout as its HUD counterpart. Confirm the existing sizes, alignments, aspect ratios and scales in stacked and side-by-side placement. |
+| REQ-OPT-55 | Keep clickable regions on the rendered parts and preserve the existing component settings and scope. Attach the cast sample to its real name strip or pet power row when Cast bar is selected. Confirm aura placement, duration and type styling on the applicable frames. |
+| REQ-OPT-56 | Keep each sample in the options pane, using static display values and the live artwork factories. Verify opening, resizing, switching tabs and editing a setting preserve frame allocations and avoid live unit polling and casting callbacks. |
+| REQ-OPT-57 | Expose player and NPC cases, auras, and combat effects from a compact preview control. Play a bounded demonstration from the pane and restore the selected static case when it finishes or is interrupted. |
+| REQ-OPT-58 | Keep compact Focus health and power labels centered in their visible bands in the HUD and preview, including when Focus has no resource. |
+
+The existing Unit Frame navigation, group previews and setting setters remain
+the entry points. The pane fits the rendered frame uniformly and prioritizes
+the same profile-driven proportions and component locations as the HUD.
+Preview health and power values are examples. Buff and debuff settings show
+sample effects in the Target and Focus holders or in Pet's hover strip. A
+portrait uses the current accessible unit portrait, with the player as a
+fallback when the unit is unavailable.
+
+External checkpoint individual-preview-before-20261121T194304Z verified 3,433
+source files and 85 settings metadata entries before runtime edits. The history
+bundle retains 1e992c449d59b2f1f472efc40e7ca10ea6c494cf and has SHA-256
+e5ad1ee3b40441d04bd4d862709d2da7f617b9328e552abf85832b51d5da5687.
+[Client acceptance](CLIENT_VALIDATION.md#individual-frame-preview-parity).
+
+## Three frame pages and responsive editing
+
+21 November 2026. `FRAME-OPTIONS-EDIT-20261121` consolidates the sidebar
+and addresses lag while changing frame dimensions and appearance. Under
+**Unit Frame**, **General** contains General and Cast Bars tabs,
+**Individual Frames** contains Player, Target, Focus, Pet and their
+applicable attached-frame tabs, and **Party & Raid** contains Party
+and Raid tabs. **Nameplates** is in Combat. The selected part in the
+sample opens its existing component settings.
+
+| Requirement | Implementation and observable acceptance |
+| --- | --- |
+| REQ-OPT-50 | Expose only General, Individual Frames and Party & Raid under Unit Frame. Verify Cast Bars under General, Nameplates under Combat and direct access to each supported primary and attached unit in Individual Frames. |
+| REQ-OPT-51 | Preserve the original sources, legacy settings links, searches, capability gates and both world preview controls. Confirm compact party component shortcuts open shared Raid sections and attached-frame clicks select their Individual Frames tabs. |
+| REQ-OPT-52 | Move the slider thumb during a pointer drag and apply the setting once on release. Keep keyboard and other non-pointer changes applying immediately. Include clicks without a value change, navigation and cancellation in the desktop and native checks. |
+| REQ-OPT-53 | Keep the shared world preview artwork and sample states. Avoid duplicate world refreshes in the initialized raid owner and reuse stable embedded geometry when edits only affect appearance. Confirm real size, aura and portrait edits still repaint their parts. |
+
+External checkpoint `frame-options-edit-before-20261121T184431Z`
+verified 3,386 source files and 85 settings metadata entries.
+It retains history through `1e992c449d59b2f1f472efc40e7ca10ea6c494cf`
+with bundle SHA-256
+`585022223afd596facc645fad9ed128d697d0eabd5eaf8db37f4f9c2e76886a6`.
+[Client source and acceptance](CLIENT_VALIDATION.md#frame-options-edit-responsiveness).
+
+## Group preview parity and frame settings
+
+21 November 2026. The earlier `FRAME-PREVIEW-PARITY-20261121` pass followed the supplied party
+screenshots. Their options sample used independently drawn bars, portraits
+and aura lanes. The world sample used FluxUI's player-style chrome, adjoining
+target strips and representative Offline, Dead and Away states. The
+options pane now renders the same group examples through FluxUI's world
+preview painters, with a uniform scale to fit the pane.
+
+The local EllesmereUI 9.9.1 Unit Frames, Raid & Party Frames and Options
+files served as read-only organization references. The options manifest
+`EllesmereUIOptions.toc` has SHA-256
+`3e2762be3c63030b950c999d6ac6548a246a44b0a002cd565e7ca4bcc40aefc6`.
+FluxUI supplies the existing window and visual skin, preview assets and
+controls. The direct implementation and preferred Forever Witchcraft
+testing choices carry forward.
+
+| Requirement | Implementation and observable acceptance |
+| --- | --- |
+| REQ-OPT-45 | Separate **Main Frames** for Player, Target and supported Focus from **Mini Frames** for Pet, Target of Target, supported Focus Target and Pet Target. Keep General available for the shared settings. Each frame retains its component sections, searchable descriptions and original option paths. |
+| REQ-OPT-46 | Organize **Party Frames** into Frames, Appearance and World Preview tabs. Organize **Raid Frames** into Frames, Buffs, Debuffs and World Preview tabs. Preview parts open their matching sections across tabs and use the shared Raid controls for compact party styling. |
+| REQ-OPT-47 | Render four synthetic player-style party rows, five compact party members and 10–40 raid members through the matching world preview painter. Compare the skin, row geometry, portraits, auras, state text, resource bars and attached strips with the world preview at a comparable scale. |
+| REQ-OPT-48 | Keep the embedded and world previews independently selectable and visible. Confirm embedded refreshes use synthetic inputs, scoped settings and the correct native compact-party dispel preference. Check world preview commands, scope, profile persistence and combat deferral on the five supported client families. |
+| REQ-OPT-49 | Keep preview hit regions and labeled shortcut buttons reachable when resized. Verify opening, navigating, editing and closing through the existing settings entry points, including controller cursor interactions and label fit. |
+
+External checkpoint `frame-preview-parity-before-20261121T182716Z`
+verified 3,386 source files and 85 settings metadata entries before editing.
+It retains history through `1e992c449d59b2f1f472efc40e7ca10ea6c494cf`
+with bundle SHA-256
+`585022223afd596facc645fad9ed128d697d0eabd5eaf8db37f4f9c2e76886a6`.
+[Client source and acceptance](CLIENT_VALIDATION.md#group-preview-parity).
+
+## Unit-frame preview editor
+
+21 November 2026. `UNIT-FRAME-OPTIONS-20261121` covers General, Individual
+Frames, Party Frames and Raid Frames. The user confirmed direct implementation
+using FluxUI's settings shell, controls and sample rendering. The existing
+Forever Witchcraft preference applies to this follow-up.
+
+| Requirement | Implementation and observable acceptance |
+| --- | --- |
+| REQ-OPT-39 | Group shared settings in General. Keep Player, Target, Focus and Pet in Individual Frames. Group the Party and Raid options by the part they affect. Each previously reachable control retains its source option and callback, and names and descriptions remain searchable. |
+| REQ-OPT-40 | Show a right-hand sample for all four pages. Change the unit type and confirm the drawing follows it. Show the chosen party layout and the raid roster without requiring a group. Check window resizing, page switching and reopening. |
+| REQ-OPT-41 | Select preview parts and reach the settings for each part. Use the existing editor to change an option and confirm the drawing updates. Disabled or hidden controls keep their existing conditions. For compact party styling, open the shared controls at their Raid Frames destination. |
+| REQ-OPT-42 | Use sample buffs and debuffs to make aura layout and settings visible without real combat data. Click the aura examples and reach the eligible controls for that unit or group. |
+| REQ-OPT-43 | Retain existing profiles, saved values and scope, combat deferral, world-preview commands and settings entry points. Verify all five supported client families. |
+| REQ-OPT-44 | Keep component selection and settings reachable as ordinary options controls, including when the preview itself is hard to target. Check controller cursor reachability, visual feedback, scrolling, activation and Escape on each client. Confirm the English fallback and native label fit. |
+
+External checkpoint `unit-frame-options-before-20261121T175557Z` verified
+3,384 source files and 85 settings metadata entries before editing. It retains
+history through `1e992c449d59b2f1f472efc40e7ca10ea6c494cf` with bundle SHA-256
+`1d6f166869bc7c1ebef5f06af684c1b7eacb1495ba09009d431415314b3dc2ec`.
+[Client source and acceptance](CLIENT_VALIDATION.md#unit-frame-settings-preview).
+
+## Earlier options work
+
 Latest compatibility fix (REQ-OPT-34): the user reported Classic Era failing in
 `NineSlice.ApplyLayout` while opening settings. `PortraitFrameMixin:SetBorder`
 exists on Classic but its portrait NineSlice layout does not. The Classic XML

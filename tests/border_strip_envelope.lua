@@ -2,6 +2,19 @@
 -- Engine primitive anchor/render methods are modeled. No native pixel/FPS claim.
 local corePath=arg[1]or'Core/BorderJunctions.lua'
 local function read(p)local f=assert(io.open(p,'rb'));local s=f:read('*a'):gsub('\r\n','\n');f:close();return s end
+local sideSource=read(os.getenv('FLUX_MINIMAP_EXTRA_SOURCE') or 'Minimap/FluxMinimapButtons.lua')
+local hoverStart=assert(sideSource:find('local function PointerInside(',1,true))
+local hoverEnd=assert(sideSource:find('local function ApplyVisibility(',hoverStart,true))
+local hoverCode=[[
+local containerFrame, visibilityFrame, sideBorderHost = ...
+local buttonWidgets = {}
+local InCombat = InCombatLockdown
+local UsesMouseover = function() return true end
+local Engine = function() end
+local function UIUnits(frame, method)
+ return frame[method](frame) * frame:GetEffectiveScale() / UIParent:GetEffectiveScale()
+end
+]]..sideSource:sub(hoverStart,hoverEnd-1)..'\nreturn UpdateMouseover'
 local prefix=assert(read('tests/border_types.lua'):match('^(.-)for _, forever in ipairs'))
 prefix=prefix:gsub('return env, env.FluxBorder, appearance, object, function%(%) return #objects,writes,queries end','return env, env.FluxBorder, appearance, object, function() return #objects,writes,queries end,objects',1)
 local model=assert(load(prefix..'\nreturn model','@strip-envelope-factory-model','t',_G))()
@@ -82,13 +95,15 @@ local function fixture(style,cols,scale,mini,mode,coreOverride)
  local stripTop=S.frame.FluxBorderFrame.Top:GetTop()*scale-track.Top*scale
  local envTop=envelope.FluxBorderFrame.Top:GetTop()*scale-track.Top*scale
  assert(table.concat(rootBounds,',')==table.concat({S.frame:GetRect()},','),'decorative fitting must not move strip root')
+ local function readFields()
  local fields={};for _,t in ipairs(objects)do if t:GetObjectType()=='Texture'and t:IsVisible()and t:GetEffectiveAlpha()>0 and t.texture then
   local px,py,pw,ph=t:GetRect();local es=t:GetEffectiveScale();local uv=t.uv or{0,1,0,1};if #uv==4 then uv={uv[1],uv[3],uv[1],uv[4],uv[2],uv[3],uv[2],uv[4]}end
   local offsets={};for i=1,4 do local v=t.vertices and t.vertices[i]or{0,0};offsets[i]={v[1]*es,v[2]*es}end
   fields[#fields+1]={t.texture,{px*es,py*es,pw*es,ph*es},uv,offsets,t:GetEffectiveAlpha(),t:GetParent():GetFrameLevel()}
  end end
- local record={style,cols,scale,mini,beforeTop,stripTop,envTop,B.Junctions.stats.operations,B.Junctions.stats.fragments,B.Junctions.stats.triangles,fields,{x*scale,y*scale,w*scale,h*scale}}
- return {record=record,env=e,e=e,B=B,Border=B,Strip=S,objects=objects,new=new,methods=m,flush=flush,envelope=envelope,grid=grid,trinket=trinket}
+ return fields end
+ local record={style,cols,scale,mini,beforeTop,stripTop,envTop,B.Junctions.stats.operations,B.Junctions.stats.fragments,B.Junctions.stats.triangles,readFields(),{x*scale,y*scale,w*scale,h*scale}}
+ return {record=record,env=e,e=e,B=B,Border=B,Strip=S,objects=objects,new=new,methods=m,flush=flush,envelope=envelope,grid=grid,trinket=trinket,readFields=readFields}
 end
 local checks=0
 local function check(v,m)checks=checks+1;assert(v,m)end
@@ -155,4 +170,124 @@ for _,mode in ipairs{'hidden','distant','detached'}do for _,style in ipairs{1,2}
  elseif mode=='distant'then check(math.abs(row[7]-row[6])>9*scale,'distant envelope retains its separate top')
  else check(f.envelope:GetLeft()>f.Strip.frame:GetRight()+100,'detached envelope keeps its complete separate position')end
 end end end end end
-print('Strip/envelope border: '..checks..' checks PASS; '..scenes..' actual factory/Strip/Unified/Core scenes; '..crest..' one-source crest samples; unchanged roots/static warm checks; native pixels/FPS/taint pending')
+for _,style in ipairs{1,2}do for _,scale in ipairs{.75,1,1.25}do for _,sideScale in ipairs{.085,.2,.425,.85,1.7}do
+ local f=fixture(style,19,scale,false,'detached')
+ local e,B,new=f.e,f.B,f.new
+ local window=new(e.UIParent);window.level=10;window.rect={1500,110,420,270}
+ e.FluxWindowFrame={frame=window}
+ local root=new(e.UIParent);root.scale=sideScale
+ root.rect={1920/sideScale-88,380/sideScale,88,240}
+ function root:SetShown(shown) if shown then self:Show() else self:Hide() end end
+ local gate=new(root);gate.level=sideScale==.425 and 46 or 26;gate:SetAllPoints(root)
+ e.FluxMinimapButtonsVisibility=gate
+ local side=new(gate);side.level=gate.level
+ side:SetAllPoints(gate)
+ e.FluxMinimapButtonsSideBorder=side
+ B:ApplyTo(window);B:ApplyTo(side)
+ local wb,sb=window.FluxBorderFrame,side.FluxBorderFrame
+ wb._FluxBorderOwnLayer=true;wb:SetFrameLevel(12)
+ sb._FluxBorderOwnLayer=true;sb:SetFrameLevel(gate.level+3)
+ local adjacentBorder
+ if sideScale==.425 then
+  local adjacent=new(e.UIParent);adjacent.level=6;adjacent.rect={1840,380,80-88*sideScale,106}
+  e.Minimap=adjacent;adjacentBorder=B:ApplyTo(adjacent)
+ end
+ local J=B.Junctions
+ local track=B:GetJoinTracks()
+ local function sideBottom() return (sb.Bottom:GetTop()-track.Bottom)*sideScale*scale end
+ local function windowTop() return (wb.Top:GetTop()-track.Top)*scale end
+ local originalBottom=sideBottom()
+ local button=new(gate);button.level=gate.level+2
+ local arrowFloor=J.GetArrowBorderLevel and J:GetArrowBorderLevel(button,'MEDIUM',button.level)
+ local refreshes=0
+ e.Flux.Flyout={Arrow={RefreshArtLayers=function() refreshes=refreshes+1 end}}
+ J:Invalidate(true);f.flush()
+ check(math.abs(sideBottom()-windowTop())<1e-7,'the docked side and Flux Window strokes must meet at unequal scales')
+ local windowFields,sideFields,adjacentFields=0,0,0
+ for _,field in ipairs(f.objects)do
+  local source=field._junctionSource and field._junctionSource:GetParent()
+  if field._junctionOwnerOp and (source==wb or source==sb)then
+   check(field:GetParent()==source,'joined panel artwork keeps its own source frame layer')
+   if source==wb then windowFields=windowFields+1 else sideFields=sideFields+1 end
+  elseif field._junctionOwnerOp and source and source==adjacentBorder then
+   adjacentFields=adjacentFields+1
+   check(field:GetParent():GetFrameLevel()==adjacentBorder:GetFrameLevel()+1,
+    'a neighboring minimap joint does not inherit the side input level')
+  end
+ end
+ check(windowFields>0 and sideFields>0,'the dock produces artwork from both panels')
+ if adjacentBorder then check(adjacentFields>0,'the neighboring minimap shares the junction')end
+ check(J:GetArrowBorderLevel(button,'MEDIUM',button.level)==arrowFloor,
+  'the shared seam preserves the side glyph floor')
+ local stripButton=new(f.Strip.frame)
+ local foreign=new(e.UIParent);foreign.rect={1400,0,500,500};foreign.strata='HIGH';foreign.level=500
+ check(J:GetArrowBorderLevel(stripButton,'MEDIUM',8)<500,'an ordinary arrow only samples its own stratum and HUD chrome')
+ check(side:GetBottom()==380/sideScale and window:GetTop()==380,'dock fitting leaves both content frames in place')
+ local row={[11]=f.readFields()}
+ local alpha,n=coverage(row,(1920-44*sideScale)*scale,windowTop()+.13*scale)
+ check(alpha>.8 and n==1,'midway along the dock the seam paints one stroke')
+ local leftAlpha=coverage(row,(1920-88*sideScale)*scale,windowTop()+.13*scale)
+ check(leftAlpha>.55,'the shared crossbar remains continuous across the left T')
+ local solves=J.stats.solves
+ local published=refreshes
+ for _=1,4 do J:Flush() end
+ check(solves==J.stats.solves and published==refreshes,'settled docking and glyph layers stay idle')
+ root:Hide();f.flush()
+ check(math.abs(sideBottom()-originalBottom)<1e-7,'hiding the side grid restores its nominal stroke for reuse')
+ local cursorInside=true
+ e.GetCursorPosition=function()
+  if cursorInside then return (1920-44*sideScale)*scale,(380+120*sideScale)*scale end
+  return 0,0
+ end
+ local hover=assert(load(hoverCode,'@actual side grid mouseover','t',e))(root,gate,side)
+ local fullRequests=J.stats.fullInvalidations
+ hover()
+ check(root:IsShown() and math.abs(sideBottom()-windowTop())<1e-7,
+  'mouseover reveal commits the side seam before the queued border pass')
+ row={[11]=f.readFields()}
+ alpha,n=coverage(row,(1920-44*sideScale)*scale,windowTop()+.13*scale)
+ check(alpha>.8 and n==1,'revealing the grid paints one stroke on the first visible pass')
+ local visibleSolves=J.stats.solves
+ hover();hover();f.flush()
+ check(visibleSolves==J.stats.solves,'stationary mouseover performs no additional solve')
+ cursorInside=false;hover()
+ check(not root:IsShown() and math.abs(sideBottom()-originalBottom)<1e-7,
+  'mouseout immediately restores the independent outline')
+ cursorInside=true;hover()
+ check(J.stats.fullInvalidations==fullRequests,'hover transitions stay local to the side grid')
+ root.rect[2]=root.rect[2]+36/sideScale
+ J:Invalidate(true);f.flush()
+ check(sideBottom()-windowTop()>35*scale,'a detached side grid keeps its own bottom outline')
+ check(J:GetArrowBorderLevel(button,'MEDIUM',button.level)==arrowFloor,'detached arrows retain their own panel border level')
+
+ -- Below-map mode touches the bottom of the minimap with the top of the grid.
+ local map=e.Minimap or new(e.UIParent)
+ e.Minimap=map
+ root.rect[2]=380/sideScale
+ map.rect={1720,380+240*sideScale,200,190}
+ local mb=adjacentBorder or B:ApplyTo(map)
+ root:Hide();J:Invalidate(true);f.flush()
+ local function mapBottom() return (mb.Bottom:GetTop()-track.Bottom)*scale end
+ local standaloneBottom=mapBottom()
+ hover()
+ local sideTop=(sb.Top:GetTop()-track.Top)*sideScale*scale
+ check(math.abs(sideTop-mapBottom())<1e-7,'the first revealed side crest meets the minimap bottom')
+ check(math.abs(standaloneBottom-mapBottom())<1e-7,'revealing the side grid holds the minimap bottom in place')
+ row={[11]=f.readFields()}
+ alpha,n=coverage(row,(1920-44*sideScale)*scale,mapBottom()+.13*scale)
+ check(alpha>.55 and n==1,'the first revealed frame paints one stroke below the minimap')
+ local leftAlpha=coverage(row,(1920-88*sideScale)*scale,mapBottom()+.13*scale)
+ check(leftAlpha>.55,'the first revealed frame has a continuous crest at the minimap T')
+ if sideScale==.425 then
+  local before=J.stats.solves
+  for _=1,5 do
+   cursorInside=false;hover()
+   check(not root:IsShown() and math.abs(standaloneBottom-mapBottom())<1e-7,'leaving hover keeps the standalone minimap rim')
+   cursorInside=true;hover()
+   check(root:IsShown() and math.abs(standaloneBottom-mapBottom())<1e-7,'returning to hover keeps the same minimap rim')
+  end
+  f.flush()
+  check(J.stats.solves<=before+10,'each hover crossing commits at most one solve')
+ end
+end end end
+print('Strip/envelope border: '..checks..' checks PASS; '..scenes..' strip scenes; 30 side/window dock scenes; '..crest..' one-source crest samples; static warm checks; native pixels/FPS/taint pending')

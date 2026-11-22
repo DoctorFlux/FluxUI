@@ -1,0 +1,780 @@
+{
+  "changeId": "FLOWCRAFT-QUEUE-REWORK-20261122",
+  "date": "2026-11-22",
+  "checkpoint": {
+    "manifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-queue-rework-before-20261122T100910Z\\checkpoint.json",
+    "files": 127,
+    "settingsMetadataRows": 80,
+    "settingsContentsCopied": false,
+    "branch": "main",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a1ffc8-e3e4-7861-a366-cde5c05e7611\\fluxui-debuff-type-before-20261121T222839Z\\history.bundle",
+    "historyBundleSha256": "90bfc84da44ffd45c6617f5304a431e6ed808eadb90080ffefe4bc5d691b2909",
+    "settingsMetadataSha256": "0f2c7f0e8bba89da6353ac1a7f7eebed9e21926aaf19f1133699b6ad0982ea34"
+  },
+  "desktop": {
+    "frozenExistingSuites": {
+      "queue_test": {
+        "code": 0,
+        "output": [
+          "queue tests passed"
+        ]
+      },
+      "execution_test": {
+        "code": 0,
+        "output": [
+          "native craft lifecycle and recovery tests passed"
+        ]
+      },
+      "workspace_test": {
+        "code": 0,
+        "output": [
+          "Classic workbench, graph state and persistent queue fixtures passed",
+          "Forever native shortlist reachability and multi-output economics fixtures passed"
+        ]
+      },
+      "recipe_selection_test": {
+        "code": 0,
+        "output": [
+          "Recipe selection coalesces native events without delaying exact queue intent"
+        ]
+      },
+      "logistics_test": {
+        "code": 0,
+        "output": [
+          "Tier restock credits paid receipts against the observed listing SKU",
+          "Auctionator estimates retain fractional precision and authorize only whole copper within the accepted cap"
+        ]
+      },
+      "ui_reagents_test": {
+        "code": 0,
+        "output": [
+          "Forever native host, overview and escape fixtures passed"
+        ]
+      },
+      "resize_test": {
+        "code": 0,
+        "output": [
+          "Forever native panel and Classic workbench resize fixtures passed"
+        ]
+      }
+    },
+    "owner": {
+      "bridgeChecks": 231,
+      "hudChecks": 63577,
+      "standaloneCraftChecks": 3279
+    },
+    "installedForeverLua54": {
+      "auction_sales_test": {
+        "code": 0,
+        "lastMessage": "auction sale chat fixtures passed"
+      },
+      "auction_shopping_test": {
+        "code": 0,
+        "lastMessage": "Queue shopping opens in one window, forwards exact quantities, and limits native purchases to the active plan"
+      },
+      "book_test": {
+        "code": 0,
+        "lastMessage": "book recipe-memory fixtures passed"
+      },
+      "clients_test": {
+        "code": 0,
+        "lastMessage": "client action and availability tests passed"
+      },
+      "comparison_test": {
+        "code": 0,
+        "lastMessage": "recursive route comparison fixtures passed"
+      },
+      "execution_test": {
+        "code": 0,
+        "lastMessage": "native craft lifecycle and recovery tests passed"
+      },
+      "logistics_test": {
+        "code": 0,
+        "lastMessage": "Auctionator estimates retain fractional precision and authorize only whole copper within the accepted cap"
+      },
+      "milestone1_planner_test": {
+        "code": 0,
+        "lastMessage": "Milestone 1 sourcing, allocation, economics and provider fixtures passed"
+      },
+      "planner_test": {
+        "code": 0,
+        "lastMessage": "FluxCraft planner synthetic fixtures: PASS"
+      },
+      "queue_test": {
+        "code": 0,
+        "lastMessage": "queue tests passed"
+      },
+      "recipe_density_test": {
+        "code": 0,
+        "lastMessage": "Forever compact recipe rows preserve scroll and restore native sizes"
+      },
+      "recipe_profit_test": {
+        "code": 0,
+        "lastMessage": "Forever recipe profit estimates, ranks, pooling and native controls passed"
+      },
+      "recipe_selection_test": {
+        "code": 0,
+        "lastMessage": "Recipe selection coalesces native events without delaying exact queue intent"
+      },
+      "resize_test": {
+        "code": 0,
+        "lastMessage": "Forever native panel and Classic workbench resize fixtures passed"
+      },
+      "target_load_test": {
+        "code": 0,
+        "lastMessage": "runtime TOC load without a Settings page, late native host and disabled-client checks passed"
+      },
+      "ui_reagents_test": {
+        "code": 0,
+        "lastMessage": "Forever native host, overview and escape fixtures passed"
+      },
+      "workspace_test": {
+        "code": 0,
+        "lastMessage": "Forever native shortlist reachability and multi-output economics fixtures passed"
+      }
+    },
+    "actualOwnerCompanionIntegration": {
+      "artifactDirectory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-queue-rework-20261122",
+      "artifacts": {
+        "restock-resume-integration.lua": "a01ea7c0372b907793b42692051235f696cf700bbaf68b80a3870e68df5b0a6f",
+        "restock-resume-integration-results.txt": "54b5e1f24b32694a32da278913f2b65204449b46f74a99222dafbc7c2f1af295"
+      },
+      "installedForeverRecheck": {
+        "code": 0,
+        "raw": [
+          "Actual FluxUI Restock click rejected a stale four-pack prompt and dispatched exactly two through FluxLogistics.",
+          "Actual FluxUI Restock republished the exact two-pack remainder for its profession button after a verified stop.",
+          "native craft lifecycle and recovery tests passed"
+        ]
+      },
+      "cases": [
+        "A stale four-pack reminder updates to two without dispatch. A fresh press reaches the same accepted task and dispatches two.",
+        "After a verified stop, the exact profession-window action publishes and dispatches the two-pack remainder until the order settles."
+      ],
+      "nativeFallbackCalls": 0,
+      "scope": "Production owner and companion modules run with native API stubs."
+    },
+    "selectionControl": {
+      "artifact": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-recipe-selection-20261122\\recipe_selection_benchmark.lua",
+      "scenario": "Twelve alternating 40-task recipe selections through the production callback, with the previous selection benchmark's desktop fixture.",
+      "sourceOrder": "Frozen Forever and installed Forever in three alternating pairs",
+      "pairs": [
+        {
+          "trial": 1,
+          "runs": {
+            "frozen": {
+              "code": 0,
+              "raw": [
+                "frozen/burst quotes before last drain 0 total previews 2 (planner+logistics) stock snapshots 1 quotes 1 graph layouts 2 queue renders 1 input CPU 0.0ms total 27.0ms",
+                "  Logistics 26.0ms (Planner 26.0ms) layout 0.0ms render queue 0.0ms",
+                "frozen/isolated quotes before last drain 12 total previews 24 (planner+logistics) stock snapshots 12 quotes 12 graph layouts 13 queue renders 12 input CPU 1.0ms total 376.0ms",
+                "  Logistics 367.0ms (Planner 364.0ms) layout 3.0ms render queue 0.0ms"
+              ]
+            },
+            "installed": {
+              "code": 0,
+              "raw": [
+                "installed/burst quotes before last drain 0 total previews 2 (planner+logistics) stock snapshots 1 quotes 1 graph layouts 2 queue renders 1 input CPU 0.0ms total 34.0ms",
+                "  Logistics 33.0ms (Planner 33.0ms) layout 0.0ms render queue 0.0ms",
+                "installed/isolated quotes before last drain 12 total previews 24 (planner+logistics) stock snapshots 12 quotes 12 graph layouts 13 queue renders 12 input CPU 0.0ms total 438.0ms",
+                "  Logistics 429.0ms (Planner 424.0ms) layout 5.0ms render queue 0.0ms"
+              ]
+            }
+          }
+        },
+        {
+          "trial": 2,
+          "runs": {
+            "installed": {
+              "code": 0,
+              "raw": [
+                "installed/burst quotes before last drain 0 total previews 2 (planner+logistics) stock snapshots 1 quotes 1 graph layouts 2 queue renders 1 input CPU 0.0ms total 34.0ms",
+                "  Logistics 34.0ms (Planner 33.0ms) layout 0.0ms render queue 0.0ms",
+                "installed/isolated quotes before last drain 12 total previews 24 (planner+logistics) stock snapshots 12 quotes 12 graph layouts 13 queue renders 12 input CPU 0.0ms total 372.0ms",
+                "  Logistics 368.0ms (Planner 366.0ms) layout 1.0ms render queue 0.0ms"
+              ]
+            },
+            "frozen": {
+              "code": 0,
+              "raw": [
+                "frozen/burst quotes before last drain 0 total previews 2 (planner+logistics) stock snapshots 1 quotes 1 graph layouts 2 queue renders 1 input CPU 0.0ms total 29.0ms",
+                "  Logistics 28.0ms (Planner 28.0ms) layout 1.0ms render queue 0.0ms",
+                "frozen/isolated quotes before last drain 12 total previews 24 (planner+logistics) stock snapshots 12 quotes 12 graph layouts 13 queue renders 12 input CPU 0.0ms total 402.0ms",
+                "  Logistics 398.0ms (Planner 390.0ms) layout 1.0ms render queue 0.0ms"
+              ]
+            }
+          }
+        },
+        {
+          "trial": 3,
+          "runs": {
+            "frozen": {
+              "code": 0,
+              "raw": [
+                "frozen/burst quotes before last drain 0 total previews 2 (planner+logistics) stock snapshots 1 quotes 1 graph layouts 2 queue renders 1 input CPU 0.0ms total 27.0ms",
+                "  Logistics 26.0ms (Planner 26.0ms) layout 1.0ms render queue 0.0ms",
+                "frozen/isolated quotes before last drain 12 total previews 24 (planner+logistics) stock snapshots 12 quotes 12 graph layouts 13 queue renders 12 input CPU 0.0ms total 369.0ms",
+                "  Logistics 362.0ms (Planner 357.0ms) layout 0.0ms render queue 1.0ms"
+              ]
+            },
+            "installed": {
+              "code": 0,
+              "raw": [
+                "installed/burst quotes before last drain 0 total previews 2 (planner+logistics) stock snapshots 1 quotes 1 graph layouts 2 queue renders 1 input CPU 0.0ms total 29.0ms",
+                "  Logistics 28.0ms (Planner 27.0ms) layout 0.0ms render queue 0.0ms",
+                "installed/isolated quotes before last drain 12 total previews 24 (planner+logistics) stock snapshots 12 quotes 12 graph layouts 13 queue renders 12 input CPU 0.0ms total 375.0ms",
+                "  Logistics 368.0ms (Planner 364.0ms) layout 2.0ms render queue 0.0ms"
+              ]
+            }
+          }
+        }
+      ],
+      "samples": [
+        {
+          "frozen": [
+            {
+              "scenario": "burst",
+              "timerQuotes": 0,
+              "previews": 2,
+              "snapshots": 1,
+              "quotes": 1,
+              "layouts": 2,
+              "renders": 1,
+              "inputCPU": 0,
+              "totalCPU": 27
+            },
+            {
+              "scenario": "isolated",
+              "timerQuotes": 12,
+              "previews": 24,
+              "snapshots": 12,
+              "quotes": 12,
+              "layouts": 13,
+              "renders": 12,
+              "inputCPU": 1,
+              "totalCPU": 376
+            }
+          ],
+          "installed": [
+            {
+              "scenario": "burst",
+              "timerQuotes": 0,
+              "previews": 2,
+              "snapshots": 1,
+              "quotes": 1,
+              "layouts": 2,
+              "renders": 1,
+              "inputCPU": 0,
+              "totalCPU": 34
+            },
+            {
+              "scenario": "isolated",
+              "timerQuotes": 12,
+              "previews": 24,
+              "snapshots": 12,
+              "quotes": 12,
+              "layouts": 13,
+              "renders": 12,
+              "inputCPU": 0,
+              "totalCPU": 438
+            }
+          ]
+        },
+        {
+          "installed": [
+            {
+              "scenario": "burst",
+              "timerQuotes": 0,
+              "previews": 2,
+              "snapshots": 1,
+              "quotes": 1,
+              "layouts": 2,
+              "renders": 1,
+              "inputCPU": 0,
+              "totalCPU": 34
+            },
+            {
+              "scenario": "isolated",
+              "timerQuotes": 12,
+              "previews": 24,
+              "snapshots": 12,
+              "quotes": 12,
+              "layouts": 13,
+              "renders": 12,
+              "inputCPU": 0,
+              "totalCPU": 372
+            }
+          ],
+          "frozen": [
+            {
+              "scenario": "burst",
+              "timerQuotes": 0,
+              "previews": 2,
+              "snapshots": 1,
+              "quotes": 1,
+              "layouts": 2,
+              "renders": 1,
+              "inputCPU": 0,
+              "totalCPU": 29
+            },
+            {
+              "scenario": "isolated",
+              "timerQuotes": 12,
+              "previews": 24,
+              "snapshots": 12,
+              "quotes": 12,
+              "layouts": 13,
+              "renders": 12,
+              "inputCPU": 0,
+              "totalCPU": 402
+            }
+          ]
+        },
+        {
+          "frozen": [
+            {
+              "scenario": "burst",
+              "timerQuotes": 0,
+              "previews": 2,
+              "snapshots": 1,
+              "quotes": 1,
+              "layouts": 2,
+              "renders": 1,
+              "inputCPU": 0,
+              "totalCPU": 27
+            },
+            {
+              "scenario": "isolated",
+              "timerQuotes": 12,
+              "previews": 24,
+              "snapshots": 12,
+              "quotes": 12,
+              "layouts": 13,
+              "renders": 12,
+              "inputCPU": 0,
+              "totalCPU": 369
+            }
+          ],
+          "installed": [
+            {
+              "scenario": "burst",
+              "timerQuotes": 0,
+              "previews": 2,
+              "snapshots": 1,
+              "quotes": 1,
+              "layouts": 2,
+              "renders": 1,
+              "inputCPU": 0,
+              "totalCPU": 29
+            },
+            {
+              "scenario": "isolated",
+              "timerQuotes": 12,
+              "previews": 24,
+              "snapshots": 12,
+              "quotes": 12,
+              "layouts": 13,
+              "renders": 12,
+              "inputCPU": 0,
+              "totalCPU": 375
+            }
+          ]
+        }
+      ],
+      "checks": "All operation counts match. Every burst uses one planner run, stock snapshot, quote and queue render and two graph layouts. Every isolated run uses 12 of each and 13 layouts.",
+      "cpuMsRange": {
+        "burst": {
+          "frozen": [
+            27,
+            29
+          ],
+          "installed": [
+            29,
+            34
+          ]
+        },
+        "isolated": {
+          "frozen": [
+            369,
+            402
+          ],
+          "installed": [
+            372,
+            438
+          ]
+        }
+      },
+      "scope": "Deterministic selection guard. CPU samples vary and native performance is pending.",
+      "artifactSha256": "1ad57af8d9023f83fcc9573bc3e4631e3c4c53d9f54a00cc159c7e66dc11d70f"
+    },
+    "installedForeverLua51": {
+      "suitesPassed": 11,
+      "scope": "Targeted installed companion fixtures"
+    },
+    "longNativeCastWatchdog": {
+      "coverage": "Two successive 44.8-second matching casts update exact visible progress 4â†’3â†’2 before a carried-inventory refresh. The fixture covers a wrong spell, wrong GUID and receipt missing past bounded grace.",
+      "focusedStages": [
+        "Lua 5.4",
+        "Lua 5.1"
+      ],
+      "installedLua54": {
+        "auction_sales_test": {
+          "code": 0,
+          "observations": [
+            "auction sale chat fixtures passed"
+          ]
+        },
+        "auction_shopping_test": {
+          "code": 0,
+          "observations": [
+            "Queue shopping opens in one window, forwards exact quantities, and limits native purchases to the active plan"
+          ]
+        },
+        "book_test": {
+          "code": 0,
+          "observations": [
+            "book recipe-memory fixtures passed"
+          ]
+        },
+        "clients_test": {
+          "code": 0,
+          "observations": [
+            "client action and availability tests passed"
+          ]
+        },
+        "comparison_test": {
+          "code": 0,
+          "observations": [
+            "recursive route comparison fixtures passed"
+          ]
+        },
+        "execution_test": {
+          "code": 0,
+          "observations": [
+            "native craft lifecycle and recovery tests passed"
+          ]
+        },
+        "logistics_test": {
+          "code": 0,
+          "observations": [
+            "Accepted direct bank and vendor replenishment share live ownership and bundle limits",
+            "Tier restock credits paid receipts against the observed listing SKU",
+            "Auctionator estimates retain fractional precision and authorize only whole copper within the accepted cap"
+          ]
+        },
+        "milestone1_planner_test": {
+          "code": 0,
+          "observations": [
+            "Milestone 1 sourcing, allocation, economics and provider fixtures passed"
+          ]
+        },
+        "planner_test": {
+          "code": 0,
+          "observations": [
+            "FluxCraft planner synthetic fixtures: PASS"
+          ]
+        },
+        "queue_test": {
+          "code": 0,
+          "observations": [
+            "queue tests passed"
+          ]
+        },
+        "recipe_density_test": {
+          "code": 0,
+          "observations": [
+            "Forever compact recipe rows preserve scroll and restore native sizes"
+          ]
+        },
+        "recipe_profit_test": {
+          "code": 0,
+          "observations": [
+            "Forever recipe profit estimates, ranks, pooling and native controls passed"
+          ]
+        },
+        "recipe_selection_test": {
+          "code": 0,
+          "observations": [
+            "Recipe selection coalesces native events without delaying exact queue intent"
+          ]
+        },
+        "resize_test": {
+          "code": 0,
+          "observations": [
+            "Forever native panel and Classic workbench resize fixtures passed"
+          ]
+        },
+        "target_load_test": {
+          "code": 0,
+          "observations": [
+            "runtime TOC load without a Settings page, late native host and disabled-client checks passed"
+          ]
+        },
+        "ui_reagents_test": {
+          "code": 0,
+          "observations": [
+            "Forever native host, overview and escape fixtures passed"
+          ]
+        },
+        "workspace_test": {
+          "code": 0,
+          "observations": [
+            "Classic workbench, graph state and persistent queue fixtures passed",
+            "Forever native shortlist reachability and multi-output economics fixtures passed"
+          ]
+        },
+        "actual_owner_integration": {
+          "code": 0,
+          "observations": [
+            "Actual FluxUI Restock click rejected a stale four-pack prompt and dispatched exactly two through FluxLogistics.",
+            "Actual FluxUI Restock republished the exact two-pack remainder for its profession button after a verified stop.",
+            "native craft lifecycle and recovery tests passed"
+          ]
+        }
+      },
+      "installedLua51": {
+        "runtime": "Lupa Lua 5.1",
+        "code": 0,
+        "results": {
+          "workspace_test": "pass",
+          "recipe_selection_test": "pass",
+          "queue_test": "pass",
+          "execution_test": "pass",
+          "logistics_test": "pass",
+          "clients_test": "pass",
+          "ui_reagents_test": "pass",
+          "resize_test": "pass",
+          "target_load_test": "pass",
+          "recipe_profit_test": "pass",
+          "auction_shopping_test": "pass"
+        }
+      }
+    }
+  },
+  "native": {
+    "client": "Forever 1.60.1.71037",
+    "executable": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+    "processID": 16640,
+    "windowHandle": 22677020,
+    "foregroundAtObservation": "Forever",
+    "foregroundChanged": false,
+    "candidateReload": "observed on the first installed queue candidate",
+    "candidateLiveCraft": "Process started the exact remainder. The watchdog timed out during a still-active native cast.",
+    "backgroundBefore": {
+      "capture": "Deferred because the verified game window was in foreground."
+    },
+    "backgroundAfter": {
+      "capture": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-queue-rework-before-20261122T100910Z\\forever-options-queue-rework-after.png",
+      "captureSha256": "d5e79e2c0f4e9ce80049ac23487576b0c5c9d9ebead7c987dc157ce6e43eda68",
+      "capturedAtUtc": "2026-11-22T10:19:14.0158837Z",
+      "foregroundChanged": false,
+      "visible": "Auction House Restock tab and companion Open Tailoring reminder",
+      "candidateReloadVerified": false,
+      "actualCraftPressObserved": false
+    },
+    "firstInstalledRun": {
+      "fileEvidence": {
+        "captures": [
+          {
+            "name": "forever-options-candidate-after-long-cast.png",
+            "sha256": "49ba5d73e82e0ea7b5761954bb3110a81c104fec950375618a91db44dd404dcd",
+            "fileTimeUtc": "2026-11-22T10:25:52.737545+00:00"
+          },
+          {
+            "name": "forever-options-candidate-initial-load.png",
+            "sha256": "f8abfd52d3b035f249175c34e5f5b2ac6ffca1a5e5448f579be7659168d4bb4b",
+            "fileTimeUtc": "2026-11-22T10:22:31.289839+00:00"
+          },
+          {
+            "name": "forever-options-candidate-process-confirmed-progress.png",
+            "sha256": "4f0be12dbbbee02caecf2d25ce3d6c4aabab92c7c0b9a900e72047de218970fd",
+            "fileTimeUtc": "2026-11-22T10:25:08.653558+00:00"
+          },
+          {
+            "name": "forever-options-candidate-process-progress.png",
+            "sha256": "d24f4413fbde98f3878054064f6efc25e76e492c0a2b141f08e4ab0f3bda0b67",
+            "fileTimeUtc": "2026-11-22T10:24:33.038059+00:00"
+          },
+          {
+            "name": "forever-options-candidate-process-result.png",
+            "sha256": "688d9bf6eff6d8326eccee3349527f8b7bf0f874ea3c2a41d3556b589fac32cb",
+            "fileTimeUtc": "2026-11-22T10:24:40.202528+00:00"
+          },
+          {
+            "name": "forever-options-candidate-process-start.png",
+            "sha256": "116596ba156ed1f28f08a752d4c377f0f47f509fb386545aa36613860bbb7289",
+            "fileTimeUtc": "2026-11-22T10:24:29.664478+00:00"
+          },
+          {
+            "name": "forever-options-candidate-ready.png",
+            "sha256": "21c303d655650a2fedabca5e160eca0e574fec6e76f68279e15718a01964a909",
+            "fileTimeUtc": "2026-11-22T10:22:48.304486+00:00"
+          },
+          {
+            "name": "forever-options-candidate-restock-open-tailoring.png",
+            "sha256": "9e3f89f31d3f652ef009e8bc3febfc9775695806a8233c0840ff6f74010410f7",
+            "fileTimeUtc": "2026-11-22T10:23:07.127866+00:00"
+          },
+          {
+            "name": "forever-options-candidate-row-selected.png",
+            "sha256": "b2a98add972843d8c36da481564fba340644e2b2d37ede350471ed6ac36fcd0f",
+            "fileTimeUtc": "2026-11-22T10:23:50.506221+00:00"
+          }
+        ],
+        "scopedActions": [
+          {
+            "UTC": "2026-11-22T10:21:36.0898667Z",
+            "PID": 16640,
+            "ForegroundUnchanged": true,
+            "GlobalInput": false
+          },
+          {
+            "UTC": "2026-11-22T10:22:05.1460775Z",
+            "PID": 16640,
+            "ForegroundUnchanged": true,
+            "GlobalInput": false
+          },
+          {
+            "UTC": "2026-11-22T10:22:23.3588118Z",
+            "PID": 16640,
+            "ForegroundUnchanged": true,
+            "GlobalInput": false
+          },
+          {
+            "UTC": "2026-11-22T10:23:05.9219887Z",
+            "PID": 16640,
+            "Purpose": "Candidate FluxUI Restock Open Tailoring",
+            "ForegroundUnchanged": true,
+            "CursorUnchanged": false,
+            "GlobalInput": false
+          },
+          {
+            "UTC": "2026-11-22T10:23:50.2331769Z",
+            "PID": 16640,
+            "Purpose": "Select existing three-pack Flowcraft queue row",
+            "ForegroundUnchanged": true,
+            "CursorUnchanged": true,
+            "GlobalInput": false
+          },
+          {
+            "UTC": "2026-11-22T10:24:29.0604540Z",
+            "PID": 16640,
+            "Purpose": "Flowcraft Process for selected stopped three-pack remainder",
+            "ForegroundUnchanged": true,
+            "CursorUnchanged": true,
+            "GlobalInput": false
+          }
+        ]
+      },
+      "captureDirectory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-queue-rework-before-20261122T100910Z",
+      "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-long-native-cast-before-20261122T102611Z\\checkpoint.json",
+      "source": "First installed queue candidate with Execution f4a18f5539ab8e09c799e13799dcf83ce2030504e7f5a7a1622a1ac6c97634eb.",
+      "initialReload": "The authorized background reload exposed the installed UI.",
+      "verifiedOpen": "The 10:23:07 capture showed Tailoring and 2/2 Next 3 after the actual Restock Open Tailoring button.",
+      "selectedOrder": "The 10:23:50 capture showed the selected existing three-pack job and its preceding interruption.",
+      "process": "The 10:24:29 capture showed Crafting 3 and the 44.8-second native cast after the actual Process press. Flowcraft remained open.",
+      "watchdogRegression": "The capture named process-confirmed-progress at 10:25:08 actually showed a timeout while the native cast bar still showed 5.9 seconds remaining.",
+      "lateReceipt": "The 10:25:52 capture showed one create message and the row and HUD at a two-pack remainder.",
+      "foregroundAndInput": "Foreground unchanged throughout the recorded run. The route sent only window-targeted input. The cursor changed between samples during the opener click and was unchanged on the row and Process clicks."
+    },
+    "watchdogFollowup": {
+      "candidateReloadAtUtc": "2026-11-22T10:31:23Z",
+      "captures": {
+        "long-cast-user-craft-observation": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-queue-rework-before-20261122T100910Z\\forever-options-long-cast-user-craft-observation.png",
+          "sha256": "d64dc6f81449b227f51290df0d9e68a2df03916fcef6bb2f9166a13d9a6b5c26",
+          "fileTimeUtc": "2026-11-22T10:29:54.567051+00:00"
+        },
+        "long-cast-user-craft-settled": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-queue-rework-before-20261122T100910Z\\forever-options-long-cast-user-craft-settled.png",
+          "sha256": "7c496eec2485422f38b1b6afae3ef16d622c516e4e28eac57a788927842112d7",
+          "fileTimeUtc": "2026-11-22T10:30:38.181834+00:00"
+        },
+        "long-cast-candidate-ready": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-queue-rework-before-20261122T100910Z\\forever-options-long-cast-candidate-ready.png",
+          "sha256": "c8db3fd5b5773bded40c7ecab2a5b5b2a1be151264112ab7cb89c9ddc8f37676",
+          "fileTimeUtc": "2026-11-22T10:31:33.639014+00:00"
+        }
+      },
+      "earlierManualCraft": "Before the patched reload, the player independently crafted the last two. Observed two creation notices, two carried packs and no remaining reagent capacity.",
+      "candidateVisibleState": "Reloaded candidate displayed Count 2 for the two carried packs.",
+      "countPress": "The foreground guard exited before input. A subsequent continuous 30-second observation from 10:32 UTC also found Forever in foreground.",
+      "timedCraft": "An eligible fresh order is needed for live long-cast completion, each count decrement and resume after a stop. The player used the remaining materials before the repaired source reloaded.",
+      "nativeAcceptance": {
+        "firstCandidateRestockOpener": "observed",
+        "firstCandidateDirectProcess": "observed",
+        "watchdogReload": "observed",
+        "watchdogCompletedLongCast": "pending",
+        "watchdogProcessAfterStop": "pending",
+        "watchdogCountPress": "pending"
+      }
+    },
+    "windowScopedInputSent": true,
+    "globalInputSent": false
+  },
+  "behavior": {
+    "queueRow": "Show the remaining final output and current indexed craft or acquisition step on one row. Selecting a row keeps that order as the Process target.",
+    "nativeView": "Show the matching accepted task's progress beside native controls.",
+    "liveProgress": "Matching native progress can update the remaining count before a batch settles. Final settlement requires verified receipt evidence. Overlapping native and carried signals are counted once.",
+    "stoppedBatch": "On a player press, settle a verified stopped batch and process exactly the remaining work if eligible. Shared-output uncertainty and a foreign active batch still block dispatch.",
+    "directDispatch": "Older completed recovery does not mark the remaining task permanently native-only. An eligible remainder can use Process through the usual dispatch checks.",
+    "longNativeCastWatchdog": "At expiry, defer until the exact active-source player trade-skill cast's reported end plus two seconds, with matched spell and cast GUID where available. Missing and unrelated receipts keep the bounded timeout."
+  },
+  "install": {
+    "companion": "FluxLogistics",
+    "stage": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-queue-rework-20261122",
+    "clients": [
+      "_retail_",
+      "_forever_",
+      "_classic_",
+      "_classic_era_",
+      "_anniversary_"
+    ],
+    "runtimeFilesMatched": 5,
+    "fixtureFilesMatched": 3
+  },
+  "sources": {
+    "FluxCraft/Execution.lua": {
+      "before": "09a64b931f375fd57ba4eeaa6925c7d24996713446391c3e0758d583a1cb80d8",
+      "after": "2a027184c02432616dd65a83ed8046a218ff10cfdd6ae61ed8f8b1784afc5445",
+      "firstInstalled": "f4a18f5539ab8e09c799e13799dcf83ce2030504e7f5a7a1622a1ac6c97634eb"
+    },
+    "FluxCraft/Graph.lua": {
+      "before": "f192359c60fb40b2b53ee2534aea52930c6cf83f2b6ccd7bb704ae1a2ec28a30",
+      "after": "1767db89c915168b672fa00427e43807a414df21cd9d82a5d9c209f4fdfba6f4"
+    },
+    "FluxCraft/Locale.lua": {
+      "before": "e63f5eeb5fb195629f42ca654dc4420240eca1e16607a8a23e51c6a7da441599",
+      "after": "577ebb049632de777d6e975046aa9b50e7be3c122ddb31e6fcef883ea7ac20db"
+    },
+    "FluxCraft/Queue.lua": {
+      "before": "224c5458670edb180d5485fd9b5f1ee3f5a25889bde7f3421286263b2e99ec46",
+      "after": "3775313c0ca5749db556012e4167e45205787df4a0795f51d0ea567151101538"
+    },
+    "FluxCraft/UI.lua": {
+      "before": "9bc503eac50131c3c7ed27493a1ffda0ec563a865df98ce3197586a69430b434",
+      "after": "d05829fbf90da09cb1472b1e56e50cf7ad56ceea7b13ded3079183044c27da94"
+    },
+    "Tests/execution_test.lua": {
+      "before": "ff72776c51544a7f559a6a36b191a8a151ed9df5acf2270c578f3f71edd4a853",
+      "after": "167fb1d3fea8aa97d376be93af03f80556b8280502a103e15302183b2a94e7a5",
+      "firstInstalled": "50d7eb2d14a9ea8b375a4bdd165eb6baec4fee809952a29622931e145fb3a1ef"
+    },
+    "Tests/ui_reagents_test.lua": {
+      "before": "4517a6835f26582bee7938326c59a2c960a18eefa808e25896762dba8f128491",
+      "after": "c193961f41893a3a3064a2023995bb817b769f222b74fc13e67381e2d5d739fd"
+    },
+    "Tests/workspace_test.lua": {
+      "before": "b11d690e31555258f1a8d62761056115059d58a9e38280e9d27a287703a31850",
+      "after": "7e3fea69b9dbf3920c7af078a7629f9ee8797c023be4b90cd2eef2c4c2d491ce"
+    }
+  },
+  "preWatchdogCheckpoint": {
+    "manifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-long-native-cast-before-20261122T102611Z\\checkpoint.json",
+    "files": 52,
+    "settingsMetadataRows": 80,
+    "settingsContentsCopied": false,
+    "main": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf"
+  }
+}

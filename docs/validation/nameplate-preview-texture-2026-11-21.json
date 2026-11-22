@@ -1,0 +1,51 @@
+{
+  "id": "NAMEPLATE-PREVIEW-TEXTURE-20261121",
+  "nativeReportedError": {
+    "timeLocal": "23:20:39",
+    "source": "AddonOptions/FluxOptionsNameplatePreview.lua",
+    "line": 337,
+    "message": "StatusBar:CreateTexture(): Couldn't find inherited node \"1\""
+  },
+  "checkpoint": {
+    "name": "fluxui-nameplate-preview-texture-before-20261121T222125Z",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "archiveSha256": "8cc89fa64a4d842a2b6ce9aa1140acf1e316f399f1fa2ef82331285dd73757d4",
+    "sources": 3402,
+    "settingsMetadata": 92
+  },
+  "sourceSha256": {
+    "previewBefore": "63d939941b721ade12540d0443c5d5b0ffcc6d4c7b389388dad7a4323f7e8010",
+    "previewAfter": "0c28f3bbe53b944ebf64e883c4a141547aef34bf744e65d4d46e23ea180ec3b3",
+    "fixture": "f84ea43296316500c5c6105244607ce645f7b670bd8a83c6b4cd534c7c865c10"
+  },
+  "contract": {
+    "source": "Gethe/wow-ui-source Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+    "forever": "734f065329cff4992835b01a84f210a297db91b6",
+    "retail": "ab5cb850a3f65e742959e379c4689353a2f4549f",
+    "classicProgression": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "classicEra": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+    "signature": "CreateTexture(name, drawLayer, templateName, subLevel)"
+  },
+  "pairedReplays": {
+    "pairs": 3,
+    "rawFile": "paired-preview-results.json",
+    "rawSha256": "3fe81b7c46bbd125f596e70383b33589d0cf023a220645f157cd6ffd9fa5b1ef",
+    "before": "All reproduce the invalid template argument at preview construction",
+    "after": "All pass 139 checks over five client models"
+  },
+  "desktopResults": {
+    "appearanceLua51And54": 139,
+    "clientCompatibilityLua51And54": 40,
+    "optionsNavigation": 7996,
+    "optionsLifecycle": 1343
+  },
+  "installedPreviewMatches": {
+    "_retail_": true,
+    "_forever_": true,
+    "_classic_": true,
+    "_classic_era_": true,
+    "_anniversary_": true
+  },
+  "nativeAfter": "Pending user reload and live reopening of the preview"
+}

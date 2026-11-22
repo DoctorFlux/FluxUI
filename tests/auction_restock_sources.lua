@@ -389,6 +389,83 @@ for _, client in ipairs({ "Retail", "Forever", "MoP", "Era", "Anniversary" }) do
         check(st.vendorBought == 3, "normal vendor owner converts charged direct plus craft shortage to physical copies once")
         st.charged, st.charges = nil, nil
 
+        -- A standalone merchant action can combine ordinary goals and
+        -- temporary ingredients from more than one persisted AH craft plan.
+        do
+            local auction, data, vendorEnv, loadModule, market, learn, price = boot(legacy, auctionator, syndicator)
+            data.settings.restockItems = {
+                [100] = { targetQuantity = 2 }, [102] = { targetQuantity = 3 }, [205] = { targetQuantity = 4 },
+            }
+            data.entries = { { itemID = 100, target = 2 }, { itemID = 102, target = 3 }, { itemID = 205, target = 4 } }
+            data.settings.merchantSources = {
+                [201] = { unlimited = true, unitPrice = 5 }, [202] = { unlimited = true, unitPrice = 7 },
+                [203] = { unlimited = true, unitPrice = 2 }, [204] = { unlimited = true, unitPrice = 9 },
+            }
+            data.bags[201] = 2
+            learn(100, 201, 2)
+            learn(102, 201, 1)
+            local ingredients = data.recipes[1].reagents
+            ingredients[2] = { itemID = 202, count = 3 }
+            ingredients[3] = { itemID = 203, count = 1 }
+            ingredients[4] = { itemID = 204, count = 1 }
+            data.books = { [100] = market(100, 2, 100), [102] = market(102, 3, 100) }
+            price()
+            local persisted = copy(auction.Settings().vendorCraftPlans)
+            check(persisted[100] and persisted[102], "both standalone vendor craft plans persist")
+            auction.Settings().vendorCraftPlans = persisted
+            auction.craftPlans[100], auction.craftPlans[102] = nil, nil
+
+            loadModule("Inventory/Restock/Core/FluxRestockList.lua")
+            vendorEnv.FluxRestockItemRegistry.IsChargeItem = function() return false end
+            vendorEnv.FluxRestockItemRegistry.GetItemMaxCharges = function() end
+            vendorEnv.FluxRestockItemRegistry.GetChargeInfo = function() return false end
+            local slots = {201, 202, 203, 205}
+            local livePrices = { [201] = 5, [202] = 7, [203] = 3, [205] = 1 }
+            vendorEnv.MerchantFrame = { IsShown = function() return true end }
+            vendorEnv.GetMerchantNumItems = function() return #slots end
+            vendorEnv.GetMerchantItemID = function(slot) return slots[slot] end
+            vendorEnv.GetMerchantItemLink = function(slot) return "item:" .. slots[slot] end
+            vendorEnv.GetMerchantItemMaxStack = function() return 20 end
+            vendorEnv.GetMerchantItemInfo = function(slot)
+                local id = slots[slot]
+                return "Item" .. id, id, livePrices[id], 1, -1, true, true, false
+            end
+            vendorEnv.GetMerchantItemCostInfo = function() return 0 end
+            vendorEnv.IsShiftKeyDown = function() return false end
+            vendorEnv.FluxRestock.Inv.NotifyAutomationPulse = function() end
+            data.inventory.NotifyAutomationPulse = function() end
+            local bought = {}
+            vendorEnv.BuyMerchantItem = function(slot, quantity)
+                local id = slots[slot]
+                bought[id] = (bought[id] or 0) + quantity
+                data.bags[id] = (data.bags[id] or 0) + quantity
+            end
+            loadModule("Inventory/Restock/Vendor/FluxVendorBuy.lua")
+            local vendor = vendorEnv.FluxVendorAuto
+            vendor.DoRestockManual()
+            data.advance(1)
+            check(bought[201] == 5 and bought[202] == 6 and bought[205] == 4
+                and not bought[203] and not bought[204],
+                "one ordinary manual pass buys both temporary needs and the saved goal while skipping the capped and unsold rows")
+
+            bought = {}
+            data.bags[201], data.bags[202], data.bags[205] = 2, 0, 0
+            livePrices[203] = 2
+            vendor.InvalidateMerchantIndex()
+            vendor.GetMerchantItemIndex(false)
+            data.advance(1)
+            data.settings.autoRestock = true
+            vendor.TriggerAutoRestock()
+            data.advance(1)
+            check(bought[201] == 5 and bought[202] == 6 and bought[203] == 2 and bought[205] == 4 and not bought[204],
+                "one ordinary automatic pass includes the third temporary need once its live price qualifies")
+            for id = 201, 204 do
+                check(data.settings.restockItems[id] == nil, "the temporary craft input is not saved as a permanent goal")
+            end
+            check(data.settings.restockItems[100].targetQuantity == 2 and data.settings.restockItems[102].targetQuantity == 3
+                and data.settings.restockItems[205].targetQuantity == 4, "both passes preserve permanent goals")
+        end
+
         -- Exercise the bank owner list, summary and real Start task handoff;
         -- the native mover is a capture only, never a simulated native claim.
         A.Followup = { GetBankTargets = function() return st.followBank or {} end }

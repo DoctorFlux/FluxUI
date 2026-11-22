@@ -878,7 +878,32 @@ Inv.Mail = {
 	GetCount = function(itemID)
 		return RegionGetCount("mail", itemID)
 	end,
+	HasObservedInbox = function()
+		local snap = Inv.snapshots and Inv.snapshots.mail
+		return snap ~= nil and Inv.source ~= nil and snap.observedSource == Inv.source
+	end,
 }
+
+-- Positive physical stock can be known before the source has covered the
+-- whole inbox. Only a qualified observation can establish an empty result.
+-- A second result can report positive cached incoming stock while Syndicator
+-- has yet to replace its saved inbox list during this session.
+function Inv.Mail.GetObservedCount(itemID)
+	if issecretvalue and issecretvalue(itemID) then return end
+	if type(itemID) ~= "number" or itemID <= 0 or itemID % 1 ~= 0 then return end
+	if Inv.source == "syndicator" then
+		local adapter = Inv.Syndicator
+		if adapter and adapter.GetObservedMailCount then
+			return adapter.GetObservedMailCount(itemID, RegionGetCount("mail", itemID))
+		end
+	elseif Inv.source == "builtin" then
+		local builtin = Inv.Builtin and Inv.Builtin.Mail
+		if not builtin or not builtin.GetPredictedCount then return end
+		local observed = RegionGetCount("mail", itemID) - builtin.GetPredictedCount(itemID)
+		if observed > 0 then return observed end
+		if Inv.Mail.HasObservedInbox() then return 0 end
+	end
+end
 
 Inv.Void = {
 	GetCount = function(itemID)

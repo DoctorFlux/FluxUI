@@ -1,0 +1,252 @@
+{
+  "changeId": "FLOWCRAFT-CAST-LIFECYCLE-20261122",
+  "date": "2026-11-22",
+  "checkpoint": {
+    "manifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-cast-lifecycle-before-20261122T103651Z\\checkpoint.json",
+    "files": 121,
+    "settingsMetadataRows": 80,
+    "settingsContentsCopied": false,
+    "branch": "main",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a1ffc8-e3e4-7861-a366-cde5c05e7611\\fluxui-debuff-type-before-20261121T222839Z\\history.bundle",
+    "historyBundleSha256": "90bfc84da44ffd45c6617f5304a431e6ed808eadb90080ffefe4bc5d691b2909",
+    "settingsMetadataSha256": "7ca24682abcbed2f7be569d3fe96de40e4c2d07eb8b89cf859398a68d417c652"
+  },
+  "behavior": {
+    "activeCraft": "Observe the matching native player cast, its reported start and end interval, stop, success or failure events. Craft receipts establish progress and settlement.",
+    "waitingForResult": "A native terminal signal can leave the same accepted attempt verifying while a late receipt arrives. Elapsed time alone cannot resolve it.",
+    "preparedCraft": "A prepared companion craft remains available until the native selection, view, state or an explicit cancellation changes it.",
+    "visibleDuration": "Use the reported duration for the exact source, recipe spell and cast identity on the selected job/task.",
+    "sourceLoss": "A profession closure or source change retains verified progress and the existing review path for uncertain work.",
+    "primaryReference": "https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua#L828-L850"
+  },
+  "desktop": {
+    "installedForever": {
+      "lua54": {
+        "auction_sales_test": {
+          "code": 0,
+          "last": [
+            "auction sale chat fixtures passed"
+          ]
+        },
+        "auction_shopping_test": {
+          "code": 0,
+          "last": [
+            "Queue shopping opens in one window, forwards exact quantities, and limits native purchases to the active plan"
+          ]
+        },
+        "book_test": {
+          "code": 0,
+          "last": [
+            "book recipe-memory fixtures passed"
+          ]
+        },
+        "clients_test": {
+          "code": 0,
+          "last": [
+            "client action and availability tests passed"
+          ]
+        },
+        "comparison_test": {
+          "code": 0,
+          "last": [
+            "recursive route comparison fixtures passed"
+          ]
+        },
+        "execution_test": {
+          "code": 0,
+          "last": [
+            "native craft lifecycle and recovery tests passed"
+          ]
+        },
+        "logistics_test": {
+          "code": 0,
+          "last": [
+            "Tier restock credits paid receipts against the observed listing SKU",
+            "Auctionator estimates retain fractional precision and authorize only whole copper within the accepted cap"
+          ]
+        },
+        "milestone1_planner_test": {
+          "code": 0,
+          "last": [
+            "Milestone 1 sourcing, allocation, economics and provider fixtures passed"
+          ]
+        },
+        "planner_test": {
+          "code": 0,
+          "last": [
+            "FluxCraft planner synthetic fixtures: PASS"
+          ]
+        },
+        "queue_test": {
+          "code": 0,
+          "last": [
+            "queue tests passed"
+          ]
+        },
+        "recipe_density_test": {
+          "code": 0,
+          "last": [
+            "Forever compact recipe rows preserve scroll and restore native sizes"
+          ]
+        },
+        "recipe_profit_test": {
+          "code": 0,
+          "last": [
+            "Forever recipe profit estimates, ranks, pooling and native controls passed"
+          ]
+        },
+        "recipe_selection_test": {
+          "code": 0,
+          "last": [
+            "Recipe selection coalesces native events without delaying exact queue intent"
+          ]
+        },
+        "resize_test": {
+          "code": 0,
+          "last": [
+            "Forever native panel and Classic workbench resize fixtures passed"
+          ]
+        },
+        "target_load_test": {
+          "code": 0,
+          "last": [
+            "runtime TOC load without a Settings page, late native host and disabled-client checks passed"
+          ]
+        },
+        "ui_reagents_test": {
+          "code": 0,
+          "last": [
+            "Forever native host, overview and escape fixtures passed"
+          ]
+        },
+        "workspace_test": {
+          "code": 0,
+          "last": [
+            "Classic workbench, graph state and persistent queue fixtures passed",
+            "Forever native shortlist reachability and multi-output economics fixtures passed"
+          ]
+        }
+      },
+      "lua51": {
+        "code": 0,
+        "tests": {
+          "workspace_test": "pass",
+          "recipe_selection_test": "pass",
+          "queue_test": "pass",
+          "execution_test": "pass",
+          "logistics_test": "pass",
+          "clients_test": "pass",
+          "ui_reagents_test": "pass",
+          "resize_test": "pass",
+          "target_load_test": "pass",
+          "recipe_profit_test": "pass",
+          "auction_shopping_test": "pass"
+        }
+      },
+      "bridge": {
+        "code": 0,
+        "summary": [
+          "Companion auction Followup: 231 checks across thirteen owner profiles."
+        ]
+      }
+    },
+    "installedOwnerCompanionIntegration": {
+      "script": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-queue-rework-20261122\\restock-resume-integration.lua",
+      "result": {
+        "code": 0,
+        "output": "Actual FluxUI Restock click rejected a stale four-pack prompt and dispatched exactly two through FluxLogistics.\r\nActual FluxUI Restock republished the exact two-pack remainder for its profession button after a verified stop.\r\nnative craft lifecycle and recovery tests passed"
+      },
+      "scriptSha256": "a01ea7c0372b907793b42692051235f696cf700bbaf68b80a3870e68df5b0a6f"
+    },
+    "focusedCases": [
+      "Two successive matching 44.8-second casts preserve the queue and update each witnessed remainder.",
+      "A matching stop waits across 180 seconds of silence. A later exact native result and carried update settle the attempt.",
+      "A different spell or GUID cannot update the accepted cast identity, duration or result.",
+      "A prepared but unsubmitted native action stays available until cancellation or invalidation.",
+      "A profession/source change or reload keeps the correct job and reservation scope."
+    ],
+    "performanceScope": "Source call-site audit and deterministic desktop event outcomes. Native timing and FPS remain pending.",
+    "timerCallSites": {
+      "activeDeadline": {
+        "before": 1,
+        "after": 0
+      },
+      "preparedExpiry": {
+        "before": 1,
+        "after": 0
+      }
+    },
+    "scaleControl": {
+      "learnedRecipes": 1636,
+      "visibleRows": 22,
+      "maximumEvaluationsPerTick": 1,
+      "graphCards": 121,
+      "graphCraftTasks": 40,
+      "result": "installed pass"
+    },
+    "frozenWatchdogNegativeControl": {
+      "fixture": "Tests/execution_test.lua",
+      "result": "candidate fixture fails against frozen watchdog",
+      "firstFailedLine": 220,
+      "firstFailedBehavior": "Immediate partial receipt on observed stop"
+    }
+  },
+  "installed": {
+    "stage": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-cast-events-20261122",
+    "clientCopies": [
+      "_retail_",
+      "_forever_",
+      "_classic_",
+      "_classic_era_",
+      "_anniversary_"
+    ],
+    "runtimeFiles": 3,
+    "fixtures": 2
+  },
+  "native": {
+    "client": "Forever 1.60.1.71037",
+    "executable": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+    "pid": 16640,
+    "hwnd": 22677020,
+    "inputSent": false,
+    "foregroundChanged": false,
+    "before": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-cast-lifecycle-before-20261122T103651Z\\forever-options-cast-lifecycle-before.png",
+      "timeUtc": "2026-11-22T10:37:40.7259878Z",
+      "sha256": "d4b97e71f9c6a2e69ef0b25f527d7c8c11fe4eda078f1a946a6597a31af1d74c",
+      "visible": "Merchant, bags and Open Tailoring reminder."
+    },
+    "after": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-cast-lifecycle-before-20261122T103651Z\\forever-options-cast-lifecycle-after-install.png",
+      "timeUtc": "2026-11-22T10:45:35.5246204Z",
+      "sha256": "a411147f99327997e4468efff1675cb2456b4605cc82d79604afd87350337929",
+      "visible": "Auctionator Selling and Tailoring, Flowcraft queue empty, Mooncloth on cooldown.",
+      "globalIdleMs": 0
+    },
+    "candidateReload": "pending",
+    "candidateCraft": "pending; queue was empty during the read-only observation"
+  },
+  "sources": {
+    "FluxCraft/Execution.lua": {
+      "before": "2a027184c02432616dd65a83ed8046a218ff10cfdd6ae61ed8f8b1784afc5445",
+      "after": "27475f67d98f4d036778e4fc560549713c753449b95d0d8856a4b66afba9bb73"
+    },
+    "FluxCraft/Locale.lua": {
+      "before": "577ebb049632de777d6e975046aa9b50e7be3c122ddb31e6fcef883ea7ac20db",
+      "after": "5e30d7d870df5fcb86ca0ee810a0ca0fe9810e9df55a187468be57c17c0dd6a8"
+    },
+    "FluxCraft/UI.lua": {
+      "before": "d05829fbf90da09cb1472b1e56e50cf7ad56ceea7b13ded3079183044c27da94",
+      "after": "a20434cd80622af4f65ee14dd19f171920cdf70bd88e25b55866e2a33cfd2886"
+    },
+    "Tests/execution_test.lua": {
+      "before": "167fb1d3fea8aa97d376be93af03f80556b8280502a103e15302183b2a94e7a5",
+      "after": "fd6fe900f41dcd5093261506619464d99fb29a81b1005704ed23eb9b6e7d3f07"
+    },
+    "Tests/workspace_test.lua": {
+      "before": "7e3fea69b9dbf3920c7af078a7629f9ee8797c023be4b90cd2eef2c4c2d491ce",
+      "after": "cd0ae63fb5d07bb34a31eb20d4d94ea247bcce098814e1939dda6cc436190b88"
+    }
+  }
+}

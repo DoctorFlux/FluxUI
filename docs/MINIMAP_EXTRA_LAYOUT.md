@@ -8,6 +8,39 @@ Era and Anniversary. This task does not change TOCs or client detection.
 
 ## Screen-side border and minimap clock layering
 
+R193 commits the side grid's border in the same mouseover reveal or hide.
+When the grid starts below the map, the border follows their shared content
+edge even when the grid is much smaller. The minimap retains its bottom
+stroke and continues it through the side-grid T. The existing hover callback
+commits after actual visibility changes.
+[Reveal evidence](validation/minimap-hover-dock-r193-2026-11-21.json).
+
+When the minimap is embedded, center the complete fitted grid vertically in
+the Flux Window content area. Count changes and window resizing use the same
+center anchor. The grid still meets the map along its existing right edge.
+[Embedded layout evidence](validation/minimap-hover-dock-r193-2026-11-21.json).
+
+Returning to the standalone minimap restores the header to the map's width
+and both top corners. The map, its border and the header return to their prior
+layers. A queued combat toggle applies the final placement after combat and
+keeps the original standalone snapshot until then. With side buttons disabled,
+the shared action strip hides and the map and tracker reserve zero side space.
+Mail and tracking align on a common inset bottom edge. When tracking is
+hidden or unavailable, mail uses the map corner directly.
+[Restore evidence](validation/minimap-standalone-restore-2026-11-21.json).
+
+The side-grid border follows the Flux Window crest when their layout rectangles
+touch, including at small grid scales where the two artwork insets are farther
+apart. The nearby alignment pass moves the decorative border and keeps the
+content rectangles in place. A detached or hidden grid restores its own outline.
+[Docking evidence](validation/hud-layer-dock-r191-2026-11-21.json).
+
+R192 keeps the side buttons and both panel borders in the ordinary HUD stratum.
+A top mouseover grid uses the level of overlapping minimap controls to keep its
+buttons reachable. Each panel's half of a shared junction draws on its own
+border frame. Flux Window keeps the same border level when the minimap embeds.
+[Layer evidence](validation/hud-panel-layers-r192-2026-11-21.json).
+
 `MINIMAP-SIDE-BORDER-20261113` follows the user's screenshot and clarification:
 the minimap cluster/clock was drawing over the buttons. The reported defect is
 layering, rather than grid spacing or the intentional mouseover overlay.
@@ -16,20 +49,19 @@ Direct implementation and user-managed native reproduction remain accepted.
 | ID | Requirement | Implementation / acceptance |
 |---|---|---|
 | REQ-MBL-24 | Screen-side FluxBorder follows all button visibility, including combat. | One lazy decorative host uses actual `FluxBorder:ApplyTo`/`SetClassColor`, parented inside the existing secure visibility gate. The border/background inherit hover hiding, secure combat hiding, disabled/window ownership and scale. Empty filtered grids and embedded mode hide the side border. There is no separate border visibility driver, timer or event. |
-| REQ-MBL-25 | Minimap cluster and timer must not cover side buttons. | Side root, gate, slots and native-template widgets use HIGH; explicit template strata are overridden. The border/background use the same tier, with backdrop below buttons, border above their art and the existing flyout arrow above the border. Embedded mode restores MEDIUM and has no side border. Native minimap/clock frames keep their existing placement, strata, handlers and ownership. |
+| REQ-MBL-25 | Minimap cluster and timer must not cover side buttons. | Side root, gate, slots, widgets and chrome use MEDIUM. A top mouseover grid clears the overlapping minimap controls by level. The backdrop sits below buttons and the border sits directly above them. Embedded mode hides the side border. Native clock handlers and input outside the grid retain their owners. |
 
 The earlier root used MEDIUM level 25, while the info-bar clock was placed above
 its border and zone hit area (typically MEDIUM level 45). Its text and hit region
-could therefore cover the column in mouseover mode. Side-only HIGH fixes drawing
-and hit priority. The decorative host and border disable mouse input, leaving
-button activation and lower chrome outside the grid unchanged. Tooltips and
-existing flyout popup tiers retain their normal priority.
+could therefore cover the column in mouseover mode. The first correction used
+HIGH for the entire grid. R192 calculates the required MEDIUM level only for the
+top mouseover layout. The decorative host and border disable mouse input.
 
 The border uses the shared atlas/legacy artwork and accent/backdrop registry,
 following the exact grid rectangle and effective scale without adding layout
 padding or changing packing, saved actions, count, settings or minimap size.
 The shared border's usual BACKGROUND backdrop would fall behind the minimap, so
-this instance places it in HIGH beneath the button art. Resources are created
+this instance places it in MEDIUM beneath the button art. Resources are created
 once: one host plus the border service's two frames and normal textures. Reflow
 and appearance changes reuse them. Layout and border frame changes remain
 outside combat; requests in combat defer through the existing service. Native

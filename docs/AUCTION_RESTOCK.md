@@ -891,6 +891,71 @@ and crafting, delivery latency, HUD/controller/taint/FPS remain unverified.
 
 ## Follow-up button and closed-profession recipes
 
+22 November. A shared material in FluxLogistics Shopping can combine
+eligible demand from different output recipes. The FluxUI Restock offer
+checks the current requirements and each order's limits. The auction
+owner credits the verified purchase shares to the accepted orders.
+[Client validation](CLIENT_VALIDATION.md#shared-queued-craft-materials).
+
+22 November. The matching merchant's regular **Restock** action handles
+the current Auction Restock craft's temporary vendor materials. The
+merchant list and tooltip show the eligible quantities. Opening the
+vendor can fill them when Auto Restock is enabled. The explicit Restock
+action can also start the buy with FluxLogistics loaded or unloaded.
+[Client validation](CLIENT_VALIDATION.md#craft-materials-in-vendor-restock).
+
+22 November. The Restock HUD can offer **Resume** for a selected
+FluxLogistics order that can verify carried fulfillment after an
+interrupted craft. The equivalent native profession action reads
+**Process**. The press checks the currently eligible recovery and its
+exact quantity against the displayed action. Flowcraft then uses the
+remaining quantity for the next craft.
+[Client validation](CLIENT_VALIDATION.md#flowcraft-partial-craft-after-reload).
+
+22 November. On Forever, **Open recipe** selects the exact FluxUI Restock
+or FluxLogistics queue recipe and reveals the native crafting controls.
+The native quantity is filled from the selected job's crafting operations,
+carried reagents, and Blizzard's available batch limit. Press Blizzard's
+**Create** to submit the prepared batch. **Create All** uses every available
+reagent the native recipe can consume. Forever has blocked addon-issued
+crafting in live use. For a standalone Restock craft, the reminder shows
+the verified native quantity and restores a Blizzard reset for the same
+prepared recipe after inventory settles. Editing the amount directly or
+using Blizzard's Create releases that preparation. Restock credits actual
+carried output. A verified native batch from either owner shows a passive
+**Click Blizzard Create** reminder. The HUD clears the profession panes
+and nested Flowchart controls.
+[Client validation](CLIENT_VALIDATION.md#restock-native-quantity-after-stock-refresh).
+
+22 November. The HUD shows **Open profession** after the matching Restock
+craft is ready with carried materials. Purchase, mail, vendor and bank
+steps lead to the profession action. On Forever, a qualified player
+spellbook entry can supply the secure opener. The HUD rechecks carried
+reagents and the current task before offering the craft. Both purchase
+sources use the existing Mail → Restock Auto Collect preference.
+[Client validation](CLIENT_VALIDATION.md#acquisition-first-restock-and-flowcraft).
+
+22 November. The craft reminder resolves the exact recipe's base profession
+and requires its visible crafting page before executing. A retained, ready
+profession uses the native Recipes entry point. A cold profession window
+loads its native UI and requests the exact skill line. The craft can open
+from a settled mailbox using verified carried materials. Data-source changes
+and unsettled bag counts keep the craft action unavailable until they settle.
+[Client validation](CLIENT_VALIDATION.md#restock-craft-reminder-opens-professions).
+
+22 November. The follow-up control sits 16 UI units lower. It can show a
+currently ready FluxUI Restock offer or an explicitly prepared shopping
+quote from FluxLogistics. Confirmed companion receipts and ready queue
+crafts use the same HUD.
+[Restock handoff](FLUXLOGISTICS_RESTOCK.md#fluxlogistics-restock-handoff).
+
+22 November. The craft reminder follows the open profession window.
+Its icon, amount and caption are visible in the active native or Flowcraft
+view and return to the HUD when the window closes. The player click uses
+the same Restock or queue action. A prepared native batch keeps Blizzard’s
+**Create** as its submit control.
+[Client checks](CLIENT_VALIDATION.md#craft-reminder-in-the-profession-window).
+
 
 
 13 November `AUCTION-FOLLOWUP-20261113` adds one ordinary HUD button beside the

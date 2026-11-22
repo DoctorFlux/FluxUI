@@ -23,6 +23,14 @@ end
 
 local listening, refreshing, dispatching, current
 local currentJob, countMemo
+local logisticsCraft, currentCraftProvider
+local companionBagSettlePending
+local professionAction, professionWindowAction
+local professionWindowListeners = {}
+local pendingNativeCraft
+local nativeCraftRefresh = {}
+local observedNativePages = {}
+local logisticsIncoming, logisticsMailTaken = {}, {}
 local mailOpen, merchantOpen = false, false
 local busy, taking, buying
 local bankTargets = {}
@@ -75,6 +83,11 @@ local function SameMap(a, b)
     for id, quantity in pairs(b) do if a[id] ~= quantity then return false end end
     return true
 end
+local function SameCraftTask(a, b)
+    return a and b and a.parentID == b.parentID and a.recipeID == b.recipeID and a.recipeName == b.recipeName
+        and a.skillLineID == b.skillLineID and a.skillName == b.skillName and a.legacy == b.legacy
+        and a.operations == b.operations and a.yield == b.yield and SameMap(a.required, b.required)
+end
 local function AttemptFacts()
     local bags = Inv.snapshots and Inv.snapshots.bags
     local free = Flux.Container and Flux.Container.GetTotalFreeBagSlots
@@ -95,6 +108,102 @@ local function State(kind, items, task)
     for _, id in ipairs(IDs(items)) do count = count + items[id]; first = first or id end
     return { kind = kind, items = items, itemID = first or (task and task.parentID),
         name = first and Name(first) or (task and task.recipeName) or "", quantity = first and count or (task and task.operations) or count, task = task }
+end
+
+local function PositiveInteger(value)
+    local number = N(value)
+    return number and number > 0 and number % 1 == 0
+end
+
+local function PublicKey(value)
+    return not (issecretvalue and issecretvalue(value)) and type(value) == "string" and value ~= ""
+end
+
+local function LogisticsVendorState()
+    local provider = logisticsCraft
+    if not provider or not provider.GetVendorStage or A.transaction or A.ownsQuote or A.state == "quoting" then return end
+    local ok, stage = pcall(provider.GetVendorStage)
+    if not ok or type(stage) ~= "table" or type(stage.items) ~= "table" or not PublicKey(stage.key) then return end
+    local items = {}
+    for id, quantity in pairs(stage.items) do
+        if not PositiveInteger(id) or not PositiveInteger(quantity) then return end
+        items[id] = quantity
+    end
+    if not next(items) then return end
+    local state = State("vendor", items)
+    state.vendorProvider, state.vendorKey = provider, stage.key
+    state.contextOpen = not (issecretvalue and issecretvalue(stage.canBuy)) and stage.canBuy == true
+    return state
+end
+
+local function LogisticsCraftState()
+    if not logisticsCraft or A.transaction or A.ownsQuote or A.state == "quoting" then return end
+    if logisticsCraft.GetPreparedNativeCraft then
+        local ok, prepared = pcall(logisticsCraft.GetPreparedNativeCraft)
+        if ok and type(prepared) == "table" and PositiveInteger(prepared.itemID)
+            and PositiveInteger(prepared.quantity) and PositiveInteger(prepared.outputQuantity) then
+            local state = State("craft", { [prepared.itemID] = prepared.outputQuantity })
+            state.quantity, state.nativeCraftPrepared, state.logisticsPrepared = prepared.quantity, prepared.quantity, true
+            return state
+        end
+    end
+    local ok, ready = pcall(logisticsCraft.GetReady)
+    if not ok or type(ready) ~= "table" or not PositiveInteger(ready.jobId)
+        or not PublicKey(ready.taskId) or not PublicKey(ready.planRevision)
+        or not PositiveInteger(ready.itemID) or not PositiveInteger(ready.quantity)
+        or not PositiveInteger(ready.outputQuantity) then return end
+    local state = State("craft", { [ready.itemID] = ready.outputQuantity })
+    state.quantity = ready.quantity
+    state.logistics = { jobId = ready.jobId, taskId = ready.taskId, planRevision = ready.planRevision,
+        itemID = ready.itemID, quantity = ready.quantity, outputQuantity = ready.outputQuantity }
+    if not (issecretvalue and issecretvalue(ready.direct)) and ready.direct == true then
+        state.logistics.direct = true
+    end
+    if issecretvalue and issecretvalue(ready.resume) then return end
+    if PublicKey(ready.resume) and PositiveInteger(ready.carriedOutput) and N(ready.remainingOutput)
+        and ready.remainingOutput >= 0 and ready.remainingOutput % 1 == 0 then
+        state.logistics.resume = ready.resume
+        state.logistics.carriedOutput, state.logistics.remainingOutput = ready.carriedOutput, ready.remainingOutput
+    elseif ready.resume ~= nil then
+        return
+    end
+    currentCraftProvider = logisticsCraft
+    return state
+end
+
+local function NativeProfessionAction(job)
+    local task = current and current.kind == "craft" and not current.settling and current.task
+    local plan = task and job and job.outputs[task.parentID]
+    if not plan or not F.GetProfessionToOpen then return end
+    local target = F.GetProfessionToOpen(plan)
+    if not target then return end
+    local state = State("profession", { [task.parentID] = 1 })
+    state.name = PublicKey(target.name) and target.name or state.name
+    state.profession, state.plan, state.canAct = target, plan, true
+    return state
+end
+
+local function LogisticsProfessionAction()
+    local provider = logisticsCraft
+    if not provider or not provider.GetProfession then return end
+    local ok, ready = pcall(provider.GetProfession)
+    if not ok or type(ready) ~= "table" or not PositiveInteger(ready.jobId)
+        or not PublicKey(ready.taskId) or not PublicKey(ready.planRevision) or not PositiveInteger(ready.itemID)
+        or not PositiveInteger(ready.quantity) or not PositiveInteger(ready.outputQuantity)
+        or not PositiveInteger(ready.professionID) then return end
+    local state = State("profession", { [ready.itemID] = 1 })
+    local name = PublicKey(ready.professionName) and ready.professionName or state.name
+    local queueSwitch = not (issecretvalue and issecretvalue(ready.queueSwitch)) and ready.queueSwitch == true
+    state.name, state.provider, state.canAct = name, provider, true
+    state.profession = { id = ready.professionID, name = name }
+    -- The tracked queue opener needs the original physical click, not a spell overlay.
+    if not queueSwitch and F.GetProfessionSpell then
+        state.profession.spellID = F.GetProfessionSpell(ready.professionID)
+    end
+    state.logistics = { jobId = ready.jobId, taskId = ready.taskId, planRevision = ready.planRevision,
+        itemID = ready.itemID, quantity = ready.quantity, outputQuantity = ready.outputQuantity,
+        professionID = ready.professionID, professionName = name, queueSwitch = queueSwitch or nil }
+    return state
 end
 
 -- Snapshot before the restricted purchase; a rejected/failed attempt never
@@ -232,14 +341,26 @@ end
 function F.CanAct(state)
     state = state or current
     if not state or state ~= current or state.settling or InCombatLockdown() or busy or dispatching then return false end
-    if automaticAttempt and automaticAttempt.submitted and automaticAttempt.kind == state.kind
+    if not state.companionMail and not state.vendorProvider and automaticAttempt
+        and automaticAttempt.submitted and automaticAttempt.kind == state.kind
         and SameMap(automaticAttempt.items, state.items) then return false end
-    if state.kind == "craft" then return F.CanCraft and F.CanCraft(state.task) == true or false end
+    if state.kind == "auction" then return state.offer == A.GetFollowupOffer() end
+    if state.kind == "craft" then
+        if state.logisticsPrepared then return false end
+        if state.logistics then
+            return currentCraftProvider == logisticsCraft and not A.transaction and not A.ownsQuote
+                and A.IsInventoryReliable()
+        end
+        if not F.CanCraft then return false end
+        local canCraft, operations = F.CanCraft(state.task)
+        return canCraft == true, operations
+    end
     if not state.contextOpen or not next(state.items or {}) then return false end
     if state.kind == "mail" then
         local mail = Flux.Mail
-        return mail and mail.CanTakeRestockItems and mail.CanTakeRestockItems() == true or false
+        return mail and mail.CanTakeRestockItems and mail.CanTakeRestockItems(state.companionMail) == true or false
     elseif state.kind == "vendor" then
+        if state.vendorProvider then return state.vendorProvider == logisticsCraft and A.IsInventoryReliable() == true end
         local vendor = _G.FluxVendorAuto
         if not vendor or not vendor.DoAuctionFollowup then return false end
         if vendor.IsAuctionFollowupBusy and vendor.IsAuctionFollowupBusy() then return false end
@@ -252,7 +373,15 @@ function F.CanAct(state)
     end
     return false
 end
-function F.GetMailItems()
+function F.GetMailItems(companion)
+    if companion then
+        local items = {}
+        for id, quantity in pairs(logisticsIncoming) do
+            local remaining = quantity - (logisticsMailTaken[id] or 0)
+            if remaining > 0 then items[id] = remaining end
+        end
+        return items
+    end
     local job, items = Job(), {}
     if job then
         Reconcile(job)
@@ -261,6 +390,12 @@ function F.GetMailItems()
         end
     end
     return items
+end
+function F.LogisticsMailTaken(id, quantity)
+    local incoming = logisticsIncoming[id]
+    if incoming and PositiveInteger(quantity) then
+        logisticsMailTaken[id] = math.min(incoming, (logisticsMailTaken[id] or 0) + quantity)
+    end
 end
 function F.MailTakeStarted(id, quantity)
     local job = Job()
@@ -398,7 +533,7 @@ local function CraftState(kind, tasks, active)
     return state
 end
 local function SettlingState(job)
-    if currentJob ~= job or not current or (current.kind ~= "craft" and current.kind ~= "crafting")
+    if currentJob ~= job or not current or current.logistics or (current.kind ~= "craft" and current.kind ~= "crafting")
         or not A.PreferCrafting() then return State("waiting", {}) end
     for id in pairs(current.items or {}) do
         local plan = job.outputs[id]
@@ -428,6 +563,7 @@ local function Build(job)
     if not A.IsInventoryReliable() then return SettlingState(job) end
     local rows = A.GetRows(true)
     local totals, auctionTotals, vendorTotals, prices, tasks = {}, {}, {}, {}, {}
+    local waiting
     for _, parent in ipairs(IDs(job.outputs)) do
         local plan = job.outputs[parent]
         local row, reason, need = PlanRow(parent, plan, rows)
@@ -445,7 +581,7 @@ local function Build(job)
                     prices[id] = math.min(prices[id] or math.huge, plan.prices[id])
                 else auctionTotals[id] = (auctionTotals[id] or 0) + required end
             end
-        end
+        else waiting = true end
     end
     if #tasks == 0 then
         if next(job.outputs) then return State("waiting", {}) end
@@ -490,6 +626,7 @@ local function Build(job)
     -- those are missing would repeatedly allocate it to the auction routes.
     if next(missing) then return State("waiting", missing) end
     if next(vendor) then local state = State("vendor", vendor); state.prices = prices; return state end
+    if waiting then return State("waiting", {}) end
     local task = tasks[1]
     if F.CraftIsBusy and F.CraftIsBusy(task) then return CraftState("crafting", tasks, task) end
     return CraftState("craft", tasks, task)
@@ -528,7 +665,115 @@ local function StopBatch()
     if busy.awaiting and (not have or have < busy.awaiting) then busy.stopped = true
     else busy = nil end
 end
+local function CompanionNativeCraftBusy()
+    local check = logisticsCraft and logisticsCraft.IsNativeCraftBusy
+    if not check then return false end
+    local ok, occupied = pcall(check)
+    if not ok and geterrorhandler then geterrorhandler()(occupied) end
+    return not ok or occupied == true
+end
+local function ScheduleNativeCraftBatch(stockReset)
+    local pending = pendingNativeCraft
+    if not pending then return end
+    if stockReset then pending.stockReset = true end
+    if pending.refreshQueued or not (C_Timer and C_Timer.After) then return end
+    -- The native event handlers can reset the field while updating their form.
+    pending.refreshQueued = true
+    C_Timer.After(0, function()
+        pending.refreshQueued = nil
+        if pendingNativeCraft == pending then F.Refresh(nativeCraftRefresh) end
+    end)
+end
+local function ObserveNativeCraftPage(page)
+    if not hooksecurefunc or observedNativePages[page] then return end
+    observedNativePages[page] = true
+    if type(page.SetupMultipleInputBox) == "function" then
+        hooksecurefunc(page, "SetupMultipleInputBox", function()
+            if pendingNativeCraft and pendingNativeCraft.page == page then ScheduleNativeCraftBatch(true) end
+        end)
+    end
+    local input = page.CreateMultipleInputBox
+    if input and type(input.SetValue) == "function" then
+        hooksecurefunc(input, "SetValue", function()
+            local pending = pendingNativeCraft
+            if pending and pending.page == page and not pending.writing then ScheduleNativeCraftBatch() end
+        end)
+    end
+    if type(page.CreateInternal) == "function" then
+        hooksecurefunc(page, "CreateInternal", function()
+            if not pendingNativeCraft or pendingNativeCraft.page ~= page then return end
+            pendingNativeCraft = nil
+            -- A native press consumes the preparation. Only carried output
+            -- advances ordinary Restock.
+            if C_Timer and C_Timer.After then C_Timer.After(0, F.Refresh) end
+        end)
+    end
+end
+local function UpdateNativeCraftBatch(state, wake)
+    if state and not state.logisticsPrepared then state.nativeCraftPrepared = nil end
+    local pending = pendingNativeCraft
+    if not pending then return end
+    if not state or not state.nativeCraft or currentJob ~= pending.job
+        or (pending.expires and GetTime() > pending.expires)
+        or not SameCraftTask(pending.task, state.task) then
+        pendingNativeCraft = nil
+        return
+    end
+    local recipeID, quantity = F.GetNativeCraftSelection(pending.page)
+    if pending.prepared and recipeID and recipeID ~= pending.task.recipeID then
+        pendingNativeCraft = nil
+        return
+    end
+    if wake then
+        if CompanionNativeCraftBusy() then pendingNativeCraft = nil; return end
+        local reset = pending.stockReset
+        if pending.prepared and recipeID == pending.task.recipeID and quantity ~= pending.prepared and not reset then
+            -- Respect the amount chosen directly in Blizzard's controls.
+            pendingNativeCraft = nil
+            return
+        end
+        if state.canAct and recipeID == pending.task.recipeID and (not pending.prepared or reset) then
+            pending.writing = true
+            pending.stockReset = nil
+            pending.prepared = F.SetNativeCraftBatch(pending.page, recipeID,
+                math.min(pending.operations, state.nativeCraftOperations))
+            pending.writing = nil
+            if pending.prepared then
+                pending.operations, quantity = pending.prepared, pending.prepared
+            end
+        end
+    end
+    if state.canAct and recipeID == pending.task.recipeID and quantity == pending.prepared then
+        state.nativeCraftPrepared = pending.prepared
+        if pending.prepared then state.canAct = false end
+    end
+end
+local function RefreshAfterStorm()
+    F.Refresh()
+    ScheduleNativeCraftBatch()
+end
+
+local function RefreshCompanionWhenBagsSettle(state)
+    if not state.logistics or state.kind ~= "craft" or state.canAct or companionBagSettlePending
+        or not Inv.OnStormSettled or not (Inv.IsBagStorm and Inv.IsBagStorm()) then return end
+    -- Companion-only orders do not install the standalone job's storm listener.
+    companionBagSettlePending = true
+    Inv.OnStormSettled(function()
+        companionBagSettlePending = nil
+        if logisticsCraft and not listening then F.Refresh() end
+    end)
+end
+
 local function OnChange(event, unit, action, spellID)
+    if event == "OPEN_RECIPE_RESPONSE" then
+        if pendingNativeCraft and N(unit) == pendingNativeCraft.task.recipeID then ScheduleNativeCraftBatch() end
+        return
+    end
+    if event == "TRADE_SKILL_LIST_UPDATE" or event == "TRADE_SKILL_DATA_SOURCE_CHANGED" or event == "BAG_UPDATE_DELAYED" then
+        ScheduleNativeCraftBatch()
+    end
+    if event == "TRADE_SKILL_CLOSE" or (event == "TRADE_SKILL_DATA_SOURCE_CHANGING"
+        and pendingNativeCraft and pendingNativeCraft.prepared) then pendingNativeCraft = nil end
     if event == "PLAYER_INTERACTION_MANAGER_FRAME_SHOW" or event == "PLAYER_INTERACTION_MANAGER_FRAME_HIDE" then
         local kinds = Enum and Enum.PlayerInteractionType
         if not kinds or (unit ~= kinds.Banker and unit ~= kinds.AccountBanker) then return end
@@ -558,7 +803,8 @@ local function OnChange(event, unit, action, spellID)
     F.Refresh()
 end
 local WATCH = { "BAG_UPDATE_DELAYED", "MAIL_SHOW", "MAIL_CLOSED", "MAIL_INBOX_UPDATE", "MERCHANT_SHOW", "MERCHANT_CLOSED",
-    "MERCHANT_UPDATE", "TRADE_SKILL_SHOW", "TRADE_SKILL_CLOSE", "TRADE_SKILL_LIST_UPDATE", "UNIT_SPELLCAST_START", "UNIT_SPELLCAST_STOP",
+    "MERCHANT_UPDATE", "TRADE_SKILL_SHOW", "TRADE_SKILL_CLOSE", "TRADE_SKILL_LIST_UPDATE", "TRADE_SKILL_DATA_SOURCE_CHANGED",
+    "UNIT_SPELLCAST_START", "UNIT_SPELLCAST_STOP",
     "UNIT_SPELLCAST_INTERRUPTED", "UNIT_SPELLCAST_FAILED", "UPDATE_TRADESKILL_CAST_STOPPED", "UI_ERROR_MESSAGE",
     "ADDON_ACTION_BLOCKED", "ADDON_ACTION_FORBIDDEN", "BANKFRAME_OPENED", "BANKFRAME_CLOSED",
     "PLAYER_INTERACTION_MANAGER_FRAME_SHOW", "PLAYER_INTERACTION_MANAGER_FRAME_HIDE", "PLAYER_MONEY" }
@@ -566,14 +812,56 @@ local function Listen(enabled)
     if listening == enabled then return end
     listening = enabled
     for _, event in ipairs(WATCH) do if enabled then Events.Register(event, OnChange) else Events.Unregister(event, OnChange) end end
+    if F.UsesNativeCraftHandoff and F.UsesNativeCraftHandoff() then
+        for _, event in ipairs({ "OPEN_RECIPE_RESPONSE", "TRADE_SKILL_DATA_SOURCE_CHANGING" }) do
+            if enabled then Events.Register(event, OnChange) else Events.Unregister(event, OnChange) end
+        end
+    end
     if enabled and Inv.Register then Inv.Register("AuctionRestock.Followup", F.Refresh, { tier = "light", regions = { "bags", "bank", "mail", "professions" } })
     elseif Inv.Unregister then Inv.Unregister("AuctionRestock.Followup") end
     -- Mail close/attachment publication can finish its existing bag-storm hold
     -- without another BAG_UPDATE. Resume from that owner's settled callback.
-    if enabled and Inv.RegisterStormSettled then Inv.RegisterStormSettled("AuctionRestock.Followup", F.Refresh)
+    if enabled and Inv.RegisterStormSettled then Inv.RegisterStormSettled("AuctionRestock.Followup", RefreshAfterStorm)
     elseif Inv.UnregisterStormSettled then Inv.UnregisterStormSettled("AuctionRestock.Followup") end
 end
 function F.GetState() return current end
+function F.GetProfessionWindowAction() return professionWindowAction end
+
+local function PublishProfessionWindowAction(state)
+    if state and (state.settling or state.kind ~= "craft" and state.kind ~= "crafting"
+        and state.kind ~= "profession") then state = nil end
+    local previous = professionWindowAction
+    if previous == state or previous and state and previous.kind == state.kind
+        and previous.name == state.name and previous.quantity == state.quantity and previous.canAct == state.canAct
+        and previous.nativeCraft == state.nativeCraft and previous.nativeCraftPrepared == state.nativeCraftPrepared
+        and previous.nativeCraftOperations == state.nativeCraftOperations and previous.plan == state.plan
+        and previous.provider == state.provider and SameMap(previous.items, state.items)
+        and (not previous.task and not state.task or SameCraftTask(previous.task, state.task))
+        and (not previous.profession and not state.profession or SameMap(previous.profession, state.profession))
+        and (not previous.logistics and not state.logistics or SameMap(previous.logistics, state.logistics)) then return end
+    professionWindowAction = state
+    for listener in pairs(professionWindowListeners) do
+        local ok, err = pcall(listener, state)
+        if not ok and geterrorhandler then geterrorhandler()(err) end
+    end
+end
+
+function F.RegisterProfessionWindowListener(listener)
+    if type(listener) ~= "function" then return false end
+    professionWindowListeners[listener] = true
+    return true
+end
+
+function F.UnregisterProfessionWindowListener(listener)
+    professionWindowListeners[listener] = nil
+end
+
+function F.ClickProfessionWindowAction(shown)
+    if not shown or shown ~= professionWindowAction or shown.canAct ~= true or shown.nativeCraftPrepared then return end
+    if shown.kind == "profession" then return F.ClickProfession(professionAction) end
+    return F.Click()
+end
+
 function F.GetBankTargets()
     if not refreshing then F.Refresh() end
     return Copy(bankTargets)
@@ -581,11 +869,15 @@ end
 function F.GetVendorTargets()
     -- A context/paint query must not restart Refresh through the vendor owner.
     -- Lifecycle notifications own publication; execution revalidates live needs.
-    return current and current.kind == "vendor" and Copy(current.items) or {}
+    return current and current.kind == "vendor" and not current.vendorProvider and Copy(current.items) or {}
 end
-function F.Refresh()
+function F.Refresh(reason)
     if refreshing or dispatching then return end
-    if InCombatLockdown() then if F.Paint then F.Paint(nil) end; return end
+    if InCombatLockdown() then
+        PublishProfessionWindowAction(nil)
+        if F.Paint then F.Paint(nil) end
+        return
+    end
     refreshing = true
     local job = Job()
     -- Only Build consumes these per-refresh counts. An idle job query has
@@ -593,13 +885,37 @@ function F.Refresh()
     countMemo = job and { {}, {} } or nil
     current = job and Build(job) or nil
     countMemo, currentJob = nil, job and Job()
+    currentCraftProvider = nil
+    if not current or current.kind == "waiting" then
+        local offer = A.GetFollowupOffer and A.GetFollowupOffer()
+        if offer then
+            current = State("auction", { [offer.itemID] = offer.quantity })
+            current.offer = offer
+        elseif next(logisticsIncoming) then
+            current = State("mail", Copy(logisticsIncoming))
+            current.companionMail = true
+        else
+            current = LogisticsVendorState() or LogisticsCraftState() or current
+        end
+    end
     if not currentJob then automaticAttempt, requestedStage = nil, nil end
     if automaticAttempt and current and current.kind ~= "waiting" and current.kind ~= automaticAttempt.kind then automaticAttempt = nil end
     if requestedStage and (not current or requestedStage ~= current.kind) then requestedStage = nil end
     if current then
-        current.contextOpen = F.IsContextOpen(current.kind)
-        current.canAct = F.CanAct(current)
+        if not current.vendorProvider then current.contextOpen = F.IsContextOpen(current.kind) end
+        local canAct, operations = F.CanAct(current)
+        current.canAct = canAct
+        RefreshCompanionWhenBagsSettle(current)
+        if current.kind == "craft" and F.UsesNativeCraftHandoff
+            and not (current.logistics and (current.logistics.direct or current.logistics.resume)) then
+            current.nativeCraft = F.UsesNativeCraftHandoff() == true and not (current.task and current.task.legacy)
+            if current.nativeCraft then
+                current.nativeCraftOperations = current.nativeCraftPrepared or current.logistics and current.logistics.quantity
+                    or operations or (current.task and current.task.operations)
+            end
+        end
     end
+    UpdateNativeCraftBatch(current, reason == nativeCraftRefresh)
     if not job and next(bankTargets) then bankTargets = {} end
     local hadBankGoals = next(publishedBankGoals) ~= nil
     if hadBankGoals or next(bankTargets) then
@@ -614,13 +930,25 @@ function F.Refresh()
     end
     -- An idle pass with no published goals has run no job-changing callbacks.
     Listen((job ~= nil or hadBankGoals) and Job() ~= nil)
+    professionAction = nil
+    local kind = current and current.kind
+    if not busy and not A.transaction and not A.ownsQuote and A.state ~= "quoting"
+        and not (current and (current.logisticsPrepared or current.settling))
+        and (not kind or kind == "waiting" or kind == "craft") then
+        professionAction = NativeProfessionAction(currentJob)
+        if not professionAction and (kind ~= "craft" or current.logistics) then
+            professionAction = LogisticsProfessionAction()
+        end
+    end
+    PublishProfessionWindowAction(professionAction or current)
     refreshing = nil
-    if F.Paint then F.Paint(current) end
+    if F.Paint then F.Paint(professionAction or current) end
     local state = current
     local sameAttempt = state and automaticAttempt and automaticAttempt.kind == state.kind
         and SameMap(automaticAttempt.items, state.items)
         and (automaticAttempt.submitted or SameMap(automaticAttempt.facts, AttemptFacts()))
-    if state and not state.settling and state.contextOpen and (state.kind == "mail" or state.kind == "bank" or state.kind == "vendor")
+    if state and not state.companionMail and not state.vendorProvider and not state.settling and state.contextOpen
+        and (state.kind == "mail" or state.kind == "bank" or state.kind == "vendor")
         and (requestedStage == state.kind or F.IsAutoEnabled() and not sameAttempt) then
         dispatching = true
         local result = Dispatch(state, requestedStage == state.kind)
@@ -633,11 +961,77 @@ function F.Refresh()
     end
 end
 
+function F.RefreshLogistics()
+    local incoming = {}
+    if logisticsCraft and logisticsCraft.GetIncoming then
+        local ok, items = pcall(logisticsCraft.GetIncoming)
+        if ok and type(items) == "table" then
+            for id, quantity in pairs(items) do
+                if PositiveInteger(id) and PositiveInteger(quantity) then incoming[id] = quantity end
+            end
+        end
+    end
+    for id, taken in pairs(logisticsMailTaken) do
+        -- The queue retires receipts when its carried observation settles.
+        local confirmed = math.max(0, (logisticsIncoming[id] or 0) - (incoming[id] or 0))
+        logisticsMailTaken[id] = taken > confirmed and taken - confirmed or nil
+    end
+    local changed = not SameMap(logisticsIncoming, incoming)
+    logisticsIncoming = incoming
+    F.Refresh()
+    local mail = Flux.Mail
+    if changed and mail and mail.NotifyRestockTargetsChanged then mail.NotifyRestockTargetsChanged() end
+end
+
+function F.RegisterLogisticsCraft(provider)
+    if provider ~= nil and (type(provider) ~= "table" or type(provider.GetReady) ~= "function"
+        or type(provider.Process) ~= "function"
+        or provider.GetPreparedNativeCraft ~= nil and type(provider.GetPreparedNativeCraft) ~= "function"
+        or provider.GetIncoming ~= nil and type(provider.GetIncoming) ~= "function"
+        or provider.RevealNativeCraft ~= nil and type(provider.RevealNativeCraft) ~= "function"
+        or provider.IsNativeCraftBusy ~= nil and type(provider.IsNativeCraftBusy) ~= "function"
+        or (provider.GetVendorStage ~= nil or provider.BuyVendorStage ~= nil)
+            and (type(provider.GetVendorStage) ~= "function" or type(provider.BuyVendorStage) ~= "function")
+        or (provider.GetProfession ~= nil or provider.OpenProfession ~= nil)
+            and (type(provider.GetProfession) ~= "function" or type(provider.OpenProfession) ~= "function")) then return false end
+    logisticsCraft = provider and { GetReady = provider.GetReady, Process = provider.Process, GetIncoming = provider.GetIncoming,
+        GetVendorStage = provider.GetVendorStage, BuyVendorStage = provider.BuyVendorStage,
+        GetProfession = provider.GetProfession, OpenProfession = provider.OpenProfession, RevealNativeCraft = provider.RevealNativeCraft,
+        IsNativeCraftBusy = provider.IsNativeCraftBusy, GetPreparedNativeCraft = provider.GetPreparedNativeCraft }
+    logisticsMailTaken = {}
+    F.RefreshLogistics()
+    return true
+end
+
+function F.RevealCompanionNativeCraft(recipeID, operations)
+    if logisticsCraft and logisticsCraft.RevealNativeCraft then
+        local ok, revealed, reason = pcall(logisticsCraft.RevealNativeCraft, recipeID, operations)
+        if ok then return revealed == true, reason end
+        if geterrorhandler then geterrorhandler()(revealed) end
+    end
+    return false
+end
+
+function F.ClickProfession(shown)
+    if not shown or shown ~= professionAction or InCombatLockdown() then return end
+    F.Refresh()
+    local state = professionAction
+    if not state or shown.plan ~= state.plan or shown.provider ~= state.provider
+        or not SameMap(shown.profession, state.profession)
+        or (shown.logistics and not SameMap(shown.logistics, state.logistics)) then return end
+    local action = state.provider and state.provider.OpenProfession or F.OpenProfessionTarget
+    dispatching = true
+    local ok, err = pcall(action, state.logistics and Copy(state.logistics) or state.profession)
+    dispatching = nil
+    F.Refresh()
+    if not ok and geterrorhandler then geterrorhandler()(err) end
+end
+
 Dispatch = function(state, manual)
     if not F.IsContextOpen(state.kind) then return false end
     if state.kind == "mail" then
         local mail = Flux.Mail
-        return mail and mail.TakeRestockItems and mail.TakeRestockItems() or false
+        return mail and mail.TakeRestockItems and mail.TakeRestockItems(state.companionMail) or false
     elseif state.kind == "vendor" then
         local vendor = _G.FluxVendorAuto
         if vendor and vendor.DoAuctionFollowup then return vendor.DoAuctionFollowup(manual) end
@@ -651,26 +1045,68 @@ end
 
 function F.Click()
     if InCombatLockdown() then return end
-    F.Refresh()
+    local shown = current
+    if not shown then return end
+    local displayed = shown.logistics
+    local displayedProvider = currentCraftProvider
+    if shown.companionMail then F.RefreshLogistics() else F.Refresh() end
+    local state = current
+    if not state or state.settling or shown.kind ~= state.kind or shown.companionMail ~= state.companionMail
+        or shown.vendorProvider ~= state.vendorProvider then return end
+    if shown.nativeCraftPrepared or state.nativeCraftPrepared then return end
+    if state.kind == "auction" then
+        if shown.offer ~= state.offer or not F.CanAct(state) then return end
+        A.ClickFollowupOffer(shown.offer)
+        return
+    end
     local ri = _G.FluxRestock and FluxRestock.Inv
-    if not current or current.kind ~= "mail" then
+    if state.kind ~= "mail" then
         if not ri or not ri.IsReliable or not ri.IsReliable() or (Inv.IsBagStorm and Inv.IsBagStorm()) then return end
     end
-    local state = current
-    if not state or state.settling then return end
-    if automaticAttempt and automaticAttempt.submitted and automaticAttempt.kind == state.kind
+    if state.vendorProvider then
+        if shown.vendorKey ~= state.vendorKey or not SameMap(shown.items, state.items) or not F.CanAct(state) then return end
+        dispatching = true
+        local ok, err = pcall(state.vendorProvider.BuyVendorStage, state.vendorKey)
+        dispatching = nil
+        F.Refresh()
+        if not ok and geterrorhandler then geterrorhandler()(err) end
+        return
+    end
+    if displayed or state.logistics then
+        -- A refresh may repaint this button for a different job. This press
+        -- belongs to the exact companion task the player could already see.
+        if not displayed or not state.logistics or displayedProvider ~= currentCraftProvider
+            or not SameMap(displayed, state.logistics) or not F.CanAct(state) then return end
+        dispatching = true
+        local ok, err = pcall(currentCraftProvider.Process, Copy(state.logistics))
+        dispatching = nil
+        F.Refresh()
+        if not ok and geterrorhandler then geterrorhandler()(err) end
+        return
+    end
+    if not SameMap(shown.items, state.items) then return end
+    if not state.companionMail and automaticAttempt and automaticAttempt.submitted and automaticAttempt.kind == state.kind
         and SameMap(automaticAttempt.items, state.items) then return end
     dispatching = true
     if state.kind == "mail" or state.kind == "vendor" or state.kind == "bank" then
         local result = Dispatch(state, true)
-        requestedStage = result == "busy" and state.kind or nil
-        if result ~= "busy" then automaticAttempt = { kind = state.kind, items = Copy(state.items), submitted = result == true, facts = AttemptFacts() } end
-    elseif state.kind == "craft" and F.CraftClick then
+        if not state.companionMail then
+            requestedStage = result == "busy" and state.kind or nil
+            if result ~= "busy" then automaticAttempt = { kind = state.kind, items = Copy(state.items), submitted = result == true, facts = AttemptFacts() } end
+        end
+    elseif state.kind == "craft" and F.CraftClick and SameCraftTask(shown.task, state.task) then
         local task = state.task
+        pendingNativeCraft = nil
         local attempt = { parentID = task.parentID, before = Count(task.parentID) or 0,
             expected = task.operations * task.yield, task = task }
         busy = attempt
-        local status, operations = F.CraftClick(task)
+        local status, operations, page, prepared = F.CraftClick(task)
+        if status == "native_click" and page then
+            pendingNativeCraft = { task = task, job = currentJob, operations = operations, page = page,
+                prepared = prepared, expires = GetTime and GetTime() + 60 }
+            ObserveNativeCraftPage(page)
+            if not prepared then ScheduleNativeCraftBatch() end
+        end
         if busy == attempt then
             if status == "crafting" and operations and operations > 0 then busy.expected = operations * task.yield else busy = nil end
         end

@@ -14,9 +14,12 @@ local happinessEnd = assert(shared:find("local function ApplyPetHappinessArt", h
 local happinessSource = "local UF = ...\n" .. shared:sub(happinessStart, happinessEnd - 1)
     .. "\nreturn PetHappinessIcon_OnEnter, PetHappinessIcon_OnLeave\n"
 local raid = read("RaidFrame/FluxRaidUnit.lua")
+local raidCleanupStart = assert(raid:find("local function ClearUnitEvents(frame)", 1, true))
+local raidCleanupEnd = assert(raid:find("local function FlushPaint()", raidCleanupStart, true))
 local raidStart = assert(raid:find("function FluxRaidUnit_OnHide(self)", 1, true))
 local raidEnd = assert(raid:find("function ns.FluxRaidRegisterAllMouseoverKeybindFrames", raidStart, true))
-local raidSource = "local ns, IsSecret, ShowRegion, pendingPaint, EnsureRangePoll = ...\n" .. raid:sub(raidStart, raidEnd - 1)
+local raidSource = "local ns, IsSecret, ShowRegion, EnsureRangePoll = ...\n"
+    .. raid:sub(raidCleanupStart, raidCleanupEnd - 1) .. raid:sub(raidStart, raidEnd - 1)
 local preview = read("RaidFrame/FluxRaidPreview.lua")
 local previewStart = assert(preview:find("function FluxRaidPreviewUnit_OnEnter(self)", 1, true))
 local previewEnd = assert(preview:find("local previewCvarListener", previewStart, true))
@@ -84,11 +87,14 @@ for _, client in ipairs({ "live", "forever", "classic", "classic_era", "classic_
     function methods:CreateTexture() return widget(nil, self) end
     function methods:CreateFontString() return widget(nil, self) end
     function methods:SetTexture(texture) self.texture = texture end
+    function methods:SetAtlas(atlas) self.atlas = atlas end
+    function methods:SetBackdropBorderColor(...) self.borderColor = { ... } end
+    function methods:SetVertexColor(...) self.vertex = {...} end
     function methods:SetStatusBarColor(...) self.color = { ... } end
     function methods:FadeOut() self.faded = true; self:Hide() end
     for _, method in ipairs({ "EnableMouse", "SetAllPoints", "SetTexCoord", "SetDrawEdge", "SetDrawBling", "SetReverse",
         "SetHideCountdownNumbers", "SetFont", "SetTextColor", "SetShadowColor", "SetShadowOffset", "SetBackdrop",
-        "SetBackdropBorderColor", "ClearAllPoints", "SetDrawLayer", "SetAlpha", "RegisterEvent", "RegisterUnitEvent" }) do
+        "ClearAllPoints", "SetDrawLayer", "SetAlpha", "RegisterEvent", "RegisterUnitEvent" }) do
         methods[method] = function() end
     end
     env.CreateFrame = function(kind, name, parent, template)
@@ -147,9 +153,15 @@ for _, client in ipairs({ "live", "forever", "classic", "classic_era", "classic_
     env.C_Timer = { After = function(_, fn) queued[#queued + 1] = fn end,
         NewTicker = function(_, fn) local t = { callback = fn, Cancel = function(self) self.cancelled = true end }; tickers[#tickers + 1] = t; return t end }
     local UF = {}
-    local ns = { UnitFrames = UF, API = { SafeGetAuraDataByIndex = function(_, index, filter)
+    local dispelName = "Magic"
+    local ns = { UnitFrames = UF, Flux = {}, API = { SafeGetAuraDataByIndex = function(_, index, filter)
         if index == 1 and filter == "HELPFUL" then return { auraInstanceID = 1, icon = 123, duration = 0, applications = 2 } end
+        if index == 1 and filter == "HARMFUL" then
+            return { auraInstanceID = 2, icon = 456, duration = 0, dispelName = dispelName }
+        end
     end } }
+    env.C_Texture = { GetAtlasInfo = function() return {} end }
+    assert(load(read("Core/API/Aura.lua"), "@aura-art", "t", env))("_FluxUI", ns)
     local hudAnchor = widget("FluxHUDTestAnchor", env.UIParent)
     env.FluxWindowFrame = { GetFrame = function() return hudAnchor end }
     assert(load(read("Other/FluxHUDTooltip.lua"), "@hud-tooltip", "t", env))("_FluxUI", ns)
@@ -211,11 +223,18 @@ for _, client in ipairs({ "live", "forever", "classic", "classic_era", "classic_
     local host = assert(made.FluxPetAuraTooltipHost)
     check(host.parent == tip and host:IsShown(), client .. ": pet aura host follows native tooltip")
     check(made.FluxPetAuraTooltipHostBuff1.Icon.texture == 123 and made.FluxPetAuraTooltipHostBuff1:IsShown(), client .. ": existing pet buff icon painted")
+    local petDebuff = made.FluxPetAuraTooltipHostDebuff1
+    check(petDebuff.DispelTypeIcon:IsShown() and petDebuff.DispelTypeIcon.point[1] == "TOPRIGHT"
+        and petDebuff.DispelTypeIcon.atlas == "RaidFrame-Icon-DebuffMagic"
+        and petDebuff.Border.borderColor[3] == 1
+        and not made.FluxPetAuraTooltipHostBuff1.DispelTypeIcon, client .. ": pet debuffs pair the corner type glyph with their border color")
     check(#tip.lines > 0 and host.point[2] == tip, client .. ": pet aura spacers and anchors stay inside own tip")
     UF.HideUnitTooltip(other); check(host:IsShown(), client .. ": stale owner does not dismiss pet auras")
     UF.HideUnitTooltip(owner)
     check(not host:IsShown() and not tip:IsShown() and owner.UpdateTooltip == nil, client .. ": pet hide clears icons and refresh together")
+    dispelName = secret
     UF.ShowUnitTooltip(owner, "pet")
+    check(petDebuff:IsShown() and not petDebuff.DispelTypeIcon:IsShown(), client .. ": reusing a pet icon with an opaque type clears the previous glyph")
     local oldPetRefresh = owner.UpdateTooltip
     tip:SetOwner(other, "ANCHOR_NONE"); tip:SetText("World unit"); tip:Show()
     check(not host:IsShown() and owner.UpdateTooltip == nil, client .. ": world takeover clears pet icons and refresh")
@@ -232,7 +251,7 @@ for _, client in ipairs({ "live", "forever", "classic", "classic_era", "classic_
 
     env.FluxRaid_RequestJoinedBorderRefresh = function() end
     local function region(frame, shown) if frame then if shown then frame:Show() else frame:Hide() end end end
-    assert(load(raidSource, "@raid-tooltip-owner", "t", env))(ns, env.issecretvalue, region, {}, function() end)
+    assert(load(raidSource, "@raid-tooltip-owner", "t", env))(ns, env.issecretvalue, region, function() end)
     local raidOwner = { unit = "raid1", hideStatusOnTooltip = true, IsMouseOver = function() return true end,
         IsShown = function() return true end, mouseOverHighlight = widget() }
     env.FluxRaidUnit_OnEnter(raidOwner)

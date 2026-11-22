@@ -416,7 +416,17 @@ local function LoadSavedVars()
     return _FluxUI_CharSavedVars.consumables
 end
 
+local function RestockPolicy()
+    return _G.Flux and _G.Flux.RestockPolicy
+end
+
+local function NotifyRestockPolicyChanged()
+    local policy = RestockPolicy()
+    if policy then policy.NotifyChanged() end
+end
+
 local function NotifyRespecConsumablesConfigChanged()
+    NotifyRestockPolicyChanged()
     local F = _G.FluxRespec
     if F and F.Fire then
         pcall(F.Fire, "CONSUMABLES_CONFIG_CHANGED")
@@ -1203,14 +1213,15 @@ function Module.GetPresetRestockTarget(itemID)
 end
 
 -- Set the active preset's restock target for an item (0 clears it).
-function Module.SetPresetRestockTarget(itemID, qty, skipNotify)
+function Module.SetPresetRestockTarget(itemID, qty, skipNotify, selectedPreset)
     itemID = tonumber(itemID)
     if not itemID then
         return
     end
     qty = math.max(0, math.min(999, tonumber(qty) or 0))
     local data = LoadSavedVars()
-    local presetName = data.activePreset or "default"
+    local presetName = selectedPreset or data.activePreset or "default"
+    if selectedPreset and not data.presets[selectedPreset] then return false end
     data.presets[presetName] = data.presets[presetName] or { items = {} }
     local preset = data.presets[presetName]
     preset.restockTargets = preset.restockTargets or {}
@@ -1228,6 +1239,7 @@ function Module.SetPresetRestockTarget(itemID, qty, skipNotify)
         Module.EnsureChronoboonPresetEntry(canonical)
         WriteChronoboonTarget(canonical, qty)
     end
+    NotifyRestockPolicyChanged()
     local FVA = _G.FluxVendorAuto
     if FVA and FVA.InvalidateRestockOptionsPanelCache then
         FVA.InvalidateRestockOptionsPanelCache()
@@ -1252,6 +1264,7 @@ function Module.SetPresetRestockTarget(itemID, qty, skipNotify)
             pcall(_G.FluxRestockPanel_RequestRefresh)
         end
     end
+    return true
 end
 
 -- Raw preset item IDs for the FluxUI restock options grid (not flyout-filtered).
@@ -1296,6 +1309,68 @@ function Module.IsRestockUIItem(itemID)
     return false
 end
 
+-- Explicit membership is stored with the preset so deleting a preset also
+-- removes its rules. Legacy presets follow the selected preset until edited.
+function Module.GetPresetRestockMembership(presetName)
+    local data = LoadSavedVars()
+    local preset = data.presets[presetName or data.activePreset]
+    local membership = preset and preset.restockMembership
+    return membership and {
+        all = membership.all == true, normal = membership.normal == true,
+        openworld = membership.openworld == true, raid = membership.raid == true,
+    } or nil, preset and preset.enabled ~= false and preset.restockEnabled ~= false or false
+end
+
+function Module.SetPresetRestockMembership(presetName, membership, enabled)
+    local data = LoadSavedVars()
+    local preset = data.presets[presetName or data.activePreset]
+    if not preset or membership ~= nil and type(membership) ~= "table" then return false end
+    if membership then
+        preset.restockMembership = {
+            all = membership.all == true, normal = membership.normal == true,
+            openworld = membership.openworld == true, raid = membership.raid == true,
+        }
+    end
+    if enabled ~= nil then preset.restockEnabled = enabled == true end
+    NotifyRestockPolicyChanged()
+    return true
+end
+
+function Module.GetEffectiveRestockTargets()
+    local data = LoadSavedVars()
+    local policy = RestockPolicy()
+    local mode = policy and policy.GetMode() or "normal"
+    local targets, owners = {}, {}
+    for name, preset in pairs(data.presets) do
+        local active = name == data.activePreset
+        local included = active
+        if policy then included = policy.IncludesMode(preset.restockMembership, mode, active) end
+        if included and preset.enabled ~= false and preset.restockEnabled ~= false then
+            for _, itemID in ipairs(preset.items or {}) do
+                itemID = tonumber(itemID)
+                if itemID and not IsKnownChronoboonListEntry(itemID) then
+                    local quantity = tonumber(preset.restockTargets and preset.restockTargets[itemID]) or 0
+                    local previous = targets[itemID]
+                    if previous == nil or quantity > previous
+                        or quantity == previous and (active or owners[itemID] ~= data.activePreset and name < owners[itemID]) then
+                        targets[itemID], owners[itemID] = quantity, name
+                    end
+                end
+            end
+        end
+    end
+    -- Chronoboon's legacy state and grouped counts remain owned by its helper.
+    local active = data.presets[data.activePreset]
+    local included = not policy or policy.IncludesMode(active.restockMembership, mode, true)
+    if included and active.enabled ~= false and active.restockEnabled ~= false and Module.IsChronoboonFeatureEnabled() then
+        local id = GetCanonicalChronoboonID()
+        if id and not Module.IsSuperchargedChronoboonItem(id) then
+            targets[id], owners[id] = Module.GetPresetRestockTarget(id), data.activePreset
+        end
+    end
+    return targets, owners
+end
+
 -- Total remaining charges of a charged item across bags (FluxInv SoT; fail closed).
 function Module.GetItemChargeCount(itemID, includeBank)
     itemID = tonumber(itemID)
@@ -1336,42 +1411,32 @@ local function TryRegisterConsumablesBankProvider()
     consumablesBankProviderRegistered = true
     Registry.RegisterProvider("consumables", function()
         local out = {}
-        local seen = {}
-        for _, itemID in ipairs(Module.GetRestockUIItemIDs()) do
-            itemID = tonumber(itemID)
-            if itemID and not seen[itemID] then
-                if Module.IsSuperchargedChronoboonItem and Module.IsSuperchargedChronoboonItem(itemID) then
-                    -- Supercharged Chronoboon has no restock target.
+        for itemID, target in pairs(Module.GetEffectiveRestockTargets()) do
+            if target > 0 then
+                local isChronoboon = Module.IsChronoboonItem
+                    and Module.IsChronoboonItem(itemID)
+                    and not (Module.IsSuperchargedChronoboonItem and Module.IsSuperchargedChronoboonItem(itemID))
+                local isCharge
+                if Registry.IsChargeItem then
+                    isCharge = Registry.IsChargeItem(itemID)
                 else
-                seen[itemID] = true
-                local target = Module.GetPresetRestockTarget(itemID)
-                if target and target > 0 then
-                    local isChronoboon = Module.IsChronoboonItem
-                        and Module.IsChronoboonItem(itemID)
-                        and not (Module.IsSuperchargedChronoboonItem and Module.IsSuperchargedChronoboonItem(itemID))
-                    local isCharge
-                    if Registry.IsChargeItem then
-                        isCharge = Registry.IsChargeItem(itemID)
-                    else
-                        isCharge = Module.IsWeaponEnchantItem and Module.IsWeaponEnchantItem(itemID)
-                    end
-                    local maxStack
-                    if isCharge and Registry.GetItemMaxCharges then
-                        maxStack = Registry.GetItemMaxCharges(itemID)
-                    elseif Registry.GetItemMaxStack then
-                        maxStack = Registry.GetItemMaxStack(itemID)
-                    end
-                    out[#out + 1] = {
-                        itemID = itemID,
-                        target = target,
-                        mode = isCharge and "charge" or "stack",
-                        maxStack = maxStack,
-                        restock = true,
-                        stash = false,
-                        isChronoboon = isChronoboon or nil,
-                    }
+                    isCharge = Module.IsWeaponEnchantItem and Module.IsWeaponEnchantItem(itemID)
                 end
+                local maxStack
+                if isCharge and Registry.GetItemMaxCharges then
+                    maxStack = Registry.GetItemMaxCharges(itemID)
+                elseif Registry.GetItemMaxStack then
+                    maxStack = Registry.GetItemMaxStack(itemID)
                 end
+                out[#out + 1] = {
+                    itemID = itemID,
+                    target = target,
+                    mode = isCharge and "charge" or "stack",
+                    maxStack = maxStack,
+                    restock = true,
+                    stash = false,
+                    isChronoboon = isChronoboon or nil,
+                }
             end
         end
         return out

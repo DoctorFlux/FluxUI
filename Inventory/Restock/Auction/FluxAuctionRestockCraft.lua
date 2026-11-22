@@ -787,6 +787,8 @@ function A.ReleaseCraftSpend(allocation)
 end
 
 function A.StartCraftPricing(row, force, onDone)
+    local policy = _G.Flux and _G.Flux.RestockPolicy
+    if policy and policy.IsPlannerRegistered() and not plans[row.itemID] then return false end
     if row.isCraftMaterial or row.craftParents then return false end
     local known = recipeCache[row.itemID] or A.CraftRecipes(row)
     local variants = A.PreferCrafting() and known or {}

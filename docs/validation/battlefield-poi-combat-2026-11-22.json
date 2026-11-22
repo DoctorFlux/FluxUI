@@ -1,0 +1,122 @@
+{
+  "change": "BATTLEFIELD-POI-COMBAT-20261122",
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\22\\01a20345-0d13-7943-ac5d-4088fff49a3b\\battlefield-poi-before-20261122T125248Z\\checkpoint.json",
+    "main": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "verifiedFiles": 55,
+    "archiveSha256": "38b78855233e6ac77e75cd110cb8f4c9b67048e4caf324d6ff08021c53d6a4e9",
+    "historyBundleSha256": "90bfc84da44ffd45c6617f5304a431e6ed808eadb90080ffefe4bc5d691b2909",
+    "settingsMetadataEntries": 40,
+    "settingsHandling": "Metadata only. Saved settings stayed in place."
+  },
+  "baselineSha256": {
+    "Battlezonemap/FluxBattlefieldMap.lua": "d27d9188e328f21492e179a23cfc6b5cc307c3f8b5ee687688945b01cecb8438",
+    "tests/idle_map.lua": "a2e57830779c41d24cec6d718c46a53c3094f083d4a85d107f159b5cd8b78054",
+    "tests/map_init_watchers.lua": "65cae3e36e795411ebcc7a55efafd999123d2c95010e834dfbd57aa63a38b9ec"
+  },
+  "candidateSha256": {
+    "Battlezonemap/FluxBattlefieldMap.lua": "146880f83108be2dda9c3623e62087a498318f99db6fc407420aae9599e83a78",
+    "tests/battlefield_poi_combat.lua": "028109b25f4c7e49b8e47671ac4ff5d62efff0abba3b755272a9b249d7fa0348",
+    "tests/idle_map.lua": "514a863c5a559cfec1ba585a96829e62d82ebb7e3fe206e9231824da126fe740",
+    "tests/map_init_watchers.lua": "384519d233e58cc1f56c2941a0f3d06972d6be75a7bcce6382abb6aa2204257e"
+  },
+  "installedRuntimeSha256": {
+    "_retail_": "146880f83108be2dda9c3623e62087a498318f99db6fc407420aae9599e83a78",
+    "_forever_": "146880f83108be2dda9c3623e62087a498318f99db6fc407420aae9599e83a78",
+    "_classic_": "146880f83108be2dda9c3623e62087a498318f99db6fc407420aae9599e83a78",
+    "_classic_era_": "146880f83108be2dda9c3623e62087a498318f99db6fc407420aae9599e83a78",
+    "_anniversary_": "146880f83108be2dda9c3623e62087a498318f99db6fc407420aae9599e83a78"
+  },
+  "source": {
+    "Forever": {
+      "fileVersion": "1.60.1.71037",
+      "commit": "734f065329cff4992835b01a84f210a297db91b6",
+      "blobs": {
+        "Blizzard_SharedMapDataProviders/AreaPOIDataProvider.lua": "fa8630e5676c11de3f8c5396295f929bd20a0e24",
+        "Blizzard_SharedMapDataProviders/AreaPOIEventDataProvider.lua": "932b5049e3366a961a584860f67070e9ffdb1099",
+        "Blizzard_SharedMapDataProviders/SharedMapPoiTemplates.lua": "13836cbf6643c98b8455b5ada20ccb1a06f327a3",
+        "Blizzard_MapCanvas/MapCanvas_DataProviderBase.lua": "7cc20e3ef425749e854ba03b139666e1eb323a97",
+        "Blizzard_MapCanvas/Blizzard_MapCanvas.lua": "7fbef4053928ce826ab0951950dac8ce1f7e7873",
+        "Blizzard_BattlefieldMap/Mainline/Blizzard_BattlefieldMap.lua": "8f199a2196bcc38f31d76faff7a1943c75daee84",
+        "Blizzard_APIDocumentationGenerated/AreaPoiInfoDocumentation.lua": "933ab9a06229fa501402bd3b9b64cb7d375bc6da"
+      }
+    },
+    "Retail": {
+      "fileVersion": "12.1.5.70961",
+      "commit": "ab5cb850a3f65e742959e379c4689353a2f4549f",
+      "blobs": {
+        "Blizzard_SharedMapDataProviders/AreaPOIDataProvider.lua": "fa8630e5676c11de3f8c5396295f929bd20a0e24",
+        "Blizzard_SharedMapDataProviders/AreaPOIEventDataProvider.lua": "932b5049e3366a961a584860f67070e9ffdb1099",
+        "Blizzard_SharedMapDataProviders/SharedMapPoiTemplates.lua": "13836cbf6643c98b8455b5ada20ccb1a06f327a3",
+        "Blizzard_MapCanvas/MapCanvas_DataProviderBase.lua": "7cc20e3ef425749e854ba03b139666e1eb323a97",
+        "Blizzard_MapCanvas/Blizzard_MapCanvas.lua": "eddf26fa304b44e953e1a1def7650f1a6cd62643",
+        "Blizzard_BattlefieldMap/Mainline/Blizzard_BattlefieldMap.lua": "315bca6e33a5c247a80e5748bfe18859c5164503"
+      }
+    }
+  },
+  "reportedTrace": {
+    "matchingSource": "Forever 1.60.1.71037",
+    "nativeEvent": "AREA_POIS_UPDATED",
+    "payload": [],
+    "protectedFunctions": [
+      "Frame:SetPropagateMouseClicks",
+      "Frame:SetPassThroughButtons"
+    ],
+    "firstTaintWrite": "Unverified",
+    "affectedSourceLines": {
+      "Blizzard_BattlefieldMap.lua": [
+        167,
+        168
+      ],
+      "Blizzard_MapCanvas.lua": [
+        146,
+        154,
+        326,
+        331
+      ],
+      "MapCanvas_DataProviderBase.lua": [
+        99,
+        290
+      ],
+      "AreaPOIDataProvider.lua": [
+        45,
+        62,
+        111
+      ],
+      "SharedMapPoiTemplates.lua": [
+        521,
+        526,
+        638
+      ]
+    }
+  },
+  "desktop": {
+    "passingSuites": 11,
+    "focusedChecksPerLua": 50,
+    "lua": [
+      "5.1.5",
+      "5.4.6"
+    ],
+    "checkpointNegativeModeledSetterAttempts": 80,
+    "candidateModeledSetterAttempts": 0,
+    "syntaxFiles": 4,
+    "runtimePrototypes": 86,
+    "maximumUpvalues": 17,
+    "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\22\\01a20345-0d13-7943-ac5d-4088fff49a3b\\battlefield-poi-before-20261122T125248Z\\desktop-validation.json",
+    "pinnedReplay": {
+      "result": "50 checks on both Lua versions using the pinned Blizzard Battlefield Map event dispatch, provider registration and Area POI provider methods.",
+      "frameAndSecureVM": "Frame APIs, secureexecuterange and protected mouse setters are modeled.",
+      "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\22\\01a20345-0d13-7943-ac5d-4088fff49a3b\\battlefield-poi-before-20261122T125248Z\\pinned-and-mock-poi-test-evidence.json",
+      "fixtureSha256": "75ad3196b5a30ac427035914336d65c5f548653958ce5f046f5f660613932414",
+      "nativeMethodSha256": {
+        "Forever": "2b8437286534c267af65261158cb94fb8627447e2f4e7663f36607c3e742b11c",
+        "Retail": "2b8437286534c267af65261158cb94fb8627447e2f4e7663f36607c3e742b11c"
+      }
+    }
+  },
+  "native": {
+    "status": "Pending",
+    "scope": "Fresh in-game frame registration, combat pin updates and mouse actions, controller, pixels and timing.",
+    "acceptance": "docs/CLIENT_VALIDATION.md#battlefield-map-poi-mouse-actions-in-combat"
+  }
+}

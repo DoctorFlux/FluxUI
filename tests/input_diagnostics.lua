@@ -24,7 +24,7 @@ env.C_ClickBindings = { GetBindingType = function() return 0 end, GetEffectiveIn
 env.C_CVar = { GetCVar = function(key) assert(key == "taintLog"); return "0" end }
 frame.IsProtected = function() return true, false end
 local ns = { Flux = {} }
-assert(loadfile("Other/FluxInputDebug.lua", "t", env))("_FluxUI", ns)
+assert(loadfile(arg[1] or "Other/FluxInputDebug.lua", "t", env))("_FluxUI", ns)
 assert(env.FluxPerfCaptureDB == nil and #timers == 0, "diagnostics are inactive until explicitly requested")
 local s = ns.Flux.InputDebug.Capture()
 assert(s.frames.FluxUnitFrameOuter_player.clicks == false, "false input states are not discarded")
@@ -66,4 +66,42 @@ env.SlashCmdList.FLUXINPUT("grid")
 assert(env.FluxPerfCaptureDB.inputDebug.nativeGrids and #timers==2,"grid slash command enables bounded expanded evidence")
 timers[2]()
 assert(env.FluxPerfCaptureDB.inputDebug.gridsBefore.MultiBarBottomLeft and writes==0,"before/after grid evidence stays read-only")
+
+local function forbidden() error("cooldown diagnostic invoked or read native cooldown data") end
+local cooldown = { GetName = function() return "ActionButton5Cooldown" end,
+    SetCooldown = forbidden, GetCooldownTimes = forbidden }
+local button = setmetatable({
+    GetName = function() return "ActionButton5" end, OnEvent = forbidden, cooldown = cooldown,
+}, { __index = forbidden, __newindex = forbidden })
+local unreadable = setmetatable({}, { __index = forbidden, __pairs = forbidden })
+env.canaccesstable = function(value) return value ~= unreadable end
+env.ActionBarButtonEventsFrame = {
+    OnEvent = forbidden, RegisterFrame = forbidden, UnregisterEvent = forbidden,
+    IsEventRegistered = function(_, event) assert(event == "ACTIONBAR_UPDATE_COOLDOWN"); return false end,
+    frames = { [2] = button, [8] = secret, [15] = unreadable, [20] = button }
+}
+env.C_ActionBar = { GetActionCooldown = forbidden }
+ns.Flux.Bars = { secureReady = false }
+local build, interface = "70783", 120105
+env.GetBuildInfo = function() return "test", build, nil, interface end
+env.print = function() end
+local root = env.FluxPerfCaptureDB
+local original = root.inputDebug
+local read = ns.Flux.InputDebug.CaptureCooldown()
+assert(read.complete and read.build == build and read.interface == interface)
+assert(read.replacementsReady == false and read.eventRegistered == false)
+assert(read.actionAPI.GetActionCooldown.owner == "_FluxUI")
+assert(read.buttons[2].name == "ActionButton5" and read.buttons[2].fields.OnEvent.owner == "_FluxUI")
+assert(read.buttons[20].entry.owner == "_FluxUI" and read.buttons[20].cooldown.name == "ActionButton5Cooldown")
+assert(read.buttons[20].cooldown.fields.SetCooldown.owner == "_FluxUI")
+assert(not read.buttons[8] and not read.buttons[15] and not root.actionCooldownDebug)
+
+env.SlashCmdList.FLUXINPUT("cooldown")
+local previous = root.actionCooldownDebug.latest
+build, interface = "70959", 16001
+env.ActionBarButtonEventsFrame.frames = unreadable
+env.SlashCmdList.FLUXINPUT("cooldown")
+assert(root.actionCooldownDebug.previous == previous and not root.actionCooldownDebug.latest.complete)
+assert(root.actionCooldownDebug.latest.build == build and root.actionCooldownDebug.latest.interface == interface)
+assert(root.inputDebug == original and #timers == 2 and writes == 0)
 print("Input diagnostics: read-only capture, secrets, false/protected states, restricted reads, click routing, logging mode, bounded callback passed")

@@ -66,46 +66,6 @@ local function HideFlyoutChrome(w)
 	if w.Arrow then
 		w.Arrow:Hide()
 	end
-	if w._fluxNativeFlyoutHost then
-		w._fluxNativeFlyoutHost:Hide()
-	end
-end
-
--- Mixin Arrow defaults to OVERLAY 2; Extra slot rings are OVERLAY 6.
--- Keep the chevron on the button (not UIParent/HIGH) so Extra chrome stays above it.
-local NATIVE_ARROW_DRAW = 7
-
-local function RestoreNativeFlyoutParent(region, widget)
-	if region and region.SetParent and widget then
-		pcall(region.SetParent, region, widget)
-	end
-end
-
-local function LayerNativeFlyoutArrow(widget)
-	local arrow = widget.Arrow or widget.FlyoutArrow
-	RestoreNativeFlyoutParent(arrow, widget)
-	if arrow and arrow.SetDrawLayer then
-		pcall(arrow.SetDrawLayer, arrow, "OVERLAY", NATIVE_ARROW_DRAW)
-	end
-	local container = widget.FlyoutArrowContainer
-	RestoreNativeFlyoutParent(container, widget)
-	if container then
-		if container.FlyoutArrowNormal and container.FlyoutArrowNormal.SetDrawLayer then
-			pcall(container.FlyoutArrowNormal.SetDrawLayer, container.FlyoutArrowNormal, "OVERLAY", NATIVE_ARROW_DRAW)
-		end
-		if container.FlyoutArrowPushed and container.FlyoutArrowPushed.SetDrawLayer then
-			pcall(container.FlyoutArrowPushed.SetDrawLayer, container.FlyoutArrowPushed, "OVERLAY", NATIVE_ARROW_DRAW)
-		end
-		if container.FlyoutArrowHighlight and container.FlyoutArrowHighlight.SetDrawLayer then
-			pcall(container.FlyoutArrowHighlight.SetDrawLayer, container.FlyoutArrowHighlight, "OVERLAY", NATIVE_ARROW_DRAW)
-		end
-		if container.SetFrameLevel and widget.GetFrameLevel then
-			pcall(container.SetFrameLevel, container, (widget:GetFrameLevel() or 0) + 1)
-		end
-	end
-	if widget._fluxNativeFlyoutHost then
-		widget._fluxNativeFlyoutHost:Hide()
-	end
 end
 
 local function LockSetChecked(widget)
@@ -680,7 +640,8 @@ function Widget.Create(parent, config)
 					self.popup = SpellFlyout
 				end
 			end
-			LayerNativeFlyoutArrow(self)
+			local arrows = EBS.Flyout and EBS.Flyout.Arrow
+			if arrows then arrows.LayerNative(self) end
 			if self.FlyoutArrowContainer then
 				self.FlyoutArrowContainer:Show()
 			elseif self.Arrow then

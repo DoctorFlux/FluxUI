@@ -1,0 +1,142 @@
+{
+  "changeId": "FLOWCRAFT-GROUPED-VENDOR-20261122",
+  "date": "2026-11-22",
+  "checkpoint": {
+    "manifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-grouped-vendor-before-20261122T093421Z\\checkpoint.json",
+    "files": 72,
+    "settingsMetadataRows": 63,
+    "settingsContentsCopied": false,
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a1ffc8-e3e4-7861-a366-cde5c05e7611\\fluxui-debuff-type-before-20261121T222839Z\\history.bundle",
+    "historyBundleSha256": "90bfc84da44ffd45c6617f5304a431e6ed808eadb90080ffefe4bc5d691b2909",
+    "branch": "main",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf"
+  },
+  "desktop": {
+    "owner": {
+      "bridge": {
+        "checks": 226,
+        "profiles": 13
+      },
+      "hud": {
+        "checks": 63540,
+        "profiles": 5,
+        "overflow": [
+          193,
+          500,
+          1000
+        ]
+      },
+      "followup": {
+        "checks": 674,
+        "profiles": 10
+      },
+      "vendorRoutes": {
+        "checks": 476,
+        "profiles": 20
+      },
+      "craft": {
+        "checks": 3279,
+        "profiles": 20
+      },
+      "closed": {
+        "checks": 1220,
+        "closedProfiles": 30,
+        "progressProfiles": 20
+      },
+      "policy": 136,
+      "vendorButton": "Pass",
+      "render": {
+        "checks": 1020,
+        "trials": 15
+      }
+    },
+    "companion": {
+      "installedSuitesPassed": 16,
+      "lua51InstalledSuitesPassed": [
+        "workspace",
+        "auction_shopping",
+        "logistics",
+        "queue",
+        "resize",
+        "target_load"
+      ]
+    },
+    "syntax": {
+      "scopedLuaFilesPassed": 7,
+      "parser": "luac -p"
+    },
+    "whitespace": "git diff --check passed",
+    "groupedVendor": {
+      "manualAndAutomaticOrderShares": [
+        5,
+        5
+      ],
+      "combinedNativeRequest": 10,
+      "manualGroupCopper": 78,
+      "carriedReceiptStages": [
+        5,
+        10
+      ],
+      "nativeCapIssued": 5,
+      "finiteOfferUsesSingleOrder": true,
+      "uncertainSameSkuBlocksGroupingAndReminder": true
+    }
+  },
+  "native": {
+    "status": "Reload and interaction pending",
+    "inputSent": false,
+    "foregroundTaken": false
+  },
+  "fixtureSources": {
+    "_FluxUI": {
+      "tests/auction_restock_followup_ui.lua": {
+        "before": "d85a1ae162a4ce0ec0388adfa38b990920cf8c757adc8344e9b7121e21378396",
+        "after": "b6342c4f72daed5aafe6f6a2f949e7d79bc85001ebfe1e63cd3e37e9657f2269"
+      },
+      "tests/auction_restock_followup_logistics.lua": {
+        "before": "660c13c0e552ca7cfc185939617e83679e8e16d89eedf043b6b35f358ceffb14",
+        "after": "606604e8ca78edfccc45cf7fab9eb48b7114a8e9a804011b08925d6868cc02ae"
+      }
+    },
+    "FluxLogistics": {
+      "Tests/logistics_test.lua": {
+        "before": "4c62311cd70c77972e580c7140f490c98af0addfa4d9bb17a2b0a87164c43938",
+        "after": "8436de613e878b8e2ecde1b91e3543ea8a257a76ddb02b1efffd80f5c7f3a0a1"
+      }
+    }
+  },
+  "installedSources": {
+    "_FluxUI": {
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": {
+        "before": "95a172c2405777595f933dfb35b112989541a3045c89b1c54c304df80cfc1309",
+        "after": "06b929d02df5b7049723344fd981b4428bf19976c31c7fb36ab872946100fcd5"
+      },
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua": {
+        "before": "6f6a10a3ad5ce655d42f718b1ecae33c1db93b12914365da2824914bb106a04b",
+        "after": "2db8942bfba5ef0c1866d37a92fa35bfd89422ca9082512affdc28c5d0e3208c"
+      },
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": {
+        "before": "0793c2168899cb5004a5fb7ce04418bca364819d07e57f8f02472bf68e612e3e",
+        "after": "0d0f88f34403213226b719829bfb22d88932ea40047b0858d2ac201a3de20207"
+      }
+    },
+    "FluxLogistics": {
+      "FluxCraft/Logistics.lua": {
+        "before": "7491d575e8ad6969b174804c9ef7eca2a8d348b136dbc4f6396c3df439879f28",
+        "after": "db6548d334c2202783322ddbed6bbcbe32f810216b9a347feed184b1a774fcd8"
+      }
+    }
+  },
+  "installation": {
+    "clients": [
+      "_retail_",
+      "_forever_",
+      "_classic_",
+      "_classic_era_",
+      "_anniversary_"
+    ],
+    "runtimeFilesVerified": 4,
+    "runtimeSha256MatchAcrossAllClients": true,
+    "guardedCompanionFilesApplied": 2
+  }
+}

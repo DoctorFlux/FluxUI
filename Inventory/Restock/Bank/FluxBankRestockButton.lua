@@ -16,6 +16,15 @@ local function Bank()
 end
 local function BR() return _G.FluxBankRestock end
 local function MUI() return _G.FluxVendorAutoMerchantUI end
+local function QueuedBankRequirements()
+    local policy = _G.Flux and _G.Flux.RestockPolicy
+    return policy and policy.GetAcquisitionRequirements and policy.GetAcquisitionRequirements("bank") or {}, policy
+end
+local function FirstQueuedWithdrawal(rows)
+    for _, entry in ipairs(rows) do
+        if not entry.pending then return entry end
+    end
+end
 
 local btn
 local autoToggle
@@ -204,6 +213,14 @@ local function HandleClick()
         Button.Refresh()
         return
     end
+    local queued, policy = QueuedBankRequirements()
+    local withdrawal = FirstQueuedWithdrawal(queued)
+    if withdrawal and policy.AcquireRequirement then
+        local ok, message = policy.AcquireRequirement("bank", withdrawal)
+        lastClickFailReason = not ok and (message or "Could not withdraw queued materials.") or nil
+        Button.Refresh()
+        return
+    end
     if br.CanRunNow and not br.CanRunNow() then
         local bank = Bank()
         local open = bank and bank.IsOpen and bank.IsOpen()
@@ -242,6 +259,31 @@ local function ShowTooltip(self)
     local br = BR()
     local items = br and br.GetTooltipItems and br.GetTooltipItems() or {}
     local shown = 0
+
+    local queued, policy = QueuedBankRequirements()
+    if queued[1] then
+        GameTooltip:AddLine("Queued crafting materials", 1, 0.82, 0.35)
+        local itemClass = _G.FluxItemClass
+        local rows, byItem = {}, {}
+        for _, entry in ipairs(queued) do
+            local row = byItem[entry.itemID]
+            if not row then
+                row = {itemID = entry.itemID, quantity = 0, pending = 0}
+                rows[#rows + 1], byItem[entry.itemID] = row, row
+            end
+            row.quantity = row.quantity + entry.quantity
+            if entry.pending then row.pending = row.pending + entry.quantity end
+        end
+        for index = 1, math.min(#rows, 24) do
+            local row = rows[index]
+            local name = itemClass and itemClass.GetName and itemClass.GetName(row.itemID)
+            local text = policy.Text.materialQuantity:format(name or row.itemID, row.quantity)
+            if row.pending > 0 then text = policy.Text.bankReceiptPending:format(text, row.pending) end
+            GameTooltip:AddLine(text, 0.93, 0.91, 0.84)
+        end
+        if #rows > 24 then GameTooltip:AddLine(policy.Text.shoppingMore) end
+        shown = #rows
+    end
 
     for _, entry in ipairs(items) do
         local pull = entry.pull or 0
@@ -399,6 +441,14 @@ local function EnsureButton()
         end
     end)
 
+    local policy = _G.Flux and _G.Flux.RestockPolicy
+    local logistics = policy and policy.CreateActions(btn, "bank")
+    if logistics then logistics:SetPoint("LEFT", btn, "RIGHT", 6, 0) end
+    if policy and policy.Subscribe then
+        policy.Subscribe("FluxBankRestockButton.queue", function()
+            if btn:IsShown() then Button.Refresh() end
+        end)
+    end
     EnsureAutoToggle()
     btn:Hide()
     return btn
@@ -428,7 +478,7 @@ function Button.Refresh()
     if canRun then
         lastClickFailReason = nil
     end
-    SetButtonEnabled(canRun or running)
+    SetButtonEnabled(canRun or running or FirstQueuedWithdrawal(QueuedBankRequirements()) ~= nil)
 end
 
 function Button.RefreshIdle()

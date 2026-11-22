@@ -1,11 +1,15 @@
 # Main-row action routing recovery
 
-Current status: **blocked pending native verification**. Source and offline gates
-are verified; actual restored casting is not established. The user cannot test
-in game yet. The third consecutive unavailable-native audit is recorded in the
-validation JSON; no new runtime change is warranted without fresh evidence.
+22 November. The shared slot model and secure handler now prevent the
+confirmed page-2 overlap. Columns 1–7 retain their base slots, columns
+8–12 use 20–24 and fixed 13–19 keep their own slots. The five client
+models verify the corrected routes. Native verification and the earlier
+report of unexpected contents in correctly routed slots remain open.
+[Current validation](CLIENT_VALIDATION.md#action-strip-page-two-ownership).
 
-The user requests restoring main buttons 1-19, especially fixed 13-19, on Forever,
+## 15 November recovery commands
+
+The 15 November request was to restore main buttons 1-19, especially fixed 13-19, on Forever,
 and checking the other clients against the existing docs. Connected borders
 remain cancelled. The current candidate adds explicit recovery/audit commands;
 it does not run them automatically or choose replacement player spells.

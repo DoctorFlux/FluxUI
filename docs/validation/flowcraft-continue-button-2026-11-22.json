@@ -1,0 +1,175 @@
+{
+  "changeId": "FLOWCRAFT-CONTINUE-BUTTON-20261122",
+  "date": "2026-11-22",
+  "diagnostic": {
+    "savedStateUtc": "2026-11-22T11:20:29Z",
+    "source": "Forever FluxLogistics queue and concurrent builtin inventory snapshot; sanitized aggregate only",
+    "intermediateCompleted": 50,
+    "finalRequested": 10,
+    "finalConfirmed": 1,
+    "finalPending": 9,
+    "finalRecordedOutputBefore": 0,
+    "finalRecordedOutputAfter": 1,
+    "requirementRemaining": 0,
+    "incomingRemaining": 0,
+    "acquisitionPending": false,
+    "standaloneFollowupPresent": false,
+    "standalonePendingRows": 0,
+    "carriedMatchesReservation": true,
+    "freshPersistedErrorAvailable": false
+  },
+  "desktop": {
+    "owner": {
+      "companionHandoff": 237,
+      "hudAndProfession": 63633,
+      "integration": 290,
+      "standaloneFollowup": 674,
+      "automation": 1260,
+      "craft": 3279,
+      "closedProfession": 1220,
+      "renderer": {
+        "checksPerSource": 1020,
+        "pairedTrials": 15,
+        "identicalWorkVectors": 45
+      },
+      "runtimeUpvalues": {
+        "prototypes": 74,
+        "maximum": 32
+      },
+      "frozenRejectedCompanionBagSettle": true
+    },
+    "companion": {
+      "installedLua54Suites": 17,
+      "installedLua51Suites": [
+        "auction_shopping",
+        "logistics",
+        "queue",
+        "target_load",
+        "workspace",
+        "execution"
+      ],
+      "frozenRejectedNativeIdleWakeAndStaleFormReoffer": true
+    },
+    "syntaxFiles": 7,
+    "upvalues": {
+      "runtimeFiles": 3,
+      "prototypes": 356,
+      "maximum": 33
+    },
+    "summary": "17 installed Lua 5.4 and six targeted Lua 5.1 companion suites; owner handoff 237 and HUD 63633; frozen probes rejected"
+  },
+  "native": {
+    "client": "Forever 1.60.1",
+    "build": 71037,
+    "interface": 16001,
+    "sourceCommit": "734f065329cff4992835b01a84f210a297db91b6",
+    "status": "Both live craft controls observed in background. Candidate reload and native press remain unverified.",
+    "sourceLinks": [
+      "https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua#L767-L772",
+      "https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua#L1336-L1343",
+      "https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua#L4636-L4647"
+    ],
+    "initialBackgroundObservation": "The verified Forever window owned foreground. The guard ended before image capture or input.",
+    "inputSent": false,
+    "lastObservationUtc": "2026-11-22T11:31:47Z",
+    "visibleRemainder": 8,
+    "visibleRecipe": "Green Silk Pack",
+    "controls": [
+      "Flowcraft Craft next",
+      "FluxUI HUD Craft next"
+    ],
+    "foregroundUnchanged": true,
+    "externalCaptureSha256": "48CC73E86E3A5B910EFA949532089C588916F5C19DCD0656DA9B73987EEE2578",
+    "captureCopiedToRepository": false
+  },
+  "behavior": {
+    "ledger": "Exact remaining craft with bag-settle and native-terminal wake-ups; same recipe offered again when the prepared form is gone",
+    "owner": "Use an inventory-settled callback when a companion-only craft is temporarily blocked by a bag update.",
+    "companion": "Recheck native readiness after the terminal notification and resolve the accepted remaining task. Offer to prepare the same validated craft again when its prepared form is gone.",
+    "authorization": "Craft execution remains tied to the player press. Preparation and state refresh preserve this requirement."
+  },
+  "checkpoint": {
+    "manifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-queued-craft-button-before-20261122T112231Z\\checkpoint.json",
+    "sourceFiles": 308,
+    "settingsMetadataRows": 80,
+    "settingsContentsCopied": false,
+    "settingsMetadataSha256": "afa883f6ec775bd52946fc400ff9c57acb82aea417e1a721b057a8cba83f8b39",
+    "branch": "main",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a1ffc8-e3e4-7861-a366-cde5c05e7611\\fluxui-debuff-type-before-20261121T222839Z\\history.bundle",
+    "historyBundleSha256": "90bfc84da44ffd45c6617f5304a431e6ed808eadb90080ffefe4bc5d691b2909"
+  },
+  "installedSources": {
+    "_FluxUI/Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": {
+      "before": "c93823197b8a3a46a0fe6cde23baf87732f1c0f21593de1947eac55547eb10ff",
+      "after": "f955a559e4c1a42bdb7546b41a40f871b406fcb08dfebcdff7aa0a2fd79d52a8",
+      "verifiedClients": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_classic_era_",
+        "_anniversary_"
+      ]
+    },
+    "FluxLogistics/FluxCraft/Execution.lua": {
+      "before": "27475f67d98f4d036778e4fc560549713c753449b95d0d8856a4b66afba9bb73",
+      "after": "933e6e2013c1e15b4637cfe2c4b551f4c41086cd7d0eb0009127480f1bf44c10",
+      "verifiedClients": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_classic_era_",
+        "_anniversary_"
+      ]
+    },
+    "FluxLogistics/FluxCraft/Logistics.lua": {
+      "before": "9822e9c20dd6124965adf816fdcfd110b2502ede2dea027fe073cdd3ade36ebc",
+      "after": "c1b85ec07ef108d5214ba139b530c9a0858f6c4ffc8f6f31516a19c78440a5e4",
+      "verifiedClients": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_classic_era_",
+        "_anniversary_"
+      ]
+    }
+  },
+  "fixtureSources": {
+    "_FluxUI/tests/auction_restock_followup_logistics.lua": {
+      "before": "9cad0ca017ab3e5980929e45808eca8b2278c4d69855853354d72b8e82395bb5",
+      "after": "c33465edd4b1f19d10e31995a27d532b35bb259be613dd862d480366f0d3b03e",
+      "verifiedClients": [
+        "_retail_"
+      ]
+    },
+    "_FluxUI/tests/auction_restock_followup_ui.lua": {
+      "before": "e0d6ecff9379b30f1790701c09f0524d30781d26cff8f7ebdf5f8f6b9ff75f7c",
+      "after": "04d8e289a43a2f6514280e1449f3b9fb53aae2c9d25a930fbf9f4804262b4149",
+      "verifiedClients": [
+        "_retail_"
+      ]
+    },
+    "FluxLogistics/Tests/execution_test.lua": {
+      "before": "fd6fe900f41dcd5093261506619464d99fb29a81b1005704ed23eb9b6e7d3f07",
+      "after": "6a918284e94b546430b0965e1151f0822bd2855e84ba7c24fbe88ae13a885844",
+      "verifiedClients": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_classic_era_",
+        "_anniversary_"
+      ]
+    },
+    "FluxLogistics/Tests/logistics_test.lua": {
+      "before": "9b91c8479790576517a647f425ab65863dedb9d996996fe4d7c1a658bb7b724a",
+      "after": "b8fd3cf0224ef92e95bc32cfb6356f1ebde9bbfbab98105ba88fbf18dd88bd31",
+      "verifiedClients": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_classic_era_",
+        "_anniversary_"
+      ]
+    }
+  }
+}

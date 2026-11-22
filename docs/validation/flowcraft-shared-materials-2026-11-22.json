@@ -1,0 +1,424 @@
+{
+  "changeId": "FLOWCRAFT-SHARED-MATERIALS-20261122",
+  "date": "2026-11-22",
+  "checkpoint": {
+    "manifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-shared-materials-before-20261122T110533Z\\checkpoint.json",
+    "fixtureDependencies": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-shared-materials-before-20261122T110533Z\\fixture-dependencies.json",
+    "files": 329,
+    "settingsMetadataRows": 80,
+    "settingsContentsCopied": false,
+    "branch": "main",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a1ffc8-e3e4-7861-a366-cde5c05e7611\\fluxui-debuff-type-before-20261121T222839Z\\history.bundle",
+    "historyBundleSha256": "90bfc84da44ffd45c6617f5304a431e6ed808eadb90080ffefe4bc5d691b2909",
+    "settingsMetadataSha256": "8a20a84398f7304a2f45f2d85f2805961f2568fd9b50702ac37ce8201263703c"
+  },
+  "behavior": {
+    "aggregation": "Combine eligible physical requirements for the same material across accepted queued jobs, including different output recipes.",
+    "auction": "Buy one qualified commodity quote or complete legacy lot per press. Protect individual accepted quantity and price bounds and apply each exact quantity and copper share. Classic can adopt an individually approved lot when a combined stack is unavailable.",
+    "vendor": "A single validated live offer can cover planned vendor requirements and approved merchant alternatives for auction requirements. Preserve each accepted budget, whole-bundle limits, FIFO receipt allocation, and pending auction/mail exclusion.",
+    "bank": "Use one scoped group withdrawal. Validate physical stack and scope after each move, including after the first order is credited. Partial bank receipts allocate in FIFO order. A stale group revision fails even when total demand matches."
+  },
+  "desktop": {
+    "installedForever": {
+      "lua54": {
+        "auction_sales_test": {
+          "code": 0,
+          "summary": [
+            "auction sale chat fixtures passed"
+          ]
+        },
+        "auction_shopping_test": {
+          "code": 0,
+          "summary": [
+            "Queue shopping opens in one window, forwards exact quantities, and limits native purchases to the active plan"
+          ]
+        },
+        "book_test": {
+          "code": 0,
+          "summary": [
+            "book recipe-memory fixtures passed"
+          ]
+        },
+        "clients_test": {
+          "code": 0,
+          "summary": [
+            "client action and availability tests passed"
+          ]
+        },
+        "comparison_test": {
+          "code": 0,
+          "summary": [
+            "recursive route comparison fixtures passed"
+          ]
+        },
+        "execution_test": {
+          "code": 0,
+          "summary": [
+            "native craft lifecycle and recovery tests passed"
+          ]
+        },
+        "logistics_test": {
+          "code": 0,
+          "summary": [
+            "Tier restock credits paid receipts against the observed listing SKU",
+            "Auctionator estimates retain fractional precision and authorize only whole copper within the accepted cap"
+          ]
+        },
+        "milestone1_planner_test": {
+          "code": 0,
+          "summary": [
+            "Milestone 1 sourcing, allocation, economics and provider fixtures passed"
+          ]
+        },
+        "planner_test": {
+          "code": 0,
+          "summary": [
+            "FluxCraft planner synthetic fixtures: PASS"
+          ]
+        },
+        "queue_test": {
+          "code": 0,
+          "summary": [
+            "queue tests passed"
+          ]
+        },
+        "recipe_density_test": {
+          "code": 0,
+          "summary": [
+            "Forever compact recipe rows preserve scroll and restore native sizes"
+          ]
+        },
+        "recipe_profit_test": {
+          "code": 0,
+          "summary": [
+            "Forever recipe profit estimates, ranks, pooling and native controls passed"
+          ]
+        },
+        "recipe_selection_test": {
+          "code": 0,
+          "summary": [
+            "Recipe selection coalesces native events without delaying exact queue intent"
+          ]
+        },
+        "resize_test": {
+          "code": 0,
+          "summary": [
+            "Forever native panel and Classic workbench resize fixtures passed"
+          ]
+        },
+        "target_load_test": {
+          "code": 0,
+          "summary": [
+            "runtime TOC load without a Settings page, late native host and disabled-client checks passed"
+          ]
+        },
+        "ui_reagents_test": {
+          "code": 0,
+          "summary": [
+            "Forever native host, overview and escape fixtures passed"
+          ]
+        },
+        "workspace_test": {
+          "code": 0,
+          "summary": [
+            "Classic workbench, graph state and persistent queue fixtures passed",
+            "Forever native shortlist reachability and multi-output economics fixtures passed"
+          ]
+        }
+      },
+      "lua51": {
+        "code": 0,
+        "tests": {
+          "auction_shopping_test": "pass",
+          "logistics_test": "pass",
+          "queue_test": "pass",
+          "target_load_test": "pass",
+          "workspace_test": "pass",
+          "execution_test": "pass"
+        }
+      },
+      "owner": {
+        "bank_restock_icon": {
+          "code": 0,
+          "summary": [
+            "bank restock icon: 2100 checks passed (five clients; native/Baganator; cold/warm merchant)"
+          ]
+        },
+        "flux_logistics_restock_policy": {
+          "code": 0,
+          "summary": [
+            "FluxLogistics restock bridge PASS (153 checks)"
+          ]
+        },
+        "flux_logistics_auction_rows": {
+          "code": 0,
+          "summary": [
+            "Temporary queued auction targets: 90 focused actual-owner checks passed."
+          ]
+        }
+      }
+    },
+    "ownerChecks": {
+      "bankIcon": 2100,
+      "policyBridge": 153,
+      "auctionRows": 90,
+      "auctionExactStacks": 50,
+      "auctionDepth": 38,
+      "vendorRoutes": 476,
+      "bankStackCollection": 8,
+      "vendorButton": "pass",
+      "bankVisibility": 3782,
+      "bankSnapshot": 34770,
+      "vendorOpen": 265
+    },
+    "oldAuctionNegative": [
+      {
+        "code": 1,
+        "output": [
+          "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: ...hared-materials-20261122\\Tests\\auction_shopping_test.lua:180: assertion failed!",
+          "stack traceback:",
+          "\t[C]: in function 'assert'",
+          "\t...hared-materials-20261122\\Tests\\auction_shopping_test.lua:180: in upvalue 'startQuote'",
+          "\t...hared-materials-20261122\\Tests\\auction_shopping_test.lua:1053: in local 'runSharedMaterialShopping'",
+          "\t...hared-materials-20261122\\Tests\\auction_shopping_test.lua:1115: in main chunk"
+        ]
+      },
+      {
+        "code": 0,
+        "output": [
+          "Queue shopping opens in one window, forwards exact quantities, and limits native purchases to the active plan"
+        ]
+      }
+    ],
+    "lua51CoverageNote": "Six targeted installed suites passed. The broad staged Lua 5.1 run reaches the existing auction income fixture's table.pack dependency.",
+    "syntax": {
+      "filesParsed": 8,
+      "scopes": "Four owner and four companion Lua files"
+    },
+    "pairedWork": {
+      "pairs": 3,
+      "bankSnapshotVectorsPerPair": 15,
+      "vendorOpenVectorsPerPair": 7,
+      "exactVectorsMatched": 66,
+      "raw": [
+        {
+          "trial": 1,
+          "order": [
+            "frozen",
+            "candidate"
+          ],
+          "identical": true,
+          "cases": {
+            "frozen": [
+              {
+                "code": 0,
+                "vectors": [
+                  "METRICS {\"builtin/anniversary\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/anniversary/noop\":{\"all_pairs_visits\":1},\"builtin/era\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/era/noop\":{\"all_pairs_visits\":1},\"builtin/forever\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/forever/noop\":{\"all_pairs_visits\":1},\"builtin/mists\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/mists/noop\":{\"all_pairs_visits\":1},\"builtin/retail\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/retail/noop\":{\"all_pairs_visits\":1},\"syndicator/anniversary\":{\"all_pairs_visits\":24307},\"syndicator/era\":{\"all_pairs_visits\":24307},\"syndicator/forever\":{\"all_pairs_visits\":24307},\"syndicator/mists\":{\"all_pairs_visits\":24307},\"syndicator/retail\":{\"all_pairs_visits\":24307}}"
+                ]
+              },
+              {
+                "code": 0,
+                "vectors": [
+                  "METRIC era cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC anniversary cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC wrath cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC cata cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC mists cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC live cold_reads=240 repeat_reads=0 frames=1 native_reads=182",
+                  "METRIC forever cold_reads=240 repeat_reads=0 frames=1 native_reads=182"
+                ]
+              }
+            ],
+            "candidate": [
+              {
+                "code": 0,
+                "vectors": [
+                  "METRICS {\"builtin/anniversary\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/anniversary/noop\":{\"all_pairs_visits\":1},\"builtin/era\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/era/noop\":{\"all_pairs_visits\":1},\"builtin/forever\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/forever/noop\":{\"all_pairs_visits\":1},\"builtin/mists\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/mists/noop\":{\"all_pairs_visits\":1},\"builtin/retail\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/retail/noop\":{\"all_pairs_visits\":1},\"syndicator/anniversary\":{\"all_pairs_visits\":24307},\"syndicator/era\":{\"all_pairs_visits\":24307},\"syndicator/forever\":{\"all_pairs_visits\":24307},\"syndicator/mists\":{\"all_pairs_visits\":24307},\"syndicator/retail\":{\"all_pairs_visits\":24307}}"
+                ]
+              },
+              {
+                "code": 0,
+                "vectors": [
+                  "METRIC era cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC anniversary cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC wrath cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC cata cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC mists cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC live cold_reads=240 repeat_reads=0 frames=1 native_reads=182",
+                  "METRIC forever cold_reads=240 repeat_reads=0 frames=1 native_reads=182"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "trial": 2,
+          "order": [
+            "candidate",
+            "frozen"
+          ],
+          "identical": true,
+          "cases": {
+            "candidate": [
+              {
+                "code": 0,
+                "vectors": [
+                  "METRICS {\"builtin/anniversary\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/anniversary/noop\":{\"all_pairs_visits\":1},\"builtin/era\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/era/noop\":{\"all_pairs_visits\":1},\"builtin/forever\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/forever/noop\":{\"all_pairs_visits\":1},\"builtin/mists\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/mists/noop\":{\"all_pairs_visits\":1},\"builtin/retail\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/retail/noop\":{\"all_pairs_visits\":1},\"syndicator/anniversary\":{\"all_pairs_visits\":24307},\"syndicator/era\":{\"all_pairs_visits\":24307},\"syndicator/forever\":{\"all_pairs_visits\":24307},\"syndicator/mists\":{\"all_pairs_visits\":24307},\"syndicator/retail\":{\"all_pairs_visits\":24307}}"
+                ]
+              },
+              {
+                "code": 0,
+                "vectors": [
+                  "METRIC era cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC anniversary cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC wrath cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC cata cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC mists cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC live cold_reads=240 repeat_reads=0 frames=1 native_reads=182",
+                  "METRIC forever cold_reads=240 repeat_reads=0 frames=1 native_reads=182"
+                ]
+              }
+            ],
+            "frozen": [
+              {
+                "code": 0,
+                "vectors": [
+                  "METRICS {\"builtin/anniversary\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/anniversary/noop\":{\"all_pairs_visits\":1},\"builtin/era\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/era/noop\":{\"all_pairs_visits\":1},\"builtin/forever\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/forever/noop\":{\"all_pairs_visits\":1},\"builtin/mists\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/mists/noop\":{\"all_pairs_visits\":1},\"builtin/retail\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/retail/noop\":{\"all_pairs_visits\":1},\"syndicator/anniversary\":{\"all_pairs_visits\":24307},\"syndicator/era\":{\"all_pairs_visits\":24307},\"syndicator/forever\":{\"all_pairs_visits\":24307},\"syndicator/mists\":{\"all_pairs_visits\":24307},\"syndicator/retail\":{\"all_pairs_visits\":24307}}"
+                ]
+              },
+              {
+                "code": 0,
+                "vectors": [
+                  "METRIC era cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC anniversary cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC wrath cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC cata cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC mists cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC live cold_reads=240 repeat_reads=0 frames=1 native_reads=182",
+                  "METRIC forever cold_reads=240 repeat_reads=0 frames=1 native_reads=182"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "trial": 3,
+          "order": [
+            "frozen",
+            "candidate"
+          ],
+          "identical": true,
+          "cases": {
+            "frozen": [
+              {
+                "code": 0,
+                "vectors": [
+                  "METRICS {\"builtin/anniversary\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/anniversary/noop\":{\"all_pairs_visits\":1},\"builtin/era\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/era/noop\":{\"all_pairs_visits\":1},\"builtin/forever\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/forever/noop\":{\"all_pairs_visits\":1},\"builtin/mists\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/mists/noop\":{\"all_pairs_visits\":1},\"builtin/retail\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/retail/noop\":{\"all_pairs_visits\":1},\"syndicator/anniversary\":{\"all_pairs_visits\":24307},\"syndicator/era\":{\"all_pairs_visits\":24307},\"syndicator/forever\":{\"all_pairs_visits\":24307},\"syndicator/mists\":{\"all_pairs_visits\":24307},\"syndicator/retail\":{\"all_pairs_visits\":24307}}"
+                ]
+              },
+              {
+                "code": 0,
+                "vectors": [
+                  "METRIC era cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC anniversary cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC wrath cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC cata cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC mists cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC live cold_reads=240 repeat_reads=0 frames=1 native_reads=182",
+                  "METRIC forever cold_reads=240 repeat_reads=0 frames=1 native_reads=182"
+                ]
+              }
+            ],
+            "candidate": [
+              {
+                "code": 0,
+                "vectors": [
+                  "METRICS {\"builtin/anniversary\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/anniversary/noop\":{\"all_pairs_visits\":1},\"builtin/era\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/era/noop\":{\"all_pairs_visits\":1},\"builtin/forever\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/forever/noop\":{\"all_pairs_visits\":1},\"builtin/mists\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/mists/noop\":{\"all_pairs_visits\":1},\"builtin/retail\":{\"all_pairs_visits\":76307,\"native_slot_reads\":4000,\"persist_calls\":100,\"persist_visits\":32000,\"protected_calls\":100,\"store_bind\":100,\"store_pending\":100,\"unclassified_countmap_visits\":32000},\"builtin/retail/noop\":{\"all_pairs_visits\":1},\"syndicator/anniversary\":{\"all_pairs_visits\":24307},\"syndicator/era\":{\"all_pairs_visits\":24307},\"syndicator/forever\":{\"all_pairs_visits\":24307},\"syndicator/mists\":{\"all_pairs_visits\":24307},\"syndicator/retail\":{\"all_pairs_visits\":24307}}"
+                ]
+              },
+              {
+                "code": 0,
+                "vectors": [
+                  "METRIC era cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC anniversary cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC wrath cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC cata cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC mists cold_reads=200 repeat_reads=0 frames=1 native_reads=0",
+                  "METRIC live cold_reads=240 repeat_reads=0 frames=1 native_reads=182",
+                  "METRIC forever cold_reads=240 repeat_reads=0 frames=1 native_reads=182"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "upvalueAudit": {
+      "tool": "tools/check_lua_upvalues.py",
+      "runtimeFiles": 4,
+      "prototypes": 638,
+      "maximumUpvalues": 49,
+      "failures": 0
+    }
+  },
+  "install": {
+    "clientFolders": [
+      "_retail_",
+      "_forever_",
+      "_classic_",
+      "_classic_era_",
+      "_anniversary_"
+    ],
+    "exactRuntimeFiles": 4,
+    "exactCompanionFixturesAcrossFive": 2,
+    "canonicalOwnerFixturesRecorded": 2
+  },
+  "native": {
+    "client": "Forever 1.60.1.71037",
+    "executable": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+    "pid": 16640,
+    "hwnd": 22677020,
+    "latest": "After install the guard found Forever in foreground and exited before acquiring an image.",
+    "inputSent": false,
+    "foregroundChanged": false,
+    "candidateReload": "pending",
+    "auction": "pending",
+    "vendor": "pending",
+    "bank": "pending"
+  },
+  "sources": {
+    "_FluxUI/Inventory/Restock/Bank/FluxBankRestockButton.lua": {
+      "before": "9678ef7ef6129e9a1f13800da71da8e5b0d5f3bcb599cf2b61bdafac26862846",
+      "after": "1152f740edfdbe38b23459ecd090921d23bccc4a914c6e1b9965dabaf15d3155"
+    },
+    "_FluxUI/Inventory/Restock/Core/FluxRestockPolicy.lua": {
+      "before": "157f1b4b39edc2b42c5604b92ad49d416c7ef2a5998acd67db6db2aa47fb7a64",
+      "after": "a19d26c7f110e85bcf9ad45d2e7bb74344f03ce0ac7d851a92c323aa901d726c"
+    },
+    "_FluxUI/tests/bank_restock_icon.lua": {
+      "before": "31dae6296e303d95e8a6479f9250f1c8ab43c4166b17d058e2ebbdf3557f5d21",
+      "after": "6d6c5ee1bb0f0554296616b75874e1d03b3a2339429c0ad5351342876d6dae39"
+    },
+    "_FluxUI/tests/flux_logistics_restock_policy.lua": {
+      "before": "642b0206c422617b43aba1de8d8db8ade68feba39a10a99f01dc04cef0fbc521",
+      "after": "3ed72b22b4defe475d5fd737405934ad5e245145d66fddc45fd2a08f5a711f92"
+    },
+    "FluxLogistics/FluxCraft/UI.lua": {
+      "before": "a20434cd80622af4f65ee14dd19f171920cdf70bd88e25b55866e2a33cfd2886",
+      "after": "c07513a26703de6d4e654994c016cace48d520dde93be060f806573fc6fb640b"
+    },
+    "FluxLogistics/FluxCraft/Logistics.lua": {
+      "before": "98022208149f4f6798c59cf6f4db805911fec005616cd168b9e17fae5c274e82",
+      "after": "9822e9c20dd6124965adf816fdcfd110b2502ede2dea027fe073cdd3ade36ebc"
+    },
+    "FluxLogistics/Tests/auction_shopping_test.lua": {
+      "before": "92ef96d39d70063103e9abd610a3341f8becc41fb5ece4e8145cc195821a48bc",
+      "after": "cfa71e4f5d13f6f3624c0133616739ae26c8296e2360c3e7c44d4f665e79778c"
+    },
+    "FluxLogistics/Tests/logistics_test.lua": {
+      "before": "ebd61d4b0de6b39881487c49917d763094709ef7fbac94505d0dde31b95f86b2",
+      "after": "9b91c8479790576517a647f425ab65863dedb9d996996fe4d7c1a658bb7b724a"
+    }
+  }
+}

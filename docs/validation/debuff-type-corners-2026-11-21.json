@@ -1,0 +1,291 @@
+{
+  "id": "DEBUFF-TYPE-CORNERS-20261121",
+  "recordedUtc": "2026-11-21T22:41:25.823335+00:00",
+  "checkpoint": {
+    "name": "fluxui-debuff-type-before-20261121T222839Z",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "sourceFiles": 3406,
+    "settingsMetadataEntries": 92,
+    "archiveSha256": "2bedd4bc7f4c70e4211d48d67f8b487a157456cd4a9d29d44fecd0637b17e9d5",
+    "bundleSha256": "90bfc84da44ffd45c6617f5304a431e6ed808eadb90080ffefe4bc5d691b2909"
+  },
+  "references": {
+    "flareLocalReference": {
+      "relativeSource": "Modules/Auras.lua",
+      "sha256": "95d335139abd8d743ad429081f405bea9ef421c9ec8f753a8f8e3034e0ccb0e9",
+      "comparison": "Upper-right type artwork, type-colored outline, secure icon registration"
+    },
+    "clientPins": {
+      "Retail": {
+        "build": "12.1.5.70961",
+        "commit": "ab5cb850a3f65e742959e379c4689353a2f4549f"
+      },
+      "Forever": {
+        "build": "1.60.1.71037",
+        "commit": "734f065329cff4992835b01a84f210a297db91b6"
+      },
+      "Classic progression": {
+        "build": "5.5.4.70631",
+        "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf"
+      },
+      "Classic Era": {
+        "build": "1.15.9.70576",
+        "commit": "4192ac60067fc55566182291bc67c85dd9b6794d"
+      },
+      "Anniversary": {
+        "build": "2.5.6.70577",
+        "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+      }
+    },
+    "blizzardFiles": [
+      "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+      "Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlateAuras.lua",
+      "Interface/AddOns/Blizzard_AuraContainer/Blizzard_CustomAuraButton.lua"
+    ]
+  },
+  "productionSourceSha256": {
+    "Core/API/Aura.lua": {
+      "before": "11ef71d9d678c916a03bf668d796d8486e3e3b0af3d53b82666fbeaf1c47c27a",
+      "after": "bf86e3c31ffcd715cd6d95f183cf337e63b3ff1e0343a87db33ce722eaf04582"
+    },
+    "NamePlates/Countdown.lua": {
+      "before": "10ab6f9e8584b1e70f42afc25218c4e2024c12566ed216d20f63d3ce9fff2f2c",
+      "after": "f03b1c98b10734d07eef40cd3a4c2a7ec95de825efa82b7cd2099ce2dc4f9d9d"
+    },
+    "AddonOptions/FluxOptionsNameplatePreview.lua": {
+      "before": "0c28f3bbe53b944ebf64e883c4a141547aef34bf744e65d4d46e23ea180ec3b3",
+      "after": "e89a10595f9f4f417680ff95d6aa7d97c43532d9285f431ad3b3228fa311be5c"
+    },
+    "UnitFrames/FluxUnitFrames_Auras.lua": {
+      "before": "c13a57c54d70e56fbc66651453bd63ab6f33e339385ad6ad444a1eb982f75b33",
+      "after": "d9dfb034e77f57c915432263bf590c77f0f99ca0939f0152db099efc0e2e273d"
+    },
+    "UnitFrames/FluxUnitFrames_AurasEngine.lua": {
+      "before": "21ec16d37097dc24ae2108f1d6570770ec6182c76724c5ca98f67f8a54ea5e56",
+      "after": "095ec0fb88da7140dfd406a55abb80052735614a81c991cfbe05eb0b39fa3bc2"
+    },
+    "UnitFrames/FluxUnitFrames_PetAuraTooltip.lua": {
+      "before": "b02b38d0ed5040370bf38c8c8248544f6f34a4af0a36f35c72990727d9c86cd2",
+      "after": "82ed0abcf2fa22e1fb1f235aa09875da274a03ae4d906851ee6593c96610529a"
+    },
+    "RaidFrame/FluxRaidAuras.lua": {
+      "before": "1b6b674179f7f6a16876159c5d290f11d6795d1ce4d11f0fdf80c7670f1eb81e",
+      "after": "0686d7fd9970ad3292bc81035975de54dbc766269b34e2f3395f280adc2de00d"
+    },
+    "RaidFrame/FluxRaidVisuals.lua": {
+      "before": "e23a055dfe8720d7fa57ea89c1ba20529470fe4f1702331981b4b584e75ac65a",
+      "after": "a5e62cf12ff7ff7d7b06ac5e7378dce459b4057bad14d66866c81e6301e01219"
+    },
+    "RaidFrame/FluxRaidPreview.lua": {
+      "before": "67defe6c3238c35180ec28412bf971174e809b222c223d9922905bac26523fa0",
+      "after": "ec373be553f4dd62e0f56ed035c60f7be6b61c82d284c6ff7c0672095ed6407a"
+    }
+  },
+  "fixtureSha256": {
+    "RaidFrame/_tmp_raidaurassmoke.lua": "5100291a0a5f3140fcdda263611a247d32be88f96f1976b8c3daddcaa55d3250",
+    "tests/focus_aura_geometry.lua": "c3b15812d35caa077e51dc7f6974160109ae83db99454bb33b4956c6df8f450b",
+    "tests/nameplate_appearance.lua": "5f2a44a1fc11b21aad0bcaa066032f0f494b27fa7647538bbec00f3ac331f021",
+    "tests/nameplate_client_compat.lua": "19aa339cf70f003544e4d91d1fc8fe92481c2d6804547aeecba2d21ac712ac7d",
+    "tests/nameplate_countdown_work.lua": "14653f7b8db0c1c1744f1b18b61bbad4f76a17538758b96e6c9c3c45453b56ab",
+    "tests/nameplate_quest_progress.lua": "17a187415596ec29e29ad0575eba4758e50fe6f942a96198b69d83becd494c41",
+    "tests/options_navigation.lua": "e6fd9fa03eb7060976586a20dbe74641fc36a4f0c530c6b75cab2c9224399675",
+    "tests/options_rework.lua": "1dc26ce3d49c2a5155c5c9a7be1e27095cfcbefb548f85513ec4cd1a0694169a",
+    "tests/party_debuff_visibility.lua": "7ef4b45d19d0c13fe63b797f1627cfc160255c4921770073eb7e6ca81ebbf925",
+    "tests/passive_raid_aura_snapshots.lua": "8a9e639f50627ceb1593878759851d91e3f919bd452fc4f7f21d4696df901aa6",
+    "tests/raid_aura_layout.lua": "961ce24a7d7c9def93576c02fc89d6a4f89923cdd5d9256566324a672b7d6308",
+    "tests/raid_aura_live_options.lua": "fd198903fbe3d6c3f67d977ed00296734c36913025ac86b5d6cff6e15761faab",
+    "tests/raid_aura_native_filters.lua": "ca70e76c9464cdc084bd2cab42af663600ca6138c6c514a3408f56b8d7f1cc55",
+    "tests/raid_aura_options.lua": "2ee97175bc85e7f62c2cde8291fe60e6674ea6649aa96c036a59c5034c81351e",
+    "tests/raid_healer_auras.lua": "200687b4e77b2414d28202e685f6d72bc7d5e62ab6771878407d5f114679a529",
+    "tests/raid_healer_visuals.lua": "c461e435057bd7017fca06e5c20883d71b20f3fb728250f00af51a40510f6554",
+    "tests/raid_party_frames.lua": "f91d50d3a1cf946b9f8156d7e1ee2f2fcb0cd7870e4874723f753bae365083be",
+    "tests/unit_aura_group_layout_work.lua": "57da106bb40a941ce1677f67c52099cfed8a06e27e7aef850ea2f858ac209de9",
+    "tests/unit_aura_timer_policy.lua": "4f70b8e28b179a2962fe58bfd9134160b807e599c3604e6dbfd69f9807954e1f",
+    "tests/unit_tooltip_ownership.lua": "34a6f190be3286c548e96c4c0d6a964c40c434bcbf7167a6ce6bf908c7e252f1"
+  },
+  "installedVerification": {
+    "_retail_": {
+      "matches": 9,
+      "mismatches": []
+    },
+    "_forever_": {
+      "matches": 9,
+      "mismatches": []
+    },
+    "_classic_": {
+      "matches": 9,
+      "mismatches": []
+    },
+    "_classic_era_": {
+      "matches": 9,
+      "mismatches": []
+    },
+    "_anniversary_": {
+      "matches": 9,
+      "mismatches": []
+    }
+  },
+  "testRuns": [
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/nameplate_appearance.lua",
+      "summary": "PASS nameplate appearance: 169 checks across five client models; native rendering pending"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/nameplate_client_compat.lua",
+      "summary": "PASS nameplate client compatibility: 40 desktop checks"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/nameplate_countdown_work.lua",
+      "summary": "Nameplate countdown work: 1245 checks, 0 failures"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/nameplate_quest_progress.lua",
+      "summary": "QUEST_PROGRESS checks=1261 failures=0 native_pixels_taint_performance=NOT_RUN"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/unit_aura_group_layout_work.lua",
+      "summary": "Unit aura group layout: 1709 checks PASS; exact native setters, complete descriptors, unchanged paint/membership cadence, real engine/group lifetime, failure/private/hot-load recovery. Native FPS/taint pending"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/unit_aura_timer_policy.lua",
+      "summary": "PASS 74 unit aura minute-policy checks; native rendering pending"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/focus_aura_geometry.lua",
+      "summary": "Focus aura geometry: 1075 actual metric/anchor checks; native pixels pending"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/unit_tooltip_ownership.lua",
+      "summary": "unit_tooltip_ownership: 735 checks passed (desktop ownership/lifecycle only)"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/party_debuff_visibility.lua",
+      "summary": "Party debuff visibility: 446 checks PASS; five client models, native/legacy render paths and missing-atlas fallback; native pixels/taint pending"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/raid_healer_auras.lua",
+      "summary": "Raid healer auras: 11487 checks; actual native owner/flow projection, global one-to-six limits, native-relative sizing, strict filters and cooldown sinks; eleven rejected negative controls; client visuals/scheduling pending"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/raid_healer_visuals.lua",
+      "summary": "raid healer visuals: 744 checks passed (desktop only)"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/raid_party_frames.lua",
+      "summary": "Party player-style frames: 1480 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/raid_aura_native_filters.lua",
+      "summary": "Raid native aura policy: 126 passed, 0 failed; five pinned client policies, public native predicates; native VM/rendering pending"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/raid_aura_live_options.lua",
+      "summary": "Raid aura live options: 1701 checks; actual scoped options/orchestrator/unit/aura/queue bridge on five modeled clients; native pixels pending"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/raid_aura_layout.lua",
+      "summary": "Raid aura layout: 2944 checks; stock-relative squares, independent aura resizing and actual text crop; four rejected mutants; native rendering pending"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/raid_aura_options.lua",
+      "summary": "Raid aura options/preview: 280 checks; actual scopes/resets and synthetic native-relative widgets; desktop only"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/passive_raid_aura_snapshots.lua",
+      "summary": "PASS raid fallback snapshots: 108 actual-painter checks; native owners untouched"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/options_navigation.lua",
+      "summary": "Options navigation: 7996 checks; actual builders mapped across five client contracts; native rendering pending"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/options_rework.lua",
+      "summary": "Options rework: 1343 checks; complete shell/renderer/widgets and menu lifecycle across five client models; native acceptance pending"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "RaidFrame/_tmp_raidaurassmoke.lua",
+      "summary": "Retained private-anchor adapter smoke OK (4 source snapshots; production category integration and engine taint require separate validation)"
+    },
+    {
+      "lua": "Lua 5.1",
+      "file": "tests/nameplate_appearance.lua",
+      "summary": "PASS nameplate appearance: 169 checks across five client models; native rendering pending"
+    },
+    {
+      "lua": "Lua 5.1",
+      "file": "tests/nameplate_client_compat.lua",
+      "summary": "PASS nameplate client compatibility: 40 desktop checks"
+    }
+  ],
+  "syntaxChecks": 18,
+  "pairedReplays": {
+    "groupAura": {
+      "file": "raid-aura-debuff-three-pairs.json",
+      "sha256": "06712ac32df49778b058b8fcea3db31f6d2220fc9e64c529b55faa46bdfa7320",
+      "scope": "Five client models. Native projections run Retail and Forever with 5/40 occupants; readable aura snapshots run all three Classic clients across 16 option/combat combinations each.",
+      "measurements": [
+        {
+          "pair": 1,
+          "readableCells": 48,
+          "readableLookupsBefore": 252,
+          "readableLookupsAfter": 252,
+          "nativeCells": 4,
+          "readableOutput": "PASS raid fallback snapshots: 108 actual-painter checks; native owners untouched",
+          "readableRaw": "raid-aura-query-pair-1.txt",
+          "nativeRaw": "raid-aura-native-pair-1.txt"
+        },
+        {
+          "pair": 2,
+          "readableCells": 48,
+          "readableLookupsBefore": 252,
+          "readableLookupsAfter": 252,
+          "nativeCells": 4,
+          "readableOutput": "PASS raid fallback snapshots: 108 actual-painter checks; native owners untouched",
+          "readableRaw": "raid-aura-query-pair-2.txt",
+          "nativeRaw": "raid-aura-native-pair-2.txt"
+        },
+        {
+          "pair": 3,
+          "readableCells": 48,
+          "readableLookupsBefore": 252,
+          "readableLookupsAfter": 252,
+          "nativeCells": 4,
+          "readableOutput": "PASS raid fallback snapshots: 108 actual-painter checks; native owners untouched",
+          "readableRaw": "raid-aura-query-pair-3.txt",
+          "nativeRaw": "raid-aura-native-pair-3.txt"
+        }
+      ],
+      "readableMedianLookupsBefore": 252,
+      "readableMedianLookupsAfter": 252,
+      "conclusion": "Every readable count and original icon/filter/sort/duration trace matched, and all native owner binding/retirement writes and projected subscription/visibility traces matched. Native timings and pixels are outside this fixture."
+    },
+    "nameplateCountdown": {
+      "file": "nameplate-countdown-debuff-pairs.json",
+      "sha256": "b16035056ebd67c1b9dbc9b41b0eb7d629c7d283776c306f11757275d256898a",
+      "pairs": 3,
+      "sameWorkCountScenariosPerPair": 25,
+      "scope": "Untyped aura countdown reads, label writes, anchors and frame counts"
+    }
+  },
+  "native": "Desktop and installed-source verification only. In-game appearance, protected widget behavior and FPS remain pending."
+}

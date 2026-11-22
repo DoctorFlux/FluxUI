@@ -43,6 +43,22 @@ local Config = FluxSmartMountConfig
 local C_MountJournal = C_MountJournal
 local C_Spell = C_Spell
 
+-- Keys follow Flux's modifier tracker; prefixes follow SecureButton_GetModifierPrefix.
+Config.ForeverSlots = {
+    { key = "nomod", name = "Default" },
+    { key = "shift", name = "Shift", prefix = "shift-" },
+    { key = "ctrl", name = "Ctrl", prefix = "ctrl-" },
+    { key = "alt", name = "Alt", prefix = "alt-" },
+    { key = "ctrl+shift", name = "Ctrl+Shift", prefix = "ctrl-shift-" },
+    { key = "ctrl+alt", name = "Ctrl+Alt", prefix = "alt-ctrl-" },
+    { key = "shift+alt", name = "Shift+Alt", prefix = "alt-shift-" },
+    { key = "ctrl+shift+alt", name = "Ctrl+Shift+Alt", prefix = "alt-ctrl-shift-" },
+}
+
+local function UsesForeverMounts()
+    return FluxNCMountCollection and FluxNCMountCollection.UsesForeverMounts()
+end
+
 -- Journal: IsFlyableArea / [flyable]. Bag items: continent+outdoors when that API is missing.
 local function IsFlyableAreaFixed()
     local Flux = _G.Flux
@@ -327,6 +343,10 @@ end
 --- Fill global.mountConfig when unset; multi slots mirror ground/flying picks. Copies account → empty character slots.
 local function ApplyAutomaticMountDefaultsIfNeeded()
     InitializeDB()
+    if UsesForeverMounts() then
+        if configFrame and configFrame:IsShown() then configFrame:UpdateDisplay() end
+        return
+    end
     if not C_MountJournal or not C_MountJournal.GetMountIDs then
         return
     end
@@ -433,6 +453,32 @@ function Config.GetCurrentMountConfig()
     return FluxNonCombatGridDB.global.mountConfig
 end
 
+function Config.GetForeverMountAssignment(key)
+    local cfg = Config.GetCurrentMountConfig()
+    if cfg.forever then return cfg.forever[key] end
+    if key == "nomod" then return cfg.ground end
+end
+
+local function SaveForeverMount(key, mountID)
+    local cfg = Config.GetCurrentMountConfig()
+    cfg.forever = cfg.forever or { nomod = cfg.ground }
+    cfg.forever[key] = mountID
+    if configFrame then configFrame:UpdateDisplay() end
+    NotifyChange()
+end
+
+local function IsAssignableForeverMount(mountID)
+    if type(mountID) ~= "number" or mountID <= 0 then return false end
+    local _, spellID, _, _, _, _, _, _, _, hidden, collected = C_MountJournal.GetMountInfoByID(mountID)
+    return spellID and collected and not hidden
+end
+
+local function SetForeverMountFromJournal(key, mountID)
+    if not IsAssignableForeverMount(mountID) then return false end
+    SaveForeverMount(key, mountID)
+    return true
+end
+
 -- Toggle between account-wide and character-specific mode
 function Config.ToggleCharacterSpecific()
     InitializeDB()
@@ -443,13 +489,17 @@ function Config.ToggleCharacterSpecific()
     -- If switching TO character mode AND character has no mounts set, copy from account
     if newMode then
         local charCfg = _FluxUI_CharSavedVars.mountConfig
+        local acc = FluxNonCombatGridDB.global.mountConfig
+        if UsesForeverMounts() and not charCfg.forever and not charCfg.ground and acc.forever then
+            charCfg.forever = {}
+            for key, mountID in pairs(acc.forever) do charCfg.forever[key] = mountID end
+        end
         local hasAnyCharMounts = (charCfg.ground and charCfg.ground ~= "")
             or (charCfg.flying and charCfg.flying ~= "")
             or (charCfg.groundMulti and charCfg.groundMulti ~= "")
             or (charCfg.flyingMulti and charCfg.flyingMulti ~= "")
 
         if not hasAnyCharMounts then
-            local acc = FluxNonCombatGridDB.global.mountConfig or {}
             charCfg.ground = acc.ground
             charCfg.flying = acc.flying
             charCfg.groundMulti = acc.groundMulti or acc.ground or acc.flying
@@ -663,7 +713,7 @@ function Config.OpenMountJournal()
         end
     end
     
-    SetupMountJournalHook()
+    if not UsesForeverMounts() then SetupMountJournalHook() end
 end
 
 -- ============================================================================
@@ -676,13 +726,19 @@ function Config.CreateMountConfigUI()
     
     local function CreateConfigFrame()
         local parentFrame = _G["CollectionsJournal"]
-        if not parentFrame then return false end
-        
+        local forever = UsesForeverMounts()
+        if not parentFrame or (forever and not MountJournal) then return false end
+
         local classColor = GetClassColor()
         
         configFrame = CreateFrame("Frame", "FluxSmartMountConfigFrame", UIParent)
-        configFrame:SetSize(120, 360)
-        configFrame:SetPoint("TOPRIGHT", parentFrame, "TOPRIGHT", 130, -25)
+        if forever then
+            configFrame:SetSize(176, 90)
+            configFrame:SetPoint("TOPLEFT", parentFrame, "TOPRIGHT", 60, -25)
+        else
+            configFrame:SetSize(120, 360)
+            configFrame:SetPoint("TOPRIGHT", parentFrame, "TOPRIGHT", 130, -25)
+        end
         configFrame:SetFrameStrata("MEDIUM")
         configFrame:SetFrameLevel(100)
         configFrame:Hide()
@@ -744,7 +800,7 @@ function Config.CreateMountConfigUI()
             end)
         end)
         
-        local slots = {
+        local slots = forever and Config.ForeverSlots or {
             { name = "Ground", key = "ground", y = -40 },
             { name = "Flying", key = "flying", y = -118 },
             { name = "Ground Multi", key = "groundMulti", y = -196 },
@@ -753,25 +809,65 @@ function Config.CreateMountConfigUI()
         
         configFrame.slots = {}
         configFrame.mountSlotBorders = {}
+        if forever then
+            local addModifier = FluxBlizzardDropdown.Create(configFrame, nil, 142)
+            addModifier:FluxSetText("Add modifier")
+            addModifier:FluxSetMenu(function()
+                local mountID = MountJournal.selectedMountID
+                if not IsAssignableForeverMount(mountID) then
+                    return { { text = "Select a collected mount first", disabled = true } }
+                end
+                local choices = {}
+                local scope = Config.GetCurrentMountConfig()
+                for _, slot in ipairs(Config.ForeverSlots) do
+                    local key = slot.key
+                    if slot.prefix and not Config.GetForeverMountAssignment(key) then
+                        choices[#choices + 1] = { text = slot.name, func = function()
+                            if configFrame:IsShown() and Config.GetCurrentMountConfig() == scope
+                                and not Config.GetForeverMountAssignment(key) then
+                                SetForeverMountFromJournal(key, mountID)
+                            end
+                        end }
+                    end
+                end
+                return choices
+            end)
+            configFrame.addModifier = addModifier
+        end
         
         for _, slotInfo in ipairs(slots) do
-            local label = configFrame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-            label:SetPoint("TOP", configFrame, "TOP", 0, slotInfo.y)
+            local row = configFrame
+            if forever then
+                row = CreateFrame("Frame", nil, configFrame)
+                row:SetHeight(24)
+                row:Hide()
+            end
+            local label = row:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
             label:SetText(slotInfo.name)
             label:SetTextColor(1, 1, 1)
             
-            local button = CreateFrame("Button", nil, configFrame)
-            button:SetSize(48, 48)
-            button:SetPoint("TOP", label, "BOTTOM", 0, -2)
+            local button = CreateFrame("Button", nil, row)
+            if forever then
+                button.row = row
+                button:SetSize(20, 20)
+                button:SetPoint("LEFT", row, "LEFT", 1, 0)
+                label:SetPoint("LEFT", button, "RIGHT", 4, 0)
+            else
+                label:SetPoint("TOP", configFrame, "TOP", 0, slotInfo.y)
+                button:SetSize(48, 48)
+                button:SetPoint("TOP", label, "BOTTOM", 0, -2)
+            end
             
             local icon = button:CreateTexture(nil, "ARTWORK")
-            icon:SetSize(40, 40)
+            local iconSize = forever and 18 or 40
+            icon:SetSize(iconSize, iconSize)
             icon:SetPoint("CENTER")
             icon:SetTexture("Interface\\Icons\\INV_Misc_QuestionMark")
             button.icon = icon
             
             local border = button:CreateTexture(nil, "OVERLAY")
-            border:SetSize(64, 64)
+            local borderSize = forever and 28 or 64
+            border:SetSize(borderSize, borderSize)
             border:SetPoint("CENTER")
             border:SetTexture("Interface\\Buttons\\UI-Quickslot2")
             border:SetVertexColor(0.5, 0.5, 0.5, 1)
@@ -780,7 +876,7 @@ function Config.CreateMountConfigUI()
             table.insert(configFrame.mountSlotBorders, border)
             
             local highlight = button:CreateTexture(nil, "HIGHLIGHT")
-            highlight:SetSize(64, 64)
+            highlight:SetSize(borderSize, borderSize)
             highlight:SetPoint("CENTER")
             highlight:SetTexture("Interface\\Buttons\\UI-ActionButton-Border")
             highlight:SetVertexColor(1, 1, 0, 0.8)
@@ -798,11 +894,17 @@ function Config.CreateMountConfigUI()
                     GameTooltip:AddLine(slotInfo.name .. " Mount Slot", 0.7, 0.7, 0.7)
                 else
                     GameTooltip:SetText(slotInfo.name .. " Mount", 1, 1, 1)
-                    GameTooltip:AddLine("Not set", 1, 0.5, 0)
+                    GameTooltip:AddLine(self.unavailable and "Unavailable" or "Not set", 1, 0.82, 0)
                 end
+                if self.unavailable and mountName then GameTooltip:AddLine("Unavailable", 1, 0.82, 0) end
+                if self.automatic then GameTooltip:AddLine("First usable mount", 0.7, 0.7, 0.7) end
                 GameTooltip:AddLine(" ")
                 GameTooltip:AddLine("Drag mounts here to set", 0.5, 1, 0.5)
-                GameTooltip:AddLine("Click to open Mount Journal", 0.6, 0.8, 1)
+                if forever then
+                    GameTooltip:AddLine("Select a mount in the journal, then click Set", 0.6, 0.8, 1)
+                else
+                    GameTooltip:AddLine("Click to open Mount Journal", 0.6, 0.8, 1)
+                end
                 GameTooltip:Show()
             end)
             
@@ -815,7 +917,9 @@ function Config.CreateMountConfigUI()
             button:SetScript("OnReceiveDrag", function(self)
                 local itemType, itemID = GetCursorInfo()
                 
-                if itemType == "spell" then
+                if forever then
+                    if itemType == "mount" and SetForeverMountFromJournal(slotInfo.key, itemID) then ClearCursor() end
+                elseif itemType == "spell" then
                     local spellName = GetSpellInfo(itemID)
                     if spellName then
                         Config.SaveMountConfig(slotInfo.key, spellName)
@@ -846,9 +950,9 @@ function Config.CreateMountConfigUI()
                 end
             end)
             
-            local setButton = CreateFrame("Button", nil, configFrame, "UIPanelButtonTemplate")
-            setButton:SetSize(48, 16)
-            setButton:SetPoint("TOP", button, "BOTTOM", 0, -1)
+            local setButton = CreateFrame("Button", nil, row, "UIPanelButtonTemplate")
+            setButton:SetSize(forever and 32 or 48, 16)
+            if not forever then setButton:SetPoint("TOP", button, "BOTTOM", 0, -1) end
             setButton:SetText("Set")
             setButton:SetNormalFontObject("GameFontNormalSmall")
             button.setButton = setButton
@@ -860,7 +964,9 @@ function Config.CreateMountConfigUI()
                     selectedMountID = mountJournal.selectedMountID
                 end
                 
-                if selectedMountID and C_MountJournal and C_MountJournal.GetMountInfoByID then
+                if forever then
+                    SetForeverMountFromJournal(slotInfo.key, selectedMountID)
+                elseif selectedMountID and C_MountJournal and C_MountJournal.GetMountInfoByID then
                     local mountName, mountSpellID = C_MountJournal.GetMountInfoByID(selectedMountID)
                     local spellName = mountName
                     if mountSpellID and C_Spell and C_Spell.GetSpellInfo then
@@ -873,10 +979,21 @@ function Config.CreateMountConfigUI()
                 end
             end)
             
-            button:SetScript("OnClick", function(self)
-                configuringMount = self.key
-                Config.OpenMountJournal()
-            end)
+            if forever then
+                local clearButton = CreateFrame("Button", nil, row, "UIPanelButtonTemplate")
+                clearButton:SetSize(38, 16)
+                clearButton:SetPoint("RIGHT", row, "RIGHT", 0, 0)
+                setButton:SetPoint("RIGHT", clearButton, "LEFT", -3, 0)
+                clearButton:SetText(CLEAR or "Clear")
+                clearButton:SetNormalFontObject("GameFontNormalSmall")
+                clearButton:SetScript("OnClick", function() SaveForeverMount(slotInfo.key, nil) end)
+                button.clearButton = clearButton
+            else
+                button:SetScript("OnClick", function(self)
+                    configuringMount = self.key
+                    Config.OpenMountJournal()
+                end)
+            end
             
             configFrame.slots[slotInfo.key] = button
         end
@@ -884,11 +1001,36 @@ function Config.CreateMountConfigUI()
         function configFrame:UpdateDisplay()
             local config = Config.GetCurrentMountConfig()
             if not config then return end
-            
-            for key, button in pairs(self.slots) do
+            local y, remaining = -34, 0
+
+            for _, slot in ipairs(slots) do
+                local key = slot.key
+                local button = self.slots[key]
                 local mountName = config[key]
+                local mountTexture
+                if forever then
+                    local assignment = Config.GetForeverMountAssignment(key)
+                    local entry = assignment and FluxNCMountCollection.GetForeverMount(assignment)
+                    button.automatic = key == "nomod" and not assignment
+                    if button.automatic then entry = FluxNCMountCollection.GetFirstUsableForeverMount() end
+                    mountName = entry and entry.name
+                    mountTexture = entry and entry.icon
+                    button.unavailable = assignment and (not entry or not entry.isUsable)
+                    button.clearButton:SetEnabled(assignment ~= nil)
+                    button.icon:SetDesaturated(button.unavailable == true)
+                    if assignment or key == "nomod" then
+                        button.row:ClearAllPoints()
+                        button.row:SetPoint("TOPLEFT", self, "TOPLEFT", 7, y)
+                        button.row:SetPoint("TOPRIGHT", self, "TOPRIGHT", -7, y)
+                        button.row:Show()
+                        y = y - 24
+                    else
+                        button.row:Hide()
+                        remaining = remaining + 1
+                    end
+                end
                 if mountName and mountName ~= "" then
-                    local mountTexture = Config.GetMountIconTexture(mountName)
+                    mountTexture = mountTexture or Config.GetMountIconTexture(mountName)
                     if mountTexture then
                         button.icon:SetTexture(mountTexture)
                     else
@@ -900,6 +1042,13 @@ function Config.CreateMountConfigUI()
                     button.mountSpell = nil
                 end
             end
+            if forever then
+                local add = self.addModifier
+                add:ClearAllPoints()
+                add:SetPoint("TOP", self, "TOP", 0, y - 2)
+                add:SetShown(remaining > 0)
+                self:SetHeight(-y + (remaining > 0 and 32 or 6))
+            end
             UpdateToggleText()
             ApplyBorderColor()
         end
@@ -909,7 +1058,13 @@ function Config.CreateMountConfigUI()
         -- Visibility function: only show when CollectionsJournal is open AND on Mounts tab (tab 1)
         local function UpdateFrameVisibility()
             if not configFrame or not collectionsJournal then return end
-            if collectionsJournal:IsShown() and collectionsJournal.selectedTab == 1 then
+            local visible
+            if forever then
+                visible = MountJournal and MountJournal:IsVisible()
+            else
+                visible = collectionsJournal.selectedTab == 1
+            end
+            if collectionsJournal:IsShown() and visible then
                 configFrame:Show()
                 configFrame:UpdateDisplay()
             else
@@ -925,6 +1080,14 @@ function Config.CreateMountConfigUI()
             if configFrame then configFrame:Hide() end
         end)
         
+        if forever then
+            -- Forever's native tabs live in TabContainer. Follow the mount pane itself.
+            MountJournal:HookScript("OnShow", UpdateFrameVisibility)
+            MountJournal:HookScript("OnHide", function() configFrame:Hide() end)
+            UpdateFrameVisibility()
+            return true
+        end
+
         local mountsTab = collectionsJournal.MountsTab
         if mountsTab then
             mountsTab:HookScript("OnClick", function()

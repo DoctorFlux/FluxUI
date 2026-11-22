@@ -1,0 +1,207 @@
+{
+  "changeId": "RESTOCK-CARRIED-FLOWCRAFT-20261122",
+  "date": "2026-11-22",
+  "checkpoint": {
+    "manifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-carried-flowcraft-before-20261122T085855Z\\checkpoint.json",
+    "sourceFilesVerified": 54,
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a1ffc8-e3e4-7861-a366-cde5c05e7611\\fluxui-debuff-type-before-20261121T222839Z\\history.bundle",
+    "historyBundleSha256": "90bfc84da44ffd45c6617f5304a431e6ed808eadb90080ffefe4bc5d691b2909",
+    "branch": "main",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "settingsMetadataRows": 81,
+    "settingsContentsCopied": false,
+    "companionStages": [
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-carried-flowcraft-20261122",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-compact-queue-20261122",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-cached-mail-20261122"
+    ]
+  },
+  "requirements": {
+    "acquisition": "Profession opening follows carried material readiness for both owners. Companion Restock and multi-step orders require the whole order's external inputs before the first task.",
+    "shopping": "Show the selected provider's physical counts as published. A warm Syndicator positive can appear as pending until its fresh replacement. Keep the qualified inbox spending gate and native collection checks.",
+    "workspace": "Compact single-line icon rows, adaptive shelf and shared next-craft action in Flowcraft and native profession tabs."
+  },
+  "desktop": {
+    "baseline": {
+      "followup": 674,
+      "companionBridge": 198,
+      "hud": 63443,
+      "mailObservation": 29,
+      "mailWorker": 4500
+    },
+    "candidate": {
+      "ownerFocused": {
+        "auction": {
+          "checks": 12708,
+          "profiles": 46
+        },
+        "followup": {
+          "checks": 674,
+          "profiles": 10
+        },
+        "craftDriver": {
+          "checks": 3279,
+          "profiles": 20
+        },
+        "closedProfession": {
+          "checks": 1220,
+          "closedProfiles": 30,
+          "progressProfiles": 20
+        },
+        "companionBridge": {
+          "checks": 206,
+          "profiles": 13
+        },
+        "hud": {
+          "checks": 63535,
+          "profiles": 5,
+          "overflow": [
+            193,
+            500,
+            1000
+          ]
+        },
+        "vendorRoutes": {
+          "checks": 476,
+          "profiles": 20
+        },
+        "mailWorker": {
+          "checks": 4500,
+          "profiles": 20
+        },
+        "mailObservation": {
+          "checks": 77,
+          "providers": [
+            "builtin",
+            "Syndicator"
+          ],
+          "externalPublisher": "Installed Syndicator source loaded by fixture"
+        }
+      },
+      "companion": {
+        "scriptsPassed": 16,
+        "method": "Installed canonical source after the warm Syndicator follow-up"
+      },
+      "syntax": {
+        "changedLuaFilesPassed": 17,
+        "parser": "luac -p"
+      },
+      "whitespace": "git diff --check passed"
+    }
+  },
+  "native": {
+    "status": "Candidate reload and interaction pending",
+    "foregroundTaken": false,
+    "inputSent": false,
+    "baselineReadOnly": {
+      "client": "Forever",
+      "build": "1.60.1.71037",
+      "processId": 16640,
+      "windowHandle": 22677020,
+      "capturedUtc": "2026-11-22T09:10:16.967032+00:00",
+      "capture": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-carried-flowcraft-before-20261122T085855Z\\forever-options-before-companion-install.png",
+      "sha256": "673997acc7ed5cd340816f2c0027e53cb3ea74ab921733bc6273ac9d4738f944",
+      "foregroundUnchanged": true,
+      "visible": [
+        "Native Professions Book",
+        "Merchant"
+      ]
+    }
+  },
+  "fixtureSources": {
+    "_FluxUI": {
+      "tests/auction_restock_followup_logistics.lua": {
+        "before": "62c15becffc71bb4678e12c34042c54f285ea806e8a8f76c61a2b77e12fe70ae",
+        "after": "660c13c0e552ca7cfc185939617e83679e8e16d89eedf043b6b35f358ceffb14"
+      },
+      "tests/auction_restock_followup_ui.lua": {
+        "before": "565349a5f90fc063c16760d7e82479ce12dc6719bfa09623965102b10da1a0fb",
+        "after": "d85a1ae162a4ce0ec0388adfa38b990920cf8c757adc8344e9b7121e21378396"
+      },
+      "tests/inventory_observed_inbox.lua": {
+        "before": "89b076ba22a395d3a93ebf108f804eae922cf2ab10dcb90d570e044258565797",
+        "after": "49a53ff2c4228ec4a3a7820d55b2f13ba32d7558797da7e04741a5ddccd93fa3"
+      }
+    },
+    "FluxLogistics": {
+      "Tests/execution_test.lua": {
+        "before": "652f3c2b8b94c8b3292409eaf3b64ca59951a63665ee08e704d59fc0079b8fcf",
+        "after": "8fcb8e7e597262540ab539be9c947f4c1b9c52e762564f801951b8c6996ea2a0"
+      },
+      "Tests/logistics_test.lua": {
+        "before": "ef46c5ac41ab6666e4e10cf54aa74919c426c06ba04fdf7eb7f386c9139c8038",
+        "after": "889c03799fb7272ef64fccd41c48a4c8bc6b8cb3d081fe7f5149c6bcf15b2b28"
+      },
+      "Tests/workspace_test.lua": {
+        "before": "80f251dd6f5d7110c0af4070cb572967d8d1ed287ff54c29f4a3736b0dab45c7",
+        "after": "c3e311e3d7696594c92239a221695f5be0dabf2e52bd500269737168fc2978df"
+      }
+    }
+  },
+  "installedSources": {
+    "_FluxUI": {
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": {
+        "before": "29cb0ea653af1525ff2b5dcc675c1210585203eab1c5ca65d777bf1fc99f09f0",
+        "after": "95a172c2405777595f933dfb35b112989541a3045c89b1c54c304df80cfc1309"
+      },
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua": {
+        "before": "f4153d186585d281c8ac3061a84961219b61fc1fbb7b1a51b64ea4930b212134",
+        "after": "6f6a10a3ad5ce655d42f718b1ecae33c1db93b12914365da2824914bb106a04b"
+      },
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": {
+        "before": "6082adf497c8e0e4dfbc7d82e02bd07e9643e3fa0ff1b46bd0168c53e966c9a2",
+        "after": "0793c2168899cb5004a5fb7ce04418bca364819d07e57f8f02472bf68e612e3e"
+      },
+      "Inventory/Index.lua": {
+        "before": "6ae7688ac342d7dc2bc55c6059fcdb7ce51845e6d65155dcaffc0c94e52f52b2",
+        "after": "3d29578048ea0a40373a01cb9945fe5a9cff1175b7d4f55c0e67f1dc4688a6ae"
+      },
+      "Inventory/Syndicator/Adapter.lua": {
+        "before": "49e24190f38991e7ce3e9619dd47a086c1f3a89516a43ba9ef14f7ea8473d967",
+        "after": "84b54873e56fdca7e465787b07234090cb6c6764775e506b3c603ef118a50fa4"
+      }
+    },
+    "FluxLogistics": {
+      "FluxCraft/Execution.lua": {
+        "before": "cf93e3f4654b4dc97cb917946376675ddf552c834e89f4f5e1a729b8b69da8da",
+        "after": "bb2c2ed6898122d3ad1fe9bbb42df2cb8d1b2b0359ba9bdb7e463228d6d5aedf"
+      },
+      "FluxCraft/Logistics.lua": {
+        "before": "c8557df1b188b5eb4ee1bbef6745d8d84c6e12812472c2e7ffde0ca4c183f577",
+        "after": "2d2385ae6018cc909037d06625df7219db2fdcfbb69a1d02b8c9df0e7c28b24e"
+      },
+      "FluxCraft/Queue.lua": {
+        "before": "6f3f33ad5e9a67e6c94f07b89acf723bb330f156aa2159ae233cd7c3ea858690",
+        "after": "32c9e4ffbe27221f6a0275f2eb677f7489166dac5184fd42ecf1596336de2164"
+      },
+      "FluxCraft/Graph.lua": {
+        "before": "0f832c50b9b484cb7115bf67ab0156456347975a3dd42888d084cf556d93abca",
+        "after": "364b8ee34a3b8638e0d2e6040d20c99d61292bb9389e0007a88dbd2a31a3d233"
+      },
+      "FluxCraft/UI.lua": {
+        "before": "d57bb4eb02ace2a91c45115e928a3eaedf1e62b83d3ea175aa2bd099df472284",
+        "after": "5f0b68492a3d535b3fc1245da01ece1f2e9dab6160c1c8af5d1e66132f48ceb3"
+      },
+      "FluxCraft/Locale.lua": {
+        "before": "38c0b962c773699abf8ee2e92fa862919fb90d9a41fd6f77c2f5577f936c3d66",
+        "after": "30581c8bf8b82c389fab1364d352ff82e7cabd997dbdc6c477924cd071d52f2a"
+      }
+    }
+  },
+  "installation": {
+    "clients": [
+      "_retail_",
+      "_forever_",
+      "_classic_",
+      "_classic_era_",
+      "_anniversary_"
+    ],
+    "runtimeFilesVerified": 11,
+    "ownerRuntimeFiles": 5,
+    "companionRuntimeFiles": 6,
+    "companionFilesApplied": 9,
+    "runtimeSha256MatchAcrossAllClients": true,
+    "companionActiveClientRule": "Existing Forever, Classic progression, Era and Anniversary targets",
+    "warmCacheFollowupFilesApplied": 2
+  }
+}

@@ -27,6 +27,7 @@ local function fixture(branch, body, baseline, zoomFallback)
     local modern = branch == "live" or branch == "forever"
     env.IsOlderClient = function() return not modern end
     env.InCombatLockdown = function() return s.combat end
+    env.IsMapRefreshRestricted = env.InCombatLockdown
     env.C_Map = { GetBestMapForUnit = function(unit) check(unit == "player", "display map resolves player"); return 17 end }
     env.C_AddOns = { LoadAddOn = function() return false end }
     env.positionUpdateQueue = {}

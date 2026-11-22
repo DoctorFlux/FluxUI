@@ -1,0 +1,356 @@
+{
+  "id": "NAMEPLATE-AURA-STYLE-HOVER-20261122",
+  "recordedUtc": "2026-11-21T23:51:30.492680+00:00",
+  "checkpoint": {
+    "name": "fluxui-nameplate-aura-style-before-20261121T234144Z",
+    "main": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "sources": 3416,
+    "settingsMetadataEntries": 92,
+    "archiveSha256": "2e3babde49535b50a4e79f3ad14adc7fbd44d3ce421e1ff20ef0773641c6ffcc",
+    "bundleSha256": "416fb9a37970fce32960a6e8881f4147da239fa1512766ca1b3392aed2282ce7"
+  },
+  "sourcePins": {
+    "Retail": {
+      "build": "12.1.5.70961",
+      "commit": "ab5cb850a3f65e742959e379c4689353a2f4549f",
+      "nativeStockAuraHover": true
+    },
+    "Forever": {
+      "build": "1.60.1.71037",
+      "commit": "734f065329cff4992835b01a84f210a297db91b6",
+      "nativeStockAuraHover": false
+    },
+    "Classic progression": {
+      "build": "5.5.4.70631",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "nativeStockAuraHover": true
+    },
+    "Classic Era": {
+      "build": "1.15.9.70576",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "nativeStockAuraHover": true
+    },
+    "Anniversary": {
+      "build": "2.5.6.70577",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "nativeStockAuraHover": true
+    }
+  },
+  "nativeSources": [
+    "Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlateAuras.xml",
+    "Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlateAuras.lua",
+    "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraButton.xml",
+    "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraButton.lua",
+    "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua"
+  ],
+  "referenceArt": {
+    "repository": "https://github.com/malkkav/FlareUI",
+    "commit": "4b04c07968ac2a2d8a6b47190469753eb9ee0ce5",
+    "source": "Modules/Auras.lua",
+    "notice": "Texture/NameplateAuras/LICENSE-FlareUI.txt",
+    "authorization": "User confirmed permission to reuse FlareUI visuals and artwork in this conversation.",
+    "workingCopySha256": {
+      "Texture/NameplateAuras/IconBorder.tga": "5d51aaa117f7fd01b81065227acadab9e4ac8ecd9097649b0c746ddd194019b0",
+      "Texture/NameplateAuras/IconMask.tga": "662c8e5a8a59189148d344503668e7831712d689e05e893fd86c62e517824b04",
+      "Texture/NameplateAuras/Edge.tga": "def81f5a1bf4079db33487f3f4487d362eb1ed461a4cda431abd6dcb504280e3",
+      "Texture/NameplateAuras/LICENSE-FlareUI.txt": "4e69c1e381395e9ac7cf8ed29025afedb0e031de10ba3e17789dc351fbfbcf11"
+    }
+  },
+  "productionSourceSha256": {
+    "NamePlates/SecureAuras.lua": {
+      "before": "33bb1c47e7ca45a8d066e7ec6c64db840ee784a5664ddbba0399467e6bdaace2",
+      "after": "bbdc158aae397b6120922b609abe46445adcd8e22bdf034cb63f5ad8ab4a2f82"
+    },
+    "NamePlates/Countdown.lua": {
+      "before": "3b73d7ca689e14dabd16fec6855439c44507772f81c833f4cb4bcb7c038d8938",
+      "after": "26bccb5b5f661c4f5987e5e3142119b83aba560523b90a465bc1f61d1285c6a1"
+    },
+    "Core/API/Aura.lua": {
+      "before": "b7d587388c1e404f63ffa5af9ebad76abfc2952410251d403008f74645e5b18f",
+      "after": "bdf48999db73470423533ff58c8623ce14192ff87b8aae975773e387f2ed3bf3"
+    },
+    "AddonOptions/FluxOptionsNameplatePreview.lua": {
+      "before": "e89a10595f9f4f417680ff95d6aa7d97c43532d9285f431ad3b3228fa311be5c",
+      "after": "b6f873ed7ff5936ea027508bb60251828dfaccb1f214f2e723a1eb86aa20a640"
+    },
+    "Texture/NameplateAuras/IconBorder.tga": {
+      "before": null,
+      "after": "5d51aaa117f7fd01b81065227acadab9e4ac8ecd9097649b0c746ddd194019b0"
+    },
+    "Texture/NameplateAuras/IconMask.tga": {
+      "before": null,
+      "after": "662c8e5a8a59189148d344503668e7831712d689e05e893fd86c62e517824b04"
+    },
+    "Texture/NameplateAuras/Edge.tga": {
+      "before": null,
+      "after": "def81f5a1bf4079db33487f3f4487d362eb1ed461a4cda431abd6dcb504280e3"
+    },
+    "Texture/NameplateAuras/LICENSE-FlareUI.txt": {
+      "before": null,
+      "after": "4e69c1e381395e9ac7cf8ed29025afedb0e031de10ba3e17789dc351fbfbcf11"
+    }
+  },
+  "fixtureSha256": {
+    "tests/nameplate_secure_auras.lua": "c27a4ddc2287188eca6ef36a8af1a1be6a016dfbf229cfdbe9e0366181b1d0f3",
+    "tests/nameplate_appearance.lua": "6a6fe4d89896b9b9800b488b3a92802d98d9df5deb08a61a7d1ecb4785c41820"
+  },
+  "matchingInstallHashes": {
+    "_retail_": {
+      "NamePlates/SecureAuras.lua": true,
+      "NamePlates/Countdown.lua": true,
+      "Core/API/Aura.lua": true,
+      "AddonOptions/FluxOptionsNameplatePreview.lua": true,
+      "Texture/NameplateAuras/IconBorder.tga": true,
+      "Texture/NameplateAuras/IconMask.tga": true,
+      "Texture/NameplateAuras/Edge.tga": true,
+      "Texture/NameplateAuras/LICENSE-FlareUI.txt": true
+    },
+    "_forever_": {
+      "NamePlates/SecureAuras.lua": true,
+      "NamePlates/Countdown.lua": true,
+      "Core/API/Aura.lua": true,
+      "AddonOptions/FluxOptionsNameplatePreview.lua": true,
+      "Texture/NameplateAuras/IconBorder.tga": true,
+      "Texture/NameplateAuras/IconMask.tga": true,
+      "Texture/NameplateAuras/Edge.tga": true,
+      "Texture/NameplateAuras/LICENSE-FlareUI.txt": true
+    },
+    "_classic_": {
+      "NamePlates/SecureAuras.lua": true,
+      "NamePlates/Countdown.lua": true,
+      "Core/API/Aura.lua": true,
+      "AddonOptions/FluxOptionsNameplatePreview.lua": true,
+      "Texture/NameplateAuras/IconBorder.tga": true,
+      "Texture/NameplateAuras/IconMask.tga": true,
+      "Texture/NameplateAuras/Edge.tga": true,
+      "Texture/NameplateAuras/LICENSE-FlareUI.txt": true
+    },
+    "_classic_era_": {
+      "NamePlates/SecureAuras.lua": true,
+      "NamePlates/Countdown.lua": true,
+      "Core/API/Aura.lua": true,
+      "AddonOptions/FluxOptionsNameplatePreview.lua": true,
+      "Texture/NameplateAuras/IconBorder.tga": true,
+      "Texture/NameplateAuras/IconMask.tga": true,
+      "Texture/NameplateAuras/Edge.tga": true,
+      "Texture/NameplateAuras/LICENSE-FlareUI.txt": true
+    },
+    "_anniversary_": {
+      "NamePlates/SecureAuras.lua": true,
+      "NamePlates/Countdown.lua": true,
+      "Core/API/Aura.lua": true,
+      "AddonOptions/FluxOptionsNameplatePreview.lua": true,
+      "Texture/NameplateAuras/IconBorder.tga": true,
+      "Texture/NameplateAuras/IconMask.tga": true,
+      "Texture/NameplateAuras/Edge.tga": true,
+      "Texture/NameplateAuras/LICENSE-FlareUI.txt": true
+    }
+  },
+  "desktop": {
+    "runs": [
+      {
+        "lua": "5.4",
+        "file": "tests/nameplate_secure_auras.lua",
+        "result": "Secure nameplate auras: 91 desktop checks; native assignment, rendering and taint pending"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/nameplate_appearance.lua",
+        "result": "PASS nameplate appearance: 282 checks across five client models; native rendering pending"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/nameplate_client_compat.lua",
+        "result": "PASS nameplate client compatibility: 40 desktop checks"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/nameplate_countdown_work.lua",
+        "result": "Nameplate countdown work: 1245 checks, 0 failures"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/nameplate_castbar_schools.lua",
+        "result": "PASS nameplate cast-bar themes: 56 checks; native taint/pixels pending"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/nameplate_quest_progress.lua",
+        "result": "QUEST_PROGRESS checks=1261 failures=0 native_pixels_taint_performance=NOT_RUN"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/nameplate_refresh_batch.lua",
+        "result": "QUEST_PROGRESS checks=1491 failures=0 native_pixels_taint_performance=NOT_RUN"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/passive_nameplate_optimization.lua",
+        "result": "PASS: 6 actual-module scenarios; 60 checks; no native FPS or CPU measurement"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/passive_nameplate_metric_recovery.lua",
+        "result": "PASS: 6 actual-module scenarios; 106 checks; no native FPS or CPU measurement"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/options_navigation.lua",
+        "result": "Options navigation: 7996 checks; actual builders mapped across five client contracts; native rendering pending"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/options_rework.lua",
+        "result": "Options rework: 1343 checks; complete shell/renderer/widgets and menu lifecycle across five client models; native acceptance pending"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/party_debuff_visibility.lua",
+        "result": "Party debuff visibility: 446 checks PASS; five client models, native/legacy render paths and missing-atlas fallback; native pixels/taint pending"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/unit_aura_group_layout_work.lua",
+        "result": "Unit aura group layout: 1709 checks PASS; exact native setters, complete descriptors, unchanged paint/membership cadence, real engine/group lifetime, failure/private/hot-load recovery. Native FPS/taint pending"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/unit_tooltip_ownership.lua",
+        "result": "unit_tooltip_ownership: 735 checks passed (desktop ownership/lifecycle only)"
+      },
+      {
+        "lua": "5.4",
+        "file": "tests/raid_healer_auras.lua",
+        "result": "Raid healer auras: 11487 checks; actual native owner/flow projection, global one-to-six limits, native-relative sizing, strict filters and cooldown sinks; eleven rejected negative controls; client visuals/scheduling pending"
+      },
+      {
+        "lua": "5.1",
+        "file": "tests/nameplate_secure_auras.lua",
+        "result": "Secure nameplate auras: 91 desktop checks; native assignment, rendering and taint pending"
+      },
+      {
+        "lua": "5.1",
+        "file": "tests/nameplate_appearance.lua",
+        "result": "PASS nameplate appearance: 282 checks across five client models; native rendering pending"
+      },
+      {
+        "lua": "5.1",
+        "file": "tests/nameplate_client_compat.lua",
+        "result": "PASS nameplate client compatibility: 40 desktop checks"
+      }
+    ],
+    "syntax": {
+      "files": [
+        "NamePlates/SecureAuras.lua",
+        "NamePlates/Countdown.lua",
+        "Core/API/Aura.lua",
+        "AddonOptions/FluxOptionsNameplatePreview.lua",
+        "tests/nameplate_secure_auras.lua",
+        "tests/nameplate_appearance.lua"
+      ],
+      "versions": [
+        "5.1",
+        "5.4"
+      ]
+    },
+    "negativeControls": [
+      {
+        "name": "candidate_secure",
+        "fixture": "tests/nameplate_secure_auras.lua",
+        "exit": 0
+      },
+      {
+        "name": "candidate_appearance",
+        "fixture": "tests/nameplate_appearance.lua",
+        "exit": 0
+      },
+      {
+        "name": "baseline_secure",
+        "fixture": "tests/nameplate_secure_auras.lua",
+        "exit": 1
+      },
+      {
+        "name": "baseline_appearance",
+        "fixture": "tests/nameplate_appearance.lua",
+        "exit": 1
+      },
+      {
+        "name": "wrong_secure_icon_mask",
+        "fixture": "tests/nameplate_secure_auras.lua",
+        "exit": 1
+      },
+      {
+        "name": "wrong_border_asset",
+        "fixture": "tests/nameplate_secure_auras.lua",
+        "exit": 1
+      },
+      {
+        "name": "secure_motion_off",
+        "fixture": "tests/nameplate_secure_auras.lua",
+        "exit": 1
+      },
+      {
+        "name": "secure_captures_click",
+        "fixture": "tests/nameplate_secure_auras.lua",
+        "exit": 1
+      },
+      {
+        "name": "stock_motion_off",
+        "fixture": "tests/nameplate_appearance.lua",
+        "exit": 1
+      },
+      {
+        "name": "stock_leave_closes_other_owner",
+        "fixture": "tests/nameplate_appearance.lua",
+        "exit": 1
+      },
+      {
+        "name": "stock_icon_alpha_not_restored",
+        "fixture": "tests/nameplate_appearance.lua",
+        "exit": 1
+      },
+      {
+        "name": "stock_rim_not_hidden",
+        "fixture": "tests/nameplate_appearance.lua",
+        "exit": 1
+      },
+      {
+        "name": "forbidden_stock_tooltip_access",
+        "fixture": "tests/nameplate_appearance.lua",
+        "exit": 1
+      },
+      {
+        "name": "opaque_stock_texture_no_fileid_fallback",
+        "fixture": "tests/nameplate_appearance.lua",
+        "exit": 1
+      },
+      {
+        "name": "preview_wrong_border",
+        "fixture": "tests/nameplate_appearance.lua",
+        "exit": 1
+      },
+      {
+        "name": "stock_tooltip_retained_during_secure_takeover",
+        "fixture": "tests/nameplate_secure_auras.lua",
+        "exit": 1
+      }
+    ],
+    "countdownWork": {
+      "pairs": 3,
+      "matchingScenariosPerPair": 25,
+      "scope": "Existing countdown-only work counts. Does not time stock art cloning or native secure widget painting."
+    }
+  },
+  "native": {
+    "client": "Forever",
+    "verifiedPid": 35620,
+    "focusChangedOrInputSent": false,
+    "observation": "Indoor city scene with no world nameplate aura or hover.",
+    "candidatePixelsHoverClickThroughAndTaint": "Pending"
+  },
+  "externalEvidenceSha256": {
+    "final-results.json": "d0f4a33f821c5f3da2bace39bcb3be210d83fd92f11404248e90415103188ac1",
+    "aura-style-tooltip-fixture-controls.json": "32015739997ed53d7fe4c104928f36bbc06e9bde8437e42360eb87fcbf6eea71",
+    "countdown-work-pairs.json": "9ddfe060e8f91d9e7d576b58833776140215aea20fb55bcea8b4cbf4309dd126"
+  }
+}

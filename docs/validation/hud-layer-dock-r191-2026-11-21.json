@@ -1,0 +1,2610 @@
+{
+  "changeId": "HUD-LAYER-DOCK-R191-20261121",
+  "revision": "hud-layer-dock-r191",
+  "capturedAtUTC": "2026-11-21T13:34:47.8273629Z",
+  "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+  "checkpoint": {
+    "createdUTC": "2026-11-21T13:21:54.3109058Z",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "branch": "main",
+    "history": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flyout-layer-before-2026-11-21-135457/main.bundle",
+    "historySha256": "ae2f3ff2ed1c3928d6d580c48dc080e969af477a1f0afaf7fb1f6092d32d4570",
+    "settingsCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 32
+    },
+    "files": {
+      "Core/BorderJunctions.lua": "36332f7c364e183451aa137d9689a0ef2fdb476f211d8fca155907d46ecd3236",
+      "Minimap/FluxMinimapButtons.lua": "e331285db772169b2fd984990c02f54f2029d807b7e92ea1e36ca3db2675066c",
+      "Battlezonemap/FluxWindowFrame.lua": "20339070ad0a324d6937e6b83daf65af555778c5fa5e7a7c4bd0c64f39ffce15",
+      "FluxBorder.lua": "d2db655e76c1d1116ed52434e8b7448110c969a055edf253793998301cc0450a",
+      "ExtraButtonSystem/FlyoutEngine/Arrow.lua": "106ea533792e2c09c171f601fa056ea2eb4c7f681db3fe1b1b0f7c4a86d1e550",
+      "tests/border_strip_envelope.lua": "02275f7397c2faf3c94bab522d7835200cb9d627160ad0e978617f618e861e67",
+      "tests/minimap_side_border.lua": "5986fbdaa79a9a10ef1a8592a0d93d0b2f2aec64d55b71ef057e8a1b2e402f1f",
+      "tests/bars_startup_retry.lua": "a3d139689633ea22d8337a52b02ee61d0d8b18981b8b03439695897c5d54c4b1",
+      "tests/minimap_flyout_visibility.lua": "d3ddbc460dee3c1869689af0dc794a1b6e45072d2c1b17b8b512517fb29d4544",
+      "docs/reference/verification.json": "8e1515b497a5304fbabc3ba97a295ecaf9b1d8390601f78711a1650219b601da"
+    }
+  },
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "36332f7c364e183451aa137d9689a0ef2fdb476f211d8fca155907d46ecd3236",
+      "afterRaw": "5ce6f91397f69b3aa05d7b2088a4b03d81ad137fb2c8a5135112fb962882302b"
+    },
+    "ExtraButtonSystem/FlyoutEngine/Arrow.lua": {
+      "beforeRaw": "106ea533792e2c09c171f601fa056ea2eb4c7f681db3fe1b1b0f7c4a86d1e550",
+      "afterRaw": "fe1f07d5e433eca2c6b35fdfef9fcd84f7a867f75eb4b87be18be51c72fffb19"
+    }
+  },
+  "paths": {
+    "Core/BorderJunctions.lua": "5ce6f91397f69b3aa05d7b2088a4b03d81ad137fb2c8a5135112fb962882302b",
+    "ExtraButtonSystem/FlyoutEngine/Arrow.lua": "fe1f07d5e433eca2c6b35fdfef9fcd84f7a867f75eb4b87be18be51c72fffb19",
+    "Bars/Flyout.lua": "ec356dd044dda3722cd7c2b6536ac73d9b733441806a71e0d1da66ddaa6edb14",
+    "ExtraButtonSystem/Engine/Widget.lua": "0e6450f7f684821895df353b07f4167bb740bdaef2982df4466326c665f72536",
+    "Minimap/FluxMinimapButtons.lua": "e331285db772169b2fd984990c02f54f2029d807b7e92ea1e36ca3db2675066c",
+    "Battlezonemap/FluxWindowFrame.lua": "20339070ad0a324d6937e6b83daf65af555778c5fa5e7a7c4bd0c64f39ffce15",
+    "FluxBorder.lua": "d2db655e76c1d1116ed52434e8b7448110c969a055edf253793998301cc0450a",
+    "Bars/_tmp_barsmoke.lua": "f50cee2aa55caa174c64d43f595fb9555e2fa99f0ba0415ef94ed11d05cbfa98",
+    "tests/bars_edit_mode.lua": "ec345972758cbe2e194a5eb5e65cc11efb9512396162be121412e1369b6061a8",
+    "tests/bars_native_click_route.lua": "4d7f80eb02e3e48f795aeb1ccb68a4e97ccccdea78455216e8020476ebe82068",
+    "tests/bars_startup_retry.lua": "04493deb4603e77f349e317f1e0f3e032350301b47aa295701b42b417308e36b",
+    "tests/border_branch_compile_cache.lua": "19f6c71b4570b25091c2250cdd9b5168a48c816600438776ff68f2454200ffc5",
+    "tests/border_canvas_layers.lua": "8f6e81231672355e389bdf33b56ed102154fe86d073068ac6f1c5ddd24d6259a",
+    "tests/border_combat_transitions.lua": "5ac38655a546f782d1c6eda1616c1f9382c56753abbc00a527078408b88a0018",
+    "tests/border_draw_reuse.lua": "8579232effd731d619fb0c5a2d0a4411ce6ef6f1bcabea913ca70952393421d3",
+    "tests/border_hidden_anchors.lua": "7492cd77ec2be14be711ef82d9155346f5dcaef27349d6456ea38488f419935f",
+    "tests/border_idle_trace.lua": "aa41f663927dcd85969e2184cdd2e0a050bed974e960918b446693263dde6bf9",
+    "tests/border_incremental_commit.lua": "967e7cdfdd633371f0014f30fe91c560d379721da2e2a18a8d0ed098060ff70a",
+    "tests/border_junction_shadows.lua": "0aceeca71c3cd31b9b72b097943e0ed1877d3dc81e2da28476c6bca6f0b13055",
+    "tests/border_locality.lua": "29f10e45527865c03939101afb7694097fc8876564e54ebb986ad87964ccf530",
+    "tests/border_lua_upvalues.lua": "8fab8d288b2e8b70c2261a84412e2e80273c89225fc6ffd78994310b99bc1fab",
+    "tests/border_native_alpha.lua": "806fb8feb0fa1d0af49c8721dae0f40515400870dac0b099739d718a3646b5ae",
+    "tests/border_native_unit_rgb.lua": "3a3d8f49a5c19729b140c0679d0835bfbf7d6e514bc750eafa35e36b8c16bc3f",
+    "tests/border_nearby_panels.lua": "572c6620f37f4d8470f5334fe26f68062668c9a41fb040ae7dd4ab9107de6bdf",
+    "tests/border_owner_visibility.lua": "92b4da65a30feedbb3f0a6c8a7e27196e380f1f82db56c466b190efaf6635cee",
+    "tests/border_party_container.lua": "1cb6a8fd6e7075496305c28c65522c22619509074ce5efdbfd29523039c6ebed",
+    "tests/border_party_isolation.lua": "1dfc6bf75f3e101dbdd68a1b33689595e6371cc5d28b4a3ebdd27421f424c71a",
+    "tests/border_private_paint.lua": "1f504140590d442cb554b37c4c70b16d842bbfa9211ff0a0b4a786ed698675d0",
+    "tests/border_reflow_cost.lua": "94bca1c50e0e98b2c684cce9c137708993a4ee68dcc8ca258ca59277f65051ae",
+    "tests/border_render_basis.lua": "195f8e6082f67a7fcb24b1b33f0bef5763490ab1ce88568e72f09841d6f874ef",
+    "tests/border_render_pool_work.lua": "51ca0472729a08e735f512758b29834b52e19f8f6b85575ff6b02d30521e4ef4",
+    "tests/border_resource_hold.lua": "1c78b0e52b73282124ef04ce03b32bf4cd45c570d407a852018392789fc71df9",
+    "tests/border_shadow_material.lua": "5662d2f2db09419c2e8a5fd16d5ce567eabcb26273297134fd6171f30d582ea5",
+    "tests/border_strip_envelope.lua": "07f5e2ec50d553a0646cc65a79f9ab6ce13f873b428fe41a45432e9c434ea207",
+    "tests/border_strip_poses.lua": "75fc5b51f287fd912f67fc4d82532f9dd1d56a7e7a2c66ffffd421716457899d",
+    "tests/border_types.lua": "14facbdc23c9bc6e5f708c70c20648b0808725203f4865aa494c75fe2e350c66",
+    "tests/castbar_active_crafting.lua": "5550d10146b3368b1526bb87777e7be5ccf60bd81d006eaccd500e3b66a7fb36",
+    "tests/castbar_border_junctions.lua": "9f59f83880cb0f89f3c5c618c39809cbd0a6d1d2e58689a098bf1a4f4edf315a",
+    "tests/castbar_border_layout.lua": "a72c2b514cf960e2a090ff9fc08b7c83b1097964b2f54827a387c6b1d5cf21db",
+    "tests/castbar_completion_visual.lua": "ffa3405d6df7051c5f8c9c04f79e103bff62c1bdad6510672b17605b3fa6a1d0",
+    "tests/castbar_school_themes.lua": "4b3c764d9a4ccfa048d0e48a5afe05f7ef5b19b725fd8daf193b73243958b613",
+    "tests/group_roster_performance.lua": "bc718dc97db104e0a9f5e23b52168a809d9c890bb56a325a0ff5a97db89a887a",
+    "tests/independent_border_regions.lua": "b58d81db0005234f1bd5d017cc581a27f1ba21c233323a436345a2741e7d9609",
+    "tests/minimap_extra_layout.lua": "1f9225a39347a5f8278e752702a9e43b45476ec8abdd6fc1d313ae3557869aef",
+    "tests/minimap_extra_visibility.lua": "318ad2a80990c937e337bd2b7fddaecc2672c484fdfc858a6805a323ffc97536",
+    "tests/minimap_flyout_visibility.lua": "d3ddbc460dee3c1869689af0dc794a1b6e45072d2c1b17b8b512517fb29d4544",
+    "tests/minimap_side_border.lua": "5986fbdaa79a9a10ef1a8592a0d93d0b2f2aec64d55b71ef057e8a1b2e402f1f",
+    "tests/minimap_side_inset.lua": "b383b69058c0632992ab7e95a3a10e0d38306786ff14d94d1567af5f8672bd2c",
+    "tests/minimap_side_packing.lua": "29befd5a1716193fe31f1ff5389c5f68c9fdc634eb26031ea05932e5ad251bcb",
+    "tests/nameplate_refresh_batch.lua": "ff4b60485493f5ac202b3ccee9e3638a690380be0ef60568d8e9267485cf103f",
+    "tests/native_timer_ownership.lua": "867548ed615d7ddac089fa121eafa0185a3aca5dad61700e01bc2cd44bfff7fd",
+    "tests/party_cast_border_layout.lua": "826e0b40d992b683b939d29fab3c547f1be270dfba8bc474322190d3fc94f5ba",
+    "tests/party_native_contracts.lua": "d61c2d6f8c9a71d12a249061f4a303fde519617a307a3f55cfd33553be1ab45f",
+    "tests/party_steady_performance.lua": "b0c6cd688d3f540d00db5f84277642466e32095bf990fa8b20637c0bae0e5628",
+    "tests/passive_ebs_visibility.lua": "54c0aab17f4aad708235d009f344cd4065e3a7cfe781d251de043822cc3c5451",
+    "tests/passive_threat_rank.lua": "02bee63239bcbaf12956485eeb1c7110df1942d4238f0f4faaf4134dc5ba4f20",
+    "tests/raid_combat_roster_transitions.lua": "58c418d32d7713245e7240dd4c1927b1549855400b4f4409bd732fcc97548cd9",
+    "tests/raid_connected_grid.lua": "b5bcdf7a01a9663fd0becf50fbc794dd8b2c690d234ff202d07fbc5381d05b2f",
+    "tests/raid_group_conversion_conditions.lua": "b094122b52a75f4619a8f1f0a4b0225196466bd82c4b68921e8452b69e4354d5",
+    "tests/raid_header_precreation.lua": "628ef50ec51941b8ea53ab0c2ae73067dd9379cb323b95156ef125373a897a0d",
+    "tests/raid_roster_attribute_work.lua": "8a82946f7a6521755014ac47cd47020920875fc8b18d07b3489e6c505a411429",
+    "tests/raid_roster_layout_work.lua": "1a17c3f9b0427cbbd2deb9376ad895e6a5050cc5d8ccae6a7f2671697264f423",
+    "tests/raid_roster_native_writes.lua": "760a072d4de15014f2289476d47f1cf8a8ad5f9331928d676db2c4d70388c7b6",
+    "tests/rapid_strip_drops.lua": "739094b5880a61b2bf3728b81f630ef924d4a843461695b17358eb8332b4a298",
+    "tests/regional_roster_poses.lua": "06b632e579dca7b8baba9964b08f23285b116cc4cf071f9ecccf1b0466ed5e46",
+    "tests/roster_native_hover_cleanup.lua": "7fb8b4c66731c991ea43c55413a0089875df48f211df7c74d3eda2ef415fe1da",
+    "tests/roster_player_specialization.lua": "f5fac03b455e7875322bc94f4df8ae4fc1ce51eed489020a6b1199688c44a698",
+    "tests/squeeze_notification_work.lua": "3447172cfbdaa52eb841fd7d6fe79b3a2746d76a85346c0093bd5f617003b4ca",
+    "tests/strip_border_commit_work.lua": "41c940eb7cd552c1c728e827007928989b171092d39d4192d5d39640c98d7d5f",
+    "tests/strip_border_spacing.lua": "1df578aa2ac1d4f73117ceefa00dcb3f87ad5abfeaa4e88b69758631fd42f9f5",
+    "tests/strip_drag_button_chrome.lua": "6a3c08d86bc0f2191a293590f09dc82f7eb138a313d0139eb45170088eba616f",
+    "tests/strip_drag_hover_edges.lua": "5ab9af3727337d91a807a22b4ace24f1c12d2f5c701da2aa1106541ceeb044cd",
+    "tests/strip_grid_packing.lua": "3891e4dc5f29513e956e80da2010628ea0ebf8ab09ab6ac9dc39aaa7ef2e45c4",
+    "tests/strip_panel_settle.lua": "bbf2700b01b24d41d74603c93241bf5d1d991d677cd7a7f842f3e897bd1d07c8",
+    "tests/strip_slot_sampling.lua": "7c485d4b83bac7bd0817e72a9b53b4e55f56573e3a32e5e90aa8ef127c944ac7",
+    "tests/strip_unit_anchor_transaction.lua": "b77216e7ed092c23209698862eef804e6efedf2b013db17ad0ecb45674545001",
+    "tests/teleport_cast_work.lua": "7842024ac5441f7f3298f77d8dc32c6820b45c074946ff30147a0248f5c02e8e",
+    "tests/timer_header_layout.lua": "a944a2178fc9aa1a25eab6fcfe4d26c51ef07d55dbd619efb6f05f3e231cdb30",
+    "tests/trinket_bag_scan_work.lua": "8a2d11da5381df5ca2742226538bb970d924edab54ab2fc51a11c713e5e7263e",
+    "tests/trinket_squeeze_geometry_work.lua": "511a8be1e0c78b4975be1a96750f72bf1b4292dd3f82149f463d82bce6833a90",
+    "tests/utility_secure_input.lua": "cce172b9d7b4881f1e2820275133b34106e291595de6185e884fe84d37ebf6ed"
+  },
+  "installed": [
+    {
+      "client": "_retail_",
+      "files": {
+        "Core/BorderJunctions.lua": "5ce6f91397f69b3aa05d7b2088a4b03d81ad137fb2c8a5135112fb962882302b",
+        "ExtraButtonSystem/FlyoutEngine/Arrow.lua": "fe1f07d5e433eca2c6b35fdfef9fcd84f7a867f75eb4b87be18be51c72fffb19"
+      }
+    },
+    {
+      "client": "_forever_",
+      "files": {
+        "Core/BorderJunctions.lua": "5ce6f91397f69b3aa05d7b2088a4b03d81ad137fb2c8a5135112fb962882302b",
+        "ExtraButtonSystem/FlyoutEngine/Arrow.lua": "fe1f07d5e433eca2c6b35fdfef9fcd84f7a867f75eb4b87be18be51c72fffb19"
+      }
+    },
+    {
+      "client": "_classic_",
+      "files": {
+        "Core/BorderJunctions.lua": "5ce6f91397f69b3aa05d7b2088a4b03d81ad137fb2c8a5135112fb962882302b",
+        "ExtraButtonSystem/FlyoutEngine/Arrow.lua": "fe1f07d5e433eca2c6b35fdfef9fcd84f7a867f75eb4b87be18be51c72fffb19"
+      }
+    },
+    {
+      "client": "_classic_era_",
+      "files": {
+        "Core/BorderJunctions.lua": "5ce6f91397f69b3aa05d7b2088a4b03d81ad137fb2c8a5135112fb962882302b",
+        "ExtraButtonSystem/FlyoutEngine/Arrow.lua": "fe1f07d5e433eca2c6b35fdfef9fcd84f7a867f75eb4b87be18be51c72fffb19"
+      }
+    },
+    {
+      "client": "_anniversary_",
+      "files": {
+        "Core/BorderJunctions.lua": "5ce6f91397f69b3aa05d7b2088a4b03d81ad137fb2c8a5135112fb962882302b",
+        "ExtraButtonSystem/FlyoutEngine/Arrow.lua": "fe1f07d5e433eca2c6b35fdfef9fcd84f7a867f75eb4b87be18be51c72fffb19"
+      }
+    }
+  ],
+  "previousFlyoutEvidence": "docs/validation/flyout-arrow-layer-2026-11-21.json",
+  "archivedAssertions": {
+    "arrow": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/bars_startup_retry.lua:4: native strip glyph sits one level above its crest within the host stratum",
+    "dock": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/border_strip_envelope.lua:96: the docked side and Flux Window strokes must meet at unequal scales"
+  },
+  "desktop": {
+    "passed": 74,
+    "failed": 0,
+    "results": [
+      {
+        "path": "Bars/_tmp_barsmoke.lua",
+        "exit": 0,
+        "wallSeconds": 2.2751062,
+        "output": "ROSTER_MACROS order=bars-first case=join callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=bars-first case=convert callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=bars-first case=unchanged callbacks=1 snapshots=1 evalRequests=1 parses=0\nROSTER_MACROS order=bars-first case=return-to-party callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=bars-first case=leave callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=extra-first case=join callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=extra-first case=convert callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=extra-first case=unchanged callbacks=1 snapshots=1 evalRequests=1 parses=0\nROSTER_MACROS order=extra-first case=return-to-party callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=extra-first case=leave callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=extra-only case=join callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=extra-only case=convert callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=extra-only case=unchanged callbacks=1 snapshots=1 evalRequests=1 parses=0\nROSTER_MACROS order=extra-only case=return-to-party callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=extra-only case=leave callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=bars-only case=join callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=bars-only case=convert callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=bars-only case=unchanged callbacks=1 snapshots=1 evalRequests=1 parses=0\nROSTER_MACROS order=bars-only case=return-to-party callbacks=1 snapshots=1 evalRequests=1 parses=2\nROSTER_MACROS order=bars-only case=leave callbacks=1 snapshots=1 evalRequests=1 parses=2\nbars refresh: 17599 checks passed; 19 production mutations rejected\nbars contract regression: 469 production checks across five clients; 13 mutations rejected\nBlizzard script ownership: 26 checks passed; 6 native-owner mutations rejected\nCombat grid depletion transitions: 672 checks, 0 failures\nbars smoke OK\n  slot math: rest/shift/ctrl/cat/bear/vehicle/static/promote/xor\n  lockdown: Layout guards, no combat unpack\n  clicks: ButtonForge wrap verbatim; no post-body; PreClick gated on button/down\n  leftover: stock ActionButtons off ActionBarButtonEventsFrame (mixins stay stock),\n            then EnableMouse false on MainActionBar/pager/ActionButton\n  drag: PreClick cursor + L+R without Shift; click fires on mouse up\n  checked: Paint owns SetChecked; gold hilight not mouseover atlas\n  flash: auto-attack/auto-shot/wand red blink on strip + Extra; Classic QuickslotRed, Forever atlas\n  paint: Midnight duration object + Classic GetActionCooldown\n  hotkey: MouseButton3-5 / scroll / space glyphs + S-/C- overlay\n  charges: UnpackCharges table+tuple, dual chargeCooldown\n  vfx: Transfer fill on swap; exclusive appear/clear; finish burst; no stuck fill\n  chrome: checked/pushed follow paging with fill/interrupt\n  glow: Transfer overlay on swap; skipBirth; ungated Set; Era OOC SAO capture; SyncColumn; ClearCache keeps _glowing\n  combat badges: alpha vis (no Hide taint); exclusive VFX/gold on the live Extra face\n  combat button: one FluxButton; Context hops; Binding Apply OOC only; vis after Identity\n  hovercast: TOC Keybind; strip hosts; UF peek only; no [@mouseover] on hover-only tail\n  range: one Flux.Range ticker for strip+Extra+badges; macros range the cast\n         spell against its own @unit; frame-shared memo; bounded mouseover bursts\n  mouseover cast: click-time unit only (no static unit=mouseover); factory tails\n         factory mouseover tails idle-stripped; Blizzard range-check gated; hovercast driver on UF hover\n  ebs assistant: GetNextCastSpell(false); rotation overlay; KeyBind override\n  assist morph: strip+EBS poll next-cast whenever the button exists\n  pet/stance: Extra Button surfaces; event-split paint; TOC-loaded\n  ingame: /reload; drag from book without Shift; pickup; click on release;\n          key on press; AOE cancel clears checked; SHIFT mini keeps proc loop;\n          macro condition drop glow when the face leaves; skipBirth on return;\n          VFX continues or appears/clears with the visible face"
+      },
+      {
+        "path": "tests/bars_edit_mode.lua",
+        "exit": 0,
+        "wallSeconds": 0.0282994,
+        "output": "Bars Edit Mode: 61 checks; five client models; negative control passed"
+      },
+      {
+        "path": "tests/bars_native_click_route.lua",
+        "exit": 0,
+        "wallSeconds": 0.1810597,
+        "output": "Native bar click route: 864 checks PASS; full native OnClick/handlers from ../__AddonsForRef/wow-ui-source-forever/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua; C frame/hardware arbitration and actual casts remain unverified"
+      },
+      {
+        "path": "tests/bars_startup_retry.lua",
+        "exit": 0,
+        "wallSeconds": 0.0608145,
+        "output": "assistant rate samples: 600; 85 paints per consumer (600 frames; use --baseline for HEAD comparison)\nbars startup retry: 745 checks passed"
+      },
+      {
+        "path": "tests/border_branch_compile_cache.lua",
+        "exit": 0,
+        "wallSeconds": 0.9622433,
+        "output": "BRANCH_COMPILE_WORK|1|56|54|2|56|0\nBRANCH_COMPILE_WORK|2|56|54|2|56|0\nBorder branch compile cache: 698 checks PASS; exact prepared geometry/source inputs; fresh paint/material; remote ownership/private/masks; UV/gutter/caps/aura/subpixels; committed-only bounded generations; actual connected mesh and rollback parity. Native FPS/pixels/taint pending"
+      },
+      {
+        "path": "tests/border_canvas_layers.lua",
+        "exit": 0,
+        "wallSeconds": 0.1918026,
+        "output": "Border canvas layers: 785 checks PASS; shared source with multiple peer strata/levels/orders; retained source visibility; no later canvas demotion; both styles/scales; native pixels pending"
+      },
+      {
+        "path": "tests/border_combat_transitions.lua",
+        "exit": 0,
+        "wallSeconds": 0.1173541,
+        "output": "Border combat transitions: 20 checks PASS; actual clean10exits0reads/solves/full requests/resources; pending native geometry/material/UV/style retained once; unchanged dirty preflight; coalesced wakes; no native FPS/taint claim"
+      },
+      {
+        "path": "tests/border_draw_reuse.lua",
+        "exit": 0,
+        "wallSeconds": 1.5318143,
+        "output": "DRAW_REUSE_WORK style=1 fields=1354 warmCalls=726 warmHits=726 warmReuses=56 moveCalls=1128 moveReuses=54 moveMisses=2 claimed=1188 mesh=334513276 beforeMesh=215315591\nDRAW_REUSE_WORK style=2 fields=1354 warmCalls=726 warmHits=726 warmReuses=56 moveCalls=1128 moveReuses=54 moveMisses=2 claimed=1188 mesh=822842411 beforeMesh=997882298\nborder draw reuse: 17596 checks passed"
+      },
+      {
+        "path": "tests/border_hidden_anchors.lua",
+        "exit": 0,
+        "wallSeconds": 0.4207789,
+        "output": "Hidden unit anchors: 6154 checks PASS; delayed native root/corner/edge rectangles AND origins; exact public anchor geometry; intrinsic sizes; both styles/five units/three scales; first/repeated visibility0reads/solves/resources; actual moves; private/cycle/budget guards; native acceptance pending"
+      },
+      {
+        "path": "tests/border_idle_trace.lua",
+        "exit": 0,
+        "wallSeconds": 0.0497688,
+        "output": "Border idle trace: 11 checks PASS; finite same-interval producer/read evidence; registration/removal/settings/event causes; bounded records; no stale quiet-capture reasons or persistent timer"
+      },
+      {
+        "path": "tests/border_incremental_commit.lua",
+        "exit": 0,
+        "wallSeconds": 0.5841889,
+        "output": "INCREMENTAL_WORK style=1 fields=913 beforeFields=912 writes=97 unrelated=0 allocations=1 mesh=387381709 beforeMesh=1734568480\nINCREMENTAL_WORK style=2 fields=913 beforeFields=912 writes=84 unrelated=0 allocations=1 mesh=673959543 beforeMesh=1972831681\nborder incremental commit: 1923 checks passed"
+      },
+      {
+        "path": "tests/border_junction_shadows.lua",
+        "exit": 0,
+        "wallSeconds": 20.7230284,
+        "output": "border junction shadows: 486929 checks PASS; 56 scenes, 240576 source-footprint samples; actual factory/Core/TGA; native testing deferred"
+      },
+      {
+        "path": "tests/border_locality.lua",
+        "exit": 0,
+        "wallSeconds": 10.4492172,
+        "output": "Regional render style=1 scale=0.75 retained=34 updated=4 rectReads=2/26\nRegional render style=1 scale=1.00 retained=46 updated=4 rectReads=2/26\nRegional render style=1 scale=1.25 retained=60 updated=4 rectReads=2/26\nRegional render style=2 scale=0.75 retained=34 updated=4 rectReads=2/26\nRegional render style=2 scale=1.00 retained=46 updated=4 rectReads=2/26\nRegional render style=2 scale=1.25 retained=60 updated=4 rectReads=2/26\nActual-source regional border checks: 236757 passed; native GPU/FPS/combat acceptance pending."
+      },
+      {
+        "path": "tests/border_lua_upvalues.lua",
+        "exit": 0,
+        "wallSeconds": 0.0456498,
+        "output": "Border Lua upvalues: 166 functions PASS; maximum=52, conservative desktop limit60 including_ENV; native reload still required"
+      },
+      {
+        "path": "tests/border_native_alpha.lua",
+        "exit": 0,
+        "wallSeconds": 0.1198097,
+        "output": "Native unit alpha: 640 checks PASS; initial private alpha; public recolor/opaque alpha; zero topology work/resources; native SetAlpha sink only; public RGB; combat paint; actual native taint/performance pending"
+      },
+      {
+        "path": "tests/border_native_unit_rgb.lua",
+        "exit": 0,
+        "wallSeconds": 0.1219777,
+        "output": "Native unit RGB: 600 checks PASS; cold/warm, combat, fallbacks, real reflow, native-only opaque channels; no native taint/FPS claim"
+      },
+      {
+        "path": "tests/border_nearby_panels.lua",
+        "exit": 0,
+        "wallSeconds": 2.3098664,
+        "output": "Nearby panel borders: 1704 checks PASS; both styles; fractional mixed scales; module/frame exports; grids/Info/strip/menu/window/envelope T contacts; transitive floors; detach/hide/reattach; static work; combat deferral; untouched content/input geometry. Native pixels/FPS pending"
+      },
+      {
+        "path": "tests/border_owner_visibility.lua",
+        "exit": 0,
+        "wallSeconds": 0.2508006,
+        "output": "Border owner visibility: 2641 checks PASS; own source/host hide and public alpha-zero; whole/partial overlap; both styles/scales; one source per interval; zero solves/reads/allocations including combat; native pixels/taint pending"
+      },
+      {
+        "path": "tests/border_party_container.lua",
+        "exit": 0,
+        "wallSeconds": 0.8801618,
+        "output": "CONTAINER|style=1|cold=false|candidate=false|reads=1|aligns=1|solves=0|wakes=1|alphaReads=2|alphaAligns=2|alphaWakes=2\nCONTAINER|style=1|cold=false|candidate=true|reads=0|aligns=0|solves=0|wakes=0|alphaReads=0|alphaAligns=0|alphaWakes=0\nCONTAINER|style=1|cold=true|candidate=false|reads=1|aligns=1|solves=0|wakes=1|alphaReads=2|alphaAligns=2|alphaWakes=2\nCONTAINER|style=1|cold=true|candidate=true|reads=0|aligns=0|solves=0|wakes=0|alphaReads=0|alphaAligns=0|alphaWakes=0\nCONTAINER|style=2|cold=false|candidate=false|reads=1|aligns=1|solves=0|wakes=1|alphaReads=2|alphaAligns=2|alphaWakes=2\nCONTAINER|style=2|cold=false|candidate=true|reads=0|aligns=0|solves=0|wakes=0|alphaReads=0|alphaAligns=0|alphaWakes=0\nCONTAINER|style=2|cold=true|candidate=false|reads=1|aligns=1|solves=0|wakes=1|alphaReads=2|alphaAligns=2|alphaWakes=2\nCONTAINER|style=2|cold=true|candidate=true|reads=0|aligns=0|solves=0|wakes=0|alphaReads=0|alphaAligns=0|alphaWakes=0\nParty container borders: 164 checks; 2026-11-21T13:32:05Z; actual Core/Border/init prefix; no native latency claim"
+      },
+      {
+        "path": "tests/border_party_isolation.lua",
+        "exit": 0,
+        "wallSeconds": 0.1395066,
+        "output": "Party border isolation: 72 checks PASS; member/preview identity; neutral HUD bridge; detached logical hosts; internal joins; both styles/scales; static reuse; native group pixels pending"
+      },
+      {
+        "path": "tests/border_private_paint.lua",
+        "exit": 0,
+        "wallSeconds": 0.1625958,
+        "output": "Private border paint: 2428 checks PASS; alpha/RGBA retirement once; repeated focus-style sinks0reads/solves/full requests; original opaque source preserved; no opaque value copied; combat deferral; native taint/FPS pending"
+      },
+      {
+        "path": "tests/border_reflow_cost.lua",
+        "exit": 0,
+        "wallSeconds": 0.0569112,
+        "output": "Border reflow cost: 148 checks PASS; existing finite-watch epochs; legacy aggregate/nested mesh algebra; retained peak; zero default clocks; opaque/faulty midpoint and draw recovery; native timings pending"
+      },
+      {
+        "path": "tests/border_render_basis.lua",
+        "exit": 0,
+        "wallSeconds": 0.2749083,
+        "output": "RENDER_BASIS_WORK style=1 fields=254 left=1 bottom=1 rect=1 scale=2 mesh=797656323\nFIELD_PAINT_WORK style=1 calls=1000 nativeColors=1 colorTuples=1\nRENDER_BASIS_WORK style=2 fields=254 left=1 bottom=1 rect=1 scale=2 mesh=894356635\nFIELD_PAINT_WORK style=2 calls=1000 nativeColors=1 colorTuples=1\nborder render basis: 44 checks passed"
+      },
+      {
+        "path": "tests/border_render_pool_work.lua",
+        "exit": 0,
+        "wallSeconds": 0.1147329,
+        "output": "RENDER_POOL_WORK triangles=64 coldLevel=1 coldStrata=1 coldVisits=64 coldTextures=64 warmLevel=0 warmStrata=0 warmVisits=64 warmTextures=0 mesh=1323232045 parents=1/1\nRENDER_POOL_WORK triangles=128 coldLevel=1 coldStrata=1 coldVisits=128 coldTextures=128 warmLevel=0 warmStrata=0 warmVisits=128 warmTextures=0 mesh=1872260962 parents=1/1\nRENDER_POOL_WORK triangles=256 coldLevel=1 coldStrata=1 coldVisits=256 coldTextures=256 warmLevel=0 warmStrata=0 warmVisits=256 warmTextures=0 mesh=739844497 parents=1/1\nRENDER_STRIP_WORK fields=96 parents=2 stripReads=1 mesh=1687145760\nborder render pool work: 1136 checks passed"
+      },
+      {
+        "path": "tests/border_resource_hold.lua",
+        "exit": 0,
+        "wallSeconds": 0.133186,
+        "output": "Resource border hold: 230 checks PASS; real power producer and solver; clear-return target/focus/party/pet/ToT; zero reads/solves; actual no-resource state preserved; native counters pending"
+      },
+      {
+        "path": "tests/border_shadow_material.lua",
+        "exit": 0,
+        "wallSeconds": 0.2136712,
+        "output": "Shadow material support: 111147 PASS; exact TGA alpha/half-texel margins; natural/tint parity; trusted handles; live support-change/recovery rebuilds; static tint/RGB; private/recolor/cropped UV recovery; offline only"
+      },
+      {
+        "path": "tests/border_strip_envelope.lua",
+        "exit": 0,
+        "wallSeconds": 7.1924373,
+        "output": "Strip/envelope border: 6098 checks PASS; 144 strip scenes; 30 side/window dock scenes; 1080 one-source crest samples; static warm checks; native pixels/FPS/taint pending"
+      },
+      {
+        "path": "tests/border_strip_poses.lua",
+        "exit": 0,
+        "wallSeconds": 36.7630391,
+        "output": "STRIP_POSE style=1 solve=6/2 plan=6/2 preparedHits=4\nSTRIP_DRAW_INPUTS style=1 fields=204 inputs=90\nSTRIP_DRAW_INPUTS style=1 fields=236 inputs=75\nSTRIP_REGISTRATION style=1 warmCompiles=0+0 affectedCompiles=1\nSTRIP_POSE style=2 solve=6/2 plan=6/2 preparedHits=4\nSTRIP_DRAW_INPUTS style=2 fields=286 inputs=80\nSTRIP_DRAW_INPUTS style=2 fields=221 inputs=75\nSTRIP_REGISTRATION style=2 warmCompiles=0+0 affectedCompiles=1\nSTRIP_PLAN_COVERAGE|candidate|1|5|4|4\nSTRIP_PLAN_COVERAGE|candidate|2|5|4|4\nSTRIP_RECENT_LAYOUTS|candidate|1|4|4|8|1684|0.190000\nSTRIP_RECENT_LAYOUTS|candidate|2|4|4|8|2082|0.192000\nStrip pose replay: warm cache, active tint, changed materials, neighbor geometry, changing footprints and lockdown pass."
+      },
+      {
+        "path": "tests/border_types.lua",
+        "exit": 0,
+        "wallSeconds": 0.1221798,
+        "output": "Border types: 634 checks PASS; atlas/legacy/partial families; native pixels/controller pending"
+      },
+      {
+        "path": "tests/castbar_active_crafting.lua",
+        "exit": 0,
+        "wallSeconds": 0.2088779,
+        "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nactive crafting cast bar: 826 checks PASS; actual producers/known-private states/icon fallback/sampling; native fit pending"
+      },
+      {
+        "path": "tests/castbar_border_junctions.lua",
+        "exit": 0,
+        "wallSeconds": 6.0796243,
+        "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nCast border junctions: 21902 checks PASS; two released styles and a simulated new profile; scales .75..3/headers20,25,36/both alignments; continuous rim and divider; rounded outside caps; static cast visibility/color including combat. Native pixels/taint/FPS pending"
+      },
+      {
+        "path": "tests/castbar_border_layout.lua",
+        "exit": 0,
+        "wallSeconds": 0.3055557,
+        "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nCast border layout: 2020 checks PASS; five client API shapes; canonical icon/body touch; cached unchanged rows; real reflow; combat defer; restricted width; pet icon ownership; party class/global chrome; custom labels. Native pixels/taint/FPS pending"
+      },
+      {
+        "path": "tests/castbar_completion_visual.lua",
+        "exit": 0,
+        "wallSeconds": 0.8033042,
+        "output": "Cast completion visual: 12571 checks; actual producer in five client models; native appearance/performance deferred"
+      },
+      {
+        "path": "tests/castbar_school_themes.lua",
+        "exit": 0,
+        "wallSeconds": 3.395899,
+        "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nParticle Lua texture writes over 2s: native=300, fallback=6197 (mock call counts, not native FPS)\nValidated 116 fills against original base-school palette compositing\nPASS cast-bar school themes: 14411 checks across five client families (native rendering/taint unverified)"
+      },
+      {
+        "path": "tests/group_roster_performance.lua",
+        "exit": 0,
+        "wallSeconds": 0.1926026,
+        "output": "ROSTER|live|party|timers=3|extraLayouts=0|allocations=0|unitSyncs=1|attributes=0|partyLayouts=0|headerShows=0\nROSTER|live|raid|timers=4|extraLayouts=0|allocations=0|unitSyncs=1|attributes=0|partyLayouts=0|headerShows=0\nROSTER|live|normalPartyJoinLeave|unitSyncs=0|layouts=0|mtmaAttachments=0\nROSTER|live|binding|timers=1|protectedWrites=0|keyQueries=0|discoveries=1\nROSTER|live|extras|timers=0|allocations=0|protectedWrites=0|rebinds=0|paints=46\nROSTER|forever|party|timers=3|extraLayouts=0|allocations=0|unitSyncs=1|attributes=0|partyLayouts=0|headerShows=0\nROSTER|forever|raid|timers=4|extraLayouts=0|allocations=0|unitSyncs=1|attributes=0|partyLayouts=0|headerShows=0\nROSTER|forever|normalPartyJoinLeave|unitSyncs=0|layouts=0|mtmaAttachments=0\nROSTER|forever|binding|timers=1|protectedWrites=0|keyQueries=0|discoveries=1\nROSTER|forever|extras|timers=0|allocations=0|protectedWrites=0|rebinds=0|paints=46\nROSTER|classic|party|timers=3|extraLayouts=0|allocations=0|unitSyncs=1|attributes=0|partyLayouts=0|headerShows=0\nROSTER|classic|raid|timers=4|extraLayouts=0|allocations=0|unitSyncs=1|attributes=0|partyLayouts=0|headerShows=0\nROSTER|classic|normalPartyJoinLeave|unitSyncs=0|layouts=0|mtmaAttachments=0\nROSTER|classic|binding|timers=1|protectedWrites=0|keyQueries=0|discoveries=1\nROSTER|classic|extras|timers=0|allocations=0|protectedWrites=0|rebinds=0|paints=46\nROSTER|classic_era|party|timers=3|extraLayouts=0|allocations=0|unitSyncs=1|attributes=0|partyLayouts=0|headerShows=0\nROSTER|classic_era|raid|timers=4|extraLayouts=0|allocations=0|unitSyncs=1|attributes=0|partyLayouts=0|headerShows=0\nROSTER|classic_era|normalPartyJoinLeave|unitSyncs=0|layouts=0|mtmaAttachments=0\nROSTER|classic_era|binding|timers=1|protectedWrites=0|keyQueries=0|discoveries=1\nROSTER|classic_era|extras|timers=0|allocations=0|protectedWrites=0|rebinds=0|paints=46\nROSTER|classic_anniversary|party|timers=3|extraLayouts=0|allocations=0|unitSyncs=1|attributes=0|partyLayouts=0|headerShows=0\nROSTER|classic_anniversary|raid|timers=4|extraLayouts=0|allocations=0|unitSyncs=1|attributes=0|partyLayouts=0|headerShows=0\nROSTER|classic_anniversary|normalPartyJoinLeave|unitSyncs=0|layouts=0|mtmaAttachments=0\nROSTER|classic_anniversary|binding|timers=1|protectedWrites=0|keyQueries=0|discoveries=1\nROSTER|classic_anniversary|extras|timers=0|allocations=0|protectedWrites=0|rebinds=0|paints=46\nROSTER|all|paint|total=40|synchronous=0\nROSTER|all|compactPartyUnitReads|scopedPaints=5|full=80|scoped=5\nROSTER|all|partyPaint|castResets=4|rangeChecks=1|paints=8|castRefreshes=4|timers=1\nROSTER|all|partyRosterDispatch|layoutRequests=20|eventCalls=20|eventVisibleReads=0\nROSTER|live|adjunctDisabled|timers=1|auraQueries=0|updateCalls=0\nROSTER|live|adjunctFullFirst|timers=1|auraQueries=440|fullPaint=40|updateCalls=40\nROSTER|live|adjunctFullSecond|timers=1|auraQueries=440|fullPaint=40|updateCalls=40\nROSTER|forever|adjunctDisabled|timers=1|auraQueries=0|updateCalls=0\nROSTER|forever|adjunctFullFirst|timers=1|auraQueries=440|fullPaint=40|updateCalls=40\nROSTER|forever|adjunctFullSecond|timers=1|auraQueries=440|fullPaint=40|updateCalls=40\nROSTER|classic|adjunctDisabled|timers=1|auraQueries=0|updateCalls=0\nROSTER|classic|adjunctFullFirst|timers=1|auraQueries=440|fullPaint=40|updateCalls=40\nROSTER|classic|adjunctFullSecond|timers=1|auraQueries=440|fullPaint=40|updateCalls=40\nROSTER|classic_era|adjunctDisabled|timers=1|auraQueries=0|updateCalls=0\nROSTER|classic_era|adjunctFullFirst|timers=1|auraQueries=440|fullPaint=40|updateCalls=40\nROSTER|classic_era|adjunctFullSecond|timers=1|auraQueries=440|fullPaint=40|updateCalls=40\nROSTER|classic_anniversary|adjunctDisabled|timers=1|auraQueries=0|updateCalls=0\nROSTER|classic_anniversary|adjunctFullFirst|timers=1|auraQueries=440|fullPaint=40|updateCalls=40\nROSTER|classic_anniversary|adjunctFullSecond|timers=1|auraQueries=440|fullPaint=40|updateCalls=40\nGroup roster performance: 592 checks PASS; operation counts only; native performance/taint pending"
+      },
+      {
+        "path": "tests/independent_border_regions.lua",
+        "exit": 0,
+        "wallSeconds": 37.7301558,
+        "output": "SCOPE style=1 scale=0.75 kind=hover regions=64/64 segments=40/40 meshes=23/23\nSCOPE style=1 scale=0.75 kind=group regions=4/4 segments=10/10 meshes=4/4\nSCOPE style=1 scale=1.00 kind=hover regions=108/108 segments=40/40 meshes=23/23\nSCOPE style=1 scale=1.00 kind=group regions=4/4 segments=10/10 meshes=4/4\nSCOPE style=1 scale=1.25 kind=hover regions=144/144 segments=40/40 meshes=23/23\nSCOPE style=1 scale=1.25 kind=group regions=4/4 segments=10/10 meshes=4/4\nSCOPE style=2 scale=0.75 kind=hover regions=64/64 segments=40/40 meshes=23/23\nSCOPE style=2 scale=0.75 kind=group regions=4/4 segments=10/10 meshes=4/4\nSCOPE style=2 scale=1.00 kind=hover regions=108/108 segments=40/40 meshes=23/23\nSCOPE style=2 scale=1.00 kind=group regions=4/4 segments=10/10 meshes=4/4\nSCOPE style=2 scale=1.25 kind=hover regions=144/144 segments=40/40 meshes=23/23\nSCOPE style=2 scale=1.25 kind=group regions=4/4 segments=10/10 meshes=4/4\nIndependent border regions retain HUD and party paint, sampled output and live color/visibility."
+      },
+      {
+        "path": "tests/minimap_extra_layout.lua",
+        "exit": 0,
+        "wallSeconds": 0.2784378,
+        "output": "minimap extra layout: 50035 checks PASS (runtime geometry, saved actions, reuse, deferred combat writes and state-driver model; native acceptance pending)"
+      },
+      {
+        "path": "tests/minimap_extra_visibility.lua",
+        "exit": 0,
+        "wallSeconds": 0.1134556,
+        "output": "Minimap extra visibility: 875 checks; 5 client models; 15 scale cases; 4 harmful controls PASS"
+      },
+      {
+        "path": "tests/minimap_flyout_visibility.lua",
+        "exit": 0,
+        "wallSeconds": 0.0521068,
+        "output": "PASS minimap flyout visibility: 366 checks; 4 client models; 9 harmful controls"
+      },
+      {
+        "path": "tests/minimap_side_border.lua",
+        "exit": 0,
+        "wallSeconds": 0.178956,
+        "output": "Minimap side border: 2829 checks;actual FluxBorder/arrow layers;5 client models;30 art/scale cases;7 harmful controls PASS"
+      },
+      {
+        "path": "tests/minimap_side_inset.lua",
+        "exit": 0,
+        "wallSeconds": 0.1181706,
+        "output": "Minimap side cells: 14121 checks PASS; counts1..120; side scales10/100/200; UI scales.75/1/1.25; zero added visual gaps; unchanged embed/actions; combat deferral; native pixels/controller pending"
+      },
+      {
+        "path": "tests/minimap_side_packing.lua",
+        "exit": 0,
+        "wallSeconds": 0.7363893,
+        "output": "Minimap side packing: 32026 checks PASS; two columns shrink to half-native before third; zero neighbor gaps; count/order/window preservation; tiny-height screen fallback; scales and density boundaries; reuse/combat guards; native pixels pending"
+      },
+      {
+        "path": "tests/nameplate_refresh_batch.lua",
+        "exit": 0,
+        "wallSeconds": 0.0551765,
+        "output": "QUEST_PROGRESS client=live frames=5 checks=305 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=forever frames=5 checks=610 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic frames=5 checks=902 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic_era frames=5 checks=1194 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic_anniversary frames=5 checks=1486 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS checks=1491 failures=0 native_pixels_taint_performance=NOT_RUN"
+      },
+      {
+        "path": "tests/native_timer_ownership.lua",
+        "exit": 0,
+        "wallSeconds": 0.0880583,
+        "output": "Native timer ownership: 54 checks; After/NewTimer cancel/replace, exact cadence, resize/embed/hover/current-list/hide reuse"
+      },
+      {
+        "path": "tests/party_cast_border_layout.lua",
+        "exit": 0,
+        "wallSeconds": 0.1154002,
+        "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nParty cast border layout: 835 checks PASS; actual shared layout plus real Party wrapper/direct overlay; cold and live combat guards; one deferred job; unchanged100calls zero native geometry/level/script writes; real shared/header/anchor changes; exact name/level alpha restoration. Native pixels/taint/FPS pending"
+      },
+      {
+        "path": "tests/party_native_contracts.lua",
+        "exit": 0,
+        "wallSeconds": 0.0741406,
+        "output": "Party native contracts: 78 checks across five pinned restricted implementations; native rendering/taint pending"
+      },
+      {
+        "path": "tests/party_steady_performance.lua",
+        "exit": 0,
+        "wallSeconds": 0.1761683,
+        "output": "PARTY_STEADY|live|health=800|power=400|prediction=1200|chrome=0|portrait=0|style=0|indicators=0|auras=40|modes=1200|cover=0|powerAnchors=0\nPARTY_STEADY|forever|health=800|power=400|prediction=1200|chrome=0|portrait=0|style=0|indicators=0|auras=40|modes=1200|cover=0|powerAnchors=0\nPARTY_STEADY|classic|health=800|power=400|prediction=1200|chrome=0|portrait=0|style=0|indicators=0|auras=40|modes=1200|cover=0|powerAnchors=0\nPARTY_STEADY|classic_era|health=800|power=400|prediction=1200|chrome=0|portrait=0|style=0|indicators=0|auras=40|modes=1200|cover=0|powerAnchors=0\nPARTY_STEADY|classic_anniversary|health=800|power=400|prediction=1200|chrome=0|portrait=0|style=0|indicators=0|auras=40|modes=1200|cover=0|powerAnchors=0\nParty steady performance: 305 checks PASS; modeled operation counts, native performance pending"
+      },
+      {
+        "path": "tests/passive_ebs_visibility.lua",
+        "exit": 0,
+        "wallSeconds": 0.3450165,
+        "output": "{\"checks\":340,\"metrics\":{\"anniversary\":{\"bagQueries\":4000,\"equipQueries\":8000,\"hiddenCheckedCallbacks\":0,\"hiddenIconRequests\":0,\"hiddenMountQueries\":0,\"spellCountQueries\":2000,\"usableQueries\":4000,\"visibleIconRequests\":1000},\"era\":{\"bagQueries\":4000,\"equipQueries\":8000,\"hiddenCheckedCallbacks\":0,\"hiddenIconRequests\":0,\"hiddenMountQueries\":0,\"spellCountQueries\":2000,\"usableQueries\":4000,\"visibleIconRequests\":1000},\"forever\":{\"bagQueries\":4000,\"equipQueries\":8000,\"hiddenCheckedCallbacks\":0,\"hiddenIconRequests\":0,\"hiddenMountQueries\":0,\"spellCountQueries\":2000,\"usableQueries\":4000,\"visibleIconRequests\":1000},\"mists\":{\"bagQueries\":4000,\"equipQueries\":8000,\"hiddenCheckedCallbacks\":0,\"hiddenIconRequests\":0,\"hiddenMountQueries\":0,\"spellCountQueries\":2000,\"usableQueries\":4000,\"visibleIconRequests\":1000},\"retail\":{\"bagQueries\":4000,\"equipQueries\":8000,\"hiddenCheckedCallbacks\":0,\"hiddenIconRequests\":0,\"hiddenMountQueries\":0,\"spellCountQueries\":2000,\"usableQueries\":4000,\"visibleIconRequests\":1000}},\"mode\":\"candidate\",\"visibleTraceHash\":723962797,\"visibleTraceSamples\":95}"
+      },
+      {
+        "path": "tests/passive_threat_rank.lua",
+        "exit": 0,
+        "wallSeconds": 4.6205443,
+        "output": "RANK pets=false before_identity=80700 after_identity=2600 before_detailed=4000 after_detailed=4000 GUID=4100\nRANK pets=true before_identity=321500 after_identity=5200 before_detailed=8000 after_detailed=8000 GUID=8200\nPASS threat rank: 1916 actual-code checks; native secret permissions/FPS not measured"
+      },
+      {
+        "path": "tests/raid_combat_roster_transitions.lua",
+        "exit": 0,
+        "wallSeconds": 1.8979314,
+        "output": "COMBAT_ROSTER|live|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|live|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|forever|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|forever|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_era|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_era|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_anniversary|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_anniversary|normal|transitions=180|newFrames=0\nCombat roster transitions: 247385 checks PASS; native secure VM/taint/timing acceptance pending"
+      },
+      {
+        "path": "tests/raid_connected_grid.lua",
+        "exit": 0,
+        "wallSeconds": 0.0499016,
+        "output": "RAID_CONNECTED_WORK|legacy|0|0|0\nRAID_JOIN_DELTA|legacy|111|111|210|40\nRAID_JOIN_READS|legacy|0/160|800/0|39/0|39/4|40/4\nRAID_CONNECTED_WORK|native|0|0|0\nRAID_JOIN_DELTA|native|111|111|210|40\nRAID_JOIN_READS|native|0/160|800/0|39/0|39/4|40/4\nRaid connected grid: 1384 checks; native one-pixel joins, partial groups, redundant neighbors, minis, opacity guards and two rejected controls"
+      },
+      {
+        "path": "tests/raid_group_conversion_conditions.lua",
+        "exit": 0,
+        "wallSeconds": 1.5951659,
+        "output": "Universal group conversion conditions: 53615 checks / 2800 combat transitions PASS; native client acceptance separate"
+      },
+      {
+        "path": "tests/raid_header_precreation.lua",
+        "exit": 0,
+        "wallSeconds": 0.2467835,
+        "output": "raid precreation retail raid initialChildren=80 combatBlocked=0\nraid precreation retail visible-parent initialChildren=80 combatBlocked=0\nraid readiness retail ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation forever raid initialChildren=80 combatBlocked=0\nraid precreation forever visible-parent initialChildren=80 combatBlocked=0\nraid readiness forever ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation era raid initialChildren=80 combatBlocked=0\nraid precreation era visible-parent initialChildren=80 combatBlocked=0\nraid readiness era ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation anniversary raid initialChildren=80 combatBlocked=0\nraid precreation anniversary visible-parent initialChildren=80 combatBlocked=0\nraid readiness anniversary ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation mists raid initialChildren=80 combatBlocked=0\nraid precreation mists visible-parent initialChildren=80 combatBlocked=0\nraid readiness mists ancestorCombatBlocked=0 recoveredChildren=80\nraid header precreation: 1760 checks, 0 failures"
+      },
+      {
+        "path": "tests/raid_roster_attribute_work.lua",
+        "exit": 0,
+        "wallSeconds": 0.0326086,
+        "output": "Secure roster attributes: 111 checks PASS;100 warm reconciliations zero attribute writes vs800;native executes/reference recovery retained;public edits/private values/tamper/combat/failure paths. Native pending."
+      },
+      {
+        "path": "tests/raid_roster_layout_work.lua",
+        "exit": 0,
+        "wallSeconds": 0.176022,
+        "output": "WORK forever party unchanged-prepared clear=17/0 points=17/0 width=1/0 execute=1/1 fullPaint=1/1 bind=0/0 legacyLayouts=2/1 rosterReads=0/0\nWORK forever party transition1solo clear=18/1 points=18/1 width=1/0 execute=1/1 fullPaint=0/0 bind=1/1 legacyLayouts=2/1 rosterReads=0/0\nWORK forever party transition2party clear=17/1 points=17/1 width=1/0 execute=1/1 fullPaint=0/0 bind=2/2 legacyLayouts=2/1 rosterReads=0/0\nWORK forever party transition3party clear=17/0 points=17/0 width=1/0 execute=1/1 fullPaint=2/2 bind=3/3 legacyLayouts=2/1 rosterReads=0/0\nWORK forever party transition4raid clear=15/3 points=15/3 width=1/0 execute=1/1 fullPaint=0/0 bind=9/9 legacyLayouts=2/1 rosterReads=40/0\nWORK forever party transition5raid clear=14/5 points=14/5 width=1/0 execute=1/1 fullPaint=0/0 bind=9/9 legacyLayouts=2/1 rosterReads=40/0\nWORK forever party transition6raid clear=18/3 points=18/3 width=1/0 execute=1/1 fullPaint=0/0 bind=6/6 legacyLayouts=2/1 rosterReads=40/0\nWORK forever party transition7solo clear=18/0 points=18/0 width=1/0 execute=1/1 fullPaint=0/0 bind=0/0 legacyLayouts=2/1 rosterReads=0/0\nWORK forever party mtma-four-plus clear=14/1 points=14/1 width=1/0 execute=1/1 fullPaint=0/0 bind=24/24 legacyLayouts=2/1 rosterReads=40/0\nWORK forever party mtma-chat-lift clear=14/0 points=15/1 width=1/0 execute=1/1 fullPaint=24/24 bind=0/0 legacyLayouts=2/1 rosterReads=40/0\nWORK forever party legacy-roster-with-mt clear=9/6 points=10/7 width=1/0 execute=0/0 fullPaint=12/12 bind=40/40 legacyLayouts=1/1 rosterReads=80/40\nWORK forever party legacy-roster-without-mt clear=9/1 points=9/1 width=1/0 execute=0/0 fullPaint=44/44 bind=0/0 legacyLayouts=1/1 rosterReads=80/40\nWORK forever party mtma-disabled-while-shown clear=9/0 points=9/0 width=1/0 execute=1/1 fullPaint=44/44 bind=0/0 legacyLayouts=2/2 rosterReads=40/40\nQUALIFIER forever partial-false hidden poses differ; both hide/Blizzard-restore/retry retained\nWORK forever raid unchanged-prepared clear=16/0 points=16/0 width=1/0 execute=1/1 fullPaint=2/2 bind=0/0 legacyLayouts=2/1 rosterReads=40/0\nWORK forever raid transition1solo clear=18/1 points=18/1 width=1/0 execute=1/1 fullPaint=0/0 bind=2/2 legacyLayouts=2/1 rosterReads=0/0\nWORK forever raid transition2party clear=17/1 points=17/1 width=1/0 execute=1/1 fullPaint=0/0 bind=2/2 legacyLayouts=2/1 rosterReads=0/0\nWORK forever raid transition3party clear=17/0 points=17/0 width=1/0 execute=1/1 fullPaint=2/2 bind=3/3 legacyLayouts=2/1 rosterReads=0/0\nWORK forever raid transition4raid clear=15/3 points=15/3 width=1/0 execute=1/1 fullPaint=0/0 bind=9/9 legacyLayouts=2/1 rosterReads=40/0\nWORK forever raid transition5raid clear=14/5 points=14/5 width=1/0 execute=1/1 fullPaint=0/0 bind=9/9 legacyLayouts=2/1 rosterReads=40/0\nWORK forever raid transition6raid clear=18/3 points=18/3 width=1/0 execute=1/1 fullPaint=0/0 bind=6/6 legacyLayouts=2/1 rosterReads=40/0\nWORK forever raid transition7solo clear=18/0 points=18/0 width=1/0 execute=1/1 fullPaint=0/0 bind=0/0 legacyLayouts=2/1 rosterReads=0/0\nWORK forever raid mtma-four-plus clear=14/1 points=14/1 width=1/0 execute=1/1 fullPaint=0/0 bind=24/24 legacyLayouts=2/1 rosterReads=40/0\nWORK forever raid mtma-chat-lift clear=14/0 points=15/1 width=1/0 execute=1/1 fullPaint=24/24 bind=0/0 legacyLayouts=2/1 rosterReads=40/0\nWORK forever raid legacy-roster-with-mt clear=9/6 points=10/7 width=1/0 execute=0/0 fullPaint=12/12 bind=40/40 legacyLayouts=1/1 rosterReads=80/40\nWORK forever raid legacy-roster-without-mt clear=9/1 points=9/1 width=1/0 execute=0/0 fullPaint=44/44 bind=0/0 legacyLayouts=1/1 rosterReads=80/40\nWORK forever raid mtma-disabled-while-shown clear=9/0 points=9/0 width=1/0 execute=1/1 fullPaint=44/44 bind=0/0 legacyLayouts=2/2 rosterReads=40/40\nQUALIFIER forever partial-false hidden poses differ; both hide/Blizzard-restore/retry retained\nWORK live party unchanged-prepared clear=17/0 points=17/0 width=1/0 execute=1/1 fullPaint=1/1 bind=0/0 legacyLayouts=2/1 rosterReads=0/0\nWORK live party transition1solo clear=18/1 points=18/1 width=1/0 execute=1/1 fullPaint=0/0 bind=1/1 legacyLayouts=2/1 rosterReads=0/0\nWORK live party transition2party clear=17/1 points=17/1 width=1/0 execute=1/1 fullPaint=0/0 bind=2/2 legacyLayouts=2/1 rosterReads=0/0\nWORK live party transition3party clear=17/0 points=17/0 width=1/0 execute=1/1 fullPaint=2/2 bind=3/3 legacyLayouts=2/1 rosterReads=0/0\nWORK live party transition4raid clear=15/3 points=15/3 width=1/0 execute=1/1 fullPaint=0/0 bind=9/9 legacyLayouts=2/1 rosterReads=40/0\nWORK live party transition5raid clear=14/5 points=14/5 width=1/0 execute=1/1 fullPaint=0/0 bind=9/9 legacyLayouts=2/1 rosterReads=40/0\nWORK live party transition6raid clear=18/3 points=18/3 width=1/0 execute=1/1 fullPaint=0/0 bind=6/6 legacyLayouts=2/1 rosterReads=40/0\nWORK live party transition7solo clear=18/0 points=18/0 width=1/0 execute=1/1 fullPaint=0/0 bind=0/0 legacyLayouts=2/1 rosterReads=0/0\nWORK live party mtma-four-plus clear=14/1 points=14/1 width=1/0 execute=1/1 fullPaint=0/0 bind=24/24 legacyLayouts=2/1 rosterReads=40/0\nWORK live party mtma-chat-lift clear=14/0 points=15/1 width=1/0 execute=1/1 fullPaint=24/24 bind=0/0 legacyLayouts=2/1 rosterReads=40/0\nWORK live party legacy-roster-with-mt clear=9/6 points=10/7 width=1/0 execute=0/0 fullPaint=12/12 bind=40/40 legacyLayouts=1/1 rosterReads=80/40\nWORK live party legacy-roster-without-mt clear=9/1 points=9/1 width=1/0 execute=0/0 fullPaint=44/44 bind=0/0 legacyLayouts=1/1 rosterReads=80/40\nWORK live party mtma-disabled-while-shown clear=9/0 points=9/0 width=1/0 execute=1/1 fullPaint=44/44 bind=0/0 legacyLayouts=2/2 rosterReads=40/40\nQUALIFIER live partial-false hidden poses differ; both hide/Blizzard-restore/retry retained\nWORK live raid unchanged-prepared clear=16/0 points=16/0 width=1/0 execute=1/1 fullPaint=2/2 bind=0/0 legacyLayouts=2/1 rosterReads=40/0\nWORK live raid transition1solo clear=18/1 points=18/1 width=1/0 execute=1/1 fullPaint=0/0 bind=2/2 legacyLayouts=2/1 rosterReads=0/0\nWORK live raid transition2party clear=17/1 points=17/1 width=1/0 execute=1/1 fullPaint=0/0 bind=2/2 legacyLayouts=2/1 rosterReads=0/0\nWORK live raid transition3party clear=17/0 points=17/0 width=1/0 execute=1/1 fullPaint=2/2 bind=3/3 legacyLayouts=2/1 rosterReads=0/0\nWORK live raid transition4raid clear=15/3 points=15/3 width=1/0 execute=1/1 fullPaint=0/0 bind=9/9 legacyLayouts=2/1 rosterReads=40/0\nWORK live raid transition5raid clear=14/5 points=14/5 width=1/0 execute=1/1 fullPaint=0/0 bind=9/9 legacyLayouts=2/1 rosterReads=40/0\nWORK live raid transition6raid clear=18/3 points=18/3 width=1/0 execute=1/1 fullPaint=0/0 bind=6/6 legacyLayouts=2/1 rosterReads=40/0\nWORK live raid transition7solo clear=18/0 points=18/0 width=1/0 execute=1/1 fullPaint=0/0 bind=0/0 legacyLayouts=2/1 rosterReads=0/0\nWORK live raid mtma-four-plus clear=14/1 points=14/1 width=1/0 execute=1/1 fullPaint=0/0 bind=24/24 legacyLayouts=2/1 rosterReads=40/0\nWORK live raid mtma-chat-lift clear=14/0 points=15/1 width=1/0 execute=1/1 fullPaint=24/24 bind=0/0 legacyLayouts=2/1 rosterReads=40/0\nWORK live raid legacy-roster-with-mt clear=9/6 points=10/7 width=1/0 execute=0/0 fullPaint=12/12 bind=40/40 legacyLayouts=1/1 rosterReads=80/40\nWORK live raid legacy-roster-without-mt clear=9/1 points=9/1 width=1/0 execute=0/0 fullPaint=44/44 bind=0/0 legacyLayouts=1/1 rosterReads=80/40\nWORK live raid mtma-disabled-while-shown clear=9/0 points=9/0 width=1/0 execute=1/1 fullPaint=44/44 bind=0/0 legacyLayouts=2/2 rosterReads=40/40\nQUALIFIER live partial-false hidden poses differ; both hide/Blizzard-restore/retry retained\nParty roster prepared delegation: 9715 checks PASS. Actual Layout/RefreshRosterLayout/ROSTER_LAYOUT/Sync functions; modeled native rebinding and protected widgets. Native latency/taint pending."
+      },
+      {
+        "path": "tests/raid_roster_native_writes.lua",
+        "exit": 0,
+        "wallSeconds": 0.0412052,
+        "output": "ROSTER_REFS live stable=0/0\nROSTER_REFS forever stable=0/0\nROSTER_REFS classic stable=0/0\nROSTER_REFS classic_era stable=0/0\nROSTER_REFS classic_anniversary stable=0/0\nROSTER_PRESENTATION stable anchors=0/0 width=0/0 labels=0/0\nRoster writes preserve placement, label repair, reference recovery and combat deferral."
+      },
+      {
+        "path": "tests/rapid_strip_drops.lua",
+        "exit": 0,
+        "wallSeconds": 4.638326,
+        "output": "RAPID_STRIP actions=12 mappingWrites=108/108 fullStock=0/0 fullPaint=0/0\nRAPID_BORDER style=1 changes=8 solve=8/2 plan=8/2 prepared=6\nRAPID_BORDER style=2 changes=8 solve=8/2 plan=8/2 prepared=6\nRapid strip replay passes slots, shared mappings, grid transition, lockdown, prepared side joins and bounded reuse."
+      },
+      {
+        "path": "tests/regional_roster_poses.lua",
+        "exit": 0,
+        "wallSeconds": 30.0149039,
+        "output": "ROSTER_POSE style=1 mode=party solves=2/2 plans=2/2\nROSTER_REGISTRATION style=1 mode=party warmCompiles=0+0\nROSTER_POSE style=1 mode=raid solves=2/2 plans=2/2\nROSTER_REGISTRATION style=1 mode=raid warmCompiles=0+0\nROSTER_POSE style=2 mode=party solves=2/2 plans=2/2\nROSTER_REGISTRATION style=2 mode=party warmCompiles=0+0\nROSTER_POSE style=2 mode=raid solves=2/2 plans=2/2\nROSTER_REGISTRATION style=2 mode=raid warmCompiles=0+0\nROSTER_RECENT_LAYOUTS|candidate|1|party|3|144\nROSTER_RECENT_LAYOUTS|candidate|1|raid|3|144\nROSTER_RECENT_LAYOUTS|candidate|2|party|3|144\nROSTER_RECENT_LAYOUTS|candidate|2|raid|3|144\nRoster pose replay preserves sampled joins, live paint, material validation and combat deferral."
+      },
+      {
+        "path": "tests/roster_native_hover_cleanup.lua",
+        "exit": 0,
+        "wallSeconds": 0.0564185,
+        "output": "Roster native hover cleanup: name reads 99 -> 6; identical unregister order and protected guards.\nRoster hover discovery preserves native and Flux admissions, Clicked ownership, and post-lockdown recovery."
+      },
+      {
+        "path": "tests/roster_player_specialization.lua",
+        "exit": 0,
+        "wallSeconds": 0.0452843,
+        "output": "Roster player-specialization: 168 checks PASS; complete rank/stance modules and17 actual player-only callbacks;foreign notifications produce no rebuild requests/retries;aliases/private/missing cases preserve refresh. Native pending."
+      },
+      {
+        "path": "tests/squeeze_notification_work.lua",
+        "exit": 0,
+        "wallSeconds": 0.042998,
+        "output": "SQUEEZE_NOTIFICATION_WORK|legacy|21passes|transientProtectedCallbackIdentities=5\nSQUEEZE_NOTIFICATION_WORK|modern|21passes|transientProtectedCallbackIdentities=4\nSqueeze notification work: 2100 checks PASS; full current dependency order/arguments/recovery retained; no native timing claim"
+      },
+      {
+        "path": "tests/strip_border_commit_work.lua",
+        "exit": 0,
+        "wallSeconds": 20.1614172,
+        "output": "STRIP_SHELL crossings=6 exteriorWrites=0/0\nSTRIP_LAYER style=1 scale=0.75 reads=240/240 writes=0/0\nSTRIP_LAYER style=1 scale=1.00 reads=240/240 writes=0/0\nSTRIP_LAYER style=1 scale=1.25 reads=204/204 writes=0/0\nSTRIP_LAYER style=2 scale=0.75 reads=240/240 writes=0/0\nSTRIP_LAYER style=2 scale=1.00 reads=240/240 writes=0/0\nSTRIP_LAYER style=2 scale=1.25 reads=192/192 writes=7/7\nStrip commit replay passes live levels, canonical texture samples and retained regional ownership."
+      },
+      {
+        "path": "tests/strip_border_spacing.lua",
+        "exit": 0,
+        "wallSeconds": 0.0562472,
+        "output": "Strip border spacing: 60 checks PASS; actual layout; preserved dimensions/packing/input; two-unit chrome/content shift; native pixels pending"
+      },
+      {
+        "path": "tests/strip_drag_button_chrome.lua",
+        "exit": 0,
+        "wallSeconds": 0.5682946,
+        "output": "STRIP_PARKED_CHROME retail first=5/5 steps=60 sizes=0/0 writes=0/0\nSTRIP_PARKED_CHROME forever first=5/5 steps=60 sizes=0/0 writes=0/0\nSTRIP_PARKED_CHROME classic first=5/5 steps=60 sizes=0/0 writes=0/0\nSTRIP_BUTTON_CHROME|retail|1|sizing=57/5|writes=3135/275\nSTRIP_BUTTON_CHROME|retail|2|sizing=57/0|writes=3135/0\nSTRIP_BUTTON_CHROME|retail|3|sizing=57/0|writes=3135/0\nSTRIP_BUTTON_CHROME|retail|4|sizing=57/0|writes=3135/0\nSTRIP_BUTTON_CHROME|forever|1|sizing=57/5|writes=3135/275\nSTRIP_BUTTON_CHROME|forever|2|sizing=57/0|writes=3135/0\nSTRIP_BUTTON_CHROME|forever|3|sizing=57/0|writes=3135/0\nSTRIP_BUTTON_CHROME|forever|4|sizing=57/0|writes=3135/0\nSTRIP_BUTTON_CHROME|classic|1|sizing=57/5|writes=3192/280\nSTRIP_BUTTON_CHROME|classic|2|sizing=57/0|writes=3192/0\nSTRIP_BUTTON_CHROME|classic|3|sizing=57/0|writes=3192/0\nSTRIP_BUTTON_CHROME|classic|4|sizing=57/0|writes=3192/0\nStrip button chrome: exact layout, visible art, squeeze, native repair and accent controls pass."
+      },
+      {
+        "path": "tests/strip_drag_hover_edges.lua",
+        "exit": 0,
+        "wallSeconds": 0.1179176,
+        "output": "Strip drag hover edges: 163 checks; enter/leave while holding the same action. Native timing and seams pending."
+      },
+      {
+        "path": "tests/strip_grid_packing.lua",
+        "exit": 0,
+        "wallSeconds": 0.1708558,
+        "output": "Action-strip root anchors pass relative ownership, repair, gamepad and lockdown.\nStrip grid packing passes both client shapes, changed squeeze and occupancy, repair, binding, batch and lockdown."
+      },
+      {
+        "path": "tests/strip_panel_settle.lua",
+        "exit": 0,
+        "wallSeconds": 0.1766718,
+        "output": "Strip panel settlement passes all Info placements, narrow slots, changing ownership and combat guards."
+      },
+      {
+        "path": "tests/strip_slot_sampling.lua",
+        "exit": 0,
+        "wallSeconds": 0.1768829,
+        "output": "STRIP_SLOT_READS sparse-top crossings=8 action=424/424 page=4/4\nSTRIP_SLOT_READS sparse-shapeshift crossings=8 action=424/424 page=4/4\nSTRIP_SLOT_READS full-top crossings=8 action=396/396 page=4/4\nSTRIP_SLOT_READS full-possession crossings=8 action=424/424 page=4/4\nStrip sampling replay passes sparse/full bars, current pages, overlays, synchronous page changes and combat deferral."
+      },
+      {
+        "path": "tests/strip_unit_anchor_transaction.lua",
+        "exit": 0,
+        "wallSeconds": 0.1469211,
+        "output": "Strip unit anchor transaction passes both placements, three scales, envelope changes, anchor recovery and lockdown."
+      },
+      {
+        "path": "tests/teleport_cast_work.lua",
+        "exit": 0,
+        "wallSeconds": 0.052802,
+        "output": "modern scans=0 popup_rebuilds=0\nlegacy scans=4 popup_rebuilds=0\nintegrated scans=0 popup_rebuilds=0\nteleport cast: 527 checks, 0 failures"
+      },
+      {
+        "path": "tests/timer_header_layout.lua",
+        "exit": 0,
+        "wallSeconds": 0.1884722,
+        "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nTimer header layout: 2230 checks PASS; actual cast/Fire/swing/Shoot; fitted native clip bounds; both styles/alignments; shared source geometry; static unchanged hooks; cold/combat defer. Native pixels/taint/FPS pending"
+      },
+      {
+        "path": "tests/trinket_bag_scan_work.lua",
+        "exit": 0,
+        "wallSeconds": 0.1648314,
+        "output": "trinket bag scan: 222 semantic checks; 0 failures; modeled endpoints\nprivate location-wrapper records: 0 across 3 scans; budget=0; pass=true; not heap bytes"
+      },
+      {
+        "path": "tests/trinket_squeeze_geometry_work.lua",
+        "exit": 0,
+        "wallSeconds": 0.2027916,
+        "output": "TRINKET_SQUEEZE_WORK|10notifications|20sourceCalls|geometry=0|nativeReads=380|clipWrites=40|styleCalls=40|arrowLayers=20\nTrinket squeeze geometry: 628 checks PASS; original calls/cadence/recovery retained; native timing pending"
+      },
+      {
+        "path": "tests/utility_secure_input.lua",
+        "exit": 0,
+        "wallSeconds": 0.5356351,
+        "output": "Utility secure input: 41396 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS"
+      }
+    ],
+    "syntaxPassed": 1256,
+    "upvalues": {
+      "dateUTC": "2026-11-21T13:34:48.141531+00:00",
+      "scope": "Compiler prototype upvalue limit only; includes _ENV on Lua5.4; no native/API/FPS claim",
+      "files": 2,
+      "functions": 329,
+      "maximum": 52,
+      "failures": [],
+      "prototypes": [
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 0,
+          "end": 0,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 41,
+          "end": 43,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 44,
+          "end": 48,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 49,
+          "end": 51,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 69,
+          "end": 71,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 72,
+          "end": 75,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 76,
+          "end": 80,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 81,
+          "end": 81,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 82,
+          "end": 82,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 84,
+          "end": 94,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 95,
+          "end": 98,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 99,
+          "end": 110,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 111,
+          "end": 115,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 116,
+          "end": 126,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 127,
+          "end": 137,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 138,
+          "end": 140,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 141,
+          "end": 146,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 151,
+          "end": 162,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 163,
+          "end": 174,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 175,
+          "end": 187,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 190,
+          "end": 197,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 198,
+          "end": 232,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 236,
+          "end": 254,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 257,
+          "end": 266,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 267,
+          "end": 291,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 293,
+          "end": 308,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 309,
+          "end": 317,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 318,
+          "end": 325,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 328,
+          "end": 338,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 339,
+          "end": 348,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 350,
+          "end": 357,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 358,
+          "end": 361,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 362,
+          "end": 368,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 372,
+          "end": 713,
+          "upvalues": 19
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 376,
+          "end": 379,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 380,
+          "end": 386,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 432,
+          "end": 436,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 437,
+          "end": 441,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 443,
+          "end": 473,
+          "upvalues": 8
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 474,
+          "end": 495,
+          "upvalues": 8
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 717,
+          "end": 745,
+          "upvalues": 17
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 749,
+          "end": 788,
+          "upvalues": 6
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 791,
+          "end": 825,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 826,
+          "end": 829,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 830,
+          "end": 871,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 872,
+          "end": 876,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 878,
+          "end": 893,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 894,
+          "end": 992,
+          "upvalues": 7
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 905,
+          "end": 990,
+          "upvalues": 12
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 976,
+          "end": 983,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 993,
+          "end": 1008,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1009,
+          "end": 1020,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1021,
+          "end": 1027,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1028,
+          "end": 1056,
+          "upvalues": 7
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1057,
+          "end": 1061,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1062,
+          "end": 1067,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1068,
+          "end": 1087,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1088,
+          "end": 1091,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1092,
+          "end": 1097,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1098,
+          "end": 1160,
+          "upvalues": 12
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1161,
+          "end": 1176,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1177,
+          "end": 1182,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1183,
+          "end": 1274,
+          "upvalues": 10
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1223,
+          "end": 1252,
+          "upvalues": 10
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1276,
+          "end": 1294,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1295,
+          "end": 1311,
+          "upvalues": 8
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1317,
+          "end": 1346,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1347,
+          "end": 1379,
+          "upvalues": 7
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1380,
+          "end": 1392,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1394,
+          "end": 1409,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1410,
+          "end": 1424,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1425,
+          "end": 1433,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1441,
+          "end": 1485,
+          "upvalues": 7
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1444,
+          "end": 1447,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1486,
+          "end": 1522,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1523,
+          "end": 1605,
+          "upvalues": 19
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1528,
+          "end": 1528,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1530,
+          "end": 1530,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1533,
+          "end": 1535,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1541,
+          "end": 1545,
+          "upvalues": 6
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1553,
+          "end": 1577,
+          "upvalues": 10
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1563,
+          "end": 1565,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1584,
+          "end": 1598,
+          "upvalues": 10
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1608,
+          "end": 1618,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1619,
+          "end": 1649,
+          "upvalues": 7
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1653,
+          "end": 1691,
+          "upvalues": 9
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1694,
+          "end": 1712,
+          "upvalues": 8
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1714,
+          "end": 1840,
+          "upvalues": 25
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1735,
+          "end": 1781,
+          "upvalues": 16
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1782,
+          "end": 1830,
+          "upvalues": 10
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1832,
+          "end": 1834,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1841,
+          "end": 1852,
+          "upvalues": 7
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1853,
+          "end": 1859,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1861,
+          "end": 1873,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1874,
+          "end": 1889,
+          "upvalues": 8
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1890,
+          "end": 2111,
+          "upvalues": 19
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1897,
+          "end": 1903,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1908,
+          "end": 1957,
+          "upvalues": 9
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 1958,
+          "end": 2034,
+          "upvalues": 13
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2113,
+          "end": 2123,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2127,
+          "end": 2153,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2154,
+          "end": 2167,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2161,
+          "end": 2164,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2178,
+          "end": 2187,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2196,
+          "end": 2208,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2210,
+          "end": 2221,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2223,
+          "end": 2240,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2242,
+          "end": 2252,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2256,
+          "end": 2265,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2267,
+          "end": 2276,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2278,
+          "end": 2288,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2297,
+          "end": 2303,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2304,
+          "end": 2310,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2311,
+          "end": 2374,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2322,
+          "end": 2325,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2326,
+          "end": 2337,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2375,
+          "end": 2488,
+          "upvalues": 18
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2461,
+          "end": 2482,
+          "upvalues": 7
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2492,
+          "end": 2499,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2500,
+          "end": 2509,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2510,
+          "end": 2533,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2534,
+          "end": 2536,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2537,
+          "end": 2547,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2548,
+          "end": 2554,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2556,
+          "end": 2563,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2564,
+          "end": 2571,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2572,
+          "end": 2595,
+          "upvalues": 9
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2596,
+          "end": 2610,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2611,
+          "end": 2633,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2634,
+          "end": 2652,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2653,
+          "end": 2674,
+          "upvalues": 9
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2675,
+          "end": 2686,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2688,
+          "end": 2698,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2700,
+          "end": 2756,
+          "upvalues": 20
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2761,
+          "end": 2774,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2763,
+          "end": 2763,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2778,
+          "end": 2800,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2801,
+          "end": 2805,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2806,
+          "end": 2814,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2815,
+          "end": 2845,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2850,
+          "end": 2905,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2861,
+          "end": 2866,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2867,
+          "end": 2869,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2870,
+          "end": 2875,
+          "upvalues": 7
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2892,
+          "end": 2898,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2909,
+          "end": 2960,
+          "upvalues": 9
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2918,
+          "end": 2933,
+          "upvalues": 12
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2961,
+          "end": 2973,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2974,
+          "end": 2990,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2992,
+          "end": 2994,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 2995,
+          "end": 3025,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3026,
+          "end": 3100,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3038,
+          "end": 3040,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3041,
+          "end": 3058,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3101,
+          "end": 3339,
+          "upvalues": 13
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3121,
+          "end": 3123,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3124,
+          "end": 3187,
+          "upvalues": 16
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3207,
+          "end": 3210,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3208,
+          "end": 3208,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3211,
+          "end": 3239,
+          "upvalues": 8
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3245,
+          "end": 3256,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3262,
+          "end": 3279,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3322,
+          "end": 3330,
+          "upvalues": 7
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3340,
+          "end": 3344,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3345,
+          "end": 3388,
+          "upvalues": 6
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3389,
+          "end": 3409,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3392,
+          "end": 3398,
+          "upvalues": 6
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3411,
+          "end": 3411,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3412,
+          "end": 3415,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3416,
+          "end": 3425,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3426,
+          "end": 3430,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3431,
+          "end": 3521,
+          "upvalues": 12
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3443,
+          "end": 3455,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3522,
+          "end": 3551,
+          "upvalues": 6
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3552,
+          "end": 3571,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3573,
+          "end": 3579,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3581,
+          "end": 3701,
+          "upvalues": 19
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3703,
+          "end": 3726,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3733,
+          "end": 3743,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3747,
+          "end": 3775,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3778,
+          "end": 3878,
+          "upvalues": 6
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3781,
+          "end": 3784,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3785,
+          "end": 3788,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3789,
+          "end": 3801,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3880,
+          "end": 3905,
+          "upvalues": 6
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3909,
+          "end": 3943,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3947,
+          "end": 3950,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3951,
+          "end": 3953,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3954,
+          "end": 3967,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3971,
+          "end": 3990,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 3991,
+          "end": 4006,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4007,
+          "end": 4023,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4024,
+          "end": 4028,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4029,
+          "end": 4044,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4045,
+          "end": 4060,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4061,
+          "end": 4064,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4065,
+          "end": 4161,
+          "upvalues": 10
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4165,
+          "end": 4167,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4168,
+          "end": 4170,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4171,
+          "end": 4205,
+          "upvalues": 6
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4206,
+          "end": 4256,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4210,
+          "end": 4210,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4211,
+          "end": 4214,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4215,
+          "end": 4240,
+          "upvalues": 10
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4257,
+          "end": 4261,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4262,
+          "end": 4345,
+          "upvalues": 9
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4346,
+          "end": 4375,
+          "upvalues": 14
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4377,
+          "end": 4386,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4391,
+          "end": 4398,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4399,
+          "end": 4407,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4408,
+          "end": 4413,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4414,
+          "end": 4424,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4425,
+          "end": 4430,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4431,
+          "end": 4446,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4449,
+          "end": 4460,
+          "upvalues": 17
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4461,
+          "end": 4463,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4467,
+          "end": 4470,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4469,
+          "end": 4469,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4471,
+          "end": 4477,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4478,
+          "end": 4480,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4481,
+          "end": 4520,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4522,
+          "end": 4723,
+          "upvalues": 16
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4530,
+          "end": 4718,
+          "upvalues": 26
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4535,
+          "end": 4540,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4728,
+          "end": 4779,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4780,
+          "end": 4806,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4807,
+          "end": 4809,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4810,
+          "end": 4822,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4823,
+          "end": 4848,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4849,
+          "end": 4859,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4860,
+          "end": 4864,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4865,
+          "end": 4894,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4867,
+          "end": 4874,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4875,
+          "end": 4890,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4895,
+          "end": 4898,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4900,
+          "end": 4902,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4903,
+          "end": 4906,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4907,
+          "end": 4973,
+          "upvalues": 6
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4975,
+          "end": 4982,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4985,
+          "end": 4997,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 4998,
+          "end": 5055,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5056,
+          "end": 5077,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5078,
+          "end": 5111,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5112,
+          "end": 5116,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5117,
+          "end": 5153,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5154,
+          "end": 5156,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5157,
+          "end": 5161,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5162,
+          "end": 5166,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5167,
+          "end": 5183,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5169,
+          "end": 5176,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5184,
+          "end": 5194,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5195,
+          "end": 5202,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5203,
+          "end": 5205,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5206,
+          "end": 5208,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5209,
+          "end": 5222,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5223,
+          "end": 5241,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5242,
+          "end": 5249,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5250,
+          "end": 5298,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5299,
+          "end": 5308,
+          "upvalues": 8
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5309,
+          "end": 5322,
+          "upvalues": 7
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5323,
+          "end": 5337,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5338,
+          "end": 5344,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5349,
+          "end": 5396,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5351,
+          "end": 5360,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5397,
+          "end": 5407,
+          "upvalues": 6
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5408,
+          "end": 5437,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5438,
+          "end": 5577,
+          "upvalues": 25
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5456,
+          "end": 5548,
+          "upvalues": 26
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5554,
+          "end": 5573,
+          "upvalues": 18
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5590,
+          "end": 5593,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5594,
+          "end": 5597,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5598,
+          "end": 5625,
+          "upvalues": 9
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5627,
+          "end": 5635,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5637,
+          "end": 5653,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5655,
+          "end": 5661,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5663,
+          "end": 5675,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5677,
+          "end": 5685,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5687,
+          "end": 5693,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5695,
+          "end": 5717,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5719,
+          "end": 5738,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5740,
+          "end": 5785,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5747,
+          "end": 5754,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5787,
+          "end": 5833,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5836,
+          "end": 5939,
+          "upvalues": 6
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5941,
+          "end": 5955,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5956,
+          "end": 5960,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 5963,
+          "end": 6192,
+          "upvalues": 52
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 6097,
+          "end": 6107,
+          "upvalues": 14
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 6148,
+          "end": 6176,
+          "upvalues": 20
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 6196,
+          "end": 6199,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 6200,
+          "end": 6240,
+          "upvalues": 13
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 6251,
+          "end": 6263,
+          "upvalues": 7
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 6269,
+          "end": 6342,
+          "upvalues": 13
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 6280,
+          "end": 6288,
+          "upvalues": 1
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 6289,
+          "end": 6297,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 6298,
+          "end": 6304,
+          "upvalues": 5
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 6307,
+          "end": 6311,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 6331,
+          "end": 6335,
+          "upvalues": 0
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 6343,
+          "end": 6362,
+          "upvalues": 4
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 6346,
+          "end": 6353,
+          "upvalues": 2
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 6363,
+          "end": 6386,
+          "upvalues": 3
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 6369,
+          "end": 6385,
+          "upvalues": 6
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 6387,
+          "end": 6416,
+          "upvalues": 8
+        },
+        {
+          "path": "Core/BorderJunctions.lua",
+          "start": 6417,
+          "end": 6461,
+          "upvalues": 13
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 0,
+          "end": 0,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 25,
+          "end": 36,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 38,
+          "end": 41,
+          "upvalues": 4
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 43,
+          "end": 48,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 50,
+          "end": 67,
+          "upvalues": 4
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 69,
+          "end": 74,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 76,
+          "end": 81,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 83,
+          "end": 130,
+          "upvalues": 7
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 132,
+          "end": 144,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 146,
+          "end": 150,
+          "upvalues": 2
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 152,
+          "end": 159,
+          "upvalues": 1
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 161,
+          "end": 163,
+          "upvalues": 0
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 165,
+          "end": 196,
+          "upvalues": 9
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 198,
+          "end": 210,
+          "upvalues": 0
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 212,
+          "end": 219,
+          "upvalues": 4
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 221,
+          "end": 235,
+          "upvalues": 2
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 237,
+          "end": 247,
+          "upvalues": 4
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 249,
+          "end": 294,
+          "upvalues": 10
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 296,
+          "end": 312,
+          "upvalues": 4
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 314,
+          "end": 318,
+          "upvalues": 2
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 320,
+          "end": 340,
+          "upvalues": 3
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 327,
+          "end": 329,
+          "upvalues": 2
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 342,
+          "end": 355,
+          "upvalues": 3
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 349,
+          "end": 351,
+          "upvalues": 2
+        },
+        {
+          "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+          "start": 357,
+          "end": 363,
+          "upvalues": 3
+        }
+      ]
+    },
+    "scope": "Exact host stratum and one level above its active local chrome. Embedded arrow recovery. Dock contact across both border styles, three UI scales, and five side scales. Shared crest sample, visibility and detachment. Stable replay with zero settled layer writes."
+  },
+  "modeledBaselineDockGapAt085SideScale": {
+    "type1": 2.085,
+    "type2": 3.17,
+    "uiScale": 1
+  },
+  "nativeResult": "Pending",
+  "nativeScope": "In-game appearance, frame timing and combat taint remain pending."
+}

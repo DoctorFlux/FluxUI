@@ -145,14 +145,19 @@ function FJ.IsExplicitUseful(id)
     return GetListValue(id) == false
 end
 
+local function IsCraftMaterialProtected(id)
+    local policy = _G.Flux and _G.Flux.RestockPolicy
+    return policy and policy.IsCraftMaterialProtected and policy.IsCraftMaterialProtected(id) == true
+end
+
 function FJ.IsExplicitJunk(id)
     id = tonumber(id)
-    if not id then return false end
+    if not id or IsCraftMaterialProtected(id) then return false end
     return GetListValue(id) == true
 end
 
 local function IsProtected(id, slotInfo, listValue)
-    if listValue == false then return true end
+    if listValue == false or IsCraftMaterialProtected(id) then return true end
     if listValue == nil and BASE_WHITELIST[id] == false then
         local quality = slotInfo and slotInfo.quality
         local ic = IC()
@@ -186,8 +191,8 @@ end
 -- INFERIOR SET (fed by FluxRestockTiers; pure itemID set)
 -- ---------------------------------------------------------------------------
 
-local function NotifyJunkAvailabilityChanged()
-    FJ.InvalidateJunkSlotCount()
+local function NotifyJunkAvailabilityChanged(force)
+    FJ.InvalidateJunkSlotCount(force)
     local TiersMod = _G.FluxRestockTiers
     if TiersMod then
         if TiersMod.InvalidateTierQueryCache then
@@ -283,12 +288,13 @@ end
 
 function FJ.IsUpgradeInferior(itemID)
     itemID = tonumber(itemID)
-    return itemID ~= nil and inferiorSet[itemID] == true and CombatUpgradeAllowsAutoJunk(itemID) ~= false
+    return itemID ~= nil and inferiorSet[itemID] == true and not IsCraftMaterialProtected(itemID)
+        and CombatUpgradeAllowsAutoJunk(itemID) ~= false
 end
 
 function FJ.MarkUpgradeInferior(itemID)
     itemID = tonumber(itemID)
-    if not itemID or inferiorSet[itemID] then
+    if not itemID or inferiorSet[itemID] or IsCraftMaterialProtected(itemID) then
         return false
     end
     if FJ.IsConjuredConsumable(itemID) or IsManualRestockItem(itemID)
@@ -671,7 +677,7 @@ end
 
 function FJ.IsFiltered(id)
     id = tonumber(id)
-    if not id then return false end
+    if not id or IsCraftMaterialProtected(id) then return false end
     if CombatUpgradeAllowsAutoJunk(id) == false then return false end
     return RuleVerdict(id)
 end
@@ -687,8 +693,7 @@ function FJ.IsJunk(id, slotInfo)
     if IsProtected(id, slotInfo, listValue) then
         return false
     end
-    -- Explicit user junk still wins; never auto-junk conjured food/water
-    -- or manual restock targets.
+    -- Explicit user junk overrides the automatic protections below.
     if listValue == true then
         return true
     end
@@ -1124,10 +1129,10 @@ local function ScanJunkSlotCount()
     return count
 end
 
-function FJ.InvalidateJunkSlotCount()
+function FJ.InvalidateJunkSlotCount(force)
     cachedBlizzardJunk = nil
     cachedJunkSlotGen = -1
-    InvalidateJunkWorklist()
+    InvalidateJunkWorklist(force == true)
 end
 
 function FJ.GetJunkSlotCount()
@@ -1186,7 +1191,7 @@ function FJ.AnyExplicitJunkInBags()
     for id, val in pairs(list) do
         if val == true then
             local itemID = tonumber(id)
-            if itemID and inv.GetCount(itemID) > 0 then
+            if itemID and not IsCraftMaterialProtected(itemID) and inv.GetCount(itemID) > 0 then
                 return true
             end
         end
@@ -1319,6 +1324,13 @@ local function BumpJunkListSettingsToken()
     cachedUsefulList = nil
 end
 
+function FJ.OnCraftMaterialProtectionChanged()
+    cachedExplicitJunkList = nil
+    FJ.InvalidateJunkTabListCache()
+    NotifyJunkAvailabilityChanged(true)
+    FJ.NotifyVisualRefresh()
+end
+
 function FJ.FireListChanged(itemID)
     BumpJunkListSettingsToken()
     FJ.InvalidateJunkTabListCache()
@@ -1362,6 +1374,7 @@ end
 function FJ.ToggleJunk(id)
     id = tonumber(id)
     if not id then return end
+    if IsCraftMaterialProtected(id) then return false end
     local wasJunk = FJ.IsJunk(id)
     GetSettings().junkList[id] = not wasJunk
     if not wasJunk then
@@ -1375,6 +1388,7 @@ end
 function FJ.AddJunk(id)
     id = tonumber(id)
     if not id then return end
+    if IsCraftMaterialProtected(id) then return false end
     GetSettings().junkList[id] = true
     FJ.FireListChanged(id)
 end
@@ -1450,7 +1464,7 @@ function FJ.GetExplicitJunkList()
     local list = {}
     for id, val in pairs(GetSettings().junkList) do
         local numericID = tonumber(id)
-        if numericID and val == true then
+        if numericID and val == true and not IsCraftMaterialProtected(numericID) then
             list[#list + 1] = numericID
         end
     end
@@ -1592,6 +1606,8 @@ function FJ.HandleItemDrop(forceJunk)
     if not itemID then
         return false
     end
+    -- Consume the junk-button action without changing a protected cursor item.
+    if IsCraftMaterialProtected(itemID) then return true end
     if forceJunk then
         FJ.AddJunk(itemID)
     else

@@ -1,0 +1,191 @@
+{
+  "changeId": "RESTOCK-NATIVE-CRAFT-REPEAT-20261122",
+  "date": "2026-11-22",
+  "checkpoint": {
+    "manifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-native-create-repeat-before-20261122T005449Z\\checkpoint.json",
+    "sourceFilesVerified": 28,
+    "companionReviewedStage": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-native-observation-20261122",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a1ffc8-e3e4-7861-a366-cde5c05e7611\\fluxui-debuff-type-before-20261121T222839Z\\history.bundle",
+    "historyBundleSha256": "90bfc84da44ffd45c6617f5304a431e6ed808eadb90080ffefe4bc5d691b2909",
+    "branch": "main",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "settingsMetadataRows": 63,
+    "settingsContentsCopied": false
+  },
+  "sources": {
+    "_FluxUI": {
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": {
+        "before": "f52aa082393d461796fad2280200d707e30d8d12152493ac28d84d0e863a8a94",
+        "after": "0ed8240b9d2858b37df57031e1a9e64f6c3ba3d650e8b07f788afc0572301c75"
+      },
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": {
+        "before": "53a9e01abe2f5e2a69dcd86d22ea0aaeec84f3bf0b3c1fd588210b07b46268aa",
+        "after": "52ced7e60b44901914b0058fe28ec08d0f9d335f28b81eeb1eb266e10fb5c420"
+      },
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua": {
+        "before": "886886564fc3bfe71bca96cdc20f9a1e4d83a42adcf5279aa6973140735f12d3",
+        "after": "af7c669fb222bb243f9abc50da26824074695dc862d23d492289923ae12dba95"
+      },
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": {
+        "before": "aa37de029d8802faeca1bfe9bfbe2dafb0d33b2ebad10525a7146c7a04de29b1",
+        "after": "430ec2167cc36f19adfdb3d79bf452fd25e3c76f2a037445c1ae4e1cdddab7eb"
+      },
+      "tests/auction_restock_followup_craft.lua": {
+        "before": "2d76807a0125b0ae0c8b4432659a106c417b2617f8c13e1847ef3b5fd2b8e00a",
+        "after": "e3a5e050ed95b206b54dabf9c086388b9ae5f7ba319a62377b0893a6d10631d5"
+      },
+      "tests/auction_restock_followup_logistics.lua": {
+        "before": "c2c3766ed0082b8c735eb964618acd39b9e8d5b1d1a9047f87809dfd018787e5",
+        "after": "331e1bb54d737be185c63656eaaee64173e7554293f6a0620fa3e08d53c327b8"
+      },
+      "tests/auction_restock_followup_ui.lua": {
+        "before": "a47bfa9031d3749ca646f6c553668c13adabee03e04f2a839b827097bcdbe080",
+        "after": "3d7eb6520672232e283afdb90c58dc98f15aa9ca76a281006c9057f59c0d45a5"
+      }
+    },
+    "FluxLogistics": {
+      "FluxCraft/Clients.lua": {
+        "before": "a212bce48d856755bef6f647748065cf7648ffb4aaa39ef284539285c71c66d4",
+        "after": "f631eca800a88da8594d15008e56fee569b9cc423dc34672c1567ea61ebe9b74"
+      },
+      "FluxCraft/Execution.lua": {
+        "before": "4c17c5b7e1ff8d3bc66107c39095baceee6601d0ad51cea7b0fd10af0d227611",
+        "after": "6c2603c097ba1e5fc81d47bcf96e6f69a9f9ac11120625685e7083fc2d49635b"
+      },
+      "FluxCraft/Logistics.lua": {
+        "before": "f8d97e0d10d5fa8d5de1ec254ba492d3633ea8016ec50684922491536701cf79",
+        "after": "f8d97e0d10d5fa8d5de1ec254ba492d3633ea8016ec50684922491536701cf79"
+      },
+      "FluxCraft/UI.lua": {
+        "before": "65b87352506fac0d08a2862214cc33370ec19ad307fa9a5fb004c304a1e36bca",
+        "after": "65b87352506fac0d08a2862214cc33370ec19ad307fa9a5fb004c304a1e36bca"
+      },
+      "FluxCraft/Locale.lua": {
+        "before": "a3df9b12fd9edd44e11d2b34b30fb5ffea62a4ca5ad176598a300a0845ff1a05",
+        "after": "a3df9b12fd9edd44e11d2b34b30fb5ffea62a4ca5ad176598a300a0845ff1a05"
+      },
+      "FluxCraft/Queue.lua": {
+        "before": "3e434d3e5e032006ae08be68f752495240178f8a3024df56e78f491ba8cad1b4",
+        "after": "3e434d3e5e032006ae08be68f752495240178f8a3024df56e78f491ba8cad1b4"
+      },
+      "FluxLogistics.toc": {
+        "before": "657e77d4168e70d8b1afdf8f8d798165b61bdd676c0510acd294a8af9e942101",
+        "after": "657e77d4168e70d8b1afdf8f8d798165b61bdd676c0510acd294a8af9e942101"
+      },
+      "Tests/clients_test.lua": {
+        "before": "f7ab50da693b54000e66703645c63b8ac1f7f1aeaf176e3ed2ddf41db9106470",
+        "after": "443fa8f90dac91eb1a61aaff1933b0f898332a5729778a34365c07f736cb1c59"
+      },
+      "Tests/execution_test.lua": {
+        "before": "e38551c92fd2061bf289c64292dcdcbd153e7581d6518242f750cbcce31e4420",
+        "after": "7b633a78a7b61cee40be35024b7971c10dabe128fc9e4e84f4812c48b2bd3d4a"
+      }
+    },
+    "mirrorFoldersVerified": [
+      "_retail_",
+      "_forever_",
+      "_classic_",
+      "_classic_era_",
+      "_anniversary_"
+    ],
+    "mirrorFileRecordsVerified": 55,
+    "nativeLoadedCandidateVerified": false
+  },
+  "behavior": {
+    "standalone": "The verified prepared quantity survives a Blizzard stock reset for the same job and recipe. Application waits for carried inventory and input readiness. A direct amount edit, native Create, recipe switch, or companion ownership releases the preparation.",
+    "companion": "General Process may choose a ready step in its selected job; the specific Flowchart action retains its selected step. Early native events are credited only when correlated with the exact accepted Create invocation and carried output.",
+    "nativeAction": "Blizzard Create submits the prepared amount. The addons observe and prepare; they do not invoke Forever's protected native Create.",
+    "layout": {
+      "movedRight": 12,
+      "movedDown": 10,
+      "hostOffset": [
+        16,
+        -68
+      ],
+      "fallbackOffset": [
+        -66,
+        26
+      ],
+      "professionClearanceLevels": 8
+    }
+  },
+  "nativeReferences": {
+    "earlierBlockedCraft": "FluxLogistics/docs/CLIENT_EVIDENCE.md:74",
+    "craftingPage": "https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_Professions/Blizzard_ProfessionsCrafting.lua",
+    "tradeSkillEventsAndRecasts": "https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua"
+  },
+  "historicalNativeObservation": {
+    "client": "Forever 1.60.1.71037",
+    "screenshotLocalTime": "2026-11-22T01:38:54+01:00",
+    "screenshot": "Existing screenshot showed 25 in the companion guidance and one in the Blizzard quantity field.",
+    "settingsLocalSaveTime": "2026-11-22T01:52:54+01:00",
+    "pendingSteps": [
+      {
+        "name": "Bolt of Mageweave",
+        "recipeID": 3865,
+        "operations": 25
+      },
+      {
+        "name": "Red Mageweave Bag",
+        "recipeID": 12079,
+        "operations": 5
+      }
+    ],
+    "completedExecutions": 0,
+    "newAttemptEvidence": false,
+    "interpretation": "The saved snapshot cannot establish the physical press or the result of a later click."
+  },
+  "desktopValidation": {
+    "_FluxUI": {
+      "suitesPassed": 43,
+      "craftDriver": {
+        "archivedChecks": 3239,
+        "candidateChecks": 3279,
+        "profiles": 20
+      },
+      "bothOwnerChecks": 173,
+      "bothOwnerProfiles": 11,
+      "hudChecks": 63431,
+      "renderReplay": {
+        "checksEach": 1020,
+        "pairedTrials": 15,
+        "identicalCounterRows": 45
+      },
+      "archivedDriverRejectedNewSelectionAndPreparationFixtures": true
+    },
+    "FluxLogistics": {
+      "suitesPassed": 16,
+      "focusedSuitesAlsoPassedLua51": [
+        "clients",
+        "execution",
+        "logistics",
+        "workspace",
+        "target_load"
+      ],
+      "preparedAndCreditedModeledSteps": [
+        {
+          "recipeID": 3865,
+          "operations": 25
+        },
+        {
+          "recipeID": 12079,
+          "operations": 5
+        }
+      ],
+      "negativeControls": [
+        "archived adapter misses early native entry",
+        "archived executor skips selected-job ready branch",
+        "stale entry, wrong reagent and unrelated output receive no credit"
+      ]
+    }
+  },
+  "liveValidation": {
+    "status": "Pending",
+    "session": "Established Forever window identity using read-only checks. No game input sent.",
+    "remaining": [
+      "Reloaded standalone and companion native quantities",
+      "Physical Create permission and live batch execution",
+      "Real queue update and Flowchart overlap"
+    ]
+  }
+}

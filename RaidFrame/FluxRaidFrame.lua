@@ -101,6 +101,7 @@ function FluxRaid_ApplyOptionsFromDB()
         end
         if FluxRaidPreview and FluxRaidPreview.RefreshFromOptions then
             FluxRaidPreview.RefreshFromOptions()
+            return true
         end
         return
     end
@@ -135,6 +136,7 @@ function FluxRaid_ApplyOptionsFromDB()
     end
     if FluxRaidPreview and FluxRaidPreview.RefreshFromOptions then
         FluxRaidPreview.RefreshFromOptions()
+        return true
     end
 end
 

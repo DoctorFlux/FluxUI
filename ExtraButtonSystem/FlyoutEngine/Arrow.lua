@@ -14,13 +14,57 @@ local ARROW_TEX_COORDS = { 0.62500000, 0.98437500, 0.74218750, 0.82812500 }
 local ARROW_SIZE_W = 23
 local ARROW_SIZE_H = 11
 local ARROW_OFFSET = 6
--- FluxUnifiedBorderFrame is MEDIUM ~8; FluxBorder atlas is FluxBorderFrame at parentLevel+10.
--- Parent the arrow onto the unified border so it sits above atlas art, not UIParent HIGH.
+-- Keep the secure opener on its existing input and visibility layer.
 local ARROW_STRATA = "MEDIUM"
 local ARROW_FRAME_LEVEL = 9 -- UIParent fallback only; below FluxWindowFrame (10)
 local ARROW_ABOVE_BORDER_ART = 5
 -- Default opener is WoW gold/yellow. Class color is class-teleport only.
 local ARROW_YELLOW_R, ARROW_YELLOW_G, ARROW_YELLOW_B = 1, 0.82, 0
+
+local artOwners = setmetatable({}, { __mode = "k" })
+local function SetArtLayer(frame, owner)
+	local strata, level = owner:GetFrameStrata(), owner:GetFrameLevel()
+	if issecretvalue and (issecretvalue(strata) or issecretvalue(level)) then return end
+	local junctions = FluxBorder and FluxBorder.Junctions
+	if junctions and junctions.GetArrowBorderLevel then
+		level = junctions:GetArrowBorderLevel(owner, strata, level)
+	end
+	-- Keep the host's stratum and use the first level above its own chrome.
+	level = math.min(level + 1, 65535)
+	if frame:GetFrameStrata() ~= strata then frame:SetFrameStrata(strata) end
+	if frame:GetFrameLevel() ~= level then frame:SetFrameLevel(level) end
+end
+
+function Arrow.RefreshArtLayers()
+	if Flyout.InLockdown() then return end
+	for frame, owner in pairs(artOwners) do SetArtLayer(frame, owner) end
+end
+
+local function CreateArtHost(owner)
+	local frame = CreateFrame("Frame", nil, owner)
+	frame:SetAllPoints(owner)
+	frame:EnableMouse(false)
+	return frame
+end
+
+function Arrow.LayerNative(widget)
+	if Flyout.InLockdown() then return end
+	local container = widget.FlyoutArrowContainer
+	if container then
+		artOwners[container] = widget
+		SetArtLayer(container, widget)
+	end
+	local texture = widget.Arrow or widget.FlyoutArrow
+	if not texture or not texture.SetParent then return end
+	local art = widget._fluxNativeFlyoutHost
+	if not art then
+		art = CreateArtHost(widget)
+		widget._fluxNativeFlyoutHost = art
+		artOwners[art] = widget
+	end
+	if texture:GetParent() ~= art then texture:SetParent(art) end
+	SetArtLayer(art, widget)
+end
 
 local function SqueezeX()
 	if FluxUILayoutSqueeze and FluxUILayoutSqueeze.GetActionBarHorizontalSqueezeFactor then
@@ -43,8 +87,8 @@ function Arrow.ConfigureLayer(arrowFrame, anchorWidget, reuseLayout)
 	if Flyout.InLockdown and Flyout.InLockdown() then
 		return
 	end
-	-- Parent onto FluxUnifiedBorderFrame above FluxBorderFrame so the glyph
-	-- draws over the atlas without HIGH / FULLSCREEN_DIALOG.
+	-- Keep visibility and input with the existing opener parent. The glyph
+	-- has its own passive layer.
 	local ub = _G.FluxUnifiedBorderFrame
 	local borderArt = ub and ub.FluxBorderFrame
 	local rec = Flyout.HostOf(anchorWidget)
@@ -70,6 +114,7 @@ function Arrow.ConfigureLayer(arrowFrame, anchorWidget, reuseLayout)
 		arrowFrame:SetFrameStrata(strata)
 		arrowFrame:SetFrameLevel(level)
 	end
+	if arrowFrame._fluxArrowArt then SetArtLayer(arrowFrame._fluxArrowArt, anchorWidget) end
 	local scaleParent = visibilityParent or UIParent
 	if arrowFrame.SetScale and anchorWidget.GetEffectiveScale and scaleParent.GetEffectiveScale then
 		local us = scaleParent:GetEffectiveScale() or 1
@@ -220,7 +265,10 @@ function Arrow.Ensure(widget, opts)
 	arrow:RegisterForClicks("AnyUp")
 	arrow:EnableMouse(true)
 	arrow:SetFrameLevel((widget.GetFrameLevel and widget:GetFrameLevel() or 1) + 6)
-	local tex = arrow:CreateTexture(nil, "OVERLAY", nil, 7)
+	local art = CreateArtHost(arrow)
+	arrow._fluxArrowArt = art
+	artOwners[art] = widget
+	local tex = art:CreateTexture(nil, "OVERLAY", nil, 7)
 	tex:SetTexture(ARROW_TEX)
 	tex:SetAllPoints()
 	tex:SetTexCoord(ARROW_TEX_COORDS[1], ARROW_TEX_COORDS[2], ARROW_TEX_COORDS[3], ARROW_TEX_COORDS[4])
@@ -248,6 +296,10 @@ end
 function Arrow.Update(widget, direction, isOpen, reuseLayout)
 	local rec = Flyout.HostOf(widget)
 	local arrow = rec and rec.arrow or (widget and widget.FluxFlyoutArrow)
+	local container = widget and widget.FlyoutArrowContainer
+	if widget and (widget._fluxNativeFlyoutHost or (container and artOwners[container])) then
+		Arrow.LayerNative(widget)
+	end
 	if not arrow then
 		return
 	end

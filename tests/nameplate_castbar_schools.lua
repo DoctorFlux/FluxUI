@@ -111,5 +111,6 @@ for _, branch in ipairs({"retail", "forever", "era", "anniversary"}) do
     module.Added("nameplate2")
     check(calls.frames == 1 and calls.hooks == 3, branch .. " recycled plate reuses host and hooks")
     check(first[1].shown == true, branch .. " recycled host becomes visible")
+
 end
 print("PASS nameplate cast-bar themes: " .. checks .. " checks; native taint/pixels pending")

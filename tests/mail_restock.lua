@@ -73,6 +73,11 @@ local function boot(client, provider, cancellable, saved)
         local item = h and h.items[slot]
         if item and not item.unavailable then return "Item " .. item.id, item.id, nil, item.quantity, nil, nil, item.currency end
     end
+    e.GetInboxInvoiceInfo = function(index)
+        s.nativeReads = s.nativeReads + 1
+        local h = s.inbox[index]
+        return h and h.invoice
+    end
     local function action(kind, index, slot)
         check(not s.pending, client .. " no overlapping native commands")
         check(not s.combat, client .. " no mail action in combat")
@@ -258,7 +263,9 @@ for _, client in ipairs({ "retail", "forever", "era", "anniversary", "mists" }) 
     check(#s.calls == 0, label .. " combat exit only refreshes state")
     s:update(); check(#s.calls == 1, label .. " next mailbox update may start after combat")
     s.combat = true; s:event("PLAYER_REGEN_DISABLED"); s.pending = false; s:advance(10)
-    check(#s.calls == 1 and not s.mail.GetJobGroup(), label .. " combat entry stops active extraction")
+    check(#s.calls == 1 and s.mail.GetJobGroup() == "Restock", label .. " combat pauses extraction with its command identity")
+    s.combat = false; s:event("PLAYER_REGEN_ENABLED"); s:advance(.5)
+    check(#s.calls == 1 and not s.mail.GetJobGroup(), label .. " combat exit retires an expired uncertain command without a resend")
 
     s = boot(client, provider, cancellable)
     s.wanted = { [101] = 1 }; s.inbox = { mail({ item(101) }) }; s.total = 2
@@ -398,8 +405,9 @@ for _, client in ipairs({ "retail", "forever", "era", "anniversary", "mists" }) 
     s = boot(client, provider, cancellable)
     s.wanted = { [101] = 1 }; s.inbox = { mail({ item(101) }) }
     s:show(); s:update(); s.combat = true; s:event("PLAYER_REGEN_DISABLED")
-    s.pending = false; s.combat = false; s:event("PLAYER_REGEN_ENABLED"); s:pumpFrames(2)
-    check(#s.calls == 2, label .. " automatic job resumes after combat without another mailbox event")
+    s.pending = false; s.combat = false; s:event("PLAYER_REGEN_ENABLED"); s:advance(.5)
+    check(#s.calls == 1 and s.mail.GetJobGroup() == "Restock",
+        label .. " automatic job resumes after combat and waits for the already issued command")
 
     s = boot(client, provider, cancellable)
     s.wanted = { [101] = 1 }; s.inbox = { mail({ item(101) }), mail({}, { money = 7 }) }
@@ -505,6 +513,183 @@ for _, client in ipairs({ "retail", "forever", "era", "anniversary", "mists" }) 
     s.bagStorm = false; s.bags[101] = 1; s.followup.Refresh()
     check(s.settings.followup.receipts[101].remaining == 2,
         label .. " snapshot-first receipt proof suppresses its later delayed bag credit too")
+
+    s = boot(client, provider, cancellable)
+    s.mail.SetSetting("Restock", "AutoCollect", false)
+    s:realFollowup({}, {})
+    f = s.followup
+    local incoming = { [101] = 2 }
+    check(f.RegisterLogisticsCraft({
+        GetReady = function() end,
+        Process = function() error("mail must never dispatch a craft") end,
+        GetIncoming = function() return incoming end,
+    }), label .. " actual follow-up accepts the companion receipt source")
+    f.SetAutoEnabled(true)
+    local state = assert(f.GetState())
+    check(state.kind == "mail" and state.companionMail and state.items[101] == 2 and not state.canAct,
+        label .. " confirmed companion purchase reminds before the mailbox opens or delivery arrives")
+    local ordinary = mail({ item(101, 2) })
+    local cod = mail({ item(101, 2) }, { invoice = "buyer", cod = 7 })
+    local seller = mail({ item(101, 2) }, { invoice = "seller" })
+    s.inbox = { ordinary, cod, seller }
+    s:show(); s:update(); s:advance(.5)
+    state = assert(f.GetState())
+    check(#s.calls == 0 and state.companionMail and not state.canAct and f.GetMailItems(true)[101] == 2,
+        label .. " ordinary, seller and COD mail cannot satisfy or retire a companion receipt")
+
+    local buyer = mail({ item(101, 2), item(202) }, {
+        invoice = "buyer", sender = "Auktionshaus", subject = "Auktion gewonnen", money = 3,
+    })
+    table.insert(s.inbox, buyer)
+    s:update(); s:advance(.5)
+    check(#s.calls == 0 and f.GetState().canAct and s.mail.CanTakeRestockItems(true)
+        and not s.mail.CanTakeRestockItems(), label .. " buyer invoice enables only the companion's manual action")
+    f.Click()
+    check(#s.calls == 1 and s.calls[1].index == 4 and s.calls[1].id == 101 and s.calls[1].quantity == 2,
+        label .. " manual HUD action collects the confirmed attachment from the buyer invoice")
+    s:ack(); s:advance(.5)
+    check(#s.calls == 1 and not s.mail.GetJobGroup() and not s.mail.CanTakeRestockItems(true)
+        and buyer.money == 3 and buyer.items[2].id == 202 and ordinary.items[1] and cod.items[1] and seller.items[1],
+        label .. " collected amount cannot be issued again or expanded to unrelated mail and money")
+    check(not s.settings.followup and not next(s.settings.pending) and not next(f.GetMailItems()),
+        label .. " companion collection creates no FluxUI restock receipt or reservation")
+    incoming[101] = nil; f.RefreshLogistics()
+    check(not f.GetState() and not next(f.GetMailItems(true)), label .. " queue credit retires the companion reminder")
+
+    incoming[101] = 1; f.RefreshLogistics()
+    s.inbox = { mail({ item(101) }, { invoice = "buyer" }) }
+    s:update()
+    check(f.GetState().canAct, label .. " second confirmed receipt has a fresh matching invoice")
+    s.inbox[1].invoice = nil
+    f.Click()
+    check(#s.calls == 1 and not s.mail.GetJobGroup(), label .. " live invoice recheck rejects a changed row before the take")
+    s.inbox[1].invoice = "buyer"; s:update(); f.Click()
+    check(#s.calls == 2, label .. " fresh approved buyer invoice can be collected after the rejected press")
+    s:ack()
+    s.inbox = { mail({ item(101) }, { invoice = "buyer", subject = "Different buyer invoice" }) }
+    s:update(); s:advance(.5)
+    state = f.GetState()
+    check(#s.calls == 2 and not s.mail.GetJobGroup(), label .. " whole-row removal does not advance onto a replacement invoice")
+    check(not state or not state.canAct, label .. " replacement invoice cannot rearm a take before queue credit")
+    incoming[101] = nil; f.RefreshLogistics(); s:advance(.5)
+    check(not f.GetState() and #s.calls == 2 and s.inbox[1].items[1].id == 101,
+        label .. " queue credit retires the removed invoice and preserves its replacement")
+
+    for _, closeBeforeAck in ipairs({ false, true }) do
+        local beforeCollection = #s.calls
+        s.bags[101] = 0; incoming[101] = 6; f.RefreshLogistics()
+        s.inbox = {
+            mail({ item(101, 3) }, { invoice = "buyer", subject = "First purchase" }),
+            mail({ item(101, 3) }, { invoice = "buyer", subject = "Second purchase" }),
+        }
+        s:update(); f.Click()
+        local first = s.calls[beforeCollection + 1]
+        check(#s.calls == beforeCollection + 1 and first.index == 2 and first.quantity == 3,
+            label .. " one press starts the first of two receipts for the same item")
+        s.bags[101] = 3; incoming[101] = 3; f.RefreshLogistics()
+        check(#s.calls == beforeCollection + 1 and s.pending and f.GetMailItems(true)[101] == 3,
+            label .. " early carried credit deducts only the first receipt while its command is pending")
+        if closeBeforeAck then
+            s:close()
+            check(not s.mail.GetJobGroup() and #s.calls == beforeCollection + 1 and f.GetMailItems(true)[101] == 3,
+                label .. " closing during an already credited take leaves the other receipt eligible")
+        end
+        s:ack()
+        if closeBeforeAck then s:show(); s:update(); f.Click() end
+        s:advance(.5)
+        local second = s.calls[beforeCollection + 2]
+        check(#s.calls == beforeCollection + 2 and second.index == 1 and second.quantity == 3,
+            label .. " mailbox acknowledgment preserves the second receipt after early bag credit")
+        s:ack(); s:advance(.5)
+        s.bags[101] = 6; incoming[101] = nil; f.RefreshLogistics()
+        check(not f.GetState() and not next(f.GetMailItems(true)) and #s.calls == beforeCollection + 2 and #s.inbox == 0,
+            label .. " both receipts settle with two commands and no reminder")
+    end
+
+    local beforeFailure = #s.calls
+    incoming[101] = 1; f.RefreshLogistics()
+    s.inbox = { mail({ item(101) }, { invoice = "buyer" }) }
+    s:update(); f.Click()
+    check(#s.calls == beforeFailure + 1 and s.pending, label .. " valid companion press starts the command that will fail")
+    s.pending = false; s:event("MAIL_FAILED"); s:pumpFrames(4)
+    check(#s.calls == beforeFailure + 1 and not s.mail.GetJobGroup() and f.GetMailItems(true)[101] == 1
+        and f.GetState().canAct, label .. " explicit native rejection releases the allowance without an automatic retry")
+    f.Click()
+    local retry = s.calls[beforeFailure + 2]
+    check(#s.calls == beforeFailure + 2 and retry.id == 101 and retry.quantity == 1,
+        label .. " a fresh press retries the native-rejected companion attachment")
+    s:ack(); s:advance(.5)
+    incoming[101] = nil; f.RefreshLogistics()
+    check(not f.GetState() and #s.calls == beforeFailure + 2, label .. " the successful retry retires with no further take")
+
+    local function confirmedCompanion(receipts, counts)
+        local state = boot(client, provider, cancellable)
+        state:realFollowup(receipts, counts)
+        local pending = {}
+        check(state.followup.RegisterLogisticsCraft({
+            GetReady = function() end,
+            Process = function() error("mail cannot submit a craft") end,
+            GetIncoming = function() return pending end,
+        }), label .. " actual companion supplies confirmed receipt counts")
+        return state, pending
+    end
+
+    s, incoming = confirmedCompanion({ [303] = 1 }, { [303] = 1 })
+    incoming[101] = 2; s.followup.RefreshLogistics()
+    local unmatched = mail({ item(303, 2) })
+    local unrelated = mail({ item(101, 2) }, { invoice = "seller" })
+    local confirmed = mail({ item(101, 2), item(202) }, { invoice = "buyer", money = 13 })
+    s.inbox = { unmatched, unrelated, confirmed }
+    s:show(); s:update()
+    check(#s.calls == 1 and s.calls[1].index == 3 and s.calls[1].id == 101 and s.calls[1].quantity == 2,
+        label .. " auto collection uses companion buyer mail while an ordinary owner receipt has no eligible stack")
+    s:ack(); s:advance(.5)
+    check(#s.calls == 1 and not s.mail.GetJobGroup() and unmatched.items[1] and unrelated.items[1]
+        and confirmed.money == 13 and confirmed.items[2] and s.followup.GetMailItems()[303] == 1,
+        label .. " the two sources keep separate quantity allowances and leave unrelated mail untouched")
+
+    s, incoming = confirmedCompanion({ [303] = 1 }, { [303] = 1 })
+    incoming[101] = 2; s.followup.RefreshLogistics()
+    s.inbox = { mail({ item(303) }), mail({ item(101, 2) }, { invoice = "buyer", money = 2 }) }
+    s:show(); s:update()
+    check(#s.calls == 1 and s.calls[1].id == 303, label .. " simultaneous eligible sources give the ordinary owner first turn")
+    s.combat = true; s:event("PLAYER_REGEN_DISABLED")
+    s:ack(); s:advance(.5)
+    check(#s.calls == 1 and s.mail.GetJobGroup() == "Restock", label .. " combat retains owned work and blocks the second attachment")
+    s.combat = false; s:event("PLAYER_REGEN_ENABLED"); s:advance(.5)
+    check(#s.calls == 2 and s.calls[2].id == 101 and s.calls[2].quantity == 2,
+        label .. " settled owner collection hands off to the companion after combat")
+    s:ack(); s:advance(.5)
+    check(#s.calls == 2 and #s.inbox == 1 and s.inbox[1].money == 2,
+        label .. " one serialized worker collects both sources without taking money")
+
+    s, incoming = confirmedCompanion({}, {})
+    s.inbox = { mail({ item(101) }, { invoice = "buyer" }) }
+    s:show(); s:update()
+    check(#s.calls == 0 and s.restockFrame.OnUpdate == nil, label .. " an untracked buyer invoice never schedules a scan")
+    local notify, notifications = s.mail.NotifyRestockTargetsChanged, 0
+    s.mail.NotifyRestockTargetsChanged = function()
+        notifications = notifications + 1
+        notify()
+    end
+    incoming[101] = 1; s.followup.RefreshLogistics(); s:pumpFrames(4)
+    check(notifications == 1 and #s.calls == 1 and s.calls[1].id == 101,
+        label .. " a confirmed late receipt starts collection in an already open mailbox")
+    s.pending = false; s:event("MAIL_FAILED"); s:update(); s:advance(1)
+    check(#s.calls == 1 and not s.mail.GetJobGroup() and s.followup.GetMailItems(true)[101] == 1,
+        label .. " a failed automatic command keeps its allowance and never retries automatically")
+    s.mail.TakeRestockItems(true)
+    check(#s.calls == 2 and s.pending, label .. " a fresh manual request can retry an explicit native rejection")
+
+    s, incoming = confirmedCompanion({}, {})
+    incoming[101] = 1; s.followup.RefreshLogistics()
+    s.inbox = { mail({ item(101) }, { invoice = "buyer" }) }
+    s.env.OpenAllMail.timeUntilNextRetrieval = .25
+    s:show(); s:update()
+    check(#s.calls == 0 and not s.mail.GetJobGroup(), label .. " native Open All retains the mailbox command gate")
+    s.env.OpenAllMail.timeUntilNextRetrieval = nil; s:pumpFrames(4)
+    check(#s.calls == 1 and s.calls[1].id == 101,
+        label .. " companion takes its turn when native Open All releases the gate without another inbox event")
   end
  end
 end

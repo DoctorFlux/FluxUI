@@ -85,6 +85,8 @@ local function run(src, client, archivedArrows)
     function methods:GetScale() return self.scale end
     function methods:SetScale(v) legal(); countLayerWrite(self); self.scale = v end
     function methods:GetSize() return self.width, self.height end
+    function methods:GetWidth() return self.width end
+    function methods:GetHeight() return self.height end
     function methods:SetSize(w, h) legal(); countArrowWrite(self); self.width, self.height = w, h end
     function methods:GetEffectiveScale() return self.scale * (self.parent and self.parent:GetEffectiveScale() or 1) end
     function methods:GetNumPoints() return self.point and 1 or 0 end
@@ -214,7 +216,9 @@ local function run(src, client, archivedArrows)
     check(arrowGeometryWrites == start and arrowLayerWrites == startLayers, client .. ': refresh does not change protected geometry in combat')
     opts.direction, opts.anchorFrame, squeeze = 'UP', nil, 1
     flyout.Arrow.RefreshAll()
-    local layout = assert(src.layout:match('(function M:LayoutSlots%(%).-)\nfunction M:RefreshAppearanceAccent'))
+    local layout = assert(src.layout:match('(local function OverlappingMinimapLevel.-)\nfunction M:RefreshAppearanceAccent')
+        or src.layout:match('(function M:LayoutSlots%(%).-)\nfunction M:RefreshAppearanceAccent'))
+    local layoutOwner = { GetSetting = function() return 1 end }
     local layoutMethod = assert(load([[
 local M, containerFrame, visibilityFrame, buttonWidgets, layoutMode = ...
 local InCombat = InCombatLockdown
@@ -224,9 +228,10 @@ local SideGeometry = function() return 1, 1, 13.2, 500, 500, 1 end
 local LayoutIndices = function() return {1} end
 local UIUnits = function() return 800 end
 local CONFIG = {ContainerPadding = 4, SideButtonInset = 2}
+local GRID_FRAME_LEVEL = 25
 ]] .. layout .. '\nreturn M.LayoutSlots', '@actual strip closed-popup sizing', 't', e))(
-        { GetSetting = function() return 1 end }, owner, owner, {{ Widget = host, SlotFrame = slot }}, 'side')
-    layoutMethod({ GetSetting = function() return 1 end })
+        layoutOwner, owner, owner, {{ Widget = host, SlotFrame = slot }}, 'side')
+    layoutMethod(layoutOwner)
     check(not popup:IsShown(), client .. ': resizing strip keeps closed popup closed')
     check(math.abs(popup:GetEffectiveScale() - host:GetEffectiveScale()) < 0.00001,
         client .. ': actual strip layout prepares closed popup scale')

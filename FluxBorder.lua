@@ -315,7 +315,7 @@ local NORMALIZED_COORDS = {
 }
 STYLE_ART = {
     [1] = { texture = "Interface\\AddOns\\_FluxUI\\Texture\\borders\\Battlefield100.tga", thickness = 100,
-        tracks = {Top=8,Bottom=8,Left=9,Right=9.5}, coords = NORMALIZED_COORDS },
+        tracks = {Top=8,Bottom=8,Left=9,Right=9.5,CastDividerIconWidth=2}, coords = NORMALIZED_COORDS },
     [2] = { texture = "Interface\\AddOns\\_FluxUI\\Texture\\borders\\ForeverMetal150.tga", thickness = 150, tracks = {Top=9,Bottom=7,Left=9.5,Right=9},
         accentTexture = "Interface\\AddOns\\_FluxUI\\Texture\\borders\\ForeverMetal150Tint.tga", coords = NORMALIZED_COORDS },
 }

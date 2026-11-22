@@ -1,0 +1,170 @@
+{
+  "changeId": "RESTOCK-NATIVE-CRAFT-BATCH-20261122",
+  "date": "2026-11-22",
+  "checkpoint": {
+    "sourceManifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-native-create-before-20261122T001708Z\\checkpoint.json",
+    "sourceFilesVerified": 26,
+    "companionInstallBaseline": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-native-batches-20261122\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a1ffc8-e3e4-7861-a366-cde5c05e7611\\fluxui-debuff-type-before-20261121T222839Z\\history.bundle",
+    "historyBundleSha256": "90bfc84da44ffd45c6617f5304a431e6ed808eadb90080ffefe4bc5d691b2909",
+    "branch": "main",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "settingsMetadataRows": 63,
+    "settingsContentsCopied": false
+  },
+  "sources": {
+    "_FluxUI": {
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": {
+        "before": "b5fa3d1fa4980ba7d48a04ebac3aa3b4c8a65af8c2bb88ef0c8402ba5024e624",
+        "after": "f52aa082393d461796fad2280200d707e30d8d12152493ac28d84d0e863a8a94"
+      },
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": {
+        "before": "d1ad6bf51a61c68209137ef4083ca7bbb6bf79858838fc455eccf16f72fa0151",
+        "after": "53a9e01abe2f5e2a69dcd86d22ea0aaeec84f3bf0b3c1fd588210b07b46268aa"
+      },
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua": {
+        "before": "448af5d92587e9829439be680f67f49160070815d9dd1a5921d0cfd532574ed5",
+        "after": "1297a2323a36d5f2c4fa2a449d59839eea8a207c74affdd71122af810b532ed1"
+      },
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": {
+        "before": "8f80c65a171447a2c39f670c0ecb287ec88c89428a652c500ec17c5ff296bdd9",
+        "after": "aa37de029d8802faeca1bfe9bfbe2dafb0d33b2ebad10525a7146c7a04de29b1"
+      },
+      "tests/auction_restock_followup_craft.lua": {
+        "before": "d730c4ca752a00a95e82fbdfbdd057ff974859dfd98b5f8f0972d507d469000c",
+        "after": "2d76807a0125b0ae0c8b4432659a106c417b2617f8c13e1847ef3b5fd2b8e00a"
+      },
+      "tests/auction_restock_followup_logistics.lua": {
+        "before": "85da85f432a9b876b7f41295835410aa5ca95bd3a87569b262dbd3c1e8019b6d",
+        "after": "c2c3766ed0082b8c735eb964618acd39b9e8d5b1d1a9047f87809dfd018787e5"
+      },
+      "tests/auction_restock_followup_ui.lua": {
+        "before": "9eee4a35fc53527531e210a15c0f75bb17b455019213234034495a7f9ba7178d",
+        "after": "54981ee6af203cfee1efadfd8edbb4da30fc3b043709e8e4f96aa6609c7b2b4c"
+      }
+    },
+    "FluxLogistics": {
+      "FluxCraft/Clients.lua": {
+        "before": "ab518875115ee8f0847dbdf6d7fa14f7fdc93075a724a6c2fd955ff0316bc2f3",
+        "after": "a3c8046c95ca8cc0d3486aa059d089dc6dcc843bdf23aec3c2cf17a761eac247"
+      },
+      "FluxCraft/Execution.lua": {
+        "before": "195e71afe6bc1ba8d26e2edc22dce1cc3cb6308cb4bfaf9c196e8517fab2d024",
+        "after": "4c17c5b7e1ff8d3bc66107c39095baceee6601d0ad51cea7b0fd10af0d227611",
+        "initialReviewedCandidate": "44a7eca82d274c85594e30cdf4e940c5775e4241cde43bbdd98c69f5dc4e468e"
+      },
+      "FluxCraft/Logistics.lua": {
+        "before": "e8fcbb1044d548b0685127ba4eefcf89beed0b9a0b9df346e8a1070031157a20",
+        "after": "320439126dae95285a46ab49ef83c9c5ec7abb2efb045b05c93458a8db6b6fb4"
+      },
+      "FluxCraft/UI.lua": {
+        "before": "ced63eab6ffe54eacbd30f6ef9066f89ff00602c3b22231fdb5a93cd9af1ef44",
+        "after": "b47f9f729d436d7cc5b76be1961e093fa512bb4910fb16b403bf2eba36fb30c5",
+        "initialReviewedCandidate": "31c96968d0a2638db10782defed710c823955c81c518a5447609ae62684eb95f"
+      },
+      "FluxCraft/Locale.lua": {
+        "before": "3858e97ac8bf6771618b795e5ea11195c0934bf28068d2c6cd0364b9b0242183",
+        "after": "fbafc742dee53a58e1818845d6d8316bab1fe30177a3f1392531cf702edf861d",
+        "initialReviewedCandidate": "5fd42bd03ab782a5bf359f75696bc9d933acfe755c15fa6eedc6069b729042e9"
+      },
+      "Tests/clients_test.lua": {
+        "before": "9c178688234df99ee956f730b948d57be775a46c1a3390c138ba9988cb1341ef",
+        "after": "56178fb10db52de752667e8909b0d5e609d084038b20324824db96b1b924d51a"
+      },
+      "Tests/execution_test.lua": {
+        "before": "989257d988e51679656a3c37ca6543abd0d0bd4dd9765612a09f58c864a5a463",
+        "after": "e38551c92fd2061bf289c64292dcdcbd153e7581d6518242f750cbcce31e4420",
+        "initialReviewedCandidate": "989257d988e51679656a3c37ca6543abd0d0bd4dd9765612a09f58c864a5a463"
+      },
+      "Tests/logistics_test.lua": {
+        "before": "873fdc86811307edc771e87f99808b88f538a11bb2d98103614b1beca1b3af48",
+        "after": "7bc7e7784a5c34c54ea78d0b97c4eedccd110536bd02902da5a77abffd53f638"
+      },
+      "Tests/workspace_test.lua": {
+        "before": "fadeebff7d01f78047ae8e78f75a74538da971125a93c2fc1497c5720dfcd822",
+        "after": "881e187f7340a7a7a10d0811e1b5624a02998fa0fc50991a1b19da86e225cd28",
+        "initialReviewedCandidate": "b1397002c5284916ba3756f6276011dba0f40816a8d2ede0b897808d164edf4f"
+      }
+    },
+    "installedRuntimeSha256Matches": 45,
+    "clientInstallationFolders": [
+      "_retail_",
+      "_forever_",
+      "_classic_",
+      "_classic_era_",
+      "_anniversary_"
+    ],
+    "nativeLoadedCandidateVerified": false
+  },
+  "behavior": {
+    "nativeQuantity": "The exact qualified recipe receives a batch bounded by the owning plan, available reagents and the native cap. Blizzard Create uses the quantity field. Create All uses the full native craftable count.",
+    "standalone": "Deferred quantity application requires the same owner job, task, native page and reliable inventory. Relevant responses, list changes and settled inventory coalesce while the request is current.",
+    "companion": "HUD and Flowchart actions focus the same accepted job. Matching craft and carried output can trigger preparation of the next ready same-profession step. Creating each batch requires the Blizzard Create press.",
+    "surfaceCompetition": "A pending or active companion craft keeps control of the native form when an ordinary quantity write is delayed.",
+    "layout": "Workbench and Flowchart dock beside native controls when space permits. The narrower layout exposes native Create and a Workbench return."
+  },
+  "nativeReferences": {
+    "earlierBlockedCraft": "FluxLogistics/docs/CLIENT_EVIDENCE.md:74 (Forever 1.60.1.71037)",
+    "craftingPage": "https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_Professions/Blizzard_ProfessionsCrafting.lua",
+    "quantityInput": "https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_SharedXML/Shared/InputBox/InputBoxTemplates.lua"
+  },
+  "desktopValidation": {
+    "_FluxUI": {
+      "suitesPassed": 43,
+      "craftDriver": {
+        "archivedChecks": 3143,
+        "candidateChecks": 3239,
+        "profiles": 20
+      },
+      "bothOwnerChecks": 166,
+      "bothOwnerProfiles": 11,
+      "integrationChecks": 290,
+      "hudChecks": 63351,
+      "renderReplay": {
+        "checksEach": 1020,
+        "pairedTrials": 15,
+        "identicalCounterRows": 45
+      },
+      "archivedDriverRejectedNewBatchFixture": true,
+      "synchronousPreparationAdditionalFrames": 0,
+      "synchronousPreparationAdditionalTimers": 0,
+      "asynchronousPreparation": "One queued refresh at a time while the exact native quantity is pending."
+    },
+    "FluxLogistics": {
+      "suitesPassed": 16,
+      "focusedSuitesAlsoPassedLua51": [
+        "clients",
+        "execution",
+        "logistics",
+        "workspace"
+      ],
+      "modeledAcceptedJob": [
+        {
+          "step": "Bolt prerequisite",
+          "preparedOperations": 25
+        },
+        {
+          "step": "Final bags after confirmed carried bolts",
+          "preparedOperations": 5
+        }
+      ],
+      "verifiedCases": [
+        "HUD focuses the accepted job from an unrelated selection",
+        "clamped count keeps the native controls",
+        "docked and narrow window layouts",
+        "overlapping ordinary and companion owners"
+      ]
+    }
+  },
+  "liveValidation": {
+    "status": "Pending",
+    "client": "Forever 1.60.1.71037",
+    "session": "Existing Forever window identified. No game input sent.",
+    "remaining": [
+      "Full native Create batch and execution permissions",
+      "Quantity persistence and taint",
+      "Native Flowchart selection, docking and Workbench return",
+      "Confirmed in-game next-step progression"
+    ]
+  }
+}

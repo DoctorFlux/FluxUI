@@ -1,5 +1,101 @@
 # Nameplate overlays and chrome
 
+## Nameplate debuff ownership
+
+22 November. Enable **Combat → Nameplates → Auras → Only show my debuffs**
+to show harmful effects your character, pet or vehicle applies. The FluxUI
+preference defaults to off. Blizzard's existing lane visibility can still
+hide a row, and helpful auras follow their existing selection.
+
+Retail and Forever use Blizzard's `HARMFUL|PLAYER` filter in the secure
+debuff and crowd-control rows. Stock fallback display keeps Blizzard's
+slot assignment and order. It shows harmful slots with confirmed public
+ownership and suppresses the icon and tooltip motion for other slots.
+Disabling the option or releasing a slot restores its prior alpha and
+mouse motion. Effects with unknown ownership can be absent on the fallback.
+
+[Client acceptance](CLIENT_VALIDATION.md#nameplate-debuff-ownership).
+
+## Nameplate debuff type display
+
+Retail and Forever use Blizzard's secure AuraButtons for the Debuff and
+Crowd Control rows. Blizzard supplies the icon, timer, stack count, border
+color and upper-right type badge to those buttons. The secure rows follow the
+stock row anchors and visibility. They take over individual harmful rows
+after preparation and restore the native row if attachment fails or the plate
+is released. Secure buttons receive mouse motion so Blizzard can open the
+exact aura tooltip. Clicks pass through the icon.
+
+The secure CC row uses Blizzard's `CROWD_CONTROL` category. That can select
+a different effect from the stock player Loss of Control slot and excludes
+special nameplate effects that fall outside the category. Classic progression,
+Era and Anniversary use the readable-aura overlay below. The existing preview
+and countdown placement and font settings apply across both paths.
+
+On the stock fallback, Blizzard draws the aura icons and FluxUI adds a
+visible frame around Debuff, Crowd Control, and player Loss of Control.
+A readable type supplies both the border color and the upper-right icon.
+A visible harmful slot with no readable type gets a red border. The corner
+uses game artwork and scales with the aura icon. The Nameplates preview
+includes Magic and Bleed examples.
+
+Live and preview icons use FlareUI's square bevel, clipped icon mask and
+inset crop. The secure swipe also uses the reference edge artwork. Stock
+buffs retain Blizzard's selection and use the bronze bevel. Where readable,
+the stock spell texture is cropped into the same mask and its original icon
+and rim are restored when the overlay is released. Forever's stock buttons
+use a click-through spell tooltip for a readable spell ID. Retail and the
+three Classic branches retain their native aura tooltips.
+
+The live overlay queries a readable Blizzard aura instance ID with explicit
+guards around the result. Forever's aura item omits that ID. FluxUI matches
+that item to the exact visible position in its native debuff lane, with
+Blizzard's source filter and display limit. A temporarily unavailable
+instance can be retried. The decoration follows the aura button even when
+its countdown is unavailable. The player CC slot follows Blizzard's exact
+Loss of Control assignment. Flux-owned art has no hit area or controller
+focus and respects the client's protected anchor rules.
+[Forever's native aura and Loss of Control assignment](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_NamePlates/Blizzard_NamePlateAuras.lua#L249-L325)
+
+[Artwork and hover validation](CLIENT_VALIDATION.md#nameplate-aura-art-and-hover).
+
+## Published nameplates with the current FluxUI options
+
+Retail, Forever, Classic progression, Classic Era and Anniversary use their
+own Blizzard nameplates with the published FluxUI quest, threat, level,
+combo point, and cast school overlays. Revision `1e992c4` is the published
+base for the plate shell. The default countdown is centered at 12 px.
+Options can move, resize or hide the countdown text.
+[Published FluxUI](https://github.com/DoctorFlux/FluxUI/tree/1e992c449d59b2f1f472efc40e7ca10ea6c494cf/NamePlates)
+
+**Combat → Nameplates** keeps Plate, Extras, Cast Bar, Auras, Targeting,
+Visibility and Fonts. The rows use the client's supported native settings
+and the published FluxUI overlay preferences. The pinned preview and
+Test in Game use a separate sample with Blizzard artwork and examples of
+Flux quest progress, threat, casts and aura timers. The sample stays outside
+the game's nameplate driver.
+
+A prior custom renderer's temporary zoom, clamp and visibility writes are
+restored if the client still has their last applied values. Unrelated client
+settings and saved FluxUI overlay preferences are preserved.
+
+[Client validation](CLIENT_VALIDATION.md#published-nameplates-with-the-current-settings).
+
+## Restoration of published FluxUI nameplates
+
+This earlier restoration used the same published source.
+
+On 21 November the user asked to return to DoctorFlux/FluxUI's published
+nameplates. The nameplate runtime, original settings controls and
+Blizzard settings integration match published main at `1e992c4`. The page is
+under Combat → Nameplates in the current FluxUI options shell. The original
+quest kill and loot badges, threat displays, countdown, level, combo points,
+and cast schools use their previous Blizzard nameplate paths. No saved
+variables were edited. [Published source](https://github.com/DoctorFlux/FluxUI/commit/1e992c449d59b2f1f472efc40e7ca10ea6c494cf)
+
+[Restoration validation](CLIENT_VALIDATION.md#published-fluxui-nameplates)
+covers all five installations.
+
 <!-- GROUP-COMBAT-SPIKES-20261116 -->
 16 November `GROUP-COMBAT-SPIKES-20261116`: combat transition redundant-work fixes applied; 491 scripts/1181 syntax PASS; final Lua corpus stable. Full paint/binding recovery and current native/private checks remain; native timings/taint/rendering pending. [Exact scope and evidence](validation/group-combat-spikes-2026-11-16.json).
 <!-- /GROUP-COMBAT-SPIKES-20261116 -->
@@ -138,7 +234,7 @@ overwritten.
 7 November applied stress fixes: Public native alpha/anchor/visibility comparisons suppress stable repeated writes. Opaque/unknown cases retain repair writes; no unsafe native hook or permanent assumption about native state is added. [Evidence](../Stress%20test%20doc/applied-fixes/README.md). Native taint/pixels/performance acceptance remains pending.
 <!-- /STRESS-FIXES-20261107 -->
 
-`Flux.NamePlates` adds threat/level/combo/countdown and casting-school presentation around existing Blizzard nameplates. It does not create a replacement nameplate suite. Current behavior is defined by [Core.lua](../NamePlates/Core.lua), [Threat.lua](../NamePlates/Threat.lua), [Level.lua](../NamePlates/Level.lua), [Countdown.lua](../NamePlates/Countdown.lua), [ComboPoints.lua](../NamePlates/ComboPoints.lua) and [CastBarSchools.lua](../NamePlates/CastBarSchools.lua).
+`Flux.NamePlates` owns quest, threat, level, combo-point, countdown and casting-school overlays. These overlays remain available with Blizzard nameplates and, where supported, work with the appearance renderer above. [Core](../NamePlates/Core.lua) · [Threat](../NamePlates/Threat.lua) · [Level](../NamePlates/Level.lua) · [Countdown](../NamePlates/Countdown.lua) · [Combo points](../NamePlates/ComboPoints.lua) · [Cast bar schools](../NamePlates/CastBarSchools.lua).
 
 ## Lifecycle and ownership
 

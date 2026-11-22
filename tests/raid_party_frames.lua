@@ -114,7 +114,10 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
         calls[#calls+1]={"base",unit,w,h,options}
         local frame=e.CreateFrame("Button",options and options.name or "FluxUnitFrame_"..unit,parent)
         frame.unit=unit;frame.width,frame.height=w,h;frame._fluxPartyPreview=options and options.preview
-        frame:SetAttribute("unit",unit)
+        frame._fluxPreviewLayerParent=options and options.previewLayerParent
+        if frame._fluxPreviewLayerParent then
+            frame.SeparatorContainer=e.CreateFrame("Frame",nil,frame._fluxPreviewLayerParent)
+        else frame:SetAttribute("unit",unit)end
         frame.UpdatePartition=function(s)calls[#calls+1]={"partition",s};s:UpdateOuterBorder()end
         frame.UpdateOuterBorder=function(s,deferPartyIndicators)
             calls[#calls+1]={"chrome",s}
@@ -129,7 +132,7 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
     UF.CreateHealthBar=function(f)f.Health=bar()end
     UF.CreatePowerBar=function(f)f.Power=bar()end
     UF.CreatePortrait=function(f)f.PortraitFrame=e.CreateFrame("Frame",nil,f);f.Portrait={}end
-    UF.CreateAtlasBorder=function(f)f.atlasBorderFrame=e.CreateFrame("Frame",nil,f)end
+    UF.CreateAtlasBorder=function(f)f.atlasBorderFrame=e.CreateFrame("Frame",nil,f._fluxPreviewLayerParent or f)end
     UF.CreateOuterBorder=function(f)
         f.outerBorderFrame=e.CreateFrame("Button",nil,f);f.nameText=text();f.levelText=text();f.pvpTimer=text()
         for _,key in ipairs({"classIcon","specIcon","raidIcon","leaderIcon","assistantIcon","mainTankIcon","mainAssistIcon","masterLooterIcon"})do
@@ -518,7 +521,90 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
     end
     check(near(P.preview.members[4].point[5]*P.preview.members[4].scale,P.members[4].point[5]*P.members[4].scale),
         "sample four-member preview uses the four-member dock bottom rather than the live two-member count")
+    local world, pane = P.preview, e.CreateFrame("Frame",nil,e.UIParent)
+    pane:SetScale(.85)
+    local inline = assert(P.CreateOptionsPreview(pane))
+    check(inline.parent==pane and not inline.shown and not inline.name,"settings tree starts hidden in its own unnamed root")
+    check(#inline.members==4 and inline:Refresh(360,280) and near(inline.scale,1),"wide settings pane fits all four world-scale members")
+    for i, frame in ipairs(inline.members) do
+        local original, pet, target = world.members[i], inline.pets[i], inline.targets[i]
+        check(frame.parent==inline and frame.atlasBorderFrame.parent==inline and frame.SeparatorContainer.parent==inline
+            and frame._fluxPartyThreat.parent==inline,"all detached settings chrome follows the settings lifetime")
+        check(frame.width==original.width and frame.height==original.height and near(frame.scale,original.scale)
+            and near(frame.atlasBorderFrame.scale,original.scale) and near(frame._fluxPartyThreat.scale,original.scale),
+            "settings use the same member geometry without double-scaling detached chrome")
+        check(frame.nameText.text==original.nameText.text and frame.Health.value==original.Health.value
+            and frame.Health.Value.text==original.Health.Value.text and frame.Power.Percent.text==original.Power.Percent.text
+            and frame.Health.color[1]==original.Health.color[1] and near(frame.alpha,original.alpha)
+            and frame._fluxPartyStatusText==original._fluxPartyStatusText and frame.sampleAuras==original.sampleAuras,
+            "shared preview painter preserves sample names, health, resources, status, opacity and aura selection")
+        check(pet.shown==world.pets[i].shown and pet.Health.value==world.pets[i].Health.value
+            and target.shown==world.targets[i].shown and target.HealthBar.value==world.targets[i].HealthBar.value,
+            "pet and target paints match the world preview")
+        check(frame.noEvents and not frame.attrs.unit and not frame.outerBorderFrame.mouse
+            and not e.ClickCastFrames[frame.outerBorderFrame] and not frame.CastBar,
+            "settings preview registers no roster events, unit attributes, clicks or cast owner")
+    end
+    local work = {layout = 0, outer = 0, chrome = 0, pet = 0, model = 0, slot = 0, fit = 0, threat = 0, text = 0, aura = 0}
+    local restore = {}
+    local function count(t, method, field, include)
+        local previous = t[method]
+        t[method] = function(owner, ...)
+            if not include or include(owner) then work[field] = work[field] + 1 end
+            return previous(owner, ...)
+        end
+        restore[#restore + 1] = function() t[method] = previous end
+    end
+    count(P, "PaintChrome", "chrome")
+    count(P, "StyleText", "text")
+    count(P, "SetThreatColor", "threat")
+    count(UF, "UpdateBorderColors", "pet")
+    count(UF, "UpdatePortrait", "model")
+    count(e.FluxRaidPreview, "PaintPartyAuras", "aura")
+    count(methods, "SetPoint", "slot", function(f) return f._fluxPartyMember end)
+    count(methods, "SetPoint", "fit", function(f) return f == inline end)
+    count(methods, "SetSize", "layout", function(f) return f._fluxPartyMember end)
+    for _, frames in ipairs({inline.members, inline.pets}) do
+        for _, frame in ipairs(frames) do count(frame, "UpdateOuterBorder", "outer") end
+    end
+    local oldHealth = db.partyHealthText
+    for edit = 1, 24 do
+        local mode = edit % 2 == 0 and "values" or "percent"
+        db.partyHealthText = mode
+        check(inline:Refresh(360, 280) and inline.members[1].Health.Value.shown == (mode == "values"),
+            "paint-only edits still update the visible health text mode")
+    end
+    check(work.layout == 0 and work.outer == 0 and work.chrome == 0 and work.pet == 0 and work.model == 0
+        and work.slot == 0 and work.fit == 0 and work.threat == 0 and work.text == 0 and work.aura == 96,
+        "24 paint-only edits skip unchanged fit, layouts, chrome and portraits while keeping aura paints")
+    print("PARTY_EDIT_WORK|" .. table.concat({client, work.layout, work.outer, work.chrome, work.pet, work.model,
+        work.slot, work.fit, work.threat, work.text, work.aura}, "|"))
+    local oldClass, oldPortrait, oldWidth = db.partyClassColor, db.partyShowPortrait, db.partyWidthScale
+    db.partyClassColor = not oldClass
+    check(inline:Refresh(360, 280) and work.chrome == 4 and work.pet == 4 and work.layout == 0,
+        "class accents repaint chrome without moving member geometry")
+    db.partyShowPortrait = true
+    check(inline:Refresh(360, 280) and work.model == 4 and work.layout == 4,
+        "enabling portraits lays out the slots and binds the model once")
+    e.FluxUnitFrames_ShouldUse3DPortrait = function() return false end
+    check(inline:Refresh(360, 280) and work.model == 8 and work.layout == 4,
+        "switching portrait mode repaints model artwork without structural layout")
+    db.partyWidthScale = .9
+    check(inline:Refresh(360, 280) and inline.members[1].width == 293 and work.layout == 8 and work.model == 8,
+        "resizing a frame updates actual member geometry without rebinding the portrait")
+    db.partyHealthText, db.partyClassColor, db.partyShowPortrait, db.partyWidthScale = oldHealth, oldClass, oldPortrait, oldWidth
+    e.FluxUnitFrames_ShouldUse3DPortrait = nil
+    for i = #restore, 1, -1 do restore[i]() end
+    check(inline:Refresh(360, 280), "restore the previous sample settings")
+    local allocations = e.created
+    check(inline:Refresh(125,110) and inline.scale<1 and e.created==allocations,"narrow resizing scales and reuses the same preview tree")
+    check(near(inline.members[1].atlasBorderFrame.scale,world.members[1].scale),
+        "fitting applies one uniform scale to members and detached chrome")
+    inline:Hide()
+    check(world.shown and not inline.shown and P.preview==world,"closing settings does not hide or replace the world preview")
+    check(inline:Refresh(360,280) and e.created==allocations,"reopening reuses the settings tree")
     P.RefreshPreview(false);check(not P.preview.shown,"preview dismissal hides its own isolated tree")
+    check(inline.shown,"closing the world preview does not close its settings counterpart")
     db.partyAsRaid=true;P.ApplyOptions();check(not P.ready,"style change relinquishes alternate mode")
     check(S.ConfigureHeader(header,1,false)and header.attrs.showParty==true,"return to original compact header leaves raid behavior intact")
     for _,f in ipairs(P.members)do check(not f.shown,"style switch hides alternate input rectangles")end
@@ -593,6 +679,37 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
         and focus.BuffContainer.level<focus.CastBar.level,"focus aura geometry uses panel scale and artwork sits above indicators/below casts")
     check(focus._fluxPartyDivider and focus._fluxPartyIndicatorLayer and focus._fluxPartyNameTextAnchor,
         "focus reuses party divider and independent text/status layers")
+    local hudClient = client == "live" or client == "forever"
+    if hudClient then focus.Health._fluxTextAnchor = e.CreateFrame("Frame", nil, focus.Health) end
+    P.LayoutFocusPresentation(focus)
+    local healthBand = focus.Health._fluxTextAnchor or focus.Health
+    check(focus._fluxPartyHealthTextAnchor.points[1][2] == healthBand
+        and focus._fluxPartyHealthTextAnchor.points[2][2] == healthBand,
+        "compact Focus text stays within the HUD health band and falls back to the Classic bar")
+    check(focus._fluxPartyPowerTextAnchor.points[1][2] == focus.Power
+        and focus._fluxPartyPowerTextAnchor.points[2][2] == focus.Power,
+        "compact Focus power labels use the independent resource band")
+
+    local previewFocus = UF.CreateBaseFrame("focus", pane, 260, 85, nil, {previewLayerParent = pane})
+    previewFocus._fluxIndividualPreview, previewFocus._fluxCompactFocus = true, true
+    previewFocus:SetScale(.42)
+    UF.CreateHealthBar(previewFocus)
+    UF.CreatePowerBar(previewFocus)
+    UF.CreateOuterBorder(previewFocus)
+    UF.CreateAtlasBorder(previewFocus)
+    if hudClient then previewFocus.Health._fluxTextAnchor = e.CreateFrame("Frame", nil, previewFocus.Health) end
+    local registrations, chromePaints = 0, 0
+    previewFocus.RegisterEvent = function() registrations = registrations + 1 end
+    local paintChrome = P.PaintChrome
+    P.PaintChrome = function(frame, ...) chromePaints = chromePaints + 1; return paintChrome(frame, ...) end
+    P.SetupFocusPresentation(previewFocus)
+    P.PaintChrome = paintChrome
+    check(registrations == 0 and chromePaints == 0 and not previewFocus:GetScript("OnEvent"),
+        "compact Focus preview never joins live event or chrome painters")
+    check(previewFocus._fluxPartyDivider
+        and previewFocus._fluxPartyHealthTextAnchor.points[1][2] == (previewFocus.Health._fluxTextAnchor or previewFocus.Health)
+        and near(previewFocus.atlasBorderFrame.scale, .42) and near(previewFocus.SeparatorContainer.scale, .42),
+        "compact Focus preview adopts the real text band, divider, and its pane-relative scale")
     check(focus.CastBar._fluxCompactOverlay and focus.CastBar.level==150 and focus.CastBar.point[3]=="TOPRIGHT",
         "focus cast occupies the same raised compact header")
     local focusAncestor=focus;while focusAncestor do focusAncestor:Show();focusAncestor=focusAncestor:GetParent()end

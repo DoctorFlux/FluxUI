@@ -69,11 +69,24 @@ for _,hud in ipairs({true,false})do for _,height in ipairs({35,85,150})do for _,
     frame._fluxHasMainPower=true
     UF.UpdateFramePartition(frame)
     check(frame.Power.shown and frame.Health.height==hp and frame.Health._fluxTextAnchor.height==hp,"resource return restores fill and text split")
-    for _,focus in ipairs({false,true})do
-        frame._fluxPartyMember=nil;frame._fluxCompactFocus=focus;frame.unit=focus and "focus"or"target"
+    frame._fluxPartyMember = nil
+    frame.unit = "target"
+    UF.UpdateFramePartition(frame)
+    local fullHeight = math.max(height - 8, 10)
+    local expectedTarget = hud and fullHeight or (fullHeight * .6 - 1)
+    check(math.abs(frame.Health.height - expectedTarget) < .000001, "ordinary target keeps its existing fill")
+    frame._fluxCompactFocus, frame.unit = true, "focus"
+    for _, powerAvailable in ipairs({true, false, "restricted"}) do
+        frame._fluxHasMainPower = powerAvailable == true
+        if powerAvailable == "restricted" then frame._fluxHasMainPower = nil end
+        local expected = powerAvailable == false and fullHeight or hp
         UF.UpdateFramePartition(frame)
-        local expectedHeight=hud and math.max(height-8,10)or(focus and hp or(math.max(height-8,10)*.6-1))
-        check(math.abs(frame.Health.height-expectedHeight)<.000001,"main target and compact focus keep their existing layout")
+        check(math.abs(frame.Health.height - expected) < .000001,
+            "Compact Focus fills match party geometry for known, absent and restricted power")
+        UF.SyncPublicHealthGeometry(frame)
+        check(math.abs(frame.Health._fluxPublicHeight - expected) < .000001,
+            "Compact Focus prediction follows the same visible health fill")
+        check(frame.Power.shown == (powerAvailable ~= false), "Compact Focus retains resource visibility policy")
     end
 end end end end
-print("Party divider boundary: "..checks.." checks; fitted party HP, prediction geometry, resource transitions and unchanged target/focus; native pixels/combat pending")
+print("Party divider boundary: "..checks.." checks; fitted party HP, prediction geometry, resource transitions and compact Focus parity; native pixels/combat pending")

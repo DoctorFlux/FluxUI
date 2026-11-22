@@ -1371,16 +1371,24 @@ function FluxMeterLayout.OpenNativeMenu(row, index, kind)
     return FluxBlizzardMeter:OpenNativeMenu(row, index, kind)
 end
 
-function FluxMeterLayout.SelectNativeType(row, index, meterType, buttonName)
+function FluxMeterLayout.SelectNativeType(row, index, meterType)
     if InCombatLockdown and InCombatLockdown() then return false, "Meter settings are available outside combat." end
     if not FluxMeterLayout.IsBlizzardBackend() or not FluxBlizzardMeter or not FluxBlizzardMeter.SelectNativeType then
         return false, "Blizzard meter settings are unavailable."
     end
+    if (issecretvalue and issecretvalue(meterType)) or not NativeSelectableType(meterType) then
+        return false, "Invalid Blizzard meter type."
+    end
+    LoadLibrary()
+    local slots = row == "top" and workingLayout.topSlots or row == "bottom" and workingLayout.bottomSlots
+    local slot = slots and slots[index]
+    if not slot or slot.kind == "plugin" then return false, "Select a Blizzard meter window first." end
+    FluxMeterLayout.SetSlot(row, index, BlizzardSlot(meterType))
     if FluxWindowFrame and FluxWindowFrame.GetActiveTab and FluxWindowFrame.SwitchToTab
         and FluxWindowFrame:GetActiveTab() ~= "Meter" then FluxWindowFrame:SwitchToTab("Meter") end
     FluxMeterLayout.CancelPendingWork()
     ReembedQuiet()
-    local ok, reason = FluxBlizzardMeter:SelectNativeType(row, index, meterType, buttonName)
+    local ok, reason = FluxBlizzardMeter:SelectNativeType(row, index, meterType)
     if not ok then return false, reason end
     return FluxBlizzardMeter:ApplyCurrentSegments()
 end
@@ -2127,11 +2135,12 @@ local function EnsureEditor()
                     end
                     row.label:SetText(item.label)
                     row.label:SetTextColor(0.92, 0.92, 0.92)
-                    row:SetScript("OnClick", function(_, buttonName)
+                    row:SetScript("OnClick", function()
                         if item.disabled then return end
                         if item.nativeType ~= nil then
-                            local ok, reason = FluxMeterLayout.SelectNativeType(self.selectedRow or "top", self.selectedIndex or 1, item.nativeType, buttonName)
+                            local ok, reason = FluxMeterLayout.SelectNativeType(self.selectedRow or "top", self.selectedIndex or 1, item.nativeType)
                             if not ok and reason then print("|cff00ffff[FluxUI]|r " .. reason) end
+                            self:Refresh()
                         elseif item.nativeMenu then
                             local ok, reason = FluxMeterLayout.OpenNativeMenu(self.selectedRow or "top", self.selectedIndex or 1, item.nativeMenu)
                             if not ok and reason then print("|cff00ffff[FluxUI]|r " .. reason) end

@@ -53,7 +53,7 @@ end
 for _, defaults in ipairs({ e.FluxOptionsDefaults.profile.raidFrames, e.FluxOptionsDefaults.char.raidFrames }) do
     check(defaults.useBlizzardDefaultSizes == nil, "reset defaults contain no sizing mode flag")
     for _, key in ipairs(sizeKeys) do check(defaults[key] == preset[key], "both default scopes match the screenshot: " .. key) end
-    check(defaults.auraTimersUnderMinute==true,"both scopes default to under-one-minute aura timers")
+    check(defaults.auraTimersUnderMinute==nil,"both raid scopes use the unit-frame timer setting")
     check(defaults.maxBuffs == 6 and defaults.maxDebuffs == 6 and defaults.previewBuffCount == 3 and defaults.previewDebuffCount == 5,
         "live six-icon capacities remain separate from demo defaults")
 end
@@ -151,6 +151,7 @@ function W:CreateFontString() return widget(self, "FontString") end
 function W:SetTexCoord(...) self.texcoord = { ... } end
 function W:SetTexture(v) self.texture = v end
 function W:SetColorTexture(...) self.colorTexture = {...} end
+function W:SetVertexColor(...) self.color = {...} end
 function W:SetAlpha(v) self.alpha = v end
 function W:SetText(v) self.text = v end
 function W:SetFont(...) self.font = { ... } end
@@ -175,6 +176,7 @@ function W:SetHideCountdownNumbers(v) self.hideNumbers = v end
 function W:GetCountdownFontString() self.countdownText = self.countdownText or widget(self, "FontString"); return self.countdownText end
 function W:Show() self.shown = true end
 function W:Hide() self.shown = false end
+function W:SetShown(v) self.shown = v end
 e.CreateFrame = function(kind, _, parent) return widget(parent, kind) end
 e.GetTime = function() return 100 end
 e.GetSpellTexture = function(id) return id end
@@ -261,7 +263,7 @@ for _, target in ipairs({ "account", "character" }) do
     local beforeLive, beforePreview = live, preview
     sizeReset.func()
     for _, key in ipairs(sizeKeys) do check(db[key] == preset[key], "size-only reset restores the screenshot preset " .. key) end
-    check(db.auraTimersUnderMinute==true,"size reset restores the screenshot timer toggle")
+    check(db.auraTimersUnderMinute==nil,"size reset leaves timer policy in the unit-frame scope")
     check(db.maxBuffs == 4 and db.maxDebuffs == 5 and db.displayOnlyDispellableDebuffs and db.auraTransparency == 37 and db.preserved == nested,
         "size-only reset preserves filters, counts, opacity and unrelated data in " .. target)
     check(live == beforeLive + 1 and preview == beforePreview + 1, "size-only reset refreshes existing live and preview owners")

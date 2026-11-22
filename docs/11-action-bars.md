@@ -1,5 +1,12 @@
 # Action bars
 
+22 November. Blizzard page 2 previously put the same native slots on
+columns 1–7 and 13–19. On page 2, Flux keeps base slots 1–7 in the
+first seven columns and uses slots 20–24 in columns 8–12. Fixed columns
+13–19 retain slots 13–19. The shared secure handler and Lua slot model
+apply the rule on all supported clients. Saved actions stay in their
+original slots. [Client checks](CLIENT_VALIDATION.md#action-strip-page-two-ownership).
+
 <!-- RESPEC-ACTION-SAFETY-20261116 -->
 16 November: automatic rank upgrades require an empty player cursor, the exact fourth-field spell cursor ID and a verified resulting slot. Failed pickups/placements preserve actions/recovery cursors and block dependent saved binding/stance ID rewrites; event cadence and opt-in auto-rank policy stay. Binding-mode activation keeps the current account/character binding set and unsaved keys. [Evidence](validation/respec-action-safety-2026-11-16.json).
 <!-- /RESPEC-ACTION-SAFETY-20261116 -->
@@ -107,7 +114,9 @@ Initial visual constants are 44px buttons, 0 padding, 4px margin, 1.24 scale and
 
 | At-rest surface | Columns 1–12 | Columns 13–19 |
 |---|---|---|
-| Main | `(page - 1) * 12 + column` | Slots 13–19 |
+| Main, page 1 | Slots 1–12 | Slots 13–19 |
+| Main, page 2 | Slots 1–7, then 20–24 | Slots 13–19 |
+| Main, other pages | `(page - 1) * 12 + column` | Slots 13–19 |
 | SHIFT mini | Slots 61–72 | Slots 49–55 |
 | CTRL mini | Slots 25–36 | Slots 37–43 |
 
@@ -132,6 +141,8 @@ Initial visual constants are 44px buttons, 0 padding, 4px margin, 1.24 scale and
 [BadgeHost.lua](../Bars/BadgeHost.lua) maps up to three alternate-action corner previews per slot onto every surface that can display it. Form, occupancy, cooldown, macro identity and per-binding policies control visibility. Combat visibility uses alpha; structural writes defer. Badge ordering differs from macro clause ordering.
 
 [Effects.lua](../Bars/Effects.lua) transfers proc overlays by action identity across main/mini widgets so paging does not restart the birth animation. Shared cast effects follow the column. [Flyout.lua](../Bars/Flyout.lua) attaches native Blizzard SpellFlyout; custom item/utility flyouts use EBS instead.
+
+The native flyout glyph uses the [shared arrow layer](12-extra-button-system.md#flyouts-and-trinkets) above the strip crest and follows its button when the layout moves.
 
 [SpellRank.lua](../Bars/SpellRank.lua) desaturates lower learned ranks, offers explicit/automatic rank-up, maintains a blacklist and reconciles affected binding/spellbook displays. Rank support is gated for applicable Classic/Forever clients; Live Midnight does not use this rank workflow.
 

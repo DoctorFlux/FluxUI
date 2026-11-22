@@ -1,0 +1,222 @@
+{
+  "changeId": "MINIMAP-STANDALONE-RESTORE-20261121",
+  "capturedAtUTC": "2026-11-21T14:09:50.0279474Z",
+  "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+  "checkpoint": {
+    "createdUTC": "2026-11-21T13:53:50.5722005Z",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "branch": "main",
+    "history": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flyout-layer-before-2026-11-21-135457/main.bundle",
+    "historySha256": "ae2f3ff2ed1c3928d6d580c48dc080e969af477a1f0afaf7fb1f6092d32d4570",
+    "settingsCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 32
+    },
+    "files": {
+      "Minimap/FluxMinimap.lua": "c005eb0735634eee31fb8a1d1e7997d033b6443c263126588def15505871e69f",
+      "Minimap/FluxMinimapButtons.lua": "1d21a8123c47c10fa55139415a85b28aac2d5147e56504eac2387be465c3c823",
+      "tests/minimap_window_layout.lua": "43f35c7bcc66fcf04228c4f4c8e241c6f67a32f7ba602b15b9c8178cf829ed1d",
+      "tests/minimap_indicator_work.lua": "acff8dd19da6f1eec99888f96eb660ae3a12cf4e516731a5e388b16775586252",
+      "docs/reference/verification.json": "b9c0df03e98da4367a19cd3e6e53ae1a4792277b11128c2926ad82e64412a1cd"
+    }
+  },
+  "sources": {
+    "Minimap/FluxMinimap.lua": {
+      "beforeRaw": "c005eb0735634eee31fb8a1d1e7997d033b6443c263126588def15505871e69f",
+      "afterRaw": "9df48160ab3cb83e729c61e494b406c8b5dbb604db6fc74a8e71c6f5cc6a40a3"
+    }
+  },
+  "paths": {
+    "Minimap/FluxMinimap.lua": "9df48160ab3cb83e729c61e494b406c8b5dbb604db6fc74a8e71c6f5cc6a40a3",
+    "Minimap/FluxMinimapButtons.lua": "1d21a8123c47c10fa55139415a85b28aac2d5147e56504eac2387be465c3c823",
+    "Core/BorderJunctions.lua": "185c2e76e436ba2a9e71cfa77f4c651db0d43da6aaf331f5e0cb1d9ebe99a2bb",
+    "Battlezonemap/FluxWindowFrame.lua": "251f0f879cf883b568cefb5c2afcc6048dbfe5010b78d0a13808ee6f98329543",
+    "Battlezonemap/_tmp_questiepinsmoke.lua": "9b9114a267745eb7b1dd751c9bf46586a436ab7e7b3c853f7263b4b5197a016c",
+    "tests/border_combat_transitions.lua": "5ac38655a546f782d1c6eda1616c1f9382c56753abbc00a527078408b88a0018",
+    "tests/border_nearby_panels.lua": "572c6620f37f4d8470f5334fe26f68062668c9a41fb040ae7dd4ab9107de6bdf",
+    "tests/border_strip_envelope.lua": "fee34bc3a51aea37834e9c2e6c5e0f683d55e5a76e3db636653377422a7d34e5",
+    "tests/border_window_bounds.lua": "0e752e6709b3646a834dd3f2c6af94312143d9fffcbf13c5ca097434ba2b008b",
+    "tests/minimap_combat_idempotence.lua": "eee3f061dfe9c6f1e618fc270a62ff5c447a23aef6da9fd2ad717c3322dafd02",
+    "tests/minimap_dynamic_buttons.lua": "a9735032792875092d28562bd91ca8671a3deb7e8a421bb2f23a470029d92cb4",
+    "tests/minimap_extra_layout.lua": "1f9225a39347a5f8278e752702a9e43b45476ec8abdd6fc1d313ae3557869aef",
+    "tests/minimap_extra_visibility.lua": "318ad2a80990c937e337bd2b7fddaecc2672c484fdfc858a6805a323ffc97536",
+    "tests/minimap_flyout_visibility.lua": "6fbf933e993c68547ace539f95e846ca83ab43ba8622948392d909a2178bb643",
+    "tests/minimap_indicator_work.lua": "b4d512d182869fe45bff604cfedef78ef489a55ca6071a5398498d29eba0e8ef",
+    "tests/minimap_mail_lifecycle.lua": "1dbb6382a4337407b912a269c931003cb3e73e724a25a485c17a92ca29dd7862",
+    "tests/minimap_side_auras.lua": "3c13720f2fdc2cf5a1d8ad1c255c319ac1fc815b5ddceb264f544007f04dec7f",
+    "tests/minimap_side_border.lua": "ddbeb5d2a51ed8b19f945ba6425341603d0d5267f40387dfa990a523b66ce6ee",
+    "tests/minimap_side_inset.lua": "b383b69058c0632992ab7e95a3a10e0d38306786ff14d94d1567af5f8672bd2c",
+    "tests/minimap_side_packing.lua": "29befd5a1716193fe31f1ff5389c5f68c9fdc634eb26031ea05932e5ad251bcb",
+    "tests/minimap_tracking.lua": "fd726bba50a34a582b660bda7971611801e21bba4952fefef77fcc92ec560843",
+    "tests/minimap_window_layout.lua": "957e8d67fa5502efa7e9462e628f0080a37db23fc36c3fa262f9f20ddcf18ab6",
+    "tests/window_runtime_spec.lua": "56ada17374e9edac7fb840a740fae91106723bb248fa59699dd7b54d398bedae"
+  },
+  "installed": [
+    {
+      "client": "_retail_",
+      "source": "F:/World of Warcraft/_retail_/Interface/AddOns/_FluxUI/Minimap/FluxMinimap.lua",
+      "sha256": "9df48160ab3cb83e729c61e494b406c8b5dbb604db6fc74a8e71c6f5cc6a40a3"
+    },
+    {
+      "client": "_forever_",
+      "source": "F:/World of Warcraft/_forever_/Interface/AddOns/_FluxUI/Minimap/FluxMinimap.lua",
+      "sha256": "9df48160ab3cb83e729c61e494b406c8b5dbb604db6fc74a8e71c6f5cc6a40a3"
+    },
+    {
+      "client": "_classic_",
+      "source": "F:/World of Warcraft/_classic_/Interface/AddOns/_FluxUI/Minimap/FluxMinimap.lua",
+      "sha256": "9df48160ab3cb83e729c61e494b406c8b5dbb604db6fc74a8e71c6f5cc6a40a3"
+    },
+    {
+      "client": "_classic_era_",
+      "source": "F:/World of Warcraft/_classic_era_/Interface/AddOns/_FluxUI/Minimap/FluxMinimap.lua",
+      "sha256": "9df48160ab3cb83e729c61e494b406c8b5dbb604db6fc74a8e71c6f5cc6a40a3"
+    },
+    {
+      "client": "_anniversary_",
+      "source": "F:/World of Warcraft/_anniversary_/Interface/AddOns/_FluxUI/Minimap/FluxMinimap.lua",
+      "sha256": "9df48160ab3cb83e729c61e494b406c8b5dbb604db6fc74a8e71c6f5cc6a40a3"
+    }
+  ],
+  "desktop": {
+    "passed": 19,
+    "failed": 0,
+    "results": [
+      {
+        "path": "Battlezonemap/_tmp_questiepinsmoke.lua",
+        "exitCode": 0,
+        "output": "RestedXP standard HBD pins OK: Forever (ownership, styling, tooltip, owner reset, zone, World Map priority, combat, both toggles)\r\nRestedXP standard HBD pins OK: Classic (ownership, styling, tooltip, owner reset, zone, World Map priority, combat, both toggles)\r\nRestedXP standard HBD pins OK: Classic (ownership, styling, tooltip, owner reset, zone, World Map priority, combat, both toggles)\r\nQuestie/RestedXP battlefield pins smoke OK (all MapCanvas clients, native coexistence, settings/icons, handoff, filters, tooltips, late loading, combat recovery and Map Pins off)",
+        "wallSeconds": 0.0416812
+      },
+      {
+        "path": "tests/border_combat_transitions.lua",
+        "exitCode": 0,
+        "output": "Border combat transitions: 20 checks PASS; actual clean10exits0reads/solves/full requests/resources; pending native geometry/material/UV/style retained once; unchanged dirty preflight; coalesced wakes; no native FPS/taint claim",
+        "wallSeconds": 0.050382
+      },
+      {
+        "path": "tests/border_nearby_panels.lua",
+        "exitCode": 0,
+        "output": "Nearby panel borders: 1704 checks PASS; both styles; fractional mixed scales; module/frame exports; grids/Info/strip/menu/window/envelope T contacts; transitive floors; detach/hide/reattach; static work; combat deferral; untouched content/input geometry. Native pixels/FPS pending",
+        "wallSeconds": 2.5263539
+      },
+      {
+        "path": "tests/border_strip_envelope.lua",
+        "exitCode": 0,
+        "output": "Strip/envelope border: 7421 checks PASS; 144 strip scenes; 30 side/window dock scenes; 1080 one-source crest samples; static warm checks; native pixels/FPS/taint pending",
+        "wallSeconds": 6.2082394
+      },
+      {
+        "path": "tests/border_window_bounds.lua",
+        "exitCode": 0,
+        "output": "Flux Window bounds: 972 checks PASS; fixed decorative/content geometry; HIGH side/map/header moves and embed-like visibility; window paint owner; detach/reconnect; static reuse; both styles/scales/module exports; conflicting fixed references; native pixels pending",
+        "wallSeconds": 0.5532424
+      },
+      {
+        "path": "tests/minimap_combat_idempotence.lua",
+        "exitCode": 0,
+        "output": "MINIMAP_NATIVE_STATE_WORK|1|classic|100warmPasses|guardedWrites=0|movableMouseCalls=300|indicatorCalls=100\r\nMINIMAP_NATIVE_STATE_WORK|1|retail|100warmPasses|guardedWrites=0|movableMouseCalls=300|indicatorCalls=100\r\nMINIMAP_NATIVE_STATE_WORK|1|alias|100warmPasses|guardedWrites=0|movableMouseCalls=300|indicatorCalls=100\r\nMINIMAP_NATIVE_STATE_WORK|2|classic|100warmPasses|guardedWrites=0|movableMouseCalls=300|indicatorCalls=100\r\nMINIMAP_NATIVE_STATE_WORK|2|retail|100warmPasses|guardedWrites=0|movableMouseCalls=300|indicatorCalls=100\r\nMINIMAP_NATIVE_STATE_WORK|2|alias|100warmPasses|guardedWrites=0|movableMouseCalls=300|indicatorCalls=100\r\nMinimap combat idempotence: 166 checks PASS; fresh native geometry/parent/scale/visibility, private/missing/error recovery, late frames, style/side offsets and original combat/embed/indicator policy. Native FPS/pixels/taint pending",
+        "wallSeconds": 0.0406065
+      },
+      {
+        "path": "tests/minimap_dynamic_buttons.lua",
+        "exitCode": 0,
+        "output": "Minimap dynamic buttons: 10480 checks; 5 client models; 30 layout/scale cases; 6 harmful controls PASS",
+        "wallSeconds": 0.5074549
+      },
+      {
+        "path": "tests/minimap_extra_layout.lua",
+        "exitCode": 0,
+        "output": "minimap extra layout: 50035 checks PASS (runtime geometry, saved actions, reuse, deferred combat writes and state-driver model; native acceptance pending)",
+        "wallSeconds": 0.2621474
+      },
+      {
+        "path": "tests/minimap_extra_visibility.lua",
+        "exitCode": 0,
+        "output": "Minimap extra visibility: 875 checks; 5 client models; 15 scale cases; 4 harmful controls PASS",
+        "wallSeconds": 0.1134273
+      },
+      {
+        "path": "tests/minimap_flyout_visibility.lua",
+        "exitCode": 0,
+        "output": "PASS minimap flyout visibility: 366 checks; 4 client models; 9 harmful controls",
+        "wallSeconds": 0.0435141
+      },
+      {
+        "path": "tests/minimap_indicator_work.lua",
+        "exitCode": 0,
+        "output": "MINIMAP_GROUP_WORK|cluster|20rosterOrSize|tracking=0|landing=0|mail=0|anchors=3|layouts=1|queues=1\r\nMINIMAP_INDICATOR_WORK|cluster|100unchanged|geometryWrites=0|nativeUpdates=500\r\nMINIMAP_GROUP_WORK|global|20rosterOrSize|tracking=0|landing=0|mail=0|anchors=3|layouts=1|queues=1\r\nMINIMAP_INDICATOR_WORK|global|100unchanged|geometryWrites=0|nativeUpdates=500\r\nMINIMAP_GROUP_WORK|minimap|20rosterOrSize|tracking=0|landing=0|mail=0|anchors=3|layouts=1|queues=1\r\nMINIMAP_INDICATOR_WORK|minimap|100unchanged|geometryWrites=0|nativeUpdates=500\r\nMINIMAP_GROUP_WORK|missing|20rosterOrSize|tracking=0|landing=0|mail=0|anchors=3|layouts=1|queues=1\r\nMINIMAP_INDICATOR_WORK|missing|100unchanged|geometryWrites=0|nativeUpdates=500\r\nMinimap indicator work: 228 checks PASS; actual controller, fresh state and native updates retained; native timing pending",
+        "wallSeconds": 0.0401487
+      },
+      {
+        "path": "tests/minimap_mail_lifecycle.lua",
+        "exitCode": 0,
+        "output": "CURVE provider=false shape=cluster layout n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=10 deliveries=0 listeners=1\r\nCURVE provider=false shape=cluster unchanged n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=11 deliveries=10 listeners=1\r\nCURVE provider=false shape=cluster toggle n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=21 deliveries=10 listeners=1\r\nCURVE provider=false shape=cluster layout n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=100 deliveries=0 listeners=1\r\nCURVE provider=false shape=cluster unchanged n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=101 deliveries=100 listeners=1\r\nCURVE provider=false shape=cluster toggle n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=201 deliveries=100 listeners=1\r\nCURVE provider=false shape=cluster layout n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=500 deliveries=0 listeners=1\r\nCURVE provider=false shape=cluster unchanged n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=501 deliveries=500 listeners=1\r\nCURVE provider=false shape=cluster toggle n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=1001 deliveries=500 listeners=1\r\nCURVE provider=false shape=global layout n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=10 deliveries=0 listeners=1\r\nCURVE provider=false shape=global unchanged n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=11 deliveries=10 listeners=1\r\nCURVE provider=false shape=global toggle n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=21 deliveries=10 listeners=1\r\nCURVE provider=false shape=global layout n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=100 deliveries=0 listeners=1\r\nCURVE provider=false shape=global unchanged n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=101 deliveries=100 listeners=1\r\nCURVE provider=false shape=global toggle n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=201 deliveries=100 listeners=1\r\nCURVE provider=false shape=global layout n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=500 deliveries=0 listeners=1\r\nCURVE provider=false shape=global unchanged n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=501 deliveries=500 listeners=1\r\nCURVE provider=false shape=global toggle n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=1001 deliveries=500 listeners=1\r\nCURVE provider=false shape=minimap layout n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=10 deliveries=0 listeners=1\r\nCURVE provider=false shape=minimap unchanged n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=11 deliveries=10 listeners=1\r\nCURVE provider=false shape=minimap toggle n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=21 deliveries=10 listeners=1\r\nCURVE provider=false shape=minimap layout n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=100 deliveries=0 listeners=1\r\nCURVE provider=false shape=minimap unchanged n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=101 deliveries=100 listeners=1\r\nCURVE provider=false shape=minimap toggle n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=201 deliveries=100 listeners=1\r\nCURVE provider=false shape=minimap layout n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=500 deliveries=0 listeners=1\r\nCURVE provider=false shape=minimap unchanged n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=501 deliveries=500 listeners=1\r\nCURVE provider=false shape=minimap toggle n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=1001 deliveries=500 listeners=1\r\nCURVE provider=false shape=missing layout n=10 completed=10 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=10 deliveries=0 listeners=1\r\nCURVE provider=false shape=missing unchanged n=10 completed=10 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=11 deliveries=10 listeners=1\r\nCURVE provider=false shape=missing toggle n=10 completed=10 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=21 deliveries=10 listeners=1\r\nCURVE provider=false shape=missing layout n=100 completed=100 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=100 deliveries=0 listeners=1\r\nCURVE provider=false shape=missing unchanged n=100 completed=100 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=101 deliveries=100 listeners=1\r\nCURVE provider=false shape=missing toggle n=100 completed=100 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=201 deliveries=100 listeners=1\r\nCURVE provider=false shape=missing layout n=500 completed=500 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=500 deliveries=0 listeners=1\r\nCURVE provider=false shape=missing unchanged n=500 completed=500 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=501 deliveries=500 listeners=1\r\nCURVE provider=false shape=missing toggle n=500 completed=500 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=1001 deliveries=500 listeners=1\r\nCURVE provider=true shape=cluster layout n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=10 deliveries=0 listeners=1\r\nCURVE provider=true shape=cluster unchanged n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=11 deliveries=10 listeners=1\r\nCURVE provider=true shape=cluster toggle n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=21 deliveries=10 listeners=1\r\nCURVE provider=true shape=cluster layout n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=100 deliveries=0 listeners=1\r\nCURVE provider=true shape=cluster unchanged n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=101 deliveries=100 listeners=1\r\nCURVE provider=true shape=cluster toggle n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=201 deliveries=100 listeners=1\r\nCURVE provider=true shape=cluster layout n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=500 deliveries=0 listeners=1\r\nCURVE provider=true shape=cluster unchanged n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=501 deliveries=500 listeners=1\r\nCURVE provider=true shape=cluster toggle n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=1001 deliveries=500 listeners=1\r\nCURVE provider=true shape=global layout n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=10 deliveries=0 listeners=1\r\nCURVE provider=true shape=global unchanged n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=11 deliveries=10 listeners=1\r\nCURVE provider=true shape=global toggle n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=21 deliveries=10 listeners=1\r\nCURVE provider=true shape=global layout n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=100 deliveries=0 listeners=1\r\nCURVE provider=true shape=global unchanged n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=101 deliveries=100 listeners=1\r\nCURVE provider=true shape=global toggle n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=201 deliveries=100 listeners=1\r\nCURVE provider=true shape=global layout n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=500 deliveries=0 listeners=1\r\nCURVE provider=true shape=global unchanged n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=501 deliveries=500 listeners=1\r\nCURVE provider=true shape=global toggle n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=1001 deliveries=500 listeners=1\r\nCURVE provider=true shape=minimap layout n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=10 deliveries=0 listeners=1\r\nCURVE provider=true shape=minimap unchanged n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=11 deliveries=10 listeners=1\r\nCURVE provider=true shape=minimap toggle n=10 completed=10 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=21 deliveries=10 listeners=1\r\nCURVE provider=true shape=minimap layout n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=100 deliveries=0 listeners=1\r\nCURVE provider=true shape=minimap unchanged n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=101 deliveries=100 listeners=1\r\nCURVE provider=true shape=minimap toggle n=100 completed=100 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=201 deliveries=100 listeners=1\r\nCURVE provider=true shape=minimap layout n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=500 deliveries=0 listeners=1\r\nCURVE provider=true shape=minimap unchanged n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=501 deliveries=500 listeners=1\r\nCURVE provider=true shape=minimap toggle n=500 completed=500 status=complete frames=0 textures=0 registrations=2 hooks=2 calls=1001 deliveries=500 listeners=1\r\nCURVE provider=true shape=missing layout n=10 completed=10 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=10 deliveries=0 listeners=1\r\nCURVE provider=true shape=missing unchanged n=10 completed=10 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=11 deliveries=10 listeners=1\r\nCURVE provider=true shape=missing toggle n=10 completed=10 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=21 deliveries=10 listeners=1\r\nCURVE provider=true shape=missing layout n=100 completed=100 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=100 deliveries=0 listeners=1\r\nCURVE provider=true shape=missing unchanged n=100 completed=100 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=101 deliveries=100 listeners=1\r\nCURVE provider=true shape=missing toggle n=100 completed=100 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=201 deliveries=100 listeners=1\r\nCURVE provider=true shape=missing layout n=500 completed=500 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=500 deliveries=0 listeners=1\r\nCURVE provider=true shape=missing unchanged n=500 completed=500 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=501 deliveries=500 listeners=1\r\nCURVE provider=true shape=missing toggle n=500 completed=500 status=complete frames=1 textures=1 registrations=2 hooks=2 calls=1001 deliveries=500 listeners=1\r\nminimap mail lifecycle: 728 checks, 0 failures; desktop production-function replay only",
+        "wallSeconds": 0.1272802
+      },
+      {
+        "path": "tests/minimap_side_auras.lua",
+        "exitCode": 0,
+        "output": "Minimap side aura positioning: 2543 checks; 5 client models; 15 scale cases; 4 harmful controls PASS",
+        "wallSeconds": 0.1317301
+      },
+      {
+        "path": "tests/minimap_side_border.lua",
+        "exitCode": 0,
+        "output": "Minimap side border: 2985 checks;actual FluxBorder/arrow layers;5 client models;30 art/scale cases;7 harmful controls PASS",
+        "wallSeconds": 0.1814381
+      },
+      {
+        "path": "tests/minimap_side_inset.lua",
+        "exitCode": 0,
+        "output": "Minimap side cells: 14121 checks PASS; counts1..120; side scales10/100/200; UI scales.75/1/1.25; zero added visual gaps; unchanged embed/actions; combat deferral; native pixels/controller pending",
+        "wallSeconds": 0.1029283
+      },
+      {
+        "path": "tests/minimap_side_packing.lua",
+        "exitCode": 0,
+        "output": "Minimap side packing: 32026 checks PASS; two columns shrink to half-native before third; zero neighbor gaps; count/order/window preservation; tiny-height screen fallback; scales and density boundaries; reuse/combat guards; native pixels pending",
+        "wallSeconds": 0.6541754
+      },
+      {
+        "path": "tests/minimap_tracking.lua",
+        "exitCode": 0,
+        "output": "Minimap tracking PASS: 438 checks; native pixels/input/controller/taint/FPS NOT RUN",
+        "wallSeconds": 0.0277787
+      },
+      {
+        "path": "tests/minimap_window_layout.lua",
+        "exitCode": 0,
+        "output": "Minimap window integration: 165 checks; real map/window/tracker/Questie paths and four harmful controls passed",
+        "wallSeconds": 0.0684866
+      },
+      {
+        "path": "tests/window_runtime_spec.lua",
+        "exitCode": 0,
+        "output": "Mirror repositions after 3 lifecycle events: show=1, event=1\r\nMeter retry extra FontStrings=0; tab-switch detached objects=0\r\nWindow/runtime checks: 36, failures: 0",
+        "wallSeconds": 0.0404215
+      }
+    ],
+    "syntaxPassed": 1256,
+    "upvalueMax": 12,
+    "scope": "Native mail/track button anchors and local paint order, hidden tracking, standalone restoration after immediate and deferred changes, combat toggle bursts and side-grid coexistence."
+  },
+  "archivedAssertions": {
+    "queuedClock": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/minimap_window_layout.lua:4: standalone clock/button edge fits the restored minimap: 1976.0 / 1896.0",
+    "indicatorCorner": [
+      "FAIL mail and tracking share a bottom edge",
+      "FAIL mail keeps a border inset without tracking",
+      "FAIL taller mail stays inside the standalone map rim",
+      "FAIL mail draws above the local minimap border",
+      "FAIL hidden tracking releases the lower-right corner for mail",
+      "FAIL taller mail stays inside the standalone map rim",
+      "FAIL mail draws above the local minimap border",
+      "FAIL hidden tracking releases the lower-right corner for mail"
+    ]
+  },
+  "nativeResult": "Pending",
+  "nativeScope": "Native appearance, input, timing and combat taint remain pending."
+}

@@ -194,8 +194,8 @@ local h, e, native = boot("missing", false)
 h:position(); local mail = h:mailFrame()
 check(mail ~= native and mail.width == 20 and mail.height == 15, "clients without a native indicator keep the fallback size")
 check(mail.MailIcon.atlas == "ui-hud-minimap-mail-up" and mail.MailIcon.allPoints, "fallback artwork is unchanged")
-check(mail.parent == e.Minimap and mail.point[1] == "RIGHT" and mail.point[2] == e.MinimapCluster.Tracking
-    and mail.point[3] == "LEFT" and mail.point[4] == -2 and mail.point[5] == 0, "tracking-relative geometry is unchanged")
+check(mail.parent == e.Minimap and mail.point[1] == "BOTTOMRIGHT" and mail.point[2] == e.MinimapCluster.Tracking
+    and mail.point[3] == "BOTTOMLEFT" and mail.point[4] == -2 and mail.point[5] == 0, "mail and tracking share a bottom edge")
 check(mail.level == e.Minimap:GetFrameLevel() + 10, "mail level is unchanged")
 mail.scripts.OnEnter(mail); mail.scripts.OnLeave(mail)
 check(h.tooltipCalls == 1 and h.tooltipOwners == 1 and h.tooltipOwner == mail
@@ -238,7 +238,39 @@ legacy.newMail = false; legacy:event("UPDATE_PENDING_MAIL")
 check(legacy.nativeHides == 1 and legacy.frames == 0, "native hide still runs once")
 local noTrack, ne = boot("cluster", false, false); noTrack:position(); local nt = noTrack:mailFrame()
 check(nt.point[1] == "BOTTOMRIGHT" and nt.point[2] == ne.Minimap and nt.point[3] == "BOTTOMRIGHT"
-    and nt.point[4] == 0 and nt.point[5] == 0, "no-tracking fallback geometry is unchanged")
+    and nt.point[4] == -6 and nt.point[5] == 6, "mail keeps a border inset without tracking")
+
+for _, nativeAtlas in ipairs({true, false}) do
+    local appearance, env, nativeMail = boot("cluster", false)
+    env.FluxBorder.CanUseAtlases = function() return nativeAtlas end
+    env.FLUX_API.isClassicEra = true
+    env.Minimap.FluxBorderFrame = env.CreateFrame("Frame", nil, env.Minimap)
+    env.Minimap.FluxBorderFrame:SetFrameLevel(16)
+    local tracking = env.MinimapCluster.Tracking
+    tracking:SetSize(20, 12)
+    local active = true
+    env.C_Minimap = {
+        GetNumTrackingTypes = function() return 1 end,
+        GetTrackingInfo = function() return {active = active} end,
+    }
+    local inset = nativeAtlas and 6 or 4
+    appearance:position()
+    local mailBottom = tracking.point[5] + nativeMail.point[5]
+    if nativeMail.point[1] == "RIGHT" then
+        mailBottom = mailBottom + (tracking.height - nativeMail.height) / 2
+    end
+    check(mailBottom == inset and tracking.point[4] == -inset,
+        "taller mail stays inside the standalone map rim")
+    check(nativeMail.level > env.Minimap.FluxBorderFrame:GetFrameLevel(), "mail draws above the local minimap border")
+    active = false
+    appearance:position()
+    check(not tracking:IsShown() and nativeMail.point[2] == env.Minimap
+        and nativeMail.point[4] == -inset and nativeMail.point[5] == inset,
+        "hidden tracking releases the lower-right corner for mail")
+    active = true
+    appearance:position()
+    check(tracking:IsShown() and nativeMail.point[2] == tracking, "tracking returns beside the same mail indicator")
+end
 -- Native Forever art is reused without creating or resizing its controls.
 for _, shape in ipairs({ "cluster", "global", "minimap" }) do
     local nh, env, nm, hide = boot(shape, false, true, "available")

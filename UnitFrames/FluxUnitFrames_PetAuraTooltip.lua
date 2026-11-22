@@ -8,6 +8,7 @@ if not UF then return end
 
 local API = ns.API
 local FLUX_API = _G.FLUX_API or {}
+local Aura = ns.Flux and ns.Flux.Aura
 
 local MAX_BUFFS = 16
 local MAX_DEBUFFS = 8
@@ -149,7 +150,8 @@ local function ApplyDuration(cooldown)
 end
 
 local function CreateAuraIcon(parent, index, kind)
-    local button = CreateFrame("Frame", parent:GetName() .. kind .. index, parent)
+    local parentName = parent:GetName()
+    local button = CreateFrame("Frame", parentName and parentName .. kind .. index, parent)
     button:SetSize(ICON_SIZE, ICON_SIZE)
     button:EnableMouse(false)
     button:Hide()
@@ -173,6 +175,9 @@ local function CreateAuraIcon(parent, index, kind)
     overlay:SetAllPoints(button)
     overlay:SetFrameLevel(button:GetFrameLevel() + 5)
     overlay:EnableMouse(false)
+    if kind == "Debuff" and Aura and Aura.CreateDispelTypeIcon then
+        button.DispelTypeIcon = Aura.CreateDispelTypeIcon(button, overlay, ICON_SIZE)
+    end
 
     button.Count = overlay:CreateFontString(nil, "OVERLAY", "NumberFontNormal")
     button.Count:SetPoint("BOTTOMRIGHT", -1, 0)
@@ -338,6 +343,33 @@ local function GatherAuras(filter, maxCount)
     return list
 end
 
+local function PaintBorder(button, isDebuff, dispelName)
+    if (issecretvalue and issecretvalue(dispelName)) or (canaccessvalue and not canaccessvalue(dispelName)) then
+        dispelName = nil
+    end
+    if button.DispelTypeIcon then
+        Aura.SetDispelTypeIcon(button.DispelTypeIcon, isDebuff and dispelName or nil)
+    end
+    if button.Border and button.Border.SetBackdropBorderColor then
+        if isDebuff then
+            local dt = dispelName
+            if dt == "Magic" then
+                button.Border:SetBackdropBorderColor(0.2, 0.6, 1, 1)
+            elseif dt == "Curse" then
+                button.Border:SetBackdropBorderColor(0.6, 0.0, 1, 1)
+            elseif dt == "Disease" then
+                button.Border:SetBackdropBorderColor(0.6, 0.4, 0, 1)
+            elseif dt == "Poison" then
+                button.Border:SetBackdropBorderColor(0, 0.6, 0, 1)
+            else
+                button.Border:SetBackdropBorderColor(0.85, 0.1, 0.1, 1)
+            end
+        else
+            button.Border:SetBackdropBorderColor(0, 0, 0, 0.85)
+        end
+    end
+end
+
 local function PaintButton(button, data, isDebuff)
     if not button or not AuraDataIsValid(data) then
         if button then button:Hide() end
@@ -362,24 +394,7 @@ local function PaintButton(button, data, isDebuff)
         button.Count:Hide()
     end
 
-    if button.Border and button.Border.SetBackdropBorderColor then
-        if isDebuff then
-            local dt = data.dispelName
-            if dt == "Magic" then
-                button.Border:SetBackdropBorderColor(0.2, 0.6, 1, 1)
-            elseif dt == "Curse" then
-                button.Border:SetBackdropBorderColor(0.6, 0.0, 1, 1)
-            elseif dt == "Disease" then
-                button.Border:SetBackdropBorderColor(0.6, 0.4, 0, 1)
-            elseif dt == "Poison" then
-                button.Border:SetBackdropBorderColor(0, 0.6, 0, 1)
-            else
-                button.Border:SetBackdropBorderColor(0.85, 0.1, 0.1, 1)
-            end
-        else
-            button.Border:SetBackdropBorderColor(0, 0, 0, 0.85)
-        end
-    end
+    PaintBorder(button, isDebuff, data.dispelName)
 
     local cd = button.Cooldown
     durationButtons[cd] = nil
@@ -433,7 +448,8 @@ local function PaintButton(button, data, isDebuff)
     button:Show()
 end
 
-local function LayoutRow(buttons, count, offsetY)
+local function LayoutRow(buttons, count, offsetY, parent)
+    parent = parent or host
     for i = 1, #buttons do
         local btn = buttons[i]
         if i <= count then
@@ -442,7 +458,7 @@ local function LayoutRow(buttons, count, offsetY)
             btn:ClearAllPoints()
             btn:SetPoint(
                 "TOPLEFT",
-                host,
+                parent,
                 "TOPLEFT",
                 col * (ICON_SIZE + ICON_PAD),
                 -(offsetY + row * (ICON_SIZE + ICON_PAD))
@@ -457,6 +473,68 @@ local function LayoutRow(buttons, count, offsetY)
     if count <= 0 then return 0 end
     local rows = math.ceil(count / PER_ROW)
     return rows * ICON_SIZE + (rows - 1) * ICON_PAD
+end
+
+function UF.PaintOptionsPetAuraValues(frame, elapsed)
+    local tip = frame._fluxOptionsPetAuras
+    if not tip or not tip:IsShown() or not UF.PaintOptionsAuraCountdown then return end
+    for i, icon in ipairs(tip.icons) do
+        local duration = i == 4 and 2.4 or 9 + i
+        UF.PaintOptionsAuraCountdown(icon, duration, elapsed, false, i == 2 and 2 or nil)
+    end
+end
+
+function UF.PaintOptionsPetAuras(frame, visible)
+    if not frame._fluxIndividualPreview or frame.unit ~= "pet" then return end
+    local tip = frame._fluxOptionsPetAuras
+    if not visible or not ShouldShow() then
+        if tip then tip:Hide() end
+        return
+    end
+    if not tip then
+        tip = CreateFrame("Frame", nil, frame, "BackdropTemplate")
+        tip:SetFrameLevel(frame:GetFrameLevel() + 60)
+        tip:EnableMouse(false)
+        tip:SetSize(112, 68)
+        tip:SetBackdrop({
+            bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
+            edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+            tile = true, tileSize = 16, edgeSize = 16,
+            insets = { left = 4, right = 4, top = 4, bottom = 4 },
+        })
+        tip:SetBackdropColor(.06, .06, .10, .95)
+        tip:SetPoint("TOP", frame.outerBorderFrame or frame, "BOTTOM", 0, -4)
+        tip.caption = tip:CreateFontString(nil, "OVERLAY", "GameTooltipHeaderText")
+        tip.caption:SetPoint("TOPLEFT", 8, -7)
+        local row = CreateFrame("Frame", nil, tip)
+        row:SetSize(44, 42)
+        row:SetPoint("TOPLEFT", 8, -21)
+        local buffs = { CreateAuraIcon(row, 1, "Buff"), CreateAuraIcon(row, 2, "Buff") }
+        local debuffs = { CreateAuraIcon(row, 1, "Debuff"), CreateAuraIcon(row, 2, "Debuff") }
+        buffs[1].Icon:SetTexture("Interface\\Icons\\Spell_Nature_Rejuvenation")
+        buffs[2].Icon:SetTexture("Interface\\Icons\\Spell_Holy_BlessingOfProtection")
+        debuffs[1].Icon:SetTexture("Interface\\Icons\\Spell_Shadow_ShadowWordPain")
+        debuffs[2].Icon:SetTexture("Interface\\Icons\\Spell_Nature_CorrosiveBreath")
+        PaintBorder(debuffs[1], true, "Magic")
+        PaintBorder(debuffs[2], true, "Poison")
+        for _, group in ipairs({ buffs, debuffs }) do
+            for index, icon in ipairs(group) do
+                icon.Cooldown:Hide()
+                local label = icon.Cooldown._fluxDurationFS
+                label:SetText(index == 1 and "12" or "7")
+                label:Show()
+                icon:Show()
+            end
+        end
+        local buffHeight = LayoutRow(buffs, #buffs, 0, row)
+        LayoutRow(debuffs, #debuffs, buffHeight + ROW_GAP, row)
+        tip.icons = { buffs[1], buffs[2], debuffs[1], debuffs[2] }
+        frame._fluxOptionsPetAuras = tip
+    end
+    tip.caption:SetText(PET)
+    tip:Show()
+    UF.PaintOptionsPetAuraValues(frame, 0)
+    return tip
 end
 
 local function AuraBlockHeight(buffCount, debuffCount)

@@ -1,6 +1,7 @@
 local _, ns = ...
 local UF, Flux = ns.UnitFrames, ns.Flux
 local Party = { members = {}, pets = {}, targets = {}, ready = false }
+local PREVIEW_CLASSES = {"WARRIOR", "PRIEST", "MAGE", "DRUID"}
 local ROLE_ATLAS = {TANK="roleicon-tiny-tank", HEALER="roleicon-tiny-healer", DAMAGER="roleicon-tiny-dps"}
 local INDICATOR_EVENTS = {READY_CHECK=true, READY_CHECK_CONFIRM=true, READY_CHECK_FINISHED=true, RAID_TARGET_UPDATE=true,
     PARTY_LEADER_CHANGED=true, PARTY_LOOT_METHOD_CHANGED=true, PLAYER_ROLES_ASSIGNED=true, ROLE_CHANGED_INFORM=true,
@@ -55,7 +56,7 @@ function Party.GetStatusText(unit)
 end
 
 function Party.StyleText(frame, deferIndicators)
-    local relative = frame:GetEffectiveScale() / UIParent:GetEffectiveScale()
+    local relative = frame:GetEffectiveScale() / (frame._fluxPreviewLayerParent or UIParent):GetEffectiveScale()
     local factor = math.max(1.35, .7 / math.max(.05, relative)) * Scale(DB().partyTextScale, 1)
     frame._fluxPartyNameTextScale = factor * .85
     if frame.nameText and frame.nameText.SetTextScale then frame.nameText:SetTextScale(frame._fluxPartyNameTextScale) end
@@ -111,9 +112,12 @@ function Party.LayoutIndicators(frame)
             frame.levelText:SetPoint("TOPRIGHT", layer, "TOPRIGHT", -3, -3)
         end
         frame.levelText:SetWidth(40)
-        if frame.levelText.SetTextScale then frame.levelText:SetTextScale(math.max(1, .6 / (frame:GetEffectiveScale() / UIParent:GetEffectiveScale()))) end
+        if frame.levelText.SetTextScale then
+            local relative = frame:GetEffectiveScale() / (frame._fluxPreviewLayerParent or UIParent):GetEffectiveScale()
+            frame.levelText:SetTextScale(math.max(1, .6 / relative))
+        end
     end
-    Party.UpdatePvpBadge(frame, true)
+    if not frame._fluxIndividualPreview then Party.UpdatePvpBadge(frame, true) end
     local host = frame._fluxPartyNameTextAnchor
     if host and host.GetWidth then
         local width = host:GetWidth()
@@ -125,7 +129,7 @@ function Party.LayoutIndicators(frame)
             -- Shared fitting owns the font and uses this host's exact width.
         end
     end
-    if Party.SyncCastCover then Party.SyncCastCover(frame) end
+    if not frame._fluxIndividualPreview and Party.SyncCastCover then Party.SyncCastCover(frame) end
 end
 
 function Party.UpdatePvpBadge(frame, layoutOnly)
@@ -328,7 +332,7 @@ function Party.UpdateThreat(frame)
 end
 
 local function CreateThreat(frame)
-    local layer = CreateFrame("Frame", nil, UIParent)
+    local layer = CreateFrame("Frame", nil, frame._fluxPreviewLayerParent or UIParent)
     layer:EnableMouse(false)
     layer:SetFrameStrata(frame:GetFrameStrata())
     layer:SetFrameLevel(frame:GetFrameLevel() + 15)
@@ -390,6 +394,9 @@ function Party.PaintChrome(frame, only, skipPortrait)
 end
 
 function Party.RefreshChrome()
+    -- The global accent pass also touches the pane's registered border pieces.
+    -- Its next paint restores the sample's own class and threat accents.
+    Party._previewChromeRevision = (Party._previewChromeRevision or 0) + 1
     for _, frame in ipairs(Party.members) do Party.PaintChrome(frame) end
     for _, pet in ipairs(Party.pets or {}) do UF.UpdateBorderColors(pet) end
     if Party.preview then
@@ -451,12 +458,17 @@ local function LayoutTextHosts(frame, petShown, petScale)
     local left = petShown and 60 * petScale + 4 or 0
     for _, key in ipairs({"Health", "Power"}) do
         local host = frame["_fluxParty" .. key .. "TextAnchor"]
-        host:ClearAllPoints(); host:SetPoint("TOPLEFT", frame[key], "TOPLEFT", left, 0)
+        local band = frame[key]
+        -- On HUD clients compact Focus fills behind its power layer. Its
+        -- existing text band tracks the visible HP section and expands when
+        -- the unit has no power. Classic uses the bar's actual bounds.
+        if key == "Health" and frame._fluxCompactFocus then band = band._fluxTextAnchor or band end
+        host:ClearAllPoints(); host:SetPoint("TOPLEFT", band, "TOPLEFT", left, 0)
         if key == "Health" and petShown then
-            host:ClearAllPoints(); host:SetPoint("TOPLEFT", frame[key], "TOPLEFT", left, -2)
-            host:SetPoint("TOPRIGHT", frame[key], "TOPRIGHT", -left, -2)
+            host:ClearAllPoints(); host:SetPoint("TOPLEFT", band, "TOPLEFT", left, -2)
+            host:SetPoint("TOPRIGHT", band, "TOPRIGHT", -left, -2)
             host:SetHeight(frame._fluxPartyTextBandHeight or 30)
-        else host:SetPoint("BOTTOMRIGHT", frame[key], "BOTTOMRIGHT", -left, 0) end
+        else host:SetPoint("BOTTOMRIGHT", band, "BOTTOMRIGHT", -left, 0) end
     end
     local host = frame._fluxPartyNameTextAnchor
     local height
@@ -470,13 +482,20 @@ end
 
 -- Presentation only: focus keeps its watched-unit driver and external auras.
 function Party.LayoutFocusPresentation(frame)
-    if InCombatLockdown() then return end
+    local preview = frame._fluxIndividualPreview
+    if not preview and InCombatLockdown() then return end
     frame._fluxPartyClassChrome = nil
-    frame._fluxPartyPowerHeightScale = math.max(.5, math.min(1.5, tonumber(DB().partyPowerHeightScale) or .8))
+    if not preview then
+        frame._fluxPartyPowerHeightScale = math.max(.5, math.min(1.5, tonumber(DB().partyPowerHeightScale) or .8))
+    end
     LayoutTextHosts(frame, false, 1)
-    local relative = frame:GetEffectiveScale() / UIParent:GetEffectiveScale()
+    local relative = frame:GetEffectiveScale() / (frame._fluxPreviewLayerParent or UIParent):GetEffectiveScale()
     if frame.atlasBorderFrame then frame.atlasBorderFrame:SetScale(relative) end
     if frame.SeparatorContainer then frame.SeparatorContainer:SetScale(relative) end
+    if preview then
+        Party.StyleText(frame, true)
+        return
+    end
     -- Keep the existing external aura-panel size controls in screen units;
     -- only the body adopts the party member's smaller presentation scale.
     local base = Party.GetScale()
@@ -497,6 +516,7 @@ function Party.SetupFocusPresentation(frame)
     CreateTextHosts(frame, true)
     frame.Power._fluxPartyBar = true
     Party.LayoutFocusPresentation(frame)
+    if frame._fluxIndividualPreview then return end
     for event in pairs(INDICATOR_EVENTS) do pcall(frame.RegisterEvent, frame, event) end
     frame:HookScript("OnEvent", function(self, event)
         if not self:IsVisible() then return end
@@ -531,9 +551,12 @@ local QueueRosterPaint
 
 local function BuildTarget(owner, preview)
     local unit = owner.unit .. "target"
-    local frame = CreateFrame("Button", (preview and "FluxPartyPreview_" or "FluxUnitFrame_") .. unit, owner,
+    local name
+    if not owner._fluxPreviewLayerParent then name = (preview and "FluxPartyPreview_" or "FluxUnitFrame_") .. unit end
+    local frame = CreateFrame("Button", name, owner,
         not preview and "SecureUnitButtonTemplate" or nil)
     frame.unit, frame._fluxPartyTarget = unit, true
+    frame._fluxPreviewLayerParent = owner._fluxPreviewLayerParent
     frame._FluxBorderIndependent = true
     frame._FluxBorderStatic = true
     if not preview then
@@ -572,7 +595,7 @@ local function ApplyScale(frame, scale)
     frame:SetScale(scale)
     -- Shared UF chrome lives under UIParent so it can lay out in combat.
     -- Match the complete effective scale, including the pet's owner scale.
-    local relative = frame:GetEffectiveScale() / UIParent:GetEffectiveScale()
+    local relative = frame:GetEffectiveScale() / (frame._fluxPreviewLayerParent or UIParent):GetEffectiveScale()
     if frame.atlasBorderFrame then frame.atlasBorderFrame:SetScale(relative) end
     if frame.SeparatorContainer then frame.SeparatorContainer:SetScale(relative) end
 end
@@ -669,12 +692,17 @@ function Party.QueueRosterUpdate()
     ScheduleRosterPaint()
 end
 
-local function Build(unit, parent, pet, preview)
+local function Build(unit, parent, pet, preview, previewLayerParent, previewClass)
     -- Use the player/pet factories' visual components, with actual party tokens.
     -- No player-only class power, vehicle, swing or MP5 services are installed.
     local width, height = Party.GetSizing()
-    local frame = UF.CreateBaseFrame(unit, parent, pet and 60 or width, pet and 28 or height, nil,
-        preview and {preview = true, name = "FluxPartyPreview_" .. unit} or nil)
+    local previewOptions
+    if preview then
+        previewOptions = {preview = true, name = not previewLayerParent and ("FluxPartyPreview_" .. unit) or nil,
+            previewLayerParent = previewLayerParent}
+    end
+    local frame = UF.CreateBaseFrame(unit, parent, pet and 60 or width, pet and 28 or height, nil, previewOptions)
+    frame._fluxPartyPreviewClass = previewClass
     frame._fluxPartyPet, frame._fluxPartyMember = pet or nil, not pet or nil
     -- Each member/preview instance owns its outline. Neutral HUD pieces must
     -- not bridge adjacent members through an otherwise compatible T/X.
@@ -695,24 +723,28 @@ local function Build(unit, parent, pet, preview)
     UF.CreateAtlasBorder(frame)
     UF.CreateOuterBorder(frame)
     if not pet then CreateTextHosts(frame, preview); CreateThreat(frame) end
-    frame:RegisterUnitEvent("UNIT_NAME_UPDATE", unit)
-    frame:RegisterUnitEvent("UNIT_PORTRAIT_UPDATE", unit)
-    frame:RegisterUnitEvent("UNIT_MODEL_CHANGED", unit)
-    frame:RegisterUnitEvent("UNIT_CONNECTION", unit)
-    frame:RegisterEvent("UNIT_PET")
-    frame:RegisterUnitEvent("UNIT_FLAGS", unit)
-    frame:RegisterUnitEvent("PLAYER_FLAGS_CHANGED", unit)
-    frame:RegisterUnitEvent("UNIT_FACTION", unit)
-    frame:RegisterUnitEvent("UNIT_LEVEL", unit)
-    frame:RegisterUnitEvent("UNIT_CLASSIFICATION_CHANGED", unit)
-    frame:RegisterEvent("PLAYER_REGEN_ENABLED")
+    if not previewLayerParent then
+        frame:RegisterUnitEvent("UNIT_NAME_UPDATE", unit)
+        frame:RegisterUnitEvent("UNIT_PORTRAIT_UPDATE", unit)
+        frame:RegisterUnitEvent("UNIT_MODEL_CHANGED", unit)
+        frame:RegisterUnitEvent("UNIT_CONNECTION", unit)
+        frame:RegisterEvent("UNIT_PET")
+        frame:RegisterUnitEvent("UNIT_FLAGS", unit)
+        frame:RegisterUnitEvent("PLAYER_FLAGS_CHANGED", unit)
+        frame:RegisterUnitEvent("UNIT_FACTION", unit)
+        frame:RegisterUnitEvent("UNIT_LEVEL", unit)
+        frame:RegisterUnitEvent("UNIT_CLASSIFICATION_CHANGED", unit)
+        frame:RegisterEvent("PLAYER_REGEN_ENABLED")
+    end
     if not pet then
-        -- These replace discovery through the old health/power chrome refresh.
-        -- Safe registration keeps clients without specialization/inspect events.
-        FluxSafeRegisterUnitEvent(frame, "UNIT_SPECIALIZATION_CHANGED", unit)
-        pcall(frame.RegisterEvent, frame, "INSPECT_READY")
-        frame:RegisterEvent("PLAYER_LEVEL_UP")
-        frame._fluxRangeEventSupported = pcall(frame.RegisterUnitEvent, frame, "UNIT_IN_RANGE_UPDATE", unit)
+        if not previewLayerParent then
+            -- These replace discovery through the old health/power chrome refresh.
+            -- Safe registration keeps clients without specialization/inspect events.
+            FluxSafeRegisterUnitEvent(frame, "UNIT_SPECIALIZATION_CHANGED", unit)
+            pcall(frame.RegisterEvent, frame, "INSPECT_READY")
+            frame:RegisterEvent("PLAYER_LEVEL_UP")
+            frame._fluxRangeEventSupported = pcall(frame.RegisterUnitEvent, frame, "UNIT_IN_RANGE_UPDATE", unit)
+        end
         frame.healthBar = frame.Health
         frame.displayedUnit = unit
         frame._fluxAuraLayer = CreateFrame("Frame", nil, frame)
@@ -721,11 +753,13 @@ local function Build(unit, parent, pet, preview)
         frame._fluxAuraLayer:SetFrameLevel(frame:GetFrameLevel() + 90)
         frame._fluxAuraLayer:EnableMouse(false)
         frame.optionTable = FluxRaidVisuals.GetFluxRaidOptionTable()
-        for _, event in ipairs({"UNIT_THREAT_SITUATION_UPDATE", "UNIT_THREAT_LIST_UPDATE"}) do
-            if FluxSafeRegisterUnitEvent then FluxSafeRegisterUnitEvent(frame, event, unit)
-            else pcall(frame.RegisterUnitEvent, frame, event, unit) end
+        if not previewLayerParent then
+            for _, event in ipairs({"UNIT_THREAT_SITUATION_UPDATE", "UNIT_THREAT_LIST_UPDATE"}) do
+                if FluxSafeRegisterUnitEvent then FluxSafeRegisterUnitEvent(frame, event, unit)
+                else pcall(frame.RegisterUnitEvent, frame, event, unit) end
+            end
+            frame:RegisterEvent("CVAR_UPDATE")
         end
-        frame:RegisterEvent("CVAR_UPDATE")
         if not preview then
             FluxRaidAuras.Setup(frame)
             frame:RegisterUnitEvent("UNIT_AURA", unit)
@@ -866,7 +900,7 @@ local function LayoutVisuals(frame, pet, target, db, scale, petScale)
     LayoutTextHosts(frame, false, petScale)
     frame:UpdatePartition(); frame:UpdateOuterBorder()
     Party.StyleText(frame)
-    frame._fluxPartyThreat:SetScale(frame:GetEffectiveScale() / UIParent:GetEffectiveScale())
+    frame._fluxPartyThreat:SetScale(frame:GetEffectiveScale() / (frame._fluxPreviewLayerParent or UIParent):GetEffectiveScale())
     frame._fluxPartyThreat:ClearAllPoints(); frame._fluxPartyThreat:SetAllPoints(frame.outerBorderFrame)
     if frame.CastBar then
         local wasDisabled = frame.CastBar._fluxPetCastDisabled
@@ -901,39 +935,55 @@ local function AnchorSlot(frame, index, dock, scale)
         (bottom + (4 - index) * ((frame:GetHeight() + 36) * scale)) / scale)
 end
 
-function Party.RefreshPreview(show)
-    if not show then
-        if Party.preview then Party.preview:Hide() end
-        return
-    end
-    if InCombatLockdown() then return end
-    if not Party.preview then
-        Party.preview = CreateFrame("Frame", "FluxPartyPreview", UIParent)
-        Party.preview:SetSize(1, 1)
-        Party.preview:SetFrameStrata("DIALOG")
-        Party.preview:SetFrameLevel(100)
-        Party.preview.members, Party.preview.pets, Party.preview.targets = {}, {}, {}
-        for i = 1, 4 do
-            local member = Build("party" .. i, Party.preview, false, true)
-            Party.preview.members[i] = member
-            Party.preview.pets[i] = Build("partypet" .. i, member, true, true)
-            Party.preview.targets[i] = BuildTarget(member, true)
+local function LayerPreviewBackdrop(root, surface)
+    local backdrop = surface and surface.FluxBorderFrame and surface.FluxBorderFrame.BackgroundFrame
+    if not backdrop then return end
+    backdrop:SetFrameStrata(root:GetFrameStrata())
+    backdrop:SetFrameLevel(root:GetFrameLevel() + 1)
+end
+
+local function CreatePreview(parent, embedded)
+    local root = CreateFrame("Frame", not embedded and "FluxPartyPreview" or nil, parent)
+    root:SetSize(1, 1)
+    root:SetFrameStrata(embedded and parent:GetFrameStrata() or "DIALOG")
+    root:SetFrameLevel(embedded and parent:GetFrameLevel() + 1 or 100)
+    if embedded then root:Hide() end
+    local layer = embedded and root or nil
+    root.members, root.pets, root.targets = {}, {}, {}
+    for i = 1, 4 do
+        local member = Build("party" .. i, root, false, true, layer, embedded and PREVIEW_CLASSES[i] or nil)
+        local pet = Build("partypet" .. i, member, true, true, layer)
+        local target = BuildTarget(member, true)
+        root.members[i], root.pets[i], root.targets[i] = member, pet, target
+        if embedded then
+            for _, surface in ipairs({member, member.outerBorderFrame, member.PortraitFrame, member.atlasBorderFrame,
+                pet, pet.outerBorderFrame, pet.atlasBorderFrame, target}) do
+                LayerPreviewBackdrop(root, surface)
+            end
         end
     end
-    local db, root = DB(), Party.preview
-    local scale, petScale = Party.GetScale(db), Scale(db.partyPetScale, 1)
-    root:ClearAllPoints()
-    root:SetPoint("TOPRIGHT", FluxRaidState.containerFrame, "TOPRIGHT", 0, 0)
+    return root
+end
+
+local function PaintPreview(root, db, scale, petScale, layoutChanged, chromeChanged, portraitChanged)
+    local world = layoutChanged == nil
     for i = 1, 4 do
         local frame, pet, target = root.members[i], root.pets[i], root.targets[i]
-        LayoutVisuals(frame, pet, target, db, scale, petScale)
         local hasPet = db.partyShowPets ~= false and i % 2 == 1
-        LayoutTextHosts(frame, hasPet, petScale)
-        frame._fluxPartyPreviewClass = ({"WARRIOR", "PRIEST", "MAGE", "DRUID"})[i]
-        Party.PaintChrome(frame)
-        UF.UpdateBorderColors(pet)
-        AnchorSlot(frame, i, root, scale)
-        frame.nameText:SetText("Party member " .. i)
+        if world or layoutChanged then
+            LayoutVisuals(frame, pet, target, db, scale, petScale)
+            LayoutTextHosts(frame, hasPet, petScale)
+        end
+        frame._fluxPartyPreviewClass = PREVIEW_CLASSES[i]
+        if world or chromeChanged then
+            frame._fluxPartyClassChrome = db.partyClassColor == true
+            Party.PaintChrome(frame)
+            UF.UpdateBorderColors(pet)
+        end
+        if world or layoutChanged then AnchorSlot(frame, i, root, scale) end
+        local name = "Party member " .. i
+        if frame._fluxPreviewLayerParent then frame._fluxLastRealName = name end
+        frame.nameText:SetText(name)
         frame.Health:SetMinMaxValues(0, 100); frame.Health:SetValue(100 - i * 8)
         frame.Health.Percent:SetText((100 - i * 8) .. "%")
         frame.Health.Value:SetText((100 - i * 8) * 100 .. " / 10000")
@@ -961,7 +1011,7 @@ function Party.RefreshPreview(show)
         target.HealthBar:SetMinMaxValues(0, 100); target.HealthBar:SetValue(85 - i * 9)
         target.HealthBar:SetStatusBarColor(0, 1, 0)
         target:SetShown(db.partyShowTargets ~= false)
-        Party.SetThreatColor(frame, 1, 0, 0)
+        if world or chromeChanged then Party.SetThreatColor(frame, 1, 0, 0) end
         frame._fluxPartyThreat:SetShown(db.partyThreatHighlight ~= false and i == 1)
         local base = FluxRaidVisuals.FRAME_BASE_ALPHA or 1
         local alpha = base
@@ -971,11 +1021,78 @@ function Party.RefreshPreview(show)
         frame:SetAlpha(alpha)
         for _, mirror in pairs(frame._fluxRangeMirrors or {}) do mirror:SetAlpha(alpha) end
         frame:Show()
-        UF.UpdatePortrait(frame, "player")
-        Party.StyleText(frame)
+        if world or portraitChanged then UF.UpdatePortrait(frame, "player") end
+        if world or layoutChanged then Party.StyleText(frame) end
         Party.ApplyTextModes(frame)
     end
     root:Show()
+end
+
+function Party.RefreshPreview(show)
+    if not show then
+        if Party.preview then Party.preview:Hide() end
+        return
+    end
+    if InCombatLockdown() then return end
+    if not Party.preview then Party.preview = CreatePreview(UIParent) end
+    local db, root = DB(), Party.preview
+    root:ClearAllPoints()
+    root:SetPoint("TOPRIGHT", FluxRaidState.containerFrame, "TOPRIGHT", 0, 0)
+    PaintPreview(root, db, Party.GetScale(db), Scale(db.partyPetScale, 1))
+end
+
+function Party.CreateOptionsPreview(parent)
+    if InCombatLockdown() then return end
+    local root = CreatePreview(parent, true)
+    local last
+    root:HookScript("OnHide", function()
+        if last then last.portraitMode = nil end
+    end)
+    function root:Refresh(width, height)
+        -- Shared factories intentionally defer structural changes in combat.
+        if InCombatLockdown() or width <= 16 or height <= 16 then return false end
+        local db = DB()
+        local scale, petScale = Party.GetScale(db), Scale(db.partyPetScale, 1)
+        local barWidth, barHeight = Party.GetSizing(db)
+        local showPortrait = db.partyShowPortrait ~= false
+        local targetWidth = tonumber(db.partyTargetWidth) or 30
+        local shownTargetWidth = db.partyShowTargets ~= false and targetWidth * scale or 0
+        local bodyWidth = (barWidth + (showPortrait and barHeight or 0)) * scale
+        local bodyHeight = 4 * (barHeight + 36) * scale
+        local column = 5 * FluxRaidVisuals.FRAME_HEIGHT - 4 * (FluxRaidVisuals.CELL_JOIN_OVERLAP or 4)
+        local fit = math.min(1, (width - 16) / (bodyWidth + shownTargetWidth), (height - 16) / bodyHeight)
+        local state = {
+            fit = fit, width = bodyWidth, height = column,
+            x = -shownTargetWidth / 2, y = column - bodyHeight - 8 / fit,
+            barWidth = barWidth, barHeight = barHeight, scale = scale, petScale = petScale,
+            showPortrait = showPortrait, showPets = db.partyShowPets ~= false,
+            targetWidth = targetWidth, textScale = Scale(db.partyTextScale, 1),
+            powerHeight = math.max(.5, math.min(1.5, tonumber(db.partyPowerHeightScale) or .8)),
+            healthShare = FluxUnitFrames_GetHealthPartitionPct and FluxUnitFrames_GetHealthPartitionPct("party1") or .6,
+            chromeRevision = Party._previewChromeRevision or 0, classChrome = db.partyClassColor == true,
+            portraitMode = not FluxUnitFrames_ShouldUse3DPortrait or FluxUnitFrames_ShouldUse3DPortrait(),
+        }
+        if not last or last.fit ~= state.fit or last.width ~= state.width or last.height ~= state.height
+            or last.x ~= state.x or last.y ~= state.y then
+            self:SetScale(state.fit)
+            self:SetSize(state.width, state.height)
+            self:ClearAllPoints()
+            self:SetPoint("TOP", parent, "TOP", state.x, state.y)
+        end
+        local layoutChanged = not last or last.barWidth ~= state.barWidth or last.barHeight ~= state.barHeight
+            or last.scale ~= state.scale or last.petScale ~= state.petScale or last.height ~= state.height
+            or last.showPortrait ~= state.showPortrait or last.showPets ~= state.showPets
+            or last.targetWidth ~= state.targetWidth or last.textScale ~= state.textScale
+            or last.powerHeight ~= state.powerHeight or last.healthShare ~= state.healthShare
+            or last.chromeRevision ~= state.chromeRevision
+        local chromeChanged = layoutChanged or last.classChrome ~= state.classChrome
+        local portraitChanged = showPortrait and (not last or not last.showPortrait or last.portraitMode ~= state.portraitMode)
+        self:Show()
+        PaintPreview(self, db, scale, petScale, layoutChanged, chromeChanged, portraitChanged)
+        last = state
+        return true
+    end
+    return root
 end
 
 function Party.ApplyOptions()

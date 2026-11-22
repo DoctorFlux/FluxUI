@@ -22,7 +22,7 @@ local function envFor(flux)
     function methods:GetHeight() return 44 end
     function methods:GetWidth() return 44 end
     function methods:GetAlpha() return self.alpha or 1 end
-    function methods:SetAlpha(alpha) self.alpha = alpha; env.mutated[self.name] = true end
+    function methods:SetAlpha(alpha) self.alpha = alpha; env.mutated[self.name or self] = true end
     function methods:IsShown() return not self.hidden end
     function methods:Hide() self.hidden = true end
     function methods:Show() self.hidden = false end
@@ -52,7 +52,7 @@ local function envFor(flux)
     end }
     flux.Module = { Register = function() end }
     flux.Action = { DetachFromCollectors = function() end, LeaveBlizzardCollector = function() return false end }
-    return env
+    return env, methods
 end
 local function module(path, env, flux)
     assert(loadfile(root .. path, "t", env))("_FluxUI", { Flux = flux })
@@ -287,6 +287,126 @@ do
         "Extra retry completes attachment on the original named frame and button record")
     check(Widget.Create(env.UIParent, config) == result and registered == 1,
         "completed named Extra creation is idempotent")
+end
+
+-- Native and secure flyout glyphs draw above the connected HUD canvas.
+do
+    local flux, writes = { Bars = {}, EBS = {} }, 0
+    local env, methods = envFor(flux)
+    local function layerWrite()
+        assert(not flux.locked, "combat attempted a glyph layer write")
+        writes = writes + 1
+    end
+    function methods:GetFrameStrata() return self.strata or "MEDIUM" end
+    function methods:GetFrameLevel() return self.level or 1 end
+    function methods:SetFrameLevel(level) layerWrite(); self.level = level end
+    function methods:SetFrameStrata(strata) layerWrite(); self.strata = strata end
+    function methods:SetParent(parent) layerWrite(); self.parent = parent end
+    function methods:EnableMouse(enabled) self.mouse = enabled end
+    function methods:CreateTexture() return env.CreateFrame("Texture", nil, self) end
+    function methods:GetPoint() return table.unpack(self.point) end
+    function methods:SetPoint(...) self.point = { ... } end
+    function methods:IsVisible()
+        return self:IsShown() and (not self.parent or not self.parent.IsVisible or self.parent:IsVisible())
+    end
+
+    env.FluxButton = {}
+    env.SpellFlyout = env.CreateFrame("Frame", nil, env.UIParent)
+    env.SpellFlyout:SetFrameStrata("DIALOG")
+    local action = "flyout"
+    env.GetActionInfo = function() return action end
+    flux.EBS.RegisterButton = function() end
+    module("ExtraButtonSystem/FlyoutEngine/Init.lua", env, flux)
+    module("ExtraButtonSystem/FlyoutEngine/Arrow.lua", env, flux)
+    module("ExtraButtonSystem/FlyoutEngine/Attach.lua", env, flux)
+    module("ExtraButtonSystem/Engine/Widget.lua", env, flux)
+    module("Bars/Flyout.lua", env, flux)
+
+    local seam = env.CreateFrame("Frame", nil, env.UIParent)
+    seam:SetFrameLevel(250)
+    local ownedSeams = {}
+    env.FluxBorder = { Junctions = { GetArrowBorderLevel = function(_, owner, strata, level)
+        local border = ownedSeams[owner]
+        return border and border:GetFrameStrata() == strata and math.max(level, border:GetFrameLevel()) or level
+    end } }
+    local function above(frame, border)
+        return frame and (frame:GetFrameStrata() == "HIGH" and border:GetFrameStrata() == "MEDIUM"
+            or frame:GetFrameStrata() == border:GetFrameStrata() and frame:GetFrameLevel() > border:GetFrameLevel())
+    end
+    local strip = env.CreateFrame("CheckButton", nil, env.UIParent)
+    ownedSeams[strip] = seam
+    local stripArrow = strip:CreateTexture()
+    stripArrow:SetPoint("TOP", strip, "TOP", 0, 5)
+    strip.Arrow = stripArrow
+    local stripHost = { widget = strip, slot = 1 }
+    flux.Bars.Flyout.Update(stripHost)
+    local stripArt = stripArrow:GetParent()
+    check(stripArt:GetFrameStrata() == "MEDIUM" and stripArt:GetFrameLevel() == 251
+        and stripArt:GetParent() == strip and stripArt.mouse == false,
+        "native strip glyph sits one level above its crest within the host stratum")
+    check(select(2, stripArrow:GetPoint()) == strip, "native flyout position remains anchored to the button")
+
+    local button = flux.EBS.Widget.Create(env.UIParent, { name = "FluxNativeArrowExtra", skipScripts = true })
+    local extra = button.Widget
+    ownedSeams[extra] = seam
+    extra.FlyoutArrowContainer = env.CreateFrame("Frame", nil, extra)
+    button.ActionType = "flyout"
+    extra:UpdateFlyout()
+    check(above(extra.FlyoutArrowContainer, seam) and extra.FlyoutArrowContainer:GetParent() == extra,
+        "legacy Extra arrow container draws over a raised panel border and keeps its parent")
+
+    local Flyout = flux.Flyout
+    local trinket = env.CreateFrame("CheckButton", nil, env.UIParent)
+    ownedSeams[trinket] = seam
+    local trinketPanel = env.CreateFrame("Frame", nil, env.UIParent)
+    local rec = Flyout.BindHost(trinket, { anchorFrame = trinketPanel, direction = "UP" })
+    local opener = Flyout.Arrow.Ensure(trinket, rec.opts)
+    opener:Show()
+    local art = opener.texture:GetParent()
+    check(art:GetFrameStrata() == "MEDIUM" and art:GetFrameLevel() == 251
+        and art:GetParent() == opener and art.mouse == false and opener.mouse == true,
+        "Trinket opener glyph draws over the panel with its original clickable owner")
+    check(opener:GetParent() == env.UIParent and opener:GetFrameStrata() == "MEDIUM"
+        and select(2, opener:GetPoint()) == trinketPanel, "secure opener layering and anchor remain independent of its glyph")
+    opener:Hide()
+    check(not art:IsVisible(), "raised art inherits secure opener visibility")
+
+    local settled = writes
+    flux.Bars.Flyout.Update(stripHost)
+    extra:UpdateFlyout()
+    Flyout.Arrow.ConfigureLayer(opener, trinket, true)
+    check(writes == settled, "settled native and custom glyphs do not write layers again")
+    flux.locked = true
+    flux.Bars.Flyout.Update(stripHost)
+    extra:UpdateFlyout()
+    Flyout.Arrow.ConfigureLayer(opener, trinket, true)
+    check(writes == settled, "combat adds no glyph layer or protected parent writes")
+    flux.locked, action = false, "spell"
+    flux.Bars.Flyout.Update(stripHost)
+    check(not stripArrow:IsShown(), "replacing the action hides the raised arrow")
+    action = "flyout"
+    flux.Bars.Flyout.Update(stripHost)
+    check(stripArrow:IsShown() and stripArrow:GetParent() == stripArt, "returning flyout reuses its prepared art")
+
+    strip:Hide()
+    check(not stripArt:IsVisible(), "parking a button hides its native flyout glyph")
+    local sideBorder = env.CreateFrame("Frame", nil, env.UIParent)
+    sideBorder:SetFrameStrata("HIGH")
+    sideBorder:SetFrameLevel(30)
+    ownedSeams[extra] = sideBorder
+    extra:SetFrameStrata("HIGH")
+    extra:SetFrameLevel(28)
+    extra:UpdateFlyout()
+    check(above(extra.FlyoutArrowContainer, sideBorder), "side buttons keep their arrows above the HIGH inset border")
+    extra:SetFrameStrata("MEDIUM")
+    Flyout.Arrow.Update(extra, "UP", false)
+    check(extra.FlyoutArrowContainer:GetFrameStrata() == "MEDIUM", "embedding restores the already prepared native arrow stratum")
+    extra:SetFrameStrata("DIALOG")
+    extra:UpdateFlyout()
+    check(extra.FlyoutArrowContainer:GetFrameStrata() == "DIALOG", "arrows in higher panels keep their panel stratum")
+    seam:SetFrameLevel(32)
+    Flyout.Arrow.RefreshArtLayers()
+    check(stripArt:GetFrameLevel() == 33 and art:GetFrameLevel() == 33, "a border layer change also lowers the prepared glyphs")
 end
 
 -- Production Watch subscribers: same cadence, one manager sample per ticker dispatch.

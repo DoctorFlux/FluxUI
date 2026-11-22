@@ -8,6 +8,9 @@ local bound = false
 local waiting = false
 local MAIL_DEBOUNCE = 0.2
 local mailPending, mailFirst, mailDue
+local inboxScan, inboxObservation, observedMail, physicalMail
+local pendingInboxScans = 0
+local firstWorldObserved, inboxBeforeBind, watchingInboxHistory
 local auctionsPending = false
 
 -- Last rebuild classification per region, so Syndicator and builtin hand
@@ -579,7 +582,21 @@ local function FlushMail()
 		return
 	end
 	mailPending = false
-	if Adapter.RebuildMail() then Request("mail") end
+	local changed = Adapter.RebuildMail()
+	if inboxObservation then
+		local char, name = CurrentCharacter()
+		if char and char.mail == inboxObservation.mail and name == inboxObservation.character
+			and Inv.source == "syndicator" and (inboxObservation.complete ~= nil or changed) then
+			local snap = Inv.snapshots.mail
+			local source = inboxObservation.complete and "syndicator" or nil
+			if snap and snap.observedSource ~= source then
+				snap.observedSource = source
+				changed = true
+			end
+		end
+		inboxObservation = nil
+	end
+	if changed then Request("mail") end
 end
 
 local function QueueMail()
@@ -589,6 +606,157 @@ local function QueueMail()
 	if mailPending then return end
 	mailPending = true
 	if C_Timer and C_Timer.After then C_Timer.After(MAIL_DEBOUNCE, FlushMail) else FlushMail() end
+end
+
+local function OnMailboxUpdateBeforeBind()
+	if not bound then inboxBeforeBind = true end
+end
+
+-- A ready provider can be selected after FluxUI's deferred startup. Tracking
+-- from the first world entry distinguishes that case from an unobserved late load.
+if GetFramesRegisteredForEvent and hooksecurefunc and GetInboxNumItems
+	and Flux.Events and Flux.Events.Register then
+	local ok, registered = pcall(Flux.Events.Register, "MAIL_INBOX_UPDATE", OnMailboxUpdateBeforeBind)
+	watchingInboxHistory = ok and registered == true
+	if watchingInboxHistory then
+		pcall(Flux.Events.Register, "PLAYER_ENTERING_WORLD", function(_, firstLogin, reload)
+			if firstLogin == true or reload == true then firstWorldObserved = true end
+		end)
+	end
+end
+
+local function IsMailboxCount(value)
+	return type(value) == "number" and not (issecretvalue and issecretvalue(value))
+		and value >= 0 and value < math.huge and value % 1 == 0
+end
+
+local function CountInboxAttachments(messages)
+	local expected = 0
+	for index = 1, messages do
+		local _, _, _, _, _, _, daysLeft, attachments = GetInboxHeaderInfo(index)
+		-- A loaded header with no items returns nil for the attachment count.
+		-- Missing header data is not proof of an empty message.
+		if type(daysLeft) ~= "number" or (issecretvalue and issecretvalue(daysLeft))
+			or not (daysLeft > -math.huge and daysLeft < math.huge) then return end
+		if attachments ~= nil then
+			if not IsMailboxCount(attachments) then return end
+			expected = expected + attachments
+		end
+	end
+	return expected
+end
+
+local function ReadPublishedAttachments(rows)
+	local count, counts = 0, {}
+	for _, row in pairs(rows) do
+		if type(row) == "table" and IsMailboxCount(row.itemID) and row.itemID > 0
+			and IsMailboxCount(row.itemCount) and row.itemCount > 0 then
+			if count then count = count + 1 end
+			counts[row.itemID] = (counts[row.itemID] or 0) + row.itemCount
+		else
+			count = nil
+		end
+	end
+	return count, counts
+end
+
+local function MailCountsChanged(before, after)
+	if not before then return next(after) ~= nil end
+	for itemID, count in pairs(after) do if before[itemID] ~= count then return true end end
+	for itemID in pairs(before) do if after[itemID] == nil then return true end end
+	return false
+end
+
+function Adapter.GetObservedMailCount(itemID, cached)
+	if Inv.source ~= "syndicator" then return end
+	local char, name = CurrentCharacter()
+	if not char or not name then return end
+	if not physicalMail then
+		-- The warm list can also include expected auction deliveries. Offer it
+		-- separately as pending stock, without claiming an observed attachment.
+		if char.mail == observedMail and IsMailboxCount(cached) and cached > 0 then return nil, cached end
+		return
+	end
+	if char.mail ~= physicalMail.mail or name ~= physicalMail.character then return end
+	local count = physicalMail.counts[itemID]
+	if count then return count end
+	if physicalMail.complete and Inv.Mail and Inv.Mail.HasObservedInbox() then return 0 end
+end
+
+local function ObserveSyndicatorInbox(fromReady)
+	if not fromReady and (not watchingInboxHistory or inboxBeforeBind) then return end
+	local mixin = _G.SyndicatorMailCacheMixin
+	if type(mixin) ~= "table" or type(mixin.ScanMail) ~= "function" or type(mixin.OnEvent) ~= "function"
+		or not GetFramesRegisteredForEvent or not hooksecurefunc or not Inv.IsMailboxOpen
+		or not GetInboxNumItems or not GetInboxHeaderInfo or not (Flux.Events and Flux.Events.Register) then return end
+
+	local owner
+	for _, frame in ipairs({ GetFramesRegisteredForEvent("MAIL_INBOX_UPDATE") }) do
+		if not (frame.IsForbidden and frame:IsForbidden()) and frame.ScanMail == mixin.ScanMail
+			and frame.GetScript and frame:GetScript("OnEvent") == mixin.OnEvent then
+			if owner then return end
+			owner = frame
+		end
+	end
+	if not owner or owner:GetScript("OnUpdate") ~= nil then return end
+
+	-- Only this instance uses the wrapped method. A callback is conclusive only
+	-- when the same ScanMail invocation published it and returned successfully.
+	-- An item-data callback delivered after ScanMail returns has no scan identity.
+	local armed, closedWhileArmed, enabled
+	local onComplete = function(frame)
+		if not enabled or frame ~= owner then return end
+		local scan = inboxScan
+		inboxScan = nil
+		-- ScanMail cannot publish deferred rows if its inbox loop aborted.
+		-- Only a returned invocation can leave another publication pending.
+		if scan and not scan.received then
+			pendingInboxScans = pendingInboxScans + 1
+		end
+		if scan and scan.observation and not scan.multiple then
+			local observation = scan.observation
+			observation.complete = false
+			if scan.messages ~= nil and scan.published ~= nil then
+				-- The provider owns the item scan. Headers supply only the expected
+				-- number of rows so skipped item slots cannot look like an empty inbox.
+				local ok, expected = pcall(CountInboxAttachments, scan.messages)
+				observation.complete = ok and expected == scan.published
+			end
+			inboxObservation = observation
+			QueueMail()
+		end
+	end
+	hooksecurefunc(owner, "ScanMail", onComplete)
+	local scanMail = owner.ScanMail
+	local onScript = function(frame, script, handler)
+		if not enabled or frame ~= owner or script ~= "OnUpdate" or Inv.source ~= "syndicator" then return end
+		if handler == scanMail then
+			armed, closedWhileArmed, inboxScan, inboxObservation = true, nil, nil, nil
+			local snap = Inv.snapshots.mail
+			if snap and snap.observedSource == "syndicator" then
+				snap.observedSource = nil
+				Request("mail")
+			end
+		else
+			local wasArmed, wasClosed = armed, closedWhileArmed
+			armed, closedWhileArmed, inboxScan = nil, nil, nil
+			-- ScanMail clears its own OnUpdate before it reads the inbox.
+			if wasArmed and handler == nil then
+				inboxScan = { character = frame.currentCharacter }
+				if pendingInboxScans == 0 and not wasClosed and (fromReady or firstWorldObserved) and Inv.IsMailboxOpen() then
+					local ok, n, total = pcall(GetInboxNumItems)
+					if ok and IsMailboxCount(n) and IsMailboxCount(total) and n == total then
+						inboxScan.messages = n
+					end
+				end
+			end
+		end
+	end
+	hooksecurefunc(owner, "SetScript", onScript)
+	enabled = Flux.Events.Register("MAIL_CLOSED", function()
+		closedWhileArmed = true
+		if inboxScan then inboxScan.messages = nil end
+	end) == true
 end
 
 -- At the bank every drag is a cache update. Light pulse next frame (counts,
@@ -612,7 +780,7 @@ local function QueueBankMoveNotify(bags, bank)
 	end
 end
 
-local function Bind()
+local function Bind(fromReady)
 	if bound then
 		return
 	end
@@ -631,7 +799,16 @@ local function Bind()
 	if Inv.Store and Inv.Store.SetUsesSyndicator then
 		Inv.Store.SetUsesSyndicator(true)
 	end
+	local snap = Inv.snapshots.mail
+	if snap then snap.observedSource = nil end
+	local char = CurrentCharacter()
+	observedMail, physicalMail = char and char.mail, nil
 	Adapter.RebuildAll()
+	-- Optional hook errors must not interrupt the provider's inventory binding.
+	pcall(ObserveSyndicatorInbox, fromReady)
+	if watchingInboxHistory and Flux.Events.Unregister then
+		pcall(Flux.Events.Unregister, "MAIL_INBOX_UPDATE", OnMailboxUpdateBeforeBind)
+	end
 	cb:RegisterCallback("BagCacheUpdate", function(_, character, updates)
 		local _, currentName = CurrentCharacter()
 		if character and currentName and character ~= currentName then
@@ -691,9 +868,32 @@ local function Bind()
 		return not currentName or character == currentName
 	end
 	cb:RegisterCallback("MailCacheUpdate", function(_, character)
-		if not IsCurrentCharacter(character) then
-			return
+		local current, name = CurrentCharacter()
+		if character and name and character ~= name then return end
+		local inboxMail = current and current.mail
+		-- The provider finishes an inbox scan by replacing its mail table.
+		-- Auction receipts append to that table and cannot establish coverage.
+		if character and character == name and type(inboxMail) == "table" and inboxMail ~= observedMail then
+			local scan = inboxScan and inboxScan.character == name and inboxScan
+			-- Apply opaque replacements to the older backlog first. A scan
+			-- that started with a backlog cannot qualify either publication.
+			if pendingInboxScans > 0 then
+				pendingInboxScans = pendingInboxScans - 1
+			elseif scan then
+				scan.received = true
+			end
+			inboxObservation = { mail = inboxMail, character = name }
+			local published, counts = ReadPublishedAttachments(inboxMail)
+			local changed = MailCountsChanged(physicalMail and physicalMail.counts, counts)
+			inboxObservation.counts, physicalMail = counts, inboxObservation
+			if scan and scan.messages ~= nil then
+				scan.multiple = scan.observation ~= nil
+				scan.observation = inboxObservation
+				scan.published = published
+			end
+			if changed then Request("mail") end
 		end
+		observedMail = inboxMail
 		if Inv.NotifyBagStorm then
 			Inv.NotifyBagStorm()
 		end
@@ -768,7 +968,7 @@ function Adapter.Start()
 	end
 	if cb and cb.RegisterCallback then
 		cb:RegisterCallback("Ready", function()
-			Bind()
+			Bind(api and api.IsReady and api.IsReady() == false)
 		end)
 	end
 	-- Live facts remain available while the companion builds its caches. Its

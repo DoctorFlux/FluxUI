@@ -4,6 +4,7 @@ local addonName, ns = ...
 -- auras and paint registered sinks; styling changes require explicit native access.
 FluxRaidAuras = {}
 local A, Compat = FluxRaidAuras, FluxRaidCompat
+local Aura = ns.Flux and ns.Flux.Aura
 local floor, min, max = math.floor, math.min, math.max
 local SLOTS = 6
 local BUFF_BOXES={"buffs","buffsTail"}
@@ -211,9 +212,9 @@ local function StyleCount(button)
     text:SetFontObject(NumberFontNormal or "NumberFontNormal")
     text:SetPoint("BOTTOMRIGHT",button.Icon,"BOTTOMRIGHT",-2,2)
 end
-local function ConfigureDuration(cooldown,native,button,frame)
+local function ConfigureDuration(cooldown,native,button)
     if not native and cooldown.SetCountdownFormatter and FluxRaidVisuals.GetAuraDurationFormatter then
-        cooldown:SetCountdownFormatter(FluxRaidVisuals.GetAuraDurationFormatter(nil,frame))
+        cooldown:SetCountdownFormatter(FluxRaidVisuals.GetAuraDurationFormatter())
     end
     cooldown:SetHideCountdownNumbers(native and true or false)
     cooldown:SetAllPoints(button)
@@ -248,8 +249,8 @@ local function InitializeText(button)
     end
 end
 local durationFormatter,durationFormatterChecked
-local function NativeDurationFormatter(frame)
-    local shared=FluxRaidVisuals.GetAuraDurationFormatter and FluxRaidVisuals.GetAuraDurationFormatter(nil,frame)
+local function NativeDurationFormatter()
+    local shared=FluxRaidVisuals.GetAuraDurationFormatter and FluxRaidVisuals.GetAuraDurationFormatter()
     if shared then return shared end
     if durationFormatterChecked then return durationFormatter end
     durationFormatterChecked=true
@@ -291,25 +292,35 @@ local function NativeDurationFormatter(frame)
     durationFormatter=formatter
     return formatter
 end
-local function InitializeNative(button,metrics,frame)
+local function InitializeNative(button,metrics)
     button:SetSize(metrics.width,metrics.height); button:EnableMouse(false)
     InitializeText(button)
-    ConfigureDuration(button.Cooldown,true,button,frame)
+    ConfigureDuration(button.Cooldown,true,button)
     StyleCount(button)
     assert(button.Duration and button.SetDurationText,"native aura duration text sink unavailable")
     StyleDurationText(button.Duration,button,metrics.width,metrics.durationFontScale); button.Duration:SetText("")
     button:SetIcon(button.Icon); button:SetDurationCooldown(button.Cooldown)
-    local formatter=NativeDurationFormatter(frame)
+    local formatter=NativeDurationFormatter()
     button:SetDurationText(button.Duration,formatter and {textFormatter=formatter} or nil)
     if button.SetApplicationCount and button.Count then button:SetApplicationCount(button.Count) end
 end
-local function DecorateDispel(button,frame,metrics)
-    InitializeNative(button,metrics,frame)
-    if not button.AddDispelTypeTexture then return end
-    local parent=frame._fluxPartyMember and button.AuraTextLayer or button
-    local edge=parent:CreateTexture(nil,frame._fluxPartyMember and "ARTWORK" or "OVERLAY",nil,frame._fluxPartyMember and 1 or 0)
-    edge:SetAllPoints(button); edge:SetTexture("Interface\\Buttons\\UI-Debuff-Overlays")
-    edge:SetTexCoord(.296875,.5703125,0,.515625); button:AddDispelTypeTexture(edge)
+local function InitializeDebuffStyle(button, frame, height, helpful)
+    if helpful and not frame._fluxPartyMember then return end
+    local edge = FluxRaidVisuals.EnsureAuraDebuffBorder(button, frame)
+    if edge and button.AddDispelTypeTexture then
+        local styles = Enum and Enum.CustomAuraButtonDispelTypeTextureStyle
+        local options = { style = styles and styles.PreserveAsset or 3, showWhenHarmful = true,
+            showWhenHelpful = false, showWithoutDispelType = true }
+        if button._fluxPartyDebuffBorders then
+            for _, strip in ipairs(button._fluxPartyDebuffBorders) do button:AddDispelTypeTexture(strip, options) end
+        else
+            button:AddDispelTypeTexture(edge, options)
+        end
+    end
+    if not helpful and Aura and Aura.CreateDispelTypeIcon then
+        local glyph = Aura.CreateDispelTypeIcon(button, button.AuraTextLayer, height)
+        if glyph then Aura.BindDispelTypeIcon(button, glyph) end
+    end
 end
 local function InitializeDispelBorder(button,frame,parent,glowOwner)
     -- This single native slot stays outside the clipped icon blocks. Every
@@ -373,25 +384,12 @@ local function BuildNative(frame)
             if not ok then initializerError=initializerError or tostring(message) end
         end
     end
-    local function initializer(large,decorated,debuff)
+    local function initializer(large,debuff,helpful)
         local size=large and geometry.largeRoleEnabled and (metrics.largeIconSize or FluxRaidVisuals.GetBlizzardDefaultSizing().largeIconSize)
         local iconMetrics={width=size and size*(metrics.widthScale or 1) or metrics.width,height=size or metrics.height,gap=metrics.gap,durationFontScale=metrics.durationFontScale}
         return guarded(function(button)
-            if debuff and frame._fluxPartyMember then
-                InitializeNative(button,iconMetrics,frame)
-                FluxRaidVisuals.EnsurePartyDebuffBorder(button,frame)
-                local styles=Enum and Enum.CustomAuraButtonDispelTypeTextureStyle
-                -- Preserve the rectangular artwork on every client; native
-                -- Border style would replace it with the default aura atlas.
-                local borderStyle=styles and styles.PreserveAsset or 3
-                if button.AddDispelTypeTexture then
-                    for _,edge in ipairs(button._fluxPartyDebuffBorders) do
-                        button:AddDispelTypeTexture(edge,{style=borderStyle,showWhenHarmful=true,
-                            showWhenHelpful=false,showWithoutDispelType=true})
-                    end
-                end
-            elseif decorated then DecorateDispel(button,frame,iconMetrics)
-            else InitializeNative(button,iconMetrics,frame) end
+            InitializeNative(button,iconMetrics)
+            if debuff then InitializeDebuffStyle(button,frame,iconMetrics.height,helpful) end
             buttons[#buttons+1]=button
             frame._fluxNativeAuraGeometry=frame._fluxNativeAuraGeometry or {}
             frame._fluxNativeAuraGeometry[#frame._fluxNativeAuraGeometry+1]={button=button,text=button.Duration,height=iconMetrics.height}
@@ -412,15 +410,16 @@ local function BuildNative(frame)
                 if initializerError then error(initializerError) end
                 return box
             end
-            local decorated=not key:find("Plain",1,true)
-            local dispelInit=initializer(false,decorated,true)
+            -- The icon identifies an aura's type even with the member-frame
+            -- dispel highlight disabled. Native assignment paints both.
+            local dispelInit=initializer(false,true)
             -- Public groups accept one processed class at a time. These
             -- disjoint groups reproduce native UnitFrameDebuffType priority:
             -- boss harmful, boss helpful, priority, raid dispel, ordinary.
             -- Boss harmful accepts both native Debuff and Dispel classes;
             -- both receive BossDebuff metadata from the native policy.
-            AddGroup(box,"bossDebuffs","HARMFUL",layoutMetrics,1,{isBossOrRoleAura=true},initializer(true,decorated,true),AuraContainerSortMethod.UnitFrameDebuff)
-            AddGroup(box,"bossBuffs","HELPFUL",layoutMetrics,2,{processedAuraType=kinds.Debuff},initializer(largeHelpful,false,true),AuraContainerSortMethod.UnitFrameDebuff)
+            AddGroup(box,"bossDebuffs","HARMFUL",layoutMetrics,1,{isBossOrRoleAura=true},initializer(true,true),AuraContainerSortMethod.UnitFrameDebuff)
+            AddGroup(box,"bossBuffs","HELPFUL",layoutMetrics,2,{processedAuraType=kinds.Debuff},initializer(largeHelpful,true,true),AuraContainerSortMethod.UnitFrameDebuff)
             AddGroup(box,"priorityDebuffs","HARMFUL",layoutMetrics,3,{processedAuraType=kinds.Debuff,isBossOrRoleAura=false,isPriorityAura=true},dispelInit,AuraContainerSortMethod.UnitFrameDebuff)
             AddGroup(box,"dispel","HARMFUL|RAID",layoutMetrics,4,{processedAuraType=kinds.Dispel,isBossOrRoleAura=false},dispelInit,AuraContainerSortMethod.UnitFrameDebuff)
             AddGroup(box,"debuffs","HARMFUL",layoutMetrics,5,{processedAuraType=kinds.Debuff,isBossOrRoleAura=false,isPriorityAura=false},dispelInit,AuraContainerSortMethod.UnitFrameDebuff)
@@ -437,10 +436,12 @@ local function BuildNative(frame)
         border:SetAllPoints(frame); border:EnableMouse(false)
         if border.SetFrameLevel and parent.GetFrameLevel then border:SetFrameLevel(parent:GetFrameLevel()+1) end
         if border.SetEditModePreviewEnabled then border:SetEditModePreviewEnabled(false) end
-        border:SetAuraProcessingPolicy(CustomAuraContainerAuraProcessingPolicy.ProcessAura,{displayOnlyDispellableDebuffs=true})
+        -- The native raid filter already selects actionable dispels. A second
+        -- classification pass can place those auras in an ordinary debuff type.
+        local dispelCandidates={includeDispelTypes={Magic=true,Curse=true,Disease=true,Poison=true,Bleed=true}}
         border:AddAuraSlot("dispel","HARMFUL|RAID",{templateNames={"FluxRaidDispelBorderTemplate"},
             initializeFrame=guarded(function(button) InitializeDispelBorder(button,frame,parent) end),
-            candidateFilters={processedAuraType=kinds.Dispel},sortMethod=AuraContainerSortMethod.UnitFrameDebuff})
+            candidateFilters=dispelCandidates,sortMethod=AuraContainerSortMethod.Default})
         -- Prepare before combat even when a secure raid cell has no party unit
         -- yet. Only party/player tokens enable this independent native owner.
         local glow=CreateFrame("AuraContainer",nil,parent,"CustomAuraContainerTemplate")
@@ -450,7 +451,7 @@ local function BuildNative(frame)
         if glow.SetEditModePreviewEnabled then glow:SetEditModePreviewEnabled(false) end
         glow:AddAuraSlot("partyDispel","HARMFUL|RAID",{templateNames={"FluxRaidDispelBorderTemplate"},
             initializeFrame=guarded(function(button) InitializeDispelBorder(button,frame,parent,glow) end),
-            candidateFilters={includeDispelTypes={Magic=true,Curse=true,Disease=true,Poison=true,Bleed=true}},
+            candidateFilters=dispelCandidates,
             sortMethod=AuraContainerSortMethod.Default})
         if initializerError then error(initializerError) end
         for _,box in pairs(boxes) do SetBoxUnit(units,box,"none"); box:Hide() end
@@ -492,8 +493,13 @@ local function BuildReadable(frame)
         local parent=key=="buffs" and rows.top or rows.bottom
         for i=1,SLOTS do
             local icon=CreateFrame("Frame",nil,parent,"FluxRaidAuraIconTemplate")
-            icon:EnableMouse(false); InitializeText(icon); ConfigureDuration(icon.Cooldown,false,icon,frame)
-            if key=="debuffs" then FluxRaidVisuals.EnsurePartyDebuffBorder(icon,frame) end
+            icon:EnableMouse(false); InitializeText(icon); ConfigureDuration(icon.Cooldown,false,icon)
+            if key=="debuffs" then
+                FluxRaidVisuals.EnsureAuraDebuffBorder(icon,frame)
+                if Aura and Aura.CreateDispelTypeIcon then
+                    icon._fluxDispelTypeIcon = Aura.CreateDispelTypeIcon(icon, icon.AuraTextLayer, 11)
+                end
+            end
             if icon.Duration then icon.Duration:SetText("") end
             icon:Hide(); list[i]=icon
         end
@@ -511,6 +517,7 @@ local function ConfigureReadable(frame)
             icon:SetSize(side.width,side.height); icon:ClearAllPoints()
             icon._fluxAuraRenderScale=metrics.scale
             icon._fluxAuraPaintWidth,icon._fluxAuraPaintHeight=side.width,side.height
+            if icon._fluxDispelTypeIcon then Aura.LayoutDispelTypeIcon(icon._fluxDispelTypeIcon, icon, side.height) end
             StyleCount(icon)
             if icon._fluxCountdownText then StyleDurationText(icon._fluxCountdownText,icon,side.width) end
             local offset=floor((i-1)/side.rows)*((side.slotWidth or side.width)+side.gap)
@@ -754,12 +761,15 @@ local function PaintList(list,auras,limit,geometry,side)
                 if icon._fluxAuraPaintWidth~=width or icon._fluxAuraPaintHeight~=height then
                     icon:SetSize(width,height);icon._fluxAuraPaintWidth,icon._fluxAuraPaintHeight=width,height
                     if icon._fluxCountdownText then StyleDurationText(icon._fluxCountdownText,icon,width) end
+                    if icon._fluxDispelTypeIcon then Aura.LayoutDispelTypeIcon(icon._fluxDispelTypeIcon, icon, height) end
                 end
             end
             if not rawequal(ReadOwnedPaint(icon.Icon,icon.Icon.GetTexture),image) then icon.Icon:SetTexture(image) end
-            if icon._fluxPartyDebuffBorder then
-                local kind=Readable(aura.dispelName) and aura.dispelName
-                FluxRaidVisuals.SetPartyDebuffBorderType(icon,kind,Readable(aura.isHelpful) and aura.isHelpful==true)
+            if icon._fluxPartyDebuffBorder or icon._fluxRaidDebuffBorder then
+                local kind=Readable(aura.dispelName) and aura.dispelName or nil
+                local helpful=Readable(aura.isHelpful) and aura.isHelpful==true
+                FluxRaidVisuals.SetAuraDebuffBorderType(icon,kind,helpful)
+                if icon._fluxDispelTypeIcon then Aura.SetDispelTypeIcon(icon._fluxDispelTypeIcon, not helpful and kind or nil) end
             end
             local n=aura.applications
             local count=Readable(n) and type(n)=="number" and n>1 and n or ""
@@ -880,7 +890,7 @@ end
 function A.Refresh(frame)
     if not frame or not frame._fluxHealerAuras then return end
     if Locked() then frame._fluxNeedsPrivateAuraSync=true; return end
-    if FluxRaidVisuals.GetAuraDurationFormatter then FluxRaidVisuals.GetAuraDurationFormatter(nil,frame) end
+    if FluxRaidVisuals.GetAuraDurationFormatter then FluxRaidVisuals.GetAuraDurationFormatter() end
     ConfigureRows(frame)
     if frame._fluxAuraNative then
         frame._fluxAuraNativeState.classBuffs=nil

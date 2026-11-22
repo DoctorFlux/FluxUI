@@ -331,7 +331,12 @@ local CHILDUPDATE = [[
 		sec = 48 + off
 		tert = 36 + off
 	else
-		mainRest = (page - 1) * 12 + col
+		-- Match SlotMath: fixed columns own slots 13–19 on page two.
+		if page == 2 and col <= 7 then
+			mainRest = col
+		else
+			mainRest = (page - 1) * 12 + col
+		end
 		sec = 60 + col
 		tert = 24 + col
 	end

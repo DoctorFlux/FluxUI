@@ -244,6 +244,46 @@ local function run(branch, count, fps, topology, churn, rankCase)
     if not measure and not churn then
         calls={}
         local np=Flux.NamePlates
+        if np.GetOwnedParts then
+            local plate = native.nameplate1
+            local nativeBar = plate.UnitFrame.HealthBarsContainer.healthBar
+            local ownedFrame, ownedBar, badgeAnchor = widget(plate), widget(plate), widget(plate)
+            local notifications = 0
+            event('NAME_PLATE_UNIT_ADDED','nameplate1')
+            local threatHost
+            for _, frame in ipairs(objects) do
+                if frame._fluxRole == 'threat' and frame.parent == plate then threatHost = frame; break end
+            end
+            check(threatHost and nativeBar.selectedBorder.shown, 'native threat tint is active before appearance claim')
+            np.Appearance = {
+                GetParts = function(unit)
+                    if unit == 'nameplate1' then return plate, ownedFrame, ownedBar, badgeAnchor end
+                end,
+                ThreatChanged = function(unit)
+                    if unit == 'nameplate1' then notifications = notifications + 1 end
+                end,
+            }
+            np.ReanchorAppearance('nameplate1')
+            check(not nativeBar.selectedBorder.shown and threatHost.points.CENTER[2] == badgeAnchor
+                and np.IsThreatTextShown('nameplate1'), 'claimed plate moves its existing threat label and clears native tint')
+            np.RefreshUnit('nameplate1')
+            check(not nativeBar.selectedBorder.shown and notifications == 0,
+                'stable owned threat keeps Blizzard chrome untouched and skips duplicate notifications')
+            ownedBar = nil
+            np.ReanchorAppearance('nameplate1')
+            check(not np.IsThreatTextShown('nameplate1') and np.GetThreatPlateWidth('nameplate1') == 0
+                and not np.ThreatTint('nameplate1') and notifications == 1, 'name-only claim clears visible Flux threat')
+            np.Appearance.GetParts = function() end
+            np.ReanchorAppearance('nameplate1')
+            np.RefreshUnit('nameplate1')
+            check(nativeBar.selectedBorder.shown and np.IsThreatTextShown('nameplate1') and notifications == 2,
+                'native threat resumes when the custom plate is released')
+            event('NAME_PLATE_UNIT_REMOVED','nameplate1')
+            check(not np.IsThreatTextShown('nameplate1') and notifications == 3,
+                'removed plate cannot leave a stale threat label or suppression state')
+            np.Appearance = nil
+        end
+        calls={}
         local host,first,second=widget(ui),widget(ui),widget(ui)
         local wanted=first.level+np.FRAME_LEVEL_OFFSET+1
         check(np.AttachHost(host,first,1) and host.level==wanted and calls.SetFrameLevel==1,'new attachment sets the native level')

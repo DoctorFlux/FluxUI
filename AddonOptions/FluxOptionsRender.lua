@@ -587,16 +587,20 @@ local function AddControlRow(page, entry, parent)
             InvokeSetter(option, root, path, value)
         end)
     elseif option.type == "range" then
-        row = W.CreateSlider(parent)
+        local commitOnRelease = page.deferFrameSliders and (page.sourceModule == "unitframes" or page.sourceModule == "nameplates")
+        row = W.CreateSlider(parent, commitOnRelease)
         ConfigureRange(row, option, root, path)
-        row:SetOnChange(function(value)
-            option._fluxSkipRefresh = true
-            InvokeSetter(option, root, path, value)
-            option._fluxSkipRefresh = nil
-        end)
-        row:SetOnCommit(function(value)
-            InvokeSetter(option, root, path, value)
-        end)
+        local function commit(value) InvokeSetter(option, root, path, value) end
+        if commitOnRelease then
+            row:SetOnChange(commit)
+        else
+            row:SetOnChange(function(value)
+                option._fluxSkipRefresh = true
+                commit(value)
+                option._fluxSkipRefresh = nil
+            end)
+        end
+        row:SetOnCommit(commit)
     elseif option.type == "color" then
         row = W.CreateColor(parent)
         local hasAlpha = SafeMember("hasAlpha", option, root, path)
@@ -606,7 +610,7 @@ local function AddControlRow(page, entry, parent)
         end)
     elseif option.type == "execute" then
         row = W.CreateButton(parent)
-        row:SetButtonText(name ~= "" and name or "Run")
+        row:SetButtonText(option.buttonText or (name ~= "" and name or "Run"))
         row:SetOnClick(function()
             InvokeSetter(option, root, path)
         end)
@@ -643,6 +647,10 @@ local function AddControlRow(page, entry, parent)
     if row.SetDescription then
         row:SetDescription(desc)
     end
+    if page.onOptionHover and row.kind == option.type and row.SetDescription then
+        row:HookScript("OnEnter", function() page.onOptionHover(path[#path]) end)
+        row:HookScript("OnLeave", function() page.onOptionHover(nil) end)
+    end
 
     row.Refresh = function(self)
         self._hidden = IsHidden(option, root, path)
@@ -667,6 +675,11 @@ local function AddControlRow(page, entry, parent)
         elseif option.type == "input" then
             local text = ReadGet(option, root, path)
             self:SetValue(type(text) == "string" and text or "")
+        elseif option.type == "execute" and type(option.name) == "function" then
+            local title = TextOf(option, root, path, "name")
+            self:SetLabel(title)
+            self:SetButtonText(option.buttonText or (title ~= "" and title or "Run"))
+            self.searchText = SearchBlob(title, desc)
         elseif option.type == "description" then
             local body = TextOf(option, root, path, "name")
             self:SetBody(body, SafeMember("fontSize", option, root, path))
@@ -680,7 +693,7 @@ local function AddControlRow(page, entry, parent)
     return row
 end
 
-local function Walk(page, group, pathPrefix, parent, advancedNames)
+local function Walk(page, group, pathPrefix, parent, advancedNames, framePart, omitHeaders)
     local entries = CollectArgs(group)
     for i = 1, #entries do
         entries[i]._root = page.root
@@ -705,12 +718,13 @@ local function Walk(page, group, pathPrefix, parent, advancedNames)
                     if headerRow then
                         headerRow.advanced = inAdvanced
                         headerRow.sectionHeader = true
+                        headerRow.framePart = framePart
                         page.rows[#page.rows + 1] = headerRow
                     end
                 end
-                Walk(page, option, entry.path, parent, advancedNames)
+                Walk(page, option, entry.path, parent, advancedNames, framePart)
             end
-        else
+        elseif not omitHeaders or option.type ~= "header" then
             if option.type == "header" then
                 local title = TextOf(option, page.root, entry.path, "name")
                 local advanced = advancedNames and advancedNames[title] and true or false
@@ -745,6 +759,7 @@ local function Walk(page, group, pathPrefix, parent, advancedNames)
                 row.advanced = inAdvanced
                 if option.type == "header" then
                     row.sectionHeader = true
+                    row.framePart = framePart
                 end
                 page.rows[#page.rows + 1] = row
             end
@@ -754,11 +769,16 @@ local function Walk(page, group, pathPrefix, parent, advancedNames)
         local previousRoot, previousModule = page.root, page.sourceModule
         page.root, page.sourceModule = source.root, source.module
         if not IsHidden(source.group, source.root, source.path) then
-            if source.title and next(source.group.args or {}) then
+            local firstRow = #page.rows + 1
+            Walk(page, source.group, source.path, parent, advancedNames, source.part, source.part ~= nil)
+            if source.title and #page.rows >= firstRow then
                 local header = AddControlRow(page, { opt = { type = "header", name = source.title }, path = source.path }, parent)
-                if header then header.sectionHeader = true; page.rows[#page.rows + 1] = header end
+                if header then
+                    header.sectionHeader = true
+                    header.framePart = source.part
+                    table.insert(page.rows, firstRow, header)
+                end
             end
-            Walk(page, source.group, source.path, parent, advancedNames)
         end
         page.root, page.sourceModule = previousRoot, previousModule
     end
@@ -878,6 +898,8 @@ function R.Build(parent, root, group, pathPrefix, opts)
         rows = {},
         embeds = {},
         pageId = opts.pageId,
+        deferFrameSliders = opts.deferFrameSliders,
+        onOptionHover = opts.onOptionHover,
         advancedOpen = opts.advancedOpen and true or false,
         query = opts.query or "",
         getWidth = opts.getWidth,
@@ -988,7 +1010,10 @@ function R.Build(parent, root, group, pathPrefix, opts)
         local index = 1
         local card, cardY
         local function finishCard()
-            if card then card:SetHeight(math.max(38, cardY - y)); card = nil end
+            if card then
+                card:SetHeight(math.max(38, cardY - y))
+            end
+            card = nil
         end
         while index <= #self.rows do
             local row = self.rows[index]
@@ -1001,6 +1026,10 @@ function R.Build(parent, root, group, pathPrefix, opts)
                 if row.sectionHeader then
                     finishCard()
                     if y < 0 then y = y - 12 end
+                    if row.framePart then
+                        row.partOffset = -y
+                        row:SetPartSelected(row.framePart == self.selectedPart)
+                    end
                     if row.card then
                         card, cardY = row.card, y
                         card:ClearAllPoints()
@@ -1009,7 +1038,8 @@ function R.Build(parent, root, group, pathPrefix, opts)
                         card:Show()
                     end
                 end
-                local pair = width >= 820 and row.pairable and nxt and show[index + 1] and nxt.pairable and not row.fillViewport and not nxt.fillViewport
+                local pair = width >= 820 and row.pairable and nxt and show[index + 1] and nxt.pairable
+                    and not row.fillViewport and not nxt.fillViewport
                 row:Show()
                 if row.kind == "description" and row.LayoutHeight then
                     row:LayoutHeight(pair and (width / 2) or width)
@@ -1090,6 +1120,21 @@ function R.Build(parent, root, group, pathPrefix, opts)
         self:Layout()
     end
 
+    function page:FocusPart(part)
+        local first
+        for index, row in ipairs(self.rows) do
+            if row.framePart == part and not row._hidden then
+                self.collapsed[index] = false
+                first = first or row
+            end
+        end
+        if first then
+            self.selectedPart = part
+            self:Layout()
+            return first.partOffset
+        end
+    end
+
     function page:SetActive(active)
         active = active and true or false
         if self._active == active then
@@ -1151,14 +1196,23 @@ function R.Build(parent, root, group, pathPrefix, opts)
     local advancedNames = ns.FluxOptionsCatalog and ns.FluxOptionsCatalog.advancedHeaders
     Walk(page, group, pathPrefix or {}, parent, advancedNames)
     if W.CreateSectionCard then
+        local firstPart
         for i = 1, #page.rows do
             local row = page.rows[i]
             if row.sectionHeader then
                 local sectionIndex = i
                 row.card = W.CreateSectionCard(parent)
+                if row.framePart then
+                    firstPart = firstPart or row.framePart
+                    if page.collapsed[sectionIndex] == nil then
+                        page.collapsed[sectionIndex] = row.framePart ~= firstPart
+                    end
+                end
                 row:SetScript("OnClick", function()
                     page.collapsed[sectionIndex] = not page.collapsed[sectionIndex]
+                    if row.framePart then page.selectedPart = row.framePart end
                     page:Layout()
+                    if row.framePart and page.onPartSelected then page.onPartSelected() end
                 end)
             end
         end

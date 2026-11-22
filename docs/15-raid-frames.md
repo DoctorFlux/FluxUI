@@ -1,5 +1,21 @@
 # Party and raid frames
 
+## Debuff type corners and borders
+
+Normal party, compact party and raid use a small type icon and colored border
+on displayed debuffs. The settings previews include them. The member-frame
+dispel highlight remains a separate option. Existing aura filters and private
+aura placement still determine which auras Blizzard or FluxUI displays.
+
+[Client validation](CLIENT_VALIDATION.md#debuff-type-corners-and-borders).
+
+## Aura countdowns
+
+21 November 2026. Player-style party, compact party and raid use the
+General countdown setting shared with target and focus. It controls the
+number shown on cooldowns while the icons and swipes continue.
+[Unit-frame countdown settings](14-unit-frames.md#shared-unit-frame-aura-countdowns).
+
 <!-- COMBAT-CALLBACK-WORK-20261116 -->
 16 November (`COMBAT-CALLBACK-WORK-20261116`): two additional offline fixes are applied.
 Portrait camera/SetUnit/clear/geometry protected callbacks reuse private bodies

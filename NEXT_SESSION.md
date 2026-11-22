@@ -1,5 +1,394 @@
 # Next session
 
+22 November. After loading the current Forever mount build, check the dim
+icon and saved binding while dead, after releasing and after resurrection.
+Check that a death while mounted hides the wisp and that a taxi remains dim
+until landing. [Mount evidence](docs/CLIENT_VALIDATION.md#forever-mount-collection).
+
+22 November. Load the action strip candidate and verify native page 2
+on Forever through the established Witchcraft route. Check icon, mouse,
+key and drag routes for the page-2 and fixed columns with the existing
+bindings. Repeat on Retail, Classic, Era and Anniversary.
+[Acceptance](docs/CLIENT_VALIDATION.md#action-strip-page-two-ownership).
+
+22 November. Reload Forever outside combat and leave the Battlefield
+Map visible in Flux through a fight where POIs update. Check for both
+blocked mouse calls, then verify that POIs catch up and accept clicks
+after combat. Repeat with a zone change and a map hide or reopen.
+[Acceptance](docs/CLIENT_VALIDATION.md#battlefield-map-poi-mouse-actions-in-combat).
+
+22 November. Reload Forever outside combat. Select a Flux Meter
+layout that needs a pane, then use Blizzard’s settings, title and
+session dropdowns to add it, select the type and choose **Current**.
+Check populated rows on reopen and through two fights, including the
+timer, icons and class colors. Show and clear an aura panel at a rounded
+target or focus border corner and check the Lua error log for both fixes.
+[Acceptance](docs/CLIENT_VALIDATION.md#damage-meter-taint-and-rounded-border-junctions).
+
+22 November. Toggle **Only show my debuffs** under Combat → Nameplates →
+Auras. Compare harmful effects from your character, pet or vehicle with
+effects from a second player. Include crowd control, tooltip hover, a
+recycled plate and switching the option off in combat. Verify the helpful
+row and disabled state using the existing game settings.
+[Acceptance](docs/CLIENT_VALIDATION.md#nameplate-debuff-ownership).
+
+22 November. With a ready craft, verify the icon, count and caption in
+Flowcraft and Blizzard’s profession window, then move, resize and close
+each view. Check that the reminder follows the active view and returns
+to the HUD on close. Repeat on standalone FluxUI and verify the player
+press, native **Create** handoff and controller cursor behavior.
+[Acceptance](docs/CLIENT_VALIDATION.md#craft-reminder-in-the-profession-window).
+
+22 November. In Forever, start a queued craft with enough carried
+materials for multiple results. Stop after the first confirmed result
+and verify that FluxUI offers the exact remaining quantity. Check the
+profession window and the HUD both before and after reopening the
+profession and after reload. Check that the prepared craft continues
+to use the same accepted recipe and that incomplete materials still
+block crafting.
+[Acceptance](docs/CLIENT_VALIDATION.md#fluxui-continue-craft-button).
+
+22 November. Queue two different crafts that share a material and check
+its combined amount in Shopping, Vendor Restock and Bank Restock where
+their accepted sourcing allows it. Verify the receipt credits each order
+its share. Repeat with a smaller offer or bank stack and check the
+remaining quantities in both orders.
+[Acceptance](docs/CLIENT_VALIDATION.md#shared-queued-craft-materials).
+
+22 November. Accept an Auction Restock craft with two vendor materials.
+At the matching merchant, verify both appear in Vendor Restock and the
+ordinary buy action fills their eligible shortages. Compare automatic
+buying on merchant open with an explicit vendor buy, with FluxLogistics
+loaded and unloaded. Confirm the temporary targets retire after receipt.
+[Acceptance](docs/CLIENT_VALIDATION.md#craft-materials-in-vendor-restock).
+
+22 November. In Forever, complete a queued long cast and watch each
+confirmed craft reduce the Flowcraft and Restock remainder. Stop another
+batch and verify the actual stop and carried result determine its resume
+amount. Include a delayed result and a prepared **Create** action that
+waits past the prior expiry. Check what happens when the profession closes.
+[Acceptance](docs/CLIENT_VALIDATION.md#flowcraft-cast-lifecycle).
+
+22 November. In Forever, queue a multi-step Flowcraft order and select
+its row. Check the final item and remaining amount alongside the current
+step in Flowcraft and next to Blizzard's craft controls. Watch the
+counter after each completed craft, including a cast longer than 30
+seconds. Stop partway through, then press **Process** after the native
+cast stops and verify it targets the remaining work. Check the FluxUI
+Restock reminder when the selected companion craft is ready. The prior
+test order shows **Count 2** for the packs already carried.
+[Acceptance](docs/CLIENT_VALIDATION.md#flowcraft-queue-progress-and-process).
+
+22 November. After reloading Forever, switch quickly between simple and
+multi-step recipes in the native list and from a Flowcraft card. Check that
+the final recipe's plan, graph and prices arrive together. Click **Queue**
+immediately after changing recipes and verify the accepted recipe is the
+one selected. Repeat with an existing queue and Shopping List open.
+[Acceptance](docs/CLIENT_VALIDATION.md#flowcraft-recipe-selection).
+
+22 November. In Forever, reload with an interrupted four-pack Flowcraft
+order and verify the remaining count. With reliable saved progress,
+check that the queue resumes at two. On the older Review case, use the
+exact **Process** or **Resume 2 × Green Silk Pack** action. Check that
+two carried packs leave two to prepare and craft through Blizzard's
+**Create**. Compare the Flowcraft and Restock actions, including a
+selection change between the reminder appearing and a press.
+[Acceptance](docs/CLIENT_VALIDATION.md#flowcraft-partial-craft-after-reload).
+
+22 November. Check the Restock vendor reminder for a queued Flowcraft
+craft before and after opening the matching merchant. Verify the names
+and amounts, then change stock or the accepted order and confirm the HUD
+refreshes before buying. Check vendor grouping with matching and
+incompatible requisitions and follow the carried receipts to crafting.
+[Acceptance](docs/CLIENT_VALIDATION.md#grouped-vendor-materials-and-restock-reminder).
+
+22 November. In Flowcraft, queue two compatible Green Silk Pack orders
+and check that they appear as **2× Green Silk Pack** on one row. Verify
+a different sourcing choice stays separate and that settling one order
+reduces the count. Compare the grouped member menu and row removal.
+After reload, check that one eligible offer can cover 40 Silk Cloth
+or six Heavy Leather for the paired orders. Compare a smaller listing
+and verify the remaining quantity requires its own press.
+[Acceptance](docs/CLIENT_VALIDATION.md#grouped-flowcraft-orders).
+
+22 November. After a safe reload of the installed pair, verify that both
+owners offer profession opening after the required materials are carried.
+Check vendor stock, actual pending mail
+and a bank withdrawal first. Compare Shopping's displayed inbox count
+with built-in inventory and with Syndicator, including a warm startup.
+Then resize Flowcraft and
+use the same exact next craft from its bottom row and Blizzard's tabs.
+[Acceptance](docs/CLIENT_VALIDATION.md#acquisition-first-restock-and-flowcraft).
+
+22 November. After reload with Syndicator unloaded, observe a real sale with
+the Auction House closed on each client. Check that the corresponding posted
+count drops, that the remaining listing survives and that the result persists
+after reopening. On Era and Anniversary, include same-name listings and check
+the next owned update. [Acceptance](docs/CLIENT_VALIDATION.md#built-in-sold-auction-counts).
+
+22 November. Verify that the companion reminder opens the required Forever profession and the exact queued recipe is retained. Press Craft to submit after the new profession is ready. [Validation](docs/CLIENT_VALIDATION.md#tracked-fluxlogistics-profession-switch).
+
+22 November. Verify an eligible ordinary Forever recipe through the FluxLogistics Process button and the companion Restock Craft reminder. Confirm the queue records the carried output and prepares a qualified fallback after a proven denial. [Validation](docs/CLIENT_VALIDATION.md#direct-fluxlogistics-craft-action).
+
+22 November. On Forever, reload the installed pair and reopen Tailoring.
+Use **Replan from bags** on the existing unconfirmed bolt job. Verify the
+fresh plan uses the actual carried bolts and cloth and retains the previous
+job in history. Use **Prepare** and Blizzard's **Create** to confirm the
+remaining bolts advance the job. Check the passive HUD and compact dock
+alongside the native controls.
+[Acceptance](docs/CLIENT_VALIDATION.md#live-restock-craft-receipts).
+
+22 November. In Forever, use **Open recipe** on a ready 25-bolt batch
+and verify that the Blizzard quantity matches the reminder. Let an
+inventory update refresh Blizzard's form. Confirm the prepared amount
+returns, then change the amount yourself and verify your edit remains.
+Press Blizzard's **Create** and check the matching output and five-bag
+continuation. Check the reminder above a nested Flowchart card on both
+anchors.
+[Acceptance](docs/CLIENT_VALIDATION.md#restock-native-quantity-after-stock-refresh).
+
+22 November. With Forever professions open, verify that the Restock reminder sits above the workbench and returns to its usual layer when it closes. Press Blizzard Create for the prepared batch and confirm that the same FluxLogistics job advances. [Validation](docs/CLIENT_VALIDATION.md#restock-reminder-profession-layer).
+
+22 November. In Forever, use **Open recipe** when Restock needs fewer
+crafts than Blizzard can make. Verify the native quantity and press
+**Create**. Repeat after an asynchronous recipe change and with fewer
+materials. For the paired FluxLogistics candidate, verify the same
+accepted job in Workbench and Flowchart. Create 25 bolts and confirm
+their carried receipt prepares five bags. Check the docked view and
+the **Workbench** return control at a narrower size.
+[Acceptance](docs/CLIENT_VALIDATION.md#bounded-native-restock-craft-batches).
+
+22 November. In Forever, use **Open recipe** on a ready FluxUI Restock
+craft and on a FluxLogistics queue task. Verify each opens the exact planned
+recipe and keeps the reminder visible above Professions. Press Blizzard's
+**Create** and verify that the resulting bag output advances the correct
+job. Compare both HUD anchors with the surrounding buttons and check
+controller reachability.
+[Acceptance](docs/CLIENT_VALIDATION.md#restock-handoff-to-native-create).
+
+22 November. Reload Forever and hover a visible stock buff, secure debuff and
+CC icon. Check the bevel, tinted border, clipped artwork and that a click
+still reaches the world. Move away or remove the aura to verify the tooltip
+clears. Check the same preview art and native aura hover on other clients.
+[Acceptance](docs/CLIENT_VALIDATION.md#nameplate-aura-art-and-hover).
+
+22 November. On a modern auction client, find an eligible offer for a cold item and verify the displayed quantity and price. In Forever, finish an Auctionator list scan and return to the same Shopping material. [Validation](docs/CLIENT_VALIDATION.md#modern-auction-item-key-handoff).
+
+22 November. Check the Forever HUD with an acquired order and one still
+waiting for mail. Confirm both owners follow Auto Collect on and off,
+and include ordinary mail with the same item. Once carried materials are
+complete, try the closed profession and the Book page, then use the exact
+craft on a separate press. Check icon resizing and combat hide. Repeat
+standalone opening and mail on the other supported clients.
+[Acceptance](docs/CLIENT_VALIDATION.md#restock-profession-action-and-mail-auto-collect).
+
+22 November. Reload Forever and verify the secure harmful rows on a target
+with a dispellable debuff and a classified crowd control aura. Check the
+type border and corner, timer positions, friendly and enemy settings, and
+that disabling a row or losing a plate clears the secure owner. Repeat on
+Retail. The Classic clients retain their existing readable overlay.
+[Acceptance](docs/CLIENT_VALIDATION.md#secure-nameplate-debuff-and-cc-rows).
+
+22 November. In Forever, queue a craft using a junk-marked reagent and verify the junk mark disappears. Try adding the reagent to Junk while it is queued. Clear the order and confirm the previous mark returns. [Validation](docs/CLIENT_VALIDATION.md#craft-queue-junk-protection).
+
+22 November. In Forever, press the Restock craft icon for a ready job
+with Professions closed, then with the Book visible. Verify the correct
+Recipes page opens and press again for a companion batch. Repeat for an
+ordinary FluxUI job with the mailbox open and settled carried materials.
+Check a hidden legacy trade-skill window and a profession switch in progress.
+[Acceptance](docs/CLIENT_VALIDATION.md#restock-craft-reminder-opens-professions).
+
+22 November. In Forever, compare two Refreshing Spring Waters through Shopping against a full vendor pack and confirm the quoted cost. Verify that the merchant skips paid incoming and fills an uncovered vendor fallback. [Validation](docs/CLIENT_VALIDATION.md#vendor-bundle-auction-choice).
+
+22 November. Reload Forever and confirm the border and corner on a typed
+world debuff, the NPC crowd control lane and player Loss of Control. Check
+an untyped debuff for its red border and verify that expired or replaced
+auras clear the overlay. Repeat smoke checks on the other installed clients.
+[Acceptance](docs/CLIENT_VALIDATION.md#world-nameplate-debuff-and-cc-artwork).
+
+22 November. In Forever, repeat Find offer after an Auctionator search. A qualifying offer should display Buy and its price. A material without a qualifying offer should provide its exact listing search. Confirm the updated handoff after reload. [Validation](docs/CLIENT_VALIDATION.md#find-offer-after-browsing).
+
+22 November. After reload in Forever, verify the first visible world
+nameplate debuff, a replacement aura and the border on a readable untyped
+debuff. Check the same native path in the other installed clients.
+[Acceptance](docs/CLIENT_VALIDATION.md#live-nameplate-debuff-lookup).
+
+22 November. After a safe reload, check the lower Restock reminder in
+Forever and compare both HUD anchors. Quote and buy one shopping-list or
+ordinary Restock item. Confirm an unrelated manual purchase leaves the HUD
+hidden, then collect a confirmed companion delivery beside unrelated mail.
+Verify a ready queued craft obtained through the bank or vendor as well.
+Check the standalone owner path in Retail.
+[Acceptance](docs/CLIENT_VALIDATION.md#restock-reminder-scope-and-placement).
+
+21 November. In Forever, reload and compare temporary queued rows in Restock with Shopping quantity and currency. Verify a receipt remains visible until collection and that the follow-up Craft icon becomes available after the materials are carried. Capture the live depth and exact cast evidence separately from the desktop suites.
+
+21 November. After reload, verify a typed debuff on nameplates, target/focus,
+pet tooltip, both party styles and raid. Check reuse, countdown readability
+and behavior during combat.
+[Acceptance](docs/CLIENT_VALIDATION.md#debuff-type-corners-and-borders).
+
+21 November. On Forever, compare material and intermediate prices through the active profession recipe, then verify the Shopping List and Restock tab display the same approved quantity. Confirm the resulting mail and the next quote after a player click. On Classic verify one sealed stack per click. Verify that a first preset edit preserves a legacy Normal target.
+
+21 November. After a safe reload, reopen Combat → Nameplates and run Test in
+Game to confirm native preview creation and world sample creation.
+[Acceptance](docs/CLIENT_VALIDATION.md#nameplate-preview-texture-creation).
+
+21 November. In Forever, check a manually prepared queued offer from the FluxUI Restock tab and confirm one authorized listing on press. After receiving the materials, check the existing follow-up Craft button against the exact queued task. Verify the final progress count in a multi-craft batch. No live action was taken during installation.
+
+21 November. After a client restart, verify the published nameplates
+and Flux overlays with the current options and preview. Include casts,
+timed auras, quest and threat badges on the five installed clients.
+[Acceptance](docs/CLIENT_VALIDATION.md#published-nameplates-with-the-current-settings).
+
+21 November. Verify a normal Forever session with Syndicator disabled uses FluxUI for bags, bank and mail. In an already authorized session with Syndicator enabled, verify the provider handoff and open the mailbox to confirm current inbox coverage.
+
+21 November. When an eligible tier purchase is pending and a different eligible item becomes preferred, compare Auction House and Restock coverage before collecting the receipt. The outstanding stock target should agree across both views. [Contract](docs/FLUXLOGISTICS_RESTOCK.md#lua-interface-v1).
+
+21 November. In Forever, open the Auction House with a queued auction shortage. Compare the quantity in Restock plans with the detached Shopping List after a stock or target change. Verify that covered rows leave the submenu and a stale menu click gives feedback. [Contract](docs/FLUXLOGISTICS_RESTOCK.md#lua-interface-v1).
+
+21 November. After reload in Forever, compare the compact Focus portrait
+join to an ordinary Party frame. Check both outlines and a no-power unit
+with both aura panels visible above Focus.
+[Validation](docs/CLIENT_VALIDATION.md#compact-focus-border-and-party-layout).
+
+21 November. After reload, verify live compact Focus and its preview with
+both health and power percentages visible, then check a unit with no
+resource. [Validation](docs/CLIENT_VALIDATION.md#compact-focus-health-text-placement).
+
+21 November. Check the case menu, NPC portraits and Play on Forever and the
+other four clients. Verify the first aura expiry, interruption by switching
+tabs, and Party cast label restoration. Record native timing and combat
+separately. [Validation](docs/CLIENT_VALIDATION.md#unit-frame-preview-cases-and-playback).
+
+21 November. Compare the revised Individual Frames pane to live HUD frames on
+the five supported clients. Include the available attached frame tabs, both
+main-frame layouts, portrait mode, buffs, debuffs and selection of Cast bar.
+Verify preview clicks and size edits, then record native rendering, combat
+taint and edit timing separately.
+[Client acceptance](docs/CLIENT_VALIDATION.md#individual-frame-preview-parity).
+
+21 November. With the paired FluxLogistics build, find an accepted Fire Oil job that needs one Empty Vial and has verified inbox coverage. When a single-vial offer is within the accepted limits, verify the displayed price and a confirmed receipt for one vial. Check the independent vendor-price comparison in Auction Restock, and repeat with one complete listing on a legacy client. [Contract](docs/FLUXLOGISTICS_RESTOCK.md#accepted-auction-prices-for-vendor-goods).
+
+21 November. Verify Craft Shopping after a Syndicator mailbox scan recovers from incomplete native headers. Confirm the next qualified inbox observation enables the pending-mail calculation and verify a live receipt separately.
+
+21 November. After reloading Forever, take a flight-path taxi and check the
+ordinary icon on boarding, in flight and after landing. Then summon a personal
+mount and verify that the wisp and dismount return.
+[Mount evidence](docs/CLIENT_VALIDATION.md#forever-mount-collection).
+
+21 November. With the paired FluxLogistics build loaded, verify a queued reagent at a vendor and at the character bank. Confirm the partial and full bag receipts update the existing Restock buttons. For auction materials, verify inbox readiness and the approved quantity in Craft Shopping. [Contract](docs/FLUXLOGISTICS_RESTOCK.md#queued-craft-materials).
+
+21 November. Continue from the Forever visual smoke with Pet and other
+attached tabs. Verify General and its Cast Bars tab, Individual Frames,
+Party & Raid and Combat > Nameplates on the pending clients. Drag a slider
+and compare the update on release. Check keyboard edits, preview clicks,
+controller cursor navigation and both party layouts and the raid roster
+against the world samples. Use Witchcraft for Forever when available.
+[Native checklist](docs/CLIENT_VALIDATION.md#frame-options-edit-responsiveness).
+
+Earlier on 21 November. Compare FluxUI's embedded and world samples with the same
+settings on each client. Check both party layouts, raid sizes and the tank
+column. Test Main and Mini frame type selection, preview clicks that change
+tabs, narrow-window fit and controller cursor reachability. Use Witchcraft
+for Forever when available.
+[Native checklist](docs/CLIENT_VALIDATION.md#group-preview-parity).
+
+21 November. With the updated source loaded, open General, Individual
+Frames, Party Frames and Raid Frames in each supported client. Test portrait,
+bar, text and aura clicks, then change a setting and verify the sample and
+profile after reopening. Include both party layouts, raid roster sizing,
+the minimum window size, controller cursor navigation and combat deferral.
+Forever keeps the preferred Witchcraft route.
+[Native checklist](docs/CLIENT_VALIDATION.md#unit-frame-settings-preview).
+
+21 November. After a safe reload on each target, toggle the General countdown
+setting while buffs and debuffs on target, focus, both party layouts and raid
+cross 60 seconds. Confirm that the swipe continues and combat deferral applies
+the setting after combat. Use Witchcraft for Forever when available.
+[Native checklist](docs/CLIENT_VALIDATION.md#shared-unit-frame-aura-countdowns).
+
+21 November. After a safe Forever reload, mount through the button and the
+journal, enter combat while mounted, and dismount with the click and hotkey.
+Verify the wisp clears during combat, the dim mount stays visible and mounting
+resumes on combat exit. Check the same behavior with a configured modifier and
+the user's controller binding when available.
+[Mount evidence](docs/CLIENT_VALIDATION.md#forever-mount-collection).
+
+21 November. The vendor Auto Restock fix matches all five installed Lua copies. Native confirmation awaits a reload and an authorized vendor visit with Auto Restock, Sell Junk and Repair enabled. [Merchant sequencing](docs/20-vendor-restock-junk.md#merchant-lifecycle-and-automation-ordering).
+
+21 November. Verify the new FluxLogistics restock dropdowns after a safe Forever reload. Check Normal and each inherited mode, place one accepted order from a context menu, confirm it updates all three surfaces, then verify scoped vendor and bank actions and controller focus. [Contract](docs/FLUXLOGISTICS_RESTOCK.md).
+
+21 November. The Forever mount travel fix is mirrored. After a safe reload,
+take a teleport or instance portal with a saved default and modifier mount,
+then check left-click, the keyboard binding, the override and journal right-click.
+Include a dismount across travel and combat exit if available. Native verification
+remains pending through the preferred Witchcraft route.
+[Mount evidence](docs/CLIENT_VALIDATION.md#forever-mount-collection).
+
+21 November. R193 is ready for native verification. In mouseover mode, move
+in and out of the side-button grid below the map at a small grid scale. Check
+the minimap's bottom rim and the joins to Flux Window in both border types.
+With the minimap embedded, check the grid's top and bottom spacing at two
+button counts and after resizing Flux Window.
+[Evidence](docs/validation/minimap-hover-dock-r193-2026-11-21.json).
+
+21 November. The standalone minimap restore is ready for native verification.
+With side buttons off, check the mail and tracking fit along the lower-right
+rim, then check the clock and zone header after leaving embedded mode,
+including a toggle deferred until combat ends.
+[Evidence](docs/validation/minimap-standalone-restore-2026-11-21.json).
+
+21 November. R192 is the current layer fix. Check Flux Window and the side grid
+under a window in both border styles, then check the clock overlap in top
+mouseover mode and the border during minimap embed.
+[Evidence](docs/validation/hud-panel-layers-r192-2026-11-21.json).
+
+21 November. While reviewing R191 in game, check flyout glyphs near overlapping
+windows, then switch the minimap between embedded and screen-side modes with
+a small side-grid scale. The side and Flux Window borders meet when docked.
+[Evidence](docs/validation/hud-layer-dock-r191-2026-11-21.json).
+
+21 November. After a safe Forever reload, check the mount tint outdoors,
+indoors and across combat transitions. Hold an exact override and verify that
+the icon and tint follow its mount. Check the sticky cast and dismount path
+with the existing binding and gamepad. [Mount evidence](docs/CLIENT_VALIDATION.md#forever-mount-collection).
+
+21 November. Forever's compact mount panel is mirrored. After a safe reload,
+check Default only, add and clear an override, and hold or release its exact
+combination while hovering the mount button. Check native fit and gamepad access
+through the existing Witchcraft testing route when available.
+[Mount evidence](docs/CLIENT_VALIDATION.md#forever-mount-collection).
+
+21 November. After reload, check a spell flyout on the action strip and an
+extra-button or Trinket flyout where their arrows cross a border. Verify the
+arrow while opening and closing, including with a held action or in combat.
+[Flyouts and trinkets](docs/12-extra-button-system.md#flyouts-and-trinkets).
+
+21 November. Forever mount configuration is mirrored to the installed client.
+After the next safe reload, use Collections → Mounts to set Default and an
+exact combination. Check one-mount fallback, account and character scope,
+riding and collection changes, cast and dismount, right-click, native layout
+and controller reachability. Witchcraft is the existing preferred route.
+[Mount evidence](docs/CLIENT_VALIDATION.md#forever-mount-collection).
+
+21 November. For the recurring cooldown failure, use `/fluxinput cooldown`
+once after loading and again after recreating the error. Reload outside
+combat to save the two snapshots. Start with Forever and collect the
+Retail stack separately when that client is available.
+[Client evidence](docs/CLIENT_VALIDATION.md#forever-action-button-cooldown).
+
+20 November. The 22:46:28 cooldown error occurred while casting or fighting
+on Forever. Reload outside combat, then repeat the same fight or cast the
+same spell in combat. Check the cast animation, cooldown swipe, and native
+controller input. If it recurs, capture the first taint attribution and
+Lua stack.
+[Client evidence](docs/CLIENT_VALIDATION.md#forever-action-button-cooldown).
+
+20 November. R190 widens the Type 1 divider toward the spell icon. Compare
+the divider and the leading fill edge in a visible cast after reload.
+[Cast divider](docs/UNIT_OVERLAY_ATTACHMENTS.md#vertical-cast-divider).
+
 20 November. R189 addresses the vertical strip beside the spell icon.
 Compare a visible cast on both styles after reload, checking the two
 sides of the divider and the top and bottom joins.

@@ -2,6 +2,8 @@
 local _, ns = ...
 local A, L = FluxAuctionRestock, ns.FluxOptionsLocale
 local attaching, activating = false, false
+local logisticsRows
+local NO_LOGISTICS_ROWS = {}
 local COINS = {
     gold = "Interface/MoneyFrame/UI-GoldIcon", silver = "Interface/MoneyFrame/UI-SilverIcon", copper = "Interface/MoneyFrame/UI-CopperIcon",
 }
@@ -82,6 +84,76 @@ local function Blur()
     local g = A.frame and A.frame.currencyGroup
     if g then for _, key in ipairs({ "gold", "silver", "copper" }) do g[key]:ClearFocus() end end
 end
+local function SameLogisticsTarget(a, b)
+    return a and b and a.jobId == b.jobId and a.id == b.id and a.itemID == b.itemID
+        and a.planRevision == b.planRevision
+end
+local function SameLogisticsRow(a, b)
+    return SameLogisticsTarget(a, b) and a.groupRevision == b.groupRevision
+        and a.quantity == b.quantity and a.incoming == b.incoming and a.price == b.price
+end
+local function LogisticsRows()
+    if not logisticsRows then return NO_LOGISTICS_ROWS end
+    local ok, source = pcall(logisticsRows.GetRows)
+    if not ok or type(source) ~= "table" then return NO_LOGISTICS_ROWS end
+    local rows = {}
+    for _, entry in ipairs(source) do
+        if type(entry) == "table" then
+            local item, job, id = A.Number(entry.itemID), A.Number(entry.jobId), A.Number(entry.id)
+            local quantity, incoming = A.Number(entry.quantity), A.Number(entry.incoming)
+            local group = entry.groupRevision
+            if item and item > 0 and item % 1 == 0 and job and job > 0 and job % 1 == 0
+                and id and id > 0 and id % 1 == 0 and type(entry.planRevision) == "string" and entry.planRevision ~= ""
+                and not (issecretvalue and issecretvalue(group))
+                and (group == nil or type(group) == "string" and group ~= "")
+                and quantity and quantity % 1 == 0 and incoming and incoming % 1 == 0 and quantity + incoming > 0 then
+                rows[#rows + 1] = { itemID = item, jobId = job, id = id, planRevision = entry.planRevision,
+                    groupRevision = group, quantity = quantity, incoming = incoming, price = A.Number(entry.price) }
+            end
+        end
+    end
+    return rows
+end
+local function CurrentLogisticsRow(selection)
+    for _, row in ipairs(LogisticsRows()) do
+        if SameLogisticsRow(row, selection) then return row end
+    end
+end
+local function DispatchLogisticsRow(f, shown, buy)
+    if not shown or InCombatLockdown() or A.transaction or A.ownsQuote then return end
+    f.logisticsChoice, f.logisticsNotice = shown, nil
+    local row = CurrentLogisticsRow(shown)
+    if not row then
+        f.logisticsNotice = L.AH_LOGISTICS_CHANGED or "Queued material changed."
+    elseif row.quantity > 0 then
+        if buy and A.IsLogisticsPrimaryReady and A.IsLogisticsPrimaryReady(row) then
+            return A.ClickPrimary(row)
+        end
+        local ok, prepared, reason = pcall(logisticsRows.Select, row)
+        if not ok or not prepared then
+            f.logisticsNotice = ok and type(reason) == "string" and (L["AH_STATUS_" .. reason] or reason)
+                or L.AH_LOGISTICS_CHANGED or "Queued material changed."
+        end
+    end
+    A.RefreshLogisticsRows()
+end
+function A.RegisterLogisticsRows(provider)
+    if provider ~= nil and (type(provider) ~= "table" or type(provider.GetRows) ~= "function"
+        or type(provider.Select) ~= "function") then return false end
+    logisticsRows = provider and { GetRows = provider.GetRows, Select = provider.Select }
+    if not logisticsRows and A.frame then
+        A.frame.logisticsChoice, A.frame.logisticsSelected, A.frame.logisticsNotice = nil, nil, nil
+    end
+    A.RefreshLogisticsRows()
+    return true
+end
+function A.RefreshLogisticsRows()
+    local frame = A.frame
+    if frame and frame:IsShown() then
+        frame.logisticsRows = LogisticsRows()
+        A.UpdateUI()
+    end
+end
 local function CellIcon(row)
     local modules = { bandage = _G.FluxCombatBandage, healPotion = _G.FluxCombatHealPotion, manaPotion = _G.FluxCombatManaPotion }
     local module = row.tierKind and modules[row.tierKind]
@@ -95,7 +167,7 @@ end
 A.CellIcon = CellIcon
 local function SetQuantity(cell)
     local row = cell.row
-    if not row or row.isCraftMaterial or A.transaction then return end
+    if not row or row.logistics or row.isCraftMaterial or A.transaction then return end
     local n = tonumber(cell.editBox:GetText())
     if not A.Number(n) or n % 1 ~= 0 then return end
     if row.isTierRestock and FluxRestockTiers then FluxRestockTiers.SetTarget(row.tierKind, n)
@@ -159,10 +231,12 @@ local function LayoutCells(f, count, revision)
     return f.modelRevision == revision
 end
 local function CellKey(row, proposal)
+    if row.logistics then return "logistics:" .. row.logistics.jobId .. ":" .. row.logistics.id end
     if row.upgradeOnly then return "upgrade:" .. tostring(row.tierKind) .. ":" .. tostring(proposal.sourceID or 0) end
     return "item:" .. row.itemID
 end
 local function SameQuantityOwner(a, b)
+    if a and b and (a.logistics or b.logistics) then return SameLogisticsRow(a.logistics, b.logistics) end
     return a and b and a.itemID == b.itemID and a.tierKind == b.tierKind
         and a.restockSource == b.restockSource and a.upgradeFrom == b.upgradeFrom
         and a.isCraftMaterial == b.isCraftMaterial and a.upgradeOnly == b.upgradeOnly
@@ -174,14 +248,20 @@ local function PaintCell(f, cell, revision)
     if f.modelRevision ~= revision then cell.paintRevision = nil; return false end
     cell._itemId, cell._entry = row.itemID, row
     cell._icon:SetTexture(CellIcon(row))
+    local queued = row.logistics
     grid.ApplyCellCountDisplay(cell, row.bagCount or 0, row.bankCount or 0, row.target or 0, row.countBank, row.tierKind)
+    if queued then cell._countStr:SetText(queued.quantity > 0 and ("×%d"):format(queued.quantity) or "") end
     if f.modelRevision ~= revision then cell.paintRevision = nil; return false end
-    cell.incoming:SetText((row.pending or 0) > 0 and ("|cff66ccff" .. L.AH_INCOMING:format(row.pending) .. "|r") or "")
-    cell.route:SetText(A.RouteText(row))
+    local incoming = queued and queued.incoming or row.policyCoverage or row.pending or 0
+    cell.incoming:SetText(incoming > 0 and ("|cff66ccff" .. L.AH_INCOMING:format(incoming) .. "|r") or "")
+    cell.route:SetText(queued and (L.AH_LOGISTICS_QUEUED or "Craft queue") or A.RouteText(row))
     cell:SetWidth(80)
-    local cap = row.upgradeOnly and A.PriceLimit(proposal.sourceID) or A.PurchaseLimit(row.itemID)
-    cell.limit:SetText(CellMoney(cap))
-    local editing = row.itemID == A.editorID
+    local cap
+    if queued then cap = queued.price
+    else cap = row.upgradeOnly and A.PriceLimit(proposal.sourceID) or A.PurchaseLimit(row.itemID) end
+    cell.limit:SetText(cap and CellMoney(cap) or "")
+    local editing = queued and SameLogisticsTarget(queued, f.logisticsChoice)
+        or not queued and not f.logisticsChoice and row.itemID == A.editorID
     for _, edge in ipairs(cell.selectionEdges) do edge:SetShown(editing) end
     cell:SetBackdropColor(editing and 0.22 or 0.06, editing and 0.16 or 0.06, editing and 0.04 or 0.08, 0.9)
     if cell.SetBackdropBorderColor then
@@ -302,6 +382,7 @@ local function CreatePanel(owner)
                 if not Released(control, token) or A.transaction then return end
                 if not f.Reveal(cell) or not Current(token) then return end
                 local row = cell.row
+                if row.logistics then return end
                 if row.isTierRestock then FluxRestockTiers.SetCountBankFlag(row.tierKind, not row.countBank)
                 else FluxVendorAuto.SetRestockItemFlag(row.upgradeFrom or row.itemID, "countBank", not row.countBank) end
                 if A.ResetCraftPlans then A.ResetCraftPlans() end
@@ -313,6 +394,15 @@ local function CreatePanel(owner)
             for _, other in ipairs(f.cells) do other.editBox:ClearFocus(); other.editBox:Hide() end
             Blur()
             if not Current(token) then return end
+            if self.row.logistics then
+                if button ~= "RightButton" then DispatchLogisticsRow(f, self.row.logistics) end
+                return
+            end
+            if f.logisticsChoice then
+                f.logisticsChoice, f.logisticsSelected, f.logisticsNotice = nil, nil, nil
+                if A.GetLogisticsRow() and not A.ownsQuote then A.Invalidate("changed") end
+                if not Current(token) then return end
+            end
             A.Select(self.row.itemID)
             if not Current(token) then return end
             local row = self.row
@@ -329,7 +419,7 @@ local function CreatePanel(owner)
                 if not Current(token) then return end
                 -- Native OnEnter supplies a mouse-motion boolean. Repaints
                 -- supply an already calculated copper cap, including infinity.
-                if type(cap) ~= "number" then cap = A.PurchaseLimit(self.row.itemID) end
+                if type(cap) ~= "number" and not self.row.logistics then cap = A.PurchaseLimit(self.row.itemID) end
                 f.hoveredUpgrade = nil
                 f.hoveredCell, f.tooltipOwner, f.tooltipBinding = cell, cell, token
                 cell.ShowTip(self, cap)
@@ -346,6 +436,16 @@ local function CreatePanel(owner)
         function cell.ShowTip(self, cap)
             if not self.row then return end
             GameTooltip:SetOwner(self, "ANCHOR_RIGHT"); GameTooltip:SetItemByID(self.row.itemID)
+            local queued = self.row.logistics
+            if queued then
+                GameTooltip:AddLine((L.AH_LOGISTICS_NEED or "To buy: %d"):format(queued.quantity), 1, 0.82, 0.3, true)
+                if queued.incoming > 0 then GameTooltip:AddLine(L.AH_INCOMING:format(queued.incoming), 0.4, 0.8, 1, true) end
+                if queued.price then
+                    GameTooltip:AddLine((L.AH_LOGISTICS_PRICE or "Unit estimate: %s"):format(UnitMoney(queued.price)), 1, 0.82, 0.3, true)
+                end
+                GameTooltip:Show()
+                return
+            end
             GameTooltip:AddLine(L.AH_LIMIT_TOOLTIP:format(Money(cap)), 1, 0.82, 0.3, true)
             if A.VendorSource then
                 local unlimited, price, _, source = A.VendorSource(self.row.itemID)
@@ -474,8 +574,9 @@ local function CreatePanel(owner)
     f.excess:SetScript("OnEnter", function(self) Tip(self, L.AH_EXCESS_HELP) end); f.excess:SetScript("OnLeave", EndTip)
     f.status = Label(f, "", 12, 0, 1); f.status:SetHeight(36); f.status:SetJustifyV("TOP")
     f.primary = Button(f, L.AH_SEARCH, 150, function()
+        if f.logisticsChoice then return DispatchLogisticsRow(f, f.logisticsSelected, true) end
         for _, key in ipairs({ "gold", "silver", "copper" }) do if g[key]:HasFocus() and not Save(g[key]) then return end end
-        A.Primary()
+        A.ClickPrimary()
     end)
     f.primary:SetPoint("BOTTOMLEFT", 12, 8)
     if not A.legacy then
@@ -486,13 +587,25 @@ local function CreatePanel(owner)
             A.ScanQueue(true, true)
         end)
     end
+    local policy = _G.Flux and _G.Flux.RestockPolicy
+    local logistics = policy and policy.CreateActions(f, "auction")
+    if logistics then
+        logistics:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -12, 8)
+        policy.Subscribe("auction-restock-view", function(_, reason)
+            if reason ~= "inventory" and f:IsShown() then A.SettingsChanged() end
+        end)
+    end
     Layout(f)
     f:HookScript("OnSizeChanged", function() if A.frame == f and f:IsShown() then A.UpdateUI() end end)
-    f:SetScript("OnShow", ns.AuctionRestockOnShow)
+    f:SetScript("OnShow", function(self)
+        self.logisticsRows = LogisticsRows()
+        ns.AuctionRestockOnShow()
+    end)
     f:SetScript("OnHide", function()
         Blur()
         for _, cell in ipairs(f.cells) do cell.editBox:ClearFocus(); cell.editBox:Hide() end
         f.hoveredCell, f.hoveredUpgrade, f.tooltipOwner, f.tooltipBinding = nil, nil, nil, nil
+        f.logisticsRows, f.logisticsChoice, f.logisticsSelected, f.logisticsNotice = nil, nil, nil, nil
         A.HideSession(); EndTip()
     end)
     owner.FluxRestockContent = f; A.frame = f
@@ -518,12 +631,35 @@ function A.UpdateUI()
         end
     end
     table.sort(rows, A.RowLess)
+    local hasStandalone = #rows > 0
+    local queuedRows, selectedQueued = f.logisticsRows or NO_LOGISTICS_ROWS
+    if #queuedRows > 0 then
+        local merged = {}
+        for _, queued in ipairs(queuedRows) do
+            if SameLogisticsTarget(queued, f.logisticsChoice) then selectedQueued = queued end
+            merged[#merged + 1] = { itemID = queued.itemID, logistics = queued }
+        end
+        if not selectedQueued and A.IsLogisticsPrimaryReady then
+            for _, queued in ipairs(queuedRows) do
+                if A.IsLogisticsPrimaryReady(queued) then
+                    selectedQueued, f.logisticsChoice = queued, queued
+                    break
+                end
+            end
+        end
+        for _, row in ipairs(rows) do merged[#merged + 1] = row end
+        rows = merged
+    end
+    f.logisticsSelected = selectedQueued
     Layout(f)
     f.help:SetText(A.legacy and L.AH_HELP_LEGACY or L.AH_HELP)
-    local selected = A.FindRow(A.editorID)
-    if not selected then
-        for _, row in ipairs(rows) do
-            if not row.upgradeOnly then A.editorID, selected = row.itemID, row; break end
+    local selected
+    if not f.logisticsChoice then
+        selected = A.FindRow(A.editorID)
+        if not selected then
+            for _, row in ipairs(rows) do
+                if not row.upgradeOnly and not row.logistics then A.editorID, selected = row.itemID, row; break end
+            end
         end
     end
     for i = #f.cells + 1, #rows do f.CreateCell(i) end
@@ -550,7 +686,8 @@ function A.UpdateUI()
         if proposal then cell.EnsureUpgrade() end
         if cell.upgrade and cell.upgrade.proposal ~= proposal then cell.upgrade.BindProposal(proposal) end
         if row then
-            local bankText = grid.FormatCellBankLine(row.bankCount or 0, row.countBank)
+            local bankText
+            if not row.logistics then bankText = grid.FormatCellBankLine(row.bankCount or 0, row.countBank) end
             if f.modelRevision ~= revision then return end
             cell.layoutHeight = grid.ROW_H + (bankText ~= nil and grid.BANK_COUNT_H or 0)
         end
@@ -559,7 +696,8 @@ function A.UpdateUI()
         cell:SetShown(cell.row ~= nil)
         if cell.upgrade then cell.upgrade:SetShown(cell.proposal ~= nil) end
         if cell.row then
-            cell._bankBtn:SetShown(not cell.row.upgradeOnly); cell._bankBtn:SetEnabled(not A.transaction)
+            cell._bankBtn:SetShown(not cell.row.upgradeOnly and not cell.row.logistics)
+            cell._bankBtn:SetEnabled(not A.transaction and not cell.row.logistics)
             cell:SetEnabled(not A.transaction)
             if cell.proposal then
                 local enabled = A.state == "upgrade" and not InCombatLockdown() and not A.transaction
@@ -571,7 +709,8 @@ function A.UpdateUI()
         if f.modelRevision ~= revision then return end
     end
     if not LayoutCells(f, #rows, revision) then return end
-    local selectedCell = selected and active["item:" .. selected.itemID]
+    local selectedCell = selectedQueued and active["logistics:" .. selectedQueued.jobId .. ":" .. selectedQueued.id]
+        or selected and active["item:" .. selected.itemID]
     if f.selectedCell ~= selectedCell and f.selectedCell and f.selectedCell.selectionEdges then
         for _, edge in ipairs(f.selectedCell.selectionEdges) do edge:Hide() end
     end
@@ -581,7 +720,13 @@ function A.UpdateUI()
     local g = f.currencyGroup
     if g.itemID ~= (selected and selected.itemID) then Blur() end
     g.itemID = selected and selected.itemID
-    f.selected:SetText(selected and L.AH_LIMIT_SHORT:format(selected.name or tostring(selected.itemID)) or L.AH_SELECT_CELL)
+    local selectedText = selected and L.AH_LIMIT_SHORT:format(selected.name or tostring(selected.itemID))
+    if selectedQueued then
+        local names = _G.FluxItemClass
+        selectedText = names and names.GetName and names.GetName(selectedQueued.itemID) or tostring(selectedQueued.itemID)
+    end
+    if not selectedText and #queuedRows > 0 then selectedText = L.AH_LOGISTICS_SELECT or "Select a queued material." end
+    f.selected:SetText(selectedText or L.AH_SELECT_CELL)
     if not g.gold:HasFocus() and not g.silver:HasFocus() and not g.copper:HasFocus() then Restore(g) end
     for _, key in ipairs({ "gold", "silver", "copper" }) do g[key]:SetEnabled(selected ~= nil and not A.transaction) end
     f.noLimit:SetChecked(selected ~= nil and A.IsPriceUnlimited(selected.itemID))
@@ -590,26 +735,72 @@ function A.UpdateUI()
     f.excess:SetShown(A.legacy == true)
     f.excess:SetChecked(A.Settings().allowExcessStacks == true); f.excess:SetEnabled(A.legacy == true and not A.transaction)
     local busy = A.state == "searching" or A.state == "quoting" or A.state == "buying" or A.state == "classifying" or A.state == "upgrade"
-    f.primary:SetEnabled(A.houseOpen == true and not busy)
+    local queuedReady = selectedQueued and A.IsLogisticsPrimaryReady and A.IsLogisticsPrimaryReady(selectedQueued)
+    local canUsePrimary = selectedQueued and selectedQueued.quantity > 0
+        or not f.logisticsChoice and (hasStandalone or #queuedRows == 0)
+    f.primary:SetEnabled(A.houseOpen == true and not busy and not not canUsePrimary)
     if f.refresh then
         f.refresh:SetShown(not A.legacy); f.refresh:SetEnabled(not A.legacy and not A.transaction)
     end
     local offer, text = A.offer
-    if offer and A.state == "ready" then
-        local row = A.FindRow(offer.itemID)
-        text = L.AH_OFFER:format(row and row.name or tostring(offer.itemID), offer.quantity, Money(offer.total), UnitMoney(offer.total / offer.quantity))
+    if offer and A.state == "ready" and (not f.logisticsChoice or queuedReady) then
+        local queued = A.GetLogisticsRow()
+        local row = queued or A.FindRow(offer.itemID)
+        local name = row and row.name or queued and FluxItemClass and FluxItemClass.GetName and FluxItemClass.GetName(offer.itemID)
+        text = L.AH_OFFER:format(name or tostring(offer.itemID), offer.quantity, Money(offer.total), UnitMoney(offer.total / offer.quantity))
         if row and row.isCharge and row.unitsPerItem then
             text = text .. "\n" .. L.AH_CHARGES_OFFER:format(offer.quantity * row.unitsPerItem)
         end
-        local extra = offer.quantity - (row and A.Need(row) or 0); if extra > 0 then text = text .. "\n" .. L.AH_SURPLUS:format(extra) end
+        local need = queued and queued.target or row and A.Need(row) or 0
+        local extra = offer.quantity - need; if extra > 0 then text = text .. "\n" .. L.AH_SURPLUS:format(extra) end
         f.primary:SetText(L.AH_BUY:format(offer.quantity))
     else
         text = #rows == 0 and not busy and A.status ~= "potionData" and L.AH_EMPTY or L["AH_STATUS_" .. A.status] or L.AH_STATUS_intro
-        f.primary:SetText(busy and L.AH_WAIT or L.AH_BUY_NEXT)
+        if f.logisticsChoice then
+            if f.logisticsNotice then text = f.logisticsNotice
+            elseif selectedQueued and selectedQueued.quantity == 0 then text = L.AH_INCOMING:format(selectedQueued.incoming)
+            elseif not selectedQueued then text = L.AH_LOGISTICS_CHANGED or "Queued material changed." end
+        end
+        f.primary:SetText(busy and L.AH_WAIT or f.logisticsChoice and L.AH_SEARCH or L.AH_BUY_NEXT)
     end
     f.status:SetText(text)
 end
 ns.AuctionRestockUpdateUI = A.UpdateUI
+-- Keep accepted acquisition in the owning planner. Populate only the native
+-- buy search, using the inventory item's owner-resolved localized name.
+function A.PrepareLogisticsSearch(itemID)
+    local policy = _G.Flux and _G.Flux.RestockPolicy
+    if not policy then return false end
+    local legacy = A.IsLegacy()
+    local owner = legacy and _G.AuctionFrame or _G.AuctionHouseFrame
+    if not owner or not owner:IsShown() or InCombatLockdown and InCombatLockdown() then
+        return false, policy.Text.auctionUnavailable
+    end
+    if A.transaction or A.ownsQuote then return false, policy.Text.busy end
+    local itemClass = _G.FluxItemClass
+    local name = itemClass and itemClass.GetName and itemClass.GetName(itemID)
+    if not name or name == "" then
+        if itemClass and itemClass.RequestLoad then itemClass.RequestLoad(itemID) end
+        return false, policy.Text.itemLoading
+    end
+    if legacy then
+        local tab, search = _G.AuctionFrameTab1, _G.BrowseName
+        if not tab or not tab.Click or not search or not search.SetText then
+            return false, policy.Text.auctionUnavailable
+        end
+        tab:Click()
+        search:SetText(name)
+    else
+        local tab = owner.BuyTab
+        if not tab or not tab.displayMode or not owner.SetDisplayMode or not owner.SetSearchText then
+            return false, policy.Text.auctionUnavailable
+        end
+        owner:SetDisplayMode(tab.displayMode)
+        if owner:SetSearchText(name) == false then return false, policy.Text.auctionUnavailable end
+    end
+    return true, name
+end
+
 function A.Toggle()
     A.legacy = A.IsLegacy()
     local owner = A.legacy and _G.AuctionFrame or _G.AuctionHouseFrame

@@ -199,6 +199,11 @@ local function IsRetailPostDF()
 	return C and C.isRetail and C.isPostDF and true or false
 end
 
+local function SharesGamepadCollector()
+	local C = Flux.Client
+	return C and (C.isCamelot or C.isForever) and true or false
+end
+
 -- Post-DF MainActionBar is enableMouse=true at frameLevel 50. EnableMouse on
 -- that frame taints ActionBarController_ResetToDefault → SetAttribute. Empty the
 -- hit rect and pass clicks through instead so Flux (MEDIUM level 5) receives them.
@@ -267,7 +272,12 @@ local function NeutralizeStockFx(btn)
 		return
 	end
 	for i = 1, #STOCK_FX do
-		HideTexture(btn[STOCK_FX[i]])
+		local key = STOCK_FX[i]
+		-- The cast animation inherits the bar alpha. On Forever its OnHide
+		-- updates cooldowns, which must stay on the native execution path.
+		if key ~= "SpellCastAnimFrame" or not SharesGamepadCollector() then
+			HideTexture(btn[key])
+		end
 	end
 end
 
@@ -750,11 +760,6 @@ end
 -- detach sticks. ActionBarActionEventsFrame / ActionBarButtonUpdateFrame keep
 -- Blizzard's own eventsRegistered bookkeeping — pulling those desyncs it, and
 -- pure Blizzard code on an alpha-0 button cannot taint anything.
-local function SharesGamepadCollector()
-	local C = Flux.Client
-	return C and (C.isCamelot or C.isForever) and true or false
-end
-
 local function SilenceStockButton(btn)
 	if type(btn) ~= "table" then
 		return

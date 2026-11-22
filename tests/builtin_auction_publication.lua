@@ -10,7 +10,8 @@ end
 local function boot(legacy,pending,n)
     local env=setmetatable({}, {__index=_G});env._G=env
     local s={now=0,clock=0,events={},frames={},uses=false,pending=pending,quantity=2,rows=n or 1024,
-        pulses=0,marks=0,nativeReads=0,linkReads=0,allRecords={},maps={},history={},auctionOffset=0,link="item:117",errors=0}
+        pulses=0,marks=0,nativeReads=0,nativeCountReads=0,nativeQueries=0,linkReads=0,allRecords={},maps={},history={},
+        auctionOffset=0,link="item:117",errors=0,itemNames={}}
     local char={}
     local function charge(amount)s.clock=s.clock+(amount or .005)end
     local function instrument(map,staged)
@@ -60,12 +61,16 @@ local function boot(legacy,pending,n)
     env.GetTime=function()return s.now end
     env.debugprofilestop=function()return s.clock end
     env.time=function()return 1000 end
-    env.Enum={PlayerInteractionType={Auctioneer=1},AuctionStatus={Active=0}}
+    env.Enum={PlayerInteractionType={Auctioneer=1},AuctionStatus={Active=0},
+        AuctionHouseNotification={AuctionSold=4,AuctionExpired=5}}
+    env.ERR_AUCTION_SOLD_S="Un acheteur a été trouvé pour %s."
+    env.format=string.format
     env.CreateFrame=function()
         local f={};function f:SetScript(key,fn)self[key]=fn end
         s.frames[#s.frames+1]=f;return f
     end
     local function count()
+        s.nativeCountReads=s.nativeCountReads+1
         attachStage()
         local n=s.rows
         if s.onCount then local fn=s.onCount;s.onCount=nil;fn()end
@@ -78,19 +83,20 @@ local function boot(legacy,pending,n)
         return id,quantity
     end
     env.GetNumAuctionItems=count
-    env.GetOwnerAuctionItems=function()end
+    local function query()s.nativeQueries=s.nativeQueries+1 end
+    env.GetOwnerAuctionItems=query
     env.GetAuctionItemInfo=function(_,index)
         local id,q=read(index)
         if s.skip and index==s.skip then return nil end
         if s.legacyMissingID then id=nil end
-        return "Item",42,q,3,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,id
+        return s.itemNames[index] or "Item",42,q,3,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,s.legacySold==index and 1 or nil,id
     end
     env.GetAuctionItemLink=function(_,index)
         s.linkReads=s.linkReads+1
         if s.skip==index then return nil end
         return "item:"..(117+(index%7))
     end
-    env.C_AuctionHouse={GetNumOwnedAuctions=count,QueryOwnedAuctions=function()end,
+    env.C_AuctionHouse={GetNumOwnedAuctions=count,QueryOwnedAuctions=query,
         GetOwnedAuctionInfo=function(index)
             local id,q=read(index)
             if s.skip and index==s.skip then return nil end
@@ -105,9 +111,15 @@ local function boot(legacy,pending,n)
         local counts=0;for _,q in pairs(snap.counts)do counts=counts+q end
         check(total==counts,"notification observes completed coherent index/count maps")
     end}
-    inv.Store={UsesSyndicator=function()return s.uses end,EnsureCurrentCharacter=function()return char end,
+    local function character()return char end
+    inv.Store={UsesSyndicator=function()return s.uses end,EnsureCurrentCharacter=character,GetCurrentCharacter=character,
         MarkPending=function()s.marks=s.marks+1 end}
     local flux={Inventory=inv,Cap={hasAuctionHouse=true,hasLegacyAuctionHouse=legacy,hasModernAuctionHouse=not legacy},
+        Item={GetInfo=function(item)
+            if s.onItemInfo then s.onItemInfo() end
+            local itemID = type(item) == "string" and tonumber(item:match("^item:(%d+)")) or item
+            return s.itemNames[itemID]
+        end},
         Events={Register=function(event,fn)s.events[event]=fn end}}
     assert(loadfile(source,"t",env))("_FluxUI",{Flux=flux})
     assert(loadfile("Inventory/Index.lua","t",env))("_FluxUI",{Flux=flux})
@@ -160,6 +172,115 @@ local function boot(legacy,pending,n)
     function s:reset()self.history={};self.frame=nil end
     s.auctions.Start()
     return s
+end
+
+local function seedAuctions(state, rows)
+    state.saved.auctions = rows
+    for index, row in pairs(rows) do
+        local count = row.itemCount or row.count
+        state.snap.byIndex[index] = { itemID = row.itemID, count = count, link = row.itemLink or row.link }
+        state.snap.counts[row.itemID] = (state.snap.counts[row.itemID] or 0) + count
+    end
+    state.snap.generation = 1
+end
+
+local function checkSaleNotifications(client, legacy, pending)
+    local label = client..(pending and "/provider-pending" or "/standalone").." sale"
+    local state = boot(legacy, pending, 2)
+    local name = "Gemme [perdue]"
+    local first = { itemID = 118, itemName = legacy and not pending and name or nil, count = 2, link = "item:118:first", auctionID = not legacy and "1" or nil }
+    local sibling = { itemID = legacy and 119 or 118, itemCount = 5, itemLink = legacy and "item:119" or "item:118:other", auctionID = not legacy and 2 or nil }
+    state.itemNames[1], state.itemNames[2] = name, "Autre objet"
+    state.itemNames[118], state.itemNames[119] = name, "Autre objet"
+    local rows = { first, sibling }
+    seedAuctions(state, rows)
+    local mail = {{ itemID = 456, itemCount = 1 }}
+    state.saved.mail = mail
+    local function sale(auctionID)
+        if legacy and pending then
+            state:event("CHAT_MSG_SYSTEM", state.env.ERR_AUCTION_SOLD_S:format(name))
+        else
+            state:event("AUCTION_HOUSE_SHOW_FORMATTED_NOTIFICATION", state.env.Enum.AuctionHouseNotification.AuctionSold, name, not legacy and auctionID or nil)
+        end
+    end
+
+    if legacy then
+        state:event("CHAT_MSG_SYSTEM", "Quelqu'un a trouvé "..name..".")
+        sibling.itemName = name
+        sale()
+        sibling.itemName = nil
+    else
+        state:event("AUCTION_HOUSE_SHOW_FORMATTED_NOTIFICATION", state.env.Enum.AuctionHouseNotification.AuctionExpired, name, 1)
+        sale(nil)
+        sale(99)
+    end
+    state:drain()
+    check(state.pulses == 0 and state.snap.generation == 1 and #state.saved.auctions == 2,
+        label.." unrelated, invalid or ambiguous notices preserve published stock")
+    state.uses = true
+    sale(1)
+    check(state.pulses == 0 and state.marks == 0 and #state.saved.auctions == 2,
+        label.." former built-in provider ignores notices after handoff")
+    state.uses = false
+
+    sale(1)
+    state:drain()
+    check(#state.saved.auctions == 1 and state.saved.auctions[1].itemLink == sibling.itemLink and state.saved.auctions[1].itemCount == 5,
+        label.." closed notification removes only the sold saved listing")
+    local locations = state.inv.Find(sibling.itemID, { bags = false, auctions = true })
+    check(state.snap.generation == 2 and state.pulses == 1 and state.marks == 1 and #locations == 1
+        and locations[1].slot == 1 and locations[1].count == 5 and state.inv.Auctions.GetCount(sibling.itemID) == 5,
+        label.." saved correction refreshes counts, locations and listeners once")
+    check(state.saved.mail == mail and #mail == 1 and state.nativeReads == 0 and state.nativeCountReads == 0 and state.nativeQueries == 0,
+        label.." a closed sale reads no native auction list and creates no item mail")
+    sale(1)
+    state:drain()
+    check(state.pulses == 1 and state.marks == 1 and state.snap.generation == 2,
+        label.." repeat notice leaves the completed generation alone")
+
+    local sparse = boot(legacy, pending)
+    local other = { itemID = 120, itemCount = 3, itemName = "Autre", auctionID = 7 }
+    seedAuctions(sparse, { [1] = other, [4] = { itemID = 118, itemCount = 2, itemName = name, auctionID = "1" }, [8] = sibling })
+    sibling.itemName = "Article restant"
+    sparse:event("AUCTION_HOUSE_SHOW_FORMATTED_NOTIFICATION", 4, name, not legacy and 1 or nil)
+    check(#sparse.saved.auctions == 2 and sparse.saved.auctions[1] == other and sparse.saved.auctions[2] == sibling
+        and sparse.inv.Auctions.GetCount(120) == 3 and sparse.inv.Auctions.GetCount(sibling.itemID) == 5,
+        label.." sparse saved data keeps surviving rows in order")
+
+    if legacy then
+        local handedOff = boot(true, pending)
+        local saved = { { itemID = 118, itemCount = 2 } }
+        seedAuctions(handedOff, saved)
+        handedOff.itemNames[118] = name
+        handedOff.onItemInfo = function() handedOff.uses = true end
+        handedOff:event("AUCTION_HOUSE_SHOW_FORMATTED_NOTIFICATION", 4, name)
+        check(handedOff.saved.auctions == saved and handedOff.snap.generation == 1 and handedOff.pulses == 0,
+            label.." lookup handoff cannot overwrite the provider snapshot")
+
+        state:open()
+        state:drain()
+        check(#state.saved.auctions == 1, label.." reopening does not revive the sold row from stale owner data")
+        state.legacySold = 1
+        state:event("AUCTION_OWNED_LIST_UPDATE")
+        state:drain()
+        check(#state.saved.auctions == 1 and state.saved.auctions[1].itemID == 119 and state.inv.Auctions.GetCount(118) == 0,
+            label.." fresh owner update filters out the legacy sold-status row")
+    else
+        local inFlight = boot(false, pending, 70)
+        inFlight:open()
+        inFlight:drain()
+        inFlight:event("OWNED_AUCTIONS_UPDATED")
+        inFlight:step(.2)
+        inFlight:event("AUCTION_HOUSE_SHOW_FORMATTED_NOTIFICATION", 4, name, 1)
+        inFlight:drain()
+        check(inFlight.errors == 0 and #inFlight.saved.auctions == 69 and inFlight.saved.auctions[1].auctionID == 2,
+            label.." an in-progress owned-list scan cannot restore the sold listing")
+        inFlight.inactive = 1
+        inFlight:event("OWNED_AUCTIONS_UPDATED")
+        inFlight:drain()
+        check(#inFlight.saved.auctions == 69 and inFlight.saved.auctions[1].auctionID == 2,
+            label.." the next authoritative owner update agrees with sale removal")
+    end
 end
 
 for _,client in ipairs({"era","anniversary","forever","retail","mists"})do
@@ -280,6 +401,7 @@ for _,client in ipairs({"era","anniversary","forever","retail","mists"})do
                 label.." legacy fallback "..action.." retains only current ownership")
         end
     end
+    checkSaleNotifications(client, legacy, pending)
  end
 end
 print(string.format("builtin auction publication: %d checks, %d failures; unchangedFingerprintRows=%d maxUpdateWork=%d unchangedNewRecords=%d reentryErrors=%d publications=%d stagedRowWrites=%d",

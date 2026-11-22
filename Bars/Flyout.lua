@@ -114,6 +114,8 @@ function Flyout.Update(host)
 			if widget.UpdateFlyout then
 				pcall(widget.UpdateFlyout, widget)
 			end
+			local arrows = Flux.Flyout and Flux.Flyout.Arrow
+			if arrows then arrows.LayerNative(widget) end
 		end
 		ShowArrow(widget)
 	else

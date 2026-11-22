@@ -1,0 +1,228 @@
+{
+  "changeId": "RESTOCK-NATIVE-LIVE-RECEIPTS-20261122",
+  "date": "2026-11-22",
+  "checkpoint": {
+    "manifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-restock-native-validation-before-20261122T010747Z\\checkpoint.json",
+    "sourceFilesVerified": 30,
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a1ffc8-e3e4-7861-a366-cde5c05e7611\\fluxui-debuff-type-before-20261121T222839Z\\history.bundle",
+    "historyBundleSha256": "90bfc84da44ffd45c6617f5304a431e6ed808eadb90080ffefe4bc5d691b2909",
+    "branch": "main",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "settingsMetadataRows": 76,
+    "settingsContentsCopied": false,
+    "companionStages": [
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-native-receipts-20261122",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-native-replan-20261122",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-prepared-hud-20261122"
+    ]
+  },
+  "installedSources": {
+    "_FluxUI": {
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": {
+        "before": "0ed8240b9d2858b37df57031e1a9e64f6c3ba3d650e8b07f788afc0572301c75",
+        "after": "6573f387809d1c5f31024cff62b144e18c9dcf79df3e40e84d5c0b43115aff8c"
+      },
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": {
+        "before": "52ced7e60b44901914b0058fe28ec08d0f9d335f28b81eeb1eb266e10fb5c420",
+        "after": "52ced7e60b44901914b0058fe28ec08d0f9d335f28b81eeb1eb266e10fb5c420"
+      },
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua": {
+        "before": "af7c669fb222bb243f9abc50da26824074695dc862d23d492289923ae12dba95",
+        "after": "f4153d186585d281c8ac3061a84961219b61fc1fbb7b1a51b64ea4930b212134"
+      },
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": {
+        "before": "430ec2167cc36f19adfdb3d79bf452fd25e3c76f2a037445c1ae4e1cdddab7eb",
+        "after": "6082adf497c8e0e4dfbc7d82e02bd07e9643e3fa0ff1b46bd0168c53e966c9a2"
+      },
+      "tests/auction_restock_followup_logistics.lua": {
+        "before": "331e1bb54d737be185c63656eaaee64173e7554293f6a0620fa3e08d53c327b8",
+        "after": "639228cb0d4cd93fbd7cf653bcc92fa4f84786a82a4bb87816bbce381c5ae596"
+      },
+      "tests/auction_restock_followup_ui.lua": {
+        "before": "3d7eb6520672232e283afdb90c58dc98f15aa9ca76a281006c9057f59c0d45a5",
+        "after": "565349a5f90fc063c16760d7e82479ce12dc6719bfa09623965102b10da1a0fb"
+      }
+    },
+    "FluxLogistics": {
+      "FluxCraft/Clients.lua": {
+        "before": "f631eca800a88da8594d15008e56fee569b9cc423dc34672c1567ea61ebe9b74",
+        "after": "fa2b6ab454cc027a14b2e7c718b28fef04cb7d6a7f96f24fe72a4d2ab64435a2"
+      },
+      "FluxCraft/Execution.lua": {
+        "before": "6c2603c097ba1e5fc81d47bcf96e6f69a9f9ac11120625685e7083fc2d49635b",
+        "after": "cf730ef563e30e22c185ff96073b662b75f26903e96825e2a0f167779a262ecb"
+      },
+      "FluxCraft/Queue.lua": {
+        "before": "3e434d3e5e032006ae08be68f752495240178f8a3024df56e78f491ba8cad1b4",
+        "after": "f9b33d48a7a5d3f78431cd7a74185b4f8597146df8c09cf8223229022402cb64"
+      },
+      "FluxCraft/UI.lua": {
+        "before": "65b87352506fac0d08a2862214cc33370ec19ad307fa9a5fb004c304a1e36bca",
+        "after": "9f9edc508509782f6f010b8aa84afa698d576072f4514bfd95220a35b853d231"
+      },
+      "FluxCraft/Locale.lua": {
+        "before": "a3df9b12fd9edd44e11d2b34b30fb5ffea62a4ca5ad176598a300a0845ff1a05",
+        "after": "3804a037c1e79872b7423ac8bd9d7a7f9a7a32efcd4867f0fb41d3f5005a3bb8"
+      },
+      "FluxCraft/Logistics.lua": {
+        "before": "f8d97e0d10d5fa8d5de1ec254ba492d3633ea8016ec50684922491536701cf79",
+        "after": "d9914d61ad3b8ee86cf5d4c8d3b380db7ef19746d35210ecb2b6b2fbfd4290e5"
+      },
+      "FluxLogistics.toc": {
+        "before": "657e77d4168e70d8b1afdf8f8d798165b61bdd676c0510acd294a8af9e942101",
+        "after": "657e77d4168e70d8b1afdf8f8d798165b61bdd676c0510acd294a8af9e942101"
+      },
+      "Tests/clients_test.lua": {
+        "before": "443fa8f90dac91eb1a61aaff1933b0f898332a5729778a34365c07f736cb1c59",
+        "after": "8a7f86e8f41df1f3809763dfc323a0e969449245b1a5e4b585e35db63f68cd8c"
+      },
+      "Tests/execution_test.lua": {
+        "before": "7b633a78a7b61cee40be35024b7971c10dabe128fc9e4e84f4812c48b2bd3d4a",
+        "after": "b03693eea97a44e822f681b58421c7086f347a763ceb618f0b923a79797efc68"
+      },
+      "Tests/workspace_test.lua": {
+        "before": "2f8a61184e1b5cbe253cb79ba9d7b3e63965a55d7472f42584eb188f6cadb25f",
+        "after": "ff7d558b71d20c26ac6fedd14f1145c2df1bf337f589eb8d0e53125c710ca3ee"
+      },
+      "Tests/auction_shopping_test.lua": {
+        "before": "c3b78fe739d1aa111d18ebc230d0a196381a97cfc4e0247ed3f7c22aa3b58c8b",
+        "after": "3d03f6e4cc1490f0c223e83c3061b8dbd24f70c6f5fc15b33079dcd775bb0a67"
+      }
+    },
+    "verifiedClientFolders": [
+      "_retail_",
+      "_forever_",
+      "_classic_",
+      "_classic_era_",
+      "_anniversary_"
+    ],
+    "verifiedRuntimeCopies": 55
+  },
+  "liveBaseline": {
+    "client": "Forever 1.60.1.71037",
+    "timeZone": "Europe/Copenhagen",
+    "backgroundInputRecord": [
+      {
+        "UTC": "2026-11-22T01:10:18.7734590Z",
+        "PID": 35620,
+        "X": 357,
+        "Y": 599,
+        "Button": "Left",
+        "Purpose": "Baseline Flowcraft Process",
+        "ForegroundUnchanged": true,
+        "CursorUnchanged": true,
+        "GlobalInput": false
+      },
+      {
+        "UTC": "2026-11-22T01:10:44.2538028Z",
+        "PID": 35620,
+        "X": 622,
+        "Y": 625,
+        "Button": "Left",
+        "Purpose": "Baseline Blizzard Create for prepared 25-bolt queue",
+        "ForegroundUnchanged": true,
+        "CursorUnchanged": true,
+        "GlobalInput": false
+      }
+    ],
+    "captures": {
+      "restock-current": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-restock-native-validation-before-20261122T010747Z\\forever-options-restock-current.png",
+        "sha256": "4200ce7308ed712a4c6bcaa96eb95505b506b25baea5c58418a31a26b7bca855"
+      },
+      "process-baseline": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-restock-native-validation-before-20261122T010747Z\\forever-options-process-baseline.png",
+        "sha256": "cb1b4ed4239110aff00ba0990f033f87e84eaac40bf0802ff2e6601278368282"
+      },
+      "create-baseline": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-restock-native-validation-before-20261122T010747Z\\forever-options-create-baseline.png",
+        "sha256": "66a381510b14fe991b2bf7bcf09c0e204ca2b734b0f82152662b13b4482419f9"
+      },
+      "bolt-progress": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-restock-native-validation-before-20261122T010747Z\\forever-options-bolt-progress.png",
+        "sha256": "ff608ea4fb232dd26880978afeda6eeab0f526a5c7dc6ce8c93dc4715f1334cb"
+      },
+      "queued-result-baseline": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-restock-native-validation-before-20261122T010747Z\\forever-options-queued-result-baseline.png",
+        "sha256": "2d1bbb50123882aa3bf0e9623ee71ace1bbe4e92271ff117fc73dbfb00ed4d34"
+      }
+    },
+    "observations": [
+      {
+        "time": "02:10:19",
+        "fact": "Flowcraft Process opened the native recipe with an editable amount of 25 and visible stock Create."
+      },
+      {
+        "time": "02:10:44",
+        "fact": "Direct stock Create started Bolt of Mageweave and the queue UI reported In progress."
+      },
+      {
+        "time": "02:11:37",
+        "fact": "Six real create messages were visible. Blizzard showed 19 operations in its remaining quantity field."
+      },
+      {
+        "time": "02:14:36",
+        "fact": "The workbench showed Check result with no matching output. The bolt and bag recipes showed 13 and two craftable respectively."
+      }
+    ],
+    "derivedObservation": "The before-and-after native counts are consistent with 12 bolts from the 25-operation batch. The direct output evidence includes the six visible chat receipts.",
+    "userEvidence": "The user supplied an independent image of the same Check result state.",
+    "inputReview": "Automatic review rejected a later diagnostic chat open and synthetic hover under the repository desktop input constraint. Those actions were not sent."
+  },
+  "nativeReferences": {
+    "craftingPage": "https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_Professions/Blizzard_ProfessionsCrafting.lua",
+    "eventsAndRecasts": "https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua"
+  },
+  "candidateBehavior": {
+    "receipt": "The exact accepted Create, matching transaction and native recast progress can qualify deterministic receipts using equal observed output and reagent consumption.",
+    "partial": "Qualified partial output advances only the proved operations and leaves the rest open.",
+    "replan": "An explicit Replan from bags can replace an eligible uncertain prerequisite order using current carried materials. The previous order and settled receipts stay linked in history.",
+    "hud": "A verified prepared amount for either owner presents a passive instruction to click Blizzard Create.",
+    "flows": "Forever queue Prepare preserves stock Create. The Flowcraft window can compact beside the native pane to its supported 330-unit width when needed."
+  },
+  "desktopValidation": {
+    "ownerSuitesPassed": 43,
+    "companionSuitesPassed": 16,
+    "companionFocusedLua51SuitesPassed": 6,
+    "ownerCraftChecks": 3279,
+    "ownerCraftProfiles": 20,
+    "ownerBridgeChecks": 178,
+    "ownerHudChecks": 63443,
+    "renderCheckCountEach": 1020,
+    "renderPairs": 15,
+    "identicalRenderCounterRows": 45,
+    "longNativeBatchReplay": {
+      "operations": 25,
+      "simulatedRepeatSeconds": 100,
+      "craftResultEvents": 0,
+      "credited": 25
+    },
+    "partialNativeBatchReplay": {
+      "operations": 25,
+      "credited": 12,
+      "remaining": 13
+    },
+    "existingJobReplanReplay": {
+      "carriedBolts": 12,
+      "carriedCloth": 65,
+      "plannedBolts": 13,
+      "plannedBags": 5,
+      "preservesHistoricalReceipt": true
+    }
+  },
+  "liveCandidate": {
+    "status": "Pending reload",
+    "requestedAction": "Manually reload in Forever and reopen Tailoring. The game remains in the background for verification.",
+    "remaining": [
+      "Verify the current queued order offers Replan from bags",
+      "Finish the remaining bolts and bags in the reloaded client",
+      "Verify the standalone FluxUI craft with a ready standalone job"
+    ],
+    "lastReadOnlyCheck": {
+      "localTime": "2026-11-22T02:29:41+01:00",
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-restock-native-validation-before-20261122T010747Z\\forever-options-after-install-reload-check.png",
+      "sha256": "09466b6abc19eba1e4a19fc72f7fdf084eddaf83556e2753b270061fb70ee59b",
+      "observation": "Forever still displayed the pre-update Review control and Check result. No reload of the installed repair was observed."
+    }
+  }
+}

@@ -111,9 +111,9 @@ for _, client in ipairs({ "Retail", "Forever", "MoP", "Era", "Anniversary" }) do
             "pure readiness allows opening the saved profession without actions or task mutation")
         local function click()
             st.hardware = true
-            local state, count = F.CraftClick(task)
+            local state, count, pending = F.CraftClick(task)
             st.hardware = false
-            return state, count
+            return state, count, pending
         end
         local function ownProfession()
             st.profName, st.profInfo = "First Aid", { professionID = 129 }
@@ -202,6 +202,11 @@ for _, client in ipairs({ "Retail", "Forever", "MoP", "Era", "Anniversary" }) do
             check(state == "crafting" and st.lastCraftAction.args[1] == 2, "legacy index is re-resolved after list reorder")
             st.legacyRows[2].id = 102
             check(click() == "unavailable", "same-name recipe with another output is rejected")
+            st.legacyRows[2].id = 100
+            env.TradeSkillFrame = { IsShown = function() return false end }
+            before = #actions
+            check(click() == "opening" and #actions == before + 1 and st.lastCraftAction.kind == "cast",
+                "a hidden legacy window opens its saved skill instead of using its cached row")
         else
             st.output = 101
             check(click() == "unavailable", "another live output SKU is rejected")
@@ -230,9 +235,285 @@ for _, client in ipairs({ "Retail", "Forever", "MoP", "Era", "Anniversary" }) do
             st.profInfo, st.syncOpen, st.openForeign = { professionID = 171 }, true, true
             before = #actions
             check(click() == "unavailable" and #actions == before + 1, "foreign view appearing during open cannot reach craft dispatch")
+
+            st.foreign, st.syncOpen, st.openForeign, st.qualityIDs = nil, nil, nil, nil
+            local frameShown, recipesShown, baseID = false, false, 129
+            local professionFrame = {
+                recipesTabID = 1,
+                IsShown = function() return frameShown end,
+                IsVisible = function() return frameShown end,
+                CraftingPage = {
+                    IsShown = function() return recipesShown end,
+                    IsVisible = function() return frameShown and recipesShown end,
+                },
+            }
+            env.ProfessionsFrame = professionFrame
+            env.C_TradeSkillUI.GetBaseProfessionInfo = function() return { professionID = baseID } end
+            env.OpenProfessionUIToSkillLine = function(id)
+                native("show-profession", id)
+                check(id == 129, "native presentation takes the owned profession skill line")
+            end
+            ownProfession()
+            for _, showFrameOnly in ipairs({ false, true }) do
+                frameShown, recipesShown = showFrameOnly, not showFrameOnly
+                before = #actions
+                check(F.CanCraft(task) and #actions == before, "cached recipe readiness can advertise reopening without showing a panel")
+                check(click() == "opening" and #actions == before + 1 and actions[before + 1].kind == "show-profession",
+                    "a hidden frame or recipes page reopens the already active base profession without crafting")
+                frameShown, recipesShown = true, true
+                check(F.CanCraft(task) and #actions == before + 1, "the restored crafting page becomes ready without submitting a craft")
+                check(click() == "crafting" and #actions == before + 2,
+                    "a later physical press crafts only after the matching page is visible")
+            end
+
+            if client == "Forever" then
+                local bookShown = true
+                frameShown, recipesShown = true, false
+                professionFrame.recipesTabID = nil
+                professionFrame.BookPage = { IsShown = function() return bookShown end }
+                local matchingTab = { skillLine = 129, IsShown = function() return true end }
+                function matchingTab:OnClick()
+                    check(self == matchingTab and bookShown and not recipesShown, "native tab receives its current Book Page context")
+                    native("native-recipes-tab", self.skillLine)
+                    bookShown, recipesShown = false, true
+                end
+                professionFrame.rightProfessionTabs = {
+                    { skillLine = 171, IsShown = function() return true end, OnClick = function() error("foreign tab") end },
+                    { skillLine = 129, IsShown = function() return false end, OnClick = function() error("hidden tab") end },
+                    matchingTab,
+                }
+                before = #actions
+                check(F.CanCraft(task) and #actions == before, "visible Forever Book Page advertises its matching native action")
+                check(click() == "crafting" and #actions == before + 2 and actions[before + 1].kind == "native-recipes-tab"
+                    and actions[before + 2].kind == "craft" and recipesShown and not bookShown,
+                    "the matching native tab opens Recipes without reopening the accepted engine skill")
+                professionFrame.recipesTabID, professionFrame.BookPage, professionFrame.rightProfessionTabs = 1, nil, nil
+            end
+
+            env.ProfessionsFrame = nil
+            env.ProfessionsFrame_LoadUI = function()
+                native("load-professions")
+                env.ProfessionsFrame = professionFrame
+                return true
+            end
+            frameShown, recipesShown, baseID, st.profInfo = false, false, 0, nil
+            before = #actions
+            check(F.CanCraft(task) and #actions == before, "cold readiness never preloads the profession UI")
+            check(click() == "opening" and #actions == before + 2 and actions[before + 1].kind == "load-professions"
+                and actions[before + 2].kind == "open", "the physical press preloads a cold UI before opening the native skill line")
+
+            local recipeProfession
+            env.C_TradeSkillUI.GetProfessionInfoByRecipeID = function(id)
+                check(id == 77, "profession recovery looks up only the exact saved recipe")
+                return recipeProfession
+            end
+            for _, oldSkillLine in ipairs({ 0, 444, 171 }) do
+                task.skillLineID = oldSkillLine
+                recipeProfession = oldSkillLine == 0 and { professionID = 129, parentProfessionID = 0 }
+                    or { professionID = 444, parentProfessionID = 129 }
+                if oldSkillLine == 171 then
+                    frameShown, recipesShown, baseID, st.profInfo = true, true, 171, { professionID = 171 }
+                end
+                before = #actions
+                check(F.CanCraft(task) and #actions == before, "the exact recipe can recover an older skill-line identity without opening")
+                check(click() == "opening" and #actions == before + 1 and actions[before + 1].kind == "open"
+                    and actions[before + 1].args[1] == 129, "an older saved skill line opens the recovered base profession")
+                frameShown, recipesShown, baseID = true, true, 129
+                st.profInfo = { professionID = 444, parentProfessionID = 129 }
+                check(click() == "crafting" and #actions == before + 2,
+                    "the recovered base also verifies the opened recipe for a subsequent craft")
+                frameShown, recipesShown, baseID, st.profInfo = false, false, 0, nil
+            end
+            task.skillLineID = 129
+
+            before = #actions
+            st.ready, baseID = false, 129
+            check(click() == "opening" and #actions == before + 1 and st.lastCraftAction.kind == "open",
+                "the opener requests a new session when a retained base has no ready crafting data")
+            st.ready, baseID = nil, 0
+
+            before = #actions
+            st.changing = true
+            check(not F.CanCraft(task) and click() == "unavailable" and #actions == before,
+                "a changing native source does not start a competing open or craft")
+            st.changing = false
+            check(F.CanCraft(task) and #actions == before, "a settled source restores readiness without issuing native actions")
+            check(click() == "opening" and #actions == before + 1 and actions[before + 1].kind == "open",
+                "a new press opens the correct skill after the prior source settles")
+
+            before = #actions
+            st.opened = false
+            check(click() == "unavailable" and #actions == before + 1 and actions[before + 1].kind == "open",
+                "a direct native refusal leaves the task for a later attempt without crafting")
+            st.opened = nil
+
+            before = #actions
+            st.mailboxOpen, st.bagStorm = true, false
+            check(F.CanCraft(task) and click() == "opening" and #actions == before + 1,
+                "settled carried inventory lets the player open the profession while mail remains open")
+            before = #actions
+            st.bagStorm = true
+            check(not F.CanCraft(task) and click() == "unavailable" and #actions == before,
+                "inventory storm prevents the otherwise eligible profession open")
+            ownProfession()
+            frameShown, recipesShown, baseID = true, true, 129
+            check(not F.CanCraft(task) and click() == "unavailable" and #actions == before,
+                "inventory storm also prevents a craft in the visible owned profession")
+            if client == "Forever" then
+                st.flux.Client = { isForever = true }
+                st.bagStorm, st.noInfo = false, true
+                task.operations, st.bags[200], st.bags[201] = 7, 10, 3
+                local selected, quantity, maximum, writes = 88, 1, 8, 0
+                local single, delayed, disabled
+                local page = professionFrame.CraftingPage
+                page.SchematicForm = { GetRecipeInfo = function()
+                    return { recipeID = selected, canCreateMultiple = not single }
+                end }
+                page.GetCraftableCount = function() return maximum end
+                page.CreateButton = { IsEnabled = function() return true end }
+                page.CreateMultipleInputBox = {
+                    IsEnabled = function() return not disabled end,
+                    GetValue = function() return quantity end,
+                    SetValue = function(_, value)
+                        check(selected == 77, "only the exact recipe can receive the native batch")
+                        quantity, writes = value, writes + 1
+                    end,
+                }
+                env.C_TradeSkillUI.OpenRecipe = function(id)
+                    native("native-recipe", id)
+                    check(id == 77, "native handoff selects exactly the planned recipe")
+                    if not delayed then selected = id end
+                end
+                before = #actions
+                check(F.CanCraft(task) and #actions == before,
+                    "a verified plan can prepare a native recipe even before the selected recipe data loads")
+                state, count = click()
+                check(state == "native_click" and count == 3 and #actions == before + 1
+                    and st.lastCraftAction.kind == "native-recipe" and selected == 77 and quantity == 3 and writes == 1,
+                    "the Forever HUD fills the entire carried batch without invoking blocked CraftRecipe")
+                check(click() == "native_click" and #actions == before + 1 and writes == 1,
+                    "an already prepared recipe avoids a redundant selection and quantity write")
+                quantity, maximum = 8, 2
+                state, count = click()
+                check(state == "native_click" and count == 2 and quantity == 2,
+                    "the native cap can lower the planned batch and replace a previously larger input")
+                single, maximum = true, 8
+                state, count = click()
+                check(state == "native_click" and count == 1 and quantity == 1,
+                    "an exact native recipe that disallows multiple crafts prepares one operation")
+                disabled = true
+                local canSingle, singleCount = F.CanCraft(task)
+                local currentWrites = writes
+                state, count = click()
+                check(canSingle and singleCount == 1 and state == "native_click" and count == 1 and writes == currentWrites,
+                    "the single-craft hint matches Blizzard's ready Create when its quantity field is disabled")
+                single, disabled = false, false
+                selected = 88
+                F.RevealCompanionNativeCraft = function(id, operations)
+                    check(operations == 3, "the companion receives craft operations instead of output units")
+                    native("companion-reveal", id)
+                    selected = id
+                    return true
+                end
+                check(click() == "native_click" and #actions == before + 2 and st.lastCraftAction.kind == "companion-reveal"
+                    and selected == 77 and quantity == 3, "the companion can reveal and prepare the owned batch")
+                selected, quantity = 88, 6
+                F.RevealCompanionNativeCraft = function() return false, "busy" end
+                check(click() == "unavailable" and #actions == before + 2 and selected == 88 and quantity == 6,
+                    "an armed companion preserves its separate recipe and amount")
+                F.RevealCompanionNativeCraft = nil
+                delayed = true
+                local pending
+                state, count, pending = click()
+                check(state == "native_click" and count == 3 and pending == page and selected == 88
+                    and quantity == 6 and #actions == before + 3,
+                    "a delayed native selection leaves the unrelated recipe field untouched")
+                env.C_TradeSkillUI.GetRecipeInfo = function()
+                    return { recipeID = 77, name = "Bandage", learned = true }
+                end
+                page.SelectRecipe = function(_, info, keepSearch)
+                    check(st.hardware and info.recipeID == 77 and keepSearch == true,
+                        "the exact learned recipe can open while the native search hides its row")
+                    selected = info.recipeID
+                end
+                state, count = click()
+                check(state == "native_click" and count == 3 and selected == 77 and quantity == 3 and #actions == before + 3,
+                    "direct native form selection prepares the batch without calling Craft or clearing filters")
+                env.C_TradeSkillUI.GetRemainingRecasts = function() return 2 end
+                check(not F.CanCraft(task) and click() == "crafting" and #actions == before + 3,
+                    "the native recast counter blocks another preparation between crafts")
+                env.C_TradeSkillUI.GetRemainingRecasts = function() return 0 end
+                st.noInfo = nil
+                env.Enum.SpellBookSpellBank = { Player = 0 }
+                env.GetProfessions = function() return nil, nil, 4 end
+                env.GetProfessionInfo = function(index)
+                    check(index == 4, "the owned profession roster may have empty earlier slots")
+                    return "First Aid", nil, nil, nil, 2, 15, 129
+                end
+                env.C_SpellBook = { GetSpellBookItemInfo = function(slot, bank)
+                    check(slot == 16 and bank == 0, "professional opening reads the native player spellbook slot")
+                    return { spellID = 45542 }
+                end }
+                env.C_TradeSkillUI.CanTradeSkillShowCraftingUI = function(id) return id == 45542 end
+                check(F.GetProfessionSpell(129) == 45542 and not F.GetProfessionSpell(171),
+                    "Forever resolves the actual owned opener spell independently of the skill line and recipe IDs")
+                env.C_TradeSkillUI.CanTradeSkillShowCraftingUI = function() return false end
+                check(not F.GetProfessionSpell(129), "an entry the client cannot use to show crafting never becomes a secure action")
+            end
         end
         check(st.frames == frames and #st.timers == timers and #st.errors == 0,
             "exact crafting adds no background execution or Lua errors")
     end end
+end
+
+do
+    local env = setmetatable({}, { __index = _G })
+    local state = { combat = false, spell = 45542, visible = true, hovered = true }
+    local UIParent = { GetEffectiveScale = function() return 1 end, GetLeft = function() return 0 end, GetBottom = function() return 0 end }
+    local owner = { GetEffectiveScale = function() return 1 end, IsVisible = function() return state.visible end,
+        IsMouseOver = function() return state.hovered end, GetFrameStrata = function() return "MEDIUM" end,
+        GetFrameLevel = function() return 100 end, GetRect = function() return 40, 80, 44, 44 end,
+        GetScript = function() end, HookScript = function(self, key, callback) self[key] = callback end }
+    local button
+    env.UIParent, env.InCombatLockdown = UIParent, function() return state.combat end
+    env.C_Timer = { After = function(_, callback) callback() end }
+    env.CreateFrame = function(kind, _, parent, template)
+        if kind == "Frame" then return { RegisterEvent = function() end, SetScript = function() end } end
+        check(kind == "Button" and parent == UIParent and template:find("SecureActionButtonTemplate", 1, true)
+            and template:find("SecureHandlerStateTemplate", 1, true), "profession proxy is a separate secure frame")
+        button = { attrs = {}, SetAttribute = function(self, key, value)
+                check(not state.combat, "no insecure spell writes occur in combat")
+                self.attrs[key] = value
+            end,
+            Show = function(self) self.shown = true end, Hide = function(self) self.shown = false end,
+            RegisterForClicks = function(self, clicks) self.clicks = clicks end,
+            IsShown = function(self) return self.shown end, IsMouseOver = function() return state.hovered end,
+            SetFrameStrata = function() end, SetFrameLevel = function() end, ClearAllPoints = function() end,
+            SetPoint = function(self, _, relative) check(relative == UIParent, "secure proxy never anchors to the ordinary HUD") end,
+            SetSize = function() end }
+        return button
+    end
+    env.RegisterStateDriver = function(frame, attribute, expression)
+        check(frame == button and attribute == "fluxcombat" and expression == "[combat] locked; ready",
+            "the combat driver owns retirement of the protected click region")
+    end
+    local ns = { Flux = {} }
+    assert(loadfile(root .. "/Core/SecureClickProxy.lua", "t", env))("_FluxUI", ns)
+    local proxy = ns.Flux.SecureClickProxy
+    proxy.Attach(owner, { spell = function() return state.spell end, enabled = function() return state.visible end,
+        clicks = "LeftButtonUp" })
+    owner.OnEnter()
+    check(button.shown and button.attrs.type == "spell" and button.attrs.spell == 45542
+        and button.clicks == "LeftButtonUp", "only the real release click has the exact spell action")
+    state.spell = 3101; proxy.Refresh(owner)
+    check(button.shown and button.attrs.spell == 3101, "an armed proxy updates to the newly displayed profession")
+    state.spell = nil; proxy.Refresh(owner)
+    check(not button.shown, "leaving the opening stage retires the old secure hit region")
+    state.spell = 45542; proxy.Refresh(owner)
+    state.combat = true
+    local driver = assert(load("return function(self, newstate) " .. button.attrs["_onstate-fluxcombat"] .. " end"))()
+    driver(button, "locked")
+    proxy.Refresh(owner)
+    check(not button.shown, "combat hides the secure opener without another player interaction")
 end
 print(("Auction restock follow-up craft: %d checks PASS; %d profiles; native open/craft/input/taint NOT RUN"):format(checks, profiles))

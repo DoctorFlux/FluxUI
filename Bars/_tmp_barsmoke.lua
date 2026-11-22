@@ -3479,7 +3479,7 @@ end
 has(overlaySrc, "Do not tear down the live fill to show the reticle.", "PlayReticle does not kill a live channel fill")
 do
 	local i = overlaySrc:find("function Overlay.PlayReticle", 1, true)
-	local j = overlaySrc:find("local function StopReticleHighlight", 1, true)
+	local j = i and overlaySrc:find("\nlocal function ", i, true)
 	local body = (i and j and overlaySrc:sub(i, j - 1)) or ""
 	if not body:find("ApplyChecked(widget, false)", 1, true) then
 		failures[#failures + 1] = "PlayReticle must hide gold checked under the AOE reticle"
@@ -4959,11 +4959,9 @@ has(flyPopup, "matchAnchorScale ~= false", "flyout scale matches the host by def
 has(flyPopup, "opts.anchorFrame", "flyout Place can pin to an anchor frame")
 has(flySecure, "flyoutPlacePoint", "opener honors custom place points")
 has(widgetSrc, "function widget:UpdateFlyout()", "Extra widgets own native SpellFlyout chrome")
-has(widgetSrc, "LayerNativeFlyoutArrow", "native Extra flyout arrows sit above the slot ring")
-has(widgetSrc, "NATIVE_ARROW_DRAW", "native Extra flyout arrows use button OVERLAY, not UIParent")
-if widgetSrc:find("ConfigureLayer", 1, true) then
-	failures[#failures + 1] = "native Extra SpellFlyout arrows must not use custom HIGH-strata ConfigureLayer"
-end
+has(widgetSrc, "arrows.LayerNative(self)", "native Extra arrows use the shared glyph layer")
+has(read("Flyout.lua"), "arrows.LayerNative(widget)", "native strip arrows use the shared glyph layer")
+has(flyArrow, "frame:EnableMouse(false)", "raised glyph frame does not intercept clicks")
 has(ebsHostButtons, "Flyout.BindHost", "ExtraButtons BindHost")
 has(hosts, "Flyout.BindHost", "strip Hosts BindHost")
 local minimapButtonsSrc = read("../Minimap/FluxMinimapButtons.lua")

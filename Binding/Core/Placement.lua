@@ -313,8 +313,8 @@ local function EnsureSlotLocate()
     local cache = {}
     if State and State.GetSecondarySlot and State.GetTertiarySlot and State.GetMainSlot then
         local cols = (CM and CM.TOTAL_COLUMNS) or 19
-        -- Register cols 13–19 first. GetMainSlot(1,2)=13 collides with GetMainSlot(13);
-        -- first-writer-wins must prefer the dedicated page-2 columns.
+        -- Prefer the dedicated fixed-column rows when a paged main shares
+        -- their storage, such as page four mains and fixed Ctrl slots.
         local order = {}
         for col = 13, cols do order[#order + 1] = col end
         for col = 1, math.min(12, cols) do order[#order + 1] = col end

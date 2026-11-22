@@ -722,7 +722,9 @@ function Store.HydrateSnapshots()
 		snap.counts = counts
 		snap.generation = (snap.generation or 0) + 1
 	end
-	FillSnapFromList(Inv.snapshots.mail, char.mail)
+	local mail = Inv.snapshots.mail
+	FillSnapFromList(mail, char.mail)
+	if mail then mail.observedSource = char.mailInboxObserved == true and "builtin" or nil end
 	FillSnapFromList(Inv.snapshots.auctions, char.auctions)
 	if char.void then
 		FillSnapFromByBag(Inv.snapshots.void, char.void)

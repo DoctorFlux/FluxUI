@@ -6,6 +6,21 @@ local fixture=assert(load(prefix..'\nreturn fixture','@unit-contour-fixture','t'
 local checks=0
 local function check(v,m)checks=checks+1;assert(v,m)end
 local function near(a,b)return math.abs(a-b)<1e-7 end
+do
+ local j=fixture()
+ local root,rect={},{0,0,10,10}
+ local horizontal,vertical,stem={},{},{}
+ local header={root=root,item={texture=horizontal,rect=rect,record={key='Top'}}}
+ local divider={root=root,item={texture=vertical,rect=rect,record={key='Left'}}}
+ local underlay={texture=stem,roundFill=true}
+ local op={root=root,rect=rect,bits=11,members={[{unitOwner='target'}]=true},
+  triangles={{arm=1,texture=horizontal},{arm=4,texture=vertical},underlay}}
+ local blocked={}
+ local owners=j:_PrepareUnitBranchFallbacks({op},{[horizontal]=header,[vertical]=divider},blocked,{})[op]
+ check(not blocked[root] and op._unitBranchPrepared,'rounded underlay leaves both straight-arm continuations eligible')
+ check(owners[horizontal][1].plan==divider and owners[vertical][1].plan==header,'each hidden arm uses the actual perpendicular owner')
+ check(owners[stem]==nil and op.triangles[3]==underlay,'rounded underlay stays in base paint without acquiring a branch owner')
+end
 for _,style in ipairs({1,2})do for _,scale in ipairs({.75,1,1.25})do for _,unit in ipairs({'target','focus','party1','pet','targettarget'})do
  local j,new,piece,flush,objects,lock,choose,queued,e=fixture();choose(style,'class')
  local root=new(e.UIParent);root.unit=unit;root.scale=scale

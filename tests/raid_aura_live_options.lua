@@ -112,6 +112,7 @@ local function resizingCase(client, mutation)
     tab.args.auraIconScale.set(nil, 0.5)
     check(frame._fluxHealerAuras and profile.auraIconScale == 0.5,
         client .. " actual option setter reaches first live aura setup")
+    check(previewCount() == 1, client .. " one committed option edit refreshes the world preview once")
     local small = snapshot()
     e.restricted = true -- production refresh must not inspect native descendants
     local control = tab.args.auraIconScale
@@ -184,7 +185,7 @@ for _, client in ipairs({ "live", "forever", "classic", "classic_era", "classic_
     e.restricted = false -- width defaults change; native access is available out of combat
     tab.args.resetSizes.func()
     for key,value in pairs(preset) do check(profile[key] == value, client .. " the size-only button restores " .. key) end
-    check(profile.auraTimersUnderMinute==true,client.." reset restores screenshot timer visibility")
+    check(profile.auraTimersUnderMinute==nil,client.." size reset leaves the shared timer setting alone")
     check(frame:GetWidth() == 69 and frame:GetHeight() == 42 and frame.powerBarUsedHeight == 8
         and near(snapshot().width, 10.01) and near(snapshot().height, 20.02),
         client .. " size-only reset reaches the screenshot's actual unit and aura geometry")
@@ -267,12 +268,10 @@ do
  local formatter=frame._fluxNativeAuraButtons[1].durationOptions.textFormatter
  check(formatter:FormatNumber(59)=="59" and formatter:FormatNumber(60)=="1m" and formatter:FormatNumber(3600)=="1h","default timers retain seconds/minutes/hours")
  e.restricted=true
- tab.args.auraTimersUnderMinute.set(nil,true)
- check(profile.auraTimersUnderMinute and formatter:FormatNumber(59)=="59" and formatter:FormatNumber(60)=="" and formatter:FormatNumber(61)=="" and formatter:FormatNumber(7200)=="",
-  "under-minute toggle blanks exactly60 and above without changing the native binding")
- check(formatted==1 and frame._fluxNativeAuraButtons[1].Cooldown.drawSwipe,"threshold changes reuse one formatter and retain cooldown swipes")
- tab.args.auraTimersUnderMinute.set(nil,false)
- check(formatter:FormatNumber(90)=="1m","disabling the threshold restores long-duration numbers")
+ profile.auraTimersUnderMinute=true
+ e.FluxOptions:RefreshRaidFrameScopedModules()
+ check(tab.args.auraTimersUnderMinute==nil and formatter:FormatNumber(90)=="1m","an old raid-only value cannot override the shared setting")
+ check(formatted==1 and frame._fluxNativeAuraButtons[1].Cooldown.drawSwipe,"refreshes reuse one formatter and retain cooldown swipes")
  tab.args.auraDurationFontScale.set(nil,.5)
  check(font.size==5 and label.textScale==fit and created==1,"duration slider shrinks existing native text by updating only its public font")
  tab.args.auraDurationFontScale.set(nil,2)

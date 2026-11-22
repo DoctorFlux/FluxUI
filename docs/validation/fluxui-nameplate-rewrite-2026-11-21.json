@@ -1,0 +1,427 @@
+{
+  "id": "FLUXUI-NAMEPLATE-REWRITE-20261121",
+  "recordedUtc": "2026-11-21T21:44:24.987091+00:00",
+  "checkpoint": {
+    "name": "fluxui-nameplate-rewrite-before-20261121T213038Z",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "sources": 3443,
+    "settingsMetadata": 84,
+    "archiveSha256": "fa65542e3ff22016fab968dff7fef70078e71d00a292d9544e307153a9c35db9",
+    "historySha256": "90bfc84da44ffd45c6617f5304a431e6ed808eadb90080ffefe4bc5d691b2909"
+  },
+  "sources": {
+    "fluxUIVisualReference": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "buildPins": {
+      "Retail": {
+        "build": "12.1.5.70961",
+        "commit": "ab5cb850a3f65e742959e379c4689353a2f4549f"
+      },
+      "Forever": {
+        "build": "1.60.1.71037",
+        "commit": "734f065329cff4992835b01a84f210a297db91b6"
+      },
+      "Classic progression": {
+        "build": "5.5.4.70631",
+        "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf"
+      },
+      "Classic Era": {
+        "build": "1.15.9.70576",
+        "commit": "4192ac60067fc55566182291bc67c85dd9b6794d"
+      },
+      "Anniversary": {
+        "build": "2.5.6.70577",
+        "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+      }
+    }
+  },
+  "candidateSourceSha256": {
+    "_FluxUI.toc": {
+      "before": "be3596f4b267b119a8838d25775f0a49a11b0909469894bc5da20b7871a89fb2",
+      "after": "be3596f4b267b119a8838d25775f0a49a11b0909469894bc5da20b7871a89fb2"
+    },
+    "NamePlates/Core.lua": {
+      "before": "a5c7993dcbe4087622fdccff1382164eb004b2779b9b2c05be0c35ff10022940",
+      "after": "4e85fb813eea9571862e29ade8451ea62dd4e0804d46e3c42be7cdde83085472"
+    },
+    "NamePlates/Appearance.lua": {
+      "before": "90c3e78bca3853d5bf47c0b42d4e552a8f2e12d89759054115ab9ac841f631b3",
+      "after": "90c3e78bca3853d5bf47c0b42d4e552a8f2e12d89759054115ab9ac841f631b3"
+    },
+    "NamePlates/AppearanceWorld.lua": {
+      "before": "2be754a09f0c3b269cb264180d01bb6a9f70cb9b31da462531dfb00f3b004df7",
+      "after": "82370e3b669f0bed32bd098f66f92c13f28d1d77e8d5a6d9467c5ea58583a102"
+    },
+    "NamePlates/AppearanceView.lua": {
+      "before": "cd4d84b78b760e5ab6aae65874fdda14634804535da0362f64594f4d86d8e063",
+      "after": "f356fe3e2236f0319c966c3caa04f84ccc492d213927a469b2f10d36257bc9b3"
+    },
+    "NamePlates/FlareNameplates.lua": {
+      "before": "321b53df24713e521da8c90e24cea031b5ed93335fc863e5cfbcadd7c8bbc5e8",
+      "after": "1b7fdef764a18e73a1e2294a693ab2ac4e397ada900c4995c6bddba78ac5e489"
+    },
+    "NamePlates/FlareAuraKit.lua": {
+      "before": "9a59314fc64898493eace5cbe3fa549d780448f5e6823bc5058177a801a3fb93",
+      "after": "814c585161a1e7e6fb2b45ebf1db2ea10d710d29a18ec92d8fe6c2f0e949d65c"
+    },
+    "NamePlates/FlareUnitKit.lua": {
+      "before": "50455ecb06e7f0a32cbb868301bcda50d12e767048d89a9217807ae737137358",
+      "after": "09fc5c28aa59263831954a8b60d518d344a7da0418816a420680f57fcff57300"
+    },
+    "NamePlates/FlareSupport.lua": {
+      "before": "0d4d467a3c2e4ab08c88589cbb917d830adbeede6e96eae28887e585d2272082",
+      "after": "69a41e4829b963f0ae01eebd1e9bb52a74c63eb7bc80481d5a8705616e86cb2a"
+    },
+    "NamePlates/FlareBarText.lua": {
+      "before": "c3e0462729a3005484574473fd6e813e80c9185742d82ac8ffe0c600782b9ffe",
+      "after": "c3e0462729a3005484574473fd6e813e80c9185742d82ac8ffe0c600782b9ffe"
+    },
+    "NamePlates/Threat.lua": {
+      "before": "e6df6cdd60dfff207c6f1e7c9b195777cfbdda2f8b3af1e0322d99c5102cd6b8",
+      "after": "e6df6cdd60dfff207c6f1e7c9b195777cfbdda2f8b3af1e0322d99c5102cd6b8"
+    },
+    "NamePlates/Countdown.lua": {
+      "before": "9d3541dd121408890da7424585cbc423a3151f9de4726a4cb5d101723b9d00e4",
+      "after": "9d3541dd121408890da7424585cbc423a3151f9de4726a4cb5d101723b9d00e4"
+    },
+    "NamePlates/ComboPoints.lua": {
+      "before": "0628d79217a576413481f0496e5f33912062768e20784e9430e94a57841af3b1",
+      "after": "0628d79217a576413481f0496e5f33912062768e20784e9430e94a57841af3b1"
+    },
+    "AddonOptions/FluxOptionsNameplatePreview.lua": {
+      "before": "8f8e774a239a288310cdf55ed8a8a483d3edf6f20ef07347327fa070908d21e1",
+      "after": "8f8e774a239a288310cdf55ed8a8a483d3edf6f20ef07347327fa070908d21e1"
+    },
+    "AddonOptions/FlareNameplatePage.lua": {
+      "before": "2199602d4ffddf7c0fa8cde57906f3013516f56b5bfdf7b86cb416afe6e7c299",
+      "after": "25deb863d122b5c732a35feb8d3397291ac4f70d2f44703a878e1d737328b5c3"
+    },
+    "AddonOptions/FlareNameplateCopy.lua": {
+      "before": "90019dbff04ba56dd29cd67a06e3fd9d42821a05c4606d8264addc7e882a618a",
+      "after": "ac039793ebffcb66aad46eed3e88d2f2803818c42b057e2704bdcc756ef58fb9"
+    },
+    "AddonOptions/FlareNameplateSettings.lua": {
+      "before": "2fa8df67b8672aa9526dc22b996c38e1c4e021c3807bcfa6600002ab9461238d",
+      "after": "d904f91f7c1584251fa124485ea3dbe7ecf82863147fd19c6733931d57ba03e8"
+    },
+    "AddonOptions/FlareNameplateSkin.lua": {
+      "before": "7e73d29e68cc0d2c1ac385f3fa6742c4128d00cfaa5ef4705f3f740f251c5a6e",
+      "after": "7e73d29e68cc0d2c1ac385f3fa6742c4128d00cfaa5ef4705f3f740f251c5a6e"
+    },
+    "AddonOptions/FluxOptionsFlareColorPicker.lua": {
+      "before": "e22a08801f6cb6d97393b60972a0a82507e1070825db7a1e139b8f3f91ccde5a",
+      "after": "e22a08801f6cb6d97393b60972a0a82507e1070825db7a1e139b8f3f91ccde5a"
+    },
+    "Media/UnitFrames/Retail/Health.tga": {
+      "before": "07b02c539c80445e366a7c958ab4c0b8e90b76e5791ca0bb45024516a7c26be7",
+      "after": "07b02c539c80445e366a7c958ab4c0b8e90b76e5791ca0bb45024516a7c26be7"
+    },
+    "Media/UnitFrames/Retail/RunicPower.tga": {
+      "before": "e745c2ccf4b44fb2d31f91ecc5e9d4c59131b48ec697aa903d5ba6bfe89a6dde",
+      "after": "e745c2ccf4b44fb2d31f91ecc5e9d4c59131b48ec697aa903d5ba6bfe89a6dde"
+    },
+    "Texture/borders/blizz-border.tga": {
+      "before": "6d2009039511aa665ef683af54ae0719f509a0c9df9199e252cea102431f20d8",
+      "after": "6d2009039511aa665ef683af54ae0719f509a0c9df9199e252cea102431f20d8"
+    },
+    "Texture/borders/glow-border.tga": {
+      "before": "82d623f863965fa4564e74624ffc88782713b22dbac878ca0630712f05dd0ab9",
+      "after": "82d623f863965fa4564e74624ffc88782713b22dbac878ca0630712f05dd0ab9"
+    },
+    "Texture/BagPortraitRing.tga": {
+      "before": "326a99a55c69a7cdc1678b1ea34c4b89a51035e7d73a6be670259cc9f97597ed",
+      "after": "326a99a55c69a7cdc1678b1ea34c4b89a51035e7d73a6be670259cc9f97597ed"
+    },
+    "Texture/QuestSlay.blp": {
+      "before": "1a5ab061ac2649cf1953e1ebb82ed9cf957b15937fdf77711861c69038b6db08",
+      "after": "1a5ab061ac2649cf1953e1ebb82ed9cf957b15937fdf77711861c69038b6db08"
+    },
+    "Texture/QuestLoot.blp": {
+      "before": "237974b610c9d3304084b783b35d9021138a7f40d3961c621d1e04accd527e5b",
+      "after": "237974b610c9d3304084b783b35d9021138a7f40d3961c621d1e04accd527e5b"
+    }
+  },
+  "testSourceSha256": {
+    "Bars/_tmp_barsmoke.lua": "09172a95e45f6b7344982becb235ab83f3f4895e3c8efba9e0b3f45c1f99bc7f",
+    "NamePlates/_tmp_combosmoke.lua": "3946099b5e002ae99ba60e76068a58c1405041c48cc12fa7f1c3208dc2dfa90f",
+    "tests/nameplate_appearance.lua": "ad6ee2686ed2f5be5bc7ca2c0932e97c437c230f72deeb7e1e614e1bb6a4f405",
+    "tests/nameplate_castbar_schools.lua": "e64bcfcfb5925297eded9f070d740b467a2067a0af6cda1e7b98f3dd753147f1",
+    "tests/nameplate_client_compat.lua": "a15d957cd4bff9c7a39f823adab75408c3d515241fa5a9497f881fe0fce64074",
+    "tests/nameplate_countdown_work.lua": "6ebf25c0022d374ece27856b9aa0c27f0a641f054690162cd85713662c00c24b",
+    "tests/nameplate_quest_progress.lua": "17a187415596ec29e29ad0575eba4758e50fe6f942a96198b69d83becd494c41",
+    "tests/nameplate_refresh_batch.lua": "ff4b60485493f5ac202b3ccee9e3638a690380be0ef60568d8e9267485cf103f",
+    "tests/options_navigation.lua": "dce27ec4165c7e4f41471e441eded5a421af468b6f7ecf74079d5c19af81967e",
+    "tests/options_rework.lua": "001df08b6ecfaf16f457518ddd026656fce6a62bfbb47c6e029125da3608d05a",
+    "tests/passive_nameplate_metric_recovery.lua": "0220e4440bfb62936a784be965df5d3ec7ee0f7acffd80cc76ee1ec761cb854d",
+    "tests/passive_nameplate_optimization.lua": "a3e72b21357a14509d1a88465479d45cba6475929cf82928c832150677804999",
+    "tests/passive_threat_rank.lua": "02bee63239bcbaf12956485eeb1c7110df1942d4238f0f4faaf4134dc5ba4f20",
+    "tests/raid_nameplate_defaults.lua": "d412690ff90f431ec6ad36ac09efc3f97e9bc3cac3055a38d9d52d803f24b50e",
+    "tests/threat_warning_visibility.lua": "c539ab5bbcbdb04f88d200bb5b33fef46186a451ba4c73c06798fc74cff5c069"
+  },
+  "installedMatches": {
+    "_retail_": {
+      "filesMatched": 26,
+      "mismatches": []
+    },
+    "_forever_": {
+      "filesMatched": 26,
+      "mismatches": []
+    },
+    "_classic_": {
+      "filesMatched": 26,
+      "mismatches": []
+    },
+    "_classic_era_": {
+      "filesMatched": 26,
+      "mismatches": []
+    },
+    "_anniversary_": {
+      "filesMatched": 26,
+      "mismatches": []
+    }
+  },
+  "tests": [
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/nameplate_appearance.lua",
+      "summary": "PASS nameplate appearance: 746 checks across five client models; native rendering pending"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/nameplate_client_compat.lua",
+      "summary": "PASS nameplate client compatibility: 40 desktop checks"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/nameplate_quest_progress.lua",
+      "summary": "QUEST_PROGRESS checks=1306 failures=0 native_pixels_taint_performance=NOT_RUN"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/nameplate_refresh_batch.lua",
+      "summary": "QUEST_PROGRESS checks=1536 failures=0 native_pixels_taint_performance=NOT_RUN"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/nameplate_castbar_schools.lua",
+      "summary": "PASS nameplate cast-bar themes: 64 checks; native taint/pixels pending"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/nameplate_countdown_work.lua",
+      "summary": "Nameplate countdown work: 1175 checks, 0 failures"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/options_navigation.lua",
+      "summary": "Options navigation: 8372 checks; actual builders mapped across five client contracts; native rendering pending"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/options_rework.lua",
+      "summary": "Options rework: 1348 checks; complete shell/renderer/widgets and menu lifecycle across five client models; native acceptance pending"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/passive_nameplate_optimization.lua",
+      "summary": "PASS: 6 actual-module scenarios; 84 checks; no native FPS or CPU measurement"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/passive_nameplate_metric_recovery.lua",
+      "summary": "PASS: 6 actual-module scenarios; 130 checks; no native FPS or CPU measurement"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/passive_threat_rank.lua",
+      "summary": "PASS threat rank: 1916 actual-code checks; native secret permissions/FPS not measured"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/raid_nameplate_defaults.lua",
+      "summary": "raid and nameplate defaults: 15 checks passed"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "tests/threat_warning_visibility.lua",
+      "summary": "Shared threat warning visibility: 870 checks across five client models; native acceptance pending"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "NamePlates/_tmp_combosmoke.lua",
+      "summary": "Nameplate combos OK: Era/Anniversary/Forever native templates and five custom client models; target-only anchors, readable and opaque counts, visibility and ownership transitions, combat/forms/vehicles, and reuse"
+    },
+    {
+      "lua": "Lua 5.4",
+      "file": "Bars/_tmp_barsmoke.lua",
+      "summary": "          VFX continues or appears/clears with the visible face"
+    },
+    {
+      "lua": "Lua 5.1",
+      "file": "tests/nameplate_appearance.lua",
+      "summary": "PASS nameplate appearance: 746 checks across five client models; native rendering pending"
+    },
+    {
+      "lua": "Lua 5.1",
+      "file": "tests/nameplate_client_compat.lua",
+      "summary": "PASS nameplate client compatibility: 40 desktop checks"
+    }
+  ],
+  "syntaxPasses": 36,
+  "desktopMeasurements": {
+    "scope": "Native-layer fallback only, using identical pure Lua fixture inputs and Core/Level/Threat/Countdown modules",
+    "fixtureSha256": "a3e72b21357a14509d1a88465479d45cba6475929cf82928c832150677804999",
+    "rawFile": "desktop-pairs.json",
+    "rawSha256": "937b4298fc394144616496935c1ec9b4c2b1adc6eebcd596fe799151f9a0679a",
+    "pairs": [
+      {
+        "pair": 1,
+        "identicalWorkCounts": 12,
+        "scenarios": 22,
+        "differences": [
+          {
+            "branch": "forever",
+            "plates": 1,
+            "fpsModel": 60,
+            "topology": "pool-only",
+            "calls": {
+              "GetPoint": [
+                7206,
+                7208
+              ]
+            }
+          },
+          {
+            "branch": "forever",
+            "plates": 1,
+            "fpsModel": 144,
+            "topology": "pool-only",
+            "calls": {
+              "GetPoint": [
+                17286,
+                17288
+              ]
+            }
+          },
+          {
+            "branch": "forever",
+            "plates": 1,
+            "fpsModel": 240,
+            "topology": "pool-only",
+            "calls": {
+              "GetPoint": [
+                28806,
+                28808
+              ]
+            }
+          },
+          {
+            "branch": "forever",
+            "plates": 20,
+            "fpsModel": 60,
+            "topology": "pool-only",
+            "calls": {
+              "GetPoint": [
+                144120,
+                144122
+              ]
+            }
+          },
+          {
+            "branch": "forever",
+            "plates": 20,
+            "fpsModel": 144,
+            "topology": "pool-only",
+            "calls": {
+              "GetPoint": [
+                345720,
+                345722
+              ]
+            }
+          },
+          {
+            "branch": "forever",
+            "plates": 20,
+            "fpsModel": 240,
+            "topology": "pool-only",
+            "calls": {
+              "GetPoint": [
+                576120,
+                576122
+              ]
+            }
+          },
+          {
+            "branch": "forever",
+            "plates": 40,
+            "fpsModel": 60,
+            "topology": "pool-only",
+            "calls": {
+              "GetPoint": [
+                288240,
+                288242
+              ]
+            }
+          },
+          {
+            "branch": "forever",
+            "plates": 40,
+            "fpsModel": 144,
+            "topology": "pool-only",
+            "calls": {
+              "GetPoint": [
+                691440,
+                691442
+              ]
+            }
+          },
+          {
+            "branch": "forever",
+            "plates": 40,
+            "fpsModel": 240,
+            "topology": "pool-only",
+            "calls": {
+              "GetPoint": [
+                1152240,
+                1152242
+              ]
+            }
+          },
+          {
+            "branch": "forever",
+            "plates": 20,
+            "fpsModel": 144,
+            "topology": "pool+list",
+            "calls": {
+              "GetPoint": [
+                345720,
+                345722
+              ]
+            }
+          }
+        ],
+        "beforeQuest": "QUEST_PROGRESS checks=1306 failures=0 native_pixels_taint_performance=NOT_RUN",
+        "afterQuest": "QUEST_PROGRESS checks=1306 failures=0 native_pixels_taint_performance=NOT_RUN"
+      },
+      {
+        "pair": 2,
+        "identicalWorkCounts": 22,
+        "scenarios": 22,
+        "differences": [],
+        "beforeQuest": "QUEST_PROGRESS checks=1306 failures=0 native_pixels_taint_performance=NOT_RUN",
+        "afterQuest": "QUEST_PROGRESS checks=1306 failures=0 native_pixels_taint_performance=NOT_RUN"
+      },
+      {
+        "pair": 3,
+        "identicalWorkCounts": 22,
+        "scenarios": 22,
+        "differences": [],
+        "beforeQuest": "QUEST_PROGRESS checks=1306 failures=0 native_pixels_taint_performance=NOT_RUN",
+        "afterQuest": "QUEST_PROGRESS checks=1306 failures=0 native_pixels_taint_performance=NOT_RUN"
+      }
+    ]
+  },
+  "native": {
+    "status": "Pending loaded visual comparison across clients, combat, taint and FPS",
+    "observations": "The Forever process and window were confirmed without sending input. The desktop paths exercise the owned and fallback layers. No loaded-candidate scene was captured."
+  }
+}

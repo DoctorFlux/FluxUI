@@ -9,11 +9,25 @@ local nativeBooks, lastNative, queryGeneration = {}, nil, 0
 local potionScans = {}
 local rejectedQuotes = {}
 local skipTransientPaint = {}
+local logistics, lastLogistics, Listen
+local lastFollowupOffer, lastFollowupBusy = nil, false
+local bookScan
+local BOOK_ITEM_LIMIT, BOOK_PAGE_LIMIT, BOOK_ROW_LIMIT, BOOK_SCAN_SECONDS = 24, 12, 600, 60
+local attemptID = 0
 A.state, A.status = "idle", "intro"
 A.debugBuild = "AH-restock-explicit-start-20261114-r27"
 
 local function Now() return GetTime() end
-local function Paint() if A.UpdateUI then A.UpdateUI() end end
+local function Paint()
+    if A.UpdateUI then A.UpdateUI() end
+    local followup = A.Followup
+    if not followup or not followup.Refresh then return end
+    local offer = A.GetFollowupOffer()
+    local busy = A.transaction ~= nil or A.ownsQuote == true or A.state == "quoting"
+    if lastFollowupOffer == offer and lastFollowupBusy == busy then return end
+    lastFollowupOffer, lastFollowupBusy = offer, busy
+    followup.Refresh()
+end
 local function PlainBool(value)
     if issecretvalue and issecretvalue(value) then return "restricted" end
     return type(value) == "boolean" and tostring(value) or "unknown"
@@ -51,6 +65,72 @@ function A.PrintStatus()
             attempt.phase, tostring(attempt.itemID), tostring(attempt.quantity), attempt.buttonEnabled,
             attempt.frameFunctions, attempt.secureExecution, tostring(attempt.blocked)))
     end
+end
+local function Active()
+    return A.active or logistics ~= nil or bookScan ~= nil
+end
+local function PositiveInteger(value)
+    return Number(value) and value > 0 and value % 1 == 0
+end
+local function SameLogistics(request, entry, quantity)
+    return request and type(entry) == "table" and request.quantity == quantity
+        and request.entry.itemID == entry.itemID and request.entry.jobId == entry.jobId
+        and request.entry.id == entry.id and request.entry.planRevision == entry.planRevision
+        and request.entry.groupRevision == entry.groupRevision
+        and request.entry.kind == entry.kind and request.entry.quantity == entry.quantity
+        and request.entry.actorKey == entry.actorKey and request.entry.minQuantity == entry.minQuantity
+        and request.entry.maxUnitPrice == entry.maxUnitPrice and request.entry.maxTotalPrice == entry.maxTotalPrice
+        and request.entry.stackSize == entry.stackSize and request.entry.stackMaxTotalPrice == entry.stackMaxTotalPrice
+end
+function A.GetLogisticsState(entry, quantity)
+    if SameLogistics(logistics, entry, quantity) then
+        if A.state ~= "ready" then return A.state end
+        local offer = A.offer
+        local age = offer and Now() - offer.at
+        if age and age >= 0 and age < 30 then
+            return "ready", nil, { quantity = offer.quantity, totalCopper = offer.total }
+        end
+        return nil, "expired"
+    end
+    if SameLogistics(lastLogistics, entry, quantity) then return nil, lastLogistics.reason end
+end
+function A.GetLogisticsRow()
+    return logistics and logistics.row
+end
+local function NotifyLogisticsState(request, phase, reason)
+    local entry = request.entry
+    request.observe("state", { phase = phase, reason = reason, jobId = entry.jobId, id = entry.id,
+        planRevision = entry.planRevision, groupRevision = entry.groupRevision,
+        itemID = entry.itemID, quantity = request.quantity })
+end
+local function FinishLogistics(reason, submitted)
+    if not logistics then return end
+    local request = logistics
+    lastLogistics = { entry = request.entry, quantity = request.quantity, reason = reason }
+    logistics = nil
+    if not A.active then Listen(false) end
+    if not submitted then NotifyLogisticsState(request, "idle", reason) end
+end
+local function FinishBookScan(reason)
+    local scan = bookScan
+    if not scan then return end
+    bookScan = nil
+    A.selectedID = scan.selectedID
+    if not reason then A.state, A.status = "idle", scan.status end
+    if not A.active then Listen(false) end
+    Paint()
+    local ok, err = pcall(scan.callback, scan.books, reason or scan.reason)
+    if not ok and geterrorhandler then geterrorhandler()(err) end
+end
+local function Authorized(request, quantity, total)
+    if not request or not PositiveInteger(quantity) or quantity > request.quantity then return false end
+    local entry = request.entry
+    if entry.minQuantity and quantity < entry.minQuantity then return false end
+    if total and (not PositiveInteger(total) or total > entry.maxUnitPrice * quantity
+        or entry.maxTotalPrice and total > entry.maxTotalPrice
+        or entry.stackSize and quantity ~= entry.stackSize
+        or entry.stackMaxTotalPrice and total > entry.stackMaxTotalPrice) then return false end
+    return request.authorize(request.entry, quantity, total) == true
 end
 local function CancelTimer()
     if timer then timer:Cancel(); timer = nil end
@@ -95,6 +175,7 @@ function A.Invalidate(reason, paintMode)
         Paint()
         return
     end
+    local scanningBooks = bookScan ~= nil
     serial = serial + 1
     if reason == "intro" or reason == "combat" or reason == "otherSearch" or reason == "blocked" then
         nativeBooks, lastNative = {}, nil
@@ -110,8 +191,10 @@ function A.Invalidate(reason, paintMode)
     CancelQuote()
     A.search, A.offer = nil, nil
     A.state, A.status = "idle", reason or "changed"
-    if reason ~= "searching" and A.FlushAuctionatorPrices then A.FlushAuctionatorPrices() end
-    if paintMode ~= skipTransientPaint then Paint() end
+    if reason ~= "searching" then FinishLogistics(A.status) end
+    if reason ~= "searching" and not scanningBooks and A.FlushAuctionatorPrices then A.FlushAuctionatorPrices() end
+    if reason ~= "searching" and scanningBooks then FinishBookScan(A.houseOpen and A.status or "openAH")
+    elseif paintMode ~= skipTransientPaint then Paint() end
 end
 
 local invalidate = A.Invalidate
@@ -176,6 +259,14 @@ local function ReuseStartupRows(startup)
     return startup.rows
 end
 
+local function ReleaseFinishedForeignQuote()
+    local foreign = A.foreign
+    if not foreign or foreign.kind ~= "quote" or not foreign.finished or A.transaction then return end
+    local getRemaining = C_AuctionHouse and C_AuctionHouse.GetQuoteDurationRemaining
+    local remaining = getRemaining and Number(getRemaining())
+    if remaining and remaining <= 0 and A.foreign == foreign then A.foreign = nil end
+end
+
 local function ForeignCall(purchase)
     if issuing or not A.houseOpen then return end
     nativeBooks, lastNative = {}, nil
@@ -185,7 +276,7 @@ local function ForeignCall(purchase)
         if purchase then A.transaction.uncertain = true end
         return
     end
-    if not A.active then return end
+    if not Active() then return end
     A.yielded = true
     -- A foreign quote now belongs to its caller. Never cancel it during cleanup.
     A.ownsQuote = false
@@ -229,6 +320,12 @@ function A.Select(id)
 end
 
 local function Eligible(id)
+    if logistics then
+        if logistics.entry.itemID == id and Authorized(logistics, logistics.quantity) then
+            return logistics.row, nil, logistics.quantity
+        end
+        return nil, "changed"
+    end
     local row = A.FindRow(id, true)
     if not row or A.IsVendorItem(id) then return nil, "changed" end
     local need = A.Need(row)
@@ -238,25 +335,59 @@ local function Eligible(id)
 end
 
 local function SearchLimit(id)
+    if logistics and logistics.entry.itemID == id then return logistics.entry.maxUnitPrice end
     return A.PurchaseLimit(id)
 end
+local function AllowExcess(row)
+    return not logistics and A.AllowExcessStacks(row)
+end
 local function OffersFor(id, offers, commodity)
-    return A.FilterVendorOffers and A.FilterVendorOffers(id, offers, commodity) or offers
+    -- An accepted craft already compared the required quantity against the
+    -- full vendor bundle. Keep the exact accepted purchase limits.
+    local useAcceptedLimits = logistics and logistics.entry.itemID == id
+    return A.FilterVendorOffers and A.FilterVendorOffers(id, offers, commodity, useAcceptedLimits) or offers
+end
+local function CommodityFor(id, offers, need, cap)
+    local entry = logistics and logistics.entry
+    local minimum = entry and entry.minQuantity
+    return A.CommodityOffer(OffersFor(id, offers, true), need, cap, minimum,
+        minimum and entry.maxTotalPrice)
+end
+local function ListingsFor(id, offers)
+    offers = OffersFor(id, offers, false)
+    local entry = logistics and logistics.entry
+    if not entry then return offers end
+    local cap = math.min(entry.maxTotalPrice or math.huge, entry.stackMaxTotalPrice or math.huge)
+    if not entry.stackSize and not entry.minQuantity and cap == math.huge then return offers end
+    local eligible = {}
+    for _, offer in ipairs(offers) do
+        if (not entry.minQuantity or PositiveInteger(offer.quantity) and offer.quantity >= entry.minQuantity)
+            and (not entry.stackSize or offer.quantity == entry.stackSize)
+            and PositiveInteger(offer.total) and offer.total <= cap then
+            eligible[#eligible + 1] = offer
+        end
+    end
+    return eligible
 end
 local function VendorAllowed(id, offer)
-    return not A.VendorOfferAllowed or A.VendorOfferAllowed(id, offer)
+    return logistics and logistics.entry.itemID == id or not A.VendorOfferAllowed or A.VendorOfferAllowed(id, offer)
 end
 
 local function Ready(offer)
     CancelTimer()
     local row, reason, need = Eligible(A.selectedID)
     if not row then A.Invalidate(reason); return end
-    if offer.quantity > need and not A.AllowExcessStacks(row) then A.Invalidate("changed"); return end
+    if offer.quantity > need and not AllowExcess(row) then A.Invalidate("changed"); return end
     if offer.total > SearchLimit(row.itemID) * offer.quantity then A.Invalidate("overCap"); return end
+    if logistics and not Authorized(logistics, offer.quantity, offer.total) then A.Invalidate("overCap"); return end
     if not VendorAllowed(row.itemID, offer) then A.Invalidate("overCap"); return end
     A.offer, A.state, A.status = offer, "ready", "offer"
     offer.at, offer.itemID = Now(), row.itemID
+    if A.Followup and A.Followup.Refresh and A.GetFollowupOffer() then
+        Later(30, function() if A.offer == offer then Paint() end end)
+    end
     Paint()
+    if logistics then NotifyLogisticsState(logistics, "ready") end
 end
 
 local function LegacyOffer(index)
@@ -276,13 +407,17 @@ local function SearchRow(search)
     if search.probe then return search.row, nil, search.row.target end
     return Eligible(search.itemID)
 end
-local function FinishProbe(offers, commodity)
+local function FinishProbe(offers, commodity, complete, reason)
     local search = A.search
     if not search or not search.probe then return end
     CancelTimer()
     serial = serial + 1
     A.search, A.offer, A.state = nil, nil, "idle"
     local book = { itemID = search.itemID, offers = offers, commodity = commodity, at = Now() }
+    if search.bookScan then
+        search.probe(book, complete ~= false, reason)
+        return
+    end
     if A.PublishPriceBook then A.PublishPriceBook(book) end
     nativeBooks[search.itemID] = { book = book, generation = search.nativeGeneration, page = search.page, key = search.key }
     search.probe(book)
@@ -296,25 +431,39 @@ local function ReadLegacy()
     local row, reason, need = SearchRow(search)
     if not row then A.Invalidate(reason); return end
     local count, total = GetNumAuctionItems("list")
+    if search.bookScan and (not Number(count) or not Number(total) or count % 1 ~= 0 or total % 1 ~= 0) then
+        FinishProbe(search.book or {}, false, false, "incomplete")
+        return
+    end
     count, total = Number(count) or 0, Number(total) or 0
     local offers = {}
-    for index = 1, count do
+    local rows = search.bookScan and math.min(count, 50) or count
+    for index = 1, rows do
         local offer = LegacyOffer(index)
         if offer and offer.itemID == search.itemID then offer.page = search.page; offers[#offers + 1] = offer end
+        if search.bookScan and not offer then search.missingRows = true end
     end
     if search.probe then
         search.book = search.book or {}
         for _, offer in ipairs(offers) do search.book[#search.book + 1] = offer end
+        if search.bookScan and count > rows then
+            FinishProbe(search.book, false, false, "limit")
+            return
+        end
         if (search.page + 1) * 50 < total then
+            if search.bookScan and search.page + 1 >= BOOK_PAGE_LIMIT then
+                FinishProbe(search.book, false, false, "limit")
+                return
+            end
             search.page, search.deadline = search.page + 1, Now() + 15
             SendSearch()
-        else FinishProbe(search.book, false) end
+        else FinishProbe(search.book, false, not search.missingRows, search.missingRows and "incomplete" or nil) end
         return
     end
-    offers = OffersFor(row.itemID, offers, false)
+    offers = ListingsFor(row.itemID, offers)
     local fit = A.SelectStack(offers, need, SearchLimit(row.itemID), false)
     if fit then Ready(fit); return end
-    local excess = A.AllowExcessStacks(row) and A.SelectStack(offers, need, SearchLimit(row.itemID), true)
+    local excess = AllowExcess(row) and A.SelectStack(offers, need, SearchLimit(row.itemID), true)
     if excess and (not search.excess or excess.quantity < search.excess.quantity
         or (excess.quantity == search.excess.quantity and excess.total < search.excess.total)) then
         excess.page = search.page
@@ -342,14 +491,50 @@ local function SameKey(a, b)
         and (a.battlePetSpeciesID or 0) == (b.battlePetSpeciesID or 0)
 end
 
-local function CommodityResults(itemID)
+local function CommodityResults(itemID, limit)
     local ah, offers = C_AuctionHouse, {}
+    local missing
     local count = ah.GetNumCommoditySearchResults(itemID)
-    for i = 1, count do
+    local rows = count
+    if limit then
+        rows = Number(count)
+        if not rows then return offers end
+        rows = math.min(rows, limit)
+    end
+    for i = 1, rows do
         local info = ah.GetCommoditySearchResultInfo(itemID, i)
         if info and info.itemID == itemID then offers[#offers + 1] = info end
+        if limit and (not info or info.itemID ~= itemID) then missing = true end
     end
-    return offers, count
+    return offers, count, missing
+end
+
+local function FinishIncompleteProbe(search, offers, commodity, count, full, requestMore, missing)
+    if not search.bookScan then return false end
+    if not count or count % 1 ~= 0 or type(full) ~= "boolean"
+        or not full and type(requestMore) ~= "function" or full and missing then
+        FinishProbe(offers, commodity, false, "incomplete")
+        return true
+    end
+    if count > BOOK_ROW_LIMIT or not full and search.requests >= BOOK_PAGE_LIMIT then
+        FinishProbe(offers, commodity, false, "limit")
+        return true
+    end
+    return false
+end
+
+local function RetryUnwitnessedLogisticsResult(search, count, full)
+    local hasResults = C_AuctionHouse.HasSearchResults
+    if not logistics or search.more or not hasResults
+        or (hasResults(search.key) and (full ~= false or count ~= 0)) then return false end
+    if search.retriedUnwitnessed then
+        A.Invalidate("loading")
+    else
+        -- A matching update can arrive before results for this key exist.
+        search.retriedUnwitnessed, search.nativeGeneration = true, nil
+        Later(0.3, SendSearch)
+    end
+    return true
 end
 
 local function ReadModern(event, key)
@@ -379,22 +564,32 @@ local function ReadModern(event, key)
         SendSearch()
     end
     if commodity then
-        local count
-        offers, count = CommodityResults(search.itemID)
+        local count, missing
+        offers, count, missing = CommodityResults(search.itemID, search.bookScan and BOOK_ROW_LIMIT)
         if search.probe then
-            if ah.HasFullCommoditySearchResults and ah.HasFullCommoditySearchResults(search.itemID) == false then More(count)
+            local full = ah.HasFullCommoditySearchResults and ah.HasFullCommoditySearchResults(search.itemID)
+            if FinishIncompleteProbe(search, offers, true, Number(count), full, ah.RequestMoreCommoditySearchResults, missing) then return end
+            if full == false then More(count)
             else FinishProbe(offers, true) end
             return
         end
-        local offer = A.CommodityOffer(OffersFor(row.itemID, offers, true), need, SearchLimit(row.itemID))
-        if (not offer or offer.quantity < need) and ah.HasFullCommoditySearchResults
-            and ah.HasFullCommoditySearchResults(search.itemID) == false and ah.RequestMoreCommoditySearchResults then
+        local full = ah.HasFullCommoditySearchResults and ah.HasFullCommoditySearchResults(search.itemID)
+        if RetryUnwitnessedLogisticsResult(search, count, full) then return end
+        if logistics and (logistics.entry.stackSize or logistics.entry.stackMaxTotalPrice) then
+            A.Invalidate("changed")
+            return
+        end
+        local offer = CommodityFor(row.itemID, offers, need, SearchLimit(row.itemID))
+        if (not offer or offer.quantity < need) and full == false and ah.RequestMoreCommoditySearchResults then
             More(count); return
         end
         if offer then Ready(offer) else A.Invalidate("noOffer") end
     else
         local count = ah.GetNumItemSearchResults(search.key)
-        for i = 1, count do
+        local rows = count
+        local missing
+        if search.bookScan then rows = math.min(Number(count) or 0, BOOK_ROW_LIMIT) end
+        for i = 1, rows do
             local info = ah.GetItemSearchResultInfo(search.key, i)
             local available = info and Number(info.quantity)
             if info and Number(info.auctionID) and info.auctionID > 0 and SameKey(info.itemKey, search.key)
@@ -405,15 +600,19 @@ local function ReadModern(event, key)
                     availableQuantity = available, modernItemGroup = true,
                     total = info.buyoutAmount, owned = info.containsOwnerItem or info.containsAccountItem,
                     link = info.itemLink }
-            end
+            elseif search.bookScan then missing = true end
         end
         if search.probe then
-            if ah.HasFullItemSearchResults and ah.HasFullItemSearchResults(search.key) == false then More(count)
+            local full = ah.HasFullItemSearchResults and ah.HasFullItemSearchResults(search.key)
+            if FinishIncompleteProbe(search, offers, false, Number(count), full, ah.RequestMoreItemSearchResults, missing) then return end
+            if full == false then More(count)
             else FinishProbe(offers, false) end
             return
         end
-        local offer = A.SelectStack(OffersFor(row.itemID, offers, false), need, SearchLimit(row.itemID), A.AllowExcessStacks(row))
-        if not offer and ah.HasFullItemSearchResults and ah.HasFullItemSearchResults(search.key) == false
+        local full = ah.HasFullItemSearchResults and ah.HasFullItemSearchResults(search.key)
+        if RetryUnwitnessedLogisticsResult(search, count, full) then return end
+        local offer = A.SelectStack(ListingsFor(row.itemID, offers), need, SearchLimit(row.itemID), AllowExcess(row))
+        if not offer and full == false
             and ah.RequestMoreItemSearchResults then More(count); return end
         if offer then Ready(offer) else A.Invalidate("noOffer") end
     end
@@ -496,9 +695,19 @@ end
 
 SendSearch = function()
     local search = A.search
-    if not search or not A.active or not A.houseOpen or A.state ~= "searching" then return end
+    if not search or not Active() or not A.houseOpen or A.state ~= "searching" then return end
     if InCombatLockdown() then A.Invalidate("combat"); return end
-    if Now() >= search.deadline then A.Invalidate(search.waiting and "auctionNotReady" or "timeout"); return end
+    if search.bookScan then search.deadline = math.min(search.deadline, search.bookScan.deadline) end
+    if Now() >= search.deadline then
+        A.Invalidate(search.waiting == "key" and "loading" or search.waiting and "auctionNotReady" or "timeout")
+        return
+    end
+    local itemKeyInfo = logistics and not A.legacy and not search.more and C_AuctionHouse.GetItemKeyInfo
+    if itemKeyInfo and not itemKeyInfo(search.key) then
+        search.waiting, search.nativeGeneration = "key", nil
+        A.status = "loading"; Paint()
+        Later(0.3, SendSearch); return
+    end
     local canSend = A.legacy and CanSendAuctionQuery() or (not A.legacy
         and (not C_AuctionHouse.IsThrottledMessageSystemReady or C_AuctionHouse.IsThrottledMessageSystemReady()))
     if not canSend then
@@ -509,9 +718,11 @@ SendSearch = function()
     search.waiting = nil
     A.status = search.potionBrowse and "potionScan" or "searching"
     -- Install the timeout BEFORE issuing: native events may be synchronous.
-    Later(15, function() A.Invalidate("timeout") end)
+    local timeout = search.bookScan and math.max(0, search.deadline - Now()) or 15
+    Later(timeout, function() A.Invalidate("timeout") end)
     queryGeneration = queryGeneration + 1
     search.nativeGeneration = queryGeneration
+    if search.bookScan then search.requests = search.requests + 1 end
     lastNative = not search.potionBrowse and queryGeneration or nil
     local ok
     if search.potionBrowse and A.legacy then
@@ -534,9 +745,15 @@ local function BeginSearch(row, probe)
     InvalidateForSearch()
     A.selectedID, A.state = row.itemID, "searching"
     local name = FluxItemClass and FluxItemClass.GetName and FluxItemClass.GetName(row.itemID)
-    if A.legacy and not name then A.Invalidate("loading"); return end
+    if A.legacy and not name then
+        if bookScan then
+            probe({itemID = row.itemID, offers = {}, commodity = false, at = Now()}, false, "loading")
+        else A.Invalidate("loading") end
+        return
+    end
     A.search = { itemID = row.itemID, name = name, page = 0, deadline = Now() + 15, probe = probe, row = row,
         key = not A.legacy and C_AuctionHouse.MakeItemKey(row.itemID) or nil }
+    if bookScan then A.search.bookScan, A.search.requests = bookScan, 0 end
     Paint()
     SendSearch()
 end
@@ -737,11 +954,12 @@ local function PrepareNext(resume, startup)
 end
 
 function A.PrepareNext(resume)
-    return PrepareNext(resume)
+    if not logistics and not bookScan then return PrepareNext(resume) end
 end
 local prepareNext = A.PrepareNext
 
 function A.ScanQueue(resume, scanAll)
+    if logistics or bookScan then return end
     if resume then A.restockRequested = true end
     if not A.restockRequested then return end
     -- Old auction houses prepare one purchase at a time, including callers
@@ -846,30 +1064,62 @@ function A.ScanQueue(resume, scanAll)
 end
 local scanQueue = A.ScanQueue
 
+local function NotifyPurchase(t, state, reason)
+    local request = t.logistics
+    local entry = request.entry
+    request.observe(state, {
+        attemptID = t.attemptID, jobId = entry.jobId, id = entry.id, planRevision = entry.planRevision,
+        groupRevision = entry.groupRevision, itemID = t.itemID, quantity = t.quantity, totalCopper = t.total, kind = t.kind,
+        auctionID = t.auctionID, reason = reason,
+    })
+end
+
+local function ReportPurchaseEnd(t, status, release)
+    if t.dispatching then
+        -- The client may publish an outcome during the native call.
+        t.finished, t.released = status, release
+        return
+    end
+    local state = status == "bought" and "confirmed"
+        or (status == "failed" or status == "blocked" and release) and "failed" or "uncertain"
+    NotifyPurchase(t, state, status)
+end
+
 local function EndTransaction(status, release)
     local t = A.transaction
     if not t then return end
-    if status == "bought" then
+    if status == "bought" and not t.logistics then
         A.AcceptReservation(t)
         if A.Followup then A.Followup.Purchased(t) end
     end
     if status == "uncertain" and not t.incomingConfirmed then release = true end
     CancelTimer()
     issuing = false
-    if release then A.Release(t.itemID, t.units) end
-    if release and A.ReleaseCraftSpend then A.ReleaseCraftSpend(t.craftSpend) end
+    if release and not t.logistics then
+        A.Release(t.itemID, t.units)
+        if A.ReleaseCraftSpend then A.ReleaseCraftSpend(t.craftSpend) end
+    end
     A.transaction, A.offer, A.search, A.ownsQuote = nil, nil, nil, false
     A.state, A.status = "idle", status
     A.GetRows(true)
     Paint()
-    if status == "bought" or status == "sent" then A.PrepareNext() end
+    if t.logistics then
+        FinishLogistics(status, true)
+        ReportPurchaseEnd(t, status, release)
+    elseif status == "bought" or status == "sent" then A.PrepareNext() end
 end
 
 local function Submit(row, offer, kind)
     local t = { itemID = row.itemID, quantity = offer.quantity, auctionID = offer.auctionID, kind = kind }
-    if A.Followup then t.followup = A.Followup.Capture(row) end
-    if A.RecordCraftSpend then t.craftSpend = A.RecordCraftSpend(row, offer.total, offer.quantity) end
-    t.units = A.Reserve(row, offer.quantity)
+    if logistics then
+        if not Authorized(logistics, offer.quantity, offer.total) then A.Invalidate("changed"); return end
+        attemptID = attemptID + 1
+        t.logistics, t.attemptID, t.total, t.dispatching = logistics, attemptID, offer.total, true
+    else
+        if A.Followup then t.followup = A.Followup.Capture(row) end
+        if A.RecordCraftSpend then t.craftSpend = A.RecordCraftSpend(row, offer.total, offer.quantity) end
+        t.units = A.Reserve(row, offer.quantity)
+    end
     nativeBooks[row.itemID], A.priceBooks[row.itemID] = nil, nil
     A.transaction, A.state, A.status = t, "buying", "buying"
     Later(15, function() EndTransaction("uncertain") end)
@@ -884,6 +1134,11 @@ local function Submit(row, offer, kind)
     else C_AuctionHouse.PlaceBid(offer.auctionID, offer.total) end
     issuing = false
     if purchases then purchases.FinishRestock() end
+    if t.logistics then
+        t.dispatching = nil
+        NotifyPurchase(t, "submitted")
+        if t.finished then ReportPurchaseEnd(t, t.finished, t.released) end
+    end
     Paint()
 end
 
@@ -908,42 +1163,56 @@ local function CheckItem(offer)
     return false
 end
 
-function A.Primary()
-    if not A.active or not A.houseOpen then A.status = "openAH"; Paint(); return end
+function A.Primary(logisticsPress)
+    if bookScan then return end
+    if logistics and logistics.preparedOnly and logisticsPress ~= logistics then return end
+    local policy = _G.Flux and _G.Flux.RestockPolicy
+    if policy and policy.IsPlannerRegistered() and policy.IsWorkflowBusy(logistics and "planner" or "auction") then
+        policy.Report(policy.Text.busy)
+        return
+    end
+    if not Active() or not A.houseOpen then A.status = "openAH"; Paint(); return end
     if InCombatLockdown() then A.Invalidate("combat"); return end
     if A.transaction or A.state == "searching" or A.state == "quoting" or A.state == "classifying" or A.state == "upgrade" then return end
+    ReleaseFinishedForeignQuote()
     local nativeDialog = _G.AuctionHouseFrame and _G.AuctionHouseFrame.BuyDialog
     if A.foreign or (nativeDialog and nativeDialog:IsShown())
         or (StaticPopup_Visible and (StaticPopup_Visible("BUYOUT_AUCTION") or StaticPopup_Visible("BID_AUCTION"))) then
         A.Invalidate("otherSearch"); return
     end
-    A.restockRequested = true
+    if not logistics then A.restockRequested = true end
     if not A.IsReliable() then A.Invalidate("loading"); return end
     local row, reason, need = Eligible(A.selectedID)
-    if row and A.PotionRowBlocked and A.PotionRowBlocked(row) then
+    if not logistics and row and A.PotionRowBlocked and A.PotionRowBlocked(row) then
         A.Invalidate(A.IsUpgradeBlacklisted(row.itemID) and "excluded" or "potionData"); return
     end
     local offer = A.offer
-    if not row or A.IsCraftOutput(row.itemID) or not offer or offer.itemID ~= row.itemID or Now() - offer.at >= 30 then A.PrepareNext(true); return end
-    local cap = A.PurchaseLimit(row.itemID)
+    if not row or not logistics and A.IsCraftOutput(row.itemID) or not offer
+        or offer.itemID ~= row.itemID or Now() - offer.at >= 30 then
+        if logistics then A.Invalidate(reason or "expired") else A.PrepareNext(true) end
+        return
+    end
+    local cap = SearchLimit(row.itemID)
     if cap <= 0 then A.Invalidate("overCap"); return end
     if offer.quantity > need then
         if offer.commodity then
             -- Stock/mail may change before BAG_UPDATE reaches this panel. A
             -- commodity can be reduced to the live physical-item shortage;
             -- the excess-stack option applies only to indivisible listings.
-            local revised = A.CommodityOffer(OffersFor(row.itemID, CommodityResults(row.itemID), true), need, cap)
+            local revised = CommodityFor(row.itemID, CommodityResults(row.itemID), need, cap)
             if not revised then A.Invalidate("changed"); return end
             revised.itemID, revised.at = row.itemID, Now()
             A.offer, offer = revised, revised
-        elseif not A.AllowExcessStacks(row) then A.Invalidate("changed"); return end
+        elseif not AllowExcess(row) then A.Invalidate("changed"); return end
     end
     if offer.total > cap * offer.quantity or (offer.unitPrice and offer.unitPrice > cap) then
         A.Invalidate("overCap"); return
     end
     if not VendorAllowed(row.itemID, offer) then A.Invalidate("overCap"); return end
     if GetMoney() < offer.total then A.Invalidate("money"); return end
-    if A.CheckCraftSpend and not A.CheckCraftSpend(row, offer) then A.Invalidate("craftBudget"); return end
+    if logistics then
+        if not Authorized(logistics, offer.quantity, offer.total) then A.Invalidate("changed"); return end
+    elseif A.CheckCraftSpend and not A.CheckCraftSpend(row, offer) then A.Invalidate("craftBudget"); return end
     if offer.commodity then
         -- Exactly one intent, created only by this button press. Quote callbacks
         -- can confirm this item/quantity once; they cannot start another purchase.
@@ -960,20 +1229,31 @@ function A.Primary()
     elseif A.legacy then
         if not SameLegacy(offer, LegacyOffer(offer.index)) then
             nativeBooks[row.itemID], A.priceBooks[row.itemID] = nil, nil
-            A.Invalidate("changed"); A.PrepareNext(); return
+            local wasLogistics = logistics ~= nil
+            A.Invalidate("changed")
+            if not wasLogistics then A.PrepareNext() end
+            return
         end
         Submit(row, offer, "legacy")
     else
         if not CheckItem(offer) then
             nativeBooks[row.itemID], A.priceBooks[row.itemID] = nil, nil
-            A.Invalidate("changed"); A.PrepareNext(); return
+            local wasLogistics = logistics ~= nil
+            A.Invalidate("changed")
+            if not wasLogistics then A.PrepareNext() end
+            return
         end
         Submit(row, offer, "item")
     end
 end
 
 local function RefreshInventory()
-    if not A.active or not A.houseOpen then return end
+    if not Active() or not A.houseOpen then return end
+    if bookScan then return end
+    if logistics then
+        if not A.transaction and not Eligible(logistics.entry.itemID) then A.Invalidate("changed") else Paint() end
+        return
+    end
     A.GetRows(true)
     -- Bag/profession/mail pulses repaint live counts without cancelling an
     -- owned search or replacing the player's pending upgrade choices.
@@ -991,7 +1271,8 @@ local function RefreshInventory()
 end
 
 local function SearchEvent(event, key)
-    if not A.active or not A.houseOpen then return end
+    if not Active() or not A.houseOpen then return end
+    if bookScan and InCombatLockdown() then A.Invalidate("combat"); return end
     if event == "AUCTION_ITEM_LIST_UPDATE" then
         if A.transaction and A.transaction.kind == "legacy" then Paint()
         elseif A.state == "searching" then ReadLegacy()
@@ -1008,7 +1289,7 @@ local SEARCH_EVENTS = { "AUCTION_ITEM_LIST_UPDATE", "COMMODITY_SEARCH_RESULTS_UP
     "COMMODITY_SEARCH_RESULTS_ADDED", "ITEM_SEARCH_RESULTS_UPDATED", "ITEM_SEARCH_RESULTS_ADDED",
     "BAG_UPDATE_DELAYED", "AUCTION_HOUSE_BROWSE_RESULTS_UPDATED", "AUCTION_HOUSE_BROWSE_RESULTS_ADDED",
     "AUCTION_HOUSE_THROTTLED_SYSTEM_READY" }
-local function Listen(enabled)
+Listen = function(enabled)
     if listening == enabled then return end
     listening = enabled
     for _, event in ipairs(SEARCH_EVENTS) do
@@ -1022,8 +1303,200 @@ local function Listen(enabled)
     elseif not enabled and inv and inv.Unregister then inv.Unregister("AuctionRestock.Incoming") end
 end
 
+local function CopyBookDepth(book, complete, reason)
+    local offers = {}
+    for _, offer in ipairs(book.offers) do
+        if book.commodity then
+            local owned = Number(offer.numOwnerItems) or 0
+            local quantity = Number(offer.quantity)
+            local unitPrice = offer.unitPrice
+            if quantity and PositiveInteger(quantity - owned) and PositiveInteger(unitPrice)
+                and not offer.containsAccountItem then
+                offers[#offers + 1] = {quantity = quantity - owned, unitPrice = unitPrice}
+            end
+        elseif not offer.owned and PositiveInteger(offer.quantity) and PositiveInteger(offer.total) then
+            local count = PositiveInteger(offer.availableQuantity) and offer.availableQuantity or 1
+            offers[#offers + 1] = {quantity = offer.quantity, total = offer.total, count = count}
+        end
+    end
+    return { itemID = book.itemID, commodity = book.commodity, offers = offers, at = book.at,
+        complete = complete, reason = reason }
+end
+
+-- One explicit information-only lease through the existing query handlers.
+-- Depth contains no listing handles and never enters the purchase path.
+function A.ScanLogisticsBooks(itemIDs, callback)
+    if type(itemIDs) ~= "table" or #itemIDs == 0 or type(callback) ~= "function" then return false, "invalid" end
+    if #itemIDs > BOOK_ITEM_LIMIT then return false, "limit" end
+    local legacy = A.IsLegacy()
+    local owner = legacy and _G.AuctionFrame or not legacy and _G.AuctionHouseFrame
+    if not A.houseOpen or not owner or not owner:IsShown() then return false, "openAH" end
+    if InCombatLockdown() then return false, "combat" end
+    local policy = _G.Flux and _G.Flux.RestockPolicy
+    -- A ready standalone offer retains search results but has no query or
+    -- purchase in flight. Explicit pricing may replace that unsubmitted offer.
+    local replaceOffer = A.active and A.state == "ready" and A.offer ~= nil
+    if bookScan or logistics or A.queue or A.transaction or A.ownsQuote
+        or not replaceOffer and (A.search or A.offer or A.state ~= "idle")
+        or policy and policy.IsWorkflowBusy and policy.IsWorkflowBusy("planner") then return false, "busy" end
+    ReleaseFinishedForeignQuote()
+    local nativeDialog = not legacy and owner.BuyDialog
+    if A.foreign or A.active and A.yielded or nativeDialog and nativeDialog:IsShown()
+        or StaticPopup_Visible and (StaticPopup_Visible("BUYOUT_AUCTION") or StaticPopup_Visible("BID_AUCTION")) then
+        return false, "otherSearch"
+    end
+    if not A.IsReliable() then return false, "loading" end
+    local ids, seen = {}, {}
+    for _, id in ipairs(itemIDs) do
+        if not PositiveInteger(id) then return false, "invalid" end
+        if not seen[id] then ids[#ids + 1], seen[id] = id, true end
+    end
+    local scan = { callback = callback, books = {}, deadline = Now() + BOOK_SCAN_SECONDS,
+        selectedID = A.selectedID, status = replaceOffer and "intro" or A.status }
+    local index = 0
+    local function Advance(book, complete, reason)
+        if bookScan ~= scan then return end
+        if book then scan.books[book.itemID] = CopyBookDepth(book, complete, reason) end
+        scan.reason = scan.reason or reason
+        index = index + 1
+        local id = ids[index]
+        if id then BeginSearch({itemID = id, target = 1}, Advance)
+        else FinishBookScan() end
+    end
+    bookScan, A.legacy = scan, legacy
+    InstallHooks()
+    Listen(true)
+    Advance()
+    return true, "searching"
+end
+
+local function RunLogistics(entry, quantity, authorize, observe, execute, explicit)
+    if type(entry) ~= "table" or (entry.kind ~= "auction" and entry.kind ~= "buy")
+        or not PositiveInteger(entry.itemID) or not entry.jobId or not entry.id or not entry.planRevision
+        or (issecretvalue and issecretvalue(entry.groupRevision))
+        or entry.groupRevision ~= nil and (type(entry.groupRevision) ~= "string" or entry.groupRevision == "")
+        or not PositiveInteger(entry.quantity) or not PositiveInteger(quantity) or quantity > entry.quantity
+        or not PositiveInteger(entry.maxUnitPrice)
+        or entry.maxTotalPrice ~= nil and not PositiveInteger(entry.maxTotalPrice)
+        or entry.minQuantity ~= nil and (not PositiveInteger(entry.minQuantity) or entry.minQuantity > quantity)
+        or entry.stackSize ~= nil and (not PositiveInteger(entry.stackSize) or entry.stackSize > quantity
+            or entry.minQuantity and entry.stackSize < entry.minQuantity)
+        or entry.stackMaxTotalPrice ~= nil and not PositiveInteger(entry.stackMaxTotalPrice)
+        or type(authorize) ~= "function" or type(observe) ~= "function" then return false, "invalid" end
+    local legacy = A.IsLegacy()
+    local owner = legacy and _G.AuctionFrame or not legacy and _G.AuctionHouseFrame
+    if not A.houseOpen or not owner or not owner:IsShown() then return false, "openAH" end
+    if InCombatLockdown() then return false, "combat" end
+    local same = SameLogistics(logistics, entry, quantity)
+    if same and (A.transaction or A.ownsQuote) then return true, A.state end
+    local policy = _G.Flux and _G.Flux.RestockPolicy
+    if bookScan or A.transaction or A.ownsQuote or policy and policy.IsWorkflowBusy("planner") then return false, "busy" end
+    -- An explicit Find offer can reclaim search after yielding. Foreign purchases retain their own gate.
+    if not execute and not same and (explicit ~= true and (A.active or A.yielded)
+        or (logistics and not logistics.preparedOnly)) then
+        return false, "otherSearch"
+    end
+    ReleaseFinishedForeignQuote()
+    local nativeDialog = not legacy and owner.BuyDialog
+    if A.foreign or (nativeDialog and nativeDialog:IsShown())
+        or (StaticPopup_Visible and (StaticPopup_Visible("BUYOUT_AUCTION") or StaticPopup_Visible("BID_AUCTION"))) then
+        return false, "otherSearch"
+    end
+    if not A.IsReliable() then return false, "loading" end
+    if authorize(entry, quantity) ~= true then return false, "changed" end
+    local current = A.GetLogisticsState(entry, quantity)
+    if explicit == true and same and logistics.preparedOnly and (current == "searching" or current == "ready") then
+        logistics.manual, logistics.authorize, logistics.observe = true, authorize, observe
+        if current == "ready" and A.Followup and A.Followup.Refresh and A.offer ~= lastFollowupOffer then
+            local offer = A.offer
+            Later(offer.at + 30 - Now(), function() if A.offer == offer then Paint() end end)
+            Paint()
+        end
+    end
+    if current == "searching" then return true, current end
+    if current == "ready" then
+        if not execute then return true, current end
+        logistics.authorize, logistics.observe = authorize, observe
+        local submitted = attemptID
+        A.Primary(logistics) -- retains the real click stack
+        if attemptID ~= submitted then return true, "buying" end
+        if A.state == "quoting" then return true, "quoting" end
+        return false, A.status
+    end
+    A.Invalidate("changed")
+    local accepted = {}
+    for _, key in ipairs({"itemID", "quantity", "jobId", "id", "kind", "planRevision", "groupRevision", "actorKey", "maxUnitPrice",
+        "maxTotalPrice", "minQuantity", "stackSize", "stackMaxTotalPrice"}) do
+        accepted[key] = entry[key]
+    end
+    logistics = { entry = accepted, quantity = quantity, authorize = authorize, observe = observe,
+        preparedOnly = not execute, manual = explicit == true,
+        row = { itemID = entry.itemID, target = quantity } }
+    A.restockRequested, A.yielded = false, nil
+    InstallHooks()
+    Listen(true)
+    BeginSearch(logistics.row)
+    if logistics then return true, A.state end
+    return false, A.status
+end
+
+-- Explicit preparation may use the open Restock tab. No preparation submits a purchase.
+function A.PrepareLogistics(entry, quantity, authorize, observe, explicit)
+    return RunLogistics(entry, quantity, authorize, observe, false, explicit)
+end
+
+function A.ExecuteLogistics(entry, quantity, authorize, observe)
+    return RunLogistics(entry, quantity, authorize, observe, true)
+end
+
+-- Only the visible Restock button can act on a manually selected queue offer.
+local function ReadyPrimaryOrder(order)
+    return order and order.preparedOnly and order.manual and A.active
+        and A.GetLogisticsState(order.entry, order.quantity) == "ready"
+end
+
+function A.IsLogisticsPrimaryReady(selected)
+    local order = logistics
+    return ReadyPrimaryOrder(order) and type(selected) == "table" and PositiveInteger(selected.quantity)
+        and selected.jobId == order.entry.jobId and selected.id == order.entry.id
+        and selected.itemID == order.entry.itemID and selected.planRevision == order.entry.planRevision
+        and selected.groupRevision == order.entry.groupRevision
+        and A.offer.quantity <= selected.quantity or false
+end
+
+function A.ClickPrimary(selected)
+    local order = logistics
+    if selected ~= nil then
+        if A.IsLogisticsPrimaryReady(selected) then return A.Primary(order) end
+        return
+    end
+    if order and order.preparedOnly then
+        if not ReadyPrimaryOrder(order) then return end
+        return A.Primary(order)
+    end
+    return A.Primary()
+end
+
+function A.GetFollowupOffer()
+    local offer = A.offer
+    if not A.houseOpen or A.state ~= "ready" or A.transaction or A.ownsQuote or A.foreign
+        or not offer or Now() >= offer.at + 30 then return end
+    if logistics then
+        if logistics.preparedOnly and logistics.manual then return offer end
+    elseif A.active then return offer end
+end
+
+function A.ClickFollowupOffer(shown)
+    if shown and shown == A.GetFollowupOffer() then return A.Primary(logistics) end
+end
+
 local function ShowSession(paintAfterPlanning)
     A.active, A.yielded = true, nil
+    if bookScan then A.Invalidate("otherSearch") end
+    if logistics and logistics.preparedOnly and not logistics.manual and not A.transaction and not A.ownsQuote then
+        A.Invalidate("otherSearch")
+    end
+    if logistics then return end
     A.restockRequested = true
     potionScans = {}
     if A.ResetPotionUpgradeChoices then A.ResetPotionUpgradeChoices() end
@@ -1070,6 +1543,7 @@ function A.SettingsChanged()
     rejectedQuotes = {}
     if A.Followup then A.Followup.Refresh() end
     if not A.active then return end
+    if logistics or bookScan then Paint(); return end
     if A.applyingAuctionTier then A.GetRows(true); Paint(); return end
     local startup = A.ScanQueue == scanQueue and A.PrepareNext == prepareNext and CaptureStartup()
     if startup then
@@ -1096,8 +1570,9 @@ local function RejectQuote(reason, unitPrice, totalPrice)
         nativeBooks[intent.itemID], A.priceBooks[intent.itemID] = nil, nil
     end
     if Number(unitPrice) and Number(totalPrice) then A.completedQuote = { at = Now(), unitPrice = unitPrice, total = totalPrice } end
+    local wasLogistics = logistics ~= nil
     A.Invalidate(reason)
-    A.PrepareNext() -- information only; the rejected gesture cannot buy another SKU
+    if not wasLogistics then A.PrepareNext() end -- information only
 end
 
 local function QuoteEvent(event, unitPrice, totalPrice)
@@ -1109,24 +1584,24 @@ local function QuoteEvent(event, unitPrice, totalPrice)
         if completed and Number(unitPrice) and Number(totalPrice) and Now() - completed.at <= 15
             and completed.unitPrice == unitPrice and completed.total == totalPrice then return end
         A.foreign, A.ownsQuote = { kind = "quote" }, false
-        if A.active then A.Invalidate("otherSearch") end
+        if Active() then A.Invalidate("otherSearch") end
         return
     end
     if A.foreign and A.foreign.kind == "quote" and event == "COMMODITY_PRICE_UNAVAILABLE" then A.foreign = nil end
-    if not A.ownsQuote or not A.active or not A.houseOpen or A.state ~= "quoting" then return end
+    if not A.ownsQuote or not Active() or not A.houseOpen or A.state ~= "quoting" then return end
     if event == "COMMODITY_PRICE_UNAVAILABLE" then RejectQuote("noOffer"); return end
     local offer = A.offer
     local intent = A.intent
     local row, reason, need = Eligible(A.selectedID)
     if not row then A.Invalidate(reason); return end
-    if A.PotionRowBlocked and A.PotionRowBlocked(row) then
+    if not logistics and A.PotionRowBlocked and A.PotionRowBlocked(row) then
         A.Invalidate(A.IsUpgradeBlacklisted(row.itemID) and "excluded" or "potionData"); return
     end
     if not intent or intent.itemID ~= row.itemID or not offer or intent.quantity ~= offer.quantity
         or Now() - intent.at > 15 or A.foreign or InCombatLockdown() then A.Invalidate("expired"); return end
     local remaining = Number(C_AuctionHouse.GetQuoteDurationRemaining()) or 0
     if remaining <= 0 then A.Invalidate("expired"); return end
-    local cap = math.min(intent.cap, A.PurchaseLimit(row.itemID))
+    local cap = math.min(intent.cap, SearchLimit(row.itemID))
     if not Number(unitPrice) or unitPrice <= 0 or not Number(totalPrice) or totalPrice <= 0
         or unitPrice > cap or totalPrice > cap * offer.quantity
         or offer.quantity > need then RejectQuote("overCap", unitPrice, totalPrice); return end
@@ -1135,7 +1610,11 @@ local function QuoteEvent(event, unitPrice, totalPrice)
     if GetMoney() < totalPrice then A.Invalidate("money"); return end
     CancelTimer()
     offer.total, offer.unitPrice, offer.at = totalPrice, unitPrice, Now()
-    if not A.CheckCraftSpend(row, offer) then A.Invalidate("craftBudget"); return end
+    if logistics then
+        local policy = _G.Flux and _G.Flux.RestockPolicy
+        if not A.IsReliable() or policy and policy.IsWorkflowBusy("planner")
+            or not Authorized(logistics, offer.quantity, offer.total) then A.Invalidate("changed"); return end
+    elseif not A.CheckCraftSpend(row, offer) then A.Invalidate("craftBudget"); return end
     A.intent = nil -- consume BEFORE the native call, including synchronous events
     A.completedQuote = { at = Now(), unitPrice = unitPrice, total = totalPrice }
     Submit(row, offer, "commodity")
@@ -1143,8 +1622,18 @@ end
 
 local function PurchaseEvent(event, id, quantity)
     local foreign = A.foreign
-    if foreign and ((foreign.kind == "commodity" and (event == "COMMODITY_PURCHASE_SUCCEEDED" or event == "COMMODITY_PURCHASE_FAILED"))
-        or (foreign.kind == "item" and event == "AUCTION_HOUSE_PURCHASE_COMPLETED" and foreign.auctionID == id)) then A.foreign = nil end
+    local commodityEnded = event == "COMMODITY_PURCHASE_SUCCEEDED" or event == "COMMODITY_PURCHASE_FAILED"
+    if foreign then
+        if foreign.kind == "quote" and not A.transaction and (commodityEnded or event == "COMMODITY_PURCHASED") then
+            -- Outside confirmation can close without calling CancelCommoditiesPurchase.
+            -- Terminal events lack quote identity, so retain any live native quote.
+            foreign.finished = true
+            ReleaseFinishedForeignQuote()
+        elseif (foreign.kind == "commodity" and commodityEnded)
+            or (foreign.kind == "item" and event == "AUCTION_HOUSE_PURCHASE_COMPLETED" and foreign.auctionID == id) then
+            A.foreign = nil
+        end
+    end
     local t = A.transaction
     if not t then return end
     if t.uncertain then return end
@@ -1162,7 +1651,7 @@ local function PurchaseEvent(event, id, quantity)
 end
 
 Events.Register("AUCTION_HOUSE_SHOW", function()
-    A.houseOpen, A.legacy = true, A.IsLegacy()
+    A.houseOpen, A.legacy, A.yielded = true, A.IsLegacy(), nil
     InstallHooks()
     if A.AttachButton then A.AttachButton() end
     if A.active then A.GetRows(true); Paint() end

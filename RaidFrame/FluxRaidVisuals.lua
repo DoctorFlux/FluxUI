@@ -5,6 +5,7 @@ local addonName, ns = ...
 
 FluxRaidVisuals = {}
 
+local Aura = ns and ns.Flux and ns.Flux.Aura
 local floor = math.floor
 local max = math.max
 local min = math.min
@@ -232,16 +233,56 @@ function FluxRaidVisuals.EnsurePartyDebuffBorder(button, frame)
     return edges[1]
 end
 
-function FluxRaidVisuals.SetPartyDebuffBorderType(button, kind, helpful)
-    local edge = button._fluxPartyDebuffBorder
-    if not edge then return end
-    for _, texture in ipairs(button._fluxPartyDebuffBorders or {edge}) do
-        if AuraUtil and AuraUtil.SetAuraBorderColor then AuraUtil.SetAuraBorderColor(texture, kind)
-        else
+function FluxRaidVisuals.EnsureAuraDebuffBorder(button, frame)
+    if frame._fluxPartyMember then return FluxRaidVisuals.EnsurePartyDebuffBorder(button, frame) end
+    local edge = button._fluxRaidDebuffBorder
+    if not edge then
+        local parent = button.AuraTextLayer or button.textLayer or button
+        edge = parent:CreateTexture(nil, "ARTWORK", nil, 1)
+        edge:SetAllPoints(button)
+        edge:SetTexture("Interface\\Buttons\\UI-Debuff-Overlays")
+        edge:SetTexCoord(.296875, .5703125, 0, .515625)
+        edge:Hide()
+        button._fluxRaidDebuffBorder = edge
+    end
+    return edge
+end
+
+local function SetDebuffBorderType(texture, kind, helpful)
+    if AuraUtil and AuraUtil.SetAuraBorderColor then
+        AuraUtil.SetAuraBorderColor(texture, kind)
+    else
+        local r, g, b
+        if Aura and Aura.GetDispelTypeColor then r, g, b = Aura.GetDispelTypeColor(kind) end
+        if not r then
             local color = DebuffTypeColor and (DebuffTypeColor[kind or "none"] or DebuffTypeColor.none)
-            texture:SetVertexColor(color and color.r or .8, color and color.g or 0, color and color.b or 0, 1)
+            r, g, b = color and color.r or .8, color and color.g or 0, color and color.b or 0
         end
-        texture:SetShown(not helpful)
+        texture:SetVertexColor(r, g, b, 1)
+    end
+    texture:SetShown(not helpful)
+end
+
+function FluxRaidVisuals.SetPartyDebuffBorderType(button, kind, helpful)
+    if button._fluxPartyDebuffBorders then
+        for _, texture in ipairs(button._fluxPartyDebuffBorders) do
+            SetDebuffBorderType(texture, kind, helpful)
+        end
+    elseif button._fluxPartyDebuffBorder then
+        SetDebuffBorderType(button._fluxPartyDebuffBorder, kind, helpful)
+    end
+end
+
+function FluxRaidVisuals.SetAuraDebuffBorderType(button, kind, helpful)
+    if button._fluxPartyDebuffBorder then
+        FluxRaidVisuals.SetPartyDebuffBorderType(button, kind, helpful)
+    elseif button._fluxRaidDebuffBorder then
+        local hide = helpful == true
+        if button._fluxRaidDebuffType ~= kind or button._fluxRaidDebuffBorderHidden ~= hide then
+            SetDebuffBorderType(button._fluxRaidDebuffBorder, kind, hide)
+            button._fluxRaidDebuffType = kind
+            button._fluxRaidDebuffBorderHidden = hide
+        end
     end
 end
 
@@ -365,34 +406,24 @@ FluxRaidVisuals.POWER_COLORS = {
 
 local auraDurationFontObject, auraDurationFontSignature
 local auraDurationFormatter, auraDurationUnderMinute
-local partyDurationFormatter, partyDurationUnderMinute
-function FluxRaidVisuals.GetAuraDurationFormatter(options, frame)
+function FluxRaidVisuals.GetAuraDurationFormatter()
     if not (C_StringUtil and C_StringUtil.CreateNumericRuleFormatter and Enum and Enum.NumericRuleFormatRounding) then return nil end
-    local party = frame and frame._fluxPartyMember
-    local formatter = auraDurationFormatter
-    if party then formatter = partyDurationFormatter end
-    if InCombatLockdown and InCombatLockdown() then return formatter end
+    if InCombatLockdown and InCombatLockdown() then return auraDurationFormatter end
     local rounding = Enum.NumericRuleFormatRounding
     if rounding.Up == nil or rounding.Down == nil then return nil end
-    local underMinute = ScopedSizingOptions(options).auraTimersUnderMinute == true
-    local previous = auraDurationUnderMinute
-    if party then
-        local db = FluxOptions and FluxOptions.GetUnitFrameDB and FluxOptions:GetUnitFrameDB()
-        underMinute = db and db.auraTimersUnderMinute == true or false
-        previous = partyDurationUnderMinute
-    end
-    if not formatter then formatter = C_StringUtil.CreateNumericRuleFormatter() end
-    if previous ~= underMinute then
-        formatter:SetBreakpoints({
+    local db = FluxOptions and FluxOptions.GetUnitFrameDB and FluxOptions:GetUnitFrameDB()
+    local underMinute = db and db.auraTimersUnderMinute == true or false
+    if not auraDurationFormatter then auraDurationFormatter = C_StringUtil.CreateNumericRuleFormatter() end
+    if auraDurationUnderMinute ~= underMinute then
+        auraDurationFormatter:SetBreakpoints({
             {threshold=0,format="%d",step=1,rounding=rounding.Up},
             {threshold=60,format=underMinute and "" or "%dm",step=1,rounding=rounding.Down,components={{div=60}}},
             {threshold=3600,format=underMinute and "" or "%dh",step=1,rounding=rounding.Down,components={{div=3600}}},
             {threshold=86400,format=underMinute and "" or "%dd",step=1,rounding=rounding.Down,components={{div=86400}}},
         })
+        auraDurationUnderMinute = underMinute
     end
-    if party then partyDurationFormatter, partyDurationUnderMinute = formatter, underMinute
-    else auraDurationFormatter, auraDurationUnderMinute = formatter, underMinute end
-    return formatter
+    return auraDurationFormatter
 end
 
 function FluxRaidVisuals.GetAuraDurationFontObject(options)
@@ -434,7 +465,7 @@ end
 function FluxRaidVisuals.ApplyRaidFrameTunables(opts)
     opts = ScopedSizingOptions(opts)
     FluxRaidVisuals.GetAuraDurationFontObject(opts)
-    FluxRaidVisuals.GetAuraDurationFormatter(opts)
+    FluxRaidVisuals.GetAuraDurationFormatter()
     local wScale = tonumber(opts.memberWidthScale) or 1
     local hScale = tonumber(opts.frameHeightScale) or 1
     local pbScale = tonumber(opts.powerBarHeightScale)

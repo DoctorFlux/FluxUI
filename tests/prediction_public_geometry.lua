@@ -12,6 +12,7 @@ local body="local addonName,ns=...;local UF,API=ns.UnitFrames,ns.API\n"
     ..cut('local ATLAS_RAID_SHIELD_FILL =','--- HP/power text layout')
     ..cut('local function AtlasExists(name)','local function PlayerDeadOrGhost(unit)')
     ..cut('local function ApplyHealthBarArt(health)','-- Blizzard raid-frame absorb assets')
+    ..cut('local function StatusBarSetMinMaxImmediate(','local function FormatValue(')
     ..cut('local MAX_INCOMING_HEAL_OVERFLOW','-- AFK: safe boolean + display rules')
     ..cut('function UF.CreateHealthBar(frame)','-- Health bar tint.')
     ..cut('function UF.GetFluxStylePartitionHealthHeight','-- Event Handling')
@@ -115,6 +116,34 @@ local function boot(client,opaque,petRaised)
 end
 local modernClips,classicClips=0,0
 for _,client in ipairs({"era","anniversary","live","forever"})do
+    local preview = boot(client, false)
+    local frame, health, uf = preview.frame, preview.health, preview.uf
+    frame._fluxIndividualPreview = true
+    local function unexpectedWorldQuery() error("preview queried live unit prediction") end
+    preview.env.UnitIsDeadOrGhost = unexpectedWorldQuery
+    preview.env.UnitGetTotalAbsorbs = unexpectedWorldQuery
+    health.healCalc.GetIncomingHeals = unexpectedWorldQuery
+    health:SetValue(65)
+    uf.UpdateFramePartition(frame)
+    uf.UpdateHealPrediction(frame, {heal = 8, otherHeal = 2, absorb = 45, healAbsorb = 20})
+    check(frame.myHealPredictionBar:IsShown() and frame.otherHealPredictionBar:IsShown(),
+        "preview paints native incoming healing on both segments")
+    check(frame.healAbsorbBar:IsShown() and frame.healAbsorbBar:GetValue() == 10,
+        "preview subtracts incoming healing from the native heal-absorb bite")
+    check(frame.totalAbsorbBar:IsShown() and frame.overAbsorbGlow:IsShown(),
+        "preview shows the native damage absorb and overflow indicator")
+    if frame.absorbOverflow then
+        check(frame.totalAbsorbBar:GetValue() == 35 and frame.absorbOverflow:GetValue() == 45,
+            "modern preview splits absorb between missing health and native reverse fill")
+    end
+    preview.env.FluxUnitFrames_ShouldShowAbsorbs = function() return false end
+    uf.UpdateHealPrediction(frame, {heal = 8, otherHeal = 2, absorb = 45, healAbsorb = 20})
+    check(frame.myHealPredictionBar:IsShown() and not frame.totalAbsorbBar:IsShown(),
+        "preview obeys the user's independent heal/absorb toggles")
+    uf.UpdateHealPrediction(frame, {})
+    check(not frame.myHealPredictionBar:IsShown() and not frame.healAbsorbBar:IsShown()
+        and not frame.overAbsorbGlow:IsShown(), "clearing sample amounts removes stale preview art")
+
     local raised=boot(client,false,true)
     check(raised.frame.level==70 and raised.health.level==72,"real pet raise before health construction preserves parent+2 layering")
     check(raised.health.TextOverlay.level==100,"real pet text overlay preserves parent+30 priority")

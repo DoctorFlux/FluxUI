@@ -1,5 +1,38 @@
 # Extra buttons, consumables, travel and flyouts
 
+## Forever mount button
+
+Open **Collections → Mounts**. Select a collected mount and choose **Set** under
+**Default**, or drag the mount from the journal onto its icon. To add an override,
+select a mount in the journal and choose an exact Ctrl, Shift or Alt combination
+from **Add modifier**. The panel shows Default and the overrides you have saved.
+Use **Set** or drag to replace an assignment. **Clear** removes a modifier row and
+returns its combination to Default. An empty or unusable default uses the first
+usable mount in the collection. **Account / Character** changes the scope being edited.
+
+Extra Button Visibility in **Auto** follows learned riding or a usable class or
+racial mount. Training and collection changes refresh the button. Right-click
+opens the Mounts tab. The tooltip shows Default and the saved overrides, marks
+unavailable mounts and highlights the mount your held keys will use. The cast
+and icon follow that assignment, with the existing sticky mount behavior until
+dismount. An assignment can be saved before the character has the riding rank
+to use it. The icon uses the grid's standard dimming when combat, the current
+location, death, ghost state or a flight-path taxi prevents mounting.
+The selected mount and its binding stay in place through death and release.
+[Client evidence](CLIENT_VALIDATION.md#forever-mount-collection).
+
+Regular world travel keeps the last mount action while the journal settles.
+On arrival, FluxUI refreshes riding and the journal, then reapplies the
+default, modifier, journal right-click and keyboard routes. Protected updates
+wait for combat to end. [Travel regression](CLIENT_VALIDATION.md#forever-mount-collection).
+
+While riding a personal mount, the icon becomes a wisp. Flight-path taxis keep
+the normal mount icon. Click the wisp or use the mount binding to
+dismount, including during combat. Dismounting immediately restores the mount
+icon and its standard combat usability tint. FluxUI retains the confirmed
+journal selection until combat ends. Summoning a mount requires leaving combat.
+[Combat mount evidence](CLIENT_VALIDATION.md#forever-mount-collection).
+
 <!-- LHO-EBS-BAG-COUNT-PULSE-20261119 -->
 19 November. On Forever 1.60.1/70959, reload 120 returned to the world and loaded the current Containers.lua and Mail/Restock.lua revisions. Probe 122 moved and returned Roast Quail ×18. All six slot diffs matched both outputs. Bag generation advanced 5→7, the original slot and count were restored, the destination and cursor were empty, and BugTabs reported zero errors. Both EBS pulses touched the moved item with no total count change. Slot-diff totals were 0.0702/0.0562 ms with asymmetric instrumentation, and EBS baseline paint totaled 0.3059 ms. This is one live event pair. Native frame spikes and the populated mail path remain open.
 
@@ -299,6 +332,16 @@ binding rebuild; destination eligibility skips reagent scans. Known legacy rune
 counts/restock controls remain. [Regression/native limits](TELEPORT_CAST_WORK.md).
 
 The loaded [FlyoutEngine](../ExtraButtonSystem/FlyoutEngine/Init.lua) supports up to 36 secure popup children. `BindHost`, `SetButtons`, `Toggle`, `Close` and `CloseAll` attach consumer-defined lists. Definitions, secure opener/child-close snippets, popup geometry, chrome, arrows and compatibility facades are separated. List/construction changes defer outside combat; prepared handlers can open/close in combat where supported. Only OPEN behavior is implemented in this pass; PRIME/RANDOM/CYCLE constants are not additional shipped behavior.
+
+Native spell-flyout arrows and the shared opener glyph, including the Trinket
+Menu, draw one level above their local border art within the button's own
+stratum. A passive child carries each
+standalone texture and inherits its owner's position, scale and visibility.
+Clients with a native arrow container reuse it. These layers add no controller
+focus stops and keep the existing click, key and Escape routes. Layer changes
+run outside combat through existing updates. Creating, changing or retiring a
+watched seam refreshes the prepared art layer.
+[Desktop evidence](validation/hud-layer-dock-r191-2026-11-21.json).
 
 [Favorites](../ExtraButtonSystem/FlyoutEngine/Favorites.lua) stores per-modifier favorites, promotes available choices, paints stars and extends tooltips. [FluxNCFlyoutOptions](../ExtraButtonSystem/Shared/FluxNCFlyoutOptions.lua) stores per-character travel hide/order choices. Missing/zone-unusable favorites fall through to available entries. Favorites and popup layout are different data.
 

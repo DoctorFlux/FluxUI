@@ -403,6 +403,347 @@ local function fixture(legacy, auctionator, syndicator)
 end
 
 if FLUX_AH_FIXTURE_EXPORT then return fixture end
+local function queuedAuctionFixture(legacy, syndicator, requestedItem)
+    local A, st, env = fixture(legacy, true, syndicator ~= false)
+    local itemID, authorized, receipts = requestedItem or 777, true, {}
+    local entry = {kind = "auction", jobId = 31, id = "materials:777", planRevision = 8,
+        itemID = itemID, quantity = 6, maxUnitPrice = 100, maxTotalPrice = 400}
+    local qty, ok, result = 4
+    local function authorize(scope, quantity, total)
+        check(scope.jobId == 31 and scope.id == entry.id and scope.itemID == itemID,
+            "owner validates the exact job and SKU")
+        return authorized and scope.planRevision == entry.planRevision and quantity <= 4
+            and (not total or total <= 400)
+    end
+    local function observe(phase, receipt)
+        if phase == "state" then
+            st.queuedState = receipt.phase
+        else
+            receipts[#receipts + 1] = {phase = phase, receipt = receipt}
+        end
+    end
+    local control = env.CreateFrame("Button")
+    control:SetScript("OnClick", function()
+        ok, result = A.ExecuteLogistics(entry, qty, authorize, observe)
+    end)
+    st.emit("AUCTION_HOUSE_SHOW")
+    check(not A.active, "queued work starts in the existing auction view")
+    return A, st, env, itemID, entry, receipts, function(quantity)
+        qty = quantity or 4
+        st.press(control)
+        return ok, result
+    end, function(value) authorized = value end, function(quantity, explicit)
+        return A.PrepareLogistics(entry, quantity or 4, authorize, observe, explicit)
+    end
+end
+
+for _, legacy in ipairs({false, true}) do
+    local A, st, _, itemID, entry, receipts, press, valid, prepare = queuedAuctionFixture(legacy)
+    check(type(A.PrepareLogistics) == "function", "accepted shopping has a dedicated read-only preparation entry point")
+    st.offers = {legacy and {itemID = itemID, quantity = 2, total = 140}
+        or {itemID = itemID, quantity = 20, unitPrice = 65}}
+    local ok, phase = prepare(7)
+    check(not ok and phase == "invalid", "preparation is scoped to the accepted quantity")
+    ok, phase = prepare()
+    check(ok and phase == "searching", "no hardware click is required to start a price search")
+    local calls = st.calls.search
+    check(prepare() and st.calls.search == calls, "an identical pending preparation reuses its query")
+    st.result()
+    local ready, _, quote = A.GetLogisticsState(entry, 4)
+    check(ready == "ready" and quote.quantity == (legacy and 2 or 4),
+        "read-only preparation exposes the exact commodity amount or one indivisible stack")
+    check(prepare() and not st.calls.quote and not st.calls.buyStack and #receipts == 0,
+        "even a ready preparation cannot create a native purchase intent")
+    A.Primary()
+    check(not st.calls.quote and not st.calls.buyStack and #receipts == 0,
+        "an unrelated owner primary action cannot consume the background row")
+    if not legacy then st.syncQuote, st.syncSuccess = {65, 260}, true end
+    ok = press()
+    check(ok and (legacy and st.calls.buyStack == 1 or not legacy and st.calls.confirm == 1),
+        "the exact accepted click buys the prepared offer once")
+    if legacy then
+        st.legacyReceipt()
+        check(receipts[2].phase == "confirmed" and receipts[2].receipt.quantity == 2,
+            "the first classic press settles one stack")
+        check(prepare(2))
+        st.result()
+        check(st.calls.buyStack == 1 and #receipts == 2, "preparing the next stack cannot reuse the first press")
+        check(press(2) and st.calls.buyStack == 2, "the second classic stack requires another accepted press")
+    end
+end
+
+for _, legacy in ipairs({false, true}) do
+    local A, st, _, itemID, entry, receipts, press, _, prepare = queuedAuctionFixture(legacy, true, 3371)
+    st.settings.merchantSources = {
+        [itemID] = {unlimited = true, unitPrice = 4, priceNumerator = 20, priceDenominator = 5},
+    }
+    entry.quantity, entry.maxUnitPrice, entry.maxTotalPrice = 1, 5, 5
+    st.offers = {legacy and {itemID = itemID, quantity = 1, total = 5}
+        or {itemID = itemID, quantity = 20, unitPrice = 5}}
+    if not legacy then
+        table.insert(st.offers, 1, {itemID = itemID, quantity = 20, unitPrice = 4, containsOwnerItem = true})
+    end
+    check(prepare(1), "accepted shopping can search for one vial")
+    st.result()
+    local phase, _, offer = A.GetLogisticsState(entry, 1)
+    check(phase == "ready" and offer.quantity == 1 and offer.totalCopper == 5,
+        "the accepted single vial costs less than the vendor bundle despite its higher unit price")
+    check(not st.calls.quote and not st.calls.buyStack, "preparation cannot spend the accepted price")
+    if not legacy then st.syncQuote, st.syncSuccess = {5, 5}, true end
+    check(press(1), "one approved click can spend the exact accepted price")
+    if legacy then st.legacyReceipt() end
+    check(#receipts == 2 and receipts[2].phase == "confirmed" and receipts[2].receipt.quantity == 1
+        and receipts[2].receipt.totalCopper == 5, "one vial at five copper is credited after native confirmation")
+    if not legacy then
+        st.syncQuote, st.syncSuccess = nil, nil
+        check(prepare(1))
+        st.result()
+        check(press(1))
+        st.emit("COMMODITY_PRICE_UPDATED", 6, 6)
+        check(st.calls.confirm == 1 and #receipts == 2, "a later live price still cannot exceed the accepted cap")
+    end
+
+    st.entries = {{itemID = itemID, name = "Empty Vial", target = 1}}
+    A.SetMaxPrice(itemID, 5)
+    A.Toggle()
+    st.drain()
+    check(A.active and A.IsVendorItem(itemID) and not A.offer,
+        "standalone Restock still excludes listings above the vendor unit price")
+end
+
+do
+    local A, st, env, itemID, entry, receipts, press, _, prepare = queuedAuctionFixture(false)
+    st.offers = {{itemID = itemID, quantity = 20, unitPrice = 65}}
+    check(prepare(), "a background row starts while the normal Restock view is closed")
+    st.result()
+    A.Toggle()
+    check(A.active and not A.GetLogisticsRow(), "opening normal Restock releases background shopping")
+    local ok, reason = prepare()
+    check(not ok and reason == "otherSearch" and not st.calls.quote and #receipts == 0,
+        "background preparation cannot claim the normal Restock view")
+end
+
+for _, legacy in ipairs({false, true}) do
+    local A, st, _, itemID, entry, receipts, _, valid, prepare = queuedAuctionFixture(legacy)
+    st.offers = {legacy and {itemID = itemID, quantity = 2, total = 130}
+        or {itemID = itemID, quantity = 20, unitPrice = 65}}
+    A.Toggle()
+    check(A.active and A.frame and A.frame.primary, "normal Restock tab is active")
+    local ok, reason = prepare()
+    check(not ok and reason == "otherSearch", "passive shopping does not replace the open Restock session")
+    check(prepare(4, true), "the user can explicitly prepare a queued offer in the Restock tab")
+    st.result()
+    check(A.GetLogisticsState(entry, 4) == "ready" and #receipts == 0
+        and not st.calls.quote and not st.calls.buyStack, "the explicit quote buys nothing by itself")
+    valid(false)
+    st.press(A.frame.primary)
+    check(#receipts == 0 and not st.calls.quote and not st.calls.buyStack,
+        "the actual Restock button revalidates the queued offer before submitting")
+    valid(true)
+    check(prepare(4, true))
+    st.result()
+    if not legacy then st.syncQuote, st.syncSuccess = {65, 260}, true end
+    st.press(A.frame.primary)
+    if legacy then st.legacyReceipt() end
+    check(#receipts == 2 and receipts[2].phase == "confirmed"
+        and (legacy and st.calls.buyStack == 1 or not legacy and st.calls.confirm == 1),
+        "the actual Restock button buys one validated queued offer")
+end
+
+do
+    local A, st, env, itemID, entry, receipts, press, _, prepare = queuedAuctionFixture(false)
+    st.offers = {{itemID = itemID, quantity = 20, unitPrice = 65}}
+    check(prepare())
+    st.result()
+    env.C_AuctionHouse.SendSearchQuery(env.C_AuctionHouse.MakeItemKey(500))
+    check(not A.GetLogisticsRow(), "a subsequent external query invalidates a prepared row")
+    local calls = st.calls.search
+    local ok, reason = prepare()
+    check(not ok and reason == "otherSearch" and st.calls.search == calls and #receipts == 0,
+        "background preparation yields to the other auction search")
+    check(press(), "an explicit shopper click can reclaim the auction query after a foreign search")
+end
+
+for _, legacy in ipairs({false, true}) do
+    local A, st, env, itemID, entry, receipts, _, _, prepare = queuedAuctionFixture(legacy)
+    st.offers = {legacy and {itemID = itemID, quantity = 4, total = 260}
+        or {itemID = itemID, quantity = 20, unitPrice = 65}}
+    check(prepare(4, true), "explicit preparation initially finds the accepted material")
+    st.result()
+    check(A.GetLogisticsState(entry, 4) == "ready", "the initial quote is ready")
+    if legacy then
+        env.QueryAuctionItems("Item500", nil, nil, 0, false, nil, false, true)
+    else
+        env.C_AuctionHouse.SendBrowseQuery({})
+    end
+    st.result()
+    check(A.yielded and not A.GetLogisticsRow(), "the foreign query invalidates the original quote")
+    local query = legacy and "legacySearch" or "search"
+    local queries = st.calls[query]
+    local ok, phase = prepare()
+    check(not ok and phase == "otherSearch" and st.calls[query] == queries,
+        "passive preparation respects the yielded search")
+    env.StaticPopup_Visible = function(which) return which == "BUYOUT_AUCTION" end
+    ok, phase = prepare(4, true)
+    check(not ok and phase == "otherSearch" and st.calls[query] == queries,
+        "explicit Find offer does not take a foreign buyout dialog")
+    env.StaticPopup_Visible = nil
+    ok, phase = prepare(4, true)
+    check(ok and phase == "searching" and st.calls[query] == queries + 1,
+        "explicit Find offer resumes with one query after yielding")
+    st.result()
+    check(A.GetLogisticsState(entry, 4) == "ready" and #receipts == 0
+        and not st.calls.quote and not st.calls.confirm and not st.calls.buyStack and not st.calls.buyItem,
+        "the resumed native result offers the accepted materials without purchasing")
+end
+
+for _, commodity in ipairs({true, false}) do
+    local A, st, env, itemID, entry, receipts, _, _, prepare = queuedAuctionFixture(false)
+    local ah = env.C_AuctionHouse
+    local cached, witnessed = false, false
+    ah.GetItemKeyInfo = function() return cached and {} or nil end
+    ah.HasSearchResults = function() return witnessed end
+    st.commodity = commodity
+    check(prepare(4, true) and A.status == "loading" and not st.calls.search,
+        "modern Find offer waits for missing native item-key data")
+    st.advance(0.3)
+    check(not st.calls.search, "missing key data does not send a useless native search")
+    cached = true
+    st.advance(0.3)
+    check(st.calls.search == 1, "the matching item key sends exactly one search when available")
+    st.result()
+    check(A.GetLogisticsState(entry, 4) == "searching", "an unwitnessed empty result cannot conclude Find offer")
+    st.result()
+    check(st.calls.search == 1, "duplicate empty updates cannot dispatch another search")
+    st.advance(0.3)
+    check(st.calls.search == 2, "the next native request retries unwitnessed results once")
+    witnessed = true
+    st.offers = commodity and {{itemID = itemID, quantity = 20, unitPrice = 65}}
+        or {{itemKey = ah.MakeItemKey(itemID), auctionID = 21, quantity = 1, buyoutAmount = 65}}
+    st.result()
+    local phase, _, quote = A.GetLogisticsState(entry, 4)
+    check(phase == "ready" and quote.quantity == (commodity and 4 or 1)
+        and #receipts == 0 and not st.calls.quote and not st.calls.buyItem,
+        "the verified result is quotable and spends nothing")
+
+    witnessed, st.offers = false, {}
+    check(prepare(3, true), "different requested quantity starts fresh")
+    st.result()
+    st.advance(0.3)
+    st.result()
+    local queries = st.calls.search
+    st.advance(16)
+    local state, reason = A.GetLogisticsState(entry, 3)
+    check(not state and reason == "loading" and st.calls.search == queries,
+        "an unready result stops after a bounded retry")
+    witnessed = true
+    check(prepare(3, true))
+    st.result()
+    state, reason = A.GetLogisticsState(entry, 3)
+    check(not state and reason == "noOffer", "a verified empty result remains no eligible offer")
+end
+
+do
+    local A, st, env, itemID, entry, receipts, press = queuedAuctionFixture(false)
+    st.offers = {{itemID = itemID, quantity = 20, unitPrice = 65}}
+    local ok, phase = press(7)
+    check(not ok and phase == "invalid" and not st.calls.search, "requested count above accepted maximum cannot send a query")
+    ok, phase = press()
+    check(ok and phase == "searching" and st.calls.search == 1, "one queued press starts one exact native query")
+    check(A.GetLogisticsState(entry, 4) == "searching" and A.GetLogisticsState(entry, 3) == nil,
+        "lookup is specific to accepted plan and count")
+    st.result()
+    local ready, reason, quote = A.GetLogisticsState(entry, 4)
+    check(ready == "ready" and not reason and st.queuedState == "ready" and not st.calls.quote and #receipts == 0,
+        "asynchronous result becomes ready and never spends the starting gesture")
+    check(quote.quantity == 4 and quote.totalCopper == 260, "live ready offer exposes exact count and copper")
+    quote.quantity, quote.totalCopper = 999, 0
+    local _, _, copied = A.GetLogisticsState(entry, 4)
+    check(copied.quantity == 4 and copied.totalCopper == 260, "caller quote edits leave the owner offer intact")
+    local _, _, foreign = A.GetLogisticsState(entry, 3)
+    check(not foreign, "a different requested quantity cannot expose the ready quote")
+    st.syncQuote, st.syncSuccess = {65, 260}, true
+    ok, phase = press()
+    check(ok and phase == "buying" and st.calls.quote == 1 and st.calls.confirm == 1,
+        "one new physical press authorizes exactly one native commodity quote")
+    check(#receipts == 2 and receipts[1].phase == "submitted" and receipts[2].phase == "confirmed",
+        "synchronous verified success publishes one receipt in order")
+    local receipt = receipts[2].receipt
+    check(receipt.quantity == 4 and receipt.totalCopper == 260 and receipt.itemID == itemID
+        and receipt.planRevision == entry.planRevision and receipt.attemptID == receipts[1].receipt.attemptID,
+        "receipt carries exact physical count, copper, SKU, revision and submission identifier")
+    check(not A.Settings().pending[itemID], "accepted work never creates a duplicate standalone reservation")
+end
+
+for _, syndicator in ipairs({false, true}) do
+    for _, result in ipairs({"COMMODITY_PURCHASE_SUCCEEDED", "COMMODITY_PURCHASE_FAILED", "COMMODITY_PURCHASED"}) do
+        local A, st, _, itemID, _, receipts, press = queuedAuctionFixture(false, syndicator)
+        st.offers = {{itemID = itemID, quantity = 20, unitPrice = 65}}
+        st.emit("COMMODITY_PRICE_UPDATED", 40, 120)
+        local ok, phase = press()
+        check(not ok and phase == "otherSearch" and not st.calls.search,
+            "an Auctionator commodity quote still owns the native quote")
+        st.emit("AUCTION_HOUSE_PURCHASE_COMPLETED", 12)
+        check(A.foreign and A.foreign.kind == "quote", "an unrelated item terminal leaves a commodity quote in place")
+        st.emit(result, 103, 3)
+        ok, phase = press()
+        check(not ok and phase == "otherSearch" and not st.calls.search,
+            "an older terminal cannot release a newer quote with time remaining")
+        st.quoteLeft = 0
+        ok, phase = press()
+        check(ok and phase == "searching" and st.calls.search == 1 and not A.foreign and #receipts == 0,
+            "a completed Auctionator purchase returns native search to Craft Shopping without spending")
+    end
+end
+
+do
+    local A, st, env, itemID, entry, receipts, press, valid = queuedAuctionFixture(false)
+    st.offers = {{itemID = itemID, quantity = 20, unitPrice = 70}}
+    press(); st.result(); press()
+    check(A.GetLogisticsState(entry, 4) == "quoting", "queued confirmation waits for a live native quote")
+    valid(false)
+    st.emit("COMMODITY_PRICE_UPDATED", 70, 280)
+    check(not st.calls.confirm and #receipts == 0 and not A.GetLogisticsState(entry, 4) and st.queuedState == "idle",
+        "an invalidated accepted order cannot spend from a delayed quote")
+end
+
+do
+    local A, st, env, itemID, entry, receipts, press = queuedAuctionFixture(false)
+    st.commodity = false
+    st.offers = {{itemKey = env.C_AuctionHouse.MakeItemKey(itemID), auctionID = 555, quantity = 10, buyoutAmount = 80}}
+    press(); st.result()
+    st.advance(30)
+    local phase, reason, quote = A.GetLogisticsState(entry, 4)
+    check(not phase and reason == "expired" and not quote, "expired offer keeps its reason and hides quote details")
+    press(); st.result()
+    local ok = press()
+    check(ok and st.calls.buyItem == 1 and receipts[1].receipt.quantity == 1,
+        "queued modern item buyout consumes one auction from grouped availability")
+    st.emit("AUCTION_HOUSE_PURCHASE_COMPLETED", 999)
+    check(#receipts == 1 and A.GetLogisticsState(entry, 4) == "buying", "unrelated item receipt cannot credit an accepted job")
+    st.advance(16)
+    check(#receipts == 2 and receipts[2].phase == "uncertain", "missing native result is reported without inventing stock")
+end
+
+do
+    local A, st, env, itemID, entry, receipts, press = queuedAuctionFixture(true)
+    A.Settings().allowExcessStacks = true
+    st.offers = {{itemID = itemID, quantity = 5, total = 50}}
+    press(); st.result()
+    check(not A.GetLogisticsState(entry, 4) and not st.calls.buyStack,
+        "accepted legacy buying never inherits the standalone surplus option")
+    st.offers = {{itemID = itemID, quantity = 4, total = 300}}
+    press(); st.result()
+    st.offers[1].owner = "Changed"
+    press()
+    check(not st.calls.buyStack and #receipts == 0, "legacy listing identity is checked again at the physical press")
+    press(); st.result(); press()
+    check(st.calls.buyStack == 1 and receipts[1].receipt.quantity == 4, "matching legacy listing buys one approved stack")
+    st.legacyReceipt()
+    check(#receipts == 2 and receipts[2].phase == "confirmed" and not A.Settings().pending[itemID],
+        "legacy acknowledged buyout settles in the accepted job without duplicate standalone reservations")
+end
+
 local ownedStartupPaints
 for _, mode in ipairs({ "owned", "session override", "renderer override", "pending" }) do
     local A, st, env = fixture(false, false, false)

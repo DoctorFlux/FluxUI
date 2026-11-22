@@ -1,5 +1,31 @@
 # Individual unit frames
 
+## Debuff type corners and borders
+
+Target and focus debuffs and the pet aura tooltip show a type icon at the
+upper-right corner and a type-colored border. The corresponding previews use
+the same placement. Retail and Forever can bind the icon to Blizzard's
+secure aura button. The readable aura path selects the icon from the dispel
+type and clears it when the button is reused. Smaller icons get a smaller
+corner so their stack count and timer retain room.
+
+[Client validation](CLIENT_VALIDATION.md#debuff-type-corners-and-borders).
+
+## Shared unit-frame aura countdowns
+
+21 November 2026. **Unit Frame → General → Show aura timers only below 1
+minute** controls countdown text on target, focus, normal party, compact party
+and raid. The General setting follows the active unit-frame scope and defaults
+to off. When enabled, countdown numbers appear below 60 seconds. Icons, stacks
+and cooldown swipes continue throughout the aura. The existing deferred
+refresh applies changes made during combat.
+
+| Requirement | Observable acceptance |
+| --- | --- |
+| UF-AURA-STYLE-03 | The General switch changes both buff and debuff countdown labels. At 60 seconds the number is hidden and below 60 seconds it resumes. Party and raid scope and sizing resets have no timer control. |
+
+[Client evidence](CLIENT_VALIDATION.md#shared-unit-frame-aura-countdowns).
+
 <!-- COMBAT-CALLBACK-WORK-20261116 -->
 16 November (`COMBAT-CALLBACK-WORK-20261116`): two additional offline fixes are applied.
 Portrait camera/SetUnit/clear/geometry protected callbacks reuse private bodies
@@ -624,6 +650,9 @@ input, appearance, combat and taint acceptance remain pending.
 
 ## Aura countdown threshold — final split, 7 November 2026
 
+Historical behavior. The 21 November change replaces these two controls with
+the General setting described above. [Current behavior](#shared-unit-frame-aura-countdowns).
+
 UF-AURA-02 supersedes the rejected per-target/focus UF-AURA-01 prototype.
 The user briefly requested all aura frames, then explicitly split the scope:
 
@@ -989,6 +1018,11 @@ No foreground control, game/WTF/profiler writes, manual sync, branch or push.
 
 ## Focus party presentation — 7 November 2026
 
+21 November. Compact Focus uses Party's health and power partition. The
+portrait divider meets a continuous bottom border. Focus keeps its own
+configured size and the independent buff and debuff panels above its name
+strip. [Validation](CLIENT_VALIDATION.md#compact-focus-border-and-party-layout).
+
 7 November focus party presentation (FOCUS-PARTY-PRESENTATION-20261107; REQ-RF-78/79):
 PvP artwork is another35% larger on a scaled noninteractive host, still behind
 level text; native/private atlas rendering and timer-below-level policy retained.
@@ -1017,6 +1051,7 @@ write, manual sync, branch or push. [Evidence](validation/focus-party-presentati
 |---|---|---|
 | REQ-RF-78 | Increase full native PvP badge further | Host scale1.35;319 badge checks; native pixels pending |
 | REQ-RF-79 | Party-style focus with right vertical target; previous position and separate top aura panels | Actual focus initializers exercised;970 combined checks; positioning function retained; native placement pending |
+| REQ-OPT-59 | Keep the compact Focus lower border continuous at the portrait join and match the Party bar split | Compare both border styles, Focus with and without power, and both top aura panels. |
 
 ## Focus anchor and aura scale correction — 7 November 2026
 

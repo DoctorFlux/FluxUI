@@ -114,8 +114,8 @@ for _,shape in ipairs{'cluster','global','minimap','missing'}do
  corrected(c.GetPoint==600,'every indicator reads its current native anchor on every pass')
  check(c.DifficultyUpdate==100 and c.Layout==100 and c.LegacyUpdate==100
   and c.LandingRefresh==100 and c.Queue==100,'all native difficulty/layout/landing/queue refreshes retain their original cadence')
- check(mail.parent==e.Minimap and mail.point[1]=='RIGHT'and mail.point[2]==tracking
-  and tracking.point[4]==-4 and tracking.point[5]==4,'original tracking and mail geometry retained')
+ check(mail.parent==e.Minimap and mail.point[1]=='BOTTOMRIGHT'and mail.point[2]==tracking
+  and tracking.point[4]==-6 and tracking.point[5]==6,'tracking and mail align inside the minimap border')
  -- SetParent can show native frames synchronously. Match the original empty
  -- anchors observed inside those callbacks, including reentrant positioning.
  for _,w in ipairs{tracking,mail,e.ExpansionLandingPageMinimapButton}do
@@ -137,7 +137,7 @@ for _,shape in ipairs{'cluster','global','minimap','missing'}do
  check(tracking.level==51 and mail.level==11 and e.Minimap.InstanceDifficulty.level==21
   and e.GuildInstanceDifficulty.point[5]==5,'native frame level and legacy/modern offsets are corrected')
  e.FluxBorder.CanUseAtlases=function()return false end;h:position()
- check(tracking.point[4]==-2 and tracking.point[5]==2,'current style changes apply without an old-state cache')
+ check(tracking.point[4]==-4 and tracking.point[5]==4,'current style changes apply without an old-state cache')
  e.Minimap.level=8;h:position()
  check(tracking.level==58 and mail.level==18,'current minimap frame level propagates')
  -- Every unreadable native getter conservatively retains the original writer.
@@ -153,11 +153,12 @@ for _,shape in ipairs{'cluster','global','minimap','missing'}do
   end
   tracking[name]=original
  end
- -- Replacements receive the same initialization; absence uses the original mail anchor.
+ -- Replacements receive the same initialization; absence uses the minimap corner.
  e.MinimapCluster.Tracking=new('ReplacementTracking');h:position()
  check(mail.point[2]==e.MinimapCluster.Tracking and e.MinimapCluster.Tracking.level==58,'late native tracking replacement is positioned and becomes the mail anchor')
  e.MinimapCluster.Tracking=nil;h:position()
- check(mail.point[1]=='BOTTOMRIGHT'and mail.point[2]==e.Minimap,'tracking absence preserves fallback mail placement')
+ check(mail.point[1]=='BOTTOMRIGHT'and mail.point[2]==e.Minimap and mail.point[4]==-4 and mail.point[5]==4,
+  'tracking absence keeps the mail inside the map rim')
  reset();h.combat=true;h:position()
  check(writes()==0 and not c.DifficultyUpdate and not c.Queue,'combat still defers all indicator geometry and native refresh work')
  h.combat=false;h:position()

@@ -1420,8 +1420,8 @@ local function ShowRestockTooltip(button)
     local isSoldAtVendor = FV and FV.IsRestockEntrySoldAtVendor
     for i = 1, #items do
         local entry = items[i]
-        if entry and (not isSoldAtVendor or isSoldAtVendor(entry)) then
-            local suffix
+        if entry and (entry.plannerVendorPending or not isSoldAtVendor or isSoldAtVendor(entry)) then
+            local suffix, displayTarget
             local r, g, b = 1, 1, 1
             if entry.isTierRestock and entry.vendorLowerTierOnly then
                 r, g, b = 1, 0.82, 0.35
@@ -1431,10 +1431,16 @@ local function ShowRestockTooltip(button)
             elseif not entry.isTierRestock and entry.vendorSold then
                 r, g, b = 0.35, 1, 0.35
             end
-            AddRestockTooltipEntry(entry, { r = r, g = g, b = b, suffix = suffix })
+            if entry.plannerVendorNeed or entry.plannerVendorPending then
+                local pending = entry.plannerVendorPending or 0
+                local have = (entry.bagCount or 0) + (entry.countBank and (entry.bankCount or 0) or 0)
+                displayTarget = math.max(entry.target or 0, have)
+                    + ((entry.plannerVendorNeed or 0) + pending) * (entry.craftUnitsPerItem or 1)
+                if pending > 0 then suffix = ("  |cffd9d066(%d pending)|r"):format(pending) end
+            end
+            AddRestockTooltipEntry(entry, { r = r, g = g, b = b, suffix = suffix, displayTarget = displayTarget })
         end
     end
-
     FinishRestockTooltip(uiState.cachedRestockTotal)
 end
 
@@ -1819,7 +1825,7 @@ local function HandleRestockButtonClick(btn)
         return false
     end
     if FV and FV.DoRestockManual then
-        FV.DoRestockManual()
+        return FV.DoRestockManual() == true
     end
     return false
 end
@@ -1939,6 +1945,15 @@ local function EnsureRestockButton()
 
     uiState.restockButton = btn
     toggles.restock = btn
+    local policy = _G.Flux and _G.Flux.RestockPolicy
+    if policy and policy.Subscribe then
+        policy.Subscribe("vendor-queued-restock-button", function(_, reason)
+            if MerchantFrame and MerchantFrame:IsShown() and (reason == "coverage" or reason == "merchant" or not reason) then
+                uiState.restockSettingsDirty = true
+                ScheduleMerchantUpdate("data")
+            end
+        end)
+    end
     return btn
 end
 
@@ -2735,7 +2750,8 @@ local function UpdateRestockButton(repairClusterVisible, mode)
             local FFWR = _G.FluxVendorFoodWaterRestock
             local hasTierTargets = FFWR and FFWR.NeedsTierRestockTargets and FFWR.NeedsTierRestockTargets()
             local hasItemTargets = FV.HasAnyRestockTargets and FV.HasAnyRestockTargets()
-            if not hasTierTargets and not hasItemTargets then
+            local hasTemporaryTargets = FV.HasTemporaryVendorTargets and FV.HasTemporaryVendorTargets()
+            if not hasTierTargets and not hasItemTargets and not hasTemporaryTargets then
                 uiState.cachedRestockItems = {}
                 uiState.cachedRestockTooltipItems = {}
                 uiState.cachedRestockTotal = 0
@@ -2794,6 +2810,15 @@ local function UpdateRestockButton(repairClusterVisible, mode)
     local tierStale = hasTierTargets and FFWR and FFWR.IsMerchantScanStale and FFWR.IsMerchantScanStale()
     if indexPending or tierStale then
         canBuy = false
+    end
+    if not indexPending and not canBuy then
+        local policy = _G.Flux and _G.Flux.RestockPolicy
+        for _, entry in ipairs(uiState.cachedRestockItems) do
+            if entry.plannerVendorNeed then
+                canBuy = policy and policy.CanBuyVendorRequirements and policy.CanBuyVendorRequirements() or false
+                break
+            end
+        end
     end
     uiState.cachedRestockCanBuy = canBuy
     if not layoutMode then
@@ -2886,10 +2911,9 @@ function FluxVendorAutoMerchantUI.NeedsMerchantUIDataRefresh(caps)
     if IsSellJunkTooltipShowing() and uiState.junkStatsDirty then
         return true
     end
-    if FV and FV.HasAnyRestockTargets and FV.HasAnyRestockTargets() then
-        if uiState.restockSettingsDirty
-            or not uiState.cachedRestockItems
-            or #uiState.cachedRestockItems == 0 then
+    if FV and (uiState.restockSettingsDirty or not uiState.cachedRestockItems or #uiState.cachedRestockItems == 0) then
+        if FV.HasAnyRestockTargets and FV.HasAnyRestockTargets()
+            or FV.HasTemporaryVendorTargets and FV.HasTemporaryVendorTargets() then
             return true
         end
     end

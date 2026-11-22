@@ -194,12 +194,15 @@ function Nameplates.ApplyHealthText()
 	if not info then
 		return false
 	end
+	local saved = _G.FluxUI_DB
+	local appearance = type(saved) == "table" and saved.nameplateAppearance
+	local chosen = type(appearance) == "table" and type(appearance.healthText) == "table" and appearance.healthText
 	local wrote = false
-	if type(info.CurrentHealthPercent) == "number" and Write.Bit("nameplateInfoDisplay", info.CurrentHealthPercent, true, false) then
-		wrote = true
-	end
-	if type(info.CurrentHealthValue) == "number" and Write.Bit("nameplateInfoDisplay", info.CurrentHealthValue, true, false) then
-		wrote = true
+	for _, key in ipairs({ "CurrentHealthPercent", "CurrentHealthValue" }) do
+		local enabled = not chosen or chosen[key] ~= false
+		if type(info[key]) == "number" and Write.Bit("nameplateInfoDisplay", info[key], enabled, false) then
+			wrote = true
+		end
 	end
 	return wrote
 end
@@ -211,10 +214,58 @@ function Nameplates.Apply(force)
 	end)
 end
 
+local zoomSettings = {
+	"nameplateSelectedScale", "nameplateMinScale", "nameplateMaxScale", "nameplateLargerScale",
+	"nameplateOccludedAlphaMult", "nameplateTargetRadialPosition", "clampTargetNameplateToScreen",
+}
+local visibilitySettings = { "nameplateShowEnemies", "nameplateShowFriends" }
+
+local function RestoreSetting(cvar, applied, original)
+	local current = Write.Get(cvar)
+	if issecretvalue and issecretvalue(current) then return false end
+	if current == nil or not Write.Matches(cvar, applied) or Write.Matches(cvar, original) then return true end
+	return Write.CVar(cvar, original)
+end
+
+-- Older addon-owned plates temporarily acquired these client settings.
+-- Restore a value only while the previous applied value is still present.
+local function RestoreNameplateSettings()
+	local saved = _G.FluxUI_DB
+	local appearance = type(saved) == "table" and saved.nameplateAppearance
+	if type(appearance) ~= "table" then return end
+	local zoom, visibility = appearance.nameplateZoomBackup, appearance.combatVisibilityOwned
+	if type(zoom) ~= "table" and type(visibility) ~= "table" then return end
+	Write.Run("restoreNameplateSettings", function()
+		if type(zoom) == "table" then
+			for _, cvar in ipairs(zoomSettings) do
+				local backup = zoom[cvar]
+				if type(backup) == "table" and type(backup.applied) == "string"
+					and (type(backup.original) == "string" or type(backup.original) == "number")
+					and RestoreSetting(cvar, backup.applied, backup.original) then
+					zoom[cvar] = nil
+				end
+			end
+			if not next(zoom) then appearance.nameplateZoomBackup = nil end
+		end
+		if type(visibility) == "table" then
+			for _, cvar in ipairs(visibilitySettings) do
+				if visibility[cvar] and RestoreSetting(cvar, "1", "0") then visibility[cvar] = nil end
+			end
+			if not next(visibility) then appearance.combatVisibilityOwned = nil end
+		end
+	end)
+end
+
 --- Zone loads can clear the health readout bits. Re-apply on every client that has them.
 local healthBits = CreateFrame("Frame")
+healthBits:RegisterEvent("PLAYER_LOGIN")
 healthBits:RegisterEvent("PLAYER_ENTERING_WORLD")
-healthBits:SetScript("OnEvent", function()
+healthBits:SetScript("OnEvent", function(self, event)
+	if event == "PLAYER_LOGIN" then
+		self:UnregisterEvent(event)
+		RestoreNameplateSettings()
+		return
+	end
 	Write.Run("nameplateHealthText", function()
 		Nameplates.ApplyHealthText()
 	end)

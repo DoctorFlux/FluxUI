@@ -1,12 +1,12 @@
 # FluxUI HUD performance roadmap
 
-**R189 acceptance candidate · Live acceptance pending · Updated 20 November 2026**
+**R192 acceptance candidate · Live acceptance pending · Updated 21 November 2026**
 
 Make party and raid membership changes, held-action crossings, rapid action-bar edits and other HUD changes feel immediate. Keep both border styles, T/X seams, shadows, action IDs, bindings, and combat behavior intact. This is the HUD performance gate in the [addon release roadmap](RELEASE_ROADMAP.md). The [border builder requirements](BORDER_BUILDER_LOCALITY.md) cover the implementation.
 
 ## Finish line
 
-Use R189 and the pinned HUD and group sources as the acceptance candidate. R189 carries forward the R187 performance closeout and fits the cast border rim and icon divider. The remaining milestone is one native acceptance round, starting on Forever where the hitches were reported. Exercise the first transition and a short burst of repeats. Close the goal when the checks pass. Reopen implementation for a specific failure and retest the affected paths.
+Use R192 and the pinned HUD and group sources as the acceptance candidate. R192 carries forward the performance closeout and restores panel-local levels for Flux Window and the side grid. The remaining milestone is one native acceptance round, starting on Forever where the hitches were reported. Exercise the first transition and a short burst of repeats. Reopen implementation for a specific failure and retest the affected paths.
 
 | Acceptance check | Pass condition |
 | --- | --- |
@@ -17,7 +17,7 @@ Use R189 and the pinned HUD and group sources as the acceptance candidate. R189 
 
 If a native scenario is unavailable, retain the tested candidate and mark that check pending. Resume implementation when a failed acceptance check identifies work. Profiling is optional and is useful only when a reproducible hitch still needs attribution.
 
-The thread remains blocked pending player-performed live acceptance. Begin with held-action crossings and rapid drops on Forever. Check the cast border rim in both styles during the visual pass.
+Live acceptance remains pending. Begin with held-action crossings and rapid drops on Forever. Check the cast rim, flyout arrow order and side-grid dock in both styles during the visual pass.
 
 ## Implemented and verified on desktop
 
@@ -38,14 +38,26 @@ The thread remains blocked pending player-performed live acceptance. Begin with 
 | **HUD-4 · Embedded minimap and other HUD changes** | Native regression check pending | Check embedded-minimap toggles with side buttons present, including changes in button count or grid scale and nearby Flux Window contacts. Verify stable window size and immediate seam updates. |
 | **HUD-5 · Combat and final verification** | Native regression check pending | Exercise first and repeated combat exits, class/combat/dispel paint and target/focus changes. Check protected layout settlement after lockdown and taint. Verify the combined behavior on all supported client families. |
 
-## How the active goal is tracked
+## How acceptance is tracked
 
 - Use the track IDs above to record each acceptance result. Start with HUD-1. Follow a failing check to its owner before making a new source change.
 - After each slice, update the matching row and add the strongest new result with an exact-source validation link. Keep detailed measurements, regressions and client exceptions in the existing ledgers. Use [Next session](../NEXT_SESSION.md) to point back here.
 - Keep desktop work counts, reported symptoms and native verification distinct. A desktop pass can establish layout and operation parity in its fixture. Native frame time, pixels and taint require an actual client run. Use current native evidence when the scenario is available, with Forever first for the reported hitch.
-- Close the goal when HUD-1 through HUD-5 meet their acceptance criteria. Reopen a track for a reproducible failure that affects those criteria.
+- Record acceptance when HUD-1 through HUD-5 meet their criteria. Reopen a track for a reproducible failure that affects those criteria.
 
 ## Latest checkpoint
+
+**21 November 2026 · Minimap button layout** — R193 commits local border changes at hover entry and exit. Stationary hover adds no solves in the desktop replay. The embedded layout reuses its ordinary reflow to center the grid. [Validation](validation/minimap-hover-dock-r193-2026-11-21.json)
+
+**21 November 2026 · Standalone minimap restore** — Combat exit applies the final queued minimap placement once. Both restore paths return the header to its standalone geometry. Mail and tracking retain their inset during repeated layout passes. [Validation](validation/minimap-standalone-restore-2026-11-21.json)
+
+**21 November 2026 · Flux Window and side-grid levels** — R192 keeps both border sources in their own layers through the shared seam. Only overlapping minimap controls influence the top mouseover grid's level. [Validation](validation/hud-panel-layers-r192-2026-11-21.json)
+
+**21 November 2026 · Local arrow and side-grid layers** — R191 keeps arrow art just above the local border in the host's stratum. A side grid that touches Flux Window shares its crest at small scales. [Validation](validation/hud-layer-dock-r191-2026-11-21.json)
+
+**21 November 2026 · Flyout arrow layering** — The action strip, extra buttons and Trinket Menu use a shared foreground draw layer for their arrows. Stable layouts reuse it. [Validation](validation/flyout-arrow-layer-2026-11-21.json)
+
+**20 November 2026 · Type 1 divider width** — R190 retains more of Type 1's icon-side divider artwork and keeps its fill-side edge in place. [Validation](validation/cast-divider-weight-r190-2026-11-20.json)
 
 **20 November 2026 · Vertical cast divider** — R189 trims the divider's outside bevel using the registered track and thickness. All 60 HUD and cast desktop scripts passed, including the straight divider and both T-junctions in three profiles. [Validation](validation/cast-divider-r189-2026-11-20.json)
 

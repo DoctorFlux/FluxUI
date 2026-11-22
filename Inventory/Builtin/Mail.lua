@@ -11,7 +11,7 @@ local Mail = {}
 Builtin.Mail = Mail
 
 local started = false
-local mailboxOpen = false
+local mailboxOpen, inboxReported = false, false
 local pendingOutgoing
 local pendingFrame
 local lastByIndex, lastCount, lastCaptured
@@ -77,18 +77,31 @@ local function IsCurrentScan(job)
 	return true
 end
 
+local function SameCounts(left, right)
+	for id, count in pairs(left) do if right[id] ~= count then return false end end
+	for id in pairs(right) do if left[id] == nil then return false end end
+	return true
+end
+
 local function ApplyList(job)
 	local char = Store.EnsureCurrentCharacter()
 	if not IsCurrentScan(job) then return false end
 	local snap = Inv.snapshots.mail
+	local observed = job.inboxComplete
+	if observed == nil and snap and snap.observedSource == "builtin" then
+		-- A provisional or forced read can retain proof for the same item counts.
+		observed = SameCounts(snap.counts, job.counts)
+	end
 	if snap then
 		-- No consumer caches the inner mail map. Publish completed maps together;
 		-- normalized rows/counts have already been prepared within the scan budget.
 		snap.byIndex, snap.counts = job.byIndex, job.counts
 		snap.generation = (snap.generation or 0) + 1
+		snap.observedSource = observed and "builtin" or nil
 	end
 	if char then
 		char.mail = job.list
+		char.mailInboxObserved = observed or nil
 		Store.MarkPending(Store.GetCurrentCharacterName(), "all")
 	end
 	lastByIndex, lastCount, lastCaptured, hasCompleted = job.byIndex, #job.list, job.list, true
@@ -206,9 +219,17 @@ local function StepScan(self)
 			maxAttach = MaxReceiveSlots(), now = (time and time()) or 0 }
 		firstQueued = nil
 		local job = scan
-		local n = GetInboxNumItems()
+		local n, total = GetInboxNumItems()
 		if not IsCurrentScan(job) then return end
-		job.n = n or 0
+		if type(n) ~= "number" then
+			self:SetScript("OnUpdate", nil)
+			scan = nil
+			return
+		end
+		job.n = n
+		if mailboxOpen and inboxReported and type(total) == "number" then
+			job.inboxComplete = n == total
+		end
 	end
 	local job = scan
 	local calls, startedAt = 0, debugprofilestop and debugprofilestop()
@@ -221,8 +242,13 @@ local function StepScan(self)
 				daysLeft, hasItem = days, has
 			end
 			calls = calls + 1
+			-- A loaded header has a lifetime even when it carries no items.
+			if type(daysLeft) ~= "number" or (issecretvalue and issecretvalue(daysLeft)) then
+				job.incomplete = true
+				break
+			end
 			if MailHasAttachments(hasItem) then
-				job.expiration = job.now + math.floor((tonumber(daysLeft) or 0) * 86400)
+				job.expiration = job.now + math.floor(daysLeft * 86400)
 				job.attach, job.captured = 1, 0
 				job.expected = tonumber(hasItem) or 1
 			else
@@ -253,10 +279,10 @@ local function StepScan(self)
 		end
 		if startedAt and debugprofilestop() - startedAt >= BUDGET_MS then break end
 	end
-	if job.index <= job.n then return end
+	if job.index <= job.n and not job.incomplete then return end
 	self:SetScript("OnUpdate", nil)
 	-- Never publish a partial inbox or recurse through Scheduler -> Refresh.
-	-- Truly missing IDs get at most two retries, not an expanding timer tree.
+	-- Missing headers or attachments get at most two retries.
 	if job.incomplete then
 		scan = nil
 		if mailboxOpen and retryCount < 2 then
@@ -266,7 +292,10 @@ local function StepScan(self)
 		end
 		return
 	end
+	local snap = Inv.snapshots.mail
+	local observedSource = job.inboxComplete and "builtin" or nil
 	local changed = job.changed or #job.list ~= lastCount
+		or job.inboxComplete ~= nil and snap and snap.observedSource ~= observedSource
 	if changed and not ApplyList(job) then return end
 	scan = nil
 	if changed then Inv.Notify({ mail = true }) end
@@ -361,20 +390,20 @@ function Mail.Start()
 	end
 	started = true
 	if Flux.Events and Flux.Events.Register then
-		Flux.Events.Register("MAIL_SHOW", function()
+		local function OnOpened()
+			if not mailboxOpen then inboxReported = false end
 			mailboxOpen = true
 			ArmInboxScan()
-		end)
+		end
+		Flux.Events.Register("MAIL_SHOW", OnOpened)
 		Flux.Events.Register("MAIL_INBOX_UPDATE", function()
+			if mailboxOpen then inboxReported = true end
 			ArmInboxScan()
 		end)
 		Flux.Events.Register("MAIL_CLOSED", PersistThenClose)
 		Flux.Events.Register("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", function(_, kind)
 			local e = Enum and Enum.PlayerInteractionType
-			if e and kind == e.MailInfo then
-				mailboxOpen = true
-				ArmInboxScan()
-			end
+			if e and kind == e.MailInfo then OnOpened() end
 		end)
 		Flux.Events.Register("PLAYER_INTERACTION_MANAGER_FRAME_HIDE", function(_, kind)
 			local e = Enum and Enum.PlayerInteractionType

@@ -1,0 +1,161 @@
+{
+  "changeId": "FLOWCRAFT-GROUPED-QUEUE-20261122",
+  "date": "2026-11-22",
+  "checkpoints": {
+    "queue": {
+      "manifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-grouped-queue-before-20261122T091853Z\\checkpoint.json",
+      "files": 16,
+      "settingsMetadataRows": 63
+    },
+    "acquisitions": {
+      "manifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-grouped-acquisitions-before-20261122T092158Z\\checkpoint.json",
+      "files": 26,
+      "settingsMetadataRows": 63
+    },
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a1ffc8-e3e4-7861-a366-cde5c05e7611\\fluxui-debuff-type-before-20261121T222839Z\\history.bundle",
+    "historyBundleSha256": "90bfc84da44ffd45c6617f5304a431e6ed808eadb90080ffefe4bc5d691b2909",
+    "branch": "main",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "settingsContentsCopied": false,
+    "ownerFixtures": {
+      "manifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-grouped-acquisitions-before-20261122T092158Z\\owner-fixtures-before-20261122T092800Z\\fixture-checkpoint.json",
+      "files": 2
+    }
+  },
+  "desktop": {
+    "queue": [
+      "workspace_test",
+      "queue_test",
+      "resize_test"
+    ],
+    "groupedExample": {
+      "output": "Green Silk Pack",
+      "orders": 2,
+      "units": 2,
+      "rowsBefore": 2,
+      "rowsAfter": 1
+    },
+    "acceptedMaterialTotals": {
+      "Silk Cloth": 40,
+      "Heavy Leather": 6
+    },
+    "companionSuitesPassed": 16,
+    "owner": {
+      "auction": {
+        "checks": 12708,
+        "profiles": 46
+      },
+      "bridge": {
+        "checks": 206,
+        "profiles": 13
+      },
+      "auctionRows": 90,
+      "exactStacks": 50,
+      "depth": 38
+    },
+    "groupedAcquisitions": {
+      "approvedTotals": {
+        "Silk Cloth": 40,
+        "Heavy Leather": 6
+      },
+      "fullOffers": {
+        "silkAllocated": [
+          20,
+          20
+        ],
+        "leatherAllocated": [
+          3,
+          3
+        ]
+      },
+      "smallerLeatherListing": {
+        "offered": 4,
+        "allocated": [
+          3,
+          1
+        ],
+        "remaining": 2
+      },
+      "validation": "Exact grouped identity, per-order limits and one native offer per press"
+    },
+    "syntax": {
+      "luacFilesPassed": 9
+    },
+    "whitespace": "git diff --check passed",
+    "lua51": {
+      "syntaxFilesPassed": 9,
+      "installedSuitesPassed": [
+        "workspace",
+        "auction_shopping",
+        "logistics",
+        "queue",
+        "resize",
+        "target_load"
+      ]
+    }
+  },
+  "native": {
+    "status": "Reload and interaction pending",
+    "inputSent": false,
+    "foregroundTaken": false
+  },
+  "installedSources": {
+    "_FluxUI": {
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua": {
+        "before": "01b2b5c3f122fb17158da2429b637610da0ea9bc3f541d592be65808f3869ba7",
+        "after": "75dc0d9cbdeb3e2ff16731ad9163bc966834011e361184a3ca2005cd2c9ec013"
+      },
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": {
+        "before": "807b602f8d5f783dee73dac4ef28a99cba6c0fba7d7fc3ff0d368337a25ef278",
+        "after": "895c8b67974c951c7c05e96d61812cc21b219ce120fd784f226c1ac2febf5913"
+      }
+    },
+    "FluxLogistics": {
+      "FluxCraft/UI.lua": {
+        "before": "5f0b68492a3d535b3fc1245da01ece1f2e9dab6160c1c8af5d1e66132f48ceb3",
+        "after": "db721e24ef1f5151bdc721aceee30a729be841603f764582e100f8bd7742d756"
+      },
+      "FluxCraft/Locale.lua": {
+        "before": "30581c8bf8b82c389fab1364d352ff82e7cabd997dbdc6c477924cd071d52f2a",
+        "after": "2cd5f456d724a36ea501c164fcfc56a3d58549cc20048a942870d4a33dbe7810"
+      },
+      "FluxCraft/Logistics.lua": {
+        "before": "2d2385ae6018cc909037d06625df7219db2fdcfbb69a1d02b8c9df0e7c28b24e",
+        "after": "7491d575e8ad6969b174804c9ef7eca2a8d348b136dbc4f6396c3df439879f28"
+      }
+    }
+  },
+  "fixtureSources": {
+    "_FluxUI": {
+      "tests/flux_logistics_auction_rows.lua": {
+        "before": "a2aa9f73f7468118efaf397689846ae5fe099a84322957018d5f05942a395a92",
+        "after": "4b09714a8ecb1a3110c490eae48e347f0bf89b6640c825c3d56688da218deb57"
+      }
+    },
+    "FluxLogistics": {
+      "Tests/workspace_test.lua": {
+        "before": "c3e311e3d7696594c92239a221695f5be0dabf2e52bd500269737168fc2978df",
+        "after": "6fdbade4a61e2e3a9c5715b6a0bd8c31c324b6de718998684d9ae6fb3839a8a0"
+      },
+      "Tests/auction_shopping_test.lua": {
+        "before": "4fb1e91fed8e00c8498532d0775ed487041485b43530a359526d3efda9d47810",
+        "after": "92ef96d39d70063103e9abd610a3341f8becc41fb5ece4e8145cc195821a48bc"
+      },
+      "Tests/logistics_test.lua": {
+        "before": "889c03799fb7272ef64fccd41c48a4c8bc6b8cb3d081fe7f5149c6bcf15b2b28",
+        "after": "4c62311cd70c77972e580c7140f490c98af0addfa4d9bb17a2b0a87164c43938"
+      }
+    }
+  },
+  "installation": {
+    "clients": [
+      "_retail_",
+      "_forever_",
+      "_classic_",
+      "_classic_era_",
+      "_anniversary_"
+    ],
+    "runtimeFilesVerified": 5,
+    "sha256MatchAcrossAllClients": true
+  }
+}

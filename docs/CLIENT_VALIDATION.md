@@ -1,5 +1,1369 @@
 # Client and reference validation — 29 October 2026
 
+## Action strip page two ownership
+
+The earlier Forever capture showed column 6 and fixed column 18 both
+reading Blizzard slot 18 with native page 2 selected. The supplied WTF
+snapshot has no saved Flux page override or explicit native page-switch
+binding. The event that selected page 2 in the affected session is unknown.
+
+On the candidate, select native page 2 outside combat and verify the
+resting main row with `/fluxbars audit`. Expect slots 1–7 in columns 1–7,
+20–24 in columns 8–12 and 13–19 in the fixed columns when no mini action
+is promoted. Compare the icon, mouse click and assigned key in columns
+1, 7, 8, 12, 13 and 19. Return to page 1, then check Shift and Ctrl,
+dragging an action, forms and a temporary control bar. Record the loaded
+build and watch the Lua error log. Check all five client families and use
+the established Witchcraft route for Forever when available.
+
+Desktop coverage includes the shared model, restricted snippets, native
+slot calculation and Forever's key proxy. Both routing files match across
+all five installations. Live input, native taint and controller
+verification are pending.
+[Source and replay evidence](validation/action-bar-page-two-2026-11-22.json).
+
+## Battlefield Map POI mouse actions in combat
+
+After a reload outside combat, open the Flux Map tab in Battlefield
+Map mode. Check ordinary POIs, event POIs, tooltips and mouse handling.
+With the map visible, enter combat where POIs change and watch the
+Lua error log. Existing pins should stay visible. On combat exit, check
+that current POIs and their normal interactions return. Include a zone
+change, a hide or reopen around combat exit, and a full World Map view.
+Check controller navigation on Forever through the original controls.
+
+The report matches Forever 1.60.1.71037. The desktop fixture checks both
+stock providers, combat activation before lockdown, reentry, hide/reopen
+and a single catch-up for a burst of missed updates. In-game verification
+of the mouse blocks, taint and timing is pending.
+[Source and replay evidence](validation/battlefield-poi-combat-2026-11-22.json).
+
+## Damage meter taint and rounded border junctions
+
+After a reload outside combat, select a Flux Meter layout that needs a
+new pane. Add it through Blizzard’s meter settings menu, select its
+requested type from its title dropdown, and select **Current** from its
+session dropdown. Confirm the setup pane clears and the chosen type
+displays live rows. Leave another pane on **Overall** or a historical
+fight and confirm its selection survives a tab switch and resize.
+Repeat with populated rows while out of combat. Check two fights with
+the meter visible, including timer rollover, row icons, class colors and
+source drilldown. Include Blizzard’s **In Combat** visibility mode and
+the native controller dropdowns in Forever.
+
+With rounded unit borders, show and clear an aura panel where its stem
+joins the target or focus border. Include a corner with perpendicular
+unit arms. Verify the cap, stem and fallback remain visible and check
+for errors from the scheduled border update.
+
+The meter trace matches the pinned Forever 1.60.1.71037 native source
+locations. Desktop replays cover the reported addon routes and replay
+pinned Blizzard methods. The changed files match on disk across five
+installs. Native taint, timing, pixels and controller checks are pending.
+[Checkpoint and replay evidence](validation/meter-border-fixes-2026-11-22.json).
+
+## Craft reminder in the profession window
+
+Prepare a craft with all required materials in bags. With the profession
+window closed, check the item icon, remaining quantity and caption on
+the FluxUI reminder. Open the native crafting page and then Flowcraft.
+Check that the same information and click action appear inside the
+active window. Move and resize the window, switch views, and close it.
+Confirm that a ready action appears at one location through those
+transitions and that the separate **Process** control still works.
+Repeat the native path with FluxUI alone. When a recipe needs the native
+**Create** action, check the displayed batch and the disabled reminder
+while Blizzard’s **Create** remains available. Verify pointer activation
+and focus, native controller cursor reachability, and back/close behavior
+in each supported view.
+
+The verified Forever window was observed in the background with Flowcraft
+open. A Green Silk Pack cast continued as the visible queue count fell
+from seven to six. Both observations kept the foreground unchanged.
+The existing item icon, badge and caption in the supplied screenshot
+are the visual reference. The post-install guard found the exact Forever
+window in the foreground. The candidate layout comparison and native
+pointer and controller checks remain pending. The HUD fixture passed
+63,801 checks and integration passed 310. The installed companion passed
+17 Lua 5.4 and six targeted Lua 5.1 suites.
+[Exact sources and tests](validation/fluxui-craft-reminder-dock-2026-11-22.json).
+
+## FluxUI continue craft button
+
+Queue a two-step Forever craft and acquire all the materials. Complete
+the intermediate and stop the final batch after one confirmed result.
+Check that FluxUI shows the remaining batch on the HUD and places the
+craft action inside the open profession window. Verify the quantities
+after a second result, closing and reopening the profession, and
+reload. Confirm that the action still requires a player press and
+that a remaining acquisition keeps the craft unavailable.
+
+The reported state had nine crafts remaining after one verified result.
+The on-disk craft receipt, material reservations and same-time builtin
+bag counts agreed. No FluxUI auction follow-up or pending purchase was
+saved. A later background capture showed eight Green Silk Packs queued
+with the matching **Craft next** action in Flowcraft and on the FluxUI
+HUD. A candidate reload and a subsequent native craft press remain to
+be verified. The desktop tests cover both controls, the native stop
+wake-up, bag settlement, and preparing a missing native craft form.
+[Exact sources and tests](validation/flowcraft-continue-button-2026-11-22.json).
+
+## Shared queued craft materials
+
+Queue crafts with a shared material and check the combined amount for
+each eligible source. Compare matching and different output recipes.
+Verify Shopping, the vendor and the bank assign the exact acquired
+shares to the accepted orders. Include an offer smaller than the
+combined demand and check the outstanding quantities after settlement.
+The vendor group must fit the exact live offer, stock and each order's
+limits. An approved merchant fallback for an auction requirement can
+share the offer with an accepted vendor requirement. Bank coverage
+includes a partial withdrawal across two orders,
+physical stack checks after the first order is credited, and a changed
+group with the same total.
+The new 50-unit auction case across different output recipes fails on
+the frozen baseline. The candidate also checks a combined Classic
+stack and smaller individually approved lots. The focused owner
+fixtures pass 2,100 bank icon checks and 153 policy bridge checks.
+The installed companion passes 17 Lua 5.4 and six targeted Lua 5.1
+suites. The full Lua 5.1 run reaches the existing auction income
+fixture's `table.pack` dependency. The 66 bank snapshot and vendor-open
+operation vectors match across three frozen and candidate pairs. Four
+runtime files match across five installs.
+
+The exact Forever window was verified on the host before and after
+installation. It owned foreground both times, so the background-only
+check stopped before acquiring an image. Native auction, merchant and
+bank verification remain pending.
+[Exact sources and tests](validation/flowcraft-shared-materials-2026-11-22.json).
+
+## Craft materials in Vendor Restock
+
+An accepted Auction Restock craft can add its vendor ingredients to the
+ordinary Vendor Restock list as temporary targets. At a matching vendor,
+available materials use the current merchant price and remaining
+quantity. Verify that the normal buy action fills all eligible items and
+that automatic buying on merchant open follows its setting. Repeat both
+cases with FluxLogistics loaded and unloaded. Include a material with an
+existing regular target and check retirement after carried receipt.
+The companion reminder rechecks its displayed stage before opening the
+same merchant buy pass.
+
+The owner source suite passes 1,624 checks across 20 profiles, including
+manual and automatic passes for multiple materials. The merchant
+fixtures cover merged rows, delayed receipt handoff and live slot and
+stock checks. Companion tests cover independent accepted jobs in one
+pass, the same job advancing after its receipt, and current merchant
+price, capacity and wallet limits. All 17 installed companion Lua 5.4
+and six targeted Lua 5.1 suites pass. The five runtime files match across
+five installations. All 21 ordinary vendor-open operation vectors match
+in three paired trials.
+
+Forever 1.60.1 build 71037 was observed in the background with
+Auctionator Selling, Tailoring and an empty Flowcraft queue. The final
+capture showed the Auction House and no merchant or pending Restock
+action. Foreground stayed unchanged and no game input was sent. Native
+reload and merchant buys remain pending.
+[Exact sources and tests](validation/restock-craft-vendor-targets-2026-11-22.json).
+
+## Flowcraft cast lifecycle
+
+Flowcraft follows the player's cast for the accepted craft and its
+matching result. The row shows the client's reported duration when the
+current spell, source and cast identity match. It can show **Waiting
+for the craft result** when the terminal signal arrives first.
+Verify a long craft that crosses the earlier deadline and check the
+queue and Restock count after each completed result. Interrupt a batch
+and check that its terminal event and verified output leave the correct
+remainder.
+[Forever cast API](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua#L828-L850).
+
+The regression runs two matching 44.8-second casts and checks the
+remaining count after each native result. A matching stop can wait
+across 180 simulated seconds until a delayed receipt. The fixtures
+also cover mismatched cast identity and a prepared **Create** action
+that remains available until cancellation. Installed verification passed
+17 Lua 5.4 and 11 Lua 5.1 suites, 231 owner bridge checks and the two
+cross-owner click routes with native stubs. The scale fixture retains
+1,636 recipes and a 121-card graph with 40 craft tasks. Three runtime
+files and two fixtures match across five installed copies.
+
+Forever 1.60.1 build 71037 was observed in the background. After
+installation, the workbench showed an empty queue and Mooncloth on
+cooldown. The observation sent no game input and kept foreground
+unchanged. Native reload and a fresh eligible cast remain pending.
+[Exact sources and tests](validation/flowcraft-cast-lifecycle-2026-11-22.json).
+
+## Flowcraft queue progress and Process
+
+An accepted order row shows its remaining final output and its current
+craft or material step. Craft steps show their position in the order.
+Selecting the row keeps that exact order targeted for **Process**. The
+matching native profession view shows progress beside the craft controls.
+Exact native result signals update the displayed remainder during the
+batch. Partial self-created output must match the fixed yield and the
+carried reagent changes before it settles. The fixtures cover overlapping
+result streams and verify that a display update keeps the reservation
+until settlement.
+
+The desktop integration runs the actual FluxUI Restock and companion
+modules with native API stubs. Pressing a stale four-pack reminder first
+refreshes it to two. The next press submits exactly two for the same
+task. A separate case uses the profession-window action after a verified
+stop and submits the same two-pack remainder. The companion bridge
+passes 231 checks, the HUD 63,577 and the standalone craft driver 3,279.
+Five runtime files and three fixtures match across five installed copies.
+The installed Forever source passes 17 Lua 5.4 and 11 Lua 5.1 suites.
+The existing recipe-selection benchmark matched its operation counts
+on all three paired trials.
+
+Check a multi-step order during the first craft and after the final
+receipt. Stop partway through and verify the selected order retains the
+verified remainder when **Process** becomes eligible. Select another
+order while the first is in Review and verify that **Process** follows
+the selected order's eligible step. Repeat with a shared output to
+verify that ambiguous work stays in Review. Compare the actual carried
+count and native recipe at each transition. When the FluxUI Restock
+reminder offers the same ready task, verify its press reaches that
+accepted craft.
+
+Forever 1.60.1 build 71037 was verified on the host. The later background
+capture showed the native Auction House Restock tab and the **Open
+Tailoring** reminder. An authorized background reload and press of
+**Open Tailoring** showed **2/2 Next 3**. At 10:24:29 UTC, the actual
+Flowcraft **Process** press for the selected three-pack order started its
+44.8-second native cast and showed **Crafting 3**. At 10:25:08 UTC the
+queue showed a timeout with 5.9 seconds left on the cast bar. At 10:25:52
+UTC the capture showed one create message and the row and reminder at a
+two-pack remainder. The window-targeted actions left foreground
+unchanged. Watchdog follow-up and each completed count remain under
+verification.
+
+The installed watchdog follows the exact native cast's end time and
+allows two seconds for its receipt. The focused fixture runs two
+successive 44.8-second native casts and verifies the remainder changes
+from four to three to two before carried inventory refresh. It also
+covers a different spell, a mismatched cast GUID and a missing receipt
+after the grace period.
+All 17 installed Lua 5.4 suites, 11 targeted Lua 5.1 suites and the
+owner integration pass after the watchdog repair.
+
+The player independently crafted the remaining two before the repaired
+source reloaded. The 10:31:23 UTC reload showed **Count 2** for the
+two carried packs. The foreground guard deferred that press and a
+subsequent 30-second observation still found the game in foreground.
+The player had used the remaining reagents. Verification of another
+long cast, each live decrement and the post-stop resume awaits an
+eligible order on the repaired source.
+[Exact sources and tests](validation/flowcraft-queue-rework-2026-11-22.json).
+
+## Flowcraft recipe selection
+
+Forever changes the selected recipe immediately, clears the previous
+draft and coalesces rapid selection notifications. Clicking **Queue**
+before the refresh evaluates the current recipe. The Flowcraft card's
+native selection echo uses the same refresh. The existing graph layout
+now supplies the inspected node and the rendered cards.
+
+In a desktop burst of twelve alternating 40-task selections, plan,
+inventory snapshot, price quote and queue refresh counts each fall from
+12 to one. Graph layouts fall from 25 to two. Total modeled CPU falls
+from 365 to 30 ms. With twelve isolated selections, all twelve plans
+still run, graph layouts fall from 25 to 13, and total modeled CPU moves
+from 354 to 356 ms. The candidate's input callback work fell below the
+desktop timer's resolution in both scenarios. The scale fixture still
+covers 1,636 recipes and a
+121-card graph with 40 craft tasks. All 17 Lua 5.4 and eight targeted
+Lua 5.1 fixtures pass against the installed Forever source.
+The two runtime files and two fixtures match across five installed copies.
+
+Host verification found Forever 1.60.1 build 71037. The game window
+already owned foreground, so the background capture stopped before
+image acquisition. Native reload, selection latency, FPS and taint
+remain pending.
+[Exact sources and tests](validation/fluxlogistics-recipe-selection-2026-11-22.json).
+
+## Flowcraft partial craft after reload
+
+The 09:35:08 UTC Forever character save recorded 20 completed Bolts of
+Silk Cloth and an uncertain four-pack task with all four remaining. Its
+pack attempt timed out after **Process**. It saved the pre-action output
+count of zero and the requested batch of four. The companion save ties
+the order and recipe catalog to the same character and build. In the
+selected built-in inventory save at the same timestamp, one matching
+character entry changed from zero packs and zero bolts to two packs and
+ten bolts. The inventory entry lacks the companion's character GUID. Its
+timestamp and quantities corroborate the player report, while the pack
+attempt lacks a saved native craft receipt.
+
+The installed companion passes 16 Lua 5.4 and seven Lua 5.1 suites.
+The owner passes 231 bridge checks across 13 profiles and 63,577 HUD
+checks across five models and overflow cases. The focused craft,
+closed-profession, vendor routes and integration fixtures also pass.
+Mail Restock passes 4,500 checks across 20 profiles.
+The renderer matches all 45 operation samples across 15 paired desktop
+trials. Eight changed runtime files match across five installs. The
+read-only Forever capture showed Auctionator Selling and the backpack
+with the foreground unchanged. The candidate still needs a native reload.
+
+After the updated pair is loaded, verify that a craft with durable
+evidence resumes at the confirmed remaining quantity. For the older
+uncertain order, verify that **Process** or **Resume** can use verified
+carried order fulfillment and prepare exactly two remaining packs for
+Blizzard's **Create**. If the remainder is blocked, check that the press
+records the carried amount and the appropriate acquisition or profession
+stage appears. Check both the Flowcraft workspace and the FluxUI Restock
+reminder. Change the selected order before pressing a displayed reminder
+and verify that the previous action expires. Native reload, recovery and
+craft confirmation remain pending.
+[Exact sources and tests](validation/flowcraft-partial-craft-2026-11-22.json).
+
+## Grouped vendor materials and Restock reminder
+
+The HUD receives accepted companion vendor totals. One or two materials
+show their names and quantities in the caption, and each icon carries its
+own tooltip. The matching live merchant can make the stage actionable.
+A press verifies the currently displayed provider, stage and item totals
+before it reaches the merchant owner.
+
+The owner bridge passes 226 checks across 13 profiles. The HUD fixture
+passes 63,540 across five models and overflow scenarios. Existing
+follow-up, vendor routes, craft driver, closed-profession, vendor button
+and Restock policy fixtures pass.
+
+The installed companion fixtures combine two approved five-unit shares
+in one 10-unit merchant request on both the manual and automatic paths.
+They check actual cost, carried settlement at five and ten units,
+a native cap that issues one share, and the single-order path for finite
+stock. An uncertain same-item order blocks grouping and the reminder.
+A manual press buys one material type. The automatic worker can continue
+after that receipt settles. All 16 installed companion suites and six
+Lua 5.1 suites pass. The four changed runtime files match across five
+installs. Native reload, merchant interaction and receipt checks remain
+pending.
+[Exact sources and tests](validation/flowcraft-grouped-vendor-2026-11-22.json).
+
+## Grouped Flowcraft orders
+
+Two compatible Green Silk Pack orders appear as one **2× Green Silk Pack**
+row. A row sums outstanding output and reduces the count when an order
+settles. Matching queued and running orders can share a row. Paused or
+review orders stay individually visible. The detail menu switches or
+cancels an exact member. The grouped remove control checks and cancels
+eligible members together. Each accepted order retains its own records.
+
+Shopping and the FluxUI Restock tab combine eligible accepted material
+needs for the exact current group. The desktop fixtures verify one
+40-Silk Cloth offer and one six-Heavy Leather offer, with the receipt
+assigned to each order within its approved limits. A four-leather
+listing leaves two for another press. Each press retains the limit of
+one qualified native offer.
+
+All 16 installed companion suites pass. Focused owner coverage includes
+12,708 auction checks across 46 profiles, 206 bridge checks across 13,
+90 actual-owner rows, 50 exact-stack and 38 depth checks. Nine files
+compile under Lua 5.1 and six installed suites pass there. The five
+changed runtime files match across five installs. Native reload, input, purchase
+and layout remain pending.
+[Exact sources and tests](validation/flowcraft-grouped-queue-2026-11-22.json).
+
+## Acquisition-first Restock and Flowcraft
+
+The workflow presents purchases, mailbox collection and bank withdrawals
+before **Open profession**. The owner checks carried materials for the
+matching craft. For Restock and multi-step orders, FluxLogistics checks
+the external inputs before the first task. Produced intermediates follow
+the queued dependency steps. Both in-window craft controls use the same
+accepted next task.
+
+Shopping reads observed physical attachments from the selected FluxUI
+built-in or Syndicator inventory publication. Positive observations can
+appear while inbox coverage is partial. At Syndicator startup, a positive
+warm count can appear as pending until the first fresh replacement. The
+pending display gives no authority to collect or buy. A qualified full
+observation supports an empty result and remains necessary for spending.
+The workbench uses single-line rows with icons, adjusts its shelf to its
+content and window size, and presents the next craft at the bottom.
+The native profession window makes that action available across tabs.
+
+The owner fixtures pass 12,708 auction, 674 follow-up, 3,279 craft
+driver, 1,220 closed-profession, 206 companion bridge, 63,535 HUD,
+476 vendor route, 4,500 mail worker and 77 mailbox observation checks.
+The mailbox fixture loads both providers, including the installed
+Syndicator publisher. All 16 companion suites pass against installed
+source. The eleven changed runtime files match across all five installs.
+
+The 10:10:16 Copenhagen background capture before companion installation
+showed the Forever 1.60.1.71037 native Professions Book and merchant.
+Foreground stayed unchanged. Candidate reload and interaction remain
+pending. Compare physical mail under both providers, incomplete and
+collected orders, compact and wide layout, and the matching next craft
+action from both surfaces.
+[Exact sources and tests](validation/restock-carried-flowcraft-2026-11-22.json).
+
+## Built-in sold auction counts
+
+22 November. The focused desktop replay passes 6,264 checks across Retail,
+Forever, Classic progression, Era and Anniversary with the built-in provider
+active, including provider-pending startup. It covers a closed sale against the
+hydrated cache, duplicate notices, sibling listings, sparse saves, provider
+handoff, legacy ambiguity and stale native rows. All five installed auction
+trackers match and compile. [Source and recovery evidence](BUILTIN_AUCTION_PUBLICATION.md#sold-listings-with-the-auction-house-closed).
+
+Native acceptance is pending. With Syndicator unloaded and two player listings
+cached, close the Auction House and observe a real sale. Check the saved and
+displayed auction counts before reopening, and verify the other listing remains.
+On Era and Anniversary, repeat with two listings sharing a name and confirm
+Blizzard's next owner update removes only the sold row. Record typed event
+delivery while closed on Classic progression. Verify the Syndicator-loaded
+control and the absence of new Lua errors.
+
+## Tracked FluxLogistics profession switch
+
+The desktop companion fixture passes 198 checks across 13 profiles. It covers the exact queued profession action, changed modes before the press and the earlier spell overlay for owner-driven and older companion actions. Five related owner suites pass. Native switching remains pending.
+
+## Direct FluxLogistics craft action
+
+22 November. The companion reminder labels a direct queue action Craft. The desktop harness passes 186 checks across 12 profiles, including mode changes after paint. Five related owner suites pass. Native direct API permission and queue settlement remain pending.
+
+## Live Restock craft receipts
+
+The baseline background run used Forever 1.60.1.71037. The 02:10:19
+Copenhagen capture showed Blizzard's quantity at 25 after **Process**.
+A background click on Blizzard's actual **Create** at 02:10:44 started
+the Bolt of Mageweave cast and put the queued step **In progress**.
+The 02:11:37 capture showed six create messages and quantity 19.
+Both clicks left the foreground and global cursor unchanged.
+
+The 02:14:36 capture showed **Check result** without matching output.
+The player also shared a screenshot of that state. The bolt recipe
+then showed 13 craftable instead of the earlier 25, and the bag recipe
+showed two craftable. Those counts are consistent with 12 bolts
+produced, an inference from the before and after UI. Automatic approval
+rejected a later diagnostic chat probe and hover under the repository's
+desktop control rule. The available live results stop at those captures.
+[Exact baseline and candidate evidence](validation/restock-native-live-receipts-2026-11-22.json).
+
+The installed companion fix retains the exact accepted native batch
+while recasts progress and matches carried output against consumed
+reagents. The desktop fixtures reconcile a complete long batch with no
+craft-result events and a stopped 12-of-25 batch. The **Replan from bags**
+fixture uses 12 carried bolts and 65 cloth to prepare a replacement
+plan for 13 bolts and five bags. The old job and its settled receipt
+stay in history. The verified owner HUD is passive and Flowcraft fits a
+compact dock beside native **Create** when space permits.
+
+Desktop checks pass, including 3,279 owner craft checks across 20
+profiles, 178 bridge checks across 11, 63,443 HUD checks and 1,020
+render checks across 15 trials. The broad desktop runs pass 43 FluxUI
+and 16 FluxLogistics suites including the companion adapter catalog.
+Native validation of the installed candidate remains pending, including
+replanning the existing job and following its new batch through carried
+output.
+
+## Restock native quantity after stock refresh
+
+The earlier screenshot showed Restock guidance for 25 craft operations
+and one in Blizzard's quantity field. Separately, the 01:52:54
+Copenhagen SavedVariables snapshot on Forever 1.60.1.71037 still
+showed 25 bolts and five bags pending, with zero completed executions
+and no new durable attempt. The snapshot ends at that time.
+Live quantity, native permission and a physical **Create** after that
+cutoff remain unverified.
+
+The solo Restock handoff holds its verified quantity for the exact
+selected job, recipe and native page. After a stock reset, it waits for
+settled carried inventory before restoring the amount. A direct edit
+or a physical **Create** releases the hold. The owner waits for active
+native recasts before offering another craft.
+
+The reminder moves a further 12 UI units right and 10 down. Its native
+host anchor is (+16, -68) and its fallback anchor is (-66, +26). The
+frame uses eight levels of clearance for visible profession surfaces
+and nested Flowchart cards.
+
+The owner driver passes 3,279 checks across 20 profiles. The companion
+bridge passes 173 across 11 profiles. The HUD passes 63,431 checks and
+the renderer passes 1,020 checks across 15 paired trials with 45 matching
+counter samples.
+
+The installed companion's general queue action can choose another ready
+step of the same job when earlier materials are missing. The explicit
+Flowchart craft action retains its selected step. FluxLogistics observes
+craft events arriving during the matching native Create call and uses
+them only after checking the exact recipe, amount and reagents. The
+desktop replay of the outstanding order matches 25 bolts and five bags
+to carried output. Fifteen companion suites and the adapter catalog pass.
+[Exact sources and tests](validation/restock-native-craft-repeat-2026-11-22.json).
+
+Native acceptance remains pending. Verify a stock reset while materials
+are settling, a direct quantity edit, a physical **Create** and the
+transition after recasts. Confirm the carried output advances the exact
+job. Check both HUD anchors and the nested Flowchart z-order.
+
+## Restock reminder profession layer
+
+22 November. The HUD suite passes 63,401 desktop checks across five profiles. The render suite passes 1,020. Tests cover the native or companion layer, closing professions and restoring a secure opener without repainting an unchanged layout. Native stacking and input remain pending.
+
+## Bounded native Restock craft batches
+
+In Forever, the FluxUI HUD selects the exact outstanding recipe and
+sets its native quantity when the field is enabled. The prepared count
+uses the lower of the outstanding craft operations and the amount
+Blizzard can currently craft, subject to single-craft recipes. Press
+Blizzard's **Create** to use the prepared quantity. Blizzard's **Create
+All** uses its full craftable amount.
+[Forever Create handler](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_Professions/Blizzard_ProfessionsCrafting.lua#L1106-L1141).
+
+For a delayed recipe selection, matching recipe responses, list updates
+and inventory settlement coalesce while the exact owner job, task and
+page remain pending. The ordinary owner yields when the companion takes
+the native craft. Synchronous preparation adds zero driver frames or
+timers in the checked fixture sequences.
+
+On the paired FluxLogistics desktop candidate, Workbench and Flowchart
+prepare the next task for the same accepted job. The replay prepares
+25 bolts, then five bags after the carried bolt result. The workbench
+docks beside the native craft pane when there is space. The narrower
+configuration keeps the native pane and exposes a **Workbench** return.
+
+The owner craft fixture passes 3,239 checks across 20 profiles. The
+companion bridge passes 166 across 11 profiles. The HUD fixture passes
+63,351 checks. The renderer passes 1,020 across 15 paired trials with
+45 matching phase samples. All 15 companion scripts and the catalog
+check pass. Four FluxUI and five FluxLogistics runtime files match
+across five client installations.
+[Exact sources and tests](validation/restock-native-craft-batch-2026-11-22.json).
+
+Native acceptance remains pending. Verify a stable and an asynchronous
+recipe, a smaller native craftable amount, and a changed job before
+the delayed response. Confirm **Create** issues the shown batch and
+the actual output advances the intended job. Check the native
+permissions, the docked layout, and the narrower **Workbench** return.
+
+## Restock handoff to native Create
+
+The player reported that both craft actions still failed from the HUD.
+The FluxLogistics native evidence records a blocked addon-issued
+CraftRecipe on Forever 1.60.1.71037 and two attempts with no matched
+result. The revised Forever path presents **Open recipe**. It prepares
+the exact validated recipe, reveals the companion's native craft panel
+when available, and points the player to Blizzard's **Create** button.
+Ordinary FluxUI work advances from observed carried output. FluxLogistics
+checks the exact accepted job and observes the native craft. Other client
+paths retain their existing dispatchers.
+
+The layout moves 12 UI units farther right and 10 farther down on both
+HUD anchors and uses a higher frame stratum. The owner craft driver
+passes 3,143 assertions across 20 desktop profiles. Both-owner integration
+passes 153 checks across 11 profiles. The checked sequences keep the
+driver frame and pending-timer counts steady.
+The HUD passes 63,345 checks. All 15 paired render trials have identical
+widget counts. The broader desktop run passes 43 FluxUI suites and 16
+FluxLogistics suites. The four runtime files for each addon match across
+the five client installations.
+[Exact sources and tests](validation/restock-native-craft-hud-2026-11-22.json).
+
+After a safe Forever reload, verify both owners, the displayed recipe,
+the native Create reachability, and matching bag output. Cover a closed
+profession and a live profession panel. Verify the reminder's placement
+and layering on both anchors, then check native input and taint.
+The new path's live behavior and visual fit remain pending.
+
+## Nameplate debuff ownership
+
+22 November. With **Only show my debuffs** enabled, apply an ordinary
+debuff and a crowd-control effect while a second player applies comparable
+effects. Include a pet or vehicle when available. Repeat with the setting
+off and confirm the stock selection returns. Check the buff row,
+Loss of Control, setting persistence, tooltip hover, combat and a
+recycled plate. The stock fallback can omit effects with unreadable
+ownership. Native verification, combat taint and rendering remain pending
+on Retail, Forever, Classic progression, Classic Era and Anniversary.
+Reach and activate the standard checkbox with the existing controller cursor,
+then verify its checked state and return to the Auras tab after reopening.
+
+The client ledger retains the exact Blizzard nameplate source pins from
+the live debuff lookup record. The stock adapter calls
+`C_UnitAuras.IsAuraFilteredOutByInstanceID` for a public instance ID. The
+Retail and Forever declarations require aura access for this query.
+
+The desktop replay passed 1,290 countdown and stock-filter checks across five
+client models, 101 secure-row checks and 297 options and preview checks. The
+five-client options navigation and shell suites passed 8,011 and 1,343 checks.
+The pre-change countdown source fails 20 ownership assertions. The four
+candidate runtime files match in all five installations.
+[Source pins and desktop evidence](validation/live-nameplate-debuff-2026-11-22.json).
+
+## Nameplate aura art and hover
+
+22 November. Secure aura buttons use the reference square icon mask, bevel,
+cooldown edge and type colors. Mouse motion reaches the Blizzard aura tooltip
+with clicks disabled on the icon. The preview and stock overlay share the
+same bevel and icon crop. Forever's stock aura button provides a spell tooltip
+from its readable spell ID. Retail and the three Classic clients keep their
+stock native aura tooltip scripts. A fallback tooltip closes when its owner
+is hidden or replaced.
+
+The verified Forever window was in an indoor city scene without a world
+nameplate aura. Native hover, click-through, rendering and controller pointer
+behavior remain pending on a live buff and debuff after reload.
+[Sources, assets and test results](validation/nameplate-aura-style-hover-2026-11-22.json).
+
+## Restock profession action and mail auto collect
+
+22 November. The user reported that the earlier profession opener still
+failed in game. The running Forever `1.60.1.71037` window was verified by
+executable path and window handle. This check sent no game input. Live
+behavior of the new candidate remains pending.
+
+The earlier desktop fixture allowed **Open profession** during collection.
+The current workflow waits for carried materials. Pending receipts keep
+their workflow owner. Crafting gets a separate press after the exact recipe
+and available materials are verified. The first HUD item can use Forever's
+secure click proxy for an exact owned profession spell. The secure region
+retires in combat and when the stage changes. The model also covers the
+ordinary client opener.
+[Current workflow](#acquisition-first-restock-and-flowcraft).
+[Forever profession spell lookup](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_Professions/Camelot/Blizzard_ProfessionsFrame.lua#L39-L55)
+[Blizzard's secure spell click](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua#L371-L379).
+
+The one bounded mailbox worker follows the existing Auto Collect setting
+for both owners. Auto Collect defaults on and honors the saved opt-out.
+Companion mail must match an approved incoming amount and a buyer invoice.
+The HUD model verifies a total 28-unit drop on both anchors and tests
+centered glow bounds, slot reuse, and immediate fallback retirement.
+
+Forty-five FluxUI, 16 installed FluxLogistics, and two staged companion
+fixtures passed. The craft and proxy fixture covers 3,083 checks, the
+dual-owner fixture 148, the HUD 63,336, mail 4,500, and cadence 940.
+All 45 render counter records match across 15 trials. The ten runtime
+files match across the five install trees. Native release input, controller reachability, profession opening,
+exact batch submission, mail eligibility, glow geometry, combat and taint,
+and CPU or FPS remain pending.
+[Exact sources and tests](validation/restock-profession-mail-2026-11-22.json).
+
+## Secure nameplate debuff and CC rows
+
+22 November. The user's screenshot showed three red borders at RGB
+`242,82,71`. That is the previous FluxUI fallback color. The attachment
+establishes live border placement and does not establish which effects
+have a dispel type. The user approved secure harmful aura rows after the
+FlareUI comparison. The new candidate uses Blizzard's `AuraContainer` to
+paint typed and untyped effects directly in Retail and Forever.
+
+The desktop check covers secure registration, fallback, release, and the
+existing timer controls. The secure CC category and the stock player Loss
+of Control selection can differ. Classic progression, Era and Anniversary
+retain the readable overlay. The next native check needs a typed debuff and
+CC effect, an untyped debuff, a hidden row, an expiry and a recycled plate.
+[Exact sources and tests](validation/secure-nameplate-auras-2026-11-22.json).
+
+## Restock craft reminder opens professions
+
+On modern clients, the craft owner checks the visible Recipes context and
+resolves a saved recipe to its positive base profession when needed. For
+an open Forever Book, use the matching native right tab. The supported
+bootstrap handles the matching Recipes context. A cold open requires the
+native OpenTradeSkill acknowledgement. The owner also recognizes a hidden
+legacy window, blocks during profession changes, and permits ready work
+while the mailbox is open if carried inventory is settled.
+[Forever recipe profession API](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua#L442-L455)
+[Forever profession Book tabs](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_ProfessionsTemplates/Blizzard_ProfessionsTemplates.lua#L895-L918)
+[Forever native opener](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_Professions/Blizzard_Professions_Bootstrap.lua#L13-L21).
+
+An accepted companion craft can use the shared Forever opener. The
+companion rechecks readiness immediately after a synchronous open and
+requires a new press to craft. The FluxUI owner can continue the existing
+click when the correct profession opens synchronously and its recipe is
+validated.
+
+Forty-one FluxUI and 15 FluxLogistics desktop fixtures passed. The owner
+driver covers 3,040 checks across 20 profiles, including a stale recipe
+identity that matches the wrong visible profession and a retained base
+without ready recipe data. Its frame and pending-timer counters report zero
+added driver frames or background timers in the checked sequences. All four
+runtime files match across the five install trees. The consumer workspace
+fixture reports the same `auctionEntry` error on both revisions.
+[Exact sources and tests](validation/restock-craft-opener-2026-11-22.json).
+
+Native acceptance remains pending. Compare the closed profession, an
+open Book, the matching Recipes page, another profession, and a change
+in progress. Include the mailbox with settled inventory, a hidden
+legacy window, and a companion opening press followed by an explicit
+craft press. Verify native permissions, keyboard or controller
+reachability, and the exact recipe and batch.
+[Restock handoff](FLUXLOGISTICS_RESTOCK.md).
+
+## World nameplate debuff and CC artwork
+
+22 November. The live artwork now follows the visible native aura button,
+including Blizzard's separate player Loss of Control slot. The focused
+fixture rejects missing values sent to the native access check. It covers
+the top-right glyph, four visible border edges, missing and inaccessible
+cooldowns, public and unreadable types, and pooled cleanup. A visible harmful
+slot gets a red border when its type is unavailable. The glyph requires the
+exact readable type.
+
+The local FlareUI comparison creates `CustomAuraContainerTemplate` containers
+for its live nameplates. It registers the border and the corner through
+`AddDispelTypeTexture` on the resulting AuraButtons. The Blizzard nameplate
+template instantiates a plain Frame without that method. The FluxUI overlay
+uses the existing Blizzard icon and its exact readable aura data.
+
+Forever's background window was observed in an Auction House scene without
+a world debuff on screen. The current candidate still needs in-game checks
+for a timed debuff, a PvE CC icon and a player Loss of Control icon after
+reload. Keep one untyped debuff in the check to confirm the red border and
+verify the countdown and native mouse target after removal.
+[Source and regression evidence](validation/nameplate-debuff-artwork-2026-11-22.json)
+
+## Live nameplate debuff lookup
+
+22 November. The old live path missed first display on Forever and could
+skip readable instance queries in a restricted context. The regression
+fixtures model pre-existing native buttons, duplicate spells at distinct
+visible positions, the player's pet source filter, a transient instance
+lookup, and pooled reuse. The 190 appearance checks passed on Lua 5.1 and
+5.4. Twenty-five existing countdown work-count scenarios matched across
+three pairs. The corrected files match across all five client installs.
+
+The open client was confirmed as Forever without moving focus or sending
+input. After a reload, verify the corner and border on an actual typed
+debuff and the red border on a readable untyped debuff. Native rendering
+and combat validation remain pending.
+[Exact source and test record](validation/live-nameplate-debuff-2026-11-22.json)
+
+## Restock reminder scope and placement
+
+Both anchors for the existing HUD reminder move down 16 UI units. FluxUI
+shows an actionable Restock offer or expressly quoted FluxLogistics
+Shopping List offer. Confirmed shopping receipts appear in the reminder as
+incoming mail. A player press at the mailbox uses the existing bounded
+collector for matching buyer invoices and quantities. A ready companion
+craft can surface from any accepted sourcing path. An actionable FluxUI
+step has priority, and a companion craft press revalidates the exact
+displayed job and task.
+[Forever buyer invoice code](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_MailFrame/MailFrame.lua#L790-L802).
+
+Forty-five FluxUI and 16 FluxLogistics desktop fixtures passed. The layout
+fixture covers 63,213 checks across five client models, the companion-owner
+fixture covers 128 checks, and the mailbox fixture covers 3,960. All 45
+render-work counter records match across 15 baseline and candidate pairs.
+Stable and hidden updates perform zero metered widget writes. The eight
+runtime files match in all five install trees. FluxLogistics is disabled on
+Retail.
+[Exact sources and test results](validation/restock-reminder-2026-11-22.json).
+
+Native acceptance remains pending. Verify both HUD anchors and combat
+visibility, ordinary Restock and explicit Shopping List purchases,
+buyer-invoice collection alongside unrelated mail, and ready crafts
+through both material routes. Include an unquoted shopping draft and an
+unrelated external auction purchase as hidden cases. Check controller
+reachability and the action after any quote, receipt or craft selection
+changes.
+[Restock handoff](FLUXLOGISTICS_RESTOCK.md).
+
+## Debuff type corners and borders
+
+The five desktop client models cover typed debuffs, helpful and opaque
+auras, pooled nameplate reuse, secure icon and border registrations, and
+settings previews. The game owns type selection on supported secure aura
+buttons. Native nameplate items use public aura data or the observed
+Blizzard assignment. [Retail aura artwork and types](https://github.com/Gethe/wow-ui-source/blob/ab5cb850a3f65e742959e379c4689353a2f4549f/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua)
+
+Compare Magic, Curse, Disease, Poison and Bleed on nameplates, target/focus,
+pet tooltip, normal and compact party, and raid after reload. Check an aura
+replacement, combat, and the member-frame dispel highlight. Native pixels
+and taint remain pending.
+[Exact source and test record](validation/debuff-type-corners-2026-11-21.json)
+
+## Nameplate preview texture creation
+
+The in-game 23:20 report identified the dimmer's texture constructor.
+The third argument is an optional inherited template and the fourth is
+the draw sublevel. Three paired desktop replays reject the original call
+and pass all 139 appearance checks with the correction. All five installed
+preview files match. Reopening the page after a native reload remains pending.
+[Generated widget API](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua#L131-L140)
+[Exact source and test record](validation/nameplate-preview-texture-2026-11-21.json)
+
+## Published nameplates with the current settings
+
+The live frames use the installed clients' Blizzard nameplate drivers.
+The published FluxUI level, quest, threat, combo, and cast school files
+match main at \`1e992c4\`. The countdown extension preserves the published
+centered default and exposes the current placement and size settings.
+[Exact source and validation record](validation/published-nameplate-options-2026-11-21.json).
+
+Native acceptance is pending. Restart each installed client and compare its
+normal nameplates with the published appearance. Check a quest mob with
+kill and loot progress, positive threat, an interruptible cast and a timed
+aura. In FluxUI's Nameplates page, verify that supported controls affect
+the expected native display and that the preview and Test in Game remain
+separate from the live plates.
+
+## Compact Focus border and Party layout
+
+21 November. The supplied Forever screenshot shows a break along the lower
+bevel where the portrait meets the bars. The intended shape is the compact
+player-style Party body with Focus's two aura panels above its name strip.
+The baseline has SHA-256
+`e0fb20a1884e6adf0538d21e8193bc091dbad5af8b5251c2eda1736a6f37f553`.
+
+The external checkpoint `focus-border-before-20261121T202242Z` verified
+127 subsystem sources, 26 saved-settings metadata entries, and complete history
+through `1e992c449d59b2f1f472efc40e7ca10ea6c494cf`. Shared.lua's baseline is
+`adf15cf4fe258339e5b30b3fc30817f20943bdfcd05904f5ca99f07e42ef6cc9`.
+BorderJunctions.lua's baseline is
+`49c64f3fc920346de680f4f88e4ae9098909f6916b10d2a885965c4f51dbb6d1`.
+
+The 684 Party divider checks, 8,530 prediction geometry checks, 1,480
+Party frame checks, 285 Focus visibility checks, and 1,075 Focus aura geometry
+checks passed with the shared bar split. Health uses the full interior when
+the focused unit has a publicly known absent resource. Prediction geometry
+uses the same layout as the rendered Health bar.
+
+The lower junction now draws the outer bottom bevel beneath the portrait
+divider. The 20,215-check raster fixture samples the two shipped RGBA sheets
+through the Core renderer. It covers the 83 × 35 body, fractional scales and
+moves, the previous Party paint, and the top aura and rounded corner fields.
+The same fixture rejects the checkpoint Core at the lower bevel. The 698
+branch-cache, 930 unit contour, 72 Party isolation, 18,804 cap, and 21,902
+cast junction checks pass. The existing structural pass builds the rim.
+[Rim fixture](../tests/focus_portrait_rim.lua).
+
+| Candidate runtime source | SHA-256 |
+| --- | --- |
+| `Core/BorderJunctions.lua` | `5a2ca0e3c4331bb4e89f028287a06403b33266c28bfadad9ab794a0fdbe5e674` |
+| `UnitFrames/FluxUnitFrames_Shared.lua` | `4f32bd961f6338a79239ea30b308618daa361463b8da4900133a157a79319de2` |
+
+Both runtime files match across all five installations. Native Forever
+visual comparison after reload remains pending. The read-only window capture
+did not contain a Focus frame.
+
+## Unit frame preview cases and playback
+
+21 November. The case selector offers the default sample, player and NPC
+identities on target frames, buffs and debuffs where those frames display
+them, and combat effects. Play runs for four seconds and repaints at most
+15 times per second. It restores the selected scene on completion. Switching
+cases, changing the individual component, or leaving a pane stops its
+playback. The group scene animates up to three sample members and can play
+one cast in a player-style Party when that setting is enabled.
+
+Five-client desktop checks passed for the options shell (1,318), cast and
+playback (2,425), prediction geometry (8,530), real Party cast overlay (835),
+Party preview and Focus text anchors (1,480), Raid visuals (628), Focus aura
+geometry (1,075), aura timing policy (74) and Pet tooltip ownership (605).
+The focused scene fixture checks all seven layouts, friendly and hostile NPC
+selection, countdown and expiry, reuse on resize, and driver cleanup. All
+nine files below match all five installations (45 SHA-256 comparisons).
+
+| Runtime source | Candidate SHA-256 |
+| --- | --- |
+| `_FluxUI.toc` | `ad8bfcdad64c7648c626fcf20996a8d72c880eba88984fa793c18929119566c8` |
+| `AddonOptions/FluxOptionsFramePreview.lua` | `5b03ba4d0ca1e0a1b78b4e36591d10afdffb9975341541b1446bfe1d59bf5c02` |
+| `UnitFrames/FluxUnitFrames_OptionsPreview.lua` | `9e33a08990fe4f6156a1e5a82c36ac513822de1e91685b17e4465f682148295b` |
+| `UnitFrames/FluxUnitFrames_PreviewAnimation.lua` | `07fe5286a1e6022436c2c4b1ecfade7233c29ea7016d60240b25b3329b8e7a36` |
+| `UnitFrames/FluxUnitFrames_Shared.lua` | `adf15cf4fe258339e5b30b3fc30817f20943bdfcd05904f5ca99f07e42ef6cc9` |
+| `UnitFrames/FluxCastBar.lua` | `38c24532285d178d1ccb0e689d07780ee756caeaf807737e5dfcc15971d000d9` |
+| `UnitFrames/FluxUnitFrames_Auras.lua` | `4aadccf7d6a7c4affc2b7bd5a1c65107f2816bedab146afb17b9b4a255f11032` |
+| `UnitFrames/FluxUnitFrames_PetAuraTooltip.lua` | `9d064c98f5dbbfc8f8336635c581adb1f7615583d06bd547cf83df076aa8f759` |
+| `UnitFrames/FluxUnitFrames_Party.lua` | `318f7172a83f48b93f006e76d6ccfac86662eddabf54ddfc17791abde7823447` |
+
+Forever 1.60.1 (71037) displayed the case menu and Play. A read-only capture
+at 20:09 UTC shows Player mid-playback with a cast countdown, reduced health
+and power, and charged class points. A second capture shows Focus in the
+Combat effects case with prediction and a raid marker. These captures were
+taken before the attachment visibility and Focus text refinements. Native
+NPC portraits, aura countdowns, group playback and edit timing are pending.
+[Requirements](OPTIONS_REWORK.md#individual-frame-preview-parity).
+
+## Compact Focus health text placement
+
+21 November. The user's Forever screenshot showed Focus's health percentage
+clipped at the Power boundary. The compact Focus health text host now follows
+the partition's visible health band. Its fallback uses the Health bar on
+clients with separate bar heights. The options sample uses the same text
+hosts, scaling, divider, and indicator layout. Five-client desktop assertions
+exercise the health host and power anchors, including the no-power layout.
+The 285 Focus visibility and 1,480 Party/Focus fixture checks pass.
+Native comparison after the Focus text correction is pending.
+
+The final focused reruns also pass options navigation and the options shell.
+The broader desktop run was taken during concurrent changes. Eight other
+failure paths reproduce against the pre-change source checkpoint and still
+fail when rerun in the workspace.
+
+The shared aura sources changed during the parallel nameplate restoration.
+The current mirror matches on all five installations. The independent scene
+fixture passed again using the restored aura painters. The wider group aura
+timer and raid tooltip fixtures reported failures after that restoration.
+The updated raw SHA-256 values are listed here for those three files.
+
+| Runtime source | SHA-256 after parallel restoration |
+| --- | --- |
+| `_FluxUI.toc` | `0b80edce8e6951390f66e3c57471196f7e6c634b75330d56dd52ae5183b4d279` |
+| `UnitFrames/FluxUnitFrames_Auras.lua` | `a54ec6f9d45f9ab70519762b7d0c294b9f69c58111b8888cdb4f3435e9b8aecc` |
+| `UnitFrames/FluxUnitFrames_PetAuraTooltip.lua` | `b02b38d0ed5040370bf38c8c8248544f6f34a4af0a36f35c72990727d9c86cd2` |
+
+## Individual frame preview parity
+
+21 November. The user supplied the previous Forever Player preview and an
+in-world Player and Target comparison. The candidate uses the Flux unit
+frame artwork and layout paths. It inherits the five supported client shapes
+and the [options widget source pins](#unit-frame-settings-preview).
+
+In the five-client desktop cast fixture, the sample uses the actual outer
+header anchor for Player, Target and Focus and the actual power row for Pet.
+The sample stays idle until selected and respects both cast switches. Across
+all 2,215 layout checks, selected cast samples have no live cast events, update
+loop, BigDebuffs sync or protected-layout defer. Repeated unchanged sample
+paints allocate no frames or textures and perform zero anchor or size writes
+in the fixture. The cast junction, party overlay and school theme regressions
+pass 21,902, 835 and 14,411 checks respectively.
+
+The focused desktop snapshot also passes 1,258 options shell checks, 7,277
+navigation checks, 298 dynamic range checks, 1,460 player-style Party checks,
+305 steady Party lifecycle checks and 628 Raid preview checks. The scene smoke
+exercises all seven layouts, Target with no power bar, editor hit regions and
+passive aura initialization. The portrait fit (30,816), portrait overlay
+attachment (228,227), mini fit (3,634), Target chrome (2,420), combat power
+layout (675), power snapshot (70), resource (122), Focus aura (1,075),
+aura layout (1,702), aura policy (74) and Pet tooltip (605) fixtures pass.
+
+The frozen runtime files match the installed bytes on all five clients.
+
+| Runtime source | Before SHA-256 | Candidate SHA-256 |
+| --- | --- | --- |
+| `_FluxUI.toc` | `9b5a351f336ea1ff526d159a191e4f6e6adbf9338afdc4b217259f41ce25c206` | `c3780f031e59d6f67c1151ea5cde2e9d0aef641101c76ac2dfc90943736370fe` |
+| `AddonOptions/FluxOptionsFramePreview.lua` | `b43445cbbfa759cbece1f015e0b9370f540c243bc731227791f6301588e07fa1` | `b1497afa1be2272704be2c40daba55a96ac11b7167ac35d2d9dc038fece28370` |
+| `UnitFrames/FluxUnitFrames_OptionsPreview.lua` | New file | `185fe51dc497ca7fecac8a5f7810ef9f15fcd2e65e28c31483b1d7f569971d58` |
+| `UnitFrames/FluxUnitFrames_Shared.lua` | `36941fc8b4fb69f262cb8584355dfa7856b4d7d43a116123023dfcdc97ac996b` | `c8f76662990a9d4eac81765fd9b9ba353e9ffe618f505001b317dc95b163ec26` |
+| `UnitFrames/FluxUnitFrames_Auras.lua` | `dbeefea85945d8c2e88c6607e6fe773dc77e29539620f37803d4b3f5041b58a1` | `81a0e875701622082392d62c65d99dd6357faff505392cdb8d587f1021f0f7dd` |
+| `UnitFrames/FluxUnitFrames_PetAuraTooltip.lua` | `4ec8524b82307f7c4d09af22e5d3f995f7dcd675a2820884be787c8b4a721ee5` | `75859b3497a682e8ae12cd9468acb029296aabfe71bd5f9d7e24f197de89f253` |
+| `UnitFrames/FluxCastBar.lua` | `b00b2e58cbe0fb21d0c122a7fa4b85125690f494ebd87d47ed20873d657b688b` | `d416e1cecccf118e976cd8c8c20176aed1e5152b9db9f9a17385ede8d339649e` |
+
+After the user's reload on Forever 1.60.1 (71037), read-only captures of the
+first preview revision showed Player's 3D portrait, green health, blue power,
+and cast sample in the same header location as the HUD. Target showed the
+right-side portrait slot, a full-height health bar, and both aura holders.
+There was no active target in the second capture, so it used the fallback
+portrait. The 19:58:00 and 19:58:36 UTC captures are retained in the external
+session folder. This confirms visible Player and Target layouts on Forever.
+The other tabs, clients, edit timing and combat remain pending.
+
+For native acceptance compare all supported Individual Frames tabs with
+their HUD equivalents on each client. Include stacked and side-by-side
+placement, 2D and 3D portraits, Focus presentation, the three attached frames,
+and aura and cast controls. Click the name, portrait, bars and auras to verify
+that each opens its existing settings. Check a size edit, a cast-time edit,
+the options viewport after shrinking it, and a second open after switching
+profiles. Check native input, combat, taint and edit timing separately.
+[Requirements](OPTIONS_REWORK.md#individual-frame-preview-parity).
+
+## Published FluxUI nameplates
+
+21 November. Confirmed published main at `1e992c4` and compared the restored
+nameplate module and options to that revision. The existing mirror
+propagated the restored source to Retail,
+Forever, Classic progression, Classic Era and Anniversary. Desktop
+replays cover restored quest badges and batching, threat and visibility,
+cast themes, level and countdown work, combo points, and the original settings
+route. The current options shell and frame preview fixture passes 1,318 checks
+across the five client models. Native game rendering and interaction after
+reload remain pending. [Restoration evidence](validation/nameplate-restore-2026-11-21.json).
+
+## Frame options edit responsiveness
+
+21 November. The desktop fixtures pass 8,322 navigation, 1,228 shell,
+1,460 player-style party, 628 compact renderer and 1,501 live raid
+options checks. The slider fixture moves the thumb through 21 pointer
+values and applies the latest value and draws the sample once on release.
+A non-pointer adjustment applies immediately. Source checks cover the three Unit Frame pages,
+legacy routes and combined tabs. The raid apply owner now refreshes the
+active world preview once. Selecting another part on the same page updates
+the selection marker on its own. A matched negative control that dispatches
+every pointer value fails the 21-step fixture.
+
+The integrated run in `frame-options-edit-validation.json` passed all
+1,261 syntax checks and 558 smoke scripts. Eight failures reproduced at
+the checkpoint. Two other scripts ran with stale navigation expectations. The current
+navigation and shell replays above pass with those expectations
+reconciled. A fresh syntax sweep passes all 1,265 currently discovered
+Lua files. Eight focused scripts pass at the current source. The broad
+run and the fresh focused checks cover different snapshots.
+
+Five alternating desktop pairs exercised 20 warm renders of a 40-cell
+embedded raid. Unchanged draws and aura-opacity edits both went from
+800 cell chrome passes and 800 reparent calls to zero. Clearing anchors
+fell from 42,560 to 9,600 calls. Setting anchors fell from 51,360 to
+9,600 calls, and sizing calls fell from 19,220 to 4,800. The cooldown
+write count stayed at 9,600. Median Lua fixture time went from 128 to
+81 ms for unchanged draws and 138 to 79 ms for opacity edits. The
+external `compact-options-edit-measurement.json` contains the individual
+samples. The fixtures check aura-size and member-dimension changes,
+the world preview repaint path and player-style portrait, accent and
+layout edits. Native timing and FPS remain pending.
+
+The checkpoint and frozen responsive-edit hashes identify this stage by
+its exact local bytes. Read-only checks after the automatic mirror found
+matching bytes for all ten listed runtime files in Retail, Forever,
+Classic progression, Classic Era and Anniversary.
+
+| Runtime source | Before | Candidate |
+| --- | --- | --- |
+| `AddonOptions/FluxOptions.lua` | `f2dfd1dfd43e5ad0669075667c08d7d3c42ec27339a9f8daf8f685c406c6c554` | `ab977249954fbff648313ee46fac0a00e6e9b96c2cfb4f5e164c29e2032a25e2` |
+| `AddonOptions/FluxOptionsCatalog.lua` | `0d608e0d5fbea69dede155f8ccfdd49985aaefebd943af3ee8152e8870b26fbf` | `68221d0ab3fc8e7929ae010269595f3a8fbd552486e83130ab951fa586c7dd79` |
+| `AddonOptions/FluxOptionsFramePreview.lua` | `688261f0b4d27b338f487c800d49cba126e36d475ec5faec2e28dc8cb26f974e` | `b43445cbbfa759cbece1f015e0b9370f540c243bc731227791f6301588e07fa1` |
+| `AddonOptions/FluxOptionsNavigation.lua` | `c8244749f203ed633922e9f9067ac1c633c77eaf3e282717ef74127d9ff6e89b` | `7a4380c49711b91a13c21490e0a37e24da853740f900cfdf4dc6f3d4d45a77a0` |
+| `AddonOptions/FluxOptionsRender.lua` | `d4ba130c2316c53554b91e9548e097b16b7634c0a018f986f20959fc364a9ed3` | `e6eedb6b842bc4138ff415da65335dd9a64980128a6e963b48089a940dd234e8` |
+| `AddonOptions/FluxOptionsShell.lua` | `98381541c619082d4b9c1f0de881374391a13d88bdfd7c508c7ebc7fc492cb7d` | `50ba075aa098855e5b003fc0c094c880009e7826ab0d6a03dafec966b6c99183` |
+| `AddonOptions/FluxOptionsWidgets.lua` | `c32d2ab1fe49cd2bf32585bd97cebbf87cc8f84d4ba00168144a0c99d3a563da` | `345f57192045b8427ffe5aa8fc1fb5e26c7b018b64be2750624e2c6b7b9663b7` |
+| `RaidFrame/FluxRaidFrame.lua` | `7c90b47027774a13b5a386275ee94880b9ac9120cf165204e8c481e124293de0` | `2ad0b9cc9e652a00950cdab03558d57c1c46b0f76e3dd407a4700c677ddd896d` |
+| `RaidFrame/FluxRaidPreview.lua` | `0b497fd95cb5f9d384cdf7cf2dbd22a667e7427ace81fdca91817549d546da25` | `83482828c0c3486c1512db92d414cf5fe545c1a43ec1ba19e08c52de61c04d20` |
+| `UnitFrames/FluxUnitFrames_Party.lua` | `baf5d8b2855d164a05a6999f1f4e766b3697c9a4a6654c7a694f16d30faec059` | `be768ae442ba8167238c40258e6482c31733e4a9a0ad16a435fb9bffedc43697` |
+
+Forever 1.60.1.71037 (PID 35620, window 1379206) showed Alchemy in the
+initial read-only capture. The 19:48 CET report named `PlaceFrameTabs`
+and a dependent Catalog nil error. The refreshed source builds the tabs
+directly from the catalog and passes the Lua load fixture.
+
+After the user's reload, native visual smoke showed Individual Frames
+with Player active and all seven supported tabs, plus the consolidated
+sidebar. A second capture showed the Party tab in Party & Raid and its
+four world-style examples, including the Offline, Dead and Away states,
+artwork and target strips. The external captures are
+`forever-options-pre-reload.png` and `forever-options-chat-open.png`.
+The first name was assigned before observing that the user had reloaded.
+Enter opened chat, and the user resumed Auction House activity. Native
+Pet selection, settings edits, repeated lag timings and the other
+clients remain pending.
+
+Open General, Individual Frames and Party & Raid on the pending clients.
+Verify Cast Bars under General and Nameplates under Combat, drag and
+release a size or aura slider, navigate and return, compare both group
+previews and check pointer, keyboard, controller cursor, label fit and
+combat deferral.
+[Requirements](OPTIONS_REWORK.md#three-frame-pages-and-responsive-editing).
+
+## Group preview parity
+
+21 November. The prior parity-only snapshot used the same player-style and
+compact frame painters as the world samples. The options pane owns its
+own passive frame pools and click regions. It scales the entire group inside
+the available area and preserves the relative size and position of its parts.
+The player-style party sample uses four synthetic world rows. The compact
+party uses five regular members, and the raid uses the selected 10–40
+members. The compact painter also draws the optional tank and target column.
+
+All five client source pins in the [previous options matrix](#unit-frame-settings-preview)
+declare `GetFrameStrata` and `SetFrameStrata` in the generated Frame API
+and `EnableMouse` in the inherited ScriptRegion API. The compact cells
+inherit FluxUI's local preview template. Decorative cells share the
+pane's strata and leave mouse input to the options overlay.
+
+The desktop raid fixture passes 623 checks. The 57 additions compare
+world and embedded cells for dimensions, relative positions, aura art,
+health and power values, status text, range fading and prediction states.
+The fixture verifies isolated party mode and dispel settings, independent
+visibility and synthetic unit selection. The related aura and tooltip
+suites pass.
+
+The focused desktop replays pass 7,177 source-navigation checks,
+1,393 shell checks and 1,310 player-style party checks across five
+client models. The shell exercises the Main and Mini pages, party and
+raid tabs, cross-tab preview clicks and separate world controls.
+All 53 affected desktop scripts pass. The complete parity-only desktop
+run passes all 1,260 syntax checks and 559 smoke scripts. The eight
+failures reproduce at its pre-edit checkpoint, including the inventory
+fixture's missing Syndicator `snapshots` state. This run preceded the
+three-page and edit responsiveness revisions.
+
+The external checkpoint and parity-only candidate hashes identify the
+runtime source by its exact local bytes.
+
+| Runtime source | Before | Candidate |
+| --- | --- | --- |
+| `AddonOptions/FluxOptionsCatalog.lua` | `c3e98f4dedf347fce76be774baaa8359890cff3460f104951bb5f056a1eb2714` | `0d608e0d5fbea69dede155f8ccfdd49985aaefebd943af3ee8152e8870b26fbf` |
+| `AddonOptions/FluxOptionsFramePreview.lua` | `c43122d775232420c87554accaa6009a8cb24708bc0f2cdb6e071988a6b05607` | `688261f0b4d27b338f487c800d49cba126e36d475ec5faec2e28dc8cb26f974e` |
+| `AddonOptions/FluxOptionsNavigation.lua` | `4d9245c28949ed79f1ed678c8b3183e8756f21d9e861f7db0e7ca6dbf4ff4c85` | `c8244749f203ed633922e9f9067ac1c633c77eaf3e282717ef74127d9ff6e89b` |
+| `AddonOptions/FluxOptionsRender.lua` | `abe820d90a65240768677a4281cc1fccf1232724af3a6d16e97b9480fc8cf0e3` | `d4ba130c2316c53554b91e9548e097b16b7634c0a018f986f20959fc364a9ed3` |
+| `AddonOptions/FluxOptionsShell.lua` | `265ae35260620f3e369d3f65eb7116ab85af498429db79969f21b7632b11504a` | `98381541c619082d4b9c1f0de881374391a13d88bdfd7c508c7ebc7fc492cb7d` |
+| `RaidFrame/FluxRaidPreview.lua` | `89408b157a16488b35604e38a3bf41397d415752099c2362f9d30880be4e2c22` | `0b497fd95cb5f9d384cdf7cf2dbd22a667e7427ace81fdca91817549d546da25` |
+| `UnitFrames/FluxUnitFrames_Party.lua` | `35e44755c1679474640f01a3047e6862f38b34c29161ea39fb0c2d82b50556b8` | `baf5d8b2855d164a05a6999f1f4e766b3697c9a4a6654c7a694f16d30faec059` |
+| `UnitFrames/FluxUnitFrames_Shared.lua` | `af962698d17f8126fda1f85f8759950f0dd81d9edeb8a3e85e0f4637e854834a` | `36941fc8b4fb69f262cb8584355dfa7856b4d7d43a116123023dfcdc97ac996b` |
+
+Native acceptance remains pending. On each client, compare the solo world
+and right-hand samples using both party layouts and a raid with the same
+selected settings. Check four player-style rows, five compact members, both
+ends of the raid roster range and the tank column. Compare at matching
+scale, including Offline, Dead and Away samples, both aura sides and
+attached target strips. Verify editing from preview regions and shortcuts,
+switching between the Main and Mini pages, the party and raid tabs,
+narrow-window fit, controller cursor operation, isolated world toggle,
+scope persistence and combat deferral. Use the established Witchcraft
+route for Forever.
+[Requirements](OPTIONS_REWORK.md#group-preview-parity-and-frame-settings).
+
+## Unit-frame settings preview
+
+21 November. The inline samples use ordinary frames, buttons, textures and
+font strings drawn from synthetic values. The five pinned source contracts
+declare texture and font-string creation, clipping, scaling, click registration
+and button highlighting. All five executable file versions were read on disk.
+
+| Client | Executable file version | Interface | Pinned frame declarations |
+| --- | --- | --- | --- |
+| Retail | 12.1.5.70961 | 120105 | [live](https://github.com/Gethe/wow-ui-source/blob/ab5cb850a3f65e742959e379c4689353a2f4549f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua) |
+| Forever | 1.60.1.71037 | 16001 | [forever](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua) |
+| Classic progression | 5.5.4.70631 | 50504 | [installed build](https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua), [5.5.4.71060 branch head](https://github.com/Gethe/wow-ui-source/blob/e171ae99b8e582ce9547bd8fc87054fe2e348f20/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua) |
+| Classic Era | 1.15.9.70576 | 11509 | [classic_era](https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua) |
+| Anniversary | 2.5.6.70577 | 20506 | [classic_anniversary](https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua) |
+
+The progression pins carry identical generated declarations for Frame,
+Button, Region, Texture and FontString. Source verification covers the widget
+API. Native render and operation checks remain pending.
+
+The desktop model passes 1,333 shell and menu checks, 6,847 source navigation
+checks and 298 dynamic range checks across five client contracts. The raid
+aura and existing world preview fixture passes 280 checks. The scoped raid
+aura apply fixture passes 1,495 checks. The shell replay covers the new pane,
+component clicks, unit type switching, automatic refresh after an edit,
+compact party routing, 40-member bounds at narrow width, and cleanup when
+closing or leaving the frame pages.
+
+The full desktop suite passes 1,259 Lua syntax checks and 559 smoke scripts.
+The seven failing smoke scripts also fail at the pre-edit checkpoint.
+[Recorded desktop run](reference/verification.json).
+
+The candidate and external checkpoint SHA-256 values identify the exact
+local file bytes, including work already present before the rework.
+
+| Runtime source | Before | Candidate |
+| --- | --- | --- |
+| `AddonOptions/FluxOptionsCatalog.lua` | `502cf4c5979b2be078a09ddb76609d1ef30b663e5850763bc4441f21b00db55f` | `c3e98f4dedf347fce76be774baaa8359890cff3460f104951bb5f056a1eb2714` |
+| `AddonOptions/FluxOptionsNavigation.lua` | `036071bdbc179a2b91518d8a2539bbab1d66373a327e69869313db270f9bb55a` | `4d9245c28949ed79f1ed678c8b3183e8756f21d9e861f7db0e7ca6dbf4ff4c85` |
+| `AddonOptions/FluxOptionsRender.lua` | `d891a227a481648c67d6cab1ace2acfdeb1ffb75e179c3307d7a94f8164553aa` | `abe820d90a65240768677a4281cc1fccf1232724af3a6d16e97b9480fc8cf0e3` |
+| `AddonOptions/FluxOptionsShell.lua` | `959b7acd841abe231935ab8f95610d982f9ca4a24bbc2b32cb6a4ce73b22f133` | `265ae35260620f3e369d3f65eb7116ab85af498429db79969f21b7632b11504a` |
+| `AddonOptions/FluxOptionsWidgets.lua` | `3aa27fd77435cf632d1849cef195d970e56721065101d3a2fb361e06aeaee7dc` | `c32d2ab1fe49cd2bf32585bd97cebbf87cc8f84d4ba00168144a0c99d3a563da` |
+| `AddonOptions/FluxOptionsFramePreview.lua` | New file | `c43122d775232420c87554accaa6009a8cb24708bc0f2cdb6e071988a6b05607` |
+| `_FluxUI.toc` | `0a6bdd516bfc1e7a7fc528bbab341ce2a35033f5a24a1e0fb299234d5c3161aa` | `e3dad2d45012864dbbf04fbfc2402492341550e44d4adcff662eeba55cec69bd` |
+
+In each client, open FluxUI through AddOns in Settings and the Escape menu.
+Switch the individual unit tabs, check the two party layouts and resize the
+raid roster. Click a bar, a text region and both aura types, edit a visible
+setting, and verify that the preview and the saved profile agree after
+closing and reopening the options. Check the narrowest window width,
+controller cursor reachability, section scrolling, Escape and combat
+deferral. Test world previews separately. Forever keeps the preferred
+Witchcraft route. Native pixels, taint, controller access and localized
+layout remain pending.
+[Requirements](OPTIONS_REWORK.md#unit-frame-preview-editor).
+
+## Shared unit-frame aura countdowns
+
+21 November. Verify the General countdown toggle on target, focus, both party
+layouts and raid. At 60 seconds the labels are hidden when the toggle is on,
+then appear below 60 seconds while the cooldown swipes continue. Check both
+buffs and debuffs, scoped settings and a change applied after combat.
+
+| Client | Installed version | Interface | Pinned Blizzard source |
+| --- | --- | --- | --- |
+| Retail | 12.1.5.70961 | 120105 | [live](https://github.com/Gethe/wow-ui-source/tree/ab5cb850a3f65e742959e379c4689353a2f4549f) |
+| Forever | 1.60.1.71037 | 16001 | [forever](https://github.com/Gethe/wow-ui-source/tree/734f065329cff4992835b01a84f210a297db91b6) |
+| Classic progression | 5.5.4.70631 | 50504 | [installed source](https://github.com/Gethe/wow-ui-source/tree/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf), [branch head](https://github.com/Gethe/wow-ui-source/tree/e171ae99b8e582ce9547bd8fc87054fe2e348f20) |
+| Classic Era | 1.15.9.70576 | 11509 | [classic_era](https://github.com/Gethe/wow-ui-source/tree/4192ac60067fc55566182291bc67c85dd9b6794d) |
+| Anniversary | 2.5.6.70577 | 20506 | [classic_anniversary](https://github.com/Gethe/wow-ui-source/tree/68e0a2ec559d9761dfc4e7f864c3944f9d758a49) |
+
+The inspected client builds declare numeric rule formatters and the cooldown
+countdown binding. Classic progression's installed pin and branch head use the
+same formatter and cooldown declarations. [Classic cooldown options](https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameAPICooldownDocumentation.lua#L345).
+
+The current focused replay passes 74 checks of the timer policy. Party, raid,
+tooltip and preview replays cover the restored FluxUI aura artwork and dispel
+indicators. Verify the resulting artwork and eligible dispel highlights in the
+native clients alongside the countdown transition and post-combat refresh.
+[Source and desktop evidence](validation/unit-frame-auras-2026-11-21.json).
+
+21 November. Vendor automation passed desktop replay for Retail, Forever, Classic progression, Era and Anniversary merchant layouts. All five installed `FluxVendorBuy.lua` files match SHA-256 `7539c3e5ac07067a1dee38297be7ba55200dab7c2037e8a5f6f6c246d9b66366`. Native transactions and the loaded client remain unverified. [Merchant sequencing](20-vendor-restock-junk.md#merchant-lifecycle-and-automation-ordering).
+
+21 November. The FluxLogistics owner bridge has automated desktop coverage for inherited/disabled restock policy, competing coverage, and native action arguments routed through bank and vendor fixtures. Forever and Classic native input, layout, controller, client calls and stock confirmation remain pending. [Contract](FLUXLOGISTICS_RESTOCK.md).
+
+## Side-button border reveal
+
+21 November. R193 passes modeled first-frame join and rim stability checks in
+both border types across mixed map, grid and UI scales. The runtime sources
+match the five installations on disk. The embedded grid is centered through
+window resizing, Map tab changes and deferred count updates in the desktop
+model. Native appearance, input, timing and taint checks remain pending.
+[Evidence](validation/minimap-hover-dock-r193-2026-11-21.json).
+
+## Standalone minimap restore
+
+21 November. The desktop integration fixture restores the standalone header
+and layers with side buttons disabled for modern and legacy minimap widths.
+It covers immediate restore, combat deferral and rapid toggles in combat.
+Mail lifecycle tests cover different icon heights, both inset policies and
+hidden tracking. The updated source matches all five local installations.
+Native placement, input and taint checks remain pending.
+[Evidence](validation/minimap-standalone-restore-2026-11-21.json).
+
+## Forever mount collection
+
+22 November life-state follow-up. The 317 focused checks reproduce the prior
+bright icon while dead even with a usable journal answer. The candidate dims
+on death and release, hides a stale mounted wisp, retains the binding and mount
+selection when the journal turns cold, and recovers after resurrection. The
+shared usability lane also dims the mount on a taxi. Seven related scripts pass.
+Native visuals, combat and input remain pending. Both changed sources match
+the Forever install on disk.
+[Forever life queries](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua#L1931-L1946).
+
+21 November taxi follow-up. The personal-mount display uses the native player
+taxi flag alongside the mounted flag. The 283 desktop checks cover both flags
+being true, boarding through the control event, landing, personal mounts
+after travel and a visual update during combat with no protected writes.
+The prior source fails the combined-flags assertion. The flight timer, vendor
+mount and bag mount scripts pass. Native boarding and landing remain pending.
+[Forever taxi query](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua#L2570-L2582).
+
+21 November combat dismount follow-up. The existing secure button runs
+Forever's native conditionals and `/dismount` command. Default and modifier
+actions have a combat dismount branch before combat starts. Mounted display
+events toggle the wisp texture on the existing frame. Combat invalidations
+retain the current journal and riding cache while the existing readiness
+window handles recovery after combat. The 275 desktop checks include the
+modifier race, a dismount in the macro model, unchanged hotkeys, cold journal
+recovery, and no protected writes in combat. Eight related scripts pass.
+Native combat dismount, wisp pixels and controller activation remain pending.
+[Forever dismount command](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_ChatFrameBase/Shared/SlashCommands.lua#L1285-L1289).
+[Secure macro execution](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua#L450-L464).
+
+21 November world-entry follow-up. Ordinary Forever `PLAYER_ENTERING_WORLD`
+arrives with both startup flags false. The button keeps the prior action from
+`PLAYER_LEAVING_WORLD` through one readiness check at 0.25 seconds and one
+optional retry at 1 second after entry. A new world transition cancels older
+checks. The action cache resets when the placeholder clears secure attributes.
+The arrival update reapplies the base, modifier and journal actions and the
+keyboard binding. Combat defers protected writes to the existing regen path.
+The 239 focused desktop checks and nine related scripts pass. The previous
+runtime and cache-only control reproduce the two failures. Source matches
+the Forever installation. Native teleport, pixels, input and taint remain pending.
+[Forever world events](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/SystemDocumentation.lua#L133-L148).
+
+21 November usability follow-up. The standard Extra Button tint now remains
+applied when the mount icon refreshes. The selected journal mount's live
+usability includes indoor restrictions, as in the native Mounts tooltip.
+Combat dims the face through the existing event and preserves its identity.
+The 176 desktop checks cover a usable journal mount with a false generic
+spell result, indoor and combat transitions, exact modifiers, sticky lock,
+and the ordinary shared usability refresh. Ten related scripts pass. Two
+mixed-source replays independently reproduce the prior icon and painter bugs.
+Both candidate files match the Forever install. Native tint, casting, gamepad
+and taint checks remain pending through the preferred Witchcraft route.
+[Journal contract](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/MountJournalDocumentation.lua#L339-L356).
+[Native tooltip](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_Collections/Mainline/Blizzard_MountCollection.lua#L843-L861).
+
+21 November compact panel follow-up. The 148 focused checks exercise dynamic
+height and visibility, the Add modifier choice list, journal selection and
+drag/drop, scope switching, and the tooltip through the actual modifier and
+hover callbacks. They include a saved but unavailable override that returns to
+Default and a placeholder with no usable collected mount. Five related scripts
+pass. The previous panel fails the hidden-unassigned-slot assertion. Both changed
+runtime files match the Forever installation on disk.
+
+The picker uses `Core/FluxBlizzardDropdown.lua` with its existing Forever gamepad
+menu routing and the pinned native dropdown generator. Set and Clear actions
+have native buttons. The desktop test exercises the menu entries without a
+native UI renderer. Native panel fit, hover and gamepad navigation remain pending.
+[Forever dropdown](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_Menu/DropdownButton.lua#L229-L268).
+
+21 November. The installed build manifest lists Forever `1.60.1.71037` with
+FluxUI interface `16001`. Gethe's matching source commit is
+`734f065329cff4992835b01a84f210a297db91b6`. The native pane owns the selected
+mount ID, the journal exposes ownership and usability, and the secure template
+orders modifier prefixes Alt, Ctrl, Shift. The riding path reads the skill rank
+and tracks `SKILL_LINES_CHANGED` alongside existing spellbook and journal events.
+[Mount pane](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_Collections/Mainline/Blizzard_MountCollection.lua#L790-L857).
+[Journal API](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/MountJournalDocumentation.lua#L275-L360).
+[Skills API](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/SkillInfoDocumentation.lua#L74-L121).
+[Secure buttons](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua#L70-L129).
+
+The 106 focused checks exercise the actual configuration and button modules,
+including skill training, collection updates, all eight routes, tooltip/icon
+identity inputs, account/character data, drag/drop, clearing, sticky mount and
+combat deferral. Modifier previews make zero additional journal reads on the
+warm cache in this test. The vendor and bag-mount regression suites also pass.
+The runtime sources match the Forever installation on disk.
+
+The repository-wide desktop run compiled 1,255 Lua files and reported 556
+passing scripts and nine failures. Eight failures reproduced with the prior
+mount sources. The remaining bars smoke check passed with both mount revisions
+when replayed after concurrent bars changes.
+
+The panel uses native Set and Clear buttons as alternatives to dragging and
+follows the native Mounts pane when switching tabs or closing Collections.
+Its new hints use English fallback text. Directional controller focus, glyphs,
+native cast and dismount, pixels, persistence after reload, taint and timing
+remain pending. The preferred Witchcraft route had no connection in this session.
+
+## Forever action button cooldown
+
+21 November. The player posted the same Forever collector stack again at
+00:14:28 and 00:15:53 and reported the symptom on Retail as well. The two
+pasted stacks match Forever 1.60.1.70959. The installed Retail build
+12.1.5.70783 has the same native route at lines 220–223, 823–847 and
+966–967, at source commit `297d7aaaa736f346b3e036f38ee088eaf7f8c07f`.
+Whether the 20 November code had loaded in the reported session remains
+unverified. The current taint logs predate the reports. The pasted
+messages omit the failing cooldown frame's name.
+[Retail source](https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua#L823-L849).
+
+`/fluxinput cooldown` records one opt-in snapshot of the active client's
+build, Flux bar readiness, the collector's cooldown subscription, and
+metadata for the collector's button entries, callbacks, and cooldown
+widget setters. It preserves two snapshots. It reads field ownership
+without calling the collector or reading spell cooldown values. Reload
+to load the command, use it before and after reproducing the fight, then
+reload after combat to save. In BugTabs, retain the failing frame's name
+if the Locals section contains it. Two diagnostic scripts and two Lua
+syntax checks pass. The command is present on disk in both installations.
+Native attribution remains pending.
+[Diagnostic](../Other/FluxInputDebug.lua).
+
+20 November. `FOREVER-ACTION-COOLDOWN-20261120` matches each Lua frame
+in the 22:46:28 stack to Forever 1.60.1.70959, source commit
+`3d8abb1da73acd38e412e24fb3f99454a6392346`. The failing route is
+`ACTIONBAR_UPDATE_COOLDOWN` through the shared button collector to the
+normal cooldown. `SetCooldown` accepts secret arguments only during
+untainted execution. The player reported that the error occurred while
+casting or fighting. The running Forever executable and main window were
+verified. Its retained taint log predates this report, so the first
+writer remains unknown.
+[Collector](https://github.com/Gethe/wow-ui-source/blob/3d8abb1da73acd38e412e24fb3f99454a6392346/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua#L230-L235)
+[Cooldown contract](https://raw.githubusercontent.com/Gethe/wow-ui-source/3d8abb1da73acd38e412e24fb3f99454a6392346/Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameAPICooldownDocumentation.lua).
+
+The stock FX pass directly hid `SpellCastAnimFrame`. Its native
+`OnHide` invokes `ActionButton_UpdateCooldown` from that caller's
+execution context. Forever now leaves this child to its native
+animation lifecycle under the existing alpha suppression. The desktop
+replay ran the pinned collector, button event, cast hide, and cooldown
+methods with a modeled secret argument. The checkpoint attempted one
+addon-driven cooldown call per tested pass, and the candidate attempted
+zero. Both applied one cooldown through the native event. The 61-check
+bar suppression script and nine related scripts passed, as did both Lua
+syntax checks. All five installed runtime files match on disk.
+[Cast animation handler](https://github.com/Gethe/wow-ui-source/blob/3d8abb1da73acd38e412e24fb3f99454a6392346/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua#L1840-L1846)
+[Regression](../tests/bars_edit_mode.lua).
+
+After reloading outside combat, repeat the original fight or cast the
+same spell in combat and watch its cooldown through cast completion.
+Check for the shared-collector stack and verify mouse, key, and controller
+input. Forever retains the existing Witchcraft preference. This session
+offered no Witchcraft connection.
+
 ## Flight timer rework
 
 20 November. `FLIGHT-TIMER-20261120` passed 120 checks across Retail, Forever,
@@ -5842,3 +7206,19 @@ Forever source `1.60.1.70938` shows item use on the current step, advancement
 on matching successful casts, and a combat-exit reset. The client source tip
 could not be resolved during this check. [Pinned Blizzard sequence manager](https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_ChatFrameBase/Shared/CastSequenceManager.lua)
 · [Desktop regression](../tests/mana_gem_sequence.lua).
+
+## Find offer after browsing
+
+22 November. The desktop owner tests run an explicit Find offer click after a foreign browse query. Passive preparation yields and the native buyout dialog still blocks the explicit action. Once the dialog closes, the click starts exactly one read-only query and exposes an eligible offer. Legacy and modern fixtures verify zero purchase calls. The player reloaded Forever and confirmed Find offer displayed Buy and a price. This live check stopped at the displayed offer.
+
+## Vendor bundle auction choice
+
+22 November. Companion auction requests can carry a minimum useful quantity. The legacy and modern owner fixtures skip smaller single listings, and the modern commodity path verifies an affordable quantity and validates it again on the real purchase path. The companion uses this minimum when replacing a whole vendor pack. Native confirmation is pending.
+
+## Craft queue junk protection
+
+22 November. Desktop fixtures cover saved manual and gray junk, uncached materials, Baganator classification, direct mark attempts and a stale sell or destroy candidate. The merchant gate skips accepted inputs. Releasing a material restores its earlier classification without a bag update. Equivalent coverage notifications do not repaint the bag. Native confirmation remains pending.
+
+## Modern auction item-key handoff
+
+22 November. With a cold modern item key the accepted auction query waits for item data. It retries a premature empty response once and prepares the exact offer when matching results arrive. The desktop fixtures cover commodities and individual item listings. Native testing remains pending.

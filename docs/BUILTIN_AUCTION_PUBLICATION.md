@@ -1,5 +1,56 @@
 # Built-in auction snapshot preparation — 5 November 2026
 
+## Sold listings with the Auction House closed
+
+On 22 November the player reported that a buyer-found notification left the
+listing in the built-in inventory after the sale. When FluxUI owns inventory,
+Retail, Forever and Classic progression use Blizzard's `AuctionSold` auction
+ID to remove exactly one saved listing and publish the corrected counts and
+locations. The sale creates no item attachment, and the handler performs no
+native auction query. The ID stays excluded from older scan results until a
+subsequent owned-list update while the window is open.
+
+Classic Era and Anniversary receive the localized item name in Blizzard's typed
+notification. A matching legacy system message can use the same path. A closed
+sale removes a listing when exactly one saved row matches and the names are
+known. Identical names or missing names defer to the next authoritative owner
+list. Legacy owner rows marked sold are excluded even while Blizzard displays
+them as pending delivery. A sale correction preserves the order and metadata of
+the surviving records, including older sparse saves. Syndicator retains
+ownership when its provider is ready.
+
+The selected source revisions declare the typed event with an optional ID on
+[Retail 12.1.5.70961](https://github.com/Gethe/wow-ui-source/blob/ab5cb850a3f65e742959e379c4689353a2f4549f/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseDocumentation.lua#L1248),
+[Forever 1.60.1.71037](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseDocumentation.lua#L1264)
+and [Classic progression 5.5.4.71060](https://github.com/Gethe/wow-ui-source/blob/e171ae99b8e582ce9547bd8fc87054fe2e348f20/Interface/AddOns/Blizzard_APIDocumentationGenerated/AuctionHouseDocumentation.lua#L1197).
+Retail and Forever route it outside the Auction House. The loaded Classic
+progression UIParent has no registration, so its closed-window delivery to
+addons needs native confirmation.
+[Retail router](https://github.com/Gethe/wow-ui-source/blob/ab5cb850a3f65e742959e379c4689353a2f4549f/Interface/AddOns/Blizzard_Game/Mainline/EventRouting.lua#L15),
+[Forever router](https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_Game/Mainline/EventRouting.lua#L15),
+[Classic progression UIParent](https://github.com/Gethe/wow-ui-source/blob/e171ae99b8e582ce9547bd8fc87054fe2e348f20/Interface/AddOns/Blizzard_UIParent/Mists/UIParent.lua#L138).
+
+The Era and Anniversary UIParents register the event globally and format its
+item-name argument for chat. Their legacy owner rows expose sold status in
+return 16 and provide no auction ID.
+[Era 1.15.9.70576 router](https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UIParent/Vanilla/UIParent.lua#L792),
+[Era owner rows](https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_AuctionUI/Classic/Blizzard_AuctionUI.lua#L1713),
+[Anniversary 2.5.6.70577 router](https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UIParent/TBC/UIParent.lua#L800),
+[Anniversary owner rows](https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_AuctionUI/Classic/Blizzard_AuctionUI.lua#L1713).
+
+The external `fluxui-sold-auction-before-20261122T082204Z` checkpoint verifies
+15 source and continuity files, complete main history at `1e992c4` and 44
+on-disk settings metadata entries. Auctions.lua SHA-256 changed from
+`b0e9e407d70d616f2c0a65a575d5d20a5bd17672d7b88f44c75a3ea048c3f797` to
+`d8266787b2ec7c79780f0494cab5d9699cd1b7d9ebf9f1ae8f893714ec60b0e8`.
+All five installed files compile and match the candidate hash. The archived
+source reproduces 54 failures in each of three paired replays. The candidate
+passes 6,264 checks across ten client/provider profiles in each replay. Maximum modeled scan work
+stays at 104 with zero reentry errors and zero new normalized rows on unchanged
+scans. A confirmed sale rebuilds the saved auction snapshot once. The normal
+owned-scan path retains its 32-read and 1 ms budgets. Real sale delivery and
+native timing remain pending. [Client checks](CLIENT_VALIDATION.md#built-in-sold-auction-counts).
+
 ## Reproduced work and failure
 
 The native owned-row scan limited each update to 32 reads or approximately 1 ms,

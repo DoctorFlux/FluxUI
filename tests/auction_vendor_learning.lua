@@ -16,7 +16,7 @@ source = source:sub(1, first - 1) .. source:sub(last)
 local export = setmetatable({ arg = { "--source", root .. "/Inventory/Restock/Vendor/FluxVendorBuy.lua" } }, { __index = _G })
 local Boot = assert(load(source .. "\nreturn boot", "@merchant-source-learning-fixture", "t", export))()
 
-local function Fixture(modern, mode, size)
+local function Fixture(modern, mode, size, withPlanner)
     local h = Boot(modern, false, size or 8, false)
     local env = h.env
     h.settings = { autoRepair = false, autoSellGray = false, autoRestock = false, restockItems = {} }
@@ -40,7 +40,21 @@ local function Fixture(modern, mode, size)
             GetTarget = function(kind) return kind == "bandage" and 1 or 0 end }
     end
     if mode == "fulfilled" then h.bags[100001] = 5 end
-    assert(loadfile(root .. "/Inventory/Restock/Core/FluxRestockList.lua", "t", env))("_FluxUI", {})
+    local ns = { Flux = {} }
+    if withPlanner then
+        env.Flux = ns.Flux
+        assert(loadfile(root .. "/Inventory/Restock/Core/FluxRestockPolicy.lua", "t", env))("_FluxUI", ns)
+        h.policy = ns.Flux.RestockPolicy
+        local ok = h.policy.RegisterPlanner({
+            GetCoverage = function() return h.coverage end,
+            Request = function() h.orders = (h.orders or 0) + 1; return true end,
+            IsWorkflowBusy = function() return h.plannerBusy end,
+        })
+        assert(ok)
+    end
+    env.FluxRestock.Inv.GetLiveCount = function(itemID) return h.bags[itemID] or 0 end
+    assert(loadfile(root .. "/Inventory/Restock/Core/FluxRestockList.lua", "t", env))("_FluxUI", ns)
+    if withPlanner then env.FluxRestockItemRegistry.IsChargeItem = function() return false end end
     assert(loadfile(root .. "/Inventory/Restock/Auction/FluxAuctionRestockData.lua", "t", env))("_FluxUI", { Flux = {} })
     h.auction = env.FluxAuctionRestock
     h.learning, h.infoReads, h.readsAt = 0, 0, {}
@@ -116,6 +130,82 @@ for _, client in ipairs({ "Retail", "Forever", "MoP", "Era", "Anniversary" }) do
     check(h.learning == 1 and h.auction.IsVendorItem(100001) and #h.calls == 0,
         "Shift skips configured automation while allowing metadata-only source learning")
     h:event("MERCHANT_CLOSED"); h:advance(1)
+
+    -- A registered planner in Normal must leave the vendor checkbox in charge.
+    for _, combo in ipairs({
+        { label = "restock only", count = 3 },
+        { label = "repair then restock", repair = true, count = 3 },
+        { label = "repair and sell before restock", repair = true, sell = true, count = 3 },
+        { label = "at refill threshold", sell = true, trigger = 1, carried = 1, covered = 0, count = 0 },
+        { label = "planner already covers the target", covered = 5, count = 0 },
+        { label = "open world with managed orders off", mode = "openworld", count = 3 },
+        { label = "toggle enabled during junk sale", sell = true, toggleOn = true, count = 3 },
+        { label = "restock toggled off during junk sale", repair = true, sell = true, toggleOff = true, count = 0 },
+        { label = "planner acquisition in progress", repair = true, sell = true, busy = true, count = 0 },
+        { label = "Shift skips all automation", repair = true, sell = true, shift = true, count = 0 },
+    }) do
+        h = Fixture(modern, "manual", 1, true)
+        local label = client .. " " .. combo.label
+        h.settings.autoRestock, h.settings.autoRepair, h.settings.autoSellGray = not combo.toggleOn, combo.repair, combo.sell
+        h.coverage = { { id = "accepted:1", quantity = combo.covered or 2, units = "item" } }
+        h.bags[100001], h.plannerBusy, h.shift = combo.carried or 0, combo.busy, combo.shift
+        if combo.mode then h.policy.SetMode(combo.mode) end
+        if combo.trigger then h.policy.SetTrigger("item:100001", combo.trigger) end
+        local steps, selling = {}, false
+        h.fv.TriggerAutoRepair = function() steps[#steps + 1] = "repair" end
+        h.fv.TrySellJunkItems = function() steps[#steps + 1] = "sell"; selling = true end
+        h.env.FluxSellJunk = {
+            IsSelling = function() return selling end,
+            ContinueIfNeeded = function() return selling end,
+        }
+        h.afterFirst = function() steps[#steps + 1] = "buy" end
+        h:event("MERCHANT_SHOW"); h:advance(0.6)
+        if combo.sell and not combo.shift then
+            check(#h.calls == 0 and selling, label .. " buys wait for active junk sale")
+            if combo.toggleOff then h.settings.autoRestock = false end
+            if combo.toggleOn then
+                h.settings.autoRestock = true
+                h.fv.TriggerAutoRestock()
+                check(#h.calls == 0, label .. " toggle callback waits for active sale")
+            end
+            selling = false
+            h:event("BAG_UPDATE_DELAYED"); h:advance(0.4)
+        end
+        local expected = {}
+        if combo.repair and not combo.shift then expected[#expected + 1] = "repair" end
+        if combo.sell and not combo.shift then expected[#expected + 1] = "sell" end
+        if combo.count > 0 then expected[#expected + 1] = "buy" end
+        check(table.concat(steps, ",") == table.concat(expected, ","), label .. " preserves action order")
+        check(#h.calls == combo.count and h.bags[100001] == (combo.carried or 0) + combo.count,
+            label .. " buys only the uncovered quantity")
+        check(not h.orders, label .. " creates no managed order")
+        h:event("MERCHANT_CLOSED"); h:advance(1)
+    end
+
+    -- A companion planner can observe live quotes without enabling purchases.
+    h = Fixture(modern, "none")
+    h.env.UnitGUID = function(unit) if unit == "npc" then return "Creature-fixture" end end
+    local notices = {}
+    h.env.Flux = { RestockPolicy = {
+        IsPlannerRegistered = function() return true end,
+        NotifyChanged = function(reason)
+            local observation = h.fv.GetLogisticsOffer(100001)
+            notices[#notices + 1] = { reason = reason, price = observation and observation.bundlePrice,
+                stored = h.auction.VendorPrice(100001) }
+        end,
+    } }
+    h:event("MERCHANT_SHOW"); h:advance(0.6)
+    check(h.learning == 1 and #notices == 1 and notices[1].reason == "merchant",
+        client .. " planner alone publishes the first completed live merchant index")
+    check(notices[1].price == 5 and notices[1].stored == 5,
+        client .. " live offer and typed history are ready when the planner is notified")
+    h.shop[1].price = 7
+    h:event("MERCHANT_UPDATE"); h:event("MERCHANT_UPDATE"); h:advance(0.7)
+    check(#notices == 2 and notices[2].price == 7 and notices[2].stored == 7,
+        client .. " burst update publishes the revised live and remembered price once")
+    h:event("MERCHANT_CLOSED"); h.merchant = false; h:advance(0.7)
+    check(#notices == 3 and notices[3].price == nil and notices[3].stored == 7 and #h.calls == 0,
+        client .. " closing removes the live offer, retains the memory and never purchases")
 
     -- A newer unambiguous observation replaces the previous stock kind, while
     -- incomplete metadata cannot erase exact learned source facts.

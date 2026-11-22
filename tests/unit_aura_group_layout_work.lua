@@ -93,4 +93,70 @@ for _,client in ipairs{'forever','live'}do
  E.UF.AuraOwn=nil;sync(p);check(c.dirty>dirty,'public recovery after opaque geometry performs real native layout again')
  print('AURA_GROUP_LAYOUT_WORK|'..client..'|unchangedNativeDirty=60->0|fullAuraRefreshes=40|groupCountReads=60|groupFrameReads=480|buttonSizeWrites=480')
 end
+
+if not arg[1] then
+    local env = setmetatable({
+        Enum = { CustomAuraButtonDispelTypeTextureStyle = { PreserveAsset = 1, Icon = 2 } },
+        dispelTypeIcons = {},
+        GetDurationFormatter = function() end,
+        DispelStylePreserve = function() return 1 end,
+        StealableFilter = function() end,
+    }, { __index = _G })
+    local methods = {}
+    local function newFrame(parent)
+        return setmetatable({ parent = parent, bindings = {}, sizeWrites = 0 }, { __index = methods })
+    end
+    for _, name in ipairs({ "SetAllPoints", "SetTexCoord", "SetDrawEdge", "SetReverse",
+        "SetHideCountdownNumbers", "SetBackdrop", "SetBackdropBorderColor", "EnableMouse", "SetTexture",
+        "SetBlendMode", "SetAlpha", "SetFont", "SetTextColor", "SetShadowColor", "SetShadowOffset",
+        "SetIcon", "SetDurationCooldown", "SetApplicationCount", "SetDurationText", "ClearAllPoints" }) do
+        methods[name] = function() end
+    end
+    function methods:SetSize(width, height)
+        self.width, self.height, self.sizeWrites = width, height, self.sizeWrites + 1
+    end
+    function methods:SetPoint(...) self.point = { ... } end
+    function methods:SetFrameLevel(level) self.level = level end
+    function methods:GetFrameLevel() return self.level or 1 end
+    function methods:Hide() self.hidden = true end
+    function methods:CreateTexture(_, layer, templateName, subLevel)
+        assert(templateName == nil or type(templateName) == "string")
+        local texture = newFrame(self)
+        texture.layer, texture.subLevel = layer, subLevel
+        return texture
+    end
+    function methods:CreateFontString() return newFrame(self) end
+    function methods:AddDispelTypeTexture(texture, options)
+        self.bindings[#self.bindings + 1] = { texture = texture, options = options }
+    end
+    env.CreateFrame = function(_, _, parent) return newFrame(parent) end
+    local namespace = { Flux = {} }
+    assert(load(read("Core/API/Aura.lua"), "@shared-aura-art", "t", env))("_FluxUI", namespace)
+    env.Aura = namespace.Flux.Aura
+    local initialize, resize = assert(load(
+        section(source, "local function InitializeEngineButton", "local function PublicLayoutNumber")
+        .. section(source, "local function PublicLayoutNumber", "local function GroupLayout")
+        .. section(source, "local function ResizeGroupButtons", "local function HasGroup")
+        .. "\nreturn InitializeEngineButton, ResizeGroupButtons", "@actual-unit-dispel-buttons", "t", env))()
+    local harmful, helpful = newFrame(), newFrame()
+    initialize(harmful, { unit = "focus", containerType = "Debuff" }, 20, 30)
+    initialize(helpful, { unit = "focus", containerType = "Buff" }, 20, 30)
+    check(#helpful.bindings == 1 and #harmful.bindings == 2, "debuffs bind an extra glyph alongside the native border")
+    check(harmful.bindings[1].options.style == 1, "original secure border style is preserved")
+    local glyph = harmful.bindings[2].texture
+    local options = harmful.bindings[2].options
+    check(glyph.hidden and glyph.parent.parent == harmful and glyph.layer == "OVERLAY"
+        and glyph.point[1] == "TOPRIGHT" and glyph.point[2] == harmful,
+        "glyph is a top-right descendant above the cooldown and starts hidden")
+    check(options.style == 2 and options.showWhenHarmful and not options.showWhenHelpful and not options.showWithoutDispelType,
+        "native binding displays only typed harmful glyphs")
+    check(glyph.width == 8 and glyph.height == 8, "glyph uses the shorter side of the debuff icon")
+    local group = { GetAuraGroupFrameCount = function() return 1 end, GetAuraGroupFrame = function() return harmful end }
+    resize(group, "own", 32, 40)
+    check(glyph.width == 12 and glyph.height == 12, "secure glyph follows native group size changes")
+    local writes = glyph.sizeWrites
+    resize(group, "own", 32, 40)
+    check(glyph.sizeWrites == writes, "unchanged group dimensions leave glyph geometry alone")
+end
+
 print('Unit aura group layout: '..checks..' checks PASS; exact native setters, complete descriptors, unchanged paint/membership cadence, real engine/group lifetime, failure/private/hot-load recovery. Native FPS/taint pending')

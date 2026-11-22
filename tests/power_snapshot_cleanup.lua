@@ -55,7 +55,7 @@ local function fixture(hud, opaque, enabled)
     end
     assert(load(slice(shared, "function UF.PowerValueForDisplay(bar, power)", "local RETAIL_POWER_TINT"),
         "@snapshot:display", "t", env))()
-    assert(load(slice(shared, "function UF.UpdatePower(self, unit)", "function UF.CreatePowerBar(frame)"),
+    assert(load(slice(shared, "function UF.PaintPowerLabels(self, unit", "function UF.CreatePowerBar(frame)"),
         "@snapshot:power-painter", "t", env))()
     function s:paint(value, secondary)
         self.paints = self.paints + 1

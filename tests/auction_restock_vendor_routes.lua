@@ -163,16 +163,16 @@ for _, client in ipairs({ "Retail", "Forever", "MoP", "Era", "Anniversary" }) do
         BuyListing(); st.bags[201] = 10; F.Refresh()
         check(A.craftPlans[100] and not A.craftPlans[100].vendorItems[201] and A.craftPlans[101].vendorItems[201],
             "next per-item preparation preserves shared recipes' distinct actual-invoice routes")
-        check(F.GetState().kind == "waiting" and F.GetState().items[201] == 10,
-            "partial auction delivery waits for its other ten without substituting vendor purchases")
+        check(F.GetState().kind == "auction" and F.GetState().items[201] == 10,
+            "the partial delivery leaves the next ten on the active Restock offer")
         local buys = 0
         env.FluxVendorAuto.DoAuctionFollowup = function(manual)
             check(st.hardware and manual == true and F.GetVendorTargets()[201] == 1,
                 "HUD delegates only the scoped physical vendor requirement on its press")
             buys = buys + 1; st.bags[201] = st.bags[201] + 1
         end
-        st.emit("MERCHANT_SHOW"); st.hardware = true; F.Click(); st.hardware = false
-        check(buys == 0 and F.GetState().kind == "waiting", "vendor interaction cannot override incomplete AH provenance")
+        st.emit("MERCHANT_SHOW")
+        check(buys == 0 and F.GetState().kind == "auction", "vendor interaction cannot override incomplete AH provenance")
         BuyListing(); st.bags[201] = 20; F.Refresh()
         check(F.GetState().kind == "vendor" and F.GetState().items[201] == 1,
             "complete twenty AH items expose only the single vendor-chosen requirement")

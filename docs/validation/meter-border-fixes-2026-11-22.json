@@ -1,0 +1,132 @@
+{
+  "change": "METER-BORDER-FIXES-20261122",
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\22\\01a20345-0d13-7943-ac5d-4088fff49a3b\\meter-border-fixes-before-20261122T124121Z\\checkpoint.json",
+    "main": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "verifiedSourceFiles": 101,
+    "sourceArchiveSha256": "255e94d7158a952b44caeed8285b54fea5259cabb22d50571a79336860ff0ea2",
+    "historyBundleSha256": "90bfc84da44ffd45c6617f5304a431e6ed808eadb90080ffefe4bc5d691b2909",
+    "settingsMetadataEntries": 40,
+    "settingsHandling": "Stat metadata only. Settings remain in the installed clients."
+  },
+  "baselineSha256": {
+    "Battlezonemap/FluxBlizzardMeter.lua": "6c4f2069f0ec910690eb32f1d68702e0c046f91f2bf68f902a166a1808ac27e0",
+    "Battlezonemap/FluxMeterLayout.lua": "1db37f8911d5f29f15ed891b69196774351425d8033d0cf231af21c1dd5ca020",
+    "Core/BorderJunctions.lua": "5a2ca0e3c4331bb4e89f028287a06403b33266c28bfadad9ab794a0fdbe5e674",
+    "tests/native_meter_controls.lua": "29167922f66ac6f7fb16f0722e1705c4489d12430f3150725598f89bfc86f6ae",
+    "tests/native_meter_ownership.lua": "8d33fb9163d3ad528074a27963501d961004a0b89721b985300d126a0e6d4af3",
+    "tests/border_unit_contours.lua": "ba120fe76b41bbcbf61bcbc0ef1b43c3528136583965508d129dae7687761d04"
+  },
+  "candidateSha256": {
+    "Battlezonemap/FluxBlizzardMeter.lua": "2bf871ab9bd267f1cd459502057cb78eeb9080a42f754e536b61fa6148206f6a",
+    "Battlezonemap/FluxMeterLayout.lua": "ecc705c49dc0695d77ec4617ef4c90fb39fe494af75aeb9f127ab1aaf1acc7b9",
+    "Core/BorderJunctions.lua": "5e19f3cb84d44429c82e4b25f8898440d903e76291ebdb0956b29988353a694f",
+    "tests/native_meter_controls.lua": "e24506f22960c51da006a936d5ce0bda3f57e8ac08f5226c4d9f6c81d40db914",
+    "tests/native_meter_ownership.lua": "f848010597ce48503615ebfc8082c7c2b09918ecc455fcce126db4d6d34dca06",
+    "tests/border_unit_contours.lua": "d1acd957d6c621457b560d62f000c146567b0e96b121bb5d785e0fd0aa45fcf6"
+  },
+  "installedDiskSha256": {
+    "_retail_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": "2bf871ab9bd267f1cd459502057cb78eeb9080a42f754e536b61fa6148206f6a",
+      "Battlezonemap/FluxMeterLayout.lua": "ecc705c49dc0695d77ec4617ef4c90fb39fe494af75aeb9f127ab1aaf1acc7b9",
+      "Core/BorderJunctions.lua": "5e19f3cb84d44429c82e4b25f8898440d903e76291ebdb0956b29988353a694f"
+    },
+    "_forever_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": "2bf871ab9bd267f1cd459502057cb78eeb9080a42f754e536b61fa6148206f6a",
+      "Battlezonemap/FluxMeterLayout.lua": "ecc705c49dc0695d77ec4617ef4c90fb39fe494af75aeb9f127ab1aaf1acc7b9",
+      "Core/BorderJunctions.lua": "5e19f3cb84d44429c82e4b25f8898440d903e76291ebdb0956b29988353a694f"
+    },
+    "_classic_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": "2bf871ab9bd267f1cd459502057cb78eeb9080a42f754e536b61fa6148206f6a",
+      "Battlezonemap/FluxMeterLayout.lua": "ecc705c49dc0695d77ec4617ef4c90fb39fe494af75aeb9f127ab1aaf1acc7b9",
+      "Core/BorderJunctions.lua": "5e19f3cb84d44429c82e4b25f8898440d903e76291ebdb0956b29988353a694f"
+    },
+    "_classic_era_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": "2bf871ab9bd267f1cd459502057cb78eeb9080a42f754e536b61fa6148206f6a",
+      "Battlezonemap/FluxMeterLayout.lua": "ecc705c49dc0695d77ec4617ef4c90fb39fe494af75aeb9f127ab1aaf1acc7b9",
+      "Core/BorderJunctions.lua": "5e19f3cb84d44429c82e4b25f8898440d903e76291ebdb0956b29988353a694f"
+    },
+    "_anniversary_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": "2bf871ab9bd267f1cd459502057cb78eeb9080a42f754e536b61fa6148206f6a",
+      "Battlezonemap/FluxMeterLayout.lua": "ecc705c49dc0695d77ec4617ef4c90fb39fe494af75aeb9f127ab1aaf1acc7b9",
+      "Core/BorderJunctions.lua": "5e19f3cb84d44429c82e4b25f8898440d903e76291ebdb0956b29988353a694f"
+    }
+  },
+  "sourceEvidence": {
+    "Forever": {
+      "version": "1.60.1.71037",
+      "pin": "734f065329cff4992835b01a84f210a297db91b6",
+      "sourceBlobs": {
+        "Blizzard_Menu/Menu.lua": "ab0d377568c2c3f037d07cdd0d7df9b3b5492bf4",
+        "Blizzard_DamageMeter/DamageMeterSessionWindow.lua": "22ff4c51ac5e345fafe76c31b5ba5e1589809a12",
+        "Blizzard_DamageMeter/DamageMeterEntry.lua": "43560e42b73378043c53800da500a9a8858cbf2b",
+        "Blizzard_DamageMeter/DamageMeter.lua": "dbd39a7a39919003d7f4b23560a86a1547453a57"
+      },
+      "observedTraceLocations": {
+        "Menu.lua": 934,
+        "DamageMeterSessionWindow.lua": [
+          201,
+          518,
+          929,
+          939,
+          944,
+          960
+        ],
+        "DamageMeterEntry.lua": [
+          375,
+          535
+        ],
+        "DamageMeter.lua": [
+          90,
+          197,
+          200,
+          204
+        ]
+      }
+    },
+    "Retail": {
+      "version": "12.1.5.70961",
+      "pin": "ab5cb850a3f65e742959e379c4689353a2f4549f",
+      "sourceBlobs": {
+        "Blizzard_Menu/Menu.lua": "31226e6356966bdd90ab8953388bfce15a7d55c5",
+        "Blizzard_DamageMeter/DamageMeterSessionWindow.lua": "aa10f882984c4559b99fe252d9dfc6b2f74ee3c4",
+        "Blizzard_DamageMeter/DamageMeterEntry.lua": "a63efe08ab4443a1611659fc1822ea041aa98ccc",
+        "Blizzard_DamageMeter/DamageMeter.lua": "dbd39a7a39919003d7f4b23560a86a1547453a57"
+      }
+    }
+  },
+  "desktop": {
+    "lua": "5.4.6",
+    "passingFixtures": 26,
+    "menuReplays": {
+      "Retail": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "Forever": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "checksPerReplay": 216
+    },
+    "nativeMethodReplays": {
+      "Retail": "ab5cb850a3f65e742959e379c4689353a2f4549f",
+      "Forever": "734f065329cff4992835b01a84f210a297db91b6",
+      "checksPerReplay": 583
+    },
+    "roundCapContourChecks": 933,
+    "syntaxChecks": 6,
+    "compilerPrototypes": 577,
+    "maximumUpvalues": 52,
+    "checkpointNegatives": [
+      "Addon invoked original Blizzard meter Pick",
+      "12 reveal/restriction failures",
+      "BorderJunctions.lua:3881 nil number comparison"
+    ],
+    "sameBaselineAndCandidateFixtureFailures": [
+      "border_fallback_plan_cache.lua",
+      "border_fallback_opacity.lua"
+    ],
+    "fixtureFailureReason": "Instrumented source exceeds the Lua 200-local limit. Production syntax passes.",
+    "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\22\\01a20345-0d13-7943-ac5d-4088fff49a3b\\meter-border-fixes-before-20261122T124121Z\\desktop-validation.json"
+  },
+  "native": {
+    "status": "Pending reload and in-game verification",
+    "scope": "Combat taint, populated out-of-combat rows, timer, icons, class color, native dropdowns/controller, rounded-cap pixels, CPU and FPS.",
+    "acceptance": "docs/CLIENT_VALIDATION.md#damage-meter-taint-and-rounded-border-junctions"
+  }
+}

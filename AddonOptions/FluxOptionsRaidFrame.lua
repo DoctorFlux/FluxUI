@@ -459,12 +459,6 @@ function ns.FluxOptionsBuildPartyRaidTab()
             get = function() return GetRaidDB().auraDurationFontScale or 1 end,
             set = function(_, value) GetRaidDB().auraDurationFontScale = max(0.5, min(2.5, tonumber(value) or 1)); AfterRaidChange() end,
         },
-        auraTimersUnderMinute = {
-            type = "toggle", name = "Show aura timers only below 1 minute", order = 23.3, width = "full",
-            desc = "Applies to raid and party shown as raid frames. Show numbers only below 60 seconds; icons, swipes and stacks remain. Normal party, target and focus use Unit Frames > General.",
-            get = function() return RaidFlag("auraTimersUnderMinute", true) end,
-            set = function(_, value) SetRaidFlag("auraTimersUnderMinute", value) end,
-        },
         raidManagerScale = {
             type = "range",
             name = "Raid manager strip scale",
@@ -483,13 +477,13 @@ function ns.FluxOptionsBuildPartyRaidTab()
         resetSizes = {
             type = "execute",
             name = "Reset sizes",
-            desc = "Restores the default sizing preset and under-one-minute aura timer display. Aura filters, counts and transparency stay configured.",
+            desc = "Restores the default sizing preset. Aura filters, counts and transparency stay configured.",
             order = 24.5,
             func = function()
                 local db = GetRaidDB()
                 local defaults = FluxOptionsDefaults.profile.raidFrames
                 for _, key in ipairs({ "memberWidthScale", "frameHeightScale", "powerBarHeightScale", "auraIconScale",
-                    "auraWidthScale", "auraDurationFontScale", "raidManagerScale", "auraTimersUnderMinute" }) do
+                    "auraWidthScale", "auraDurationFontScale", "raidManagerScale" }) do
                     db[key] = defaults[key]
                 end
                 AfterRaidChange()

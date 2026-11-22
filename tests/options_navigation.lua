@@ -1,5 +1,5 @@
 -- Reorganize the actual registered builders, including dynamic factory rows.
--- No setters/getters, personal saved variables, or native UI are used here.
+-- Settings writes use isolated desktop fixtures. No personal saved variables or native UI are used.
 local checks = 0
 local reportRows = {}
 local function check(value, why) checks = checks + 1; assert(value, why) end
@@ -19,6 +19,7 @@ local function exercise(client)
     env.UnitClass=function()return "Mage","MAGE",8 end
     env.GetLocale=function()return "enUS"end
     env.C_AddOns={IsAddOnLoaded=function()return false end}
+    env.FLUX_API={hasFocusUnit=client~="classic_era"}
     env.FluxOptions={RegisterModuleOptions=function(_,id,builder)entries[id]=builder;roots[id]=nil end,
         GetModuleGen=function()return 1 end,GetProfilesOptions=function()return {type="group",args={}}end}
     function env.FluxOptions:ResolveModuleOptions(id)
@@ -73,7 +74,7 @@ local function exercise(client)
             else out[path]=opt end
         end
     end
-    local expected,placed={},{ }
+    local expected,placed,parts={},{},{}
     for _,id in ipairs(ns.FluxOptionsCatalog.sourceModules)do
         local root=env.FluxOptions:ResolveModuleOptions(id);check(root~=nil,client..": registered source "..id)
         leaves(root,id,expected)
@@ -86,6 +87,7 @@ local function exercise(client)
             for path,opt in pairs(found)do
                 check(expected[path]==opt,client..": moving preserves original option identity "..path)
                 placed[path]=placed[path]or{};placed[path][#placed[path]+1]=page.."/"..(sub or "")
+                parts[path]=source.part
             end
         end
         for key,opt in pairs(view.args or{})do if opt.type=="group"then scan(opt,page,key)end end
@@ -117,7 +119,65 @@ local function exercise(client)
     at("unitframes/unitPlayer/enableFlightPathTimers","ufUnits","unitPlayer")
     at("unitframes/unitPlayer/enableFlightPathCastBar","ufUnits","unitPlayer")
     at("unitframes/unitPlayer/enableFlightPathTooltips","ufUnits","unitPlayer")
-    at("nameplates/questOverlayEnabled","ufNameplates","")
+    at("nameplates/questOverlayEnabled","ufNameplates","extras")
+    at("nameplates/visibilityMode","ufNameplates","extras")
+    run("BlizzardSettings/Write.lua")
+    local combat, writes, bitWrites, refreshes = false, 0, 0, 0
+    local native = { nameplateShowEnemies = "0", nameplateShowFriendlyNpcs = "1", nameplateSelectedScale = "1.1" }
+    local modern = client == "live" or client == "forever"
+    env.Enum = modern and {
+        NamePlateSize = { Small = 0, Medium = 1, Large = 2 },
+        NamePlateCastBarDisplay = { SpellName = 1 },
+        NamePlateInfoDisplay = { CurrentHealthValue = 2 },
+    } or nil
+    if modern then
+        native.nameplateSize, native.nameplateCastBarDisplay, native.nameplateInfoDisplay = "1", "2", "4"
+    end
+    local readableBits = { nameplateCastBarDisplay = {}, nameplateInfoDisplay = {} }
+    env.InCombatLockdown = function() return combat end
+    env.FluxNamePlates_RefreshFromDB = function() refreshes = refreshes + 1 end
+    env.C_CVar = {
+        GetCVar = function(key) return native[key] end,
+        SetCVar = function(key, value) writes = writes + 1; native[key] = value end,
+        GetCVarBitfield = function(key, index)
+            return readableBits[key][index] == true
+        end,
+        SetCVarBitfield = function(key, index, enabled)
+            bitWrites = bitWrites + 1
+            readableBits[key][index] = enabled
+        end,
+    }
+    local plateOptions = entries.nameplates().args
+    check(not plateOptions.style_enabled and not plateOptions["style_np.renderer"] and writes == 0,
+        client .. ": opening settings never selects a renderer or rewrites native defaults")
+    check(plateOptions.style_size.hidden() == not modern and plateOptions.cast_SpellName.hidden() == not modern,
+        client .. ": unsupported native CVar or enum controls are omitted")
+    plateOptions.visible_friendly.set(nil, false)
+    check(native.nameplateShowFriendlyNpcs == "0" and native.nameplateShowEnemies == "0" and writes == 1,
+        client .. ": a visibility change writes only the selected native stream")
+    combat = true
+    plateOptions.visible_enemies.set(nil, true)
+    check(writes == 1 and native.nameplateShowEnemies == "0" and plateOptions.visible_enemies.disabled(),
+        client .. ": combat blocks native visibility writes")
+    combat = false
+    if modern then
+        plateOptions.style_size.set(nil, 2)
+        plateOptions.cast_SpellName.set(nil, true)
+        check(native.nameplateSize == "2" and plateOptions.style_size.get() == 2
+            and native.nameplateCastBarDisplay == "2" and readableBits.nameplateCastBarDisplay[1] and bitWrites == 1,
+            client .. ": native size uses its enum and cast settings write one bit")
+        plateOptions.style_CurrentHealthValue.set(nil, true)
+        check(readableBits.nameplateInfoDisplay[2] and bitWrites == 2
+            and env.FluxUI_DB.nameplateAppearance.healthText.CurrentHealthValue == true,
+            client .. ": the published health defaults yield to an explicit native text choice")
+    end
+    check(plateOptions.aura_countdown.get() == "middle" and plateOptions.font_countdownSize.get() == 12,
+        client .. ": defaults preserve the published centered 12 px native overlay")
+    plateOptions.aura_countdown.set(nil, "below")
+    plateOptions.font_countdownSize.set(nil, 16)
+    check(env.FluxUI_DB.nameplateAppearance.auraCountdown == "below"
+        and env.FluxUI_DB.nameplateAppearance.countdownSize == 16 and refreshes == 2,
+        client .. ": overlay controls save and refresh without changing native CVars")
     at("loot/fast","lootItems","loot")
     for path in pairs(expected)do
         if path=="vendor/vendor/autoRestock"or path=="vendor/vendor/autoBankRestock"or path=="vendor/vendor/autoMailRestock"or path=="vendor/vendor/autoAuctionFollowup"then at(path,"lootItems","restock")
@@ -130,7 +190,7 @@ local function exercise(client)
     at("layout/preview","layout","")
     at("layout/layoutSettingsScope","layout","")
     at("layout/resetLayout","layout","")
-    at("unitframes/general/useFluxPlayer","ufGeneral","")
+    at("unitframes/general/useFluxPlayer","ufGeneral","general")
     at("binding/browser","bindings","browser")
     for path in pairs(expected)do if path:find("actionbars/bindings/",1,true)==1 then at(path,"bindings","settings")end end
     local names={};for _,tab in ipairs(ns.FluxOptionsCatalog.pages.fluxwindow.tabs)do names[#names+1]=tab.name end
@@ -146,27 +206,115 @@ local function exercise(client)
     check(table.concat(names,"|")=="Bars|Extra Buttons|Stance Order",client..": related bars and buttons share one parent")
     names={};for _,tab in ipairs(ns.FluxOptionsCatalog.pages.lootItems.tabs)do names[#names+1]=tab.name end
     check(table.concat(names,"|")=="Loot|Vendor|Restock",client..": Loot & Items has focused feature tabs")
-    names={};for _,tab in ipairs(ns.FluxOptionsCatalog.pages.ufUnits.tabs)do names[#names+1]=tab.name end
-    check(table.concat(names,"|")=="Player|Target|Focus|Pet",client..": Unit Frames has organized feature tabs")
-    for path in pairs(expected)do
-        if path:find("unitframes/partyRaid/partyStyle/",1,true)==1 then at(path,"ufParty","")
-        elseif path:find("unitframes/partyRaid/",1,true)==1 then at(path,"ufRaid","")
-        elseif path:find("unitframes/castBarThemes/",1,true)==1 then at(path,"ufCastBars","")
-        elseif path:find("nameplates/",1,true)==1 then at(path,"ufNameplates","")end
+    local function tabs(page)
+        local names = {}
+        for _, tab in ipairs(ns.FluxOptionsCatalog.pages[page].tabs) do names[#names+1] = tab.name end
+        return table.concat(names, "|")
     end
-    at("unitframes/general/use3DPortraits","ufGeneral","")
-    at("unitframes/general/auraTimersUnderMinute","ufGeneral","")
-    at("unitframes/general/threatBarVisibility","ufGeneral","")
-    at("unitframes/general/raidSettingsScope","ufGeneral","")
+    check(tabs("ufGeneral")=="General|Cast Bars",client..": cast bar themes are inside General")
+    check(tabs("ufUnits")=="Player|Target|Focus|Pet|Target of target|Focus target|Pet target",
+        client..": Individual Frames has one selector for all unit types")
+    check(tabs("ufPartyRaid")=="Party|Raid",client..": group frames share one two-tab editor")
+    check(tabs("ufNameplates")=="Plate|Extras|Cast Bar|Auras|Targeting|Visibility|Fonts",
+        client..": Nameplates has the reference settings categories")
+    local nameplateTabs = { style="style", extra="extras", cast="cast", aura="auras", target="targeting", visible="visibility", font="fonts" }
+    for path in pairs(expected)do
+        if path:find("unitframes/partyRaid/partyStyle/",1,true)==1 then at(path,"ufPartyRaid","party")
+        elseif path:find("unitframes/partyRaid/",1,true)==1 then at(path,"ufPartyRaid","raid")
+        elseif path:find("unitframes/unitTarget/unitTargetOfTarget/",1,true)==1 then at(path,"ufUnits","unitTargetOfTarget")
+        elseif path:find("unitframes/unitPet/unitPetTarget/",1,true)==1 then at(path,"ufUnits","unitPetTarget")
+        elseif path:find("unitframes/unitPet/",1,true)==1 then at(path,"ufUnits","unitPet")
+        elseif path:find("unitframes/unitFocus/focustarget",1,true)==1 or path:find("unitframes/unitFocus/focusTarget",1,true)==1 then
+            at(path,"ufUnits","unitFocusTarget")
+        elseif path:find("unitframes/general/",1,true)==1 then at(path,"ufGeneral","general")
+        elseif path:find("unitframes/castBarThemes/",1,true)==1 then at(path,"ufGeneral","castBars")
+        elseif path:find("nameplates/",1,true)==1 then
+            local prefix = path:match("^nameplates/(%l+)_")
+            at(path,"ufNameplates",nameplateTabs[prefix] or "extras")
+        end
+    end
+    local frameParts = {
+        ["general/settingsScope"] = "scope",
+        ["general/raidSettingsScope"] = "scope",
+        ["general/useFluxPlayer"] = "layout",
+        ["general/use3DPortraits"] = "portrait",
+        ["general/auraTimersUnderMinute"] = "auras",
+        ["unitPlayer/playerHealthText"] = "health",
+        ["unitPlayer/playerLevel"] = "name",
+        ["unitPlayer/playerPowerText"] = "power",
+        ["unitPlayer/playerClassPower"] = "classResource",
+        ["unitPlayer/playerAbsorb"] = "absorbs",
+        ["unitPlayer/playerCastBar"] = "cast",
+        ["unitPlayer/playerRaidIcon"] = "indicators",
+        ["unitTarget/targetShowBuffs"] = "buffs",
+        ["unitTarget/targetAuraOwnDebuffMinScale"] = "debuffs",
+        ["unitTarget/unitTargetOfTarget/totWidth"] = "layout",
+        ["unitFocus/focusWidth"] = "layout",
+        ["unitFocus/focusHeight"] = "layout",
+        ["unitFocus/focusFrameScale"] = "layout",
+        ["unitFocus/focustargetHealthText"] = "health",
+        ["unitPet/petShowTooltipAuras"] = "auras",
+        ["unitPet/unitPetTarget/petTargetWidth"] = "layout",
+        ["partyRaid/partyStyle/partyAsRaid"] = "layout",
+        ["partyRaid/partyStyle/auraScale"] = "auras",
+        ["partyRaid/partyStyle/healthText"] = "health",
+        ["partyRaid/partyStyle/targetWidth"] = "attached",
+        ["partyRaid/partyStyle/preview"] = "preview",
+        ["partyRaid/nameUseClassColor"] = "name",
+        ["partyRaid/displayPowerBar"] = "power",
+        ["partyRaid/showHealPrediction"] = "absorbs",
+        ["partyRaid/maxBuffs"] = "buffs",
+        ["partyRaid/displayOnlyDispellableDebuffs"] = "debuffs",
+        ["partyRaid/auraIconScale"] = "auras",
+        ["partyRaid/rangeAlphaOutOfRange"] = "opacity",
+        ["partyRaid/previewGroup/rosterSize"] = "preview",
+    }
+    for path, part in pairs(frameParts) do
+        check(parts["unitframes/"..path] == part, client..": preview opens "..part.." for "..path)
+    end
+    local nav=ns.FluxOptionsNavigation
+    local compactLink = nav.Resolve("ufPartyRaid").args.party.args.open
+    local openedPage, openedSub
+    function env.FluxOptions:ShowConfig(pageId, subKey) openedPage, openedSub = pageId, subKey end
+    compactLink.func()
+    check(openedPage == "ufPartyRaid" and openedSub == "raid" and compactLink.buttonText~=compactLink.name,
+        client..": party has a distinct button that opens the shared compact editor")
+    local function previewRoute(page, sub, part, dest, targetSub, wantPage, wantSub, wantPart)
+        local destPage, destSub, destPart = nav.FramePartRoute(page, sub, part, dest, targetSub)
+        check(destPage==wantPage and destSub==wantSub and destPart==wantPart, client..": preview route "..page.."/"..part)
+    end
+    previewRoute("ufGeneral","general","layout","ufUnits","unitPet","ufUnits","unitPet","layout")
+    previewRoute("ufGeneral","castBars","auras",nil,nil,"ufGeneral","general","auras")
+    previewRoute("ufUnits","unitTarget","attached",nil,nil,"ufUnits","unitTargetOfTarget","layout")
+    previewRoute("ufUnits","unitFocus","attached",nil,nil,"ufUnits","unitFocusTarget","layout")
+    previewRoute("ufMini","unitPet","attached",nil,nil,"ufUnits","unitPetTarget","layout")
+    previewRoute("ufUnits","unitFocusTarget","health",nil,nil,"ufUnits","unitFocusTarget","health")
+    previewRoute("ufPartyRaid","party","portrait",nil,nil,"ufPartyRaid","party","portrait")
+    previewRoute("ufPartyRaid","party","attached",nil,nil,"ufPartyRaid","party","attached")
+    previewRoute("ufPartyRaid","party","buffs","ufRaid",nil,"ufPartyRaid","raid","buffs")
+    previewRoute("ufPartyRaid","party","debuffs","ufPartyRaid","raid","ufPartyRaid","raid","debuffs")
+    previewRoute("ufPartyRaid","raid","preview",nil,nil,"ufPartyRaid","raid","preview")
+    local render = ns.FluxOptionsRender
+    local raidSearch, raidTab = render.Search(nav.Resolve("ufPartyRaid"), "maximum buffs")
+    local partySearch, partyTab = render.Search(nav.Resolve("ufPartyRaid"), "party member scale")
+    local miniSearch, miniTab = render.Search(nav.Resolve("ufUnits"), "class-colored pet target hp")
+    local castSearch, castTab = render.Search(nav.Resolve("ufGeneral"), "enable school themes")
+    check(raidSearch>0 and raidTab=="raid" and partySearch>0 and partyTab=="party"
+        and miniSearch>0 and miniTab=="unitPetTarget" and castSearch>0 and castTab=="castBars",
+        client..": shared search finds original settings in the consolidated tabs")
+    check(nav.Resolve("ufUnits").args.unitFocusTarget.hidden() == (not env.FLUX_API.hasFocusUnit),
+        client..": moved focus target retains the parent capability gate")
+    local focusTargetHint = ns.FluxOptionsCatalog.HelpText(expected["unitframes/unitFocus/focusTargetDesc"].name)
+    check(focusTargetHint:find("Party target width", 1, true), client..": Focus target identifies the shared vertical width setting")
     local groups={};for _,group in ipairs(ns.FluxOptionsCatalog.groups)do groups[group.id]=group end
     check(groups.hud.label=="HUD"and table.concat(groups.hud.pages,"|")=="layout|chat|info|micromenu|fluxwindow|statusBars",client..": HUD sidebar contains Layout and five requested feature entries")
     check(groups.unitframes.label=="Unit Frame"and groups.combat.label=="Combat"and groups.lootItems.label=="Loot & Items",client..": separate sidebar category headers")
-    check(table.concat(groups.unitframes.pages,"|")=="ufGeneral|ufUnits|ufParty|ufRaid|ufCastBars|ufNameplates",client..": merged frame sidebar entries")
-    check(ns.FluxOptionsCatalog.pages.ufGeneral.sources and not ns.FluxOptionsCatalog.pages.ufGeneral.tabs and #ns.FluxOptionsCatalog.pages.ufUnits.tabs==4,client..": General/Appearance merged; four unit tabs under one entry")
+    check(table.concat(groups.unitframes.pages,"|")=="ufGeneral|ufUnits|ufPartyRaid",client..": Unit Frame has three sidebar entries")
     check(ns.FluxOptionsCatalog.pages.lootItems.sidebarSubpages and ns.FluxOptionsCatalog.pages.lootItems.tabs[3].icon=="Interface\\Icons\\INV_Misc_Bag_10",client..": Vendor/Restock are sidebar children with a working stock bag icon")
     local order={};for _,group in ipairs(ns.FluxOptionsCatalog.groups)do order[#order+1]=group.id end
     check(table.concat(order,"|")=="combat|lootItems|utilities|hud|unitframes|system",client..": requested sidebar category order; footer last")
-    check(table.concat(groups.combat.pages,"|")=="actionbars|bindings",client..": Combat owns bars and one merged binding entry")
+    check(table.concat(groups.combat.pages,"|")=="actionbars|bindings|ufNameplates"
+        and ns.FluxOptionsCatalog.pages.ufNameplates.category=="Combat",client..": Combat owns Nameplates")
     check(table.concat(groups.utilities.pages,"|")=="windows|professions",client..": Utilities owns Windows and Professions")
     check(table.concat(groups.system.pages,"|")=="settings|profiles|patchNotes|credits",client..": system-page order")
     check(not ns.FluxOptionsCatalog.pages.macros and not ns.FluxOptionsCatalog.pages.keybindings and #ns.FluxOptionsCatalog.pages.bindings.tabs==2,client..": one Bindings page retains both tools")
@@ -175,7 +323,6 @@ local function exercise(client)
     end
     local page,sub=ns.FluxOptionsNavigation.Route("vendor","salvage")
     check(page=="professions"and sub=="settings",client..": old salvage link routes to Professions")
-    local nav=ns.FluxOptionsNavigation
     local buttons=nav.Resolve("actionbars").args.buttons
     check(#buttons._fluxSources==1 and buttons._fluxSources[1].module=="actionbars",client..": Extra Buttons reuses its original complete group")
     check(buttons._fluxSources[1].group.args.extraButtonVisibilityPanel.dialogControl=="FluxExtraButtonVisibilityPanel" and not buttons.args.buttonVisibility,client..": one original visibility editor without duplicate per-feature controls")
@@ -183,10 +330,14 @@ local function exercise(client)
     local oldRoutes={{"actionbars","consumables","actionbars","buttons"},{"actionbars","trinkets","actionbars","buttons"},
         {"actionbars","travel","actionbars","buttons"},{"swingTimer","settings","ufUnits","unitPlayer"},
         {"qol","lootItems","lootItems","loot"},{"lootItems","settings","lootItems","loot"},{"vendor","restock","lootItems","restock"},
-        {"qol","combat","ufNameplates"},{"qol","interface","windows"},{"unitframes","castBarThemes","ufCastBars"},
-        {"unitframes","partyRaid","ufRaid"},{"nameplates","settings","ufNameplates"},{"unitframes","appearance","ufGeneral"},
+        {"qol","combat","ufNameplates"},{"qol","interface","windows"},{"unitframes","castBarThemes","ufGeneral","castBars"},
+        {"unitframes","partyRaid","ufPartyRaid","raid"},{"nameplates","settings","ufNameplates"},{"unitframes","appearance","ufGeneral","general"},
         {"unitframes","unitTarget","ufUnits","unitTarget"},{"unitframes","unitFocus","ufUnits","unitFocus"},
-        {"unitframes","unitPet","ufUnits","unitPet"},{"fluxwindow","settings","fluxwindow","general"},
+        {"unitframes","unitPet","ufUnits","unitPet"},{"ufMini","unitPet","ufUnits","unitPet"},{"fluxwindow","settings","fluxwindow","general"},
+        {"unitframes","unitTargetOfTarget","ufUnits","unitTargetOfTarget"},{"unitframes","unitFocusTarget","ufUnits","unitFocusTarget"},
+        {"unitframes","unitPetTarget","ufUnits","unitPetTarget"},{"unitframes","party","ufPartyRaid","party"},
+        {"ufMini","unitPetTarget","ufUnits","unitPetTarget"},{"ufMini",nil,"ufUnits","unitPet"},
+        {"ufParty","appearance","ufPartyRaid","party"},{"ufRaid","buffs","ufPartyRaid","raid"},{"ufCastBars",nil,"ufGeneral","castBars"},
         {"qol","windows","windows"},{"qol","chat","chat"},{"qol","info","info"},{"qol","microMenu","micromenu"},
         {"qol","fluxWindow","fluxwindow","general"},{"qol","statusBars","statusBars"},{"qol","damageMeter","fluxwindow","damageMeter"},
         {"fluxwindow","damageMeter","fluxwindow","damageMeter"},{"qol",nil,"windows"}}

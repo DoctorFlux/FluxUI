@@ -372,7 +372,7 @@ local function ResolveRestockSource(itemID, restockSource)
     return "manual"
 end
 
-local function GetItemRestockTarget(itemID, restockSource)
+local function GetItemRestockTarget(itemID, restockSource, presetName)
     itemID = tonumber(itemID)
     if not itemID then
         return 0
@@ -381,6 +381,10 @@ local function GetItemRestockTarget(itemID, restockSource)
     if source == "consumable" then
         local Cons = _G.FluxNCConsumables
         if Cons and Cons.GetPresetRestockTarget then
+            if presetName and Cons.GetEffectiveRestockTargets then
+                local targets = Cons.GetEffectiveRestockTargets()
+                return targets[itemID] or 0
+            end
             return Cons.GetPresetRestockTarget(itemID) or 0
         end
     end
@@ -391,7 +395,7 @@ local function GetItemRestockTarget(itemID, restockSource)
     return 0
 end
 
-local function ClearRestockTarget(itemID, restockSource)
+local function ClearRestockTarget(itemID, restockSource, presetName)
     FV = FV or _G.FluxVendorAuto
     if not FV or not itemID then
         return
@@ -400,7 +404,7 @@ local function ClearRestockTarget(itemID, restockSource)
     if source == "consumable" then
         local Cons = _G.FluxNCConsumables
         if Cons and Cons.SetPresetRestockTarget then
-            Cons.SetPresetRestockTarget(itemID, 0)
+            Cons.SetPresetRestockTarget(itemID, 0, false, presetName)
         end
         return
     end
@@ -415,7 +419,7 @@ local function ClearRestockTarget(itemID, restockSource)
     end
 end
 
-local function SetItemRestockTarget(itemID, value, restockSource)
+local function SetItemRestockTarget(itemID, value, restockSource, presetName)
     itemID = tonumber(itemID)
     if not itemID then
         return
@@ -425,7 +429,7 @@ local function SetItemRestockTarget(itemID, value, restockSource)
     if source == "consumable" then
         local Cons = _G.FluxNCConsumables
         if Cons and Cons.SetPresetRestockTarget then
-            Cons.SetPresetRestockTarget(itemID, value)
+            Cons.SetPresetRestockTarget(itemID, value, false, presetName)
             return
         end
     end
@@ -446,11 +450,11 @@ local function SetItemRestockTarget(itemID, value, restockSource)
     if value > 0 and FV.AddRestockItem then
         FV.AddRestockItem(itemID, value)
     else
-        ClearRestockTarget(itemID, restockSource)
+        ClearRestockTarget(itemID, restockSource, presetName)
     end
 end
 
-local function DismissFromRestockList(itemID, restockSource)
+local function DismissFromRestockList(itemID, restockSource, presetName)
     FV = FV or _G.FluxVendorAuto
     if not FV or not itemID then
         return
@@ -459,7 +463,7 @@ local function DismissFromRestockList(itemID, restockSource)
     if source == "consumable" then
         local Cons = _G.FluxNCConsumables
         if Cons and Cons.SetPresetRestockTarget then
-            Cons.SetPresetRestockTarget(itemID, 0)
+            Cons.SetPresetRestockTarget(itemID, 0, false, presetName)
         end
         return
     end
@@ -480,7 +484,7 @@ local function CommitTargetEdit(row, itemID)
         return
     end
     local value = tonumber(editBox:GetText()) or 0
-    SetItemRestockTarget(itemID, value, row and row.restockSource)
+    SetItemRestockTarget(itemID, value, row.restockSource, row.presetName)
     editBox:Hide()
     row.countText:Show()
     QueryItems()
@@ -546,7 +550,7 @@ local function ShowTargetEdit(row, itemID)
     if not row or not row.editBox then
         return
     end
-    local target = GetItemRestockTarget(itemID, row.restockSource)
+    local target = GetItemRestockTarget(itemID, row.restockSource, row.presetName)
     row.countText:Hide()
     row.editBox:SetText(tostring(target))
     row.editBox:Show()
@@ -650,7 +654,7 @@ local function CreateListButton(parent, index)
                 end
                 return
             end
-            DismissFromRestockList(self.itemID, self.restockSource)
+            DismissFromRestockList(self.itemID, self.restockSource, self.presetName)
             QueryItems()
         else
             ShowTargetEdit(self, self.itemID)
@@ -833,6 +837,7 @@ RefreshScrollList = function()
                 row.link = link or entry.texture
                 row.tierKind = nil
                 row.restockSource = entry.restockSource
+                row.presetName = entry.presetName
                 row.vendorSold = entry.vendorSold == true
                 row.vendorNotSold = entry.vendorNotSold == true
                 row.merchantChecked = entry.merchantChecked == true
@@ -1196,6 +1201,16 @@ local function CreatePanelFrame()
             spinner.Anim:Play()
         end
         spinner:Hide()
+    end
+
+    local policy = _G.Flux and _G.Flux.RestockPolicy
+    local logistics = policy and policy.CreateActions(panelFrame, "vendor")
+    if logistics then
+        logistics:SetPoint("BOTTOMRIGHT", panelFrame.Inset or panelFrame, "BOTTOMRIGHT", -6, 28)
+        policy.Subscribe("vendor-restock-view", function(_, reason)
+            if reason ~= "inventory" then Panel.InvalidateListCache() end
+            if panelFrame:IsShown() then ScheduleRefreshList() end
+        end)
     end
 
     SetupDragDrop(panelFrame)

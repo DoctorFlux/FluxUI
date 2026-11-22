@@ -84,6 +84,9 @@ local function run(client, hookBody, watcherBody, noTimer)
         return frame
     end
     env.IsPostDFClient = function() return modern end
+    env.IsMapRefreshRestricted = function() return false end
+    env.HoldAreaPoiEvent = function() end
+    env.DiscardAreaPoiEvent = function() end
     env.RunEmbeddedOnShowDeferred = function(self)
         check(self == map, client .. ": deferred refresh retains its map")
         embeddedShows = embeddedShows + 1
@@ -187,8 +190,8 @@ if not baseline then
         run("forever", replace(hooks, "            if not state.isActive then\n                return\n            end", ""))
     end)
     rejected("stale map visibility restore", "stale restore cannot resurrect an inactive map", function()
-        run("forever", replace(hooks, "                        if state.isActive and not state.fluxPermitHide and self then",
-            "                        if not state.fluxPermitHide and self then"))
+        run("forever", replace(hooks, "if not state.isActive or state.fluxPermitHide or state.mapFrame ~= self or self:IsShown() then return end",
+            "if state.fluxPermitHide or state.mapFrame ~= self or self:IsShown() then return end"))
     end)
     rejected("remove native MapCanvas animation/input", "native animation/input script preserved", function()
         run("forever", replace(hooks, "    mapFrame.FluxLayoutHooked = true",

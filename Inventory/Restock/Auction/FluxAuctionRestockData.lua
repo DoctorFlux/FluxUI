@@ -377,17 +377,22 @@ local function ItemTotal(row)
     if physical then return physical + (A.MailUnits(row) - A.PredictedMailUnits(row)) / units end
 end
 
-function A.Pending(row, have)
+function A.Pending(row, have, observeOnly)
     local pending = A.Settings().pending
     local p = pending[row.itemID]
     if type(p) ~= "table" then return 0 end
     -- Old/failed attempts were formerly persisted as though already purchased.
     -- Only an active submission or an acknowledged receipt can reserve stock.
     local transaction = A.transaction
-    if p.accepted ~= true and not (transaction and transaction.itemID == row.itemID) then
+    if p.accepted ~= true and (observeOnly or not (transaction and transaction.itemID == row.itemID)) then
         local accepted = Number(p.acceptedUnits) or 0
-        if accepted <= 0 then pending[row.itemID] = nil; return 0 end
-        p.units, p.accepted = accepted, true
+        if observeOnly then
+            p = { units = accepted, bagCount = p.bagCount, totalCount = p.totalCount,
+                itemCount = p.itemCount, unitScale = p.unitScale }
+        else
+            if accepted <= 0 then pending[row.itemID] = nil; return 0 end
+            p.units, p.accepted = accepted, true
+        end
     end
     local units = Number(p.units) or 0
     local storedScale, currentScale = Number(p.unitScale), Number(row.unitsPerItem)
@@ -408,13 +413,27 @@ function A.Pending(row, have)
         -- New reservations track physical arrivals, so using an owned charge
         -- or changing between a use target and recipe input cannot alter them.
         units = math.max(0, units - math.max(0, arrived))
-        p.units, p.bagCount, p.totalCount = units, have / scale, total
-        if itemTotal then p.itemCount = itemTotal end
-        if units == 0 then pending[row.itemID] = nil end
+        if not observeOnly then
+            p.units, p.bagCount, p.totalCount = units, have / scale, total
+            if itemTotal then p.itemCount = itemTotal end
+            if units == 0 then pending[row.itemID] = nil end
+        end
     end
     -- Keep the saved basis immutable while a transaction can still fail and
     -- release its original units. Callers receive their current row's units.
     return units * scale
+end
+
+-- Read the owner ledger without modifying a receipt while a plan is previewed.
+function A.GetPolicyCoverage(entry, units, itemID)
+    if not A.IsInventoryReliable() then return nil end
+    local row = A.SetItemUnits({ itemID = itemID, bagCount = entry.bagCount })
+    if not row or not row.unitsPerItem then return nil end
+    local have = Carried(row)
+    if not have then return nil end
+    local quantity = A.MailUnits(row) + math.max(0, A.Pending(row, have, true) - A.PredictedMailUnits(row))
+    if units == "item" and row.unitsPerItem then quantity = math.floor(quantity / row.unitsPerItem) end
+    return quantity
 end
 
 function A.Need(row)
@@ -430,6 +449,14 @@ function A.Need(row)
     if row.craftParents then bank = math.min(bank, row.baseTarget or 0) end
     bank = math.max(bank, Number(row.craftBankCount) or 0)
     local missing = row.isTierRestock and 0 or ((Number(row.target) or 0) - have - bank - pending)
+    local policy = _G.Flux and _G.Flux.RestockPolicy
+    if policy and policy.IsPlannerRegistered() and not row.isTierRestock and not row.craftParents then
+        local demand = policy.DemandForEntry(row, pending)
+        if demand then
+            missing = demand.uncovered
+            row.policyCoverage = demand.covered
+        end
+    end
     local tiers = _G.FluxRestockTiers
     for _, source in ipairs(row.tiers or {}) do
         -- Ordinary tiers aggregate qualifying physical items. A charged target
@@ -451,7 +478,24 @@ function A.Need(row)
             if row.isTierRestock and row.auctionTier and source.countBank then row.bankCount = stored or 0 end
         end
         if not count then return nil end
-        missing = math.max(missing, (Number(source.target) or 0) - count - (stored or 0) - pending)
+        local tierMissing = (Number(source.target) or 0) - count - (stored or 0) - pending
+        if policy and policy.IsPlannerRegistered() then
+            local entry = {}
+            for key, value in pairs(source) do entry[key] = value end
+            entry.itemID, entry.bagCount, entry.bankCount = row.itemID, count, stored or 0
+            local exactOwnsPending = entry.policyExactItems and entry.policyExactItems[row.itemID]
+            local demand = policy.DemandForEntry(entry, exactOwnsPending and 0 or pending)
+            if demand then
+                tierMissing = demand.uncovered
+                row.policyCoverage = math.max(row.policyCoverage or 0, demand.covered)
+            end
+        end
+        if policy and policy.IsPlannerRegistered() and source.policyExactItems
+            and source.policyExactItems[row.itemID] and not row.isTierRestock then
+            missing = math.max(0, missing) + math.max(0, tierMissing)
+        else
+            missing = math.max(missing, tierMissing)
+        end
         if row.isTierRestock then row.bagCount = count end
     end
     return math.max(0, math.ceil(missing / units))
@@ -471,6 +515,8 @@ function A.AcceptReservation(transaction)
     restockMailFacts[transaction.itemID] = nil
     local record = A.Settings().pending[transaction.itemID]
     if record then record.accepted, record.acceptedUnits = true, record.units end
+    local policy = _G.Flux and _G.Flux.RestockPolicy
+    if policy then policy.NotifyChanged("inventory") end
 end
 
 function A.Release(id, units)
@@ -480,6 +526,8 @@ function A.Release(id, units)
     p.units = math.max(0, (Number(p.units) or 0) - units)
     if p.units > 0 and (Number(p.acceptedUnits) or 0) > 0 then p.accepted = true; p.acceptedUnits = math.min(p.acceptedUnits, p.units) end
     if p.units == 0 then pending[id] = nil end
+    local policy = _G.Flux and _G.Flux.RestockPolicy
+    if policy then policy.NotifyChanged("inventory") end
 end
 
 local presetOrder = { healPotion = 1, manaPotion = 2, bandage = 3 }
@@ -650,7 +698,7 @@ local function CommodityUnitPriceLess(a, b)
     return (Number(a.unitPrice) or math.huge) < (Number(b.unitPrice) or math.huge)
 end
 
-function A.CommodityOffer(offers, need, cap)
+function A.CommodityOffer(offers, need, cap, minimum, budget)
     local sorted = {}
     for _, offer in ipairs(offers) do sorted[#sorted + 1] = offer end
     table.sort(sorted, CommodityUnitPriceLess)
@@ -661,9 +709,12 @@ function A.CommodityOffer(offers, need, cap)
         if price and price > 0 and price <= cap and available and available > own
             and not offer.containsAccountItem then
             local n = math.min(need - quantity, math.floor(available - own))
-            quantity, total, highest = quantity + n, total + n * price, math.max(highest, price)
-            if quantity >= need then break end
+            if budget then n = math.min(n, math.floor((budget - total) / price)) end
+            if n > 0 then quantity, total, highest = quantity + n, total + n * price, price end
+            if quantity >= need or budget and budget - total < price then break end
         end
     end
-    if quantity > 0 then return { quantity = quantity, total = total, unitPrice = highest, commodity = true } end
+    if quantity >= (minimum or 1) then
+        return { quantity = quantity, total = total, unitPrice = highest, commodity = true }
+    end
 end

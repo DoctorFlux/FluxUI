@@ -1,0 +1,462 @@
+{
+  "id": "RESTOCK-REMINDER-20261121",
+  "recordedUtc": "2026-11-21T23:07:28.897327+00:00",
+  "baselineCheckpoints": [
+    "fluxui-restock-reminder-before-20261121T225401Z",
+    "fluxlogistics-restock-reminder-20261121"
+  ],
+  "ownerRuntimeSha256": {
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": {
+      "before": "15fe3ce3f2f30cb053a3f3b63622d104978300f6f227789544093f08221601be",
+      "after": "989c9295305cb26bd48e21b0384f29f885a67f27d8d9864bf9dec404a6d188ad",
+      "matchingInstalledCopies": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_anniversary_",
+        "_classic_era_"
+      ]
+    },
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": {
+      "before": "5506bd2d558892a99cd3eed99329b451f394e7b69a38ac20fd6fe3f02cf5bcbc",
+      "after": "fe2d7dc8901217c6e973e14b81d2d7f90c5b13f3b41f0e4f226ba466967726eb",
+      "matchingInstalledCopies": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_anniversary_",
+        "_classic_era_"
+      ]
+    },
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua": {
+      "before": "d11d45abb6ec46d8925cdada8a0de2e4e6d6d87cdfff86b3e43a1723c48c1aa2",
+      "after": "3bd60be2b8669b85847519535cbde7538389301b997db4e5f37829ed7e08d4ee",
+      "matchingInstalledCopies": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_anniversary_",
+        "_classic_era_"
+      ]
+    },
+    "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": {
+      "before": "f4384f5e3be6f508320e7a4a2b20e7fe48843758b44753e3cb8a35e2c2667b74",
+      "after": "842d7662fc18386afcabcb9a776e92964a3a22707522f81fc270f69d73bf1605",
+      "matchingInstalledCopies": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_anniversary_",
+        "_classic_era_"
+      ]
+    },
+    "Mail/Restock.lua": {
+      "before": "952b6a1914325da76696dad728dd65a23d0bcf40daaadf44f0354f2a1eed85c5",
+      "after": "58b7b5947c7d6387d7309b5645f0e6e77778f03a22c11dc9cec4b1b39b3d22a4",
+      "matchingInstalledCopies": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_anniversary_",
+        "_classic_era_"
+      ]
+    },
+    "Mail/Select.lua": {
+      "before": "3e2cb0b56d30407565355edea3c75d1c8d23556b8ae6d4d6225d53e8e349c890",
+      "after": "5e83fbd87ff5a4168546ee8b3fa3041c2aa9eb1a9c18c1ce682106b0fdc61fcd",
+      "matchingInstalledCopies": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_anniversary_",
+        "_classic_era_"
+      ]
+    }
+  },
+  "companionRuntimeSha256": {
+    "FluxCraft/Execution.lua": {
+      "before": "3025047fc6e6581bf9155ba6af100a94062498b2d8ce22deadec8b68eb00991f",
+      "after": "dc9a0d249f4e917bb6bc57c7fa5b9729eed439093d508b7e4cfd02e820ec61c3",
+      "matchingInstalledCopies": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_anniversary_",
+        "_classic_era_"
+      ]
+    },
+    "FluxCraft/Logistics.lua": {
+      "before": "c8124993df0e8c6366aef1adf771a7b88065a6c9dcbb5de1ad5d5aabdce1d6a8",
+      "after": "9f3095cc405d5f2a3c293aaf938e7fe9f4054474f25ca95a7062f9eda87a31b4",
+      "matchingInstalledCopies": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_anniversary_",
+        "_classic_era_"
+      ]
+    }
+  },
+  "lua5.1And5.4SyntaxFiles": 14,
+  "desktopOwner": [
+    {
+      "path": "tests/auction_restock.lua",
+      "exit": 0,
+      "output": "Auction restock: 12620 checks PASS; 44 client/provider/addon profiles; native purchases/input/taint/pixels/FPS NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_bank_flag_ui.lua",
+      "exit": 0,
+      "output": "Auction ingredient bank UI: 180 checks PASS; 20 profiles; native clicks/pixels/controller NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_charges.lua",
+      "exit": 0,
+      "output": "Auction restock charges: 14634 checks PASS; 20 profiles +33 real-receipt profiles; native charges/mail/purchases NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_craft_settle.lua",
+      "exit": 0,
+      "output": "Auction craft settlement: 412 checks PASS; 20 client/provider/yield profiles; native event timing/art/input NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_crafting.lua",
+      "exit": 0,
+      "output": "Auction restock crafting/tab: 836 checks PASS; 20 profiles; native quote permissions/rendering/controller NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_data_work.lua",
+      "exit": 0,
+      "output": "Auction restock data work: 1900 checks PASS; 20 profiles; native latency/CPU/FPS NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_followup.lua",
+      "exit": 0,
+      "output": "Auction restock follow-up: 674 checks PASS; 10 client/provider profiles; native mail/vendor/craft permissions NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_followup_automation.lua",
+      "exit": 0,
+      "output": "Auction follow-up automation: 1260 checks PASS; 20 client/provider/global-option profiles; native actions/glow NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_followup_closed_profession.lua",
+      "exit": 0,
+      "output": "Closed-profession restock follow-up: 1220 checks PASS; 30 client/provider/bank +20 craft-progress profiles; native mail/login/profession execution NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_followup_craft.lua",
+      "exit": 0,
+      "output": "Auction restock follow-up craft: 1844 checks PASS; 20 profiles; native open/craft/input/taint NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_followup_integration.lua",
+      "exit": 0,
+      "output": "Auction restock follow-up integration: 290 checks PASS; 10 client/provider profiles; native actions/pixels/input/taint NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_followup_logistics.lua",
+      "exit": 0,
+      "output": "Companion auction Followup: 128 checks across eight owner profiles."
+    },
+    {
+      "path": "tests/auction_restock_followup_render_work.lua",
+      "exit": 0,
+      "output": "RENDER_WORK Retail trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Retail trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Retail trial=1 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Retail trial=2 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Retail trial=2 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Retail trial=2 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Retail trial=3 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Retail trial=3 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Retail trial=3 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Forever trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Forever trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Forever trial=1 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Forever trial=2 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Forever trial=2 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Forever trial=2 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Forever trial=3 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Forever trial=3 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Forever trial=3 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK MoP trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK MoP trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK MoP trial=1 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK MoP trial=2 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK MoP trial=2 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK MoP trial=2 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK MoP trial=3 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK MoP trial=3 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK MoP trial=3 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Era trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Era trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Era trial=1 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Era trial=2 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Era trial=2 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Era trial=2 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Era trial=3 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Era trial=3 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Era trial=3 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Anniversary trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Anniversary trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Anniversary trial=1 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Anniversary trial=2 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Anniversary trial=2 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Anniversary trial=2 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Anniversary trial=3 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Anniversary trial=3 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Anniversary trial=3 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nAuction follow-up render work: 1020 checks PASS; 15 matched client trials; native pixels/latency/controller/taint/FPS NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_followup_ui.lua",
+      "exit": 0,
+      "output": "Auction restock per-item follow-up UI: 63213 checks PASS; 5 client profiles plus193/500/1000 overflow; native pixels/clipping/input/controller/taint NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_generation.lua",
+      "exit": 0,
+      "output": "Auction generation/quantity: 276 checks PASS; 20 client/provider profiles; native detection/buying NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_inline_upgrades.lua",
+      "exit": 0,
+      "output": "AH inline upgrades: 1220 checks PASS/20 profiles; independent cells, bandages, blacklist, options and real purchase owners"
+    },
+    {
+      "path": "tests/auction_restock_market.lua",
+      "exit": 0,
+      "output": "Auction dense grid/stock/price bridge: 2288 checks PASS; 20 profiles; native pixels/vendor coverage/coexistence NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_owner_rejection.lua",
+      "exit": 0,
+      "output": "Auction owner rejection: 620 checks PASS; 10 client/provider profiles; native permissions/moves NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_passive.lua",
+      "exit": 0,
+      "output": "AH passive refresh: 440 checks PASS/20 profiles;one shortage scan;stable choices;zero passive queries;per-kind defaults/options"
+    },
+    {
+      "path": "tests/auction_restock_potion_confirmation.lua",
+      "exit": 0,
+      "output": "AH potion confirmation: 672 checks PASS/20 client-addon-provider profiles; native inline controls/input tested separately"
+    },
+    {
+      "path": "tests/auction_restock_potion_restore.lua",
+      "exit": 0,
+      "output": "AH potion restore/browse: 388 checks PASS/20 profiles; native server availability tested separately"
+    },
+    {
+      "path": "tests/auction_restock_potion_upgrade.lua",
+      "exit": 0,
+      "output": "AH usable potion upgrades: 280 checks PASS/20 client-addon-provider profiles; native scanning/tier UI NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_potions.lua",
+      "exit": 0,
+      "output": "Auction potion upgrades: 580 checks PASS; 20 profiles; native browse/usability/tier/input NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_price_policy.lua",
+      "exit": 0,
+      "output": "Auction explicit price policy: 820 checks PASS; 20 profiles; native input/rendering NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_purchase_flow.lua",
+      "exit": 0,
+      "output": "Auction restock purchase flow: 420 checks PASS; 20 client/provider/excess profiles; native purchasing/taint/latency NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_queue.lua",
+      "exit": 0,
+      "output": "Auction restock automatic queue: 968 checks PASS; 20 profiles; native purchase permissions/pixels NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_scan_all.lua",
+      "exit": 0,
+      "output": "Auction all-target scans: 284 checks PASS; 20 client/provider/addon profiles; native searches/tier updates NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_scroll.lua",
+      "exit": 0,
+      "output": "Auction compact scrolling tab: 832 checks PASS; 20 client/addon profiles; native pixels/clipping/controller/input/taint NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_sources.lua",
+      "exit": 0,
+      "output": "Auction restock sources: 1464 checks PASS; 20 profiles; native bank/vendor permissions NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_speed.lua",
+      "exit": 0,
+      "output": "Auction on-demand speed: 492 checks PASS; 20 profiles; native latency/input/taint NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_vendor_prices.lua",
+      "exit": 0,
+      "output": "Auction vendor opportunity prices: 1170 checks PASS; 20 profiles; native vendor/AH prices/input NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_vendor_queue.lua",
+      "exit": 0,
+      "output": "Auction vendor opportunity queue: 1106 checks PASS; 20 profiles; native purchasing/taint/provider coexistence NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_vendor_routes.lua",
+      "exit": 0,
+      "output": "Auction restock vendor routes: 476 checks PASS; 20 client/addon profiles; native price/stack/vendor/craft permissions NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_viewport_actions.lua",
+      "exit": 0,
+      "output": "AH viewport actions: 88660 checks PASS; 10 client/provider models; native input/controller/FPS/taint NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_viewport_work.lua",
+      "exit": 0,
+      "output": "AH_VIEWPORT Retail provider=false optimized=true openingWidgets=4549 nativeFrames=4012 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15021 scrollWidth=952\nAH_VIEWPORT Retail provider=true optimized=true openingWidgets=4549 nativeFrames=4012 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15021 scrollWidth=952\nAH_VIEWPORT Forever provider=false optimized=true openingWidgets=4549 nativeFrames=4012 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15021 scrollWidth=952\nAH_VIEWPORT Forever provider=true optimized=true openingWidgets=4549 nativeFrames=4012 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15021 scrollWidth=952\nAH_VIEWPORT MoP provider=false optimized=true openingWidgets=4549 nativeFrames=4012 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15021 scrollWidth=952\nAH_VIEWPORT MoP provider=true optimized=true openingWidgets=4549 nativeFrames=4012 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15021 scrollWidth=952\nAH_VIEWPORT Era provider=false optimized=true openingWidgets=4548 nativeFrames=4011 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15020 scrollWidth=952\nAH_VIEWPORT Era provider=true optimized=true openingWidgets=4548 nativeFrames=4011 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15020 scrollWidth=952\nAH_VIEWPORT Anniversary provider=false optimized=true openingWidgets=4548 nativeFrames=4011 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15020 scrollWidth=952\nAH_VIEWPORT Anniversary provider=true optimized=true openingWidgets=4548 nativeFrames=4011 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15020 scrollWidth=952\nAH viewport work: 117900 checks PASS; 10 client/provider models; semanticTraceBytes=1335636; native FPS/controller/taint NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_workflow.lua",
+      "exit": 0,
+      "output": "Auction restock workflow: 310 checks PASS; 10 client/provider profiles; native delivery/permissions NOT RUN"
+    },
+    {
+      "path": "tests/auction_incoming_mail.lua",
+      "exit": 0,
+      "output": "Auction incoming mail: 743 checks PASS; 15 client/provider profiles; native purchase/taint/latency NOT RUN"
+    },
+    {
+      "path": "tests/inventory_observed_inbox.lua",
+      "exit": 0,
+      "output": "Mailbox observation: 29 checks PASS; built-in and Syndicator owner, native mail and UI NOT RUN"
+    },
+    {
+      "path": "tests/mail_restock.lua",
+      "exit": 0,
+      "output": "Mail restock: 3960 checks PASS /20 client-provider-timer profiles"
+    },
+    {
+      "path": "tests/flux_mail_select.lua",
+      "exit": 0,
+      "output": "Flux mail select: 21 checks passed"
+    },
+    {
+      "path": "tests/flux_logistics_auction_rows.lua",
+      "exit": 0,
+      "output": "Temporary queued auction targets: 82 focused actual-owner checks passed."
+    },
+    {
+      "path": "tests/flux_logistics_restock_policy.lua",
+      "exit": 0,
+      "output": "FluxLogistics restock bridge PASS (136 checks)"
+    },
+    {
+      "path": "tests/flux_logistics_auction_depth.lua",
+      "exit": 0,
+      "output": "Auction logistics depth: 38 focused checks passed."
+    },
+    {
+      "path": "tests/flux_logistics_auction_stack.lua",
+      "exit": 0,
+      "output": "Auction logistics exact stack approvals: 20 focused checks passed."
+    },
+    {
+      "path": "tests/flux_logistics_restock_membership_ui.lua",
+      "exit": 0,
+      "output": "Restock membership UI: 33 checks, 0 failures"
+    }
+  ],
+  "desktopCompanion": [
+    {
+      "path": "Tests/auction_shopping_test.lua",
+      "exit": 0,
+      "output": "Queue shopping opens in one window, forwards exact quantities, and limits native purchases to the active plan"
+    },
+    {
+      "path": "Tests/book_test.lua",
+      "exit": 0,
+      "output": "book recipe-memory fixtures passed"
+    },
+    {
+      "path": "Tests/clients_test.lua",
+      "exit": 0,
+      "output": "client action and availability tests passed"
+    },
+    {
+      "path": "Tests/comparison_test.lua",
+      "exit": 0,
+      "output": "recursive route comparison fixtures passed"
+    },
+    {
+      "path": "Tests/execution_test.lua",
+      "exit": 0,
+      "output": "native craft lifecycle and recovery tests passed"
+    },
+    {
+      "path": "Tests/logistics_test.lua",
+      "exit": 0,
+      "output": "FluxUI and FluxLogistics restock, acquisition, stock coverage and deduplication fixtures passed\nAccepted bank requirements and live alternate stock handoff passed\nAccepted auction materials use cheaper live merchant stock automatically or through manual Restock\nAccepted direct auction replenishment respects updated live stock targets\nAccepted direct bank and vendor replenishment share live ownership and bundle limits\nTier restock credits paid receipts against the observed listing SKU\nAuctionator estimates retain fractional precision and authorize only whole copper within the accepted cap"
+    },
+    {
+      "path": "Tests/milestone1_planner_test.lua",
+      "exit": 0,
+      "output": "Milestone 1 sourcing, allocation, economics and provider fixtures passed"
+    },
+    {
+      "path": "Tests/planner_test.lua",
+      "exit": 0,
+      "output": "FluxCraft planner synthetic fixtures: PASS"
+    },
+    {
+      "path": "Tests/queue_test.lua",
+      "exit": 0,
+      "output": "queue tests passed"
+    },
+    {
+      "path": "Tests/recipe_density_test.lua",
+      "exit": 0,
+      "output": "Forever compact recipe rows preserve scroll and restore native sizes"
+    },
+    {
+      "path": "Tests/recipe_profit_test.lua",
+      "exit": 0,
+      "output": "Forever recipe profit estimates, ranks, pooling and native controls passed"
+    },
+    {
+      "path": "Tests/resize_test.lua",
+      "exit": 0,
+      "output": "Forever native panel and Classic workbench resize fixtures passed"
+    },
+    {
+      "path": "Tests/target_load_test.lua",
+      "exit": 0,
+      "output": "runtime TOC load without a Settings page, late native host and disabled-client checks passed"
+    },
+    {
+      "path": "Tests/ui_reagents_test.lua",
+      "exit": 0,
+      "output": "Forever native host, overview and escape fixtures passed"
+    },
+    {
+      "path": "Tests/workspace_test.lua",
+      "exit": 0,
+      "output": "Classic workbench, graph state and persistent queue fixtures passed\nForever native shortlist reachability and multi-output economics fixtures passed"
+    },
+    {
+      "path": "FluxCraft/Tests/AdaptersCatalog.lua",
+      "exit": 0,
+      "output": "FluxCraft adapter/catalog fixtures passed"
+    }
+  ],
+  "renderWork": {
+    "trialsPerRevision": 15,
+    "equalCounterRecords": 45,
+    "baseline": [
+      "RENDER_WORK Retail trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Retail trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+      "RENDER_WORK Retail trial=1 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Retail trial=2 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Retail trial=2 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+      "RENDER_WORK Retail trial=2 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Retail trial=3 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Retail trial=3 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+      "RENDER_WORK Retail trial=3 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Forever trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Forever trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+      "RENDER_WORK Forever trial=1 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Forever trial=2 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Forever trial=2 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+      "RENDER_WORK Forever trial=2 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Forever trial=3 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Forever trial=3 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+      "RENDER_WORK Forever trial=3 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK MoP trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK MoP trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+      "RENDER_WORK MoP trial=1 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK MoP trial=2 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK MoP trial=2 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+      "RENDER_WORK MoP trial=2 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK MoP trial=3 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK MoP trial=3 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+      "RENDER_WORK MoP trial=3 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Era trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Era trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+      "RENDER_WORK Era trial=1 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Era trial=2 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Era trial=2 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+      "RENDER_WORK Era trial=2 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Era trial=3 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Era trial=3 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+      "RENDER_WORK Era trial=3 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Anniversary trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Anniversary trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+      "RENDER_WORK Anniversary trial=1 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Anniversary trial=2 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Anniversary trial=2 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+      "RENDER_WORK Anniversary trial=2 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Anniversary trial=3 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+      "RENDER_WORK Anniversary trial=3 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+      "RENDER_WORK Anniversary trial=3 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0"
+    ]
+  },
+  "native": "Native reload, layout, controller, combat, taint, buyer invoices, purchases and crafts pending. FluxLogistics is inactive on Retail."
+}

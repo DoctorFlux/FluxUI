@@ -16,6 +16,7 @@ local _, ns = ...
 FluxRestockList = FluxRestockList or {}
 local List = FluxRestockList
 local FV = FluxVendorAuto
+local Policy = ns and ns.Flux and ns.Flux.RestockPolicy
 
 local function Inv() return _G.FluxRestock and _G.FluxRestock.Inv end
 local function Bank()
@@ -108,6 +109,7 @@ function FV.GetRestockItemFlags(itemID)
     return {
         countBank = entry.countBank == true,
         bankRestock = entry.bankRestock == true,
+        bankStash = entry.bankStash == true,
         dismissed = entry.dismissed == true,
     }
 end
@@ -725,7 +727,7 @@ end
 
 function FV.GetRestockTargetItems(opts)
     opts = type(opts) == "table" and opts or {}
-    if not opts.forceRefresh and not opts.merchantAware and not opts.forOptionsPanel then
+    if not opts.forceRefresh and not opts.merchantAware and not opts.forOptionsPanel and not opts.policyOnly then
         local t = GetTime and GetTime() or 0
         if optionsPanelCache and (t - optionsPanelCacheTime) < OPTIONS_PANEL_CACHE_SEC then
             return optionsPanelCache
@@ -763,15 +765,29 @@ function FV.GetRestockTargetItems(opts)
 
     -- Consumable preset items.
     if Cons and Cons.GetRestockUIItemIDs then
-        local ok, ids = pcall(Cons.GetRestockUIItemIDs)
-        if ok and type(ids) == "table" then
+        local targets, owners, ids
+        if Cons.GetEffectiveRestockTargets then
+            targets, owners = Cons.GetEffectiveRestockTargets()
+            ids = {}
+            for itemID in pairs(targets) do ids[#ids + 1] = itemID end
+            table.sort(ids)
+        else
+            local ok, result = pcall(Cons.GetRestockUIItemIDs)
+            if ok then ids = result end
+        end
+        if type(ids) == "table" then
             for _, itemID in ipairs(ids) do
                 itemID = tonumber(itemID)
                 if itemID and not seen[itemID] then
                     seen[itemID] = true
                     local isChronoboon = Cons.IsChronoboonItem and Cons.IsChronoboonItem(itemID) or false
-                    local target = (Cons.GetPresetRestockTarget and Cons.GetPresetRestockTarget(itemID)) or 0
-                    if ShouldShowInRestockUI(opts, target) then
+                    local target = targets and targets[itemID]
+                        or (Cons.GetPresetRestockTarget and Cons.GetPresetRestockTarget(itemID)) or 0
+                    local owner = Settings().restockItems[itemID]
+                    local manual = owner and not owner.dismissed and tonumber(owner.targetQuantity) or 0
+                    if Policy and Policy.IsPlannerRegistered() and manual > target then
+                        seen[itemID] = nil -- The existing exact-item owner supplies the higher target.
+                    elseif ShouldShowInRestockUI(opts, target) then
                         local name, texture = GetItemNameIcon(itemID)
                         local isCharge = IsChargeRestockItem(itemID)
                         local entry = {
@@ -783,6 +799,8 @@ function FV.GetRestockTargetItems(opts)
                                 or (isCharge and Cons.GetItemChargeCount and Cons.GetItemChargeCount(itemID))
                                 or GetBagCountFor(itemID, isCharge),
                             restockSource = "consumable",
+                            presetName = owners and owners[itemID],
+                            isCharge = isCharge,
                             isChronoboon = isChronoboon,
                         }
                         ApplyMerchantAvailability(entry, merchantIndex)
@@ -864,6 +882,7 @@ function FV.GetRestockTargetItems(opts)
                     target = target,
                     bagCount = GetBagCountFor(itemID, isCharge),
                     restockSource = "manual",
+                    isCharge = isCharge,
                 }
                 ApplyMerchantAvailability(entry, merchantIndex)
                 EnrichItemEntryBankCounts(entry)
@@ -871,6 +890,15 @@ function FV.GetRestockTargetItems(opts)
             end
         end
     end
+
+    local tiers = Tiers()
+    if Policy and (opts.policyOnly or Policy.IsPlannerRegistered()) and tiers then
+        for _, entry in ipairs(list) do
+            if entry.isCharge and entry.itemID then entry.physicalBagCount = GetBagCountFor(entry.itemID, false) end
+        end
+        Policy.ApplyTierOverlap(list, tiers.ItemMatchesRestockKind)
+    end
+    if opts.policyOnly then return list end
 
     local auction = _G.FluxAuctionRestock
     if auction and auction.GetVendorCraftTargets then
@@ -939,6 +967,12 @@ function FV.HasAnyRestockTargets()
     return false
 end
 
+function FV.HasTemporaryVendorTargets()
+    local auction = _G.FluxAuctionRestock
+    if auction and auction.HasCraftPlans and auction.HasCraftPlans() then return true end
+    return Policy and Policy.GetAcquisitionRequirements and #Policy.GetAcquisitionRequirements("vendor") > 0 or false
+end
+
 function FV.IsRestockEntrySoldAtVendor(entry)
     if not entry then return false end
     if entry.isTierRestock then
@@ -1004,12 +1038,42 @@ function FV.GetRestockVendorItems(merchantIndex)
             out[#out + 1] = entry
         end
     end
+    out = FV.FilterRestockListForVendor(out, { forceVendorFilter = true })
+    if Policy and Policy.GetAcquisitionRequirements then
+        local byItem = {}
+        for _, entry in ipairs(out) do
+            if entry.itemID and not entry.isTierRestock then byItem[entry.itemID] = entry end
+        end
+        for _, requirement in ipairs(Policy.GetAcquisitionRequirements("vendor")) do
+            local itemID = requirement.itemID
+            local offer = merchantIndex and merchantIndex[itemID]
+            local offered = offer and offer.isPurchasable ~= false and not offer.hasExtendedCost and offer.numAvailable ~= 0
+            if requirement.pending or offered then
+                local entry = byItem[itemID]
+                if not entry then
+                    local name, texture = GetItemNameIcon(itemID)
+                    entry = {itemID = itemID, name = name, texture = texture, target = 0,
+                        bagCount = GetBagCountFor(itemID, false), restockSource = "craftMaterial"}
+                    ApplyMerchantAvailability(entry, merchantIndex)
+                    byItem[itemID] = entry
+                    out[#out + 1] = entry
+                end
+                if requirement.pending then
+                    entry.plannerVendorPending = (entry.plannerVendorPending or 0) + requirement.quantity
+                else
+                    entry.plannerVendorNeed = (entry.plannerVendorNeed or 0) + requirement.quantity
+                end
+            end
+        end
+    end
     FV.SortRestockEntriesByVendorAvailability(out)
-    return FV.FilterRestockListForVendor(out, { forceVendorFilter = true })
+    return out
 end
 
 function FV.RefreshRestockCacheEntries(items, merchantIndex)
     if type(items) ~= "table" then return end
+    local cons = _G.FluxNCConsumables
+    local targets = cons and cons.GetEffectiveRestockTargets and cons.GetEffectiveRestockTargets()
     for _, entry in ipairs(items) do
         if entry.itemID then
             local Registry = _G.FluxRestockItemRegistry
@@ -1017,7 +1081,8 @@ function FV.RefreshRestockCacheEntries(items, merchantIndex)
             entry.bagCount = GetBagCountFor(entry.itemID, entry.restockSource ~= "craftMaterial" and isCharge)
             if entry.restockSource == "consumable" then
                 local Cons = _G.FluxNCConsumables
-                entry.target = (Cons and Cons.GetPresetRestockTarget and Cons.GetPresetRestockTarget(entry.itemID)) or entry.target
+                entry.target = targets and (targets[entry.itemID] or 0)
+                    or (Cons and Cons.GetPresetRestockTarget and Cons.GetPresetRestockTarget(entry.itemID)) or entry.target
             elseif entry.restockSource ~= "craftMaterial" then
                 entry.target = FV.GetRestockTargetForItem(entry.itemID)
             end
@@ -1039,6 +1104,13 @@ function FV.RefreshRestockCacheEntries(items, merchantIndex)
                 end
             end
         end
+    end
+    local tiers = Tiers()
+    if Policy and Policy.IsPlannerRegistered() and tiers then
+        for _, entry in ipairs(items) do
+            if entry.isCharge and entry.itemID then entry.physicalBagCount = GetBagCountFor(entry.itemID, false) end
+        end
+        Policy.ApplyTierOverlap(items, tiers.ItemMatchesRestockKind)
     end
     local auction = _G.FluxAuctionRestock
     if auction and auction.GetVendorCraftTargets then
@@ -1072,6 +1144,15 @@ local function EntryNeed(entry)
     if not entry or not entry.target or entry.target <= 0 then
         return 0
     end
+    if Policy and Policy.IsPlannerRegistered() and entry.restockSource ~= "craftMaterial" then
+        local base = entry
+        if entry.craftBaseTarget then
+            base = {}; for key, value in pairs(entry) do base[key] = value end
+            base.target = entry.craftBaseTarget
+        end
+        local demand = Policy.DemandForEntry(base)
+        if demand then return demand.uncovered + (entry.craftNeed or 0) end
+    end
     local have = entry.bagCount or 0
     if entry.countBank then
         have = have + (entry.bankCount or 0)
@@ -1098,9 +1179,9 @@ function FV.GetRestockTotalCost(list)
     local total = 0
     for _, entry in ipairs(list) do
         local need = EntryNeed(entry)
-        if need > 0 and entry.unitPrice and FV.IsRestockEntrySoldAtVendor(entry) then
+        if entry.unitPrice and FV.IsRestockEntrySoldAtVendor(entry) then
             if entry.craftUnitsPerItem and entry.craftUnitsPerItem > 1 then need = math.ceil(need / entry.craftUnitsPerItem) end
-            total = total + need * entry.unitPrice
+            total = total + (need + (entry.plannerVendorNeed or 0)) * entry.unitPrice
         end
     end
     return total
@@ -1112,6 +1193,7 @@ end
 
 function FV.RefreshMerchantOptionsCheckboxes(opts)
     opts = type(opts) == "table" and opts or {}
+    if Policy then Policy.NotifyChanged() end
     local auction = _G.FluxAuctionRestock
     if auction and auction.SettingsChanged then auction.SettingsChanged() end
     if not opts.skipRestockPanelRebuild and FV.InvalidateRestockOptionsPanelCache then
@@ -1600,7 +1682,7 @@ Registry.RegisterProvider("vendorRestockItems", function()
     local s = Settings()
     local out = {}
     for itemID, data in pairs(s.restockItems) do
-        if type(data) == "table" then
+        if type(data) == "table" and not data.dismissed then
             local numericID = tonumber(itemID)
             local target = tonumber(data.targetQuantity) or 0
             if numericID and target > 0 then
@@ -1689,6 +1771,17 @@ do
     end)
 end
 
+if Policy then
+    Policy.Subscribe("FluxUIOwnerTargets", function(_, reason)
+        if reason == "inventory" then return end
+        FV.InvalidateRestockOptionsPanelCache()
+        Registry.InvalidateBankTargetsCache()
+        local bank = _G.FluxBankRestock
+        if bank and bank.InvalidateCanRunCache then bank.InvalidateCanRunCache() end
+        local panel = _G.FluxVendorRestockPanel
+        if panel and panel.InvalidateListCache then panel.InvalidateListCache() end
+    end)
+end
 _G.FluxRestockList = List
 _G.FluxRestockItemRegistry = Registry
 _G.FluxRestock = FluxRestock

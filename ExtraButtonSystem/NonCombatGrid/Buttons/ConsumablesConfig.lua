@@ -415,8 +415,65 @@ local function CreateConfigFrame()
     thresholdSecondsLabel:SetText("sec")
     frame.thresholdSecondsLabel = thresholdSecondsLabel
 
+    local policy = _G.Flux and _G.Flux.RestockPolicy
+    local policyHeight = policy and 54 or 0
+    if policy then
+        local modes = { "normal", "openworld", "raid" }
+        local mode = _G.FluxBlizzardDropdown.Create(frame, nil, 152)
+        mode:SetPoint("TOPLEFT", frame, "TOPLEFT", PADDING, thresholdRowY - 24)
+        mode:FluxSetMenu(function()
+            local entries = {}
+            for _, key in ipairs(modes) do
+                entries[#entries + 1] = {
+                    text = policy.Text[key], checked = policy.GetMode() == key,
+                    func = function() policy.SetMode(key); frame.RefreshRestockControls() end,
+                }
+            end
+            return entries
+        end)
+
+        local function Check(label, x, y, onClick)
+            local widget = CreateFrame("CheckButton", nil, frame, "UICheckButtonTemplate")
+            widget:SetSize(22, 22)
+            widget:SetPoint("TOPLEFT", frame, "TOPLEFT", x, y)
+            local text = widget:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+            text:SetPoint("LEFT", widget, "RIGHT", 2, 0)
+            text:SetText(label)
+            widget:SetScript("OnClick", onClick)
+            return widget
+        end
+
+        local managed = Check(policy.Text.managed, PADDING + 166, thresholdRowY - 27, function(widget)
+            policy.SetManaged(widget:GetChecked() == true)
+        end)
+        local enabled = Check(policy.Text.enabled, PADDING + 282, thresholdRowY - 27, function(widget)
+            FluxNCConsumables.SetPresetRestockMembership(nil, nil, widget:GetChecked() == true)
+        end)
+        local positions = { all = 0, normal = 104, openworld = 204, raid = 311 }
+        local checks = {}
+        for _, key in ipairs({ "all", "normal", "openworld", "raid" }) do
+            checks[key] = Check(policy.Text[key], PADDING + positions[key], thresholdRowY - 49, function(widget)
+                local membership = FluxNCConsumables.GetPresetRestockMembership() or { normal = true }
+                membership[key] = widget:GetChecked() == true
+                if key ~= "all" then membership.all = false end
+                FluxNCConsumables.SetPresetRestockMembership(nil, membership)
+                frame.RefreshRestockControls()
+            end)
+        end
+        function frame.RefreshRestockControls()
+            local membership, presetEnabled = FluxNCConsumables.GetPresetRestockMembership()
+            mode:FluxSetText(policy.Text[policy.GetMode()])
+            managed:SetChecked(policy.GetManaged())
+            managed:SetEnabled(policy.GetMode() ~= "normal")
+            enabled:SetChecked(presetEnabled)
+            for key, widget in pairs(checks) do
+                widget:SetChecked(membership and membership[key] == true or key == "normal" and not membership)
+            end
+        end
+    end
+
     -- Scrollable content (Chronoboon + Consumables sections)
-    local scrollTop = thresholdRowY - (CONTROL_HEIGHT + SECTION_SPACING)
+    local scrollTop = thresholdRowY - (CONTROL_HEIGHT + SECTION_SPACING) - policyHeight
     local scroll = CreateFrame("ScrollFrame", nil, frame, "UIPanelScrollFrameTemplate")
     scroll:SetPoint("TOPLEFT", frame, "TOPLEFT", PADDING, scrollTop)
     scroll:SetSize(CONTENT_W, SCROLL_MAX_H)
@@ -441,7 +498,8 @@ local function CreateConfigFrame()
         local thresholdWidth = PADDING + 120 + 8 + EDITBOX_WIDTH + 4 + 24 + 4 + 8 + 4 + EDITBOX_WIDTH + 4 + 24
         local windowWidth = math.max(MIN_WIDTH, CONTENT_W + PADDING * 2, toolbarWidth, thresholdWidth)
         local titleBarH = PADDING + TITLE_HEIGHT + SECTION_SPACING
-        local windowHeight = titleBarH + TOOLBAR_H + viewportH + PADDING
+        if policy then windowWidth = math.max(windowWidth, 452) end
+        local windowHeight = titleBarH + TOOLBAR_H + policyHeight + viewportH + PADDING
         frame:SetSize(windowWidth, windowHeight)
     end
     frame.ResizeFrame = ResizeFrame
@@ -705,6 +763,7 @@ function Config.RefreshUI()
     if not frame or not GridUI then return end
 
     Config.UpdateThresholdDisplay()
+    if frame.RefreshRestockControls then frame.RefreshRestockControls() end
 
     if FluxNCConsumables and FluxNCConsumables.GetActivePreset and frame.presetDropdown then
         local presetName = FluxNCConsumables.GetActivePreset()

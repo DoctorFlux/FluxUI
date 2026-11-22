@@ -57,8 +57,9 @@ function methods:RegisterForClicks() end
 function methods:RegisterEvent() end
 function methods:SetScript(key, fn) self[key] = fn end
 function methods:SetFrameStrata(value) self.strata = value end
-local function cell()
-    local f = widget()
+function methods:GetFrameStrata() return self.strata or self.parent and self.parent:GetFrameStrata() or "MEDIUM" end
+local function cell(parent)
+    local f = widget(parent)
     for _, key in ipairs({ "background", "name", "statusText", "roleIcon", "leaderIcon", "masterLooterIcon", "raidTargetIcon", "selectionHighlight", "mouseOverHighlight", "aggroHighlight", "centerStatusIcon", "readyCheckIcon", "healthBar", "powerBar" }) do f[key] = widget(f) end
     f.healthBar.background, f.powerBar.background = widget(f.healthBar), widget(f.powerBar)
     f.centerStatusIcon.texture = widget(f.centerStatusIcon)
@@ -80,6 +81,7 @@ local env = {
     IsInRaid = function() return false end,
     UnitExists = function() return true end,
     UnitIsUnit = function() return false end,
+    GetSpellTexture = function(spellID) return spellID end,
     RAID_CLASS_COLORS = { WARRIOR = { r = 0.8, g = 0.6, b = 0.4 }, PRIEST = { r = 1, g = 1, b = 1 } },
 }
 setmetatable(env, { __index = _G })
@@ -87,13 +89,14 @@ env._G = env
 -- The factory above closes over this local environment after construction.
 env.CreateFrame = function(_, name, parent, template)
     local preview=template == "FluxRaidPreviewUnitTemplate" or template == "FluxRaidMiniPreviewTemplate"
-    local f = preview and cell() or widget(parent)
+    local f = preview and cell(parent) or widget(parent)
     if template == "FluxRaidMiniPreviewTemplate" then f._fluxRaidMini=true end
     if name then named[name] = f end
     if preview then env.FluxRaidPreviewUnit_OnLoad(f) end
     return f
 end
 local ns = { Flux = { BlizzardSettings = { Write = { IsSecretClient = function() return true end } } } }
+assert(loadfile(root .. "Core/API/Aura.lua", "t", env))("_FluxUI", ns)
 assert(loadfile(visualsSource, "t", env))("_FluxUI", ns)
 local visuals = env.FluxRaidVisuals
 visuals.ApplyRaidFrameTunables({})
@@ -224,7 +227,7 @@ check(mutations == before and f._fluxNeedsChromeRefresh and predictionRefresh ==
 combat = false
 visuals.ApplyCellChrome(f, { showPower = true })
 check(not f._fluxNeedsChromeRefresh, "out-of-combat layout clears deferred chrome")
-assert(loadfile(root .. "RaidFrame/FluxRaidPreview.lua", "t", env))("_FluxUI", ns)
+assert(loadfile(os.getenv("FLUX_RAID_PREVIEW_SOURCE") or root .. "RaidFrame/FluxRaidPreview.lua", "t", env))("_FluxUI", ns)
 env.FluxRaidPreview.Show()
 local first, second, third = named.FluxRaidPreviewUnit1, named.FluxRaidPreviewUnit2, named.FluxRaidPreviewUnit3
 check(first._fluxAuraBuff[6].width == first._fluxPreviewAuraMetrics.width and first._fluxAuraBuff[6].height == first._fluxPreviewAuraMetrics.height
@@ -233,11 +236,130 @@ check(second.points[#second.points][5] == -(visuals.FRAME_HEIGHT - 1), "preview 
 check(first.width == visuals.FRAME_WIDTH and first.height == visuals.FRAME_HEIGHT, "preview keeps live outer dimensions")
 check(first.healthBar.barTexture == f.healthBar.barTexture and first.name.justify == f.name.justify, "preview and live share chrome without old style overrides")
 check(first._fluxPreviewPrediction.incoming.shown and second._fluxPreviewPrediction.hot.shown and third._fluxPreviewPrediction.absorb.shown, "preview distinguishes incoming heal, HoT and absorb states")
-check(named.FluxRaidPreviewUnit4._fluxPreviewDispel.shown, "preview includes a dispellable debuff")
+check(named.FluxRaidPreviewUnit4._fluxPreviewDispel.shown and not first._fluxPreviewDispel.shown,
+    "preview shows the dispel example only for the sample requiring a dispel")
+local poison = first._fluxAuraDebuff[4]
+local corner = poison._fluxDispelTypeIcon
+check(corner.shown and corner.atlas == "RaidFrame-Icon-DebuffPoison"
+    and corner.parent == poison.textLayer and corner.points[1][1] == "TOPRIGHT"
+    and poison._fluxRaidDebuffBorder.vertex[2] == .6,
+    "raid preview shows the type-colored border and corner icon above the cooldown")
+check(not first._fluxAuraDebuff[6]._fluxDispelTypeIcon.shown,
+    "the untyped role debuff preview has no type icon")
 check(named.FluxRaidPreviewUnit5._fluxContent.alpha == visuals.FRAME_BASE_ALPHA * visuals.RANGE_ALPHA_OUT_OF_RANGE, "preview range fade targets content only")
 check(named.FluxRaidPreviewUnit6.statusText.text == "Dead" and named.FluxRaidPreviewUnit7.statusText.text == "Offline", "preview includes distinct dead and offline states")
 check(named.FluxRaidPreviewUnit8._fluxPreviewCenter.shown and named.FluxRaidPreviewUnit9._fluxPreviewCenter.shown, "preview includes resurrection and summon indicators")
 check(named.FluxRaidPreviewUnit10._fluxPreviewOverflow.shown, "preview includes overheal overflow")
+
+do
+    local parent = widget()
+    parent:SetFrameStrata("DIALOG")
+    local inline = env.FluxRaidPreview.CreateOptionsPreview(parent)
+    local outside = named.FluxRaidPreviewContainer
+    local isInGroup, unitExists = env.IsInGroup, env.UnitExists
+    env.IsInGroup = function() error("options sample checked the real group") end
+    env.UnitExists = function() error("options sample looked up a real unit") end
+    check(inline.frame.parent == parent and not inline.frame.shown, "options owner begins hidden under the supplied parent")
+    local width, height, cells, count = inline:Render(false)
+    check(count == 10 and width == 2 * visuals.FRAME_WIDTH and height == outside.height,
+        "options only removes empty horizontal world slots and retains the complete group height")
+    check(inline.frame.shown and outside.shown and db.previewRosterSize == 10,
+        "options rendering leaves the concurrent world session and saved sample size in place")
+    local worldFirstX = first.points[1][4]
+    local inlineFirstX = cells[1].points[1][4]
+    for i = 1, count do
+        local embedded, live = cells[i], named["FluxRaidPreviewUnit" .. i]
+        check(embedded ~= live and embedded.parent == inline.frame and embedded.strata == "DIALOG" and not embedded.mouse,
+            "embedded cell reuses visuals without sharing the world owner or taking clicks")
+        check(embedded.points[1][4] - inlineFirstX == live.points[1][4] - worldFirstX
+            and embedded.points[1][5] == live.points[1][5] - 14
+            and embedded.width == live.width and embedded.height == live.height,
+            "embedded group cells preserve world geometry and relative spacing")
+        check(embedded.healthBar.value == live.healthBar.value and embedded.powerBar.value == live.powerBar.value
+            and embedded.name.formatValues[1] == live.name.formatValues[1]
+            and embedded.statusText.text == live.statusText.text and embedded._fluxContent.alpha == live._fluxContent.alpha,
+            "embedded cells use the same world names, bars, statuses and range fade")
+        check(embedded._fluxAuraBuff[1].icon.texture == live._fluxAuraBuff[1].icon.texture
+            and embedded._fluxAuraDebuff[6].icon.texture == live._fluxAuraDebuff[6].icon.texture
+            and embedded._fluxPreviewDispel.shown == live._fluxPreviewDispel.shown,
+            "embedded cells use the same aura art and dispel example")
+        check(embedded._fluxPreviewPrediction.incoming.shown == live._fluxPreviewPrediction.incoming.shown
+            and embedded._fluxPreviewPrediction.hot.shown == live._fluxPreviewPrediction.hot.shown
+            and embedded._fluxPreviewPrediction.absorb.shown == live._fluxPreviewPrediction.absorb.shown
+            and embedded._fluxPreviewCenter.texture == live._fluxPreviewCenter.texture,
+            "embedded cells share the world heal, absorb, resurrection and summon examples")
+    end
+    local readCVar = env.FluxRaid_GetCVarBool
+    env.FluxRaid_GetCVarBool = function(name, default)
+        if name == "raidFramesDisplayOnlyDispellableDebuffs" then return true end
+        return readCVar(name, default)
+    end
+    width, _, cells, count = inline:Render(true)
+    check(width == visuals.FRAME_WIDTH and count == 5 and db.previewRosterSize == 10 and not cells[6].shown,
+        "compact party reuses the first column in options without changing the raid preview count")
+    check(cells[1]._fluxAuraDebuff[5].icon.texture == 589 and first._fluxAuraDebuff[5].icon.texture == 1079,
+        "compact party selects its dispellable-only CVar independently of the active world roster")
+    inline:Render(false)
+    check(cells[1]._fluxAuraDebuff[5].icon.texture == 1079, "returning to raid restores the independent raid aura set")
+    env.FluxRaid_GetCVarBool = readCVar
+    env.IsInGroup, env.UnitExists = isInGroup, unitExists
+    inline.frame:Hide()
+    check(not inline.frame.shown and outside.shown and first.shown, "hiding the options owner does not close the world preview")
+end
+
+do
+    local pane = env.FluxRaidPreview.CreateOptionsPreview(widget())
+    local rosterSize, auraAlpha, auraSize, widthScale = db.previewRosterSize, db.auraIconAlpha, db.auraIconScale, db.memberWidthScale
+    db.previewRosterSize = 40
+    local _, _, cells = pane:Render(false)
+    local layoutRegions = {}
+    for _, sample in ipairs(cells) do
+        layoutRegions[sample] = true
+        for _, row in pairs(sample._fluxPreviewAuraRows) do layoutRegions[row] = true end
+        for _, icons in ipairs({ sample._fluxAuraBuff, sample._fluxAuraDebuff }) do
+            for _, icon in ipairs(icons) do
+                layoutRegions[icon], layoutRegions[icon.count] = true, true
+            end
+        end
+    end
+    local cellPasses, placements = 0, 0
+    local applyChrome, clearPoints = visuals.ApplyCellChrome, methods.ClearAllPoints
+    visuals.ApplyCellChrome = function(...)
+        cellPasses = cellPasses + 1
+        return applyChrome(...)
+    end
+    methods.ClearAllPoints = function(region)
+        if layoutRegions[region] then placements = placements + 1 end
+        return clearPoints(region)
+    end
+    local originalCellWidth = cells[1].width
+    local originalIconWidth = cells[1]._fluxAuraBuff[1].width
+    for i = 1, 20 do
+        db.auraIconAlpha = i / 20
+        visuals.ApplyRaidFrameTunables(db)
+        pane:Render(false)
+    end
+    check(cellPasses == 0 and placements == 0, "20 opacity changes across 40 embedded cells reuse member chrome and anchors")
+    check(cells[1]._fluxAuraBuff[1].alpha == visuals.AURA_ICON_ALPHA and cells[40]._fluxAuraDebuff[1].alpha == visuals.AURA_ICON_ALPHA,
+        "geometry reuse still applies the current aura opacity to both sides throughout the roster")
+    db.auraIconScale = 1.3
+    visuals.ApplyRaidFrameTunables(db)
+    pane:Render(false)
+    check(cellPasses == 0 and placements > 0 and cells[1]._fluxAuraBuff[1].width > originalIconWidth,
+        "changing aura size updates aura geometry without reapplying cell chrome")
+    db.memberWidthScale = 1.4
+    visuals.ApplyRaidFrameTunables(db)
+    pane:Render(false)
+    check(cellPasses == 40 and cells[1].width > originalCellWidth and cells[40].width == cells[1].width,
+        "changing member dimensions reapplies the shared chrome throughout the sample")
+    pane.frame:Hide()
+    db.previewRosterSize, db.auraIconAlpha, db.auraIconScale, db.memberWidthScale = rosterSize, auraAlpha, auraSize, widthScale
+    cellPasses = 0
+    env.FluxRaidPreview.RefreshFromOptions()
+    check(cellPasses == 10, "the world preview retains its existing repaint route")
+    visuals.ApplyCellChrome, methods.ClearAllPoints = applyChrome, clearPoints
+end
+
 for _,mode in ipairs({"health","healthandpercent","losthealth","none","perc"})do
  db.healthText=mode;env.FluxRaidPreview.RefreshFromOptions()
  if mode=="none"then check(not first.statusText.shown,"preview hides numeric status in hidden mode")

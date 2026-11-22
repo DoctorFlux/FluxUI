@@ -3,6 +3,236 @@ local addonName, ns = ...
 -- /fluxui Nameplates: the only place Flux nameplate options live, on every client.
 -- Nothing here is added to Blizzard's Nameplates or Combat settings pages.
 
+ns.FluxOptionsLocale = ns.FluxOptionsLocale or {}
+local L = ns.FluxOptionsLocale
+
+local function Label(key, fallback)
+    local localeKey = "NP_" .. key
+    L[localeKey] = L[localeKey] or fallback
+    return L[localeKey]
+end
+
+local function NativeWrite()
+    local settings = ns.Flux and ns.Flux.BlizzardSettings
+    return settings and settings.Write
+end
+
+local function ReadCVar(cvar)
+    local write = NativeWrite()
+    if not write then return nil end
+    local ok, value = pcall(write.Get, cvar)
+    if ok and not (issecretvalue and issecretvalue(value)) then return value end
+    return nil
+end
+
+local function NativeLocked()
+    local write = NativeWrite()
+    return not write or not write.CanWriteNow()
+end
+
+local function SetCVar(cvar, value)
+    if not NativeLocked() and ReadCVar(cvar) ~= nil then NativeWrite().CVar(cvar, value) end
+end
+
+local function SelectOption(key, title, order, entries, get, set, hidden, disabled)
+    local values, sorting = {}, {}
+    for _, choice in ipairs(entries) do
+        local value = choice[1]
+        sorting[#sorting + 1] = value
+        values[value] = Label(key .. "_" .. tostring(value), choice[2])
+    end
+    return {
+        type = "select", width = "full", name = Label(key, title), order = order,
+        values = values, sorting = sorting, get = get, set = set, hidden = hidden, disabled = disabled,
+    }
+end
+
+local function Header(key, title, order)
+    return { type = "header", name = Label(key, title), order = order }
+end
+
+local function NativeChoice(cvar, title, order, group, choices)
+    local values = {}
+    for _, choice in ipairs(choices) do
+        local index = group and group[choice[1]]
+        if type(index) == "number" then values[#values + 1] = { index, choice[2] } end
+    end
+    return SelectOption(cvar, title, order, values,
+        function() return tonumber(ReadCVar(cvar)) end,
+        function(_, value) SetCVar(cvar, value) end,
+        function() return #values == 0 or ReadCVar(cvar) == nil end, NativeLocked)
+end
+
+local function NativeRange(cvar, title, order, min, max, step, isPercent)
+    return {
+        type = "range", width = "full", name = Label(cvar, title), order = order,
+        min = min, max = max, step = step, isPercent = isPercent,
+        hidden = function() return tonumber(ReadCVar(cvar)) == nil end, disabled = NativeLocked,
+        get = function() return tonumber(ReadCVar(cvar)) end,
+        set = function(_, value) SetCVar(cvar, value) end,
+    }
+end
+
+local function NativeToggle(cvar, title, order, enum, flag, invert)
+    local function BitIndex()
+        local group = enum and Enum and Enum[enum]
+        return group and group[flag]
+    end
+    local function Read()
+        local value = ReadCVar(cvar)
+        if value == nil then return end
+        if not enum then return (value == "1") ~= (invert == true) end
+        local index = BitIndex()
+        local getBit = (C_CVar and C_CVar.GetCVarBitfield) or GetCVarBitfield
+        if not (type(index) == "number" and index > 0 and getBit) then return end
+        local ok, enabled = pcall(getBit, cvar, index)
+        if ok and not (issecretvalue and issecretvalue(enabled)) then return enabled end
+    end
+    return {
+        type = "toggle", width = "half", name = Label(cvar .. "_" .. (flag or "toggle"), title), order = order,
+        hidden = function() return Read() == nil end, disabled = NativeLocked, get = Read,
+        set = function(_, enabled)
+            if NativeLocked() or Read() == nil then return end
+            if enum then
+                return NativeWrite().Bit(cvar, BitIndex(), enabled)
+            else
+                SetCVar(cvar, enabled ~= (invert == true) and "1" or "0")
+            end
+        end,
+    }
+end
+
+local function AddNativeBits(args, prefix, cvar, enum, firstOrder, flags)
+    for index, flag in ipairs(flags) do
+        args[prefix .. flag[1]] = NativeToggle(cvar, flag[2], firstOrder + index, enum, flag[1])
+    end
+end
+
+local function NameplatePreferences()
+    if type(FluxUI_DB) ~= "table" then FluxUI_DB = {} end
+    if type(FluxUI_DB.nameplateAppearance) ~= "table" then FluxUI_DB.nameplateAppearance = {} end
+    return FluxUI_DB.nameplateAppearance
+end
+
+local function AddPlateOptions(args)
+    local enumerations = Enum or {}
+    local styles = {
+        { "Modern", UNIT_NAMEPLATES_STYLE_MODERN or "Modern" },
+        { "Thin", UNIT_NAMEPLATES_STYLE_THIN or "Thin" },
+        { "Block", UNIT_NAMEPLATES_STYLE_BLOCK or "Block" },
+        { "HealthFocus", UNIT_NAMEPLATES_STYLE_HEALTH_FOCUS or "Health focus" },
+        { "CastFocus", UNIT_NAMEPLATES_STYLE_CAST_FOCUS or "Cast focus" },
+        { "Legacy", UNIT_NAMEPLATES_STYLE_LEGACY or "Legacy" },
+    }
+    if not (NameplatesOverrides and NameplatesOverrides.ShowClassicStyleOption)
+        or NameplatesOverrides.ShowClassicStyleOption() then
+        table.insert(styles, 1, { "Classic", UNIT_NAMEPLATES_STYLE_CLASSIC or "Classic" })
+    end
+    args.style_frame = Header("FRAME", "Frame", 1)
+    args.style_style = NativeChoice("nameplateStyle", UNIT_NAMEPLATES_STYLE or "Nameplate style", 2, enumerations.NamePlateStyle, styles)
+    args.style_size = NativeChoice("nameplateSize", UNIT_NAMEPLATES_GLOBAL_SCALE or "Nameplate size", 3, enumerations.NamePlateSize, {
+        { "Small", "Small" }, { "Medium", "Medium" }, { "Large", "Large" },
+        { "ExtraLarge", "Extra large" }, { "Huge", "Huge" },
+    })
+    args.style_health = Header("HEALTH_TEXT", "Health and identification", 10)
+    AddNativeBits(args, "style_", "nameplateInfoDisplay", "NamePlateInfoDisplay", 10, {
+        { "CurrentHealthValue", "Health amount" }, { "CurrentHealthPercent", "Health percent" }, { "RarityIcon", "Rare and elite icon" },
+    })
+    for _, key in ipairs({ "CurrentHealthValue", "CurrentHealthPercent" }) do
+        local option = args["style_" .. key]
+        local setBit = option.set
+        option.set = function(info, value)
+            if setBit(info, value) then
+                local preferences = NameplatePreferences()
+                if type(preferences.healthText) ~= "table" then preferences.healthText = {} end
+                preferences.healthText[key] = value == true
+            end
+        end
+    end
+    args.style_classHealth = NativeToggle("nameplateShowClassColor", "Enemy player class colors", 14)
+    args.style_friendlyClass = NativeToggle("nameplateUseClassColorForFriendlyPlayerUnitNames", "Friendly player class colors", 15)
+end
+
+local function AppearanceOptionValue(key, default)
+    local db = FluxUI_DB and FluxUI_DB.nameplateAppearance
+    local value = type(db) == "table" and rawget(db, key)
+    if value == nil or value == false then return default end
+    return value
+end
+
+local function SetAppearanceOption(key, value)
+    local db = NameplatePreferences()
+    db[key] = value
+    if FluxNamePlates_RefreshFromDB then FluxNamePlates_RefreshFromDB() end
+end
+
+local function AddComponentOptions(args)
+    args.cast_display = Header("CAST_DISPLAY", "Cast display", 1)
+    local casts = {
+        { "SpellName", "Spell name" }, { "SpellIcon", "Spell icon" }, { "SpellTarget", "Cast target" },
+        { "HighlightWhenCastTarget", "Highlight casts targeting you" },
+    }
+    if not (NameplatesOverrides and NameplatesOverrides.ShowHighlightImportantCastsOption)
+        or NameplatesOverrides.ShowHighlightImportantCastsOption() then
+        table.insert(casts, 4, { "HighlightImportantCasts", "Highlight important casts" })
+    end
+    AddNativeBits(args, "cast_", "nameplateCastBarDisplay", "NamePlateCastBarDisplay", 1, casts)
+
+    args.aura_layout = Header("AURA_LAYOUT", "Aura layout", 1)
+    args.aura_scale = NativeRange("nameplateAuraScale", "Aura icon scale", 2, 0.7, 1.4, 0.1, true)
+    args.aura_countdown = SelectOption("AURA_COUNTDOWN", "Aura countdown numbers", 3, {
+        { "middle", "Center of icon" }, { "bottom", "Bottom of icon" }, { "below", "Below icon" }, { "none", "Off" },
+    }, function() return AppearanceOptionValue("auraCountdown", "middle") end,
+        function(_, value) SetAppearanceOption("auraCountdown", value) end)
+    args.aura_onlyMine = {
+        type = "toggle", width = "full", order = 4,
+        name = Label("AURA_ONLY_MINE", "Only show my debuffs"),
+        desc = Label("AURA_ONLY_MINE_DESC",
+            "Show debuffs and crowd control applied by you, your pet, or your vehicle. Buffs keep their own settings."),
+        get = function() return AppearanceOptionValue("onlyMyDebuffs", false) == true end,
+        set = function(_, value) SetAppearanceOption("onlyMyDebuffs", value == true) end,
+    }
+    args.aura_enemyNpc = Header("NPC_AURAS", "Enemy NPC auras", 10)
+    AddNativeBits(args, "aura_npc", "nameplateEnemyNpcAuraDisplay", "NamePlateEnemyNpcAuraDisplay", 10, {
+        { "Buffs", "Show buffs" }, { "Debuffs", "Show debuffs" }, { "CrowdControl", "Show crowd control" },
+    })
+    args.aura_enemyPlayer = Header("ENEMY_PLAYER_AURAS", "Enemy player auras", 20)
+    AddNativeBits(args, "aura_enemy", "nameplateEnemyPlayerAuraDisplay", "NamePlateEnemyPlayerAuraDisplay", 20, {
+        { "Buffs", "Show buffs" }, { "Debuffs", "Show debuffs" }, { "LossOfControl", "Show loss of control" },
+    })
+    args.aura_friendlyPlayer = Header("FRIENDLY_PLAYER_AURAS", "Friendly player auras", 30)
+    AddNativeBits(args, "aura_friendly", "nameplateFriendlyPlayerAuraDisplay", "NamePlateFriendlyPlayerAuraDisplay", 30, {
+        { "Buffs", "Show buffs" }, { "Debuffs", "Show debuffs" }, { "LossOfControl", "Show loss of control" },
+    })
+    args.aura_friendlyDebuffs = NativeToggle("nameplateShowDebuffsOnFriendly", "Show debuffs on friendly units", 34)
+
+    args.target_appearance = Header("TARGET_APPEARANCE", "Targeted plates", 1)
+    args.target_scale = NativeRange("nameplateSelectedScale", "Current target scale", 2, 0.5, 2, 0.05, true)
+    args.target_occluded = NativeRange("nameplateOccludedAlphaMult", "Out of sight opacity", 3, 0, 1, 0.05, true)
+    args.target_sticky = NativeToggle("deselectOnClick", "Sticky targeting", 4, nil, nil, true)
+
+    args.visible_native = Header("GAME_VISIBILITY", "Game nameplate visibility", 1)
+    args.visible_all = NativeToggle("nameplateShowAll", "Always show nameplates", 2)
+    args.visible_enemies = NativeToggle("nameplateShowEnemies", "Enemy nameplates", 3)
+    args.visible_enemyMinions = NativeToggle("nameplateShowEnemyMinions", "Enemy minions", 4)
+    args.visible_enemyMinor = NativeToggle("nameplateShowEnemyMinus", "Minor enemy NPCs", 5)
+    args.visible_friendly = NativeToggle("nameplateShowFriendlyNpcs", "Friendly NPCs", 6)
+    args.visible_friendlyPlayers = NativeToggle("nameplateShowFriendlyPlayers", "Friendly players", 7)
+    args.visible_offscreen = NativeToggle("nameplateShowOffscreen", "Keep offscreen plates visible", 8)
+    args.visible_stackEnemies = NativeToggle("nameplateStackingTypes", "Stack enemy plates", 9, "NamePlateStackType", "Enemy")
+    args.visible_stackFriends = NativeToggle("nameplateStackingTypes", "Stack friendly plates", 10, "NamePlateStackType", "Friendly")
+    args.visible_friendlyNames = NativeToggle("nameplateShowOnlyNameForFriendlyPlayerUnits", "Names only for friendly players", 11)
+
+    args.font_overlays = Header("FONT_OVERLAYS", "FluxUI overlay text", 1)
+    args.font_countdownSize = {
+        type = "range", width = "full", name = Label("COUNTDOWN_SIZE", "Aura countdown text size"), order = 2,
+        min = 8, max = 24, step = 1,
+        desc = Label("COUNTDOWN_SIZE_DESC", "Size of FluxUI's aura countdown text. The game draws the plate's name and health text."),
+        get = function() return AppearanceOptionValue("countdownSize", 12) end,
+        set = function(_, value) SetAppearanceOption("countdownSize", value) end,
+    }
+end
+
 local function ThreatAPI()
     return ns.Flux and ns.Flux.Threat
 end
@@ -214,18 +444,8 @@ local function BuildNameplatesOptions()
         end,
     }
 
-    local countdownHeader = {
-        type = "header",
-        name = "Buff / debuff countdown",
-        order = 20,
-    }
-    args.headerAuras = countdownHeader
-    args.aurasDesc = {
-        type = "description",
-        name = "Countdown digits use the same Flux 12px overlay as Classic on every client. Size: edit FLUX_NAMEPLATE_AURA_COUNTDOWN_SCALE in NamePlates/Countdown.lua (default 0.75), then /reload.\n",
-        order = 21,
-        fontSize = "small",
-    }
+    AddPlateOptions(args)
+    AddComponentOptions(args)
 
     return {
         name = "Nameplates",

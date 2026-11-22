@@ -146,4 +146,58 @@ local templateValue = assert(source:match('%["nameplateSize"%]%s*=%s*"(%d+)"'))
 check(packValue == "2" and templateValue == "2",
     "first-account and nameplate pack both recommend Medium on all clients")
 
+do
+    local frame, queued, writes = {}, {}, {}
+    local values = { nameplateSelectedScale = "1.0", nameplateMinScale = "0.8", nameplateShowEnemies = "1" }
+    local visibility = { nameplateShowEnemies = true }
+    local zoom = {
+        nameplateSelectedScale = { applied = "1", original = "1.35" },
+        nameplateMinScale = { applied = "1", original = "0.65" },
+    }
+    local api = {
+        Get = function(key) return values[key] end,
+        Matches = function(key, desired)
+            return values[key] == tostring(desired) or tonumber(values[key]) == tonumber(desired)
+        end,
+        Run = function(key, job) queued[key] = job end,
+        CVar = function(key, value)
+            values[key] = tostring(value)
+            writes[key] = value
+            return true
+        end,
+        Bit = function(key, index, enabled)
+            writes[index] = enabled
+            return true
+        end,
+    }
+    local env = setmetatable({
+        FluxUI_DB = { nameplateAppearance = { nameplateZoomBackup = zoom, combatVisibilityOwned = visibility } },
+        Enum = { NamePlateInfoDisplay = { CurrentHealthPercent = 1, CurrentHealthValue = 2 } },
+        CreateFrame = function()
+            function frame:RegisterEvent() end
+            function frame:UnregisterEvent() end
+            function frame:SetScript(_, handler) self.handle = handler end
+            return frame
+        end,
+    }, { __index = _G })
+    env._G = env
+    local namespace = { Flux = { BlizzardSettings = { Write = api } } }
+    assert(load(nameplates, "published nameplate preferences", "t", env))("_FluxUI", namespace)
+    frame.handle(frame, "PLAYER_LOGIN")
+    check(queued.restoreNameplateSettings and not next(writes), "old nameplate ownership recovery uses the guarded writer")
+    queued.restoreNameplateSettings()
+    check(values.nameplateSelectedScale == "1.35" and values.nameplateMinScale == "0.8"
+        and values.nameplateShowEnemies == "0" and not writes.nameplateMinScale,
+        "recovery restores owned values and preserves a later change")
+    local preferences = env.FluxUI_DB.nameplateAppearance
+    check(not preferences.nameplateZoomBackup and not preferences.combatVisibilityOwned,
+        "restored CVar ownership is cleared without resetting the profile")
+    local native = namespace.Flux.BlizzardSettings.Nameplates
+    native.ApplyHealthText()
+    check(writes[1] and writes[2], "published native health readouts are enabled by default")
+    preferences.healthText = { CurrentHealthPercent = false }
+    native.ApplyHealthText()
+    check(writes[1] == false and writes[2], "explicit nameplate health visibility survives native defaults")
+end
+
 print("raid and nameplate defaults: " .. checks .. " checks passed")

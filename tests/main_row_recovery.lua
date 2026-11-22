@@ -8,6 +8,13 @@ local function nativeFunction(signature,replacement,e)
     local a=assert(native:find(signature,1,true));local b=assert(native:find("\nend",a,true))+3
     return assert(load(replacement..native:sub(a+#signature,b),"native main-row method","t",e))()
 end
+local pageTwoSlots = { 1, 2, 3, 4, 5, 6, 7, 20, 21, 22, 23, 24, 13, 14, 15, 16, 17, 18, 19 }
+local function mainSlot(column, page, swap)
+    if column > 12 then return column + (swap == 1 and 36 or swap == 2 and 24 or 0) end
+    if swap ~= 0 and page < 11 then return column + (swap == 1 and 60 or 24) end
+    if page == 2 then return pageTwoSlots[column] end
+    return (page - 1) * 12 + column
+end
 for _,securePaging in ipairs({false,true})do
 for _,family in ipairs({"retail","forever","classic","era","anniversary"})do
     local writes,clearKeys,painted,cleared,bindingsNotified=0,0,0,0,0
@@ -187,8 +194,8 @@ for _,family in ipairs({"retail","forever","classic","era","anniversary"})do
         local h=bars.hosts[column].main
         check(h.slot==column and h.widget:CalculateAction("LeftButton")==column,family..": repeated restore preserves all main slots")
     end
-    -- Independent documented numbers: normal/page/form/control states keep the
-    -- first12 paged and13-19 fixed, including both populated modifier layers.
+    -- Page 2 shares native slots with the fixed columns. The fixed columns keep
+    -- those actions while the first seven native columns keep their base slots.
     for _,page in ipairs({1,2,6,7,9,11,12})do
         bars.State.headers.main.attrs.actionpage=page
         if securePaging then
@@ -201,12 +208,10 @@ for _,family in ipairs({"retail","forever","classic","era","anniversary"})do
             if securePaging then bars.State.hub:SetAttribute("state-mod",tostring(swap))end
             check(bars.State.ForceApply(),family..": real state owner reapplies page/modifier")
             for column=1,19 do
-                local expected
-                if column>12 then expected=column+(swap==1 and 36 or swap==2 and 24 or 0)
-                elseif page>=11 or swap==0 then expected=(page-1)*12+column
-                else expected=column+(swap==1 and 60 or 24)end
+                local expected=mainSlot(column,page,swap)
                 local host=bars.hosts[column].main
-                check(host.slot==expected and host.widget:CalculateAction("LeftButton")==expected,family..": main-row native resolution matches documented slot ranges")
+                check(host.slot==expected and host.widget:CalculateAction("LeftButton")==expected,
+                    family..": main-row resolution for page "..page..", modifier "..swap..", column "..column)
                 if family=="forever"then check(e["FluxActionStripKey"..column]:CalculateAction("LeftButton")==expected,"Forever key and mouse agree across page/modifier states")end
             end
         end
@@ -229,10 +234,15 @@ for _,family in ipairs({"retail","forever","classic","era","anniversary"})do
     end
     state(2,0)
     check(bars.RestoreMainRow(),family..": restore preserves an ordinary active page")
+    check(bars.State.GetCurrentPage()==2,family..": native page selection remains on page 2")
+    local seen={}
     for column=1,19 do
-        local expected=column<=12 and 12+column or column
+        local expected=pageTwoSlots[column]
         local host=bars.hosts[column].main
-        check(host.slot==expected and host.widget:CalculateAction("LeftButton")==expected,"restore does not reset page2 or offset fixed13-19")
+        local slot=host.widget:CalculateAction("LeftButton")
+        check(host.slot==expected and slot==expected,"restore preserves page 2's accessible slots and the fixed columns")
+        check(not seen[slot],"page 2 has one visible main button for each occupied action slot")
+        seen[slot]=true
     end
     state(1,0)
     for _,missing in ipairs({{[18]=true},{[18]=true,[54]=true},{[18]=true,[54]=true,[42]=true},{}})do
@@ -258,9 +268,7 @@ for _,family in ipairs({"retail","forever","classic","era","anniversary"})do
             for swap=0,2 do
                 state(page,swap)
                 for column=1,19 do
-                    local expected=column>12 and column+(swap==1 and 36 or swap==2 and 24 or 0)
-                        or (page>=11 or swap==0) and (page-1)*12+column
-                        or column+(swap==1 and 60 or 24)
+                    local expected=mainSlot(column,page,swap)
                     local host=bars.hosts[column].main
                     check(host.slot==expected and host.widget:CalculateAction("LeftButton")==expected,"secure restored row follows combat page/modifier transition")
                     if family=="forever"then check(e["FluxActionStripKey"..column]:CalculateAction("LeftButton")==expected,"secure restored key matches mouse during combat state change")end

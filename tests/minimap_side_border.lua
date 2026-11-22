@@ -45,7 +45,7 @@ local function model(src,client,atlas,scale)
         assert(load(borderSource,'@actual FluxBorder','t',e))('_FluxUI',{Flux=e.Flux})
         local widget=e.Flux.EBS.Widget.Create
         e.Flux.EBS.Widget.Create=function(...)
-            local b=widget(...);b.Widget:SetFrameStrata('MEDIUM');return b
+            local b=widget(...);b.Widget:SetFrameStrata('HIGH');return b
         end
         local flyout=e.Flux.EBS.Flyout
         local bound={}
@@ -59,9 +59,14 @@ local function model(src,client,atlas,scale)
             if not t.arrow then t.arrow=e.CreateFrame('Button',nil,w,'SecureActionButtonTemplate') end
             configureLayer(t.arrow,w)
         end}
-        t.cluster=e.CreateFrame('Frame',nil,e.UIParent);t.cluster:SetFrameStrata('MEDIUM');t.cluster:SetFrameLevel(200)
+        t.cluster=e.CreateFrame('Frame',nil,e.UIParent);t.cluster:SetFrameStrata('MEDIUM');t.cluster:SetFrameLevel(39)
+        t.cluster:SetPoint('TOPRIGHT',e.UIParent,'TOPRIGHT',-2,-12);t.cluster:SetSize(180,190)
+        e.MinimapCluster=t.cluster
         t.clock=e.CreateFrame('Button',nil,e.UIParent);t.clock:SetFrameStrata('MEDIUM');t.clock:SetFrameLevel(45)
+        t.clock:SetPoint('TOPRIGHT',e.UIParent,'TOPRIGHT',-5,-2);t.clock:SetSize(60,28)
         t.info=e.CreateFrame('Frame',nil,e.UIParent);t.info:SetFrameStrata('MEDIUM');t.info:SetFrameLevel(10)
+        t.info.ClockButton=t.clock;e.FluxMinimap.InfoBar=t.info
+        t.other=e.CreateFrame('Frame',nil,e.UIParent);t.other:SetFrameStrata('MEDIUM');t.other:SetFrameLevel(100)
     end)
     local m,e=t.api,t.env
     check(not e.FluxMinimapButtonsSideBorder and t.creates==0,'disabled side grid allocates no border or widgets')
@@ -74,13 +79,14 @@ local function model(src,client,atlas,scale)
     check(host:GetParent()==gate,'border is inside the same secure visibility gate as buttons')
     check(host:IsVisible() and border:IsVisible() and border.Background:IsVisible(),'normal side grid shows border and themed backdrop')
     check(not host.mouse and not border.mouse and not border.BackgroundFrame.mouse,'decorative border cannot consume button or clock clicks')
-    check(host._FluxBorderHUD==true,'only the explicit side HUD host opts into cross-layer minimap/window junctions')
+    check(root:GetFrameStrata()=='MEDIUM' and border:GetFrameStrata()=='MEDIUM','the side grid and border use the ordinary HUD stratum')
+    check(border._FluxBorderOwnLayer,'the side border keeps its source layer when joined')
     check(host.allPoints==gate,'border follows the exact grid rectangle without extra layout spacing')
     for _,b in ipairs(t:visible()) do
-        check(above(b.Widget,t.clock) and above(b.Widget,t.cluster) and above(b.Widget,t.info),'native-template buttons render and receive hits above minimap clock and cluster')
+        check(b.Widget:GetFrameStrata()=='MEDIUM' and above(t.other,b.Widget),'native-template buttons stay within the ordinary HUD stratum')
         check(above(border,b.Widget) and above(b.Widget,border.BackgroundFrame),'chrome surrounds buttons;backdrop sits below button art')
     end
-    check(above(border.BackgroundFrame,t.clock),'side backdrop stays above map/clock instead of shared BACKGROUND tier')
+    check(above(border.BackgroundFrame,t.info) and above(t.clock,border),'below-map chrome stays on its local levels')
     check(above(t.arrow,border),'existing flyout arrow stays above side border')
     check((border.TL.atlas~=nil)==atlas,'real FluxBorder chooses selected atlas/legacy art path')
     check(border.TL.color[1]==.3 and border.Background.fill[4]==.85,'border uses current shared theme and backdrop alpha')
@@ -107,8 +113,13 @@ local function model(src,client,atlas,scale)
     check(host:IsVisible() and border.Background:IsVisible(),'combat exit restores border through shared visibility owner')
     m:SetSetting('hideInCombat',false);m:SetSetting('sideVisibility','mouseover')
     check(not host:IsVisible() and #t:visible()==0,'mouseover leaving area hides border and buttons together')
+    m:SetSetting('sideStart','top')
     local x,y,w,h=root:rect();t.cursorX,t.cursorY=x+w/2,y+h/2;t:tick()
     check(host:IsVisible() and #t:visible()==15,'hovering hidden grid reveals border with all buttons')
+    check(above(t.widgets[1].Widget,t.clock) and above(t.widgets[1].Widget,t.cluster)
+        and above(t.other,border),'top mouseover buttons clear the overlapping clock within MEDIUM')
+    t.clock:ClearAllPoints();t.clock:SetPoint('TOPLEFT',e.UIParent,'TOPLEFT');m:RefreshLayout()
+    check(above(t.clock,t.widgets[1].Widget),'the clock outside the grid cannot raise the button stack')
     t:combatState(true);writes=t.structuralWrites;t.cursorX,t.cursorY=0,0;t:tick()
     check(host:IsVisible() and #t:visible()==15 and t.structuralWrites==writes,'mouseover border freezes with shown buttons throughout combat')
     t:combatState(false)
@@ -139,9 +150,9 @@ local function replace(s,old,new)
 end
 local controls={
     {replace(source,'"FluxMinimapButtonsSideBorder", visibilityFrame','"FluxMinimapButtonsSideBorder", UIParent'),'border is inside the same secure visibility gate'},
-    {replace(source,'layoutMode == "side" and "HIGH" or "MEDIUM"','"MEDIUM"'),'native-template buttons render and receive hits above minimap clock'},
-    {replace(source,'widget:SetFrameStrata(strata)','-- template MEDIUM left unchanged'),'native-template buttons render and receive hits above minimap clock'},
-    {replace(source,'background:SetFrameStrata("HIGH")','background:SetFrameStrata("BACKGROUND")'),'side backdrop stays above map/clock'},
+    {replace(source,'layoutMode == "side" and SideGridLevel(width * scale, height * scale, top) or GRID_FRAME_LEVEL','GRID_FRAME_LEVEL'),'top mouseover buttons clear the overlapping clock within MEDIUM'},
+    {replace(source,'if widget:GetFrameStrata() ~= "MEDIUM" then widget:SetFrameStrata("MEDIUM") end','-- template stratum left unchanged'),'native-template buttons stay within the ordinary HUD stratum'},
+    {replace(source,'background:SetFrameStrata("MEDIUM")','background:SetFrameStrata("BACKGROUND")'),'below-map chrome stays on its local levels'},
     {replace(source,'    self:UpdateSideBorder()','    -- border omitted'),'active side grid uses a real FluxBorder host'},
     {replace(source,'if sideBorderHost then sideBorderHost:Hide() end','-- detached border left shown'),'embedded grid removes side border'},
     {replace(source,'elseif event == "PLAYER_REGEN_DISABLED" then','elseif event == "PLAYER_REGEN_DISABLED" then sideBorderHost:Hide()'),'no insecure combat mutation: Hide'},

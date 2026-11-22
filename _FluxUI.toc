@@ -241,6 +241,7 @@ FluxDefaultSettings.lua
 
 # Ace3 for options / HUD config
 libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
+libs\LibSharedMedia-3.0\lib.xml
 libs\LibKeyBound-1.0\lib.xml
 Bars\BindingMode.lua
 libs\AceAddon-3.0\AceAddon-3.0.xml
@@ -297,6 +298,8 @@ AddonOptions\FluxOptionsNavigation.lua
 AddonOptions\FluxOptionsWidgets.lua
 AddonOptions\FluxOptionsSkin.lua
 AddonOptions\FluxOptionsRender.lua
+AddonOptions\FluxOptionsFramePreview.lua
+AddonOptions\FluxOptionsNameplatePreview.lua
 AddonOptions\FluxOptionsShell.lua
 AddonOptions\FluxOptionsGameMenu.lua
 AddonOptions\FluxOptionsBinding.lua
@@ -371,6 +374,8 @@ UnitFrames\FluxUnitFrames_BigDebuffs.lua
 UnitFrames\FluxForeverComboPoints.lua
 UnitFrames\FluxClassPower.lua
 UnitFrames\FluxLegacyComboPoints.lua
+UnitFrames\FluxUnitFrames_PreviewAnimation.lua
+UnitFrames\FluxUnitFrames_OptionsPreview.lua
 Other\FluxCooldownDefaults.lua
 
 MicroMenu\FluxMicroMenu.lua
@@ -489,9 +494,10 @@ CharacterInfo\Init.lua
 Other\FluxDurationBars.lua
 NamePlates\Core.lua [AllowLoadGameType vanilla, tbc, wrath, cata, mists, classic, camelot, mainline]
 NamePlates\CastBarSchools.lua [AllowLoadGameType vanilla, tbc, wrath, cata, mists, classic, camelot, mainline]
-NamePlates\ComboPoints.lua [AllowLoadGameType vanilla, tbc, classic, camelot]
+NamePlates\ComboPoints.lua [AllowLoadGameType vanilla, tbc, wrath, cata, mists, classic, camelot, mainline]
 NamePlates\Threat.lua [AllowLoadGameType vanilla, tbc, wrath, cata, mists, classic, camelot, mainline]
 NamePlates\Level.lua [AllowLoadGameType vanilla, tbc, wrath, cata, mists, classic, camelot, mainline]
+NamePlates\SecureAuras.lua [AllowLoadGameType camelot, mainline]
 NamePlates\Countdown.lua [AllowLoadGameType vanilla, tbc, wrath, cata, mists, classic, camelot, mainline]
 Other\FluxChatFrame.lua
 Other\FluxChatCopyPaste.xml
@@ -525,6 +531,7 @@ libs\SecureTabs-2.0\SecureTabs-2.0.lua
 Inventory\Restock\FluxRestock_Inv.lua
 Inventory\FluxItemMover.lua
 Inventory\Restock\Core\FluxRestockSettings.lua
+Inventory\Restock\Core\FluxRestockPolicy.lua
 Inventory\Restock\Core\FluxRestockSession.lua
 Inventory\Restock\Junk\FluxJunk.lua
 Inventory\Restock\Junk\FluxJunkOverlay.lua

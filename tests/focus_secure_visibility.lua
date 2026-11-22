@@ -104,7 +104,8 @@ for _,client in ipairs(clients)do
  for _,unit in ipairs({'focus','focustarget'})do
   local f=E.CreateFrame('Button','FluxUnitFrame_'..unit);f.unit=unit;f.attrs.unit=unit;f.mouse=false
   local nextUnit=unit=='focus' and 'focustarget' or 'player'
-  local reg=section(src,'    elseif unit == "'..unit..'" then','    elseif unit == "'..nextUnit..'" then')
+  local registration=section(src,"function UF.RegisterBaseFrameEvents(frame, unit)","function UF.CreateBaseFrame")
+  local reg=section(registration,'    elseif unit == "'..unit..'" then','    elseif unit == "'..nextUnit..'" then')
   reg=reg:gsub('^    elseif unit == "'..unit..'" then','')
   assert(load('local frame,unit=...; '..reg,'@actual-focus-registration-'..unit,'t',E))(f,unit)
   f.outerBorderFrame=E.CreateFrame('Button','FluxUnitFrameOuter_'..unit,f)

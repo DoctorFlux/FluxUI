@@ -814,6 +814,8 @@ This is the current implementation reference for `Flux.Inventory`, its adapters,
 
 [`Inventory/Init.lua`](../Inventory/Init.lua), `Inv.Start`, registers the inventory module, installs scheduler and bank-state hooks, begins the login reliability hold, and chooses a source. [`Syndicator/Adapter.lua`](../Inventory/Syndicator/Adapter.lua), `Adapter.Start`, leaves built-in facts available while waiting for Syndicator readiness, starting the built-in source immediately if none exists. `Ready` calls the idempotent `Bind`, transfers ownership to Syndicator and rebuilds snapshots. An absent provider remains retryable through late addon loading. There is no three-second timeout or session-long refusal to hand off. Built-in currency callbacks check ownership at execution time after the handoff; their four shared event subscriptions remain installed but perform no currency work. See [regression evidence](PERFORMANCE_PROTOCOL.md).
 
+The inventory facade starts the built-in provider if Syndicator is loaded but its adapter cannot claim ownership. Only the adapter claims Syndicator ownership. Ready and late addon loading still allow the normal handoff.
+
 13 November [Syndicator data continuity](SYNDICATOR_SYNC.md) adds a saved live-root
 mirror while the companion owns inventory. Leaving that provider converts the
 mirror into a detached built-in ledger once; returning reconciles proven newer

@@ -24,6 +24,7 @@ local function ExecutorMod() return _G.FluxBankRestockExecutor end
 local function LedgerMod() return _G.FluxBankRestockLedger end
 local function EngineMod() return _G.FluxBankRestockEngine end
 local function PlanExecutorMod() return _G.FluxBankRestockPlanExecutor end
+local function Policy() return _G.Flux and _G.Flux.RestockPolicy end
 local function MoveExecMod() return _G.FluxBankRestockMoveExec end
 local function Settings() return FluxRestockSettings.Get() end
 
@@ -1017,11 +1018,18 @@ StacksForTask = function(entry)
     if entry and entry.isTierBankEntry and entry.tierKind then
         local T = TiersMod()
         if T and T.FindBankStacksForKind then
-            return T.FindBankStacksForKind(entry.tierKind)
+            local stacks = T.FindBankStacksForKind(entry.tierKind)
+            local policy = Policy()
+            if not policy then return stacks end
+            local filtered = {}
+            for _, stack in ipairs(stacks or {}) do
+                if policy.GetReservedSupply("bank", stack.itemID) == 0 then filtered[#filtered + 1] = stack end
+            end
+            return filtered
         end
         return {}
     end
-    return bank.FindStacks(entry.itemID)
+    return bank.FindStacks(entry.itemID, entry.logisticsOffer and { warband = false } or nil)
 end
 
 --- Plan-time bank stacks. Forces a live bank walk so replans (and a second
@@ -1042,7 +1050,8 @@ local function StacksForPlanning(entry)
         end
         return StacksForTask(entry)
     end
-    return bank.FindStacks(entry and entry.itemID, { force = true }) or {}
+    return bank.FindStacks(entry and entry.itemID, { force = true,
+        warband = not (entry and entry.logisticsOffer) }) or {}
 end
 
 --- Annotate stacks with charge counts and order fewest-charges-first.
@@ -1099,7 +1108,13 @@ local function BankAvailableForEntry(entry)
         return 0
     end
     -- Aggregates from the last bank walk — do not FindStacks here (N full bank walks).
-    return BankCountFor(entry)
+    local count = BankCountFor(entry)
+    local policy = Policy()
+    if policy and entry and not entry.logisticsOffer then
+        if entry.mode == "charge" and policy.GetReservedSupply("bank", entry.itemID) > 0 then return 0 end
+        return math.max(0, count - policy.GetReservedSupply("bank", entry.itemID))
+    end
+    return count
 end
 
 local function TaskTargetFor(entry)
@@ -1129,7 +1144,9 @@ local function TaskNeedRemaining(task)
     if not entry then
         return 0
     end
+    if entry.logisticsOffer then return math.max(0, tonumber(task.remaining) or 0) end
     local liveNeed = math.max(0, TaskTargetFor(entry) - BagCountFor(entry))
+    if task.policyCap then liveNeed = math.min(liveNeed, tonumber(task.remaining) or 0) end
     if entry.isTierBankEntry and entry.tierKind then
         local cap = tonumber(entry.tierWithdraw)
         if cap and cap > 0 then
@@ -1315,6 +1332,8 @@ local function SortRestockTasks(tasks)
 end
 
 local function EntryCoveredByActiveTier(entry, tierKindsActive, T)
+    local policy = Policy()
+    if policy and policy.IsPlannerRegistered() then return false end
     if not entry or entry.isTierBankEntry or entry.isCraftBankTarget or not entry.itemID or not T or not tierKindsActive then
         return false
     end
@@ -1330,7 +1349,18 @@ local function EntryCoveredByActiveTier(entry, tierKindsActive, T)
     return false
 end
 
-local function BuildTasks(followupOnly)
+local function ManagedWithdraw(entry, bagCount, bankAvailable, passive)
+    local rules = Rules()
+    local original = rules.ComputeWithdrawTarget(entry, bagCount, bankAvailable)
+    if original <= 0 or entry.isCraftBankTarget then return original end
+    local policy = Policy()
+    if not policy or not policy.IsPlannerRegistered() then return original end
+    local rule = policy.GetDemand(policy.RuleID(entry))
+    if not rule or passive and not rule.passive then return 0 end
+    return math.min(original, rule.uncovered)
+end
+
+local function BuildTasks(followupOnly, passive)
     local reg = Registry()
     local rules = Rules()
     if not reg or not rules then return {} end
@@ -1359,7 +1389,8 @@ local function BuildTasks(followupOnly)
                 tierKindSeen[entry.tierKind] = true
                 local bagCount = BagCountFor(entry)
                 local bankAvail = BankAvailableForEntry(entry)
-                local withdraw = rules.ComputeWithdrawTarget(entry, bagCount, bankAvail)
+                local withdraw = followupOnly and rules.ComputeWithdrawTarget(entry, bagCount, bankAvail)
+                    or ManagedWithdraw(entry, bagCount, bankAvail, passive)
                 if withdraw > 0 then
                     tasks[#tasks + 1] = {
                         entry = entry,
@@ -1368,6 +1399,7 @@ local function BuildTasks(followupOnly)
                         maxStack = MaxStackFor(entry),
                         withdraw = withdraw,
                         remaining = withdraw,
+                        policyCap = not followupOnly and Policy() and Policy().IsPlannerRegistered(),
                     }
                 end
             end
@@ -1376,7 +1408,8 @@ local function BuildTasks(followupOnly)
             if not coveredByTier then
                 local bagCount = BagCountFor(entry)
                 local bankAvail = BankAvailableForEntry(entry)
-                local withdraw = rules.ComputeWithdrawTarget(entry, bagCount, bankAvail)
+                local withdraw = followupOnly and rules.ComputeWithdrawTarget(entry, bagCount, bankAvail)
+                    or ManagedWithdraw(entry, bagCount, bankAvail, passive)
                 if withdraw > 0 then
                     tasks[#tasks + 1] = {
                         entry = entry,
@@ -1385,6 +1418,7 @@ local function BuildTasks(followupOnly)
                         maxStack = MaxStackFor(entry),
                         withdraw = withdraw,
                         remaining = withdraw,
+                        policyCap = not followupOnly and Policy() and Policy().IsPlannerRegistered(),
                     }
                 end
             end
@@ -1723,6 +1757,7 @@ local function StartRestockEngine()
         stacksForCharge = StacksForChargePlanning,
         playerSnapForTask = PlayerSnapForTask,
         getSlotCharges = SlotCharges,
+        validate = session.logisticsValidate,
         onDone = function(reason)
             if session.running then
                 FinishSession(reason or "done")
@@ -1819,6 +1854,7 @@ FinishSession = function(reason)
     DbgImportant("session", "FinishSession steps=%s aborted=%s reason=%s",
         tostring(session.stepsCompleted or 0), tostring(session.aborted), tostring(reason or "?"))
     session.running = false
+    session.logisticsValidate = nil
     session.tasks = nil
     session.activeTaskIndex = 1
     session.stepsCompleted = 0
@@ -1874,7 +1910,11 @@ end
 
 local startDeferred = false
 
-function BR.Start(isManual, followupOnly)
+function BR.Start(isManual, followupOnly, logisticsTask, validate)
+    local policy = Policy()
+    if policy and policy.IsPlannerRegistered()
+        and (policy.IsWorkflowBusy(logisticsTask and "planner" or "bank")
+        or not isManual and not followupOnly and not policy.AllowsPassive()) then return false end
     local inv = Inv()
     local bank = Bank()
     local moves = MovesMod()
@@ -1910,7 +1950,7 @@ function BR.Start(isManual, followupOnly)
     if bank.Refresh then
         bank.Refresh({ force = true })
     end
-    local tasks = BuildTasks(followupOnly)
+    local tasks = logisticsTask and { logisticsTask } or BuildTasks(followupOnly, not isManual and not followupOnly)
     if #tasks == 0 then
         return false
     end
@@ -1924,6 +1964,7 @@ function BR.Start(isManual, followupOnly)
     session.manual = isManual and true or false
 
     session.running = true
+    session.logisticsValidate = validate
     session.auctionFollowup, session.followupIssued = followupOnly == true, false
     session.tasks = tasks
     DbgImportant("session", "Start manual=%s tasks=%d", tostring(isManual and true or false), #tasks)
@@ -1961,8 +2002,23 @@ function BR.Start(isManual, followupOnly)
     StartRestockEvents()
     local started = StartRestockEngine()
     BR.RunFastButtonRefresh()
-    if followupOnly then return started end
+    if followupOnly or logisticsTask then return started end
     return true
+end
+
+function BR.StartLogistics(offer, quantity, validate)
+    local policy = Policy()
+    if not policy or session.running then return false, policy and policy.Text.busy end
+    local entry = { itemID = offer.itemID, mode = "stack", restock = true, logisticsOffer = offer }
+    local task = { entry = entry, itemID = offer.itemID, mode = "stack",
+        maxStack = MaxStackFor(entry), withdraw = quantity, remaining = quantity }
+    local started = BR.Start(true, false, task, function(move, amount)
+        if InCombatLockdown and InCombatLockdown() then return false end
+        if policy.GetActor() ~= offer.actorKey or move.itemID ~= offer.itemID then return false end
+        return amount > 0 and amount <= task.remaining and validate(offer, amount, 0)
+    end)
+    if started then return true, nil, quantity end
+    return false, policy.Text.failed
 end
 
 function BR.Stop(reason)
@@ -2143,7 +2199,7 @@ function BR.GetPendingSummary()
         if not skip then
             local bagCount = BagCountFor(entry)
             local bankAvail = BankAvailableForEntry(entry)
-            pull = pull + rules.ComputeWithdrawTarget(entry, bagCount, bankAvail)
+            pull = pull + ManagedWithdraw(entry, bagCount, bankAvail)
         end
     end
     canRunCache.bagGen = bagGen
@@ -2215,7 +2271,10 @@ function BR.GetTooltipItems()
         local bankCountDisplay = EntryBankCountForDisplay(entry)
         local combinedHave = countBank and (bagCount + bankCountDisplay) or bagCount
         local needed = math.max(0, target - combinedHave)
-        local pull = rules.ComputeWithdrawTarget(entry, bagCount, bankAvail)
+        local pull = ManagedWithdraw(entry, bagCount, bankAvail)
+        local policy = Policy()
+        local rule = policy and policy.IsPlannerRegistered() and policy.GetDemand(policy.RuleID(entry))
+        if rule then needed = rule.uncovered end
         out[#out + 1] = {
             itemID = entry.itemID,
             name = (ic and ic.GetName(entry.itemID)) or ("Item " .. tostring(entry.itemID)),
@@ -2225,6 +2284,7 @@ function BR.GetTooltipItems()
             countBank = countBank,
             target = target,
             needed = needed,
+            covered = rule and rule.covered,
             pull = pull,
             restock = entry.restock ~= false,
             tierKind = entry.tierKind,

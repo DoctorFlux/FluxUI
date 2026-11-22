@@ -13,7 +13,10 @@ prefix=prefix:gsub('function%(%)return #queue end,e','function()return #queue en
 local fixture=assert(load(prefix..'\nreturn fixture','@cast-junction-fixture','t',_G))()
 local checks=0
 local function check(v,m)checks=checks+1;assert(v,m)end
-local coords=assert(load(assert(read('FluxBorder.lua'):match('(local NORMALIZED_COORDS = {.-\n})'))..'\nreturn NORMALIZED_COORDS','@cast-canonical-uv','t',_G))()
+local borderSource=read('FluxBorder.lua')
+local coords=assert(load(assert(borderSource:match('(local NORMALIZED_COORDS = {.-\n})'))..'\nreturn NORMALIZED_COORDS','@cast-canonical-uv','t',_G))()
+local styles=assert(load('local STYLE_ART\n'..assert(borderSource:match('\n(STYLE_ART = {.-\n})'))..'\nreturn STYLE_ART',
+ '@cast-style-art','t',{NORMALIZED_COORDS=coords}))()
 local function sheet(name)
  local data=read('Texture/borders/'..name)
  local w=data:byte(13)+256*data:byte(14);local h=data:byte(15)+256*data:byte(16)
@@ -32,11 +35,13 @@ local sheets={sheet('Battlefield100.tga'),sheet('ForeverMetal150.tga')}
 -- Use the same available artwork bytes with a separate style ID, material
 -- identity and track layout to exercise future style registration.
 sheets[7]=sheets[1]
-local profiles={
- [1]={Top=8,Bottom=8,Left=9,Right=9.5,thickness=100,file='Battlefield100.tga'},
- [2]={Top=9,Bottom=7,Left=9.5,Right=9,thickness=150,file='ForeverMetal150.tga'},
- [7]={Top=8.25,Bottom=7.75,Left=9.25,Right=9.5,thickness=125,file='CastProfileFixture.tga'},
-}
+local profiles={[7]={Top=8.25,Bottom=7.75,Left=9.25,Right=9.5,thickness=125,file='CastProfileFixture.tga'}}
+for style,art in pairs(styles)do
+ local profile=art.tracks
+ profile.thickness=art.thickness
+ profile.file=assert(art.texture:match('[^\\]+$'))
+ profiles[style]=profile
+end
 -- Pinned local Forever source: UiTextureAtlasMember14234, atlas1942,
 -- FileData4505182 SHA25696c4779261efb57e93294498680b95ed98549977855f3ac31707182270856423.
 -- Actual first alpha column of ui-castingbar-filling-standard (209x11).
@@ -167,10 +172,14 @@ for _,style in ipairs{1,2,7}do for _,scale in ipairs{.75,1,1.25,2.5,3}do for _,b
   return opacity
  end
  local halfStroke=profile.thickness/100
+ local iconStroke=style==1 and 2 or halfStroke
  local middle=(top+4-topTrack+bottom+11-bottomTrack)/2
  check(sourceOpacity(divider+.11,middle,ip.Right,bp.Left)>.95,'the cast divider retains its material at the center')
- for _,sign in ipairs{-1,1}do
-  local x=divider+sign*(halfStroke+.13)
+ if style==1 then
+  check(sourceOpacity(divider-1.65,middle,ip.Right,bp.Left)>.9,'type 1 covers the icon-side shoulder of its cast divider')
+ end
+ for _,offset in ipairs{-iconStroke-.13,halfStroke+.13}do
+  local x=divider+offset
   check(sourceOpacity(x,middle,ip.Right,bp.Left)==0,
    'cast divider excludes the outer bevel beside the icon and fill: style '..style..' scale '..scale)
  end
@@ -184,8 +193,12 @@ for _,style in ipairs{1,2,7}do for _,scale in ipairs{.75,1,1.25,2.5,3}do for _,b
   end
   check(sourceOpacity(divider+.11,crossbar+inward*3.55,ip.Right,bp.Left)>.95,
    'the vertical divider still meets the cast rim')
-  for _,sign in ipairs{-1,1}do
-   check(sourceOpacity(divider+sign*(halfStroke+.13),crossbar+inward*3.55,ip.Right,bp.Left)==0,
+  if style==1 then
+   check(sourceOpacity(divider-1.65,crossbar+inward*9.55,ip.Right,bp.Left)>.9,
+    'type 1 keeps its icon-side shoulder where the cast divider joins the rim')
+  end
+  for _,offset in ipairs{-iconStroke-.13,halfStroke+.13}do
+   check(sourceOpacity(divider+offset,crossbar+inward*3.55,ip.Right,bp.Left)==0,
     'the cast divider uses the same trim inside its T-junction')
   end
  end

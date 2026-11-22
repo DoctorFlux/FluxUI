@@ -21,7 +21,11 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
     local native=client=="live"or client=="forever"
     local e,module,frame,frames,boxes,data=Fixture(native,nil,nil,client)
     frame._fluxPartyMember=true
-    e.C_Texture={GetAtlasInfo=function(name)check(name=="UI-HUD-ActionBar-Proc-Loop-Flipbook","Salvage atlas identity");return atlas and {} or nil end}
+    e.C_Texture={GetAtlasInfo=function(name)
+        if name:match("^RaidFrame%-Icon%-Debuff") then return {} end
+        check(name=="UI-HUD-ActionBar-Proc-Loop-Flipbook","Salvage atlas identity")
+        return atlas and {} or nil
+    end}
     check(module.Setup(frame),"party effect prepared before combat")
     local allocated=#frames
     if native then
@@ -47,7 +51,11 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
             check(texture.texture:find("glow%-border") and #clock.animations==2,"existing glow artwork pulses when atlas is missing")
         end
         local icon=groups.dispel.groups.debuffs.buttons[1]
-        check(#icon._fluxPartyDebuffBorders==4 and #icon.dispelSinks==4,"four rectangular aura border edges are registered")
+        check(#icon._fluxPartyDebuffBorders==4 and #icon.dispelSinks==5,"four rectangular aura border edges and one corner icon are registered")
+        local glyph=icon.dispelSinks[5]
+        check(glyph.options.style==2 and not glyph.options.showWithoutDispelType
+            and glyph.region.parent==icon.AuraTextLayer and glyph.region.points[1][1]=="TOPRIGHT",
+            "party aura type icon stays above the cooldown and is selected by the native owner")
         for _,edge in ipairs(icon._fluxPartyDebuffBorders)do
             check(edge.width==1.5 or edge.height==1.5,"thicker border remains inside clipped icon bounds")
             check(edge.points[1][4]==0 and edge.points[1][5]==0,"colored edge is visible inside the icon")
@@ -68,6 +76,8 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
         check(not owner.shown and owner.unit=="none","hide debuffs retires glow owner")
         frame.optionTable.displayDebuffs=true;e.dispelHighlight=false;module.Update(frame)
         check(not owner.shown,"existing highlight option disables glow")
+        check(groups.dispelPlain.shown and groups.dispelPlain.groups.debuffs.buttons[1].dispelSinks[5].options.style==2,
+            "turning off the party member glow retains debuff type icons")
         e.dispelHighlight=true;module.Update(frame);module.Clear(frame)
         check(not owner.shown and owner.unit=="none","clear unbinds glow")
         if client=="live"then check(not clock.playing,"public animation stops with disabled owner")end
@@ -84,6 +94,9 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
             check(near(texture.color[1],rgb[1]) and near(texture.color[2],rgb[2]) and near(texture.color[3],rgb[3]),"glow follows the client's exact type palette")
             local borders=frame._fluxAuraCorners.debuffs[1]._fluxPartyDebuffBorders
             check(#borders==4,"readable aura uses the rectangular border")
+            local glyph=frame._fluxAuraCorners.debuffs[1]._fluxDispelTypeIcon
+            check(glyph.shown and glyph.atlas=="RaidFrame-Icon-Debuff"..kind,
+                "readable party aura shows the type-specific icon: "..kind)
             local edge=frame._fluxAuraCorners.debuffs[1]
             e.FluxRaidVisuals.SetPartyDebuffBorderType(edge,kind)
             for _,border in ipairs(borders)do check(border.shown and near(border.color[1],rgb[1]),"all four edges use type color")end

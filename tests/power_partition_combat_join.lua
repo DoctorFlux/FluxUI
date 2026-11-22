@@ -134,7 +134,7 @@ local function build(client,permission)
     assert(load(section(shared,"local function ValueIsSecret(value)","local function PlayerDeadOrGhost(unit)"),
         "@power-combat-public-geometry","t",e))()
     assert(loadfile("UnitFrames/FluxUnitFrames_Lifecycle.lua","t",e))("_FluxUI",ns)
-    assert(load(section(shared,"function UF.UpdatePower(self, unit)","function UF.CreatePowerBar(frame)"),
+    assert(load(section(shared,"function UF.PaintPowerLabels(self, unit","function UF.CreatePowerBar(frame)"),
         "@power-combat-production-power","t",e))()
     assert(load(section(shared,"-- Dynamic Partitioning (Sizing)","-- Event Handling"),
         "@power-combat-production-partition","t",e))()

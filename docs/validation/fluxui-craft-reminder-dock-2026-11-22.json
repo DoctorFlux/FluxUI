@@ -1,0 +1,176 @@
+{
+  "changeId": "FLUXUI-CRAFT-REMINDER-DOCK-20261122",
+  "date": "2026-11-22",
+  "requirements": {
+    "appearance": "Keep the supplied craft reminder icon, output badge, caption and click behavior. The compact window layout places the icon beside the caption.",
+    "placement": "Place one craft reminder in the active native or Flowcraft profession window and return it to the existing HUD anchor on close. Support standalone FluxUI.",
+    "handoff": "Retain the Flowcraft Process action and native Create submission for a prepared batch. Uses an ordinary click and the existing secure opener.",
+    "accessibility": "Verify pointer activation and focus, native controller cursor reachability and back/close behavior. Test both native and Flowcraft views. Native input acceptance pending."
+  },
+  "checkpoint": {
+    "manifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-craft-dock-before-20261122T113650Z\\checkpoint.json",
+    "sourceFiles": 314,
+    "settingsMetadataRows": 73,
+    "settingsContentsCopied": false,
+    "settingsMetadataSha256": "385886bdeb0e4dafa064d0687d2c11ab8cbed18b09213e1c345f876dc6ea03bc",
+    "branch": "main",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a1ffc8-e3e4-7861-a366-cde5c05e7611\\fluxui-debuff-type-before-20261121T222839Z\\history.bundle",
+    "historyBundleSha256": "90bfc84da44ffd45c6617f5304a431e6ed808eadb90080ffefe4bc5d691b2909",
+    "companionPremergeManifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-craft-dock-companion-mirror-checkpoint-20261122T114326Z\\checkpoint.json",
+    "companionPremergeHashes": {
+      "_retail_/FluxCraft/UI.lua": "027dc0dfec61e80d3267ebb04dee1192724653e30e333b3153ef002891b7da70",
+      "_retail_/Tests/workspace_test.lua": "cd0ae63fb5d07bb34a31eb20d4d94ea247bcce098814e1939dda6cc436190b88",
+      "_forever_/FluxCraft/UI.lua": "027dc0dfec61e80d3267ebb04dee1192724653e30e333b3153ef002891b7da70",
+      "_forever_/Tests/workspace_test.lua": "cd0ae63fb5d07bb34a31eb20d4d94ea247bcce098814e1939dda6cc436190b88"
+    },
+    "companionComparison": "Dock-only hunks reapplied to the newer canonical source. Retail and Forever bytes match at the premerge checkpoint."
+  },
+  "installedSources": {
+    "_FluxUI/Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua": {
+      "before": "7a0120fb3ef65d65db63904b2802b72a32eed705759753f150281aea82822400",
+      "after": "6322b4e01b481e4124522edf844f200802270898a508e848a952a8c57831de95",
+      "runtime": true,
+      "verifiedClients": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_classic_era_",
+        "_anniversary_"
+      ]
+    },
+    "_FluxUI/Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": {
+      "before": "f955a559e4c1a42bdb7546b41a40f871b406fcb08dfebcdff7aa0a2fd79d52a8",
+      "after": "5120b78208e08ecf42b46d00d05cf38d0910ad9423020e2ed12aadaf1d5faab2",
+      "runtime": true,
+      "verifiedClients": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_classic_era_",
+        "_anniversary_"
+      ]
+    },
+    "FluxLogistics/FluxCraft/UI.lua": {
+      "before": "027dc0dfec61e80d3267ebb04dee1192724653e30e333b3153ef002891b7da70",
+      "after": "0f50281217471c3e2963abb3a97e4a78f2ba16c549f1391c6e21a7af7e6d3a04",
+      "runtime": true,
+      "verifiedClients": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_classic_era_",
+        "_anniversary_"
+      ]
+    },
+    "_FluxUI/tests/auction_restock_followup_ui.lua": {
+      "before": "04d8e289a43a2f6514280e1449f3b9fb53aae2c9d25a930fbf9f4804262b4149",
+      "after": "c0b09267b7533e29878be141cc1ff74d69763ca9c8044f1322af6425b57df2a8",
+      "runtime": false,
+      "verifiedClients": [
+        "_retail_"
+      ]
+    },
+    "_FluxUI/tests/auction_restock_followup_integration.lua": {
+      "before": "fafb451edcb57c86ee1e62187bdc71c407eeaa6b908a3f30b7b5ecf024b8ee74",
+      "after": "a67d378d59a2439ad7786f02c139cc0392dff9b7cfe44baf8c9bea2f19ac4d7e",
+      "runtime": false,
+      "verifiedClients": [
+        "_retail_"
+      ]
+    },
+    "FluxLogistics/Tests/workspace_test.lua": {
+      "before": "cd0ae63fb5d07bb34a31eb20d4d94ea247bcce098814e1939dda6cc436190b88",
+      "after": "04013583130379fd7fc81a7f714c32234f0e99162506ee889e5d2cdaef6c6a5d",
+      "runtime": false,
+      "verifiedClients": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_classic_era_",
+        "_anniversary_"
+      ]
+    }
+  },
+  "desktop": {
+    "summary": "63,801 HUD checks; 310 integration checks; 17 installed Lua 5.4 and six targeted Lua 5.1 companion suites",
+    "owner": {
+      "hud": 63801,
+      "integration": 310,
+      "standaloneFollowup": 674,
+      "automation": 1260,
+      "craft": 3279,
+      "closedProfession": 1220,
+      "companionGate": 237,
+      "renderer": {
+        "checksPerSource": 1020,
+        "pairedTrials": 15,
+        "identicalWorkVectors": 45,
+        "rawFrozen": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-craft-dock-before-20261122T113650Z\\owner-renderer-frozen.txt",
+        "rawCandidate": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-craft-dock-before-20261122T113650Z\\owner-renderer-candidate.txt"
+      }
+    },
+    "companion": {
+      "installedLua54Suites": 17,
+      "installedLua51Suites": [
+        "auction_shopping",
+        "logistics",
+        "resize",
+        "target_load",
+        "workspace",
+        "execution"
+      ],
+      "frozenRejectedDockAssertion": true
+    },
+    "frozenReproducedDetachedIconAndPlainDuplicate": true,
+    "syntaxFiles": 6,
+    "upvalues": {
+      "runtimeFiles": 3,
+      "prototypes": 495,
+      "maximum": 49
+    },
+    "matchedRuntimeCopiesPerFile": 5,
+    "whitespace": "Scoped git diff checks passed, including the fresh companion premerge comparison."
+  },
+  "native": {
+    "client": "Forever 1.60.1",
+    "build": 71037,
+    "interface": 16001,
+    "sourceCommit": "734f065329cff4992835b01a84f210a297db91b6",
+    "pinnedSources": [
+      "https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_Professions/Blizzard_ProfessionsFrame.lua#L471-L497",
+      "https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua#L621-L630",
+      "https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua#L125-L138",
+      "https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua#L1218-L1238"
+    ],
+    "preInstallCaptures": [
+      {
+        "captureUtc": "2026-11-22T11:37:23Z",
+        "sha256": "6dc4ed6fb7b077e681bc76f59c74a37758104764364743b9acedb6aaf614e47d",
+        "FlowcraftVisible": true,
+        "visibleRecipe": "Green Silk Pack",
+        "activeCast": true,
+        "queueQuantity": 7,
+        "foregroundUnchanged": true,
+        "inputSent": false
+      },
+      {
+        "captureUtc": "2026-11-22T11:38:40Z",
+        "sha256": "7f07b84ac076263f7f89fcdd5193e7b4990f8e59ed1ac0859caecd67b6ec28a1",
+        "FlowcraftVisible": true,
+        "visibleRecipe": "Green Silk Pack",
+        "activeCast": true,
+        "queueQuantity": 6,
+        "foregroundUnchanged": true,
+        "inputSent": false
+      }
+    ],
+    "captureCopiedToRepository": false,
+    "candidateStatus": "Native placement, candidate reload, pointer click and controller pending",
+    "postInstallGuard": "Verified Forever executable and window. WoW held foreground, so the guard exited before capture.",
+    "candidateReloadVerified": false,
+    "candidatePlacementVerified": false,
+    "inputSent": false,
+    "foregroundChanged": false
+  }
+}

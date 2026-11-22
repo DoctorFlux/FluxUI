@@ -1,0 +1,434 @@
+{
+  "id": "RESTOCK-CRAFT-OPENER-20261122",
+  "recordedUtc": "2026-11-21T23:22:34.448097+00:00",
+  "externalCheckpoints": [
+    "fluxui-craft-opener-before-20261121T231349Z",
+    "fluxlogistics-craft-opener-20261122"
+  ],
+  "ownerRuntimeSha256": {
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": {
+      "before": "fe2d7dc8901217c6e973e14b81d2d7f90c5b13f3b41f0e4f226ba466967726eb",
+      "after": "53d312e00880ef832d69c4d24384966eb87c6747dcd3c4c13af91e984354348e",
+      "matchingInstalledCopies": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_classic_era_",
+        "_anniversary_"
+      ]
+    },
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": {
+      "before": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+      "after": "4d3f6a8affbe1e2cb6da1a9d8fda666488f683f9e7013aad731ad00cc09ec839",
+      "matchingInstalledCopies": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_classic_era_",
+        "_anniversary_"
+      ]
+    }
+  },
+  "companionRuntimeSha256": {
+    "FluxCraft/Clients.lua": {
+      "before": "8a79b6ca912a0bfe3362bfdb2d77b87113878f079e1cf2def95b1026cd3b4a89",
+      "after": "d8578270881a63b3ff567b04bd98af1a2b53c737bad876f03a1a863a30788e07",
+      "matchingInstalledCopies": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_classic_era_",
+        "_anniversary_"
+      ]
+    },
+    "FluxCraft/Execution.lua": {
+      "before": "dc9a0d249f4e917bb6bc57c7fa5b9729eed439093d508b7e4cfd02e820ec61c3",
+      "after": "9aa708660a190702efebcee38fa4c574dd152e24df2e9d0be6de8c1bdea06007",
+      "matchingInstalledCopies": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_classic_era_",
+        "_anniversary_"
+      ]
+    }
+  },
+  "clientSourcePins": {
+    "forever": "734f065329cff4992835b01a84f210a297db91b6",
+    "retail": "ab5cb850a3f65e742959e379c4689353a2f4549f"
+  },
+  "ownerDesktop": [
+    {
+      "path": "tests/auction_restock.lua",
+      "exit": 0,
+      "seconds": 0.7721,
+      "output": "Auction restock: 12620 checks PASS; 44 client/provider/addon profiles; native purchases/input/taint/pixels/FPS NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_bank_flag_ui.lua",
+      "exit": 0,
+      "seconds": 0.5365,
+      "output": "Auction ingredient bank UI: 180 checks PASS; 20 profiles; native clicks/pixels/controller NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_charges.lua",
+      "exit": 0,
+      "seconds": 0.818,
+      "output": "Auction restock charges: 14634 checks PASS; 20 profiles +33 real-receipt profiles; native charges/mail/purchases NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_craft_settle.lua",
+      "exit": 0,
+      "seconds": 2.6473,
+      "output": "Auction craft settlement: 412 checks PASS; 20 client/provider/yield profiles; native event timing/art/input NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_crafting.lua",
+      "exit": 0,
+      "seconds": 0.5241,
+      "output": "Auction restock crafting/tab: 836 checks PASS; 20 profiles; native quote permissions/rendering/controller NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_data_work.lua",
+      "exit": 0,
+      "seconds": 1.5462,
+      "output": "Auction restock data work: 1900 checks PASS; 20 profiles; native latency/CPU/FPS NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_followup.lua",
+      "exit": 0,
+      "seconds": 2.0171,
+      "output": "Auction restock follow-up: 674 checks PASS; 10 client/provider profiles; native mail/vendor/craft permissions NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_followup_automation.lua",
+      "exit": 0,
+      "seconds": 1.9283,
+      "output": "Auction follow-up automation: 1260 checks PASS; 20 client/provider/global-option profiles; native actions/glow NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_followup_closed_profession.lua",
+      "exit": 0,
+      "seconds": 1.6227,
+      "output": "Closed-profession restock follow-up: 1220 checks PASS; 30 client/provider/bank +20 craft-progress profiles; native mail/login/profession execution NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_followup_craft.lua",
+      "exit": 0,
+      "seconds": 0.2628,
+      "output": "Auction restock follow-up craft: 3040 checks PASS; 20 profiles; native open/craft/input/taint NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_followup_integration.lua",
+      "exit": 0,
+      "seconds": 0.2595,
+      "output": "Auction restock follow-up integration: 290 checks PASS; 10 client/provider profiles; native actions/pixels/input/taint NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_followup_logistics.lua",
+      "exit": 0,
+      "seconds": 0.1479,
+      "output": "Companion auction Followup: 128 checks across eight owner profiles."
+    },
+    {
+      "path": "tests/auction_restock_followup_render_work.lua",
+      "exit": 0,
+      "seconds": 0.0632,
+      "output": "RENDER_WORK Retail trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Retail trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Retail trial=1 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Retail trial=2 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Retail trial=2 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Retail trial=2 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Retail trial=3 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Retail trial=3 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Retail trial=3 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Forever trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Forever trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Forever trial=1 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Forever trial=2 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Forever trial=2 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Forever trial=2 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Forever trial=3 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Forever trial=3 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Forever trial=3 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK MoP trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK MoP trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK MoP trial=1 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK MoP trial=2 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK MoP trial=2 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK MoP trial=2 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK MoP trial=3 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK MoP trial=3 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK MoP trial=3 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Era trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Era trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Era trial=1 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Era trial=2 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Era trial=2 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Era trial=2 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Era trial=3 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Era trial=3 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Era trial=3 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Anniversary trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Anniversary trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Anniversary trial=1 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Anniversary trial=2 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Anniversary trial=2 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Anniversary trial=2 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Anniversary trial=3 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nRENDER_WORK Anniversary trial=3 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0\nRENDER_WORK Anniversary trial=3 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0\nAuction follow-up render work: 1020 checks PASS; 15 matched client trials; native pixels/latency/controller/taint/FPS NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_followup_ui.lua",
+      "exit": 0,
+      "seconds": 0.6281,
+      "output": "Auction restock per-item follow-up UI: 63213 checks PASS; 5 client profiles plus193/500/1000 overflow; native pixels/clipping/input/controller/taint NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_generation.lua",
+      "exit": 0,
+      "seconds": 0.261,
+      "output": "Auction generation/quantity: 276 checks PASS; 20 client/provider profiles; native detection/buying NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_inline_upgrades.lua",
+      "exit": 0,
+      "seconds": 2.7401,
+      "output": "AH inline upgrades: 1220 checks PASS/20 profiles; independent cells, bandages, blacklist, options and real purchase owners"
+    },
+    {
+      "path": "tests/auction_restock_market.lua",
+      "exit": 0,
+      "seconds": 1.561,
+      "output": "Auction dense grid/stock/price bridge: 2288 checks PASS; 20 profiles; native pixels/vendor coverage/coexistence NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_owner_rejection.lua",
+      "exit": 0,
+      "seconds": 1.2161,
+      "output": "Auction owner rejection: 620 checks PASS; 10 client/provider profiles; native permissions/moves NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_passive.lua",
+      "exit": 0,
+      "seconds": 3.2539,
+      "output": "AH passive refresh: 440 checks PASS/20 profiles;one shortage scan;stable choices;zero passive queries;per-kind defaults/options"
+    },
+    {
+      "path": "tests/auction_restock_potion_confirmation.lua",
+      "exit": 0,
+      "seconds": 5.3524,
+      "output": "AH potion confirmation: 672 checks PASS/20 client-addon-provider profiles; native inline controls/input tested separately"
+    },
+    {
+      "path": "tests/auction_restock_potion_restore.lua",
+      "exit": 0,
+      "seconds": 2.6253,
+      "output": "AH potion restore/browse: 388 checks PASS/20 profiles; native server availability tested separately"
+    },
+    {
+      "path": "tests/auction_restock_potion_upgrade.lua",
+      "exit": 0,
+      "seconds": 1.1266,
+      "output": "AH usable potion upgrades: 280 checks PASS/20 client-addon-provider profiles; native scanning/tier UI NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_potions.lua",
+      "exit": 0,
+      "seconds": 4.9837,
+      "output": "Auction potion upgrades: 580 checks PASS; 20 profiles; native browse/usability/tier/input NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_price_policy.lua",
+      "exit": 0,
+      "seconds": 2.2314,
+      "output": "Auction explicit price policy: 820 checks PASS; 20 profiles; native input/rendering NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_purchase_flow.lua",
+      "exit": 0,
+      "seconds": 0.7818,
+      "output": "Auction restock purchase flow: 420 checks PASS; 20 client/provider/excess profiles; native purchasing/taint/latency NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_queue.lua",
+      "exit": 0,
+      "seconds": 0.6426,
+      "output": "Auction restock automatic queue: 968 checks PASS; 20 profiles; native purchase permissions/pixels NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_scan_all.lua",
+      "exit": 0,
+      "seconds": 0.8331,
+      "output": "Auction all-target scans: 284 checks PASS; 20 client/provider/addon profiles; native searches/tier updates NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_scroll.lua",
+      "exit": 0,
+      "seconds": 1.0013,
+      "output": "Auction compact scrolling tab: 832 checks PASS; 20 client/addon profiles; native pixels/clipping/controller/input/taint NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_sources.lua",
+      "exit": 0,
+      "seconds": 4.1794,
+      "output": "Auction restock sources: 1464 checks PASS; 20 profiles; native bank/vendor permissions NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_speed.lua",
+      "exit": 0,
+      "seconds": 3.5641,
+      "output": "Auction on-demand speed: 492 checks PASS; 20 profiles; native latency/input/taint NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_vendor_prices.lua",
+      "exit": 0,
+      "seconds": 0.2363,
+      "output": "Auction vendor opportunity prices: 1170 checks PASS; 20 profiles; native vendor/AH prices/input NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_vendor_queue.lua",
+      "exit": 0,
+      "seconds": 0.3192,
+      "output": "Auction vendor opportunity queue: 1106 checks PASS; 20 profiles; native purchasing/taint/provider coexistence NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_vendor_routes.lua",
+      "exit": 0,
+      "seconds": 1.8464,
+      "output": "Auction restock vendor routes: 476 checks PASS; 20 client/addon profiles; native price/stack/vendor/craft permissions NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_viewport_actions.lua",
+      "exit": 0,
+      "seconds": 1.0852,
+      "output": "AH viewport actions: 88660 checks PASS; 10 client/provider models; native input/controller/FPS/taint NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_viewport_work.lua",
+      "exit": 0,
+      "seconds": 4.5216,
+      "output": "AH_VIEWPORT Retail provider=false optimized=true openingWidgets=4549 nativeFrames=4012 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15021 scrollWidth=952\nAH_VIEWPORT Retail provider=true optimized=true openingWidgets=4549 nativeFrames=4012 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15021 scrollWidth=952\nAH_VIEWPORT Forever provider=false optimized=true openingWidgets=4549 nativeFrames=4012 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15021 scrollWidth=952\nAH_VIEWPORT Forever provider=true optimized=true openingWidgets=4549 nativeFrames=4012 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15021 scrollWidth=952\nAH_VIEWPORT MoP provider=false optimized=true openingWidgets=4549 nativeFrames=4012 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15021 scrollWidth=952\nAH_VIEWPORT MoP provider=true optimized=true openingWidgets=4549 nativeFrames=4012 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15021 scrollWidth=952\nAH_VIEWPORT Era provider=false optimized=true openingWidgets=4548 nativeFrames=4011 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15020 scrollWidth=952\nAH_VIEWPORT Era provider=true optimized=true openingWidgets=4548 nativeFrames=4011 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15020 scrollWidth=952\nAH_VIEWPORT Anniversary provider=false optimized=true openingWidgets=4548 nativeFrames=4011 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15020 scrollWidth=952\nAH_VIEWPORT Anniversary provider=true optimized=true openingWidgets=4548 nativeFrames=4011 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15020 scrollWidth=952\nAH viewport work: 117900 checks PASS; 10 client/provider models; semanticTraceBytes=1335636; native FPS/controller/taint NOT RUN"
+    },
+    {
+      "path": "tests/auction_restock_workflow.lua",
+      "exit": 0,
+      "seconds": 1.0657,
+      "output": "Auction restock workflow: 310 checks PASS; 10 client/provider profiles; native delivery/permissions NOT RUN"
+    },
+    {
+      "path": "tests/auction_incoming_mail.lua",
+      "exit": 0,
+      "seconds": 0.6376,
+      "output": "Auction incoming mail: 743 checks PASS; 15 client/provider profiles; native purchase/taint/latency NOT RUN"
+    },
+    {
+      "path": "tests/mail_restock.lua",
+      "exit": 0,
+      "seconds": 2.0893,
+      "output": "Mail restock: 3960 checks PASS /20 client-provider-timer profiles"
+    },
+    {
+      "path": "tests/flux_logistics_auction_rows.lua",
+      "exit": 0,
+      "seconds": 0.0922,
+      "output": "Temporary queued auction targets: 82 focused actual-owner checks passed."
+    },
+    {
+      "path": "tests/inventory_observed_inbox.lua",
+      "exit": 0,
+      "seconds": 0.0794,
+      "output": "Mailbox observation: 29 checks PASS; built-in and Syndicator owner, native mail and UI NOT RUN"
+    },
+    {
+      "path": "tests/flux_logistics_restock_policy.lua",
+      "exit": 0,
+      "seconds": 0.0679,
+      "output": "FluxLogistics restock bridge PASS (136 checks)"
+    }
+  ],
+  "companionDesktop": [
+    {
+      "path": "Tests/auction_shopping_test.lua",
+      "exit": 0,
+      "seconds": 0.5675,
+      "output": "Queue shopping opens in one window, forwards exact quantities, and limits native purchases to the active plan"
+    },
+    {
+      "path": "Tests/book_test.lua",
+      "exit": 0,
+      "seconds": 0.0207,
+      "output": "book recipe-memory fixtures passed"
+    },
+    {
+      "path": "Tests/clients_test.lua",
+      "exit": 0,
+      "seconds": 0.022,
+      "output": "client action and availability tests passed"
+    },
+    {
+      "path": "Tests/comparison_test.lua",
+      "exit": 0,
+      "seconds": 0.0317,
+      "output": "recursive route comparison fixtures passed"
+    },
+    {
+      "path": "Tests/execution_test.lua",
+      "exit": 0,
+      "seconds": 0.0592,
+      "output": "native craft lifecycle and recovery tests passed"
+    },
+    {
+      "path": "Tests/logistics_test.lua",
+      "exit": 0,
+      "seconds": 0.0986,
+      "output": "FluxUI and FluxLogistics restock, acquisition, stock coverage and deduplication fixtures passed\nAccepted bank requirements and live alternate stock handoff passed\nAccepted auction materials use cheaper live merchant stock automatically or through manual Restock\nAccepted direct auction replenishment respects updated live stock targets\nAccepted direct bank and vendor replenishment share live ownership and bundle limits\nTier restock credits paid receipts against the observed listing SKU\nAuctionator estimates retain fractional precision and authorize only whole copper within the accepted cap"
+    },
+    {
+      "path": "Tests/milestone1_planner_test.lua",
+      "exit": 0,
+      "seconds": 0.0916,
+      "output": "Milestone 1 sourcing, allocation, economics and provider fixtures passed"
+    },
+    {
+      "path": "Tests/planner_test.lua",
+      "exit": 0,
+      "seconds": 0.04,
+      "output": "FluxCraft planner synthetic fixtures: PASS"
+    },
+    {
+      "path": "Tests/queue_test.lua",
+      "exit": 0,
+      "seconds": 0.0308,
+      "output": "queue tests passed"
+    },
+    {
+      "path": "Tests/recipe_density_test.lua",
+      "exit": 0,
+      "seconds": 0.0242,
+      "output": "Forever compact recipe rows preserve scroll and restore native sizes"
+    },
+    {
+      "path": "Tests/recipe_profit_test.lua",
+      "exit": 0,
+      "seconds": 0.0282,
+      "output": "Forever recipe profit estimates, ranks, pooling and native controls passed"
+    },
+    {
+      "path": "Tests/resize_test.lua",
+      "exit": 0,
+      "seconds": 0.0808,
+      "output": "Forever native panel and Classic workbench resize fixtures passed"
+    },
+    {
+      "path": "Tests/target_load_test.lua",
+      "exit": 0,
+      "seconds": 0.1395,
+      "output": "runtime TOC load without a Settings page, late native host and disabled-client checks passed"
+    },
+    {
+      "path": "Tests/ui_reagents_test.lua",
+      "exit": 0,
+      "seconds": 0.1204,
+      "output": "Forever native host, overview and escape fixtures passed"
+    },
+    {
+      "path": "Tests/workspace_test.lua",
+      "exit": 1,
+      "seconds": 0.0522,
+      "output": "lua: FluxCraft/UI.lua:1778: attempt to call a nil value (global 'auctionEntry')\nstack traceback:\n\tFluxCraft/UI.lua:1778: in field '?'\n\tTests/ui_fixture.lua:10: in method 'Fire'\n\tTests/workspace_test.lua:121: in main chunk\n\t[C]: in ?"
+    },
+    {
+      "path": "FluxCraft/Tests/AdaptersCatalog.lua",
+      "exit": 0,
+      "seconds": 0.0329,
+      "output": "FluxCraft adapter/catalog fixtures passed"
+    }
+  ],
+  "baselineReplay": [
+    {
+      "path": "tests/auction_restock_followup_craft.lua",
+      "exit": 1,
+      "seconds": 0.0362,
+      "output": "lua: tests/auction_restock_followup_craft.lua:4: a hidden frame or recipes page reopens the already active base profession without crafting\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/auction_restock_followup_craft.lua:4: in local 'check'\n\ttests/auction_restock_followup_craft.lua:261: in main chunk\n\tstdin:9: in main chunk\n\t[C]: in ?"
+    },
+    {
+      "path": "Tests/clients_test.lua",
+      "exit": 1,
+      "seconds": 0.029,
+      "output": "lua: Tests/clients_test.lua:120: one press opens a hidden native profession\nstack traceback:\n\t[C]: in function 'assert'\n\tTests/clients_test.lua:120: in main chunk\n\tstdin:9: in main chunk\n\t[C]: in ?"
+    },
+    {
+      "path": "Tests/execution_test.lua",
+      "exit": 1,
+      "seconds": 0.0563,
+      "output": "lua: Tests/execution_test.lua:845: a synchronous reveal without a native event re-arms the craft immediately without submitting it\nstack traceback:\n\t[C]: in function 'assert'\n\tTests/execution_test.lua:845: in main chunk\n\tstdin:9: in main chunk\n\t[C]: in ?"
+    },
+    {
+      "path": "Tests/workspace_test.lua",
+      "exit": 1,
+      "seconds": 0.0464,
+      "output": "lua: FluxCraft/UI.lua:1778: attempt to call a nil value (global 'auctionEntry')\nstack traceback:\n\tFluxCraft/UI.lua:1778: in field '?'\n\tTests/ui_fixture.lua:10: in method 'Fire'\n\tTests/workspace_test.lua:121: in main chunk\n\tstdin:9: in main chunk\n\t[C]: in ?"
+    }
+  ],
+  "syntaxFilesLua51And54": 7,
+  "native": "Not run. In-game first open, foreground/gamepad ownership, secure permissions, cosmetics and craft remain pending."
+}

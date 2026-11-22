@@ -57,6 +57,16 @@ local ApplyMapScaling
 local StartLayoutDriver
 local ApplyMapSetMapIDSilent
 local FinishMapIDTransition
+local HoldAreaPoiEvent
+local DiscardAreaPoiEvent
+
+local AREA_POI_EVENT = "AREA_POIS_UPDATED"
+local restrictionType = Enum and Enum.AddOnRestrictionType
+local restrictionState = Enum and Enum.AddOnRestrictionState
+
+local function IsMapRefreshRestricted()
+    return state.poiCombatRestricted or InCombatLockdown()
+end
 
 -- Transparent overlay: blocks mouse from reaching tainted map POI pins during combat
 local combatMouseBlocker = CreateFrame("Frame", "FluxBattlefieldMapCombatBlocker", UIParent)
@@ -214,7 +224,7 @@ StartTabWatch(50)
 local function SetupMapParenting(mapFrame, parentFrame)
     if not mapFrame or not parentFrame then return end
 
-    if InCombatLockdown() then
+    if IsMapRefreshRestricted() then
         table.insert(positionUpdateQueue, {mapFrame, parentFrame, "setup"})
         return
     end
@@ -414,8 +424,8 @@ local function IsWorldZoneTransition(fromMapID, toMapID)
 end
 
 local function RefreshMapOnZoneChange()
-    -- Don't refresh during combat to avoid protected function calls
-    if InCombatLockdown() then
+    if IsMapRefreshRestricted() then
+        refreshPending = true
         return
     end
 
@@ -561,6 +571,10 @@ local function RefreshEmbeddedMapLayout(mapFrame)
     if not state.isActive or not mapFrame then
         return
     end
+    if IsMapRefreshRestricted() then
+        refreshPending = true
+        return
+    end
     local mapID = GetPlayerDisplayMapID()
     if ApplyMapSetMapIDSilent(mapFrame, mapID) and state.parentFrame then
         ApplyMapScaling(mapFrame, CONFIG.SCALE_X, CONFIG.SCALE_Y, false)
@@ -610,7 +624,11 @@ local function StripCombatUnsafeMapProviders(mapFrame)
 end
 
 local function RunEmbeddedOnShowDeferred(mapFrame)
-    if not mapFrame then
+    if not mapFrame or mapFrame ~= state.mapFrame then
+        return
+    end
+    if IsMapRefreshRestricted() then
+        refreshPending = true
         return
     end
     HideBattlefieldMapTabInstantly()
@@ -625,6 +643,10 @@ local function RunEmbeddedOnShowDeferred(mapFrame)
 end
 
 local function RunEmbeddedOnShow(mapFrame)
+    if IsMapRefreshRestricted() then
+        refreshPending = true
+        return
+    end
     HideBattlefieldMapTabInstantly()
 
     -- Strip before MapCanvas OnShow so EJ cannot AcquirePin under Flux taint.
@@ -653,9 +675,17 @@ local function InstallMapLayoutHooksPostDF(mapFrame)
     mapFrame.FluxLayoutHooked = true
     EnsureZoneLayoutWatcher()
 
+    if mapFrame == _G.BattlefieldMapFrame and MapCanvasPinMixin
+        and MapCanvasPinMixin.CheckMouseButtonPassthrough then
+        -- The original frame can still carry addon provenance after undocking.
+        state.poiMap = mapFrame
+        HoldAreaPoiEvent(mapFrame)
+    end
+
     if hooksecurefunc and mapFrame.OnShow and not mapFrame.FluxBattlefieldMap_OnShowHooked then
         mapFrame.FluxBattlefieldMap_OnShowHooked = true
         hooksecurefunc(mapFrame, "OnShow", function(self)
+            HoldAreaPoiEvent(self)
             if not state.isActive then
                 return
             end
@@ -674,16 +704,18 @@ local function InstallMapLayoutHooksPostDF(mapFrame)
     if mapFrame.HookScript and not mapFrame.FluxBattlefieldMap_HideHooked then
         mapFrame.FluxBattlefieldMap_HideHooked = true
         mapFrame:HookScript("OnHide", function(self)
+            DiscardAreaPoiEvent(self)
             if state.isActive and not state.fluxPermitHide and self then
-                if C_Timer and C_Timer.After then
-                    C_Timer.After(0, function()
-                        if state.isActive and not state.fluxPermitHide and self then
-                            self:Show()
-                        end
-                    end)
-                else
-                    self:Show()
+                local function RestoreEmbeddedMap()
+                    if not state.isActive or state.fluxPermitHide or state.mapFrame ~= self or self:IsShown() then return end
+                    if IsMapRefreshRestricted() then
+                        state.deferredMapShow = self
+                    else
+                        self:Show()
+                    end
                 end
+                if C_Timer and C_Timer.After then C_Timer.After(0, RestoreEmbeddedMap)
+                else RestoreEmbeddedMap() end
             end
         end)
     end
@@ -815,7 +847,7 @@ local function RunLayoutDriverTick()
         return
     end
 
-    if InCombatLockdown() then
+    if IsMapRefreshRestricted() then
         UpdateCombatMouseBlocker()
         return
     end
@@ -889,6 +921,7 @@ local function FinishDeferredEmbed()
     state.embedPending = false
     DoInitialize(parentFrame)
     if wasActive and state.mapFrame then
+        SetCVar("showBattlefieldMinimap", "1")
         HideBlizzardUIBorder(state.mapFrame)
         StartLayoutDriver()
         StripCombatUnsafeMapProviders(state.mapFrame)
@@ -899,79 +932,146 @@ local function FinishDeferredEmbed()
 end
 
 local zoneRefresher = CreateFrame("Frame")
+
+DiscardAreaPoiEvent = function(mapFrame)
+    if not mapFrame or state.poiHeldMap ~= mapFrame then return end
+    state.poiHeldMap, state.poiDirty = nil, false
+    zoneRefresher:UnregisterEvent(AREA_POI_EVENT)
+end
+
+HoldAreaPoiEvent = function(mapFrame)
+    if not mapFrame or mapFrame ~= state.poiMap or mapFrame ~= _G.BattlefieldMapFrame
+        or not IsMapRefreshRestricted() or (mapFrame.IsForbidden and mapFrame:IsForbidden())
+        or not mapFrame.IsEventRegistered or not mapFrame.RegisterEvent or not mapFrame.UnregisterEvent then return end
+    if not mapFrame:IsEventRegistered(AREA_POI_EVENT) then return end
+    -- Preserve MapCanvas's provider event counts and the current POI pins.
+    if state.poiHeldMap ~= mapFrame then
+        DiscardAreaPoiEvent(state.poiHeldMap)
+        state.poiHeldMap = mapFrame
+        zoneRefresher:RegisterEvent(AREA_POI_EVENT)
+    end
+    mapFrame:UnregisterEvent(AREA_POI_EVENT)
+end
+
+local function FinishCombatMapLayout()
+    FinishDeferredEmbed()
+
+    if #positionUpdateQueue > 0 then
+        for _, queuedOp in ipairs(positionUpdateQueue) do
+            local mapFrame, parentFrame, opType
+            if type(queuedOp) == "table" and queuedOp.type then
+                opType = queuedOp.type
+                mapFrame = state.mapFrame
+                parentFrame = queuedOp.parentFrame
+            else
+                mapFrame = queuedOp[1]
+                parentFrame = queuedOp[2]
+                opType = queuedOp[3]
+            end
+
+            if opType == "setup" then
+                if mapFrame and mapFrame == state.mapFrame and parentFrame and parentFrame == state.parentFrame then
+                    if mapFrame:GetParent() ~= UIParent then
+                        mapFrame:SetParent(UIParent)
+                    end
+                    mapFrame:ClearAllPoints()
+                    mapFrame:SetPoint("CENTER", parentFrame, "CENTER", 0, -2)
+                    mapFrame:SetFrameStrata(CONFIG.MAP_STRATA)
+                    mapFrame:SetFrameLevel(CONFIG.MAP_LEVEL)
+                    if state.isActive and not mapFrame:IsShown() then mapFrame:Show() end
+                    layoutCache.layoutAnchored = true
+                    layoutCache.parentFrame = parentFrame
+                end
+            elseif opType == "reposition" then
+                if mapFrame and parentFrame then
+                    mapFrame:ClearAllPoints()
+                    mapFrame:SetPoint("CENTER", parentFrame, "CENTER", 0, -2)
+                    layoutCache.layoutAnchored = true
+                    layoutCache.parentFrame = parentFrame
+                end
+            elseif opType == "cleanup" then
+                if mapFrame then
+                    mapFrame:ClearAllPoints()
+                    if BattlefieldMapTab then
+                        mapFrame:SetPoint("TOPLEFT", "BattlefieldMapTab", "BOTTOMLEFT", 0, -2)
+                    end
+                    InvalidateLayoutCache()
+                end
+            end
+        end
+        table.wipe(positionUpdateQueue)
+    end
+end
+
+local function ResumeMapRefresh()
+    state.poiResumeQueued = false
+    if IsMapRefreshRestricted() then return end
+    if state.embedPending or #positionUpdateQueue > 0 then FinishCombatMapLayout() end
+    local mapFrame, poiDirty = state.poiHeldMap, state.poiDirty
+    DiscardAreaPoiEvent(mapFrame)
+    if mapFrame and mapFrame == _G.BattlefieldMapFrame and mapFrame:IsVisible()
+        and not (mapFrame.IsForbidden and mapFrame:IsForbidden()) then
+        local counts = mapFrame.dataProviderEventsCount
+        if not counts or (canaccesstable and not canaccesstable(counts)) or counts[AREA_POI_EVENT] then
+            if not mapFrame:IsEventRegistered(AREA_POI_EVENT) then mapFrame:RegisterEvent(AREA_POI_EVENT) end
+            if poiDirty and mapFrame.OnEvent then mapFrame:OnEvent(AREA_POI_EVENT) end
+        end
+    end
+    local reopen = state.deferredMapShow
+    state.deferredMapShow = nil
+    if reopen and reopen == state.mapFrame and state.isActive and not reopen:IsShown() then reopen:Show() end
+    if refreshPending then
+        refreshPending = false
+        QueueRefreshMapOnZoneChange()
+    end
+end
+
+local function QueueMapRefreshResume()
+    if state.poiResumeQueued then return end
+    if not (state.poiHeldMap or state.deferredMapShow or refreshPending or state.embedPending
+        or #positionUpdateQueue > 0) then return end
+    state.poiResumeQueued = true
+    if C_Timer and C_Timer.After then C_Timer.After(0, ResumeMapRefresh)
+    else ResumeMapRefresh() end
+end
+
 zoneRefresher:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 zoneRefresher:RegisterEvent("PLAYER_ENTERING_WORLD")
 zoneRefresher:RegisterEvent("ZONE_CHANGED")
 zoneRefresher:RegisterEvent("ZONE_CHANGED_INDOORS")
 zoneRefresher:RegisterEvent("PLAYER_REGEN_DISABLED")
 zoneRefresher:RegisterEvent("PLAYER_REGEN_ENABLED")
-zoneRefresher:SetScript("OnEvent", function(self, event)
+if IsPostDFClient() and restrictionType and restrictionState then
+    zoneRefresher:RegisterEvent("ADDON_RESTRICTION_STATE_CHANGED")
+end
+zoneRefresher:SetScript("OnEvent", function(self, event, kind, status)
+    if event == AREA_POI_EVENT then
+        if state.poiHeldMap then state.poiDirty = true end
+        return
+    elseif event == "ADDON_RESTRICTION_STATE_CHANGED" then
+        if kind == restrictionType.Combat then
+            state.poiCombatRestricted = status ~= restrictionState.Inactive
+            if state.poiCombatRestricted then HoldAreaPoiEvent(state.poiMap)
+            else QueueMapRefreshResume() end
+        end
+        return
+    end
     if event == "PLAYER_REGEN_DISABLED" then
-        refreshPending = false
+        HoldAreaPoiEvent(state.poiMap)
         UpdateCombatMouseBlocker()
     elseif event == "PLAYER_REGEN_ENABLED" then
         HideCombatMouseBlocker()
-        FinishDeferredEmbed()
-
-        if #positionUpdateQueue > 0 then
-            for _, queuedOp in ipairs(positionUpdateQueue) do
-                local mapFrame, parentFrame, opType
-                if type(queuedOp) == "table" and queuedOp.type then
-                    opType = queuedOp.type
-                    mapFrame = state.mapFrame
-                    parentFrame = queuedOp.parentFrame
-                else
-                    mapFrame = queuedOp[1]
-                    parentFrame = queuedOp[2]
-                    opType = queuedOp[3]
-                end
-
-                if opType == "setup" then
-                    if mapFrame and parentFrame then
-                        if mapFrame:GetParent() ~= UIParent then
-                            mapFrame:SetParent(UIParent)
-                        end
-                        mapFrame:ClearAllPoints()
-                        mapFrame:SetPoint("CENTER", parentFrame, "CENTER", 0, -2)
-                        mapFrame:SetFrameStrata(CONFIG.MAP_STRATA)
-                        mapFrame:SetFrameLevel(CONFIG.MAP_LEVEL)
-                        mapFrame:Show()
-                        layoutCache.layoutAnchored = true
-                        layoutCache.parentFrame = parentFrame
-                    end
-                elseif opType == "reposition" then
-                    if mapFrame and parentFrame then
-                        mapFrame:ClearAllPoints()
-                        mapFrame:SetPoint("CENTER", parentFrame, "CENTER", 0, -2)
-                        layoutCache.layoutAnchored = true
-                        layoutCache.parentFrame = parentFrame
-                    end
-                elseif opType == "cleanup" then
-                    if mapFrame then
-                        mapFrame:ClearAllPoints()
-                        if BattlefieldMapTab then
-                            mapFrame:SetPoint("TOPLEFT", "BattlefieldMapTab", "BOTTOMLEFT", 0, -2)
-                        end
-                        InvalidateLayoutCache()
-                    end
-                end
-            end
-            table.wipe(positionUpdateQueue)
-        end
-
-        if refreshPending then
-            refreshPending = false
-            QueueRefreshMapOnZoneChange()
-        end
+        if not IsMapRefreshRestricted() then FinishCombatMapLayout() end
+        QueueMapRefreshResume()
     elseif event == "ZONE_CHANGED_NEW_AREA" or event == "PLAYER_ENTERING_WORLD" then
         lastAppliedMapID = nil
-        if InCombatLockdown() then
+        if IsMapRefreshRestricted() then
             refreshPending = true
         else
             QueueRefreshMapOnZoneChange()
         end
     elseif event == "ZONE_CHANGED" or event == "ZONE_CHANGED_INDOORS" then
-        if InCombatLockdown() then
+        if IsMapRefreshRestricted() then
             refreshPending = true
         else
             QueueRefreshMapOnZoneChange()
@@ -1155,7 +1255,7 @@ function FluxBattlefieldMap:Initialize(parentFrame)
     StopInitializationWatchers()
     state.parentFrame = parentFrame
 
-    if InCombatLockdown() then
+    if IsMapRefreshRestricted() then
         state.embedPending = true
         state.mapFrame = GetBlizzardBattlefieldMap()
         return state.mapFrame ~= nil
@@ -1178,21 +1278,19 @@ function FluxBattlefieldMap:Show()
         return
     end
 
-    SetCVar("showBattlefieldMinimap", "1")
-
-    if state.embedPending then
+    if state.embedPending or (IsPostDFClient() and IsMapRefreshRestricted()) then
+        state.embedPending = true
         state.isActive = true
         if _G.BattlefieldMapOptions then
             _G.BattlefieldMapOptions.opacity = 0
         end
         StartLayoutDriver()
         UpdateCombatMouseBlocker()
-        StripCombatUnsafeMapProviders(state.mapFrame)
-        if FluxBattlefieldMapWorldFeatures and FluxBattlefieldMapWorldFeatures.OnMapShown then
-            FluxBattlefieldMapWorldFeatures:OnMapShown(state.parentFrame)
-        end
+        HoldAreaPoiEvent(state.mapFrame)
         return
     end
+
+    SetCVar("showBattlefieldMinimap", "1")
 
     -- IMMEDIATELY reset scale to 1.0 and apply correct scaling
     -- This fixes issues when switching to Map tab after login/reload on a different tab
@@ -1254,6 +1352,7 @@ function FluxBattlefieldMap:Hide()
 
     StopLayoutDriver()
     HideCombatMouseBlocker()
+    state.deferredMapShow = nil
     state.isActive = false
     state.embedPending = false
     SetCVar("showBattlefieldMinimap", "0")
@@ -1370,6 +1469,7 @@ function FluxBattlefieldMap:Cleanup()
     StopLayoutDriver()
     HideCombatMouseBlocker()
     state.embedPending = false
+    state.deferredMapShow = nil
     SetCVar("showBattlefieldMinimap", "0")
     InvalidateLayoutCache()
     lastAppliedMapID = nil

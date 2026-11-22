@@ -96,10 +96,12 @@ do
         chunk()
     end
     env.Module = s.module
+    env.UsesForeverMounts = function() return false end
     env.UnitClass = function() return "Mage", "MAGE" end
     env.GetNumSkillLines = function() return s.ridingReady and 1 or 0 end
     env.GetSkillLineInfo = function() return "Riding" end
-    run(slice("local ridingSkillCache = nil", "-- Get collected mount by name"))
+    run(slice("local function DeferForeverJournalInvalidation()", "local function UpdateMountedWisp(btn)")
+        .. slice("local ridingSkillCache = nil", "-- Get collected mount by name"))
     eq(s.module.HasRidingSkill(), false, "cold skill table initially empty")
     s.ridingReady = true
     eq(s.module.HasRidingSkill(), false, "fixture reproduces cached negative riding result")

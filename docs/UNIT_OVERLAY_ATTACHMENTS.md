@@ -132,6 +132,14 @@ junctions in the released styles and a simulated third profile. The
 archived renderer fails the margin check for all three profiles. Native
 appearance remains pending. [R189 evidence](validation/cast-divider-r189-2026-11-20.json).
 
+The follow-up crop shows that the Type 1 divider reads too thin. R190 uses
+two UI units on the icon side and one on the fill side. The fill edge and
+track stay in place. The renderer uses the icon-side width from the pattern
+profile, or the thickness-based width when the profile omits it. The same
+paint bounds apply to the straight run and mitered ends. This is decorative
+chrome and adds no controls or focus stops.
+[R190 evidence](validation/cast-divider-weight-r190-2026-11-20.json).
+
 ## Optional unit parts, glow interior and capture reasons
 
 17 November (`CAST-UNIT-JUNCTIONS-20261117`): prepare perpendicular continuations

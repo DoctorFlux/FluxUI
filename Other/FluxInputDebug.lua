@@ -359,10 +359,79 @@ local function PrintTooltipSecurity(snapshot)
     print(TooltipMessage("summary", count, snapshot.build or "unknown"))
 end
 
+local cooldownGlobals = { "ActionBarButtonEventsFrame", "ActionButton_UpdateCooldown", "ActionButton_ApplyCooldown",
+    "GameTooltip", "C_ActionBar", "C_Spell" }
+local cooldownButtonFields = { "OnEvent", "action", "spellID", "enableLOCCooldown", "cooldown",
+    "chargeCooldown", "lossOfControlCooldown", "SetTooltip" }
+
+local function readableTable(value)
+    return type(value) == "table" and not (issecretvalue and issecretvalue(value))
+        and (not canaccesstable or canaccesstable(value))
+end
+
+function Debug.CaptureCooldown()
+    local snapshot = { schema = 1, source = "action-cooldown-20261121",
+        time = date and date("%Y-%m-%d %H:%M:%S"), buttons = {},
+        combat = InCombatLockdown and plain(InCombatLockdown()) }
+    if GetBuildInfo then
+        local version, build, _, interface = GetBuildInfo()
+        snapshot.version, snapshot.build, snapshot.interface = plain(version), plain(build), plain(interface)
+    end
+    local bars = ns.Flux.Bars
+    snapshot.replacementsReady = bars and plain(bars.secureReady)
+    snapshot.calibration = security({ marker = true }, { "marker" }).marker
+    snapshot.globals = security(_G, cooldownGlobals)
+    snapshot.tooltip = security(_G.GameTooltip, { "GetOwner", "SetAction" })
+    snapshot.actionAPI = security(_G.C_ActionBar, { "GetActionCooldown", "GetActionCharges", "GetActionLossOfControlCooldownInfo" })
+    snapshot.spellAPI = security(_G.C_Spell, { "GetSpellCooldown", "GetSpellCharges", "GetSpellLossOfControlCooldownInfo" })
+
+    local collector = _G.ActionBarButtonEventsFrame
+    if not readableTable(collector) then return snapshot end
+    snapshot.collector = security(collector, { "frames", "OnEvent", "RegisterFrame" })
+    snapshot.eventRegistered = call(collector, "IsEventRegistered", "ACTIONBAR_UPDATE_COOLDOWN")
+    local frames = collector.frames
+    if not readableTable(frames) then return snapshot end
+
+    -- This collector uses an array. Keep its sparse indices for dispatch
+    -- provenance and record field ownership without reading any cooldown data.
+    for index, button in pairs(frames) do
+        if type(plain(index)) == "number" and readableTable(button) then
+            local row = { name = name(button), entry = security(frames, { index })[index],
+                fields = security(button, cooldownButtonFields) }
+            local cooldown = button.cooldown
+            if readableTable(cooldown) then
+                row.cooldown = { name = name(cooldown), fields = security(cooldown, { "SetCooldown", "Clear" }) }
+            end
+            snapshot.buttons[index] = row
+        end
+    end
+    snapshot.complete = true
+    return snapshot
+end
+
+Debug.CooldownMessages = { enUS = {
+    saved = "Flux cooldown metadata captured for build %s. /reload to save the capture.",
+    partial = "Flux cooldown metadata is incomplete on this client. /reload to save the available fields.",
+} }
+local function SaveCooldownCapture()
+    local snapshot = Debug.CaptureCooldown()
+    FluxPerfCaptureDB = FluxPerfCaptureDB or {}
+    local prior = FluxPerfCaptureDB.actionCooldownDebug
+    FluxPerfCaptureDB.actionCooldownDebug = { latest = snapshot, previous = type(prior) == "table" and prior.latest or nil }
+    local catalog = Debug.CooldownMessages
+    local locale = GetLocale and GetLocale() or "enUS"
+    local key = snapshot.complete and snapshot.calibration and snapshot.calibration.secure == false and "saved" or "partial"
+    print(string.format(catalog[locale] and catalog[locale][key] or catalog.enUS[key], snapshot.build or "unknown"))
+end
+
 local pending = false
 SLASH_FLUXINPUT1 = "/fluxinput"
 SlashCmdList.FLUXINPUT = function(message)
     if pending then return end
+    if type(message) == "string" and message:lower():match("^%s*cooldown%s*$") then
+        SaveCooldownCapture()
+        return
+    end
     if type(message) == "string" and message:lower():match("^%s*tooltip%s*$") then
         FluxPerfCaptureDB = FluxPerfCaptureDB or {}
         local prior = FluxPerfCaptureDB.tooltipDebug

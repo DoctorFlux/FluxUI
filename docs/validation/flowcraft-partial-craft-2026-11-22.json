@@ -1,0 +1,301 @@
+{
+  "changeId": "FLOWCRAFT-PARTIAL-CRAFT-20261122",
+  "date": "2026-11-22",
+  "checkpoint": {
+    "manifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-partial-craft-recovery-before-20261122T094436Z\\checkpoint.json",
+    "files": 74,
+    "settingsMetadataRows": 68,
+    "settingsMetadataSha256": "43b0fa51d58ca66def1ce1cf64b632b230c01509d617ee6f918305ddcfd859dd",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a1ffc8-e3e4-7861-a366-cde5c05e7611\\fluxui-debuff-type-before-20261121T222839Z\\history.bundle",
+    "historyBundleSha256": "90bfc84da44ffd45c6617f5304a431e6ed808eadb90080ffefe4bc5d691b2909",
+    "historyBundleVerification": "The bundle contains this ref:\n1e992c449d59b2f1f472efc40e7ca10ea6c494cf refs/heads/main\nThe bundle records a complete history.\nThe bundle uses this hash algorithm: sha1\nC:/Users/mario/.codex/visualizations/2026/11/21/01a1ffc8-e3e4-7861-a366-cde5c05e7611/fluxui-debuff-type-before-20261121T222839Z/history.bundle is okay",
+    "branch": "main",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "settingsContentsCopied": false
+  },
+  "savedBaseline": {
+    "client": "Forever",
+    "companionInterface": 16001,
+    "observedAtUtc": "2026-11-22T09:35:08Z",
+    "priorSaveAtUtc": "2026-11-22T09:31:07Z",
+    "actorMatchesQueueAndCatalog": true,
+    "recipeFoundInSameBuildCatalog": true,
+    "inventoryProvider": "Flux builtin",
+    "syndicatorEnabledForAffectedCharacter": false,
+    "order": {
+      "id": 45,
+      "itemID": 5764,
+      "recipeID": 6693,
+      "professionID": 197,
+      "requested": 4,
+      "status": "uncertain",
+      "remaining": 4,
+      "completed": 0,
+      "dependency": {
+        "itemID": 4305,
+        "requested": 20,
+        "completed": 20,
+        "exactPlayerCasts": 20
+      },
+      "attempt": {
+        "dispatch": "process",
+        "blocker": "timeout",
+        "beforeOutput": 0,
+        "batch": 4,
+        "fixedYield": 1,
+        "sawCraftEvent": false,
+        "carriedInputBaseline": false,
+        "carriedResult": false,
+        "matchedExecutions": false,
+        "afterOutput": false,
+        "addonVersion": "0.2.52-dev"
+      },
+      "otherOpenUncertainOrderForSameItem": false,
+      "priorState": "queued with neither task begun"
+    },
+    "selectedInventoryEvidence": {
+      "observedAtUtc": "2026-11-22T09:35:08Z",
+      "matchingNameCandidates": 3,
+      "candidatesWithChangedTargetStock": 1,
+      "changedCandidateCarried": {
+        "packs": 2,
+        "bolts": 10
+      },
+      "evidence": "Coincident carried stock corroborates the user report. Inventory snapshots use name keys and do not contain the companion's character GUID or establish craft provenance.",
+      "earlierMatchedCandidateCarried": {
+        "packs": 0,
+        "bolts": 0
+      },
+      "inventorySnapshotIncludesCharacterGuid": false
+    }
+  },
+  "desktop": {
+    "renderer": {
+      "command": "lua tests/auction_restock_followup_render_work.lua",
+      "checksEach": 1020,
+      "pairedTrials": 15,
+      "clients": [
+        "Retail",
+        "Forever",
+        "Classic progression",
+        "Era",
+        "Anniversary"
+      ],
+      "phaseVectorsCompared": 45,
+      "allPhaseVectorsEqual": true,
+      "unchangedAndHiddenWrites": 0,
+      "scope": "Existing HUD vendor, quantity, crafting settlement and hidden-state widget operation counts. Native resource measurements were not collected.",
+      "operationVectors": [
+        "RENDER_WORK Retail trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Retail trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+        "RENDER_WORK Retail trial=1 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Retail trial=2 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Retail trial=2 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+        "RENDER_WORK Retail trial=2 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Retail trial=3 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Retail trial=3 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+        "RENDER_WORK Retail trial=3 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Forever trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Forever trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+        "RENDER_WORK Forever trial=1 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Forever trial=2 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Forever trial=2 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+        "RENDER_WORK Forever trial=2 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Forever trial=3 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Forever trial=3 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+        "RENDER_WORK Forever trial=3 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK MoP trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK MoP trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+        "RENDER_WORK MoP trial=1 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK MoP trial=2 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK MoP trial=2 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+        "RENDER_WORK MoP trial=2 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK MoP trial=3 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK MoP trial=3 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+        "RENDER_WORK MoP trial=3 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Era trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Era trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+        "RENDER_WORK Era trial=1 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Era trial=2 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Era trial=2 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+        "RENDER_WORK Era trial=2 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Era trial=3 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Era trial=3 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+        "RENDER_WORK Era trial=3 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Anniversary trial=1 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Anniversary trial=1 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+        "RENDER_WORK Anniversary trial=1 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Anniversary trial=2 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Anniversary trial=2 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+        "RENDER_WORK Anniversary trial=2 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Anniversary trial=3 phase=unchanged SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0",
+        "RENDER_WORK Anniversary trial=3 phase=quantity SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=100,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=50,TipShow=50,TipHide=0",
+        "RENDER_WORK Anniversary trial=3 phase=hidden SetPoint=0,ClearAllPoints=0,SetSize=0,SetFont=0,SetTexture=0,SetText=0,Show=0,Hide=0,SetEnabled=0,EnableMouseWheel=0,Sort=0,ArtLookup=0,AtlasLookup=0,TipClear=0,TipShow=0,TipHide=0"
+      ]
+    },
+    "owner": {
+      "bridge": {
+        "checks": 231,
+        "profiles": 13
+      },
+      "hud": {
+        "checks": 63577,
+        "profiles": 5,
+        "overflow": [
+          193,
+          500,
+          1000
+        ]
+      },
+      "followup": {
+        "checks": 674,
+        "profiles": 10
+      },
+      "craft": {
+        "checks": 3279,
+        "profiles": 20
+      },
+      "closedProfession": {
+        "checks": 1220,
+        "closedProfiles": 30,
+        "progressProfiles": 20
+      },
+      "integration": {
+        "checks": 290,
+        "profiles": 10
+      },
+      "vendorRoutes": {
+        "checks": 476,
+        "profiles": 20
+      },
+      "mail": {
+        "checks": 4500,
+        "profiles": 20
+      }
+    },
+    "installedCompanion": {
+      "lua54SuitesPassed": 16,
+      "lua51SuitesPassed": 7,
+      "commands": "Installed canonical companion fixtures",
+      "coverage": [
+        "interrupted exact craft and durable reconciliation",
+        "older two-of-four Green Silk Pack Process with separate native Create handoff",
+        "matching carried-stock fulfillment and wrong/stale selection rejection",
+        "workspace and exact published recovery state"
+      ],
+      "lua51Suites": [
+        "workspace_test",
+        "auction_shopping_test",
+        "logistics_test",
+        "execution_test",
+        "queue_test",
+        "resize_test",
+        "target_load_test"
+      ]
+    },
+    "syntax": {
+      "scopedLuaFiles": 13,
+      "passed": true
+    },
+    "gitDiffCheckPassed": true
+  },
+  "native": {
+    "reportedOldBehavior": "Flowcraft displayed all four packs remaining under Review after two were crafted.",
+    "candidateInputSent": false,
+    "candidateReload": "pending",
+    "candidateRecovery": "pending",
+    "candidateCraft": "pending",
+    "taint": "pending",
+    "visualAndController": "pending",
+    "window": {
+      "client": "Forever",
+      "pid": 16640,
+      "hwnd": 22677020,
+      "controlSent": false
+    },
+    "postInstallBackgroundCapture": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-partial-craft-recovery-before-20261122T094436Z\\forever-options-partial-craft-after-install.png",
+      "sha256": "75b629b6b33d4c3771669a2e5ac33b7ed97dd4c15315fba3c6b709f5b729071a",
+      "fileTimeUtc": "2026-11-22T09:57:10Z",
+      "surface": "Auctionator Selling and backpack",
+      "foregroundChanged": false,
+      "candidateReloadVerified": false,
+      "recoveryObserved": false
+    }
+  },
+  "behavior": {
+    "durableRecovery": "Reconciles an interrupted craft with durable matching progress when the inventory and current context qualify. Continues the same job for its verified remainder.",
+    "olderRecovery": "The selected player's Process or Resume press records carried fulfillment separately from native craft receipts. That same press can prepare the exact ready remainder. An older unproved Forever Process attempt submits its remainder through Blizzard Create.",
+    "staleSelection": "The owner rechecks the exact job, task, revision, remaining count and recovery selection before dispatch.",
+    "persistedData": "Kept the existing settings roots and history of the old attempt. Checkpoint saved metadata only."
+  },
+  "install": {
+    "clientCopies": [
+      "_retail_",
+      "_forever_",
+      "_classic_",
+      "_classic_era_",
+      "_anniversary_"
+    ],
+    "runtimeFilesMatched": 8,
+    "companionFilesGuarded": 8
+  },
+  "sources": {
+    "_FluxUI": {
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": {
+        "before": "06b929d02df5b7049723344fd981b4428bf19976c31c7fb36ab872946100fcd5",
+        "after": "c93823197b8a3a46a0fe6cde23baf87732f1c0f21593de1947eac55547eb10ff"
+      },
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua": {
+        "before": "2db8942bfba5ef0c1866d37a92fa35bfd89422ca9082512affdc28c5d0e3208c",
+        "after": "7a0120fb3ef65d65db63904b2802b72a32eed705759753f150281aea82822400"
+      },
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": {
+        "before": "0d0f88f34403213226b719829bfb22d88932ea40047b0858d2ac201a3de20207",
+        "after": "90f1174a3723b89900ec3c798897427fc38cb115ba1d20241ae9be5ae191acfd"
+      },
+      "tests/auction_restock_followup_logistics.lua": {
+        "before": "606604e8ca78edfccc45cf7fab9eb48b7114a8e9a804011b08925d6868cc02ae",
+        "after": "9cad0ca017ab3e5980929e45808eca8b2278c4d69855853354d72b8e82395bb5"
+      },
+      "tests/auction_restock_followup_ui.lua": {
+        "before": "b6342c4f72daed5aafe6f6a2f949e7d79bc85001ebfe1e63cd3e37e9657f2269",
+        "after": "e0d6ecff9379b30f1790701c09f0524d30781d26cff8f7ebdf5f8f6b9ff75f7c"
+      }
+    },
+    "FluxLogistics": {
+      "FluxCraft/Queue.lua": {
+        "before": "32c9e4ffbe27221f6a0275f2eb677f7489166dac5184fd42ecf1596336de2164",
+        "after": "224c5458670edb180d5485fd9b5f1ee3f5a25889bde7f3421286263b2e99ec46"
+      },
+      "FluxCraft/Execution.lua": {
+        "before": "bb2c2ed6898122d3ad1fe9bbb42df2cb8d1b2b0359ba9bdb7e463228d6d5aedf",
+        "after": "09a64b931f375fd57ba4eeaa6925c7d24996713446391c3e0758d583a1cb80d8"
+      },
+      "FluxCraft/Logistics.lua": {
+        "before": "db6548d334c2202783322ddbed6bbcbe32f810216b9a347feed184b1a774fcd8",
+        "after": "b88d1c0164a392948d970b15b1f2caa3ad5e0180784aa9f3d321be5524a066f0"
+      },
+      "FluxCraft/UI.lua": {
+        "before": "db721e24ef1f5151bdc721aceee30a729be841603f764582e100f8bd7742d756",
+        "after": "4036f51851fa420dabd08aa60e5c43a0f1d6edaccec9496b1a2b1ad7432214e9"
+      },
+      "FluxCraft/Locale.lua": {
+        "before": "2cd5f456d724a36ea501c164fcfc56a3d58549cc20048a942870d4a33dbe7810",
+        "after": "e63f5eeb5fb195629f42ca654dc4420240eca1e16607a8a23e51c6a7da441599"
+      },
+      "Tests/execution_test.lua": {
+        "before": "8fcb8e7e597262540ab539be9c947f4c1b9c52e762564f801951b8c6996ea2a0",
+        "after": "ff72776c51544a7f559a6a36b191a8a151ed9df5acf2270c578f3f71edd4a853"
+      },
+      "Tests/workspace_test.lua": {
+        "before": "6fdbade4a61e2e3a9c5715b6a0bd8c31c324b6de718998684d9ae6fb3839a8a0",
+        "after": "b11d690e31555258f1a8d62761056115059d58a9e38280e9d27a287703a31850"
+      },
+      "Tests/logistics_test.lua": {
+        "before": "8436de613e878b8e2ecde1b91e3543ea8a257a76ddb02b1efffd80f5c7f3a0a1",
+        "after": "b4105cd2b9f258200ee660ca690c4833382313f935b0ced0b3db9b8723b47b35"
+      }
+    }
+  }
+}

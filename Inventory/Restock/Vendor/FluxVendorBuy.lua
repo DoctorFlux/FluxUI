@@ -5,7 +5,7 @@
     restock system.
 
       MERCHANT_SHOW    -> repair + sell junk immediately (no WarmMerchant wait);
-                          build item index only when restock/upgrade needs it;
+                          build the item index for configured restock or a registered planner;
                           then buy restock once index is ready and sell is done.
                           WarmMerchant / inferior overlays run deferred after
                           automation. Holding Shift skips all automation.
@@ -31,6 +31,18 @@ local INDEX_CHUNK = 16
 local VENDOR_OPEN_STORM_SEC = 0.45
 local vendorOpenStormGen = 0
 local vendorOpenStormActive = false
+
+local function Policy() return _G.Flux and _G.Flux.RestockPolicy end
+
+local function LogisticsPolicy()
+    local policy = Policy()
+    if policy and policy.IsPlannerRegistered and policy.IsPlannerRegistered() then return policy end
+end
+
+local function PublishMerchantObservation()
+    local policy = LogisticsPolicy()
+    if policy and policy.NotifyChanged then policy.NotifyChanged("merchant") end
+end
 
 local function Inv() return _G.FluxRestock and _G.FluxRestock.Inv end
 local function Tiers() return _G.FluxRestockTiers end
@@ -164,7 +176,7 @@ local buyState = {
     queue = nil,
     passes = 0,
     boughtAny = false,
-    deferredAutoBuy = nil,
+    deferredBuy = nil,
     deferredSellAllJunk = nil,
     pendingStart = nil,
     flushUIAfterBuy = nil,
@@ -172,6 +184,7 @@ local buyState = {
 
 -- True once this merchant open already started auto-sell (skip re-sell in batch).
 local fastAutoSellStarted = false
+local fastAutoRepairStarted = false
 local junkSellWasActive = false
 
 local function RefreshJunkOverlaysAfterInferior()
@@ -335,7 +348,7 @@ local function IsAutomationRunning()
     local sj = SellJunk()
     return (sj and sj.IsSelling and sj.IsSelling())
         or buyState.active
-        or buyState.deferredAutoBuy
+        or buyState.deferredBuy
         or buyState.deferredSellAllJunk
 end
 
@@ -508,7 +521,7 @@ end
 --- Index supports configured restock source learning independently of automation.
 local function NeedsMerchantIndexOnOpen()
     local s = Settings()
-    if s.autoRestock then
+    if s.autoRestock or LogisticsPolicy() or (FV.HasTemporaryVendorTargets and FV.HasTemporaryVendorTargets()) then
         return true
     end
     return NeedsBlockingVendorTierPass() or NeedsMerchantSourceLearning()
@@ -754,6 +767,7 @@ local function RunVendorPostIndexWork()
         if List() and List().RecordMerchantPrices then
             pcall(List().RecordMerchantPrices, merchantIndex)
         end
+        PublishMerchantObservation()
         local TiersMod = _G.FluxRestockTiers
         -- Bootstrap empty refs only (never raises an existing bar / steals upgrades).
         if TiersMod and TiersMod.SeedReferenceFromVendor then
@@ -1101,7 +1115,7 @@ end
 -- BUY QUEUE
 -- ---------------------------------------------------------------------------
 
-local function BuildBuyQueue(scope)
+local function BuildBuyQueue(scope, passive)
     local index = FV.GetMerchantItemIndex(false)
     if not index or indexBuildPending then
         return nil
@@ -1119,6 +1133,21 @@ local function BuildBuyQueue(scope)
             end
         end
         local need = ListMod and ListMod.EntryNeed(entry) or 0
+        local policy = Policy()
+        if passive and policy and policy.IsPlannerRegistered() then
+            local demand = entry.restockSource ~= "craftMaterial" and policy.DemandForEntry(entry)
+            if not demand or not demand.passive then
+                need = math.min(need, entry.craftNeed or entry.craftTarget or 0)
+            end
+        end
+        if policy and policy.IsPlannerRegistered() then
+            local itemID = entry.merchantItemID or entry.itemID
+            local meta = itemID and index[itemID]
+            if meta and meta.numAvailable and meta.numAvailable >= 0 then
+                local reserved = policy.GetReservedSupply("vendor", itemID)
+                if reserved > 0 then need = math.min(need, math.max(0, meta.numAvailable - reserved)) end
+            end
+        end
         if need > 0 and (not scope or not entry.isTierRestock and (scope[entry.itemID] or 0) > 0) then
             if entry.isTierRestock then
                 -- Skip lower-tier-only vendors: never restock below threshold.
@@ -1162,6 +1191,20 @@ local function BuildBuyQueue(scope)
     return queue
 end
 
+local function RunRequestedCraftMaterials()
+    if not buyState.craftMaterialsRequested or not IsMerchantOpen() or indexBuildPending
+        or FV.IsAuctionFollowupBusy() then return end
+    local policy = LogisticsPolicy()
+    if not policy or not policy.BuyVendorRequirements then
+        buyState.craftMaterialsRequested = nil
+        return
+    end
+    if policy.IsWorkflowBusy and policy.IsWorkflowBusy() then return end
+    buyState.craftMaterialsRequested = nil
+    local started, reason = policy.BuyVendorRequirements()
+    if not started and reason and policy.Report then policy.Report(reason) end
+end
+
 local function FinishBuySession()
     local wasManual = buyState.manual
     local boughtAny = buyState.boughtAny
@@ -1203,6 +1246,7 @@ local function FinishBuySession()
         local followup = auction and auction.Followup
         if followup and followup.OwnerRejected then followup.OwnerRejected("vendor") end
     end
+    if buyState.craftMaterialsRequested then After(0, RunRequestedCraftMaterials) end
 end
 
 local function RunBuyPass()
@@ -1252,6 +1296,7 @@ local function RunBuyPass()
                 table.remove(queue, i)
             else
                 if buyState.followupOnly then buyState.followupIssued = true end
+                buyState.awaitingNativePurchase = true
                 BuyMerchantItem(task.slot, buyQty)
                 -- Reserve finite stock across purchases sharing this index entry.
                 if task.meta.numAvailable and task.meta.numAvailable > 0 then
@@ -1279,11 +1324,25 @@ local function RunBuyPass()
 end
 
 local function StartBuySession(manual, followupOnly)
+    local policy = Policy()
+    -- The merchant toggle controls native auto buys. Activity mode controls
+    -- automatic planner orders. Live ownership still prevents overlapping work.
+    if policy and policy.IsPlannerRegistered() and policy.IsWorkflowBusy("vendor") then
+        return false
+    end
     if not IsMerchantOpen() then
         return false
     end
     if buyState.active then
         return true
+    end
+    if not manual and not followupOnly then
+        if not Settings().autoRestock then return false end
+        local sj = SellJunk()
+        if sj and sj.IsSelling and sj.IsSelling() then
+            buyState.deferredBuy = buyState.deferredBuy or "auto"
+            return true
+        end
     end
     -- Index not ready yet: arm pending start and kick a build if needed.
     if indexBuildPending or not merchantIndex then
@@ -1301,7 +1360,7 @@ local function StartBuySession(manual, followupOnly)
         local followup = auction and auction.Followup
         scope = followup and followup.GetVendorTargets and followup.GetVendorTargets() or {}
     end
-    local queue = BuildBuyQueue(scope)
+    local queue = BuildBuyQueue(scope, not manual and not followupOnly)
     if not queue or #queue == 0 then
         return false
     end
@@ -1314,6 +1373,16 @@ local function StartBuySession(manual, followupOnly)
     RunBuyPass()
     if followupOnly and not buyState.active and not buyState.followupIssued then return false end
     return true
+end
+
+local function ResumeVendorBuy(manual)
+    buyState.deferredBuy = nil
+    buyState.flushUIAfterBuy = true
+    if not StartBuySession(manual) then
+        buyState.flushUIAfterBuy = nil
+        FlushVendorTierUI()
+        FinishBatch()
+    end
 end
 
 function Buy.OnIndexReady(mode)
@@ -1344,13 +1413,16 @@ function Buy.OnIndexReady(mode)
     local auction = _G.FluxAuctionRestock
     local followup = auction and auction.Followup
     if followup and followup.Refresh then followup.Refresh() end
+    if buyState.craftMaterialsRequested then After(0, RunRequestedCraftMaterials) end
 end
 
 function FV.IsRestockBuyActive()
     return buyState.active
 end
 function FV.IsAuctionFollowupBusy()
-    return buyState.active or buyState.pendingStart or batchState.active or false
+    local junk = SellJunk()
+    return buyState.active or buyState.pendingStart or buyState.deferredBuy or buyState.awaitingNativePurchase
+        or buyState.autoStarting or merchantAutoBatchPending or (junk and junk.IsSelling and junk.IsSelling()) or false
 end
 
 function FV.DoAuctionFollowup(manual)
@@ -1358,7 +1430,7 @@ function FV.DoAuctionFollowup(manual)
     if InCombatLockdown and InCombatLockdown() then return false end
     -- Never replace an ordinary auto/manual queue or reserve its stock twice.
     -- Followup retains a request and retries its remaining goals after it settles.
-    if buyState.active or buyState.pendingStart or batchState.active then return "busy" end
+    if FV.IsAuctionFollowupBusy() then return "busy" end
     return StartBuySession(manual == true, true)
 end
 function FV.CanAuctionFollowup()
@@ -1414,8 +1486,60 @@ local function CancelVendorOpenStorm()
     vendorOpenStormActive = false
 end
 
+-- Only live, ordinary gold offers enter a FluxLogistics plan. The merchant
+-- index locates the item; the slot is reread immediately before each action.
+function FV.GetLogisticsOffer(itemID)
+    if not IsMerchantOpen() or indexBuildPending or not merchantIndex then return nil end
+    local vendor = UnitGUID and UnitGUID("npc")
+    local meta = merchantIndex[itemID]
+    if not vendor or issecretvalue and issecretvalue(vendor)
+        or not meta or ResolveMerchantSlotItemID(meta.slot) ~= itemID then return nil end
+    local _, _, price, bundle, stock, purchasable, _, extended = GetMerchantSlotInfo(meta.slot)
+    if extended or purchasable ~= true or type(price) ~= "number" or price < 0 or price ~= math.floor(price)
+        or type(bundle) ~= "number" or bundle < 1 or bundle ~= math.floor(bundle)
+        or type(stock) ~= "number" or stock == 0 then return nil end
+    local location = "vendor:" .. vendor
+    return {
+        offerId = location .. ":" .. itemID, kind = "vendor", itemID = itemID, slot = meta.slot,
+        locationKey = location, marketContext = location, observedAt = GetTime and GetTime(),
+        revision = table.concat({ location, meta.slot, price, bundle, stock }, "/"),
+        qualified = true, unit = "item", bundleSize = bundle, bundlePrice = price,
+        availableUnits = stock >= 0 and stock or nil,
+    }
+end
+
+function FV.AllowsLogisticsAutomaticPurchase()
+    return Settings().autoRestock == true and not merchantAutoBatchShiftSkipped
+        and not (IsShiftKeyDown and IsShiftKeyDown())
+end
+
+function FV.BuyForLogistics(offer, requested, validate)
+    local policy = Policy()
+    if not policy then return false end
+    local current = FV.GetLogisticsOffer(offer.itemID)
+    if not current or current.offerId ~= offer.offerId or current.bundleSize ~= offer.bundleSize
+        or current.bundlePrice ~= offer.bundlePrice then return false, policy.Text.changed end
+    local meta = merchantIndex[offer.itemID]
+    local quantity = math.min(requested, meta.maxStack, current.availableUnits or requested)
+    quantity = math.floor(quantity / current.bundleSize) * current.bundleSize
+    local price = current.bundlePrice * (quantity / current.bundleSize)
+    if quantity <= 0 or price > GetMoney() or not validate(offer, quantity, price) then
+        return false, policy.Text.declined
+    end
+    -- The owner API takes physical units. A single action issues at most one
+    -- capped native stack and the planner waits for a confirmed inventory delta.
+    BuyMerchantItem(current.slot, quantity)
+    local inv = Inv()
+    if inv and inv.NotifyAutomationPulse then inv.NotifyAutomationPulse(0.5) end
+    return true, nil, quantity
+end
+
 function FV.DoRestockManual()
     if not IsMerchantOpen() then return false end
+    local policy = LogisticsPolicy()
+    if policy and policy.CanBuyVendorRequirements and policy.CanBuyVendorRequirements() then
+        buyState.craftMaterialsRequested = true
+    end
     local TiersMod = Tiers()
     -- Re-detect vendor tier bumps using bag-owned (not vendor Best) so pending sell arms.
     if TiersMod and TiersMod.ApplyVendorTierUpgrades and merchantIndex then
@@ -1459,13 +1583,13 @@ function FV.DoRestockManual()
         selling = sj and sj.IsSelling and sj.IsSelling() or false
         if selling then
             restockPendingSellAttempts = 0
-            buyState.deferredAutoBuy = true
+            buyState.deferredBuy = "manual"
             return true
         end
         -- Start returned true but finished immediately — treat as not selling.
         if sj and sj.IsSelling and sj.IsSelling() then
             restockPendingSellAttempts = 0
-            buyState.deferredAutoBuy = true
+            buyState.deferredBuy = "manual"
             return true
         end
     end
@@ -1478,14 +1602,14 @@ function FV.DoRestockManual()
     if pending and next(pending) then
         restockPendingSellAttempts = restockPendingSellAttempts + 1
         if restockPendingSellAttempts <= RESTOCK_MANUAL_RETRY_MAX then
-            buyState.deferredAutoBuy = true
+            buyState.deferredBuy = "manual"
             restockManualRetryGen = restockManualRetryGen + 1
             local myGen = restockManualRetryGen
             After(0.15, function()
                 if myGen ~= restockManualRetryGen or not IsMerchantOpen() then
                     return
                 end
-                buyState.deferredAutoBuy = nil
+                buyState.deferredBuy = nil
                 FV.DoRestockManual()
             end)
             return true
@@ -1501,6 +1625,10 @@ function FV.DoRestockManual()
     if not started then
         FinishBatch()
         FlushVendorTierUI()
+    end
+    if buyState.craftMaterialsRequested then
+        After(0, RunRequestedCraftMaterials)
+        return true
     end
     return started
 end
@@ -1526,6 +1654,7 @@ local function StartFastAutoVendorActions()
     end
 
     if settings.autoRepair and FV.TriggerAutoRepair then
+        fastAutoRepairStarted = true
         FV.TriggerAutoRepair()
     end
 
@@ -1538,7 +1667,7 @@ local function StartFastAutoVendorActions()
             junkSellWasActive = true
         end
         if settings.autoRestock then
-            buyState.deferredAutoBuy = true
+            buyState.deferredBuy = buyState.deferredBuy or "auto"
             buyState.flushUIAfterBuy = true
         end
         return
@@ -1546,7 +1675,7 @@ local function StartFastAutoVendorActions()
 
     if settings.autoRestock then
         -- Index may not be ready yet; batch / deferred buy starts it after index.
-        buyState.deferredAutoBuy = true
+        buyState.deferredBuy = buyState.deferredBuy or "auto"
         buyState.flushUIAfterBuy = true
     else
         -- Repair-only (sell already returned above when enabled).
@@ -1587,11 +1716,13 @@ function FV.RunAutoVendorBatch()
         BeginBatch()
     end
     -- Repair already handled in StartFastAutoVendorActions when possible.
-    if settings.autoRepair and FV.TriggerAutoRepair and not fastAutoSellStarted then
+    if settings.autoRepair and FV.TriggerAutoRepair and not fastAutoRepairStarted then
+        fastAutoRepairStarted = true
         FV.TriggerAutoRepair()
     end
 
     local function runSellAndBuy()
+        buyState.autoStarting = nil
         if not IsMerchantOpen() then
             return
         end
@@ -1601,7 +1732,7 @@ function FV.RunAutoVendorBatch()
         if upgraded and settings.autoRestock and TrySellVendorUpgradeInferior(true) then
             selling = sj and sj.IsSelling and sj.IsSelling() or false
             if selling then
-                buyState.deferredAutoBuy = true
+                buyState.deferredBuy = buyState.deferredBuy or "auto"
                 buyState.flushUIAfterBuy = true
                 if settings.autoSellGray and not fastAutoSellStarted then
                     buyState.deferredSellAllJunk = true
@@ -1626,17 +1757,16 @@ function FV.RunAutoVendorBatch()
 
         if settings.autoRestock then
             if selling then
-                buyState.deferredAutoBuy = true
+                buyState.deferredBuy = buyState.deferredBuy or "auto"
                 buyState.flushUIAfterBuy = true
             else
-                buyState.deferredAutoBuy = nil
-                buyState.flushUIAfterBuy = true
-                StartBuySession(false)
+                ResumeVendorBuy(buyState.deferredBuy == "manual")
             end
         end
     end
 
     if settings.autoSellGray or settings.autoRestock or upgraded then
+        buyState.autoStarting = true
         After(0, runSellAndBuy)
     else
         FinishBatch()
@@ -1652,6 +1782,7 @@ local merchantUpdateDebounceGen = 0
 
 local function OnMerchantPulse()
     if not IsMerchantOpen() then return end
+    buyState.awaitingNativePurchase = nil
     local ui = MUI()
     if ui and ui.MarkVendorBagPulseStart then
         ui.MarkVendorBagPulseStart()
@@ -1677,22 +1808,14 @@ local function OnMerchantPulse()
                 end
             end
         end
-        if not (sj and sj.IsSelling and sj.IsSelling()) and buyState.deferredAutoBuy then
-            buyState.deferredAutoBuy = nil
-            local manual = buyState.flushUIAfterBuy == true
-            buyState.flushUIAfterBuy = true
-            local started = StartBuySession(manual)
-            if not started then
-                -- Nothing to buy after upgrade sell — one flush for the settle.
-                FlushVendorTierUI()
-                buyState.flushUIAfterBuy = nil
-                FinishBatch()
-            end
+        if not (sj and sj.IsSelling and sj.IsSelling()) and buyState.deferredBuy then
+            ResumeVendorBuy(buyState.deferredBuy == "manual")
         end
     end
     if buyState.active then
         RunBuyPass()
     end
+    if buyState.craftMaterialsRequested then After(0, RunRequestedCraftMaterials) end
     if ui and ui.MarkVendorBagPulseDone then
         ui.MarkVendorBagPulseDone()
     end
@@ -1733,6 +1856,7 @@ frame:SetScript("OnEvent", function(_, event, arg1, arg2)
         end
         FV.EnsureSettings()
         fastAutoSellStarted = false
+        fastAutoRepairStarted = false
         deferredTierPassGen = deferredTierPassGen + 1
         if NeedsMerchantIndexOnOpen() then
             FV.InvalidateMerchantIndex()
@@ -1825,6 +1949,7 @@ frame:SetScript("OnEvent", function(_, event, arg1, arg2)
         merchantAutoBatchPending = false
         merchantAutoBatchShiftSkipped = false
         fastAutoSellStarted = false
+        fastAutoRepairStarted = false
         deferredTierPassGen = deferredTierPassGen + 1
         junkSellWasActive = false
         local sj = SellJunk()
@@ -1833,11 +1958,15 @@ frame:SetScript("OnEvent", function(_, event, arg1, arg2)
         end
         buyState.active = false
         buyState.queue = nil
-        buyState.deferredAutoBuy = nil
+        buyState.deferredBuy = nil
         buyState.deferredSellAllJunk = nil
         buyState.pendingStart = nil
         buyState.pendingFollowup = nil
+        buyState.awaitingNativePurchase = nil
+        buyState.autoStarting = nil
+        buyState.craftMaterialsRequested = nil
         FV.InvalidateMerchantIndex()
+        PublishMerchantObservation()
         FinishBatch()
         local ui = MUI()
         if ui and ui.OnMerchantClosed then
@@ -1883,8 +2012,10 @@ frame:SetScript("OnEvent", function(_, event, arg1, arg2)
     if event == "UI_ERROR_MESSAGE" then
         -- Bag full / too many of item: stop buying.
         local msg = tostring(arg2 or arg1 or "")
-        if buyState.active and (msg == ERR_INV_FULL or msg == ERR_ITEM_MAX_COUNT) then
-            FinishBuySession()
+        if (buyState.active or buyState.awaitingNativePurchase) and (msg == ERR_INV_FULL or msg == ERR_ITEM_MAX_COUNT) then
+            buyState.awaitingNativePurchase = nil
+            buyState.craftMaterialsRequested = nil
+            if buyState.active then FinishBuySession() end
         end
         -- Merchant sell flood: back off and retry remaining junk.
         local sj = SellJunk()

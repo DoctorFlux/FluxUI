@@ -77,7 +77,7 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
 end
 
 -- The screenshot's exact source is this detached separator constructor.
-local a=assert(shared:find('local sepContainer = CreateFrame("Frame", nil, UIParent)',1,true))
+local a=assert(shared:find('local sepContainer = CreateFrame("Frame", nil, ',1,true))
 local b=assert(shared:find("    -- Create Separators (Early)",a,true))
 local ctor=shared:sub(a,b-1)
 local atlasA=assert(shared:find("function UF.CreateAtlasBorder(frame, borderInsetY)",1,true))

@@ -1,0 +1,147 @@
+{
+  "changeId": "RESTOCK-NATIVE-CRAFT-HUD-20261122",
+  "date": "2026-11-22",
+  "checkpoint": {
+    "sourceManifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxui-craft-hud-before-20261122T000238Z\\checkpoint.json",
+    "sourceFilesVerified": 17,
+    "companionInstallBaseline": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a2004e-4f00-7e90-9ca1-13f9fd6f2802\\fluxlogistics-exact-native-craft-20261122\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\21\\01a1ffc8-e3e4-7861-a366-cde5c05e7611\\fluxui-debuff-type-before-20261121T222839Z\\history.bundle",
+    "historyBundleSha256": "90bfc84da44ffd45c6617f5304a431e6ed808eadb90080ffefe4bc5d691b2909",
+    "branch": "main",
+    "head": "1e992c449d59b2f1f472efc40e7ca10ea6c494cf",
+    "settingsMetadataRows": 63,
+    "settingsContentsCopied": false
+  },
+  "sources": {
+    "_FluxUI": {
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": {
+        "before": "fed010e9131a32150aff635facef248b9deceb1abe34f4bcbee2e5e9490d25c3",
+        "after": "b5fa3d1fa4980ba7d48a04ebac3aa3b4c8a65af8c2bb88ef0c8402ba5024e624"
+      },
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": {
+        "before": "999ba098298852dd4f6d9596a84f42d853b04dfd3b74a464aacb6670a57389e9",
+        "after": "d1ad6bf51a61c68209137ef4083ca7bbb6bf79858838fc455eccf16f72fa0151"
+      },
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua": {
+        "before": "f94493ec3e4f7904323eafa0cb23473e2b31c01242d62d13aa3423386febb197",
+        "after": "448af5d92587e9829439be680f67f49160070815d9dd1a5921d0cfd532574ed5"
+      },
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": {
+        "before": "a674429951a5c85e83b7865b6c93988bc7d20b548ecff561fe387486ed359566",
+        "after": "8f80c65a171447a2c39f670c0ecb287ec88c89428a652c500ec17c5ff296bdd9"
+      },
+      "tests/auction_restock_followup_craft.lua": {
+        "before": "d5fe47c76c66f8c219d8a0cedbc924a59035da94f89920d9f509e4dc41c8c11d",
+        "after": "d730c4ca752a00a95e82fbdfbdd057ff974859dfd98b5f8f0972d507d469000c"
+      },
+      "tests/auction_restock_followup_logistics.lua": {
+        "before": "bc08324280cc9d02d56328be66e9ea56482de254aafa8360a121f0de9a0b561b",
+        "after": "85da85f432a9b876b7f41295835410aa5ca95bd3a87569b262dbd3c1e8019b6d"
+      },
+      "tests/auction_restock_followup_ui.lua": {
+        "before": "3472bf92f32c17d81cb84acd228f043f283ff43debca0b8bf2cba78779ef642e",
+        "after": "9eee4a35fc53527531e210a15c0f75bb17b455019213234034495a7f9ba7178d"
+      }
+    },
+    "FluxLogistics": {
+      "FluxCraft/Execution.lua": {
+        "before": "da04f2f05f581adf2cf889053dc80af103a42b80e1babf79e97d4e892b380dea",
+        "after": "195e71afe6bc1ba8d26e2edc22dce1cc3cb6308cb4bfaf9c196e8517fab2d024"
+      },
+      "FluxCraft/Logistics.lua": {
+        "before": "b90dcb803ee287c798af7da82a86a3b98a8620b6691f9fe0157f4024b0447243",
+        "after": "e8fcbb1044d548b0685127ba4eefcf89beed0b9a0b9df346e8a1070031157a20"
+      },
+      "FluxCraft/UI.lua": {
+        "before": "0efc3a5a6375b8321bb51ba36b945e5a7579f0762b0a92aa734b52d986a9babc",
+        "after": "ced63eab6ffe54eacbd30f6ef9066f89ff00602c3b22231fdb5a93cd9af1ef44"
+      },
+      "FluxCraft/Locale.lua": {
+        "before": "81696781c159d3f47544bf3c67e697f190daf92b060cd2e6a19d8d396db80573",
+        "after": "3858e97ac8bf6771618b795e5ea11195c0934bf28068d2c6cd0364b9b0242183"
+      },
+      "Tests/workspace_test.lua": {
+        "before": "a0e413a8afbf9006bfb94f519facb9624bbd11ef76ccd58f4fa6ce0ed7b7dde1",
+        "after": "fadeebff7d01f78047ae8e78f75a74538da971125a93c2fc1497c5720dfcd822"
+      },
+      "Tests/logistics_test.lua": {
+        "before": "11e4c6fd7dacc5b60c40fc57a207d78b600ed40c21be59e583eb189acf5b5c0a",
+        "after": "873fdc86811307edc771e87f99808b88f538a11bb2d98103614b1beca1b3af48"
+      }
+    },
+    "sha256RuntimeMatchesAcross": [
+      "_retail_",
+      "_forever_",
+      "_classic_",
+      "_classic_era_",
+      "_anniversary_"
+    ],
+    "loadedSessionVerified": false
+  },
+  "behavior": {
+    "forever": "Open the exact prepared recipe and reveal the native controls. Blizzard's Create button submits the craft. FluxUI credits carried output and FluxLogistics checks the matching native attempt and carried result.",
+    "standalone": "Use the native recipe form or ask the optional companion to reveal and select it, without arming a companion job.",
+    "companion": "Select the recipe of the currently armed queued step, including intermediates. A single deferred selection is guarded by the same armed job and unchanged UI selection.",
+    "layout": {
+      "horizontalDelta": 12,
+      "verticalDelta": -10,
+      "extraActionAnchorOffset": [
+        4,
+        -58
+      ],
+      "fallbackAnchorOffset": [
+        -78,
+        36
+      ],
+      "frameStrata": "HIGH",
+      "frameLevel": 100
+    }
+  },
+  "nativeReferences": {
+    "priorBlockedCraftReport": "FluxLogistics/docs/CLIENT_EVIDENCE.md:74 (Forever 1.60.1.71037)",
+    "openRecipeDeclaration": "https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua#L1040-L1049",
+    "nativeCraftingPage": "https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_Professions/Blizzard_ProfessionsCrafting.lua",
+    "nativeProfessionFrame": "https://github.com/Gethe/wow-ui-source/blob/734f065329cff4992835b01a84f210a297db91b6/Interface/AddOns/Blizzard_Professions/Blizzard_ProfessionsFrame.xml"
+  },
+  "desktopValidation": {
+    "lua": "5.4.6",
+    "lua51And54SyntaxFiles": 13,
+    "fluxUiSuitesPassed": 43,
+    "fluxLogisticsSuitesPassed": 16,
+    "craftDriver": {
+      "profiles": 20,
+      "archivedChecks": 3083,
+      "candidateChecks": 3143,
+      "archivedDriverWithCurrentFixture": "Fails as expected because a verified plan cannot prepare the native recipe before selection data loads.",
+      "additionalFrames": 0,
+      "pendingBackgroundTimersAdded": 0
+    },
+    "bothOwnerChecks": 153,
+    "bothOwnerProfiles": 11,
+    "hudChecks": 63345,
+    "hudNegativeControls": [
+      "previous offsets",
+      "previous frame strata",
+      "previous craft text"
+    ],
+    "renderWork": {
+      "pairedTrials": 15,
+      "checksPerRevision": 1020,
+      "identicalCounterRows": 45,
+      "perUnchangedOrHiddenPhase": "Zero measured widget calls.",
+      "perQuantityPhase": "100 text writes, 50 tooltip clears and 50 tooltip shows. Zero measured layout, visibility and art writes."
+    },
+    "restockMailChecks": 4500,
+    "restockMailCadenceChecks": 940
+  },
+  "liveValidation": {
+    "status": "Pending",
+    "session": "Existing Forever window identified by executable. No game input was sent.",
+    "remaining": [
+      "Both owners' native recipe selection and Create submission",
+      "Companion attribution and output reconciliation",
+      "Concurrent mailbox and profession handoff",
+      "Live overlap, controller input and taint"
+    ]
+  }
+}
